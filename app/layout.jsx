@@ -14,8 +14,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} >
+        <div className='lg:px-14 md:px-10 px-5'>
         <MainLayout>{children}</MainLayout>
+        </div>
         </body>
     </html>
   )
