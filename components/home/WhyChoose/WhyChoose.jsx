@@ -3,7 +3,7 @@ import React from 'react';
 import logo from "../../../assets/nextrade-logo.png"
 import Image1 from "../../../assets/metrics-concept-illustration_114360-3455.png"
 import Image from 'next/image';
-
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 const WhyChoose = () => {
     return (
         <div className='my-20 '>
@@ -16,12 +16,12 @@ const WhyChoose = () => {
                     <h1 className='text-2xl my-4 font-bold text-primary-darkBlue'>Why Choose NexTrade ???</h1>
                     <p  className='text-lg my-4 text-slate-500'>At NexTrade, your trading experience is our top priority, and we stand out for several compelling reasons.</p>
                     <div className='grid grid-cols-2 gap-3'>
-                        <li>Safety Comes First</li>
-                        <li>Bonus And Offers</li>
-                        <li>Low Charges</li>
-                        <li>Fast Transaction</li>
-                        <li>Easy Deposit And Withdraw</li>
-                        <li>24/7 Support</li>
+                        <p><CheckCircleRoundedIcon className='text-primary-darkBlue '/>Safety Comes First</p>
+                        <p><CheckCircleRoundedIcon className='text-primary-darkBlue'/>Bonus And Offers</p>
+                        <p><CheckCircleRoundedIcon className='text-primary-darkBlue'/>Low Charges</p>
+                        <p><CheckCircleRoundedIcon className='text-primary-darkBlue'/>Fast Transaction</p>
+                        <p><CheckCircleRoundedIcon className='text-primary-darkBlue'/>Easy Deposit And Withdraw</p>
+                        <p><CheckCircleRoundedIcon className='text-primary-darkBlue'/>24/7 Support</p>
                     </div>
 
                 </div>

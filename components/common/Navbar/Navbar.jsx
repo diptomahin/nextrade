@@ -25,7 +25,7 @@ const NavLinks = [
   },
   {
     route: 'Services',
-    pathName: '/services'
+    pathName: '/service'
   },
   {
     route: 'About',
