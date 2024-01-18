@@ -5,6 +5,7 @@ import Image from "next/image";
 import bannerImg from "../../../assets/banner.png";
 import Button from "@/components/library/Button/Button";
 import Container from "@/components/library/Container";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -24,7 +25,7 @@ const Banner = () => {
             {/* Tow  Button start and download  */}
             <div className="flex flex-wrap items-center xl:justify-start justify-center gap-4 lg:my-10 md:my-6 my-5">
               <Button> Start Trading</Button>
-              <Button> Register</Button>
+              <Link href={'register'}><Button> Register</Button></Link>
             </div>
           </div>
           <div className="flex-1">

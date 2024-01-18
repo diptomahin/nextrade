@@ -14,7 +14,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <Container className="text-white bg-secondary md:flex justify-between rounded-xl px-10 py-10">
+    <Container className=" text-white bg-secondary md:flex justify-between rounded-xl px-10 py-10">
       <div className="mb-10 md:mb-0">
         <h1 className="text-2xl">Get Daily Updates</h1>
         <p className="font-light">
