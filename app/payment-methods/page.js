@@ -19,7 +19,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 const PaymentMethods = () => {
     return (
         <div>
-            <Typography variant="h2" mt={5} mb={3} fontWeight="bold" color="#1D366F" sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Payment methods</Typography>
+            <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary-darkLightBlue' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Payment methods</Typography>
             <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"]}}>Explore our varied deposit and withdrawal options. Learn about our payment methods and their usage for a seamless financial experience.</Typography>
             <Stack my={5}>
             <Marquee direction='right' gradient="30px">
@@ -38,14 +38,14 @@ const PaymentMethods = () => {
                     aria-controls="panel1-content"
                     id="panel1-header"
                 >
-                    <Typography sx={{fontSize: ["16px", "20px", "24px"]}} color="#1D366F" fontWeight="bold">Credit and Debit Cards</Typography>
+                    <Typography sx={{fontSize: ["16px", "20px", "24px"]}} className='text-primary-darkLightBlue' fontWeight="bold">Credit and Debit Cards</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Table>
                         <TableHead sx={{ borderBottom: "2px solid #1D366F" }}>
                             <TableRow >
-                                <TableCell><Typography fontWeight="bold" color="#1D366F">Methods</Typography></TableCell>
-                                <TableCell><Typography fontWeight="bold" color="#1D366F">Currencies Accepted</Typography></TableCell>
+                                <TableCell><Typography fontWeight="bold" className='text-primary-darkLightBlue'>Methods</Typography></TableCell>
+                                <TableCell><Typography fontWeight="bold" className='text-primary-darkLightBlue'>Currencies Accepted</Typography></TableCell>
                                 <TableCell sx={{ display: ['none', 'table-cell'] }}><Typography fontWeight="bold" color="#1D366F">Details</Typography></TableCell>
                             </TableRow>
                         </TableHead>
