@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NexTrade | A online trading and business platform.
 
-## Getting Started
+## Description
+NexTrade aims to provide a comprehensive online platform for businesses and traders to engage in secure and efficient trading activities. The platform will facilitate the buying and selling of various products and services while offering user-friendly features for seamless transactions.
+## Live Link
 
-First, run the development server:
+   [NexTrade Live]()
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Server Side
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  [NexTrade Server Code]()
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## NexTrade Homepage
 
-## Learn More
+![Home Page of NexTrade](/assets//NexTrade%20Mocup.png)
 
-To learn more about Next.js, take a look at the following resources:
+## Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Functionality**
+  - Trade  Management - Traders can buy and sell assets from and to other traders.
+  - Price tracking - Treaders can track real-time values of their assets as well as other assets from the platform.
+  - Messaging System - Real-time messaging using WebSocket technology for immediate communication between buyers and sellers.
+  - Payment Integration - Integration with Stripe for secure and efficient payment processing.
+  - Admin Dashboard - Admins have a dashboard for user management, transaction monitoring, and policy enforcement.e
+  - Advertising Banner in home page and many more.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+- **Trader Role(Dashboard)**
+  - Update profile information such as name, photo.
+  - Treaders can buy and sell assets and manage their assets.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Admin Role(Dashboard)**
+   - Platform administrators are responsible for managing users, and transactions, and enforcing policies.
+   - Add another admin or moderator.
+   - See different kind of statics, like trader count chart, total transaction amount and user count chart.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Authentication:**
+  - Gmail and Email/Password authentication system.
+  - Implement JWT(Json Web Token) with private route.
+  - Utilizes OAuth 2.0 for secure user registration and login functionalities.
+
+
+- **Payment System:**
+  - Seamless completion of purchases with the integrated Stripe payment system.
+  - Confirm personal information and address details during the checkout process.
+
+- **Responsive Design:**
+  - Enjoy a seamless experience across various devices.
+
+## Technologies Used
+
+ - **Frontend:** JavaScript, Next.js, React.js, Tailwind CSS and Material UI.
+ - **Backend:** Node.js, Express.js.
+ - **Database:** MongoDB.
+ - **Authentication:** OAuth 2.0 Authentication with JWT.
+- **Host:** Firebase.
+
+## Admin Credentials
+- **Username:** admin@NexTrade.com
+- **Password:** NexTrade123
+
+## Challenges
+- One of the most hardest challenge in this project was to implement subscription method.
+
+## How to Run Locally
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Configure environment variables for MongoDB, Firebase, and Stripe.
+4. Run the development server using `npm run dev`.
