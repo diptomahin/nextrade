@@ -3,9 +3,10 @@ import logo from "../../../assets/nextrade-logo.png";
 import Image1 from "../../../assets/metrics-concept-illustration_114360-3455.png";
 import Image from "next/image";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import Container from "@/components/library/Container";
 const WhyChoose = () => {
   return (
-    <div className="my-20 ">
+    <Container className="my-20 ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="">
           <Image width={400} height={400} src={Image1} alt="Invest" />
@@ -47,7 +48,7 @@ const WhyChoose = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

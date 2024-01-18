@@ -4,10 +4,11 @@ import React from "react";
 import logo from "../../../assets/nextrade-logo.png";
 import investImage from "../../../assets/stockImage1.png";
 import Image from "next/image";
+import Container from "@/components/library/Container";
 
 const InvestmentSolutions = () => {
   return (
-    <div className="my-20 ">
+    <Container className="my-20">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="col-span-2">
           <Image src={investImage} alt="Invest" />
@@ -45,7 +46,7 @@ const InvestmentSolutions = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
