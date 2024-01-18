@@ -5,7 +5,7 @@ import Navbar from '../common/Navbar/Navbar';
 const MainLayout = ({ children }) => {
      return (
           <div className=''>
-           <Navbar />
+          <Navbar />
             {children}
             <Footer />
           </div>
