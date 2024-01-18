@@ -8,8 +8,8 @@ import { Button } from '@mui/material';
 
 const StartTrading = () => {
     return (
-        <div className='flex justify-between'>
-            <div className='w-1/2 py-20'>
+        <div className='flex flex-col-reverse md:flex-row justify-between'>
+            <div className='w-full md:w-1/2 py-10'>
                 <Image src={logo} alt='logo' width={80} className='my-2' />
                 <h1 className='text-2xl my-4 text-primary-darkBlue font-bold'>Embark on Your Trading Journey with NexTrade: Start Trading Today</h1>
                 <p className='text-lg my-4 text-slate-500'>Ready to dive in? Navigate to the trading interface, choose the asset you want to trade</p>
