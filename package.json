@@ -13,10 +13,12 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.5",
     "@mui/material": "^5.15.5",
+    "clsx": "^2.1.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-fast-marquee": "^1.6.2"
+    "react-fast-marquee": "^1.6.2",
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
