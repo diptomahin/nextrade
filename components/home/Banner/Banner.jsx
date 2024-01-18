@@ -7,7 +7,7 @@ import bannerImg from '../../../assets/banner.png'
 
 const Banner = () => {
      return (
-          <div className='mx-auto my-20 md:mx-auto md:flex md:flex-row-reverse   items-center justify-between gap-20 mt-10'>
+          <div className='mx-auto min-h-screen md:mx-auto md:flex md:flex-row-reverse   items-center justify-between gap-20 '>
                {/* Banner Image div   */}   
                <div>
                <Image

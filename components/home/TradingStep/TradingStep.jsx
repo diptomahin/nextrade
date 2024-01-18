@@ -5,7 +5,7 @@ import WalletIcon from '@mui/icons-material/Wallet';
 
 const TradingStep = () => {
      return (
-          <div className=' md:flex items-center justify-between  lg:mt-32 mt-20'>
+          <div className=' md:flex items-center justify-between  lg:mt-32 '>
                {/* Trading step section content */}
                <div className='md:w-[600px]'>
                     <h1 className=" lg:text-4xl md:text-3xl text-4xl font-bold text-primary-darkBlue mb-5">Start Trading in <br /> Few Step</h1>
