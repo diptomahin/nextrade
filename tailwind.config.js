@@ -9,12 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#21366c',
-        secondary: '#35c07c',
+        primary: '#21366c', //blue
+        secondary: '#35c07c', // green
       },
       backgroundColor: {
-        primary: '#21366c',
-        secondary: '#35c07c',
+        primary: '#21366c', //blue
+        secondary: '#35c07c', //green 
       },
       fontFamily: {
         dm: ['DM Sans', 'sans-serif'],
