@@ -7,7 +7,7 @@ import bannerImg from '../../../assets/banner.jpg'
 
 const Banner = () => {
      return (
-          <div className='md:flex md:flex-row-reverse   items-center justify-between gap-20 mt-10'>
+          <div className='mx-auto my-10 md:mx-auto md:flex md:flex-row-reverse   items-center justify-between gap-20 mt-10'>
                {/* Banner Image div   */}   
                <div>
                <Image
@@ -17,8 +17,8 @@ const Banner = () => {
                </div>
                {/* Banner Content div   */}
                <div className='lg:w-[600px]'>
-                    <h1 className='lg:text-5xl  md:text-3 text-2xl  font-bold lg:mb-8 md:mb-4 mb-4 text-primary-darkBlue '>Start Trading in Crypto Instant</h1>
-                    <p className='font-semibold text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate error aspernatur consectetur</p>
+                    <h1 className='lg:text-5xl  md:text-3 text-2xl  font-bold lg:mb-8 md:mb-4 mb-4 text-primary-darkBlue '>Trade Smarter, Grow Faster</h1>
+                    <p className='font-semibold text-gray-500 '> Unleash the power of advanced tools and market insights. From beginners to pro traders, we have the resources you need.</p>
 
                     {/* Tow  Button start and download  */}
                     <div className=" flex items-center md:justify-start justify-center gap-4 lg:my-10 md:my-6 my-5">
