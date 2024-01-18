@@ -8,10 +8,12 @@ const WhyChoose = () => {
   return (
     <Container className="my-20 ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Image side  */}
         <div className="">
-          <Image width={400} height={400} src={Image1} alt="Invest" />
+          <Image width={500} height={500} src={Image1} alt="Invest" />
         </div>
-        <div className="py-10">
+        {/* Content side */}
+        <div className="pt-20">
           <Image src={logo} alt="logo" width={80} className="my-4" />
           <h1 className="text-2xl my-4 font-bold text-primary">
             Why Choose NexTrade ???
@@ -20,29 +22,29 @@ const WhyChoose = () => {
             At NexTrade, your trading experience is our top priority, and we
             stand out for several compelling reasons.
           </p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 font-semibold text-gray-500">
             <p>
-              <CheckCircleRoundedIcon className="text-primary " />
+              <CheckCircleRoundedIcon className="text-primary mr-2 " />
               Safety Comes First
             </p>
             <p>
-              <CheckCircleRoundedIcon className="text-primary" />
+              <CheckCircleRoundedIcon className="text-primary mr-2" />
               Bonus And Offers
             </p>
             <p>
-              <CheckCircleRoundedIcon className="text-primary" />
+              <CheckCircleRoundedIcon className="text-primary mr-2" />
               Low Charges
             </p>
             <p>
-              <CheckCircleRoundedIcon className="text-primary" />
+              <CheckCircleRoundedIcon className="text-primary mr-2" />
               Fast Transaction
             </p>
             <p>
-              <CheckCircleRoundedIcon className="text-primary" />
+              <CheckCircleRoundedIcon className="text-primary mr-2" />
               Easy Deposit And Withdraw
             </p>
             <p>
-              <CheckCircleRoundedIcon className="text-primary" />
+              <CheckCircleRoundedIcon className="text-primary mr-2" />
               24/7 Support
             </p>
           </div>

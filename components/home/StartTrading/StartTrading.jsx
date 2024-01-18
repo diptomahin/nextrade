@@ -23,19 +23,19 @@ const StartTrading = () => {
       <div className="md:mt-0 mt-10">
         <div className=" flex gap-6">
           <div className="space-y-6">
-            <div className=" lg:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
-              <Image src={image1} alt="logo" width={150} className="" />
+            <div className=" lg:flex border border-blue-200  items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
+              <Image src={image1} alt="logo" width={190} className="" />
             </div>
-            <div className=" lg:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
-              <Image src={image2} alt="logo" width={150} className="" />
+            <div className=" lg:flex border border-blue-200  items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
+              <Image src={image2} alt="logo" width={190} className="" />
             </div>
           </div>
           <div className="space-y-6 -mt-14">
-            <div className=" lg:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
-              <Image src={image2} alt="logo" width={150} className="" />
+            <div className=" lg:flex border border-blue-200  items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
+              <Image src={image2} alt="logo" width={190} className="" />
             </div>
-            <div className=" lg:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
-              <Image src={image1} alt="logo" width={150} className="" />
+            <div className=" lg:flex border border-blue-200  items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">
+              <Image src={image1} alt="logo" width={190} className="" />
             </div>
           </div>
         </div>

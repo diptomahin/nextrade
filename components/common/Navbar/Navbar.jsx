@@ -7,6 +7,7 @@ import Container from "@/components/library/Container";
 import Image from "next/image";
 import Drawer from "./Drawer";
 import { RiCloseLine, RiMenu5Fill } from "react-icons/ri";
+import Link from "next/link";
 
 //Pages
 const NavLinks = [
@@ -56,7 +57,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-[100] w-full ${
+      className={`fixed z-[100] top-0 w-full ${
         scrolled
           ? "bg-secondary py-4 transition-all duration-700 ease-in-out"
           : "bg-transparent py-6 transition-all duration-700 ease-in-out"
@@ -73,10 +74,10 @@ const Navbar = () => {
         </button>
       </div>
       <Container className="flex justify-between items-center">
-        <Image src={logo} alt="Trad Icon" width={120} placeholder="blur" />
+        <Link href={'/'}><Image src={logo} alt="Trad Icon" width={140} placeholder="blur" /></Link>
         <div className="hidden lg:flex items-center gap-10 text-lg font-medium">
-          <Button> Login</Button>
-          <Button>Register</Button>
+          <Link href={'/login'}><Button> Login</Button></Link>
+          <Link href={'/register'}><Button> Register</Button></Link>
         </div>
         <div className="lg:hidden">
           <Button onClick={() => setToggleMenu(!toggleMenu)} className="px-3">

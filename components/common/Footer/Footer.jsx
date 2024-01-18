@@ -16,7 +16,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 const Footer = () => {
      return (
-          <footer className="bg-slate-400 lg:px-14 md:px-10 px-5  ">
+          <footer className="bg-slate-400 lg:px-14 md:px-10 px-5 mt-14 ">
                <Link href={'/'}>
         <Image src={logo} alt="" className='w-52 py-8' />
       </Link>
@@ -24,34 +24,34 @@ const Footer = () => {
         {/* Contact Us */}
         <nav className="text-primary-white flex flex-col ">
           <header className=" font-bold text-primary mb-5 uppercase">Contact Us</header>
-          <Link href={'/about'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer">About Us</Link>
-          <Link href={'/joinUs'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer">Join Us</Link>
-          <Link href={'/technicalSupport'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer">Technical Support</Link>
+          <Link href={'/about'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer">About Us</Link>
+          <Link href={'/joinUs'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer">Join Us</Link>
+          <Link href={'/technicalSupport'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer">Technical Support</Link>
         </nav>
         {/* products */}
         <nav className="text-primary-white flex flex-col ">
           <header className=" font-bold text-primary mb-5 uppercase">Products</header>
-          <Link href={'/sportTrade'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer"> Sport Trade</Link>
-          <Link href={'/margeTrade'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer">Marge Trade</Link>
-          <Link href={'/futureTrade'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer">Future Trade</Link>
+          <Link href={'/sportTrade'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer"> Sport Trade</Link>
+          <Link href={'/margeTrade'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer">Marge Trade</Link>
+          <Link href={'/futureTrade'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer">Future Trade</Link>
         </nav>
         {/* Services*/}
         <nav className="text-primary-white flex flex-col gap-2">
-          <header className=" font-bold text-primary mb-5 uppercase">Services</header>
-          <Link href={'/sportTrade'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer"> Sport Trade</Link>
-          <Link href={'/margeTrade'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer">Marge Trade</Link>
-          <Link href={'/futureTrade'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer">Future Trade</Link>
+          <header className=" font-bold text-primary mb-3 uppercase">Services</header>
+          <Link href={'/sportTrade'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer"> Sport Trade</Link>
+          <Link href={'/margeTrade'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer">Marge Trade</Link>
+          <Link href={'/futureTrade'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer">Future Trade</Link>
           
         </nav>
         {/* CONNECT WITH US */}
         <nav className="text-primary-white flex flex-col gap-2">
-          <header className=" font-bold text-primary mb-5 uppercase">Connect</header>
-          <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer flex items-center gap-2"><InstagramIcon /> <span>4.7M People Like this</span></Link>
-          <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer flex items-center gap-2"><FacebookIcon /> <span>1M Followers</span></Link>
+          <header className=" font-bold text-primary mb-3 uppercase">Connect</header>
+          <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer flex items-center gap-2"><InstagramIcon /> <span>4.7M People Like this</span></Link>
+          <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer flex items-center gap-2"><FacebookIcon /> <span>1M Followers</span></Link>
           <div className='flex items-center gap-5 '>
-            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer"><AppleIcon /></Link>
-            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer"><XIcon /></Link>
-            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer"><GoogleIcon /></Link>
+            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer"><AppleIcon /></Link>
+            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer"><XIcon /></Link>
+            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer"><GoogleIcon /></Link>
           </div>
         </nav>
       
@@ -60,9 +60,9 @@ const Footer = () => {
           <header className=" font-bold text-primary mb-3 lg:mx-auto">100% SECURE PAYMENT
           </header>
           <div className='flex items-center gap-5 lg:mx-auto '>
-            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer  hover:bg-primary w-[55px] h-[55px] flex items-center rounded-full p-2 "><Image src={strip} alt="" className='w-28' /></Link>
-            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer  hover:bg-primary w-[55px] h-[55px] flex items-center rounded-full p-2 "><Image src={bkash} alt="" className='w-28' /></Link>
-            <Link href={'/'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer  hover:bg-primary w-[55px] h-[55px] flex items-center rounded-full p-2 "><Image src={paypal} alt="" className='w-28' /></Link>
+            <Link href={'/payment'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer  hover:bg-primary w-[55px] h-[55px] flex items-center rounded-full p-2 "><Image src={strip} alt="" className='w-28' /></Link>
+            <Link href={'/payment'} className="hover:underline duration-200 font-medium text-gray-700 hover:text-black cursor-pointer  hover:bg-primary w-[55px] h-[55px] flex items-center rounded-full p-2 "><Image src={bkash} alt="" className='w-28' /></Link>
+            <Link href={'/payment'} className="hover:underline duration-200 font-medium text-gray-600 hover:text-black cursor-pointer  hover:bg-primary w-[55px] h-[55px] flex items-center rounded-full p-2 "><Image src={paypal} alt="" className='w-28' /></Link>
           </div>
         </nav>
       </div>
