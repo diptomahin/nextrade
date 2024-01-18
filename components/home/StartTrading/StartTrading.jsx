@@ -3,11 +3,12 @@ import logo from "../../../assets/nextrade-logo.png";
 import image1 from "../../../assets/economic-world-forex-trading-background_1017-38068.png";
 import image2 from "../../../assets/gradient-stock-market-concept_23-2149166929.png";
 import Image from "next/image";
-import { Button } from "@mui/material";
+import Container from "@/components/library/Container";
+import Button from "@/components/library/Button/Button";
 
 const StartTrading = () => {
   return (
-    <div className="flex flex-col-reverse md:flex-row justify-between">
+    <Container className="flex flex-col-reverse md:flex-row justify-between">
       <div className="w-full md:w-1/2 py-10">
         <Image src={logo} alt="logo" width={80} className="my-2" />
         <h1 className="text-2xl my-4 text-primary font-bold">
@@ -17,9 +18,7 @@ const StartTrading = () => {
           Ready to dive in? Navigate to the trading interface, choose the asset
           you want to trade
         </p>
-        <Button className="bg-primary-darkLightBlue text-primary-white lg:p-3 md:p-2 p-3 rounded-3xl px-5 font-semibold border-2 border-primary-darkLightBlue hover:bg-primary-white hover:text-primary-darkLightBlue duration-300 ">
-          Start Trading
-        </Button>
+        <Button>Start Trading</Button>
       </div>
       <div className="md:mt-0 mt-10">
         <div className=" flex gap-6">
@@ -41,7 +40,7 @@ const StartTrading = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

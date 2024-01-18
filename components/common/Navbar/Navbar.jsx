@@ -1,20 +1,12 @@
 "use client";
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Image from "next/image";
-import { IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-
-//logo
 import logo from "../../../assets/nextrade-logo.png";
-import Link from "next/link";
+import Button from "@/components/library/Button/Button";
+import { IoMdArrowDropup } from "react-icons/io";
+import Container from "@/components/library/Container";
+import Image from "next/image";
+import Drawer from "./Drawer";
+import { RiCloseLine, RiMenu5Fill } from "react-icons/ri";
 
 //Pages
 const NavLinks = [
@@ -38,102 +30,63 @@ const NavLinks = [
 const otherLinks = ["Trade Hub", "Signin/Login"];
 
 const Navbar = () => {
-  //state-nave-menu
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [toggleMenu, setToggleMenu] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
-  //functions-open-close-nave-menu
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  console.log(toggleMenu);
+
+  React.useEffect(() => {
+    const handleScrolled = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrolled);
+    return () => {
+      window.removeEventListener("scroll", handleScrolled);
+    };
+  }, []);
 
   return (
-    <AppBar className="bg-primary-white w-full" position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Image className="mx-5" src={logo} width={200} alt="NexTrade" />
-          <Box
-            sx={{
-              flexGrow: 1,
-              paddingLeft: "70px",
-              display: { xs: "none", md: "flex" },
-            }}
-          >
-            {NavLinks.map((item) => (
-              <Link key={item} href={item.pathName}>
-                <Button
-                  className="text-primary font-semibold"
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {item.route}
-                </Button>
-              </Link>
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {otherLinks.map((links) => (
-              <Button
-                className="text-primary font font-semibold"
-                key={links}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {links}
-              </Button>
-            ))}
-          </Box>
-          <Box
-            sx={{
-              flexGrow: 1,
-              paddingLeft: { xs: "40px", md: "0px" },
-              display: { xs: "flex", md: "none" },
-            }}
-          >
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="#21366c"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {NavLinks.map((item) => (
-                <MenuItem key={item} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{item.pathName}</Typography>
-                </MenuItem>
-              ))}
-              {otherLinks.map((links) => (
-                <MenuItem key={links} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{links}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
+    <nav
+      className={`fixed z-[100] w-full ${
+        scrolled
+          ? "bg-secondary py-4 transition-all duration-700 ease-in-out"
+          : "bg-transparent py-6 transition-all duration-700 ease-in-out"
+      }`}
+    >
+      <div>
+        <button
+          onClick={handleScrollToTop}
+          className={`p-2 bg-secondary hover:bg-secondary border-none text-white fixed bottom-10 right-10 rounded-full ${
+            !scrolled && "hidden"
+          }`}
+        >
+          <IoMdArrowDropup className="w-10 h-10" />
+        </button>
+      </div>
+      <Container className="flex justify-between items-center">
+        <Image src={logo} alt="Trad Icon" width={120} placeholder="blur" />
+        <div className="hidden lg:flex items-center gap-10 text-lg font-medium">
+          <Button> Login</Button>
+          <Button>Register</Button>
+        </div>
+        <div className="lg:hidden">
+          <Button onClick={() => setToggleMenu(!toggleMenu)} className="px-3">
+            {toggleMenu ? <RiCloseLine /> : <RiMenu5Fill />}
+          </Button>
+        </div>
       </Container>
-    </AppBar>
+
+      {toggleMenu && <Drawer toggleMenu={toggleMenu} />}
+    </nav>
   );
 };
 

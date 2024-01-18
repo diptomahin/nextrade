@@ -1,19 +1,19 @@
 "use client";
+import Button from "@/components/library/Button/Button";
+import Container from "@/components/library/Container";
 //material icon import
 import PersonIcon from "@mui/icons-material/Person";
 import WalletIcon from "@mui/icons-material/Wallet";
 
 const TradingStep = () => {
   return (
-    <div className=" md:flex items-center justify-between  lg:mt-32 ">
+    <Container className=" md:flex items-center justify-between  lg:mt-32 ">
       {/* Trading step section content */}
       <div className="md:w-[600px]">
         <h1 className=" lg:text-4xl md:text-3xl text-4xl font-bold text-primary mb-5">
           Start Trading in <br /> Few Step
         </h1>
-        <button className="bg-primary-darkLightBlue text-primary-white lg:p-3 md:p-3 p-3 rounded-3xl px-5 font-semibold border-2 border-primary-darkLightBlue hover:bg-primary-white hover:text-primary-darkLightBlue duration-300  mt-10">
-          Start Trading
-        </button>
+        <Button>Start Trading</Button>
       </div>
       <div className="md:mt-0 mt-10">
         <div className=" flex gap-6">
@@ -71,7 +71,7 @@ const TradingStep = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

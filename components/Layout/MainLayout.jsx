@@ -5,7 +5,7 @@ import Container from "../library/Container";
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="">
+    <div className="font-dm">
       <Navbar />
       {children}
       <Footer />
