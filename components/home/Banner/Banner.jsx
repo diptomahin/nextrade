@@ -3,15 +3,15 @@
 import Image from 'next/image';
 
 // Image import the asset file  
-import bannerImg from '../../../assets/banner.jpg'
+import bannerImg from '../../../assets/banner.png'
 
 const Banner = () => {
      return (
-          <div className='mx-auto my-10 md:mx-auto md:flex md:flex-row-reverse   items-center justify-between gap-20 mt-10'>
+          <div className='mx-auto my-20 md:mx-auto md:flex md:flex-row-reverse   items-center justify-between gap-20 mt-10'>
                {/* Banner Image div   */}   
                <div>
                <Image
-            alt=''
+            alt='Banner'
             className='md:w-[600px]  md:mb-0  mb-10'
             src={bannerImg} />
                </div>
