@@ -17,9 +17,11 @@ import GoogleIcon from '@mui/icons-material/Google';
 const Footer = () => {
      return (
           <footer className="bg-slate-400 lg:px-14 md:px-10 px-5 mt-14 ">
-               <Link href={'/'}>
-        <Image src={logo} alt="" className='w-52 py-8' />
+              <div className="w-52">
+              <Link href={'/'} >
+        <Image src={logo} alt="" className=' py-8' />
       </Link>
+              </div>
       <div className=' grid xl:grid-cols-5 lg:grid-cols-3 grid-cols-2 mx-auto gap-8 my-8'>
         {/* Contact Us */}
         <nav className="text-primary-white flex flex-col ">
