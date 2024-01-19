@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Container, Hidden, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import masterCard from "@/assets/masterCard.png"
@@ -14,11 +14,12 @@ import LiteCoin from "@/assets/LiteCoin.png"
 import USDCoin from "@/assets/USD Coin.png"
 import Marquee from "react-fast-marquee";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import Container from '@/components/library/Container';
 
 
 const PaymentMethods = () => {
     return (
-        <div className='xl:px-16 lg:px-10 px-5 pt-14'>
+        <Container className='py-24'>
             <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Payment methods</Typography>
             <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"]}}>Explore our varied deposit and withdrawal options. Learn about our payment methods and their usage for a seamless financial experience.</Typography>
             <Stack my={5}>
@@ -175,7 +176,7 @@ const PaymentMethods = () => {
                     </Table>
                 </AccordionDetails>
             </Accordion>
-        </div>
+        </Container>
     );
 };
 

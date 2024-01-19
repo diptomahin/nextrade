@@ -15,20 +15,20 @@ import Container from "@/components/library/Container";
 
 const Services = () => {
   return (
-    <Container>
-      <div className="text-center mt-20 mx-auto">
+    <Container className="py-28">
+      <div className="text-center mx-auto">
         <div>
-          <h1 className="lg:text-3xl md:text-3xl text-4xl my-4 text-primary font-bold mx-auto text-center">
+          <h1 className="lg:text-3xl md:text-4xl text-6xl my-4 text-primary font-bold mx-auto text-center">
             Service We Offer
           </h1>
 
-          <p className="mt-1  w-96 text-center mx-auto font-medium text-gray-500">
+          <p className="mt-1  xl:w-96 text-center mx-auto font-medium text-gray-500">
             We offer the best services around from installations to repairs,
             maintenance, and more!
           </p>
         </div>
 
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto justify-center grid-cols-1 item-center mt-10">
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto justify-center item-center mt-10">
           {/* cart 1  */}
           <Card className="py-14 px-2 rounded-lg border border-gray-100">
             <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
