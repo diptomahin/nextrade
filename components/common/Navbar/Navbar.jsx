@@ -47,7 +47,7 @@ const Navbar = () => {
         <button>About Us</button>
         {aboutUsHover && (
           <div className="absolute w-48 bg-blue-50 text-black -left-[45%] top-10 flex flex-col justify-center items-center gap-5 p-5 rounded-md text-sm">
-            <Link href={"/about-nextrade"}>About NexTrade</Link>
+            <Link href={"/aboutus"}>About NexTrade</Link>
             <Link href={"/why-choose-us"}>Why Choose Us</Link>
             <Link href={"/"}>Contact Us</Link>
           </div>
@@ -61,7 +61,7 @@ const Navbar = () => {
         <button>Recourses</button>
         {recoursesHover && (
           <div className="absolute w-48 bg-blue-50 text-black  -left-[45%] top-10 flex flex-col justify-center items-center gap-5 p-5 rounded-md text-sm">
-            <Link href={"/payment-methods"}>Payment Methods</Link>
+            <Link href={"/payment"}>Payment Methods</Link>
             <Link href={"/"}>Help Centre</Link>
           </div>
         )}
