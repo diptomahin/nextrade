@@ -1,4 +1,4 @@
-"use  client"
+"use client"
 
 import { Accordion, AccordionDetails, AccordionSummary, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -7,7 +7,7 @@ import masterCard from "../../assets/masterCard.png"
 import visaCard from "../../assets/visaLogo.png"
 import paypalLogo from "../../assets/paypalLogo.png"
 import discoverLogo from "../../assets/discover-logo-2.png"
-import unionPayLogo from "../../assets/Union-Pay.png"
+// import unionPayLogo from "../../assets/Union-Pay.png"
 import maestroLogo from "../../assets/Maestro.png"
 import dinersClub from "../../assets/dinersClub.png"
 import bitcoin from "../../assets/bitcoin.png"
@@ -31,7 +31,7 @@ const PaymentMethods = () => {
                 <Image className='w-28 md:w-60 mx-12' src={maestroLogo} alt='meastro-logo'></Image>
                 <Image className='w-28 md:w-52 mx-12' src={dinersClub} alt='dinersClub-logo'></Image>
                 <Image className='w-28 md:w-60 mx-12' src={discoverLogo} alt='discover-logo'></Image>
-                <Image className='w-28 md:w-60 mx-12' src={unionPayLogo} alt='unionpay-logo'></Image>
+                {/* <Image className='w-28 md:w-60 mx-12' src={unionPayLogo} alt='unionpay-logo'></Image> */}
                 <Image className='w-28 md:w-60 mx-12' src={paypalLogo} alt='paypal-logo'></Image>
             </Marquee>
             </Stack>
@@ -108,13 +108,13 @@ const PaymentMethods = () => {
                             </TableRow>
 
                             {/* UnionPay */}
-                            <TableRow>
+                            {/* <TableRow>
                                 <TableCell>
                                     <Image className='w-24' src={unionPayLogo} alt="union card"></Image>
                                 </TableCell>
                                 <TableCell>CNY, USD, EUR, etc.</TableCell>
                                 <TableCell sx={{ display: ['none', 'table-cell'] }}>Global acceptance, robust security measures.</TableCell>
-                            </TableRow>
+                            </TableRow> */}
                         </TableBody>
                     </Table>
                 </AccordionDetails>
