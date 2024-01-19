@@ -1,17 +1,19 @@
+"use  client"
+
 import { Accordion, AccordionDetails, AccordionSummary, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
-import masterCard from "@/assets/masterCard.png"
-import visaCard from "@/assets/visaLogo.png"
-import paypalLogo from "@/assets/paypalLogo.png"
-import discoverLogo from "@/assets/discover-logo-2.png"
-import UnionpayLogo from "@/assets/Union-pay.png"
-import maestroLogo from "@/assets/Maestro.png"
-import dinersClub from "@/assets/dinersClub.png"
-import bitcoin from "@/assets/bitcoin.png"
-import Ethereum from "@/assets/ethereum.png"
-import LiteCoin from "@/assets/LiteCoin.png"
-import USDCoin from "@/assets/USD Coin.png"
+import masterCard from "../../assets/masterCard.png"
+import visaCard from "../../assets/visaLogo.png"
+import paypalLogo from "../../assets/paypalLogo.png"
+import discoverLogo from "../../assets/discover-logo-2.png"
+import UnionpayLogo from "../../assets/Union-pay.png"
+import maestroLogo from "../../assets/Maestro.png"
+import dinersClub from "../../assets/dinersClub.png"
+import bitcoin from "../../assets/bitcoin.png"
+import Ethereum from "../../assets/ethereum.png"
+import LiteCoin from "../../assets/LiteCoin.png"
+import USDCoin from "../../assets/USD Coin.png"
 import Marquee from "react-fast-marquee";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Container from '@/components/library/Container';

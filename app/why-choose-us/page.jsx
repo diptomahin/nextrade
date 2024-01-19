@@ -1,12 +1,14 @@
+"use client"
+
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
-import icon1 from '@/assets/whyChooseUs-Icons/icon-1.png'
-import icon2 from '@/assets/whyChooseUs-Icons/icon-2.png'
-import icon3 from '@/assets/whyChooseUs-Icons/icon-3.png'
-import icon4 from '@/assets/whyChooseUs-Icons/icon-4.png'
-import icon5 from '@/assets/whyChooseUs-Icons/icon-5.png'
-import icon6 from '@/assets/whyChooseUs-Icons/icon-6.png'
+import icon1 from '../../assets/whyChooseUs-Icons/icon-1.png'
+import icon2 from '../../assets/whyChooseUs-Icons/icon-2.png'
+import icon3 from '../../assets/whyChooseUs-Icons/icon-3.png'
+import icon4 from '../../assets/whyChooseUs-Icons/icon-4.png'
+import icon5 from '../../assets/whyChooseUs-Icons/icon-5.png'
+import icon6 from '../../assets/whyChooseUs-Icons/icon-6.png'
 import Container from '@/components/library/Container';
 
 const WhyChooseUs = () => {
