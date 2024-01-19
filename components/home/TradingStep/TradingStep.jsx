@@ -21,7 +21,7 @@ const TradingStep = () => {
 
       <div className="md:w-[600px]">
       <Image src={logo} alt="logo" width={80} className="my-2 " />
-        <h1 className=" lg:text-4xl md:text-3xl text-4xl font-bold text-primary mb-5">
+        <h1 className=" lg:text-3xl md:text-3xl text-4xl font-bold text-primary mb-5">
           Start Trading in <br /> Few Step
         </h1>
         <Button>Start Trading</Button>
