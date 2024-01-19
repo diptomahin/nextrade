@@ -11,7 +11,7 @@ import Container from '@/components/library/Container';
 
 const WhyChooseUs = () => {
     return (
-        <Container>
+        <Container className="py-24">
             <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary-darkLightBlue' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Why Choose Us?</Typography>
             <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Earning Client Trust: Our Pledge to Excellence. Millions Choose Us for Leading Online Trading Services.</Typography>
 

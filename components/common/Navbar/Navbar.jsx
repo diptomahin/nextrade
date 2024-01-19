@@ -9,36 +9,15 @@ import Drawer from "./Drawer";
 import { RiCloseLine, RiMenu5Fill } from "react-icons/ri";
 import Link from "next/link";
 
-//Pages
-const NavLinks = [
-  {
-    route: "Home",
-    pathName: "/",
-  },
-  {
-    route: "Services",
-    pathName: "/services",
-  },
-  {
-    route: "About",
-    pathName: "/about",
-  },
-  {
-    route: "Resources",
-    pathName: "/resources",
-  },
-];
-const otherLinks = ["Trade Hub", "Signin/Login"];
-
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [aboutUsHover, setAboutUsHover] = React.useState(false);
+  const [recoursesHover, setRecoursesHover] = React.useState(false);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
   };
-
-  console.log(toggleMenu);
 
   React.useEffect(() => {
     const handleScrolled = () => {
@@ -55,6 +34,41 @@ const Navbar = () => {
     };
   }, []);
 
+  const navLinks = (
+    <>
+      <Link href={"/"}>Home</Link>
+      <Link href={"/"}>Dashboard</Link>
+      <Link href={"/services"}>Services</Link>
+      <div
+        onMouseEnter={() => setAboutUsHover(true)}
+        onMouseLeave={() => setAboutUsHover(false)}
+        className="p-3 relative"
+      >
+        <button>About Us</button>
+        {aboutUsHover && (
+          <div className="absolute w-48 bg-blue-50 text-black -left-[45%] top-10 flex flex-col justify-center items-center gap-5 p-5 rounded-md text-sm">
+            <Link href={"/about-nextrade"}>About NexTrade</Link>
+            <Link href={"/why-choose-us"}>Why Choose Us</Link>
+            <Link href={"/"}>Contact Us</Link>
+          </div>
+        )}
+      </div>
+      <div
+        onMouseEnter={() => setRecoursesHover(true)}
+        onMouseLeave={() => setRecoursesHover(false)}
+        className="p-3 relative"
+      >
+        <button>Recourses</button>
+        {recoursesHover && (
+          <div className="absolute w-48 bg-blue-50 text-black  -left-[45%] top-10 flex flex-col justify-center items-center gap-5 p-5 rounded-md text-sm">
+            <Link href={"/payment-methods"}>Payment Methods</Link>
+            <Link href={"/"}>Help Centre</Link>
+          </div>
+        )}
+      </div>
+    </>
+  );
+
   return (
     <nav
       className={`fixed z-[100] top-0 w-full ${
@@ -66,20 +80,35 @@ const Navbar = () => {
       <div>
         <button
           onClick={handleScrollToTop}
-          className={`p-2 bg-secondary hover:bg-secondary border-none text-white fixed bottom-10 right-10 rounded-full ${
+          className={`p-2 bg-secondary hover:bg-secondary border-none text-white fixed bottom-10 right-5 md:right-10 rounded-full ${
             !scrolled && "hidden"
           }`}
         >
-          <IoMdArrowDropup className="w-10 h-10" />
+          <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
         </button>
       </div>
       <Container className="flex justify-between items-center">
-        <Link href={'/'}><Image src={logo} alt="Trad Icon" width={140} placeholder="blur" /></Link>
-        <div className="hidden lg:flex items-center gap-10 text-lg font-medium">
-          <Link href={'/login'}><Button> Login</Button></Link>
-          <Link href={'/register'}><Button> Register</Button></Link>
+        <Link href={"/"}>
+          <Image src={logo} alt="Trad Icon" width={140} placeholder="blur" />
+        </Link>
+        <div
+          className={`hidden xl:flex items-center gap-10 text-lg font-medium ${
+            scrolled
+              ? "text-white transition-all duration-700 ease-in-out"
+              : "transition-all duration-700 ease-in-out"
+          }`}
+        >
+          {navLinks}
         </div>
-        <div className="lg:hidden">
+        <div className="hidden xl:flex items-center gap-5">
+          <Link href={"/login"}>
+            <Button> Login</Button>
+          </Link>
+          <Link href={"/register"}>
+            <Button> Register</Button>
+          </Link>
+        </div>
+        <div className="xl:hidden">
           <Button onClick={() => setToggleMenu(!toggleMenu)} className="px-3">
             {toggleMenu ? <RiCloseLine /> : <RiMenu5Fill />}
           </Button>

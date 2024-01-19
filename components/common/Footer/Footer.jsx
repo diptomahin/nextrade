@@ -13,13 +13,14 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import AppleIcon from '@mui/icons-material/Apple';
 import XIcon from '@mui/icons-material/X';
 import GoogleIcon from '@mui/icons-material/Google';
+import Container from "@/components/library/Container";
 
 const Footer = () => {
      return (
-          <footer className="bg-slate-400 lg:px-14 md:px-10 px-5 mt-14 ">
-              <div className="w-52">
+          <footer className="bg-blue-50 ">
+             <Container> <div className="w-52">
               <Link href={'/'} >
-        <Image src={logo} alt="" className=' py-8' />
+        <Image src={logo} alt="" width={140} className=' py-8' />
       </Link>
               </div>
       <div className=' grid xl:grid-cols-5 lg:grid-cols-3 grid-cols-2 mx-auto gap-8 my-8'>
@@ -58,7 +59,7 @@ const Footer = () => {
         </nav>
       
         {/* 100% SECURE PAYMENT */}
-        <nav className="text-primary-white flex flex-col ">
+        <nav className="text-primary-white flex flex-col">
           <header className=" font-bold text-primary mb-3 lg:mx-auto">100% SECURE PAYMENT
           </header>
           <div className='flex items-center gap-5 lg:mx-auto '>
@@ -70,9 +71,9 @@ const Footer = () => {
       </div>
       <div className="footer footer-center p-4 border-primary border-t  mt-4 text-primary  text-center font-semibold">
         <aside>
-          <p>Copyright © 2024 - All right reserved by Cust Univers</p>
+          <p>Copyright © 2024 - All right reserved by <span className="underline font-medium">NexTrade</span></p>
         </aside>
-      </div>
+      </div></Container>
           </footer>
      );
 };
