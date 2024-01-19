@@ -45,7 +45,8 @@ const AboutNexTrade = () => {
         } > Welcome to nexTrade– Your Gateway to Global Trading Excellence! < /Typography>
 
         {
-            /* What is NexTrade */ } <
+            /* What is NexTrade */
+        } <
         Typography className = 'text-primary-darkLightBlue'
         fontWeight = "bold"
         gutterBottom sx = {
@@ -85,8 +86,8 @@ const AboutNexTrade = () => {
         we embark on a mission to empower you, not merely as participants but as architects of
         your financial destiny.This is more than a platform; it 's an empowering ecosystem designed
         to elevate and transform your entire financial journey. <
-        /Typography> <
-        /Stack> <
+        /Typography> < /
+        Stack > <
         Stack flex = {
             1
         }
@@ -96,12 +97,13 @@ const AboutNexTrade = () => {
         Image src = {
             shakeHand
         }
-        alt = "business growth" > < /Image> <
-        /Stack> <
+        alt = "business growth" > < /Image> < /
+        Stack > <
         /Stack>
 
         {
-            /* Our Mission */ } <
+            /* Our Mission */
+        } <
         Typography className = 'text-primary-darkLightBlue'
         fontWeight = "bold"
         gutterBottom sx = {
@@ -137,8 +139,8 @@ const AboutNexTrade = () => {
         Image src = {
             mission
         }
-        alt = "business growth" > < /Image> <
-        /Stack> <
+        alt = "business growth" > < /Image> < /
+        Stack > <
         Stack flex = {
             1
         } >
@@ -152,12 +154,13 @@ const AboutNexTrade = () => {
         Our mission at nexTrade is to provide an expansive, seamless, and highly secure trading experience, unlocking the vast potential of global markets
         for everyone.Committed to fostering financial inclusivity, we empower our users to trade with confidence and embrace a world of diverse investment opportunities.By prioritizing accessibility and security, nexTrade is dedicated to shaping a future where trading is not just a transaction but a transformative journey towards financial empowerment
         for all. <
-        /Typography> <
-        /Stack> <
+        /Typography> < /
+        Stack > <
         /Stack>
 
         {
-            /* Our offerings */ } <
+            /* Our offerings */
+        } <
         Typography marginTop = {
             5
         }
@@ -209,10 +212,10 @@ const AboutNexTrade = () => {
                 fontSize: "14px"
             }
         } > Unlock the potential of the forex market with our currency trading options.Trade major, minor, and exotic pairs with confidence. <
-        /Typography> <
-        /CardContent> <
-        /Card> <
-        /Grid> <
+        /Typography> < /
+        CardContent > <
+        /Card> < /
+        Grid > <
         Grid item xs = {
             12
         }
@@ -250,10 +253,10 @@ const AboutNexTrade = () => {
             }
         } >
         Diversify your portfolio by investing in a wide range of shares.Explore opportunities across industries and regions. <
-        /Typography> <
-        /CardContent> <
-        /Card> <
-        /Grid> <
+        /Typography> < /
+        CardContent > <
+        /Card> < /
+        Grid > <
         Grid item xs = {
             12
         }
@@ -291,10 +294,10 @@ const AboutNexTrade = () => {
             }
         } >
         Join the digital revolution with cryptocurrency trading.Trade Bitcoin, Ethereum, USD Coin, Litecoin, and more with ease. <
-        /Typography> <
-        /CardContent> <
-        /Card> <
-        /Grid>
+        /Typography> < /
+        CardContent > <
+        /Card> < /
+        Grid >
 
         <
         /Grid>
