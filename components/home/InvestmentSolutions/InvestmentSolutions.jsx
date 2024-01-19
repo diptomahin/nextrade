@@ -17,7 +17,7 @@ const InvestmentSolutions = () => {
         {/* Content side */}
         <div className="flex-1">
           <Image src={logo} alt="logo" width={80} className="my-2" />
-          <h1 className="text-3xl font-bold text-primary">
+          <h1 className="lg:text-3xl md:text-3xl text-4xl font-bold text-primary">
             Trading And Investment Solutions Build in MOdern Platform
           </h1>
           <ul className="text-sm mt-8 font-semibold">

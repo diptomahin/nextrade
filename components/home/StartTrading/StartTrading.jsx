@@ -11,7 +11,7 @@ const StartTrading = () => {
     <Container className="flex flex-col-reverse md:flex-row justify-between">
       <div className="w-full md:w-1/2 py-10">
         <Image src={logo} alt="logo" width={80} className="my-2" />
-        <h1 className="text-2xl my-4 text-primary font-bold">
+        <h1 className="lg:text-3xl md:text-3xl text-4xl my-4 text-primary font-bold">
           Embark on Your Trading Journey with NexTrade: Start Trading Today
         </h1>
         <p className="text-lg my-4 text-slate-500">

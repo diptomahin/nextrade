@@ -15,7 +15,7 @@ const WhyChoose = () => {
         {/* Content side */}
         <div className="pt-20">
           <Image src={logo} alt="logo" width={80} className="my-4" />
-          <h1 className="text-2xl my-4 font-bold text-primary">
+          <h1 className="lg:text-3xl md:text-3xl text-4xl my-4 font-bold text-primary">
             Why Choose NexTrade ???
           </h1>
           <p className="text-lg my-4 text-slate-500">
