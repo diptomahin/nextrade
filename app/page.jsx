@@ -1,3 +1,4 @@
+import Services from "@/components/common/Services/Services";
 import Banner from "@/components/home/Banner/Banner";
 import InvestmentSolutions from "@/components/home/InvestmentSolutions/InvestmentSolutions";
 import NewsLetter from "@/components/home/NewsLetter/NewsLetter";
@@ -14,6 +15,7 @@ export default function Home() {
         <TradingStep/>
         <InvestmentSolutions/>
         <StartTrading/>
+        <Services/>
         <WhyChoose/>
         <Subscription/>
         <NewsLetter/>
