@@ -5,12 +5,13 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import Icon1 from "@/assets/services/icon-1.png";
-import Icon2 from "@/assets/services/icon-2.png";
-import Icon3 from "@/assets/services/icon-3.png";
-import Icon4 from "@/assets/services/icon-4.png";
-import Icon5 from "@/assets/services/icon-5.png";
-import Icon6 from "@/assets/services/icon-6.png";
+import Icon1 from "../../../assets/Services/icon-1.png";
+import Icon2 from "../../../assets/Services/icon-2.png";
+import Icon3 from "../../../assets/Services/icon-3.png";
+import Icon4 from "../../../assets/Services/icon-4.png";
+import Icon5 from "../../../assets/Services/icon-5.png";
+import Icon6 from "../../../assets/Services/icon-6.png";
+
 import Container from "@/components/library/Container";
 
 const Services = () => {
