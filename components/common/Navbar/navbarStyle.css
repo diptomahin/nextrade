@@ -1,0 +1,19 @@
+.activeStyle:hover{
+    color:#21366c;
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+.activeMenu{
+    position: absolute;
+    top:80px;
+    opacity: 0;
+    transition: 0.3s;
+    box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+    transition-property: top, display;
+}
+
+.activeStyle:hover .activeMenu{
+    top: 50px;
+    opacity: 1;
+}
