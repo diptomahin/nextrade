@@ -107,7 +107,8 @@ const Navbar = () => {
         </div>
       </Container>
 
-      {toggleMenu && <Drawer toggleMenu={toggleMenu} />}
+      {/* {toggleMenu && <Drawer toggleMenu={toggleMenu} />} */}
+      <Drawer className={`${toggleMenu ? "translate-x-24": ""}`} toggleMenu={toggleMenu} />
     </nav>
   );
 };
