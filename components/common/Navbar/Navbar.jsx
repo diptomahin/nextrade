@@ -9,10 +9,15 @@ import Drawer from "./Drawer";
 import { RiCloseLine, RiMenu5Fill } from "react-icons/ri";
 import Link from "next/link";
 import "@/components/common/Navbar/navbarStyle.css";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+
+  // showing active navlink
+  const pathname = usePathname();
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -35,28 +40,28 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      <Link href={"/"} className="activeStyle">Home</Link>
-      <Link href={"/"} className="activeStyle">Dashboard</Link>
-      <Link href={"/services"} className="activeStyle">Services</Link>
+      <Link href={"/"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/"})}>Home</Link>
+      <Link href={"/dashboard"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/dashboard"})}>Dashboard</Link>
+      <Link href={"/services"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/services"})}>Services</Link>
       <div
         className="p-3 relative activeStyle flex flex-col justify-center items-center"
       >
-        <button className="">About Us </button>
+        <button className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/aboutus" || pathname === "/why-choose-us" || pathname ==="/contactUs"})}>About Us </button>
 
-        <div className="activeMenu w-[148px] rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center gap-5 p-2 rounded-md text-sm">
-          <Link href={"/aboutus"}>About NexTrade</Link>
-          <Link href={"/why-choose-us"}>Why Choose Us</Link>
-          <Link href={"/contactUs"}>Contact Us</Link>
+        <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
+          <Link href={"/aboutus"} className="px-4 py-[10px] w-full">About NexTrade</Link>
+          <Link href={"/why-choose-us"} className="px-4 py-[10px] w-full">Why Choose Us</Link>
+          <Link href={"/contactUs"} className="px-4 py-[10px] w-full">Contact Us</Link>
         </div>
 
       </div>
       <div
         className="p-3 relative activeStyle flex flex-col justify-center items-center"
       >
-        <button className="activeStyle">Recourses</button>
-          <div className="activeMenu w-[148px] rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center gap-5 p-2 rounded-md text-sm">
-            <Link href={"/payment"}>Payment Methods</Link>
-            <Link href={"/helpCenter"}>Help Centre</Link>
+        <button className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/payment" || pathname === "/helpCenter"})}>Recourses</button>
+          <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
+            <Link href={"/payment"} className="px-4 py-[10px] w-full">Payment Methods</Link>
+            <Link href={"/helpCenter"} className="px-4 py-[10px] w-full">Help Centre</Link>
           </div>
       </div>
     </>

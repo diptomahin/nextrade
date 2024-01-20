@@ -3,17 +3,26 @@
     transition: 0.3s;
     transform: scale(1.1);
 }
+.activeStyle a:hover{
+    background-color: rgba(0, 0, 0, 0.658);
+    color:white;
+}
 
 .activeMenu{
     position: absolute;
-    top:80px;
-    opacity: 0;
+    top:45px;
     transition: 0.3s;
     box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
-    transition-property: top, display;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(30px);
+    transition: 0.3s;
+    transition-property: transform, opacity;
 }
 
 .activeStyle:hover .activeMenu{
-    top: 50px;
+    pointer-events: all;
+    transform: translateY(0px);
     opacity: 1;
+
 }
