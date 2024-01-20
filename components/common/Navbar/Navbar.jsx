@@ -13,7 +13,6 @@ import "@/components/common/Navbar/navbarStyle.css";
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [recoursesHover, setRecoursesHover] = React.useState(false);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -66,7 +65,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed z-[100] top-0 w-full ${scrolled
-        ? "bg-secondary py-4 transition-all duration-700 ease-in-out"
+        ? "bg-[#E9EEF1] py-4 transition-all duration-700 ease-in-out"
         : "bg-transparent py-6 transition-all duration-700 ease-in-out"
         }`}
     >
@@ -84,10 +83,7 @@ const Navbar = () => {
           <Image src={logo} alt="Trad Icon" width={140} placeholder="blur" />
         </Link>
         <div
-          className={`hidden xl:flex items-center gap-10 text-lg font-medium ${scrolled
-            ? "text-white transition-all duration-700 ease-in-out"
-            : "transition-all duration-700 ease-in-out"
-            }`}
+          className='hidden xl:flex items-center gap-10 text-lg font-medium '
         >
           {navLinks}
         </div>
