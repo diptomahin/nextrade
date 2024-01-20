@@ -4,23 +4,35 @@
 }
 
 .text1,
-.text2 {
+.text2,
+.icon1,
+.icon2 {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s ease;
 }
 
 .scroll-text:hover .text1 {
-  transform: translateY(-200%);
+  transform: translateY(200%);
+}
+.scroll-text:hover .icon1 {
+  transform: translateY(150%);
 }
 
 .text2 {
-  transform: translateY(200%);
+  transform: translateY(-200%);
+}
+.icon2 {
+  transform: translateY(-150%);
 }
 
 .scroll-text:hover .text2 {
   transform: translateY(-100%);
+}
+
+.scroll-text:hover .icon2 {
+  transform: translateY(0%);
 }
