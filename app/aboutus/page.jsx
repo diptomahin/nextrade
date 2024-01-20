@@ -24,7 +24,7 @@ const AboutNexTrade = () => {
         <Stack flex={1}>
           <Typography align='justify' sx={{ fontSize: ["16px", "20px", "24px"] }}>
             At nexTrade, we transcend the conventional definition of an online trading platform;
-            we&apost;ve created a dynamic and innovative space where traders, investors, and enthusiasts
+            we&apos;ve created a dynamic and innovative space where traders, investors, and enthusiasts
             converge to delve into the boundless possibilities within the intricate landscape of
             financial markets. With a foundation built on an unwavering commitment to excellence,
             we embark on a mission to empower you, not merely as participants but as architects of

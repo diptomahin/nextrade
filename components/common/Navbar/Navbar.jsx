@@ -8,11 +8,11 @@ import Image from "next/image";
 import Drawer from "./Drawer";
 import { RiCloseLine, RiMenu5Fill } from "react-icons/ri";
 import Link from "next/link";
+import "@/components/common/Navbar/navbarStyle.css";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [aboutUsHover, setAboutUsHover] = React.useState(false);
   const [recoursesHover, setRecoursesHover] = React.useState(false);
 
   const handleScrollToTop = () => {
@@ -36,53 +36,45 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      <Link href={"/"}>Home</Link>
-      <Link href={"/"}>Dashboard</Link>
-      <Link href={"/services"}>Services</Link>
+      <Link href={"/"} className="activeStyle">Home</Link>
+      <Link href={"/"} className="activeStyle">Dashboard</Link>
+      <Link href={"/services"} className="activeStyle">Services</Link>
       <div
-        onMouseEnter={() => setAboutUsHover(true)}
-        onMouseLeave={() => setAboutUsHover(false)}
-        className="p-3 relative"
+        className="p-3 relative activeStyle flex flex-col justify-center items-center"
       >
-        <button>About Us</button>
-        {aboutUsHover && (
-          <div className="absolute w-48 bg-blue-50 text-black -left-[45%] top-10 flex flex-col justify-center items-center gap-5 p-5 rounded-md text-sm">
-            <Link href={"/aboutus"}>About NexTrade</Link>
-            <Link href={"/why-choose-us"}>Why Choose Us</Link>
-            <Link href={"/"}>Contact Us</Link>
-          </div>
-        )}
+        <button className="">About Us </button>
+
+        <div className="activeMenu w-[148px] rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center gap-5 p-2 rounded-md text-sm">
+          <Link href={"/aboutus"}>About NexTrade</Link>
+          <Link href={"/why-choose-us"}>Why Choose Us</Link>
+          <Link href={"/"}>Contact Us</Link>
+        </div>
+
       </div>
       <div
-        onMouseEnter={() => setRecoursesHover(true)}
-        onMouseLeave={() => setRecoursesHover(false)}
-        className="p-3 relative"
+        className="p-3 relative activeStyle flex flex-col justify-center items-center"
       >
-        <button>Recourses</button>
-        {recoursesHover && (
-          <div className="absolute w-48 bg-blue-50 text-black  -left-[45%] top-10 flex flex-col justify-center items-center gap-5 p-5 rounded-md text-sm">
+        <button className="activeStyle">Recourses</button>
+          <div className="activeMenu w-[148px] rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center gap-5 p-2 rounded-md text-sm">
             <Link href={"/payment"}>Payment Methods</Link>
             <Link href={"/"}>Help Centre</Link>
           </div>
-        )}
       </div>
     </>
   );
 
   return (
     <nav
-      className={`fixed z-[100] top-0 w-full ${
-        scrolled
-          ? "bg-secondary py-4 transition-all duration-700 ease-in-out"
-          : "bg-transparent py-6 transition-all duration-700 ease-in-out"
-      }`}
+      className={`fixed z-[100] top-0 w-full ${scrolled
+        ? "bg-secondary py-4 transition-all duration-700 ease-in-out"
+        : "bg-transparent py-6 transition-all duration-700 ease-in-out"
+        }`}
     >
       <div>
         <button
           onClick={handleScrollToTop}
-          className={`p-2 bg-secondary hover:bg-secondary border-none text-white fixed bottom-10 right-5 md:right-10 rounded-full ${
-            !scrolled && "hidden"
-          }`}
+          className={`p-2 bg-secondary hover:bg-secondary border-none text-white fixed bottom-10 right-5 md:right-10 rounded-full ${!scrolled && "hidden"
+            }`}
         >
           <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
         </button>
@@ -92,11 +84,10 @@ const Navbar = () => {
           <Image src={logo} alt="Trad Icon" width={140} placeholder="blur" />
         </Link>
         <div
-          className={`hidden xl:flex items-center gap-10 text-lg font-medium ${
-            scrolled
-              ? "text-white transition-all duration-700 ease-in-out"
-              : "transition-all duration-700 ease-in-out"
-          }`}
+          className={`hidden xl:flex items-center gap-10 text-lg font-medium ${scrolled
+            ? "text-white transition-all duration-700 ease-in-out"
+            : "transition-all duration-700 ease-in-out"
+            }`}
         >
           {navLinks}
         </div>
