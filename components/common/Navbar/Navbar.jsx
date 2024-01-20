@@ -47,7 +47,7 @@ const Navbar = () => {
         <div className="activeMenu w-[148px] rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center gap-5 p-2 rounded-md text-sm">
           <Link href={"/aboutus"}>About NexTrade</Link>
           <Link href={"/why-choose-us"}>Why Choose Us</Link>
-          <Link href={"/"}>Contact Us</Link>
+          <Link href={"/contactUs"}>Contact Us</Link>
         </div>
 
       </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
         <button className="activeStyle">Recourses</button>
           <div className="activeMenu w-[148px] rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center gap-5 p-2 rounded-md text-sm">
             <Link href={"/payment"}>Payment Methods</Link>
-            <Link href={"/"}>Help Centre</Link>
+            <Link href={"/helpCenter"}>Help Centre</Link>
           </div>
       </div>
     </>
