@@ -5,23 +5,42 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: {
-          greenLight: "#35c07c",
-          darkBlue: "#21366c",
-          darkLightBlue: "#21366c",
-          white: "#ffffff",
-          blue: "#3279bb",
-          red: "#ff0000",
-        },
+        primary: '#21366c', //blue
+        secondary: '#35c07c', // green
+      },
+      backgroundColor: {
+        primary: '#21366c', //blue
+        secondary: '#35c07c', //green 
+      },
+      fontFamily: {
+        dm: ['DM Sans', 'sans-serif'],
+        sans: ['Graphik', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
+      },
+      screens: {
+        'xs': '390px',
+        'sm': '448px',
+        'md': '640px',
+        'lg': '768px',
+        'xl': '1024px',
+        '2xl': '1280px',
+        '3xl': '1440px',
       },
     },
-    fontFamily: {
-      primaryFront: ["Quicksand", "sans-serif"],
-      secondaryFront: ["Poppins", "sans-serif"],
-    },
   },
+  // theme: {
+  //   extend: {
+  //    
+  //     },
+  //   },
+  //   fontFamily: {
+  //     primaryFront: ["Quicksand", "sans-serif"],
+  //     secondaryFront: ["Poppins", "sans-serif"],
+  //   },
+  // },
   plugins: [],
 }
