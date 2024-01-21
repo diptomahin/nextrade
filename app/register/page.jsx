@@ -102,7 +102,7 @@ const Register = () => {
                     <div className='space-y-2'>
                          <p className='text-center'>Or</p>
                          <div className='flex justify-center'>
-                              <button onClick={handleGoogleLogin} className=' bg-gradient-to-r rounded-3xl  from-[#239FFE] to-[#0272E5] font-semibold text-white p-3 flex gap-2 items-center'>Continue with<FcGoogle className='text-2xl'></FcGoogle></button>
+                              <button onClick={handleGoogleLogin} className=' bg-gradient-to-r rounded-3xl  from-[#239FFE] to-[#0272E5] text-sm lg:text-base text-white p-3 flex gap-2 items-center'>Continue with<FcGoogle className='text-2xl'></FcGoogle></button>
                          </div>
                     </div>
                </Stack>
