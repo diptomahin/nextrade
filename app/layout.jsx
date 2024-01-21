@@ -16,11 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div>
-          <MainLayout>
-            <AuthProvider>
+          <AuthProvider>
+            <MainLayout>
               {children}
-            </AuthProvider>
-          </MainLayout>
+            </MainLayout>
+          </AuthProvider>
         </div>
       </body>
     </html>

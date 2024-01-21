@@ -11,10 +11,20 @@ import Link from "next/link";
 import "@/components/common/Navbar/navbarStyle.css";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import useAuth from "@/utils/useAuth";
+import { Avatar, IconButton, Menu, MenuItem, Stack, Tooltip, Typography } from "@mui/material";
+
+
+const menuItemsForUser = [
+  {
+      route: "Wallet",
+      pathname: "/dashboard/wallet"
+  }
+];
 
 const Navbar = () => {
-  const [toggleMenu, setToggleMenu] = React.useState(false);
-  const [scrolled, setScrolled] = React.useState(false);
+  const { user, logOut } = useAuth()
+  // console.log(user)
 
   // get the current pathname
   const router = usePathname();
@@ -22,6 +32,22 @@ const Navbar = () => {
 
   // showing active navlink
   const pathname = usePathname();
+
+
+  // user menu related functions
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+
+
+  const [toggleMenu, setToggleMenu] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -44,13 +70,13 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      <Link href={"/"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/"})}>Home</Link>
-      <Link href={"/dashboard"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/dashboard"})}>Dashboard</Link>
-      <Link href={"/services"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/services"})}>Services</Link>
+      <Link href={"/"} className={clsx("activeStyle", { 'text-primary border-b-4 border-b-primary font-semibold': pathname === "/" })}>Home</Link>
+      <Link href={"/dashboard"} className={clsx("activeStyle", { 'text-primary border-b-4 border-b-primary font-semibold': pathname === "/dashboard" })}>Dashboard</Link>
+      <Link href={"/services"} className={clsx("activeStyle", { 'text-primary border-b-4 border-b-primary font-semibold': pathname === "/services" })}>Services</Link>
       <div
         className="lg:p-1 lg:py-3 relative activeStyle flex flex-col justify-center items-center"
       >
-        <button className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/aboutus" || pathname === "/why-choose-us" || pathname ==="/contactUs"})}>About Us </button>
+        <button className={clsx("activeStyle", { 'text-primary border-b-4 border-b-primary font-semibold': pathname === "/aboutus" || pathname === "/why-choose-us" || pathname === "/contactUs" })}>About Us </button>
 
         <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-primary bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
           <Link href={"/aboutus"} className="px-4 py-[10px] w-full">About NexTrade</Link>
@@ -62,22 +88,21 @@ const Navbar = () => {
       <div
         className="lg:p-1 lg:py-3 relative activeStyle flex flex-col justify-center items-center"
       >
-        <button className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/payment" || pathname === "/helpCenter"})}>Recourses</button>
-          <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-primary bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
-            <Link href={"/payment"} className="px-4 py-[10px] w-full">Payment Methods</Link>
-            <Link href={"/helpCenter"} className="px-4 py-[10px] w-full">Help Centre</Link>
-          </div>
+        <button className={clsx("activeStyle", { 'text-primary border-b-4 border-b-primary font-semibold': pathname === "/payment" || pathname === "/helpCenter" })}>Recourses</button>
+        <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-primary bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
+          <Link href={"/payment"} className="px-4 py-[10px] w-full">Payment Methods</Link>
+          <Link href={"/helpCenter"} className="px-4 py-[10px] w-full">Help Centre</Link>
+        </div>
       </div>
     </>
   );
 
   return (
     <nav
-      className={`fixed z-[100] top-0 w-full ${
-        router === "/register" || router === "/login" ? "hidden" :
+      className={`fixed z-[100] top-0 w-full ${router === "/register" || router === "/login" ? "hidden" :
         scrolled
-        ? "bg-[#E9EEF1] py-4 transition-all duration-700 ease-in-out"
-         : "bg-transparent py-6 transition-all duration-700 ease-in-out"
+          ? "bg-[#E9EEF1] py-4 transition-all duration-700 ease-in-out"
+          : "bg-transparent py-6 transition-all duration-700 ease-in-out"
         }`}
     >
       <div>
@@ -98,14 +123,61 @@ const Navbar = () => {
         >
           {navLinks}
         </div>
-        <div className="hidden xl:flex items-center gap-5">
-          <Link href={"/login"}>
-            <Button className="px-5"> Login</Button>
-          </Link>
-          <Link href={"/register"}>
-            <Button className="px-5"> Register</Button>
-          </Link>
-        </div>
+        {
+          user ?
+            <Stack direction="row" alignItems="center" spacing={3}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="user-img" className="border-2 border-primary" src={user?.photoURL} />
+                </IconButton>
+              </Tooltip>
+            </Stack>
+            :
+
+            <div className="hidden xl:flex items-center gap-5">
+              <Link href={"/login"}>
+                <Button className="px-5"> Login</Button>
+              </Link>
+              <Link href={"/register"}>
+                <Button className="px-5"> Register</Button>
+              </Link>
+            </div>
+        }
+
+        {/* user menu */}
+        <Menu
+          sx={{ mt: '45px', py:"0px" }}
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          {
+              menuItemsForUser.map((menu, idx) => (
+                <Link key={idx} href={menu.pathname}>
+                    <MenuItem className="p-0 my-0" onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" className=" hover:bg-primary hover:text-white w-full px-6 py-2">{menu.route}</Typography>
+                    </MenuItem>
+                </Link>
+            ))
+            }
+          <MenuItem className="p-0 my-0" onClick={() => {
+            logOut();
+            handleCloseUserMenu();
+          }}>
+            <Typography textAlign="center" className=" hover:bg-primary hover:text-white w-full px-6 py-2">Logout</Typography>
+          </MenuItem>
+        </Menu>
+
+
         <div className="xl:hidden">
           <Button onClick={() => setToggleMenu(!toggleMenu)} className="px-3">
             {toggleMenu ? <RiCloseLine /> : <RiMenu5Fill />}
@@ -114,7 +186,7 @@ const Navbar = () => {
       </Container>
 
       {/* {toggleMenu && <Drawer toggleMenu={toggleMenu} />} */}
-      <Drawer className={`${toggleMenu ? "translate-x-24": ""}`} toggleMenu={toggleMenu} />
+      <Drawer className={`${toggleMenu ? "translate-x-24" : ""}`} toggleMenu={toggleMenu} />
     </nav>
   );
 };
