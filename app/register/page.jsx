@@ -8,6 +8,7 @@ import styled from "@emotion/styled";
 import Container from "@/components/library/Container";
 import Swal from "sweetalert2";
 import useAuth from "@/utils/useAuth";
+import { useState } from "react";
 
 
 // customized TextField
@@ -33,10 +34,44 @@ const CssTextField = styled(TextField)({
 
 const Register = () => {
      const { register, handleSubmit, formState: { errors }, reset } = useForm()
-     const { googleLogin } = useAuth();
+     const { createUser, googleLogin } = useAuth();
+     const [error, setError] = useState('');
 
      const onSubmit = async data => {
           console.log(data)
+          if (data.password != data.confirmPassword) {
+               setError("Password does not match")
+               return;
+          }
+          createUser(data.email, data.password)
+               .then(res => {
+                    const loggedUser = res.user;
+                    console.log(loggedUser);
+
+                    // const userInfo = {
+                    //      userID: loggedUser.uid,
+                    //      email: loggedUser.email,
+                    //      name: loggedUser.displayName,
+                    //      createdAt: loggedUser.metadata.creationTime
+                    // }
+                    // console.log(userInfo)
+
+                    Swal.fire({
+                         title: "Account created successfully!",
+                         text: `Welcome to NexTrade`,
+                         icon: "success"
+                    });
+                    reset
+               })
+               .catch(error => {
+                    console.log(error.message)
+                    if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+                         setError("This email is already in use")
+                         return;
+                    }
+                    setError(error.message)
+                    reset
+               })
 
      }
 
@@ -108,7 +143,7 @@ const Register = () => {
 
                               {/* confirm-password */}
                               <CssTextField
-                                   {...register("confirm-password", { required: true, minLength: 6 })}
+                                   {...register("confirmPassword", { required: true, minLength: 6 })}
                                    required
                                    fullWidth
                                    id="standard-password-input"
@@ -116,6 +151,10 @@ const Register = () => {
                                    type="password"
                                    variant="standard"
                               />
+                              {
+                                   error && <span className="text-red-700">{error}</span>
+                              }
+
 
                               {/* referral number */}
                               <CssTextField

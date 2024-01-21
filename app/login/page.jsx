@@ -33,11 +33,40 @@ const CssTextField = styled(TextField)({
 
 const Login = () => {
      const { register, handleSubmit, formState: { errors }, reset } = useForm()
-     const { googleLogin } = useAuth();
+     const { logIn, googleLogin } = useAuth();
 
 
      const onSubmit = async data => {
           console.log(data)
+          logIn(data.email, data.password)
+          .then(res => {
+               const loggedUser = res.user;
+               console.log(loggedUser);
+
+               // const userInfo = {
+               //      userID: loggedUser.uid,
+               //      email: loggedUser.email,
+               //      createdAt: loggedUser.metadata.creationTime
+               // }
+               // console.log(userInfo)
+
+               Swal.fire({
+                    title: "Log In successful!",
+                    text: `Welcome back to NexTrade`,
+                    icon: "success"
+                });
+                reset
+
+          })
+          .catch(error => {
+               console.log(error.message)
+               Swal.fire({
+                    title: "Log In failed!",
+                    text: `Please try again`,
+                    icon: "error"
+                });
+                reset
+          })
 
      }
 
