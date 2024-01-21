@@ -16,6 +16,10 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
+  // get the current pathname
+  const router = usePathname();
+  // console.log(router)
+
   // showing active navlink
   const pathname = usePathname();
 
@@ -44,11 +48,11 @@ const Navbar = () => {
       <Link href={"/dashboard"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/dashboard"})}>Dashboard</Link>
       <Link href={"/services"} className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/services"})}>Services</Link>
       <div
-        className="p-3 relative activeStyle flex flex-col justify-center items-center"
+        className="lg:p-1 lg:py-3 relative activeStyle flex flex-col justify-center items-center"
       >
         <button className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/aboutus" || pathname === "/why-choose-us" || pathname ==="/contactUs"})}>About Us </button>
 
-        <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
+        <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-primary bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
           <Link href={"/aboutus"} className="px-4 py-[10px] w-full">About NexTrade</Link>
           <Link href={"/why-choose-us"} className="px-4 py-[10px] w-full">Why Choose Us</Link>
           <Link href={"/contactUs"} className="px-4 py-[10px] w-full">Contact Us</Link>
@@ -56,10 +60,10 @@ const Navbar = () => {
 
       </div>
       <div
-        className="p-3 relative activeStyle flex flex-col justify-center items-center"
+        className="lg:p-1 lg:py-3 relative activeStyle flex flex-col justify-center items-center"
       >
         <button className={clsx("activeStyle", {'text-primary border-b-4 border-b-primary font-semibold': pathname === "/payment" || pathname === "/helpCenter"})}>Recourses</button>
-          <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-[#35c07c] bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
+          <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-primary bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
             <Link href={"/payment"} className="px-4 py-[10px] w-full">Payment Methods</Link>
             <Link href={"/helpCenter"} className="px-4 py-[10px] w-full">Help Centre</Link>
           </div>
@@ -69,9 +73,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-[100] top-0 w-full ${scrolled
+      className={`fixed z-[100] top-0 w-full ${
+        router === "/register" || router === "/login" ? "hidden" :
+        scrolled
         ? "bg-[#E9EEF1] py-4 transition-all duration-700 ease-in-out"
-        : "bg-transparent py-6 transition-all duration-700 ease-in-out"
+         : "bg-transparent py-6 transition-all duration-700 ease-in-out"
         }`}
     >
       <div>
@@ -84,20 +90,20 @@ const Navbar = () => {
         </button>
       </div>
       <Container className="flex justify-between items-center">
-        <Link href={"/"}>
+        <Link href={"/"} className="">
           <Image src={logo} alt="Trad Icon" width={140} placeholder="blur" />
         </Link>
         <div
-          className='hidden xl:flex items-center gap-10 text-lg font-medium '
+          className='hidden xl:flex items-center gap-9 lg:text-lg font-medium '
         >
           {navLinks}
         </div>
         <div className="hidden xl:flex items-center gap-5">
           <Link href={"/login"}>
-            <Button> Login</Button>
+            <Button className="px-5"> Login</Button>
           </Link>
           <Link href={"/register"}>
-            <Button> Register</Button>
+            <Button className="px-5"> Register</Button>
           </Link>
         </div>
         <div className="xl:hidden">
@@ -107,7 +113,8 @@ const Navbar = () => {
         </div>
       </Container>
 
-      {toggleMenu && <Drawer toggleMenu={toggleMenu} />}
+      {/* {toggleMenu && <Drawer toggleMenu={toggleMenu} />} */}
+      <Drawer className={`${toggleMenu ? "translate-x-24": ""}`} toggleMenu={toggleMenu} />
     </nav>
   );
 };
