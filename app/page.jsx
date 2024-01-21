@@ -6,6 +6,8 @@ import StartTrading from "@/components/home/StartTrading/StartTrading";
 import Subscription from "@/components/home/Subscription/Subscription";
 import TradingStep from "@/components/home/TradingStep/TradingStep";
 import WhyChoose from "@/components/home/WhyChoose/WhyChoose";
+import Modal from "@/components/home/Modal/Modal";
+
 
 
 export default function Home() {
@@ -19,6 +21,7 @@ export default function Home() {
         <WhyChoose/>
         <Subscription/>
         <NewsLetter/>
+        <Modal></Modal>
     </main>
   )
 }
