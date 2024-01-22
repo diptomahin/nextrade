@@ -41,7 +41,7 @@ const Drawer = ({ toggleMenu }) => {
           {recoursesHover && (
             <div className=" bg-blue-50 text-black flex flex-col justify-center items-center gap-5 p-5 rounded-md text-sm">
               <Link href={"/payment"}>Payment Methods</Link>
-              <Link href={"/"}>Help Centre</Link>
+              <Link href={"/helpCenter"}>Help Centre</Link>
             </div>
           )}
         </div>
