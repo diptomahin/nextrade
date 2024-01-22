@@ -7,6 +7,9 @@ import CardContent from '@mui/material/CardContent';
 import NotStartedOutlinedIcon from '@mui/icons-material/NotStartedOutlined';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
+import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
+import WebhookOutlinedIcon from '@mui/icons-material/WebhookOutlined';
+import ApiOutlinedIcon from '@mui/icons-material/ApiOutlined';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from "@/components/library/Button/Button";
@@ -25,7 +28,7 @@ const page = () => {
                          {/* card 1  */}
                          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
                               <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-                                   <NotStartedOutlinedIcon className=" text-2xl text-primary " />
+                                   <NotStartedOutlinedIcon className="text-xl text-primary " />
                               </div>
                               <CardContent>
                                    <Typography
@@ -47,7 +50,7 @@ const page = () => {
                          {/* card 2  */}
                          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
                               <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-                                   <VerifiedUserOutlinedIcon className=" text-2xl text-primary " />
+                                   <VerifiedUserOutlinedIcon className="text-xl text-primary " />
                               </div>
                               <CardContent>
                                    <Typography
@@ -69,7 +72,7 @@ const page = () => {
                          {/* cart 3  */}
                          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
                               <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-                                   <PriceChangeOutlinedIcon className=" text-2xl text-primary " />
+                                   <PriceChangeOutlinedIcon className="text-xl text-primary " />
                               </div>
                               <CardContent>
                                    <Typography
@@ -88,10 +91,76 @@ const page = () => {
                                    </div>
                               </CardContent>
                          </Card>
+                         {/* cart 4  */}
+                         <Card className="p-5 bg-white rounded-2xl border border-slate-200">
+                              <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
+                                   <ConstructionOutlinedIcon className="text-xl text-primary " />
+                              </div>
+                              <CardContent>
+                                   <Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        className="font-semibold"
+                                   >
+                                        Advanced settings
+                                   </Typography>
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
+                                   </Typography>
+                                   <div className='pt-5'>
+                                        <Button>Browse questions</Button>
+                                   </div>
+                              </CardContent>
+                         </Card>
+                         {/* cart 5  */}
+                         <Card className="p-5 bg-white rounded-2xl border border-slate-200">
+                              <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
+                                   <WebhookOutlinedIcon className="text-xl text-primary " />
+                              </div>
+                              <CardContent>
+                                   <Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        className="font-semibold"
+                                   >
+                                        API endpoints
+                                   </Typography>
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
+                                   </Typography>
+                                   <div className='pt-5'>
+                                        <Button>Browse questions</Button>
+                                   </div>
+                              </CardContent>
+                         </Card>
+                         {/* cart 6  */}
+                         <Card className="p-5 bg-white rounded-2xl border border-slate-200">
+                              <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
+                                   <ApiOutlinedIcon className="text-xl text-primary " />
+                              </div>
+                              <CardContent>
+                                   <Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        className="font-semibold"
+                                   >
+                                        Enterprise features
+                                   </Typography>
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
+                                   </Typography>
+                                   <div className='pt-5'>
+                                        <Button>Browse questions</Button>
+                                   </div>
+                              </CardContent>
+                         </Card>
                     </div>
                </div>
                <div>
-                    <h2>Popular questions</h2>
+                    <h2>Popular questions?</h2>
                     <div>
 
                     </div>
