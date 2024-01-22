@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import NotStartedOutlinedIcon from '@mui/icons-material/NotStartedOutlined';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
@@ -10,21 +9,24 @@ import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
 import WebhookOutlinedIcon from '@mui/icons-material/WebhookOutlined';
 import ApiOutlinedIcon from '@mui/icons-material/ApiOutlined';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from "@/components/library/Button/Button";
-import Image from "next/image";
 import Container from '@/components/library/Container';
+
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+
 
 const page = () => {
 
      return (
-          <Container className='py-24'>
+          <Container className='py-24 bg-slate-200'>
                <p></p>
                <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Welcome to our <br /> Help Center</Typography>
                <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Welcome to our help center! Need assistance? <br /> We&apos;re here for you. Explore our resources or contact our support team. Your satisfaction is our priority!</Typography>
                <div>
-                    <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto justify-center item-center mt-10">
+                    <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto 2xl:mx-24 justify-center item-center mt-10">
                          {/* card 1  */}
                          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
                               <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
@@ -159,10 +161,49 @@ const page = () => {
                          </Card>
                     </div>
                </div>
-               <div>
-                    <h2>Popular questions?</h2>
+               <div className='mx-auto 2xl:mx-24'>
+                    <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary' sx={{ fontSize: ["24px", "24px", "48px"] }}>Popular questions?</Typography>
                     <div>
+                         <div className="grid xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto 2xl:mx-24 justify-center item-center mt-10">
+                              {/* card 1  */}
+                              <Accordion>
+                                   <AccordionSummary><Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        className="font-semibold"
+                                   >
+                                        How to contact support?
+                                   </Typography></AccordionSummary>
+                                   <AccordionDetails>
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
+                                   </Typography>
+                                   </AccordionDetails>
+                              </Accordion>
+                              <Accordion>
+                                   <AccordionSummary>Support center operating hours?</AccordionSummary>
+                                   <AccordionDetails>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua.
+                                   </AccordionDetails>
+                              </Accordion>
 
+                              <Accordion>
+                                   <AccordionSummary>How to submit a support ticket?</AccordionSummary>
+                                   <AccordionDetails>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua.
+                                   </AccordionDetails>
+                              </Accordion>
+                              <Accordion>
+                                   <AccordionSummary className='text-2xl'>Types of issues supported?</AccordionSummary>
+                                   <AccordionDetails>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua.
+                                   </AccordionDetails>
+                              </Accordion>
+                         </div>
                     </div>
                </div>
           </Container>
