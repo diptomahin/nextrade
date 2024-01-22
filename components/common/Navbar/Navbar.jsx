@@ -79,7 +79,7 @@ const Navbar = () => {
         <button className={clsx("activeStyle", { 'text-primary border-b-4 border-b-primary font-semibold': pathname === "/aboutus" || pathname === "/why-choose-us" || pathname === "/contactUs" })}>About Us </button>
 
         <div className="activeMenu text-center min-w-max overflow-hidden rounded-t-none border border-t-4 border-t-primary bg-blue-50 text-black flex flex-col justify-center items-center rounded-md text-sm">
-          <Link href={"/aboutus"} className="px-4 py-[10px] w-full">About NexTrade</Link>
+          <Link href={"/aboutUs"} className="px-4 py-[10px] w-full">About NexTrade</Link>
           <Link href={"/why-choose-us"} className="px-4 py-[10px] w-full">Why Choose Us</Link>
           <Link href={"/contactUs"} className="px-4 py-[10px] w-full">Contact Us</Link>
         </div>
