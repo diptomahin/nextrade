@@ -4,10 +4,12 @@ import Image from "next/image";
 import Button from "@/components/library/Button/Button";
 import logo from "../../../assets/logo/nextrade-logo.svg";
 import Link from "next/link";
+import useAuth from "@/utils/useAuth";
 
 const Drawer = ({ toggleMenu }) => {
   const [aboutUsHover, setAboutUsHover] = React.useState(false);
   const [recoursesHover, setRecoursesHover] = React.useState(false);
+  const { user } = useAuth();
   return (
     <div
       className={`xl:hidden fixed top-0 left-0 h-screen overflow-auto w-9/12 sm:w-1/2 md:w-2/5 bg-white transition-transform transform duration-500 ease-in-out z-50 border-r-2 ${toggleMenu ? "translate-x-0" : "-translate-x-full"
@@ -43,8 +45,14 @@ const Drawer = ({ toggleMenu }) => {
             </div>
           )}
         </div>
-        <Link href={'/login'} className="my-2 mx-4"><Button>Login</Button></Link>
-        <Link href={'/register'} className="my-2 mx-4">  <Button>Register</Button></Link>
+        {
+          user ? ""
+            :
+            <>
+              <Link href={'/login'} className="my-2 mx-4"><Button>Login</Button></Link>
+              <Link href={'/register'} className="my-2 mx-4">  <Button>Register</Button></Link>
+            </>
+        }
       </div>
     </div>
   );
