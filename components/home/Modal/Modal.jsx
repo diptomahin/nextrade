@@ -55,14 +55,14 @@ const Modal = () => {
                       <div className="sm:flex sm:items-start">
                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                           <Dialog.Title
-                            as="h3"
+                
                             className="text-semibold text-xl mb-3 justify-center  font-semibold leading-6 text-gray-900 text-center grid gap-2"
                           >
                             Trade Smart, Trade Now!
                             <br />
                             Claim Your 10% Bonus.
                             <br />
-                            <h1 className=" font-normal text-[18px]">
+                            <div className=" font-normal text-[18px]">
                               Exclusive{" "}
                               <span className="text-black font-extrabold">
                                 Black
@@ -71,7 +71,7 @@ const Modal = () => {
                                 Friday
                               </span>{" "}
                               Register Deals!
-                            </h1>
+                            </div>
                           </Dialog.Title>
                           <div className="rounded">
                             <Image
@@ -83,7 +83,7 @@ const Modal = () => {
                           </div>
                           <div className="mt-4 -mb-3">
                             <p className="text-gray-500 text-center">
-                            Embark on your trading journey today and seize the opportunity to boost your earnings! Register now to enjoy an exclusive Black Friday offer – a 10% bonus on your initial deposit. Take advantage of this limited-time deal to supercharge your trading experience. Don't miss out on the chance to maximize your potential gains
+                            Embark on your trading journey today and seize the opportunity to boost your earnings! Register now to enjoy an exclusive Black Friday offer – a 10% bonus on your initial deposit. Take advantage of this limited-time deal to supercharge your trading experience. Don&apos;t miss out on the chance to maximize your potential gains
                             </p>
                           </div>
                         </div>
@@ -104,7 +104,7 @@ const Modal = () => {
 
                       <button
                         type="button"
-                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-7 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto hover:bg-red-700 hover:text-white"
+                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-7 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto hover:bg-red-700 hover:text-white"
                         onClick={() => setOpen(false)}
                         ref={cancelButtonRef}
                       >
