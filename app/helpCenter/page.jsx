@@ -166,7 +166,7 @@ const page = () => {
                     <div>
                          <div className="grid xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto 2xl:mx-24 justify-center item-center mt-10">
                               {/* card 1  */}
-                              <Accordion>
+                              <Accordion className='rounded-xl'>
                                    <AccordionSummary><Typography
                                         gutterBottom
                                         variant="h6"
@@ -176,33 +176,60 @@ const page = () => {
                                         How to contact support?
                                    </Typography></AccordionSummary>
                                    <AccordionDetails>
-                                   <Typography variant="body2" color="text.secondary" className="text-gray-500">
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500 text-left">
                                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
                                    </Typography>
                                    </AccordionDetails>
                               </Accordion>
-                              <Accordion>
-                                   <AccordionSummary>Support center operating hours?</AccordionSummary>
+                              {/* card 2  */}
+                              <Accordion className='rounded-xl'>
+                                   <AccordionSummary><Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        className="font-semibold"
+                                   >
+                                        Support center operating hours?
+                                   </Typography></AccordionSummary>
                                    <AccordionDetails>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500 text-left">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
+                                   </Typography>
                                    </AccordionDetails>
                               </Accordion>
-
-                              <Accordion>
-                                   <AccordionSummary>How to submit a support ticket?</AccordionSummary>
+                              {/* card 3  */}
+                              <Accordion className='rounded-xl'>
+                                   <AccordionSummary><Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        className="font-semibold"
+                                   >
+                                        How to submit a support ticket?
+                                   </Typography></AccordionSummary>
                                    <AccordionDetails>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500 text-left">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
+                                   </Typography>
                                    </AccordionDetails>
                               </Accordion>
-                              <Accordion>
-                                   <AccordionSummary className='text-2xl'>Types of issues supported?</AccordionSummary>
+                              {/* card 4  */}
+                              <Accordion className='rounded-xl'>
+                                   <AccordionSummary><Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        className="font-semibold"
+                                   >
+                                        Types of issues supported?
+                                   </Typography></AccordionSummary>
                                    <AccordionDetails>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
+                                   <Typography variant="body2" color="text.secondary" className="text-gray-500 text-left">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium tempore ex commodi eligendi expedita soluta rerum doloribus minus adipisci.
+                                   </Typography>
                                    </AccordionDetails>
                               </Accordion>
+                              
                          </div>
                     </div>
                </div>
