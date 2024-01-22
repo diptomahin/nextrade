@@ -8,14 +8,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from "@/components/library/Button/Button";
 import Image from "next/image";
+import Container from '@/components/library/Container';
 
 const page = () => {
 
      return (
-          <div className='py-24'>
+          <Container className='py-24'>
                <p></p>
                <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Welcome to our <br /> Help Center</Typography>
-               <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Welcome to our help center! Need assistance? <br /> We're here for you. Explore our resources or contact our support team. Your satisfaction is our priority!</Typography>
+               <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Welcome to our help center! Need assistance? <br /> We&apos;re here for you. Explore our resources or contact our support team. Your satisfaction is our priority!</Typography>
                <div>
                     <div>
                          {/* cart 1  */}
@@ -52,7 +53,7 @@ const page = () => {
 
                     </div>
                </div>
-          </div>
+          </Container>
      );
 };
 
