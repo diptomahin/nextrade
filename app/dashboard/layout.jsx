@@ -9,7 +9,7 @@ const Dashboard = ({ children }) => {
       <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-red-400">
         <TradersDashboardNavbar />
       </div>
-      <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 bg-green-500">
+      <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-r-2">
         <TradersDashboardSidebar />
       </div>
 
