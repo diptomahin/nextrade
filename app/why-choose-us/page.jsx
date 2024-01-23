@@ -14,12 +14,12 @@ import Container from '@/components/library/Container';
 const WhyChooseUs = () => {
     return (
         <Container className="py-24">
-            <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary-darkLightBlue' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Why Choose Us?</Typography>
+            <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Why Choose Us?</Typography>
             <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Earning Client Trust: Our Pledge to Excellence. Millions Choose Us for Leading Online Trading Services.</Typography>
 
-            <Grid my={5} container spacing={2}>
+            <Grid my={5} container spacing={4}>
                 <Grid item xs={12} md={4}>
-                    <Card sx={{ minHeight: 295, backgroundColor: "#eff6ff", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
+                    <Card sx={{ minHeight: 295, backgroundColor: "#e9eef1", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
                         <CardContent>
                             <Image src={icon1} className='mx-auto w-24' alt="icon"></Image>
                             <Typography my={3} variant='h6' fontWeight="bold">Comprehensive Trading Options</Typography>
@@ -33,7 +33,7 @@ const WhyChooseUs = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card sx={{ minHeight: 295, backgroundColor: "#eff6ff", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
+                    <Card sx={{ minHeight: 295, backgroundColor: "#e9eef1", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
                         <CardContent>
                             <Image src={icon2} className='mx-auto w-24' alt="icon"></Image>
                             <Typography my={3} variant='h6' fontWeight="bold">Cutting-Edge Technology</Typography>
@@ -47,7 +47,7 @@ const WhyChooseUs = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card sx={{ minHeight: 295, backgroundColor: "#eff6ff", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
+                    <Card sx={{ minHeight: 295, backgroundColor: "#e9eef1", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
                         <CardContent>
                             <Image src={icon3} className='mx-auto w-24' alt="icon"></Image>
                             <Typography my={3} variant='h6' fontWeight="bold">Security You Can Trust</Typography>
@@ -60,7 +60,7 @@ const WhyChooseUs = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card sx={{ minHeight: 295, backgroundColor: "#eff6ff", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
+                    <Card sx={{ minHeight: 295, backgroundColor: "#e9eef1", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
                         <CardContent>
                             <Image src={icon4} className='mx-auto w-24' alt="icon"></Image>
                             <Typography my={3} variant='h6' fontWeight="bold">User-Friendly Interface</Typography>
@@ -73,7 +73,7 @@ const WhyChooseUs = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card sx={{ minHeight: 320, backgroundColor: "#eff6ff", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
+                    <Card sx={{ minHeight: 320, backgroundColor: "#e9eef1", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
                         <CardContent>
                             <Image src={icon5} className='mx-auto w-24' alt="icon"></Image>
                             <Typography my={3} variant='h6' fontWeight="bold">Educational Resources</Typography>
@@ -86,7 +86,7 @@ const WhyChooseUs = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card sx={{ minHeight: 295, backgroundColor: "#eff6ff", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
+                    <Card sx={{ minHeight: 295, backgroundColor: "#e9eef1", textAlign: "center", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
                         <CardContent>
                             <Image src={icon6} className='mx-auto w-24' alt="icon"></Image>
                             <Typography my={3} variant='h6' fontWeight="bold">Responsive Customer Support</Typography>

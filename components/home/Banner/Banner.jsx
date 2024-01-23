@@ -13,10 +13,10 @@ const Banner = () => {
       <Container className="min-h-screen flex flex-col-reverse xl:flex-row items-center justify-center gap-5 lg:gap-10 text-white py-28">
         <div className="flex-1">
           {" "}
-          <p className="text-[#3671E9] mb-5">Next Level Trading</p>
-          <h1 className="lg:text-5xl  md:text-3 text-2xl  font-bold lg:mb-8 md:mb-4 mb-4 text-black text-center xl:text-left">
+          <p className="text-primary mb-5 font-semibold">Next Level Trading</p>
+          <h1 className="lg:text-5xl text-primary  md:text-3 text-2xl  font-bold lg:mb-8 md:mb-4 mb-4 text-center xl:text-left">
             Start Trading In Crypto{" "}
-            <span className="text-[#3671E9]">Instant</span>
+            <span className="text-primary">Instant</span>
           </h1>
           <p className="font-semibold text-gray-500 text-center xl:text-left">
             {" "}

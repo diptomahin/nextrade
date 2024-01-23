@@ -15,11 +15,11 @@ import Container from '@/components/library/Container';
 const AboutNexTrade = () => {
   return (
     <Container className="py-24">
-      <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary-darkBlue' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>About Nextrade</Typography>
+      <Typography  variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"]  }}>About NexTrade</Typography>
       <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Welcome to nexTrade – Your Gateway to Global Trading Excellence!</Typography>
 
       {/* What is NexTrade */}
-      <Typography className='text-primary-darkLightBlue' fontWeight="bold" gutterBottom sx={{ fontSize: ["20px", "24px", "40px"] }}>What is NexTrade ?</Typography>
+      <Typography className='text-primary' fontWeight="bold" gutterBottom sx={{ fontSize: ["20px", "24px", "40px"] }}>What is NexTrade ?</Typography>
       <Stack flexDirection={{ xs: 'column-reverse', md: 'row' }} gap={{ xs: 3, sm: 5, md: 7 }} justifyContent="space-between" alignItems="center">
         <Stack flex={1}>
           <Typography align='justify' sx={{ fontSize: ["16px", "20px", "24px"] }}>
@@ -38,7 +38,7 @@ const AboutNexTrade = () => {
       </Stack>
 
       {/* Our Mission */}
-      <Typography className='text-primary-darkLightBlue' fontWeight="bold" gutterBottom sx={{ fontSize: ["20px", "24px", "40px"], marginTop: { xs: "30px", lg: "0px" } }}>Our Mission</Typography>
+      <Typography className='text-primary' fontWeight="bold" gutterBottom sx={{ fontSize: ["20px", "24px", "40px"], marginTop: { xs: "30px", lg: "0px" } }}>Our Mission</Typography>
       <Stack flexDirection={{ xs: 'column', md: 'row' }} gap={{ xs: 3, sm: 5, md: 7 }} justifyContent="space-between" alignItems="center">
         <Stack flex={1} direction="row">
           <Image src={mission} alt="business growth"></Image>
@@ -56,7 +56,7 @@ const AboutNexTrade = () => {
       </Stack>
 
       {/* Our offerings */}
-      <Typography marginTop={5} className='text-primary-darkLightBlue' fontWeight="bold" gutterBottom sx={{ textAlign: "center", fontSize: ["20px", "24px", "40px"] }}>Our Offerings</Typography>
+      <Typography marginTop={5} className='text-primary' fontWeight="bold" gutterBottom sx={{ textAlign: "center", fontSize: ["20px", "24px", "40px"] }}>Our Offerings</Typography>
       <Grid container spacing={6}>
         <Grid item xs={12} md={4}>
           <Card sx={{ minWidth: 275, minHeight: 295, textAlign: "center", backgroundColor:"#eff6ff", borderRadius: "8px", transition: "1s", cursor: "pointer", "&:hover": { transform: "scale(1.1)" } }}>
