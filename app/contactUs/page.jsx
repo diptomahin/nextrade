@@ -3,7 +3,8 @@
 import Button from "@/components/library/Button/Button";
 import Container from "@/components/library/Container";
 import { Typography } from "@mui/material";
-
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
+import PhoneForwardedOutlinedIcon from '@mui/icons-material/PhoneForwardedOutlined';
 
 
 const page = () => {
@@ -43,12 +44,37 @@ const page = () => {
 
                          <div className="flex flex-col">
                               <label for='message' className="font-semibold text-primary text-xl">Leave us a message:</label>
-                              <textarea className='bg-gray-200 w-full rounded-lg p-2' name="message" rows="10" placeholder='Your Message' id='message'></textarea>
+                              <textarea className='bg-gray-200 w-full rounded-lg p-2' name="message" rows="5" placeholder='Your Message' id='message'></textarea>
                          </div>
 
-                         <Button>Send Message</Button>
+                         <div><Button>Send Message</Button></div>
                     </form>
-
+               </div>
+               <div className='mx-auto mt-10 2xl:mx-24 bg-white rounded-xl'>
+                    <div className="flex flex-col md:flex-row justify-around gap-10 py-10">
+                    <div className=" xl:flex p-10 items-center gap-7 shadow-md lg:p-5  rounded-lg bg-slate-200">
+                         <div className=" bg-blue-200  rounded-full w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
+                              <MailOutlinedIcon className=" text-primary" />
+                         </div>
+                         <div className=" flex-1  ">
+                              <p className="mt-2">
+                                   Email:
+                              </p>
+                              <h1 className=" font-bold text-lg">help@nexttrade.com</h1>
+                         </div>
+                    </div>
+                    <div className=" xl:flex p-10 items-center gap-7 shadow-md lg:p-5  rounded-lg bg-slate-200">
+                         <div className=" bg-blue-200  rounded-full w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
+                              <PhoneForwardedOutlinedIcon className=" text-primary" />
+                         </div>
+                         <div className=" flex-1  ">
+                              <p className="mt-2">
+                                   Phone:
+                              </p>
+                              <h1 className=" font-bold text-lg">+8801620585826</h1>
+                         </div>
+                    </div>
+                    </div>
                </div>
 
           </Container>
