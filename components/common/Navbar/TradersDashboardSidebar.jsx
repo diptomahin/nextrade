@@ -72,9 +72,9 @@ const TradersDashboardSidebar = () => {
         <List>
           {
             dashboardUpperLinkForUser.map((link, idx) => (
-              <ListItem sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "20px" }} key={idx} disablePadding>
+              <ListItem sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px" }} key={idx} disablePadding>
                 <Link href={link.pathname} className='w-full'>
-                  <ListItemButton className='w-full'>
+                  <ListItemButton className='w-full p-[10px]'>
                     <ListItemIcon >
                       {link.icon}
                     </ListItemIcon>
@@ -93,14 +93,14 @@ const TradersDashboardSidebar = () => {
 
       <Stack >
         <Link href={"/"}>
-          <ListItemButton sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "20px", marginTop: "20px" }} disablePadding>
+          <ListItemButton sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px", marginTop: "20px" }} className='w-full p-[10px]'>
             <ListItemIcon>
               <HomeIcon sx={{ borderRadius: "50px", backgroundColor: "white", color: "#21366c", marginRight: "14px", width: "35px", height: "35px", padding: "8px" }} />
             </ListItemIcon>
             <ListItemText primary={"Back to Home"} />
           </ListItemButton>
         </Link>
-        <ListItemButton onClick={handleLogOut} sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "20px", marginTop: "20px" }} disablePadding>
+        <ListItemButton onClick={handleLogOut} sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px" }} className='w-full p-[10px]'>
           <ListItemIcon>
             <LogoutIcon sx={{ borderRadius: "50px", backgroundColor: "white", color: "#21366c", marginRight: "14px", width: "35px", height: "35px", padding: "8px" }} />
           </ListItemIcon>
