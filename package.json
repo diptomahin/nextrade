@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.6",
     "clsx": "^2.1.0",
     "firebase": "^10.7.2",
+    "framer-motion": "^11.0.2",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
