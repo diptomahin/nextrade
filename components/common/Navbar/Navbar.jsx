@@ -27,10 +27,6 @@ const Navbar = () => {
   // console.log(user)
 
   // get the current pathname
-  const router = usePathname();
-  // console.log(router)
-
-  // showing active navlink
   const pathname = usePathname();
 
 
@@ -99,7 +95,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-[100] top-0 w-full ${router === "/register" || router === "/login" ? "hidden" :
+      className={`fixed z-[100] top-0 w-full ${pathname === "/register" || pathname === "/login" || pathname.includes('/dashboard') ? "hidden" :
         scrolled
           ? "bg-[#E9EEF1] py-4 transition-all duration-700 ease-in-out"
           : "bg-transparent py-6 transition-all duration-700 ease-in-out"

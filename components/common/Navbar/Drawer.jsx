@@ -20,7 +20,7 @@ const Drawer = ({ toggleMenu }) => {
           <Image src={logo} alt="Trad Icon" width={120} />
         </div>
         <Link href={"/"} className="py-3 px-4 hover:bg-black/50 hover:text-white">Home</Link>
-        <Link href={"/"} className="py-3 px-4 hover:bg-black/50 hover:text-white">Dashboard</Link>
+        <Link href={"/dashboard"} className="py-3 px-4 hover:bg-black/50 hover:text-white">Dashboard</Link>
         <Link href={"/services"} className="py-3 px-4 hover:bg-black/50 hover:text-white">Services</Link>
         <div
           onClick={() => setAboutUsHover(!aboutUsHover)}
