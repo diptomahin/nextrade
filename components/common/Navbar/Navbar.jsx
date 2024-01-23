@@ -95,16 +95,16 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-[100] top-0 w-full ${pathname === "/register" || pathname === "/login" || pathname.includes('/dashboard') ? "hidden" :
+      className={`fixed z-[100] top-0 w-full  ${pathname === "/register" || pathname === "/login" || pathname.includes('/dashboard') ? "hidden" :
         scrolled
-          ? "bg-[#E9EEF1] py-4 transition-all duration-700 ease-in-out"
+          ? "bg-[#E9EEF1] py-4 transition-all duration-700 ease-in-out shadow-xl"
           : "bg-transparent py-6 transition-all duration-700 ease-in-out"
         }`}
     >
       <div>
         <button
           onClick={handleScrollToTop}
-          className={`p-2 bg-secondary hover:bg-secondary border-none text-white fixed bottom-10 right-5 md:right-10 rounded-full ${!scrolled && "hidden"
+          className={`p-2 bg-gradient-to-r  from-[#239FFE] to-[#0272E5] hover:bg-gradient-to-r  hover:from-[#0272E5] hover:to-[#239FFE] border-none text-white fixed bottom-10 right-5 md:right-10 rounded-full ${!scrolled && "hidden"
             }`}
         >
           <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
