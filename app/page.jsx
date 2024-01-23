@@ -19,7 +19,7 @@ export default function Home() {
         <WhyChoose/>
         <Subscription/>
         <NewsLetter/>
-        <Modal></Modal>
+        <Modal />
     </main>
   )
 }
