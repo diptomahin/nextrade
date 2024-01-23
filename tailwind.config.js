@@ -32,15 +32,5 @@ module.exports = {
       },
     },
   },
-  // theme: {
-  //   extend: {
-  //    
-  //     },
-  //   },
-  //   fontFamily: {
-  //     primaryFront: ["Quicksand", "sans-serif"],
-  //     secondaryFront: ["Poppins", "sans-serif"],
-  //   },
-  // },
   plugins: [],
 }
