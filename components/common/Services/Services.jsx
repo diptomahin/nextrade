@@ -16,10 +16,10 @@ import Container from "@/components/library/Container";
 
 const Services = () => {
   return (
-    <Container className="py-28">
+    <Container className="lg:py-24 py-14">
       <div className="text-center mx-auto">
         <div>
-          <h1 className="lg:text-3xl md:text-4xl text-6xl my-4 text-primary font-bold mx-auto text-center">
+          <h1 className="xl:text-3xl lg:text-4xl text-4xl my-4 text-primary font-bold mx-auto text-center">
             Service We Offer
           </h1>
 

@@ -2,7 +2,7 @@
 import { Button, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/nextrade-logo.png"
+import logo from "../../../assets/logo/nextrade-favicon-white .png"
 import HomeIcon from '@mui/icons-material/Home';
 
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -66,15 +66,15 @@ const TradersDashboardSidebar = () => {
   ]
 
   return (
-    <div className="p-4 flex flex-col justify-between min-h-screen">
+    <div className="p-3 flex flex-col justify-between min-h-screen">
       <Stack>
-        <Image src={logo} width={120} className='mx-auto my-6' alt='logo'></Image>
-        <List>
+        <Link href={'/'}><Image  src={logo} width={50} className='mx-auto my-2' alt='logo'></Image></Link>
+        <List >
           {
             dashboardUpperLinkForUser.map((link, idx) => (
-              <ListItem sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px" }} key={idx} disablePadding>
-                <Link href={link.pathname} className='w-full'>
-                  <ListItemButton className='w-full p-[10px]'>
+              <ListItem className="duration-300" sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px" }} key={idx} disablePadding>
+                <Link href={link.pathname} className='w-full duration-300'>
+                  <ListItemButton className='w-full p-[10px] duration-200'>
                     <ListItemIcon >
                       {link.icon}
                     </ListItemIcon>

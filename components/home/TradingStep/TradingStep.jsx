@@ -16,7 +16,7 @@ import Image from "next/image";
 
 const TradingStep = () => {
   return (
-    <Container className=" md:flex items-center justify-between  lg:mt-10 ">
+    <Container className=" md:flex items-center justify-between  lg:mt-24   ">
       {/* Trading step section content */}
 
       <div className="md:w-[600px]">

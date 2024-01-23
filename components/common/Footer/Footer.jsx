@@ -20,7 +20,7 @@ import { usePathname } from "next/navigation";
 const Footer = () => {
   const router = usePathname();
   return (
-    <footer className={`bg-blue-50 ${ router === "/register" || router === "/login" || router.includes('/dashboard') ? "hidden" : "block"}` }>
+    <footer className={`bg-blue-50 mt-10 ${ router === "/register" || router === "/login" || router.includes('/dashboard') ? "hidden" : "block"}` }>
       <Container> <div className="w-52">
         <Link href={'/'} >
           <Image src={logo} alt="" width={140} className=' py-8' />
