@@ -23,7 +23,6 @@ const page = () => {
 
      return (
           <Container className='pt-24 pb-10 bg-slate-200'>
-               <p></p>
                <Typography variant="h2" mt={5} mb={3} fontWeight="bold" className='text-primary' sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}>Welcome to our <br /> Help Center</Typography>
                <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Welcome to our help center! Need assistance? <br /> We&apos;re here for you. Explore our resources or contact our support team. Your satisfaction is our priority!</Typography>
                <div>
