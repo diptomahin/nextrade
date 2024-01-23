@@ -14,7 +14,7 @@ const page = () => {
                <Typography variant="h6" gutterBottom maxWidth={700} marginX="auto" sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}>Feel free to reach out to us with any inquiries or feedback. Our dedicated team is here to assist you. Use the form below or send us an email with short description.</Typography>
 
                <div className='mx-auto 2xl:mx-24 bg-white rounded-xl'>
-                    <form method='POST' action="https://getform.io/f/a699a1b2-f225-434e-b317-1fbbde8e006c" className='flex p-10 space-y-5 flex-col  w-full'>
+                    <form method='POST' action="https://getform.io/f/a699a1b2-f225-434e-b317-1fbbde8e006c" className='flex p-5 md:p-10 space-y-5 flex-col  w-full'>
 
                          <div className="md:flex justify-between gap-10">
                               <div className="md:w-1/2 md:space-y-5">
@@ -71,7 +71,7 @@ const page = () => {
                               <p className="mt-2">
                                    Phone:
                               </p>
-                              <h1 className=" font-bold text-lg">+8801620585826</h1>
+                              <h1 className=" font-bold text-lg">+880 1963-895488</h1>
                          </div>
                     </div>
                     </div>
