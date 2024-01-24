@@ -27,7 +27,7 @@ const Dashboard = ({ children }) => {
           >
             <MenuIcon sx={{ color: "white" }} />
           </IconButton >
-        <TradersDashboardNavbar /> 
+        <TradersDashboardNavbar  /> 
         </Toolbar>
       </div>
 
@@ -53,6 +53,7 @@ const Dashboard = ({ children }) => {
               <CloseIcon sx={{ color: "blue" }} />
             </IconButton >
           </Toolbar>
+          
           <TradersDashboardSidebar />
         </Drawer>
         <Drawer
@@ -64,7 +65,7 @@ const Dashboard = ({ children }) => {
         </Drawer>
       </div>
 
-      <div className="min-h-full 2xl:ml-[250px] px-5 sm:px-8 md:px-10 pt-[116px] pb-10">
+      <div className="min-h-full 2xl:ml-[250px] mt-[87px] p-4  ">
         {children}
       </div>
     </div>

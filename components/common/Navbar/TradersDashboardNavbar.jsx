@@ -70,6 +70,7 @@ const TradersDashboardNavbar = () => {
 
   // get the current pathname
   const pathname = usePathname();
+  console.log(pathname);
 
 
   // user menu related functions
@@ -85,7 +86,7 @@ const TradersDashboardNavbar = () => {
    
   return (
     <Box sx={{ flexGrow: 1 }} >
-    <AppBar position="static" className={'bg-primary shadow-none '}>
+    <AppBar position="static" className={'bg-primary shadow-none mt-2'}>
       <Toolbar>
         <Typography
           variant="h6"
