@@ -19,11 +19,11 @@ import useAuth from "@/utils/useAuth";
 
 
 const TradersDashboardSidebar = () => {
-  const {logOut} = useAuth();
+  const { logOut } = useAuth();
 
   const handleLogOut = () => {
     logOut()
-    window.location.pathname="/"
+    window.location.pathname = "/"
   }
 
   // dashboard route for user
@@ -66,10 +66,10 @@ const TradersDashboardSidebar = () => {
   ]
 
   return (
-    <div className="p-3 flex flex-col justify-between min-h-screen">
+    <div className="flex flex-col justify-between min-h-screen">
       <Stack>
-        <Link href={'/'}><Image  src={logo} width={50} className='mx-auto my-2' alt='logo'></Image></Link>
-        <List >
+        <Link href={'/'} className="bg-primary"><Image src={logo} width={50} className='mx-auto my-4' alt='logo'></Image></Link>
+        <List className="p-3 ">
           {
             dashboardUpperLinkForUser.map((link, idx) => (
               <ListItem className="duration-300" sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px" }} key={idx} disablePadding>
@@ -91,7 +91,7 @@ const TradersDashboardSidebar = () => {
       <Divider />
 
 
-      <Stack >
+      <Stack my={2}>
         <Link href={"/"}>
           <ListItemButton sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px", marginTop: "20px" }} className='w-full p-[10px]'>
             <ListItemIcon>
