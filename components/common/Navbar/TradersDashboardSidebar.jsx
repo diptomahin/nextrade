@@ -91,7 +91,7 @@ const TradersDashboardSidebar = () => {
       <Divider />
 
 
-      <Stack m={2}>
+      <Stack className="p-[8px]">
         <Link href={"/"}>
           <ListItemButton sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px", marginTop: "20px" }} className='w-full p-[10px]'>
             <ListItemIcon>
