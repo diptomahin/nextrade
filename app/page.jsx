@@ -7,6 +7,7 @@ import Subscription from "@/components/home/Subscription/Subscription";
 import TradingStep from "@/components/home/TradingStep/TradingStep";
 import WhyChoose from "@/components/home/WhyChoose/WhyChoose";
 import Modal from "@/components/home/Modal/Modal";
+import CompanyStock from "@/components/home/CompanyStock/CompanyStock";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <TradingStep/>
         <InvestmentSolutions/>
         <StartTrading/>
+        <CompanyStock/>
         <Services/>
         <WhyChoose/>
         <Subscription/>
