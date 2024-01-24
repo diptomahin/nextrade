@@ -16,24 +16,23 @@ const Dashboard = ({ children }) => {
   return (
     <div className="min-h-screen">
       {/* navbar */}
-      <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-primary">
+      <div className=" left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-primary">
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className="xl:block 2xl:hidden mr-2"
+            className="block xl:hidden mr-2"
           >
             <MenuIcon sx={{ color: "white" }} />
           </IconButton >
-          Dashboard
+        <TradersDashboardNavbar /> 
         </Toolbar>
-        <TradersDashboardNavbar />
       </div>
 
       {/* drawer */}
-      <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-r-2">
+      <div className="hidden xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-r-2">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           sx={{ '& .MuiDrawer-paper': { boxSizing: 'border-box', width: "250px" } }}

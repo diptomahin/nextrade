@@ -74,7 +74,7 @@ const TradersDashboardSidebar = () => {
             dashboardUpperLinkForUser.map((link, idx) => (
               <ListItem className="duration-300" sx={{ "&:hover": { backgroundColor: "#21366c", color: "white" }, borderRadius: "50px" }} key={idx} disablePadding>
                 <Link href={link.pathname} className='w-full duration-300'>
-                  <ListItemButton className='w-full p-[10px] duration-200'>
+                  <ListItemButton className='w-full p-[8px] duration-200'>
                     <ListItemIcon >
                       {link.icon}
                     </ListItemIcon>
