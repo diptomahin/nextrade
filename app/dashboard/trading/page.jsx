@@ -1,41 +1,54 @@
-"use client"
+"use client";
 
-import React from 'react';
+import React, { useEffect } from "react";
 import { useState } from "react";
-//log
-import logo from "../../../assets/nextrade-logo.png";
 
 //button
 
 //image imports
-import imageBTC from "../../../assets/coinImages/bitcoin.png"
-import imageETH from "../../../assets/coinImages/ethereum.png"
-import imageLTC from "../../../assets/coinImages/ltc.png"
-import imageQTUM from "../../../assets/coinImages/QTUM.png"
-import imageDOGE from "../../../assets/coinImages/DOGE.png"
-import imageNEO from "../../../assets/coinImages/neo.png"
-// material imports
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Image from 'next/image';
-import Button from '@/components/library/Button/Button';
 
+import imageBTC from "../../../assets/coinImages/bitcoin.png";
+import imageETH from "../../../assets/coinImages/ethereum.png";
+import imageLTC from "../../../assets/coinImages/ltc.png";
+import imageQTUM from "../../../assets/coinImages/QTUM.png";
+import imageDOGE from "../../../assets/coinImages/DOGE.png";
+import imageNEO from "../../../assets/coinImages/neo.png"
+import imageBNB from "../../../assets/coinImages/BNB.png";
+import imageHOT from "../../../assets/coinImages/HOT.png";
+import imageMATIC from "../../../assets/coinImages/MATIC.png";
+import imageXRP from "../../../assets/coinImages/XRP.png";
+import imageADA from "../../../assets/coinImages/ADA.png";
+
+// material imports
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Image from "next/image";
+import Button from "@/components/library/Button/Button";
 
 const Trading = () => {
 
-    const [BTCPrice, setBTCPrice] = useState(0);
-    const [LTCPrice, setLTCPrice] = useState(0);
-    const [ETHPrice, setETHPrice] = useState(0);
-    const [QTUMPrice, setQTUMPrice] = useState(0);
-    const [DOGEPrice, setDOGEPrice] = useState(0);
-    const [NEOPrice, setNEOPrice] = useState(0);
-    
- 
+  const [BTCPrice, setBTCPrice] = useState(0);
+  const [LTCPrice, setLTCPrice] = useState(0);
+  const [ETHPrice, setETHPrice] = useState(0);
+  const [QTUMPrice, setQTUMPrice] = useState(0);
+  const [DOGEPrice, setDOGEPrice] = useState(0);
+  const [NEOPrice, setNEOPrice] = useState(0);
+  const [BNBPrice, setBNBPrice] = useState(0);
+  const [HOTPrice, setHOTPrice] = useState(0);
+  const [MATICPrice, setMATICPrice] = useState(0);
+  const [XRPPrice, setXRPPrice] = useState(0);
+  const [ADAPrice, setADAPrice] = useState(0);
+
+  React.useEffect(() => {
+    // Create a WebSocket connection
+    const socket = new WebSocket(
+      "wss://stream.binance.com:9443/ws/!ticker@arr"
+
 
     React.useEffect(() => {
         // Create a WebSocket connection
@@ -68,6 +81,22 @@ const Trading = () => {
                 else if (symbol === 'NEOUSDT') {
                     setNEOPrice(parseFloat(ticker.c).toFixed(2));
                 }
+                      else if (symbol === "BNBUSDT") {
+          setBNBPrice(parseFloat(ticker.c).toFixed(2));
+        } 
+        
+        else if (symbol === "HOTUSDT") {
+          setHOTPrice(parseFloat(ticker.c).toFixed(2));
+        } 
+        else if (symbol === "MATICUSDT") {
+          setMATICPrice(parseFloat(ticker.c).toFixed(2));
+        } 
+        else if (symbol === "XRPUSDT") {
+          setXRPPrice(parseFloat(ticker.c).toFixed(2));
+        }
+        else if (symbol === "ADAUSDT") {
+          setADAPrice(parseFloat(ticker.c).toFixed(2));
+        }
             });
         });
 
@@ -88,6 +117,10 @@ const Trading = () => {
         createData('QTUM coin', QTUMPrice, imageQTUM),
         createData('DOGE coin', DOGEPrice, imageDOGE),
         createData('NEO', NEOPrice, imageNEO),
+          createData("HOT Coin", HOTPrice, imageHOT),
+    createData("MATIC Coin", MATICPrice, imageMATIC),
+    createData("ADA Coin", ADAPrice, imageADA),
+    createData("XRP Coin", XRPPrice, imageXRP)
     ];
 
     const handleBuyCoin = (ast) =>{
@@ -140,7 +173,6 @@ const Trading = () => {
             </div>
 
         </div>
-    );
-};
 
-export default Trading;
+    );
+
