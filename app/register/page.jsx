@@ -69,7 +69,7 @@ const Register = () => {
       .then((res) => {
         const loggedUser = res.user;
         console.log(loggedUser);
-        updateUserProfile(name)
+        updateUserProfile(data.name)
 
         const userInfo = {
              userID: loggedUser.uid,
@@ -117,7 +117,7 @@ const Register = () => {
           name: loggedUser.displayName,
           createdAt: loggedUser.metadata.creationTime
         }
-        console.log(userInfo)
+        // console.log(userInfo)
 
         axiosPublic.post('/all-users', userInfo)
         .then(res => {
