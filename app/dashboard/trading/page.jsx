@@ -102,12 +102,12 @@ const Trading = () => {
             assetBuyerEmail : user.email
         }
         // console.log('asset information', assetInfo)
-        axiosPublic.post("/assets", assetInfo)
+        axiosPublic.put("/all-users", assetInfo)
             .then(res => {
                 console.log(res.data)
-                if(data.insertedId){
+                if(data.modifiedCount > 0){
                         Swal.fire({
-                          title: `${ assetName} Purchase successful!`,
+                          title: `Coin Purchase successful!`,
                           text: `Best of luck`,
                           icon: "success",
                         });
@@ -116,7 +116,7 @@ const Trading = () => {
             .catch(error => {
                 console.log(error)
                 Swal.fire({
-                    title: `${ assetName} Purchase failed!`,
+                    title: `Coin Purchase failed!`,
                     text: `Please try again`,
                     icon: "error",
                   });

@@ -14,9 +14,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import useAuth from "@/utils/useAuth";
 
 
 const Portfolio = () => {
+    const {user} = useAuth();
     const [currentBTCPrice, setCurrentBTCPrice] = useState(0);
     const [currentLTCPrice, setCurrentLTCPrice] = useState(0);
     const [currentETHPrice, setCurrentETHPrice] = useState(0);
@@ -25,6 +27,8 @@ const Portfolio = () => {
     const buyingBTCPrice = parseInt('40020')
     const buyingETHPrice = parseInt('2050')
     const buyingLTCPrice = parseInt('60')
+
+    // useAxiosPublic.get(`http://localhost:5000/v1/api/all-users/${user.email}`)
 
 
     React.useEffect(() => {
