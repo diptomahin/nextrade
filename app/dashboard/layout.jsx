@@ -16,7 +16,7 @@ const Dashboard = ({ children }) => {
 
   return (
     <PrivateRoute>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-[#F1F1F1]">
         {/* navbar */}
         <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-[#1D366F]">
           <Toolbar>
