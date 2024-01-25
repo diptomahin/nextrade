@@ -23,7 +23,8 @@ const Dashboard = ({ children }) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className="block xl:hidden mr-2"
+            sx={{'@media (min-width: 1025px)':{ display:"none", marginRight:"8px"}, }}
+            // className="block xl:hidden mr-2"
           >
             <MenuIcon sx={{ color: "white" }} />
           </IconButton >
@@ -32,7 +33,7 @@ const Dashboard = ({ children }) => {
       </div>
 
       {/* drawer */}
-      <div className="hidden xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-r-2">
+      <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-r-2">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           sx={{ '& .MuiDrawer-paper': { boxSizing: 'border-box', width: "250px" } }}
