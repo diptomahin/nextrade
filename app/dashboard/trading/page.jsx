@@ -13,7 +13,6 @@ import imageETH from "../../../assets/coinImages/ethereum.png"
 import imageLTC from "../../../assets/coinImages/ltc.png"
 import imageQTUM from "../../../assets/coinImages/QTUM.png"
 import imageDOGE from "../../../assets/coinImages/DOGE.png"
-import imageNEO from "../../../assets/coinImages/neo.png"
 // material imports
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -24,16 +23,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Image from 'next/image';
 import Button from '@/components/library/Button/Button';
+import useAxiosPublic from '@/app/hooks/useAxiosPublic';
+import useAuth from '@/utils/useAuth';
+import { data } from 'autoprefixer';
+import Swal from 'sweetalert2';
 
 
 const Trading = () => {
+
+    const {user} = useAuth();
 
     const [BTCPrice, setBTCPrice] = useState(0);
     const [LTCPrice, setLTCPrice] = useState(0);
     const [ETHPrice, setETHPrice] = useState(0);
     const [QTUMPrice, setQTUMPrice] = useState(0);
     const [DOGEPrice, setDOGEPrice] = useState(0);
-    const [NEOPrice, setNEOPrice] = useState(0);
+
+    const axiosPublic = useAxiosPublic();
     
  
 
@@ -65,9 +71,6 @@ const Trading = () => {
                 else if (symbol === 'DOGEUSDT') {
                     setDOGEPrice(parseFloat(ticker.c).toFixed(2));
                 }
-                else if (symbol === 'NEOUSDT') {
-                    setNEOPrice(parseFloat(ticker.c).toFixed(2));
-                }
             });
         });
 
@@ -79,6 +82,7 @@ const Trading = () => {
 
     function createData(name, price, icon) {
         return { name, price, icon };
+       
     }
 
     const assets = [
@@ -87,11 +91,35 @@ const Trading = () => {
         createData('LiteCoin (LTC)', LTCPrice, imageLTC),
         createData('QTUM coin', QTUMPrice, imageQTUM),
         createData('DOGE coin', DOGEPrice, imageDOGE),
-        createData('NEO', NEOPrice, imageNEO),
     ];
 
     const handleBuyCoin = (ast) =>{
-        console.log('button clicked of asset:', ast.name)
+        const assetInfo= {
+            assetName : ast.name,
+            assetBuyingPrice : ast.price,
+            assetBuyerUID : user.uid,
+            assetBuyerEmail : user.email
+        }
+        // console.log('asset information', assetInfo)
+        axiosPublic.post("/assets", assetInfo)
+            .then(res => {
+                console.log(res.data)
+                if(data.insertedId){
+                        Swal.fire({
+                          title: `${ assetName} Purchase successful!`,
+                          text: `Best of luck`,
+                          icon: "success",
+                        });
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                Swal.fire({
+                    title: `${ assetName} Purchase failed!`,
+                    text: `Please try again`,
+                    icon: "error",
+                  });
+            })
         
     }
 
