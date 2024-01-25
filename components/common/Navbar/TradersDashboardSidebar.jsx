@@ -1,6 +1,5 @@
 "use client";
 import {
-  Divider,
   List,
   ListItem,
   ListItemButton,
@@ -10,9 +9,8 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../assets/logo/nextrade-logo.svg";
+import logo from "../../../assets/logo/logo-no-background.png";
 import HomeIcon from "@mui/icons-material/Home";
-
 import GridViewIcon from "@mui/icons-material/GridView";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import TollIcon from "@mui/icons-material/Toll";
@@ -21,7 +19,6 @@ import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
-
 import useAuth from "@/utils/useAuth";
 
 const TradersDashboardSidebar = () => {
@@ -40,10 +37,9 @@ const TradersDashboardSidebar = () => {
       icon: (
         <GridViewIcon
           sx={{
-            borderRadius: "50px",
-            backgroundColor: "white",
-            color: "#21366c",
-            marginRight: "14px",
+            borderRadius: "70px",
+            color: "white",
+            marginRight: "5px",
             width: "35px",
             height: "35px",
             padding: "8px",
@@ -57,10 +53,8 @@ const TradersDashboardSidebar = () => {
       icon: (
         <ShowChartIcon
           sx={{
-            borderRadius: "50px",
-            backgroundColor: "white",
-            color: "#21366c",
-            marginRight: "14px",
+            borderRadius: "70px",
+            color: "white",
             width: "35px",
             height: "35px",
             padding: "8px",
@@ -74,10 +68,8 @@ const TradersDashboardSidebar = () => {
       icon: (
         <TollIcon
           sx={{
-            borderRadius: "50px",
-            backgroundColor: "white",
-            color: "#21366c",
-            marginRight: "14px",
+            borderRadius: "70px",
+            color: "white",
             width: "35px",
             height: "35px",
             padding: "8px",
@@ -91,10 +83,8 @@ const TradersDashboardSidebar = () => {
       icon: (
         <VisibilityOutlinedIcon
           sx={{
-            borderRadius: "50px",
-            backgroundColor: "white",
-            color: "#21366c",
-            marginRight: "14px",
+            borderRadius: "70px",
+            color: "white",
             width: "35px",
             height: "35px",
             padding: "8px",
@@ -108,10 +98,8 @@ const TradersDashboardSidebar = () => {
       icon: (
         <MenuBookOutlinedIcon
           sx={{
-            borderRadius: "50px",
-            backgroundColor: "white",
-            color: "#21366c",
-            marginRight: "14px",
+            borderRadius: "70px",
+            color: "white",
             width: "35px",
             height: "35px",
             padding: "8px",
@@ -125,10 +113,8 @@ const TradersDashboardSidebar = () => {
       icon: (
         <PersonOutlinedIcon
           sx={{
-            borderRadius: "50px",
-            backgroundColor: "white",
-            color: "#21366c",
-            marginRight: "14px",
+            borderRadius: "70px",
+            color: "white",
             width: "35px",
             height: "35px",
             padding: "8px",
@@ -142,10 +128,8 @@ const TradersDashboardSidebar = () => {
       icon: (
         <WalletOutlinedIcon
           sx={{
-            borderRadius: "50px",
-            backgroundColor: "white",
-            color: "#21366c",
-            marginRight: "14px",
+            borderRadius: "70px",
+            color: "white",
             width: "35px",
             height: "35px",
             padding: "8px",
@@ -156,30 +140,36 @@ const TradersDashboardSidebar = () => {
   ];
 
   return (
-    <div className="flex flex-col justify-between min-h-screen bg-[#E6E9F2] ">
+    <div className="flex flex-col justify-between min-h-screen bg-[#1D366F]">
       <Stack>
         <Link href={"/"} className="h-[82px] flex items-center justify-center">
           <Image
             src={logo}
-            width={120}
+            width={150}
             className="mx-auto my-4"
             alt="logo"
           ></Image>
         </Link>
-        <List className="p-3 ">
+        <List className="px-4">
           {dashboardUpperLinkForUser.map((link, idx) => (
             <ListItem
-              className="duration-300"
               sx={{
-                "&:hover": { backgroundColor: "#21366c", color: "white" },
-                borderRadius: "50px",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                },
+                borderRadius: "70px",
+                color: "white",
+                marginBottom: "10px",
+                overflow: "hidden",
               }}
               key={idx}
               disablePadding
             >
-              <Link href={link.pathname} className="w-full duration-300">
-                <ListItemButton className="w-full p-[8px] duration-200">
-                  <ListItemIcon>{link.icon}</ListItemIcon>
+              <Link href={link.pathname} className="w-full">
+                <ListItemButton className="w-full">
+                  <ListItemIcon className="text-transparent">
+                    {link.icon}
+                  </ListItemIcon>
                   <ListItemText primary={link.route} />
                 </ListItemButton>
               </Link>
@@ -188,25 +178,25 @@ const TradersDashboardSidebar = () => {
         </List>
       </Stack>
 
-      <Divider />
-
-      <Stack className="p-[8px]">
+      <Stack className="px-4">
         <Link href={"/"}>
           <ListItemButton
             sx={{
-              "&:hover": { backgroundColor: "#21366c", color: "white" },
-              borderRadius: "50px",
-              marginTop: "20px",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+              },
+              borderRadius: "70px",
+              color: "white",
+              marginBottom: "10px",
+              overflow: "hidden",
             }}
-            className="w-full p-[10px]"
+            className="w-full"
           >
             <ListItemIcon>
               <HomeIcon
                 sx={{
-                  borderRadius: "50px",
-                  backgroundColor: "white",
-                  color: "#21366c",
-                  marginRight: "14px",
+                  borderRadius: "70px",
+                  color: "white",
                   width: "35px",
                   height: "35px",
                   padding: "8px",
@@ -219,18 +209,21 @@ const TradersDashboardSidebar = () => {
         <ListItemButton
           onClick={handleLogOut}
           sx={{
-            "&:hover": { backgroundColor: "#21366c", color: "white" },
-            borderRadius: "50px",
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+            },
+            borderRadius: "70px",
+            color: "white",
+            marginBottom: "10px",
+            overflow: "hidden",
           }}
-          className="w-full p-[10px]"
+          className="w-full"
         >
           <ListItemIcon>
             <LogoutIcon
               sx={{
-                borderRadius: "50px",
-                backgroundColor: "white",
-                color: "#21366c",
-                marginRight: "14px",
+                borderRadius: "70px",
+                color: "white",
                 width: "35px",
                 height: "35px",
                 padding: "8px",

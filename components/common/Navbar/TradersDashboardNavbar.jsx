@@ -79,7 +79,11 @@ const TradersDashboardNavbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        sx={{ backgroundColor: "#E6E9F2", marginTop: "8px", boxShadow: "none" }}
+        sx={{
+          backgroundColor: "transparent",
+          marginTop: "8px",
+          boxShadow: "none",
+        }}
       >
         <Toolbar>
           <Typography
@@ -87,13 +91,13 @@ const TradersDashboardNavbar = () => {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            className="text-black"
+            className="text-white"
           >
             Dashboard
           </Typography>
 
           {/* search bar */}
-          <Search className="mr-5 text-black bg-white">
+          <Search className="mr-5 text-white rounded-full">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -102,14 +106,14 @@ const TradersDashboardNavbar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <NotificationsRoundedIcon className="mr-5 text-black" />
+          <NotificationsRoundedIcon className="mr-5 text-white" />
 
           {/* user avater */}
           <Stack
             direction="row"
             alignItems="center"
             spacing={2}
-            className="text-black font-dm"
+            className="text-white font-dm"
           >
             <div className="text-right hidden lg:block">
               <p className="">
@@ -117,7 +121,7 @@ const TradersDashboardNavbar = () => {
                   <span className=" text-white text-lg">Name</span>
                 )}
               </p>
-              <p className="font-semibold">Trader</p>
+              <p className="font-medium ">Trader</p>
             </div>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -144,27 +148,24 @@ const TradersDashboardNavbar = () => {
           >
             {menuItemsForUser.map((menu, idx) => (
               <Link key={idx} href={menu.pathname}>
-                <MenuItem className="p-0 my-0" onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="center"
-                    className=" hover:bg-primary hover:text-white w-full px-6 py-2"
-                  >
+                <MenuItem
+                  className="m-3 px-10 py-2 hover:bg-primary hover:text-white rounded-md"
+                  onClick={handleCloseUserMenu}
+                >
+                  <Typography textAlign="center" className=" w-full">
                     {menu.route}
                   </Typography>
                 </MenuItem>
               </Link>
             ))}
             <MenuItem
-              className="p-0 my-0"
+              className="m-3 px-10 py-2 hover:bg-primary hover:text-white rounded-md"
               onClick={() => {
                 logOut();
                 handleCloseUserMenu();
               }}
             >
-              <Typography
-                textAlign="center"
-                className=" hover:bg-primary hover:text-white w-full px-6 py-2"
-              >
+              <Typography textAlign="center" className="w-full">
                 Logout
               </Typography>
             </MenuItem>

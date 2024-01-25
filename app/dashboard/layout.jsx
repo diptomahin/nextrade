@@ -1,7 +1,7 @@
 "use client";
 import TradersDashboardNavbar from "@/components/common/Navbar/TradersDashboardNavbar";
 import TradersDashboardSidebar from "@/components/common/Navbar/TradersDashboardSidebar";
-import { Box, Drawer, IconButton, Toolbar } from "@mui/material";
+import { Drawer, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
@@ -18,15 +18,20 @@ const Dashboard = ({ children }) => {
     <PrivateRoute>
       <div className="min-h-screen">
         {/* navbar */}
-        <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-[#E6E9F2]">
+        <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-[#1D366F]">
           <Toolbar>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ '@media (min-width: 1280px)': { display: "none", marginRight: "8px" }, }}
-            // className="block xl:hidden mr-2"
+              sx={{
+                "@media (min-width: 1280px)": {
+                  display: "none",
+                  marginRight: "8px",
+                },
+              }}
+              className="block xl:hidden mr-2"
             >
               <MenuIcon sx={{}} />
             </IconButton>
@@ -35,7 +40,7 @@ const Dashboard = ({ children }) => {
         </div>
 
         {/* drawer */}
-        <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50">
+        <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-none ">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
             sx={{
@@ -44,7 +49,7 @@ const Dashboard = ({ children }) => {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
           >
             <Toolbar>
@@ -55,7 +60,7 @@ const Dashboard = ({ children }) => {
                 onClick={handleDrawerToggle}
                 className="mr-2 2xl:hidden"
               >
-                <CloseIcon sx={{ color: "blue" }} />
+                <CloseIcon sx={{ color: "#1D366F" }} />
               </IconButton>
             </Toolbar>
 
