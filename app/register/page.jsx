@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import useAuth from "@/utils/useAuth";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useRouter } from "next/navigation";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -33,6 +34,10 @@ const CssTextField = styled(TextField)({
 });
 
 const Register = () => {
+
+  const router = useRouter();
+  const { from } = router.query || { from: '/dashboard' };
+
   const {
     register,
     handleSubmit,
@@ -71,6 +76,7 @@ const Register = () => {
           text: `Welcome to NexTrade`,
           icon: "success",
         });
+        router.push('/');
         reset;
       })
       .catch((error) => {
@@ -103,6 +109,7 @@ const Register = () => {
           text: `Welcome back ${loggedUser.displayName}`,
           icon: "success",
         });
+        router.push(from);
         reset;
       })
       .catch((error) => {
