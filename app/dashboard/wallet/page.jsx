@@ -65,8 +65,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const staticRows = [
-    { action: 'Deposit', amount: 100, dateTime: '2022-02-16 14:30', status: 'Success' },
-    { action: 'Withdrawal', amount: -50, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    { action: 'Deposit', amount: 500, dateTime: '2022-02-16 14:30', status: 'Success' },
+    { action: 'Withdrawal', amount: -150, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    { action: 'Deposit', amount: 1000, dateTime: '2022-02-16 14:30', status: 'Success' },
+    { action: 'Withdrawal', amount: -500, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    { action: 'Deposit', amount: 200, dateTime: '2022-02-16 14:30', status: 'Success' },
+    { action: 'Withdrawal', amount: -750, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    { action: 'Deposit', amount: 800, dateTime: '2022-02-16 14:30', status: 'Success' },
+    { action: 'Withdrawal', amount: -1000, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    { action: 'Deposit', amount: 1000, dateTime: '2022-02-16 14:30', status: 'Success' },
+    { action: 'Withdrawal', amount: -500, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    { action: 'Deposit', amount: 1300, dateTime: '2022-02-16 14:30', status: 'Success' },
+    { action: 'Withdrawal', amount: -1050, dateTime: '2022-02-15 12:45', status: 'Pending' },
     // Add more static rows as needed
 ];
 
@@ -137,15 +147,15 @@ const Wallet = () => {
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         <TableCell component="th" scope="row">
-                                            <p className={`text-lg`}>{row.action}</p>
+                                            <p>{row.action}</p>
                                         </TableCell>
                                         <TableCell align="right">
-                                            <p className={`text-lg font-semibold ${row.amount >= 0 ? "text-green-700" : "text-red-700"}`}>
+                                            <p className={`font-semibold ${row.amount >= 0 ? "text-green-700" : "text-red-700"}`}>
                                                 {row.amount >= 0 ? `$${row.amount}` : `-$${-row.amount}`}
                                             </p>
                                         </TableCell>
                                         <TableCell align="right">
-                                            <p className={`text-lg font-semibold`}>{row.dateTime}</p>
+                                            <p>{row.dateTime}</p>
                                         </TableCell>
                                         <TableCell align="right">{row.status}</TableCell>
                                     </TableRow>
