@@ -23,15 +23,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Image from 'next/image';
 import Button from '@/components/library/Button/Button';
+import useAxiosPublic from '@/app/hooks/useAxiosPublic';
+import useAuth from '@/utils/useAuth';
+import { data } from 'autoprefixer';
+import Swal from 'sweetalert2';
 
 
 const Trading = () => {
+
+    const {user} = useAuth();
 
     const [BTCPrice, setBTCPrice] = useState(0);
     const [LTCPrice, setLTCPrice] = useState(0);
     const [ETHPrice, setETHPrice] = useState(0);
     const [QTUMPrice, setQTUMPrice] = useState(0);
     const [DOGEPrice, setDOGEPrice] = useState(0);
+
+    const axiosPublic = useAxiosPublic();
     
  
 
@@ -42,7 +50,7 @@ const Trading = () => {
         // Event listener for incoming messages
         socket.addEventListener('message', (event) => {
             const data = JSON.parse(event.data);
-            console.log(data)
+            // console.log(data)
 
             // Find and update prices for BTC, LTC, and ETH
             data.forEach((ticker) => {
@@ -72,17 +80,49 @@ const Trading = () => {
         };
     }, []);
 
-    function createData(name, price, icon) {
-        return { name, price, icon };
+    function createData(name, key, price, icon) {
+        return { name, key, price, icon };
+       
     }
 
     const assets = [
-        createData('Bitcoin (BTC)', BTCPrice, imageBTC),
-        createData('Ethereum (ETC)', ETHPrice, imageETH),
-        createData('LiteCoin (LTC)', LTCPrice, imageLTC),
-        createData('QTUM coin', QTUMPrice, imageQTUM),
-        createData('DOGE coin', DOGEPrice, imageDOGE),
+        createData('Bitcoin (BTC)', "BTCUSDT", BTCPrice, imageBTC),
+        createData('Ethereum (ETC)', "ETHUSDT", ETHPrice, imageETH),
+        createData('LiteCoin (LTC)', "LTCUSDT", LTCPrice, imageLTC),
+        createData('QTUM coin', "QTUMUSDT", QTUMPrice, imageQTUM),
+        createData('DOGE coin', "DOGEUSDT", DOGEPrice, imageDOGE),
     ];
+
+    const handleBuyCoin = (ast) =>{
+        const assetInfo= {
+            assetName : ast.name,
+            assetKey : ast.key,
+            assetBuyingPrice : ast.price,
+            assetBuyerUID : user.uid,
+            assetBuyerEmail : user.email
+        }
+        // console.log('asset information', assetInfo)
+        axiosPublic.put("/all-users", assetInfo)
+            .then(res => {
+                console.log(res.data)
+                if(data.modifiedCount > 0){
+                        Swal.fire({
+                          title: `Coin Purchase successful!`,
+                          text: `Best of luck`,
+                          icon: "success",
+                        });
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                Swal.fire({
+                    title: `Coin Purchase failed!`,
+                    text: `Please try again`,
+                    icon: "error",
+                  });
+            })
+        
+    }
 
 
     return (
@@ -118,8 +158,8 @@ const Trading = () => {
                                     <TableCell >
                                         <p className={`text-lg font-semibold`}>{asset.price}</p>
                                     </TableCell>
-                                    <TableCell >
-                                        <Button>Trade</Button>
+                                    <TableCell>
+                                        <Button onClick={()=>handleBuyCoin(asset)}>Trade</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

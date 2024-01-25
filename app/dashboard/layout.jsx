@@ -25,13 +25,8 @@ const Dashboard = ({ children }) => {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{
-                "@media (min-width: 1025px)": {
-                  display: "none",
-                  marginRight: "8px",
-                },
-              }}
-              // className="block xl:hidden mr-2"
+              sx={{ '@media (min-width: 1280px)': { display: "none", marginRight: "8px" }, }}
+            // className="block xl:hidden mr-2"
             >
               <MenuIcon sx={{}} />
             </IconButton>

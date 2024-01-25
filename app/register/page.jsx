@@ -11,6 +11,7 @@ import useAuth from "@/utils/useAuth";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRouter } from "next/navigation";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -34,6 +35,7 @@ const CssTextField = styled(TextField)({
 });
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
 
   const router = useRouter();
   const { from } = router.query || { from: '/dashboard' };
@@ -44,7 +46,9 @@ const Register = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const { createUser, googleLogin } = useAuth();
+
+
+  const { createUser, updateUserProfile, googleLogin } = useAuth();
   const [error, setError] = useState("");
   const [captchaValue, setCaptchaValue] = useState(null);
 
@@ -52,6 +56,9 @@ const Register = () => {
     setCaptchaValue(value);
   };
 
+
+
+  // submit register form
   const onSubmit = async (data) => {
     console.log(data);
     if (data.password != data.confirmPassword) {
@@ -62,22 +69,29 @@ const Register = () => {
       .then((res) => {
         const loggedUser = res.user;
         console.log(loggedUser);
+        updateUserProfile(data.name)
 
-        // const userInfo = {
-        //      userID: loggedUser.uid,
-        //      email: loggedUser.email,
-        //      name: loggedUser.displayName,
-        //      createdAt: loggedUser.metadata.creationTime
-        // }
+        const userInfo = {
+          userID: loggedUser.uid,
+          email: loggedUser.email,
+          name: loggedUser.displayName,
+          createdAt: loggedUser.metadata.creationTime,
+          balance: 1000000,
+          portfolio: []
+        }
         // console.log(userInfo)
 
-        Swal.fire({
-          title: "Account created successfully!",
-          text: `Welcome to NexTrade`,
-          icon: "success",
-        });
-        router.push('/');
-        reset;
+        axiosPublic.post('/all-users', userInfo)
+          .then(res => {
+            console.log(res.data)
+            Swal.fire({
+              title: "Account created successfully!",
+              text: `Welcome to NexTrade`,
+              icon: "success",
+            });
+            router.push('/');
+            reset;
+          })
       })
       .catch((error) => {
         console.log(error.message);
@@ -90,27 +104,37 @@ const Register = () => {
       });
   };
 
+
+
+  // login with google
   const handleGoogleLogin = () => {
     googleLogin()
       .then((res) => {
         const loggedUser = res.user;
         console.log(loggedUser);
 
-        // const userInfo = {
-        //      userID: loggedUser.uid,
-        //      email: loggedUser.email,
-        //      name: loggedUser.displayName,
-        //      createdAt: loggedUser.metadata.creationTime
-        // }
+        const userInfo = {
+          userID: loggedUser.uid,
+          email: loggedUser.email,
+          name: loggedUser.displayName,
+          createdAt: loggedUser.metadata.creationTime,
+          balance: 1000000,
+          portfolio: []
+        }
         // console.log(userInfo)
 
-        Swal.fire({
-          title: "Log In successful!",
-          text: `Welcome back ${loggedUser.displayName}`,
-          icon: "success",
-        });
-        router.push(from);
-        reset;
+        axiosPublic.post('/all-users', userInfo)
+        .then(res => {
+            console.log(res.data);
+            Swal.fire({
+              title: "Log In successful!",
+              text: `Welcome back ${loggedUser.displayName}`,
+              icon: "success",
+            });
+            router.push(from);
+        })
+
+        
       })
       .catch((error) => {
         console.log(error.message);
@@ -156,6 +180,21 @@ const Register = () => {
           </div>
 
           <Stack mt={4} gap={3}>
+
+            {/* user name */}
+            <CssTextField
+              {...register("name", { required: true })}
+              required
+              fullWidth
+              id="standard-number-input"
+              label="Name"
+              type="text"
+              variant="standard"
+            />
+            {errors.name && (
+              <span className="text-red-700">Name is required !</span>
+            )}
+
             {/* email */}
             <CssTextField
               {...register("email", { required: true })}
@@ -163,6 +202,7 @@ const Register = () => {
               fullWidth
               id="standard-required"
               label="Email"
+              type="email"
               variant="standard"
             />
             {errors.email && (
@@ -211,20 +251,11 @@ const Register = () => {
             />
             {error && <span className="text-red-700">{error}</span>}
 
-            {/* referral number */}
-            <CssTextField
-              {...register("referral-code")}
-              fullWidth
-              id="standard-number-input"
-              label="Referral code"
-              type="number"
-              variant="standard"
-            />
             <Stack mt={2} alignItems="center">
-               {
-                    captchaValue ? <Button type="submit"> Create Account</Button> : <Button className="disabled" type="submit">Create Account</Button>
-               }
-              
+              {
+                captchaValue ? <Button type="submit"> Create Account</Button> : <Button className="disabled" type="submit">Create Account</Button>
+              }
+
             </Stack>
           </Stack>
         </form>
