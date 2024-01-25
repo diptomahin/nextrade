@@ -7,13 +7,10 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Avatar, Menu, MenuItem, Stack, Tooltip } from '@mui/material';
 import useAuth from '@/utils/useAuth';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 const Search = styled('div')(({ theme }) => ({
@@ -67,10 +64,6 @@ const menuItemsForUser = [
 
 const TradersDashboardNavbar = () => {
   const { user, logOut } = useAuth()
-
-  // get the current pathname
-  // const pathname = usePathname();
-  // console.log(pathname);
 
 
   // user menu related functions
