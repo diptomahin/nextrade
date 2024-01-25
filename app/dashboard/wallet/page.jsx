@@ -66,7 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const staticRows = [
     { action: 'Deposit', amount: 100, dateTime: '2022-02-16 14:30', status: 'Success' },
-    { action: 'Withdrawal', amount: 50, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    { action: 'Withdrawal', amount: -50, dateTime: '2022-02-15 12:45', status: 'Pending' },
     // Add more static rows as needed
 ];
 
@@ -140,7 +140,9 @@ const Wallet = () => {
                                             <p className={`text-lg`}>{row.action}</p>
                                         </TableCell>
                                         <TableCell align="right">
-                                            <p className={`text-lg font-semibold ${row.amount > 0 ? "text-green-700" : "text-red-700"}`}>{row.amount}</p>
+                                            <p className={`text-lg font-semibold ${row.amount >= 0 ? "text-green-700" : "text-red-700"}`}>
+                                                {row.amount >= 0 ? `$${row.amount}` : `-$${-row.amount}`}
+                                            </p>
                                         </TableCell>
                                         <TableCell align="right">
                                             <p className={`text-lg font-semibold`}>{row.dateTime}</p>
@@ -151,7 +153,6 @@ const Wallet = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-
                 </div>
             </div>
 
