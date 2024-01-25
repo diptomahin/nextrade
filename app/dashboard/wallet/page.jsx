@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,6 +13,15 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import AvTimerOutlinedIcon from '@mui/icons-material/AvTimerOutlined';
 import Container from '@/components/library/Container';
 import Button from '@/components/library/Button/Button';
+
+// Table
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -56,6 +64,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
+const staticRows = [
+    { action: 'Deposit', amount: 100, dateTime: '2022-02-16 14:30', status: 'Success' },
+    { action: 'Withdrawal', amount: 50, dateTime: '2022-02-15 12:45', status: 'Pending' },
+    // Add more static rows as needed
+];
+
 const Wallet = () => {
     return (
         <Container className="flex justify-between gap-5 w-full p-2 ">
@@ -89,7 +103,7 @@ const Wallet = () => {
 
                 {/* Transaction History */}
                 <div className="border p-4 bg-grayPrimary rounded-lg">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between pb-10">
                         <div>
                             <h1 className='text-xl font-bold'>Transaction History</h1>
                         </div>
@@ -100,10 +114,44 @@ const Wallet = () => {
                                 </SearchIconWrapper>
                                 <StyledInputBase
                                     placeholder="Search…"
-                                    inputProps={{ 'aria-label': 'search' }}/>
+                                    inputProps={{ 'aria-label': 'search' }} />
                             </Search>
                         </div>
                     </div>
+
+                    {/* Table Data */}
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead className="bg-primary">
+                                <TableRow>
+                                    <TableCell sx={{ color: "white" }} className=" font-semibold">Action</TableCell>
+                                    <TableCell sx={{ color: "white" }} align="right" className="font-semibold">Amount</TableCell>
+                                    <TableCell sx={{ color: "white" }} align="right" className="font-semibold">Date/Time</TableCell>
+                                    <TableCell sx={{ color: "white" }} align="right" className="font-semibold">Status</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {staticRows.map((row) => (
+                                    <TableRow
+                                        key={row.action}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="row">
+                                            <p className={`text-lg`}>{row.action}</p>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <p className={`text-lg font-semibold ${row.amount > 0 ? "text-green-700" : "text-red-700"}`}>{row.amount}</p>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <p className={`text-lg font-semibold`}>{row.dateTime}</p>
+                                        </TableCell>
+                                        <TableCell align="right">{row.status}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+
                 </div>
             </div>
 
