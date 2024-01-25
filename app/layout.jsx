@@ -3,6 +3,7 @@ import "./globals.css";
 import MainLayout from "@/components/Layout/MainLayout";
 import { AppConfig } from "@/config/app.config";
 import AuthProvider from "@/components/Provider/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div>
+          <Toaster />
           <AuthProvider>
-            <MainLayout>
-              {children}
-            </MainLayout>
+            <MainLayout>{children}</MainLayout>
           </AuthProvider>
         </div>
       </body>

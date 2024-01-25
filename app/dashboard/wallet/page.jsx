@@ -13,6 +13,13 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import AvTimerOutlinedIcon from '@mui/icons-material/AvTimerOutlined';
 import Container from '@/components/library/Container';
 import Button from '@/components/library/Button/Button';
+import DepositForm from "@/components/dashboard-comp/wallet/DepositForm";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
+);
 
 // Table
 import Table from '@mui/material/Table';
@@ -84,7 +91,7 @@ const Wallet = () => {
     return (
         <Container className="flex justify-between gap-5 w-full p-2 ">
             <div className="w-9/12 flex flex-col gap-5">
-                <div className="p-4 bg-grayPrimary border rounded-lg">
+                <div className="p-4 bg-[#E6E9F2] border rounded-lg">
                     <div className="flex justify-between">
                         <div>
                             <h1 className='text-xl font-bold'>Wallet</h1>
@@ -165,13 +172,59 @@ const Wallet = () => {
                     </TableContainer>
                 </div>
             </div>
-
-            {/* Select Currency & Payment */}
-            <div className="w-4/12 border p-2 bg-grayPrimary rounded-lg">
-                <h1 className='text-xl text-center font-bold'>Select Currency & Payment</h1>
+          </div>
+          <div className="flex justify-between mt-10">
+            <div>
+              <p className="text-sm pb-2">
+                <CardTravelOutlinedIcon className=" text-gray-500" /> Wallet
+                Balance
+              </p>
+              <div className="flex gap-5 justify-center">
+                <h1 className="text-3xl font-bold">$30,455.00</h1>
+                <Button className="button-sm">
+                  Edit{" "}
+                  <VisibilityOffOutlinedIcon className=" text-gryPbg-grayPrimary" />
+                </Button>
+              </div>
             </div>
-        </Container>
-    );
+            <div className="bg-white border rounded-lg p-2">
+              <h6>
+                <AddCardOutlinedIcon className=" text-gray-500" /> Total
+                Deposited{" "}
+                <span className="text-xl font-semibold ml-5">
+                  <FileDownloadOutlinedIcon className=" text-green-600" />{" "}
+                  $32,455.12
+                </span>
+              </h6>
+
+              <h6>
+                <AvTimerOutlinedIcon className=" text-gray-500" /> Total
+                Withdrawals{" "}
+                <span className="text-xl font-semibold ml-5">
+                  <FileUploadOutlinedIcon className=" text-red-600" /> $2,455.12
+                </span>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        {/* Transaction History */}
+        <div className="border p-2 bg-[#E6E9F2] rounded-lg">
+          <h1 className="text-xl font-bold">Transaction History</h1>
+        </div>
+      </div>
+
+      {/* Select Currency & Payment */}
+      <div className="w-4/12 border p-6 bg-[#E6E9F2] rounded-lg">
+        <h1 className="text-xl text-center font-bold">
+          Select Currency & Payment
+        </h1>
+        <Elements stripe={stripePromise}>
+          <DepositForm />
+        </Elements>
+      </div>
+    </div>
+  );
 };
 
 export default Wallet;
