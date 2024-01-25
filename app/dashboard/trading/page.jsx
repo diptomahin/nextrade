@@ -80,22 +80,23 @@ const Trading = () => {
         };
     }, []);
 
-    function createData(name, price, icon) {
-        return { name, price, icon };
+    function createData(name, key, price, icon) {
+        return { name, key, price, icon };
        
     }
 
     const assets = [
-        createData('Bitcoin (BTC)', BTCPrice, imageBTC),
-        createData('Ethereum (ETC)', ETHPrice, imageETH),
-        createData('LiteCoin (LTC)', LTCPrice, imageLTC),
-        createData('QTUM coin', QTUMPrice, imageQTUM),
-        createData('DOGE coin', DOGEPrice, imageDOGE),
+        createData('Bitcoin (BTC)', "BTCUSDT", BTCPrice, imageBTC),
+        createData('Ethereum (ETC)', "ETHUSDT", ETHPrice, imageETH),
+        createData('LiteCoin (LTC)', "LTCUSDT", LTCPrice, imageLTC),
+        createData('QTUM coin', "QTUMUSDT", QTUMPrice, imageQTUM),
+        createData('DOGE coin', "DOGEUSDT", DOGEPrice, imageDOGE),
     ];
 
     const handleBuyCoin = (ast) =>{
         const assetInfo= {
             assetName : ast.name,
+            assetKey : ast.key,
             assetBuyingPrice : ast.price,
             assetBuyerUID : user.uid,
             assetBuyerEmail : user.email
