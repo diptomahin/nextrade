@@ -60,8 +60,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const menuItemsForUser = [
   {
-      route: "Profile",
-      pathname: "/dashboard"
+    route: "Profile",
+    pathname: "/dashboard"
   }
 ];
 
@@ -69,8 +69,8 @@ const TradersDashboardNavbar = () => {
   const { user, logOut } = useAuth()
 
   // get the current pathname
-  const pathname = usePathname();
-  console.log(pathname);
+  // const pathname = usePathname();
+  // console.log(pathname);
 
 
   // user menu related functions
@@ -82,76 +82,80 @@ const TradersDashboardNavbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  
-   
+
+
   return (
     <Box sx={{ flexGrow: 1 }} >
-    <AppBar position="static" className={'bg-primary shadow-none mt-2'}>
-      <Toolbar>
-        <Typography
-          variant="h6"
-          noWrap
-          component="div"
-          sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-        >
-          Dashboard
-        </Typography>
-        <Search className='mr-5'>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </Search>
-        <NotificationsRoundedIcon className='mr-5'/>
-        <Stack direction="row" alignItems="center" spacing={3}>
-              <Tooltip title="Open settings">
-                <IconButton  sx={{ p: 0 }} onClick={handleOpenUserMenu} >
-                  <Avatar alt="user-img" className="border-2 border-primary" src={user?.photoURL}
-                   />
-                   {
-                    user ? <p className=''>{ user?.displayname || <span className='ml-2 text-white text-lg'>Name</span>}</p>: " "
-                   }
-                    {/* user menu */}
-        <Menu
-          sx={{ mt: '45px', py:"0px" }}
-          anchorEl={anchorElUser}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={Boolean(anchorElUser)}
-          onClose={handleCloseUserMenu}
-        >
-          {
+      <AppBar position="static" sx={{ backgroundColor: "#21366c", marginTop: "8px", boxShadow: "none" }}>
+        <Toolbar>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            Dashboard
+          </Typography>
+
+          {/* search bar */}
+          <Search className='mr-5'>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+          <NotificationsRoundedIcon className='mr-5' />
+
+
+
+          {/* user avater */}
+          <Stack direction="row" alignItems="center" spacing={3}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="user-img" className="border-2 border-primary" src={user?.photoURL} />
+              </IconButton>
+            </Tooltip>
+            <p className=''>{user?.displayName || <span className=' text-white text-lg'>Name</span>}</p>
+          </Stack>
+
+          {/* user menu */}
+          <Menu
+            sx={{ mt: '45px', py: "0px" }}
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {
               menuItemsForUser.map((menu, idx) => (
                 <Link key={idx} href={menu.pathname}>
-                    <MenuItem className="p-0 my-0" onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center" className=" hover:bg-primary hover:text-white w-full px-6 py-2">{menu.route}</Typography>
-                    </MenuItem>
+                  <MenuItem className="p-0 my-0" onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" className=" hover:bg-primary hover:text-white w-full px-6 py-2">{menu.route}</Typography>
+                  </MenuItem>
                 </Link>
-            ))
+              ))
             }
-          <MenuItem className="p-0 my-0" onClick={() => {
-            logOut();
-            handleCloseUserMenu();
-          }}>
-            <Typography textAlign="center" className=" hover:bg-primary hover:text-white w-full px-6 py-2">Logout</Typography>
-          </MenuItem>
-        </Menu>
-                </IconButton>
-              </Tooltip>
-            </Stack>
-      </Toolbar>
-    </AppBar>
-  </Box>
+            <MenuItem className="p-0 my-0" onClick={() => {
+              logOut();
+              handleCloseUserMenu();
+            }}>
+              <Typography textAlign="center" className=" hover:bg-primary hover:text-white w-full px-6 py-2">Logout</Typography>
+            </MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
 
