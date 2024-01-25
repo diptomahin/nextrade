@@ -14,36 +14,28 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import useAuth from "@/utils/useAuth";
+
+import useAllUsers from "@/app/hooks/useAllUsers";
 
 
 const Portfolio = () => {
-    const {user} = useAuth();
+    
+    const [allUsers] = useAllUsers();
     const [currentBTCPrice, setCurrentBTCPrice] = useState(0);
     const [currentLTCPrice, setCurrentLTCPrice] = useState(0);
     const [currentETHPrice, setCurrentETHPrice] = useState(0);
-    const [oldPrice, setOldPrice] = useState(0)
-
-    const buyingBTCPrice = parseInt('40020')
-    const buyingETHPrice = parseInt('2050')
-    const buyingLTCPrice = parseInt('60')
-
-    // useAxiosPublic.get(`http://localhost:5000/v1/api/all-users/${user.email}`)
-
-
+    const [currentQTUMPrice, setCurrentQTUMPrice] = useState(0);
+    const [currentDOGEPrice, setCurrentDOGEPrice] = useState(0);
+    const [setBuyingPriceInfo, setSetBuyingPriceInfo] = useState([]);
+    
     React.useEffect(() => {
-        // Create a WebSocket connection
         const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-
-        // Event listener for incoming messages
+        
         socket.addEventListener('message', (event) => {
             const data = JSON.parse(event.data);
-            // console.log(data)
-
-            // Find and update prices for BTC, LTC, and ETH
+            
             data.forEach((ticker) => {
                 const symbol = ticker.s;
-
                 if (symbol === 'BTCUSDT') {
                     setCurrentBTCPrice(parseFloat(ticker.c).toFixed(2));
                 } else if (symbol === 'LTCUSDT') {
@@ -51,27 +43,35 @@ const Portfolio = () => {
                 } else if (symbol === 'ETHUSDT') {
                     setCurrentETHPrice(parseFloat(ticker.c).toFixed(2));
                 }
+                 else if (symbol === 'QTUMUSDT') {
+                    setCurrentQTUMPrice(parseFloat(ticker.c).toFixed(2));
+                }
+                 else if (symbol === 'DOGEUSDT') {
+                    setCurrentDOGEPrice(parseFloat(ticker.c).toFixed(2));
+                }
             });
         });
 
-        // Clean up the WebSocket connection when the component unmounts
         return () => {
             socket.close();
         };
     }, []);
 
+    React.useEffect(() => {
+        const userBTCData = allUsers.flatMap(user => user.portfolio);
+        const filteredAssets = userBTCData.filter(asset => 
+            asset.assetKey === "BTCUSDT" || 
+            asset.assetKey === "ETHUSDT" || 
+            asset.assetKey === "LTCUSDT" ||
+            asset.assetKey === "QTUMUSDT" ||
+            asset.assetKey === "DOGEUSDT"
+        );
+        setSetBuyingPriceInfo(filteredAssets);
+    }, [allUsers]);
 
-    function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
-    }
-
-    const rows = [
-        createData('Frozen yoghurt (BTC)', buyingBTCPrice, currentBTCPrice, 24, 4.0),
-        createData('Ice cream sandwich (ETC)', buyingETHPrice, currentETHPrice, 37, 4.3),
-        createData('Eclair (LTC)', buyingLTCPrice, currentLTCPrice, 24, 6.0),
-        // createData('Cupcake', buyingETHPrice, currentETHPrice, 67, 4.3),
-        // createData('Gingerbread', buyingBTCPrice, currentBTCPrice, 49, 3.9),
-    ];
+    const calculateDifference = (currentPrice, buyingPrice) => {
+        return (currentPrice - buyingPrice).toFixed(2);
+    };
 
 
 
@@ -84,7 +84,7 @@ const Portfolio = () => {
             <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
                 <div>
                     <p className="font-semibold text-gray-500">Current Balance <RemoveRedEyeOutlinedIcon className="text-base ml-2" /></p>
-                    <h1 className=" lg:text-3xl text-xl font-extrabold my-2">${buyingBTCPrice + buyingETHPrice + buyingLTCPrice}</h1>
+                    <h1 className=" lg:text-3xl text-xl font-extrabold my-2">${10 + 10 + 10}</h1>
                     <p className=" text-red-600 font-semibold ">-$1200.78 (-1.89%)</p>
                 </div>
                 <div className="  ">
@@ -96,36 +96,83 @@ const Portfolio = () => {
             </div>
 
             {/* Table boat  */}
-            <div className="mt-20 ">
-                <h2 className=" text-3xl font-bold mb-2 font-sans">Your Holdings . . . </h2>
+           {/* Table */}
+           <div className="mt-20">
+                <h2 className="text-3xl font-bold mb-2 font-sans">Your Holdings . . . </h2>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead className="bg-primary">
-                            <TableRow   >
-                                <TableCell  sx={{color:"white"}} className=" font-semibold">Company</TableCell>
-                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Buying Price</TableCell>
-                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Current Price</TableCell>
-                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Carbs&nbsp;(g)</TableCell>
-                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Protein&nbsp;(g)</TableCell>
+                            <TableRow>
+                                <TableCell className="font-semibold">Company</TableCell>
+                                <TableCell align="right" className="font-semibold">Buying Price</TableCell>
+                                <TableCell align="right" className="font-semibold">Current Price</TableCell>
+                                <TableCell align="right" className="font-semibold">Carbs&nbsp;(g)</TableCell>
+                                <TableCell align="right" className="font-semibold">Protein&nbsp;(g)</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
-                                <TableRow
-                                    key={row.name}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
+                            {setBuyingPriceInfo.map((asset, index) => (
+                                <TableRow key={index}>
                                     <TableCell component="th" scope="row">
-                                        <p className={`text-lg`}>{row.name}</p>
+                                        {asset.assetName}
                                     </TableCell>
                                     <TableCell align="right">
-                                        <p className={`text-lg font-semibold ${row.fat > row.calories ? "text-green-700" : "text-red-700"}`}>{row.calories}</p>
+                                        $ {asset.assetBuyingPrice}
                                     </TableCell>
                                     <TableCell align="right">
-                                        <p className={`text-lg font-semibold`}>{row.fat}</p>
+                                        {asset.assetKey === "BTCUSDT" ? (
+                                            <span className={currentBTCPrice < parseFloat(asset.assetBuyingPrice) ? 'text-red-700' : 'text-green-700'}>
+                                                ${currentBTCPrice}
+                                            </span>
+                                        ) : asset.assetKey === "ETHUSDT" ? (
+                                            <span className={currentETHPrice < parseFloat(asset.assetBuyingPrice) ? 'text-red-700' : 'text-green-700'}>
+                                                ${currentETHPrice}
+                                            </span>
+                                        ) : asset.assetKey === "LTCUSDT" ? (
+                                            <span className={currentLTCPrice < parseFloat(asset.assetBuyingPrice) ? 'text-red-700' : 'text-green-700'}>
+                                                ${currentLTCPrice}
+                                            </span>
+                                        ) : asset.assetKey === "QTUMUSDT" ? (
+                                            <span className={currentQTUMPrice < parseFloat(asset.assetBuyingPrice) ? 'text-red-700' : 'text-green-700'}>
+                                                ${currentQTUMPrice}
+                                            </span>
+                                        ) : asset.assetKey === "DOGEUSDT" ? (
+                                            <span className={currentDOGEPrice < parseFloat(asset.assetBuyingPrice) ? 'text-red-700' : 'text-green-700'}>
+                                                ${currentDOGEPrice}
+                                            </span>
+                                        ) : (
+                                            <span>-</span>
+                                        )}
                                     </TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
-                                    <TableCell align="right">{row.protein}</TableCell>
+                                    <TableCell align="right">
+    <span className={
+        asset.assetBuyingPrice ? 
+        `font-semibold ${
+            calculateDifference(
+                asset.assetKey === "BTCUSDT" ? currentBTCPrice :
+                asset.assetKey === "ETHUSDT" ? currentETHPrice :
+                asset.assetKey === "LTCUSDT" ? currentLTCPrice :
+                asset.assetKey === "QTUMUSDT" ? currentQTUMPrice :
+                asset.assetKey === "DOGEUSDT" ? currentDOGEPrice : 0,
+                parseFloat(asset.assetBuyingPrice)
+            ) > 0 ? 'text-green-700' : 'text-red-700'
+        }` 
+        : ''
+    }>
+        ${asset.assetBuyingPrice ? calculateDifference(
+            asset.assetKey === "BTCUSDT" ? currentBTCPrice :
+            asset.assetKey === "ETHUSDT" ? currentETHPrice :
+            asset.assetKey === "LTCUSDT" ? currentLTCPrice :
+            asset.assetKey === "QTUMUSDT" ? currentQTUMPrice :
+            asset.assetKey === "DOGEUSDT" ? currentDOGEPrice : 0,
+            parseFloat(asset.assetBuyingPrice)
+        ) : '-'}
+    </span>
+</TableCell>
+
+                                    <TableCell align="right">
+                                        {/* {rows[index]?.protein} */}
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
