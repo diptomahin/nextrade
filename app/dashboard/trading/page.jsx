@@ -42,7 +42,7 @@ const Trading = () => {
         // Event listener for incoming messages
         socket.addEventListener('message', (event) => {
             const data = JSON.parse(event.data);
-            console.log(data)
+            // console.log(data)
 
             // Find and update prices for BTC, LTC, and ETH
             data.forEach((ticker) => {
@@ -84,6 +84,11 @@ const Trading = () => {
         createData('DOGE coin', DOGEPrice, imageDOGE),
     ];
 
+    const handleBuyCoin = (ast) =>{
+        console.log('button clicked of asset:', ast.name)
+        
+    }
+
 
     return (
         <div>
@@ -118,8 +123,8 @@ const Trading = () => {
                                     <TableCell >
                                         <p className={`text-lg font-semibold`}>{asset.price}</p>
                                     </TableCell>
-                                    <TableCell >
-                                        <Button>Trade</Button>
+                                    <TableCell>
+                                        <Button onClick={()=>handleBuyCoin(asset)}>Trade</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

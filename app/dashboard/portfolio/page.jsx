@@ -115,7 +115,7 @@ const Portfolio = () => {
                                         <p className={`text-lg`}>{row.name}</p>
                                     </TableCell>
                                     <TableCell align="right">
-                                        <p className={`text-lg font-semibold ${currentBTCPrice > buyingBTCPrice ? "text-green-700" : "text-red-700"}`}>{row.calories}</p>
+                                        <p className={`text-lg font-semibold ${row.fat > row.calories ? "text-green-700" : "text-red-700"}`}>{row.calories}</p>
                                     </TableCell>
                                     <TableCell align="right">
                                         <p className={`text-lg font-semibold`}>{row.fat}</p>
