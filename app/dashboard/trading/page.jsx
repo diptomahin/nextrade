@@ -13,6 +13,7 @@ import imageETH from "../../../assets/coinImages/ethereum.png"
 import imageLTC from "../../../assets/coinImages/ltc.png"
 import imageQTUM from "../../../assets/coinImages/QTUM.png"
 import imageDOGE from "../../../assets/coinImages/DOGE.png"
+import imageNEO from "../../../assets/coinImages/neo.png"
 // material imports
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -32,6 +33,7 @@ const Trading = () => {
     const [ETHPrice, setETHPrice] = useState(0);
     const [QTUMPrice, setQTUMPrice] = useState(0);
     const [DOGEPrice, setDOGEPrice] = useState(0);
+    const [NEOPrice, setNEOPrice] = useState(0);
     
  
 
@@ -63,6 +65,9 @@ const Trading = () => {
                 else if (symbol === 'DOGEUSDT') {
                     setDOGEPrice(parseFloat(ticker.c).toFixed(2));
                 }
+                else if (symbol === 'NEOUSDT') {
+                    setNEOPrice(parseFloat(ticker.c).toFixed(2));
+                }
             });
         });
 
@@ -82,6 +87,7 @@ const Trading = () => {
         createData('LiteCoin (LTC)', LTCPrice, imageLTC),
         createData('QTUM coin', QTUMPrice, imageQTUM),
         createData('DOGE coin', DOGEPrice, imageDOGE),
+        createData('NEO', NEOPrice, imageNEO),
     ];
 
 
