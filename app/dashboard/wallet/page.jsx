@@ -1,5 +1,4 @@
 "use client";
-
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
@@ -11,16 +10,9 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CardTravelOutlinedIcon from "@mui/icons-material/CardTravelOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import AvTimerOutlinedIcon from "@mui/icons-material/AvTimerOutlined";
-import Button from "@/components/library/Button/Button";
 import DepositForm from "@/components/dashboard-comp/wallet/DepositForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe(
-  "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
-);
-
-// Table
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -28,6 +20,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import DashboardButton from "@/components/library/DashboardButton";
+import React from "react";
+import { VisibilityOutlined } from "@mui/icons-material";
+
+const stripePromise = loadStripe(
+  "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
+);
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -147,54 +146,64 @@ const staticRows = [
 ];
 
 const Wallet = () => {
+  const [hidePrice, setHidePrice] = React.useState(false);
   return (
-    <div className="flex justify-between gap-5 w-full p-2 ">
+    <div className="flex justify-between gap-5 w-full p-3">
       <div className="w-9/12 flex flex-col gap-5">
-        <div className="p-4 bg-[#E6E9F2] border rounded-lg">
+        <div className="p-6 bg-white rounded-md">
           <div className="flex justify-between">
             <div>
               <h1 className="text-xl font-bold">Wallet</h1>
-              <p className="text-sm">Update 16/02/2022 at 02:30PM</p>
+              <p className="text-sm opacity-70">Update 16/02/2022 at 02:30PM</p>
             </div>
-            <div>
-              <button>
-                {" "}
-                <BorderColorIcon className=" text-gryPbg-grayPrimary" /> Edit
-              </button>
-              <button className="ml-5">
-                {" "}
-                <AddIcon className=" text-gryPbg-grayPrimary" /> Add New Wallet
-              </button>
+            <div className="flex items-center gap-5">
+              <DashboardButton>
+                <BorderColorIcon className="w-5 h-5" /> Edit
+              </DashboardButton>
+              <DashboardButton>
+                <AddIcon /> Add New Wallet
+              </DashboardButton>
             </div>
           </div>
           <div className="flex justify-between mt-10">
-            <div>
-              <p className="text-sm pb-2">
-                <CardTravelOutlinedIcon className=" text-gray-500" /> Wallet
-                Balance
-              </p>
-              <div className="flex gap-5 justify-center">
-                <h1 className="text-3xl font-bold">$30,455.00</h1>
-                <button className="button-sm">
-                  Edit{" "}
-                  <VisibilityOffOutlinedIcon className=" text-gryPbg-grayPrimary" />
-                </button>
-              </div>
+            <div className="flex items-center gap-10">
+              {!hidePrice && (
+                <div>
+                  <p className="text-sm pb-2 opacity-70 flex items-center gap-3">
+                    <CardTravelOutlinedIcon className="w-5 h-5" /> Wallet
+                    Balance
+                  </p>
+                  <h1 className="text-3xl font-bold">$30,455.00</h1>
+                </div>
+              )}
+              <button
+                onClick={() => setHidePrice(!hidePrice)}
+                className="button-sm text-xs flex items-center gap-1 bg-secondary/40 px-2 py-1 rounded-full"
+              >
+                {hidePrice ? (
+                  <span>
+                    Show Price <VisibilityOutlined className=" w-4 h-4" />
+                  </span>
+                ) : (
+                  <span>
+                    Hide Price{" "}
+                    <VisibilityOffOutlinedIcon className=" w-4 h-4" />
+                  </span>
+                )}
+              </button>
             </div>
-            <div className="bg-white border rounded-lg p-2">
+            <div className="bg-secondary/40 rounded-md p-3">
               <h6>
-                <AddCardOutlinedIcon className=" text-gray-500" /> Total
-                Deposited{" "}
-                <span className="text-xl font-semibold ml-5">
+                <AddCardOutlinedIcon /> Total Deposited{" "}
+                <span className="font-semibold ml-5">
                   <FileDownloadOutlinedIcon className=" text-green-600" />{" "}
                   $32,455.12
                 </span>
               </h6>
 
-              <h6>
-                <AvTimerOutlinedIcon className=" text-gray-500" /> Total
-                Withdrawals{" "}
-                <span className="text-xl font-semibold ml-5">
+              <h6 className="mt-4">
+                <AvTimerOutlinedIcon /> Total Withdrawals{" "}
+                <span className="font-semibold ml-10">
                   <FileUploadOutlinedIcon className=" text-red-600" /> $2,455.12
                 </span>
               </h6>
@@ -203,13 +212,20 @@ const Wallet = () => {
         </div>
 
         {/* Transaction History */}
-        <div className="border p-4 bg-[#E6E9F2] rounded-lg">
+        <div className="p-6 bg-white rounded-md">
           <div className="flex justify-between pb-10">
             <div>
               <h1 className="text-xl font-bold">Transaction History</h1>
             </div>
             <div>
-              <Search className="mr-5">
+              <Search
+                className="mr-5 bg-black/10 rounded-full"
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "rgba(0,0, 0, 0.15)",
+                  },
+                }}
+              >
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
@@ -222,32 +238,23 @@ const Wallet = () => {
           </div>
 
           {/* Table Data */}
-          <TableContainer component={Paper}>
+          <TableContainer
+            component={Paper}
+            sx={{
+              border: "1px solid rgba(0, 0, 0, 0.1)",
+            }}
+          >
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead className="bg-primary">
+              <TableHead>
                 <TableRow>
-                  <TableCell sx={{ color: "white" }} className=" font-semibold">
-                    Action
-                  </TableCell>
-                  <TableCell
-                    sx={{ color: "white" }}
-                    align="right"
-                    className="font-semibold"
-                  >
+                  <TableCell className=" font-semibold">Action</TableCell>
+                  <TableCell align="right" className="font-semibold">
                     Amount
                   </TableCell>
-                  <TableCell
-                    sx={{ color: "white" }}
-                    align="right"
-                    className="font-semibold"
-                  >
+                  <TableCell align="right" className="font-semibold">
                     Date/Time
                   </TableCell>
-                  <TableCell
-                    sx={{ color: "white" }}
-                    align="right"
-                    className="font-semibold"
-                  >
+                  <TableCell align="right" className="font-semibold">
                     Status
                   </TableCell>
                 </TableRow>
@@ -285,7 +292,7 @@ const Wallet = () => {
       </div>
 
       {/* Select Currency & Payment */}
-      <div className="w-4/12 h-fit border p-6 bg-[#E6E9F2] rounded-lg">
+      <div className="w-4/12 h-fit p-6 bg-white rounded-md">
         <h1 className="text-xl text-center font-bold">
           Select Currency & Payment
         </h1>

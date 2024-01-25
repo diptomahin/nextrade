@@ -163,9 +163,9 @@ const DepositForm = () => {
             },
           }}
         />
-        <div className="relative my-4 text-red-600">{paymentError}</div>
+        <div className="relative mt-4 text-red-600">{paymentError}</div>
         <button
-          className="w-full bg-sky-500 hover:bg-sky-600 text-white border-none rounded-full py-2 text-xl"
+          className="w-full bg-[#1D366F]/90 hover:bg-[#1D366F] text-white border-none rounded-full py-[6px] text-lg mt-5"
           type="submit"
           disabled={!stripe || !elements}
         >
