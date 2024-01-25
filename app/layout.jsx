@@ -17,9 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div>
-          <Toaster />
           <AuthProvider>
             <MainLayout>{children}</MainLayout>
+            <Toaster />
           </AuthProvider>
         </div>
       </body>
