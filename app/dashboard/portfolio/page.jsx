@@ -96,13 +96,13 @@ const Portfolio = () => {
                 <h2 className=" text-3xl font-bold mb-2 font-sans">Your Holdings . . . </h2>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead className="bg-primary text-white">
-                            <TableRow  >
-                                <TableCell className="text-white font-semibold">Company</TableCell>
-                                <TableCell align="right" className="text-white font-semibold">Buying Price</TableCell>
-                                <TableCell align="right" className="text-white font-semibold">Current Price</TableCell>
-                                <TableCell align="right" className="text-white font-semibold">Carbs&nbsp;(g)</TableCell>
-                                <TableCell align="right" className="text-white font-semibold">Protein&nbsp;(g)</TableCell>
+                        <TableHead className="bg-primary">
+                            <TableRow   >
+                                <TableCell  sx={{color:"white"}} className=" font-semibold">Company</TableCell>
+                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Buying Price</TableCell>
+                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Current Price</TableCell>
+                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Carbs&nbsp;(g)</TableCell>
+                                <TableCell sx={{color:"white"}} align="right" className="font-semibold">Protein&nbsp;(g)</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
