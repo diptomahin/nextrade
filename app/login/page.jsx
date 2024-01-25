@@ -12,6 +12,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 // import { useRouter } from "next/router";
 import { useRouter } from "next/navigation";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -35,6 +36,8 @@ const CssTextField = styled(TextField)({
 });
 
 const Login = () => {
+
+  const axiosPublic = useAxiosPublic();
 
   const router = useRouter();
   const { from } = router.query || { from: '/dashboard' };
