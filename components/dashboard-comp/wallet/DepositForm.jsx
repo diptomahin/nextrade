@@ -2,7 +2,7 @@
 import useAuth from "@/utils/useAuth";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import toast from "react-hot-toast";
 
 //   date related variable
