@@ -77,7 +77,7 @@ const Dashboard = ({ children }) => {
           </Drawer>
         </div>
 
-        <div className="min-h-full 2xl:ml-[250px] mt-[87px] p-4">
+        <div className="min-h-full 2xl:ml-[250px] mt-[87px] p-4 bg-[#F1F1F1]">
           {children}
         </div>
       </div>
