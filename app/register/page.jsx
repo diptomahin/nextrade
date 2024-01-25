@@ -72,10 +72,12 @@ const Register = () => {
         updateUserProfile(data.name)
 
         const userInfo = {
-             userID: loggedUser.uid,
-             email: loggedUser.email,
-             name: loggedUser.displayName,
-             createdAt: loggedUser.metadata.creationTime
+          userID: loggedUser.uid,
+          email: loggedUser.email,
+          name: loggedUser.displayName,
+          createdAt: loggedUser.metadata.creationTime,
+          balance: 1000000,
+          portfolio: []
         }
         // console.log(userInfo)
 
@@ -115,7 +117,9 @@ const Register = () => {
           userID: loggedUser.uid,
           email: loggedUser.email,
           name: loggedUser.displayName,
-          createdAt: loggedUser.metadata.creationTime
+          createdAt: loggedUser.metadata.creationTime,
+          balance: 1000000,
+          portfolio: []
         }
         // console.log(userInfo)
 

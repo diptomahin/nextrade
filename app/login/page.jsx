@@ -57,14 +57,7 @@ const Login = () => {
     logIn(data.email, data.password)
       .then((res) => {
         const loggedUser = res.user;
-        console.log(loggedUser);
-
-        // const userInfo = {
-        //      userID: loggedUser.uid,
-        //      email: loggedUser.email,
-        //      createdAt: loggedUser.metadata.creationTime
-        // }
-        // console.log(userInfo)
+        // console.log(loggedUser);
 
         Swal.fire({
           title: "Log In successful!",
@@ -89,23 +82,29 @@ const Login = () => {
     googleLogin()
       .then((res) => {
         const loggedUser = res.user;
-        // console.log(loggedUser);
+        console.log(loggedUser);
 
-        // const userInfo = {
-        //      userID: loggedUser.uid,
-        //      email: loggedUser.email,
-        //      name: loggedUser.displayName,
-        //      createdAt: loggedUser.metadata.creationTime
-        // }
+        const userInfo = {
+          userID: loggedUser.uid,
+          email: loggedUser.email,
+          name: loggedUser.displayName,
+          createdAt: loggedUser.metadata.creationTime,
+          balance: 1000000,
+          portfolio: []
+        }
         // console.log(userInfo)
 
-        Swal.fire({
-          title: "Log In successful!",
-          text: `Welcome back ${loggedUser.displayName}`,
-          icon: "success",
-        });
-        router.push(from);
-        reset;
+        axiosPublic.post('/all-users', userInfo)
+        .then(res => {
+            console.log(res.data);
+            Swal.fire({
+              title: "Log In successful!",
+              text: `Welcome back ${loggedUser.displayName}`,
+              icon: "success",
+            });
+            router.push(from);
+        })
+        
       })
       .catch((error) => {
         console.log(error.message);
