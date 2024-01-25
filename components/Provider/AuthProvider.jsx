@@ -1,6 +1,6 @@
 "use client"
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../../config/firebase.config";
 
 
@@ -33,6 +33,12 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, GoogleProvider)
     }
 
+     // update
+     const updateUserProfile = (name) =>{
+        setLoading(true);
+        updateProfile(auth.currentUser, {displayName: name})
+    }
+
     // observer
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -45,7 +51,7 @@ const AuthProvider = ({ children }) => {
         }
     },[])
 
-    const authInfo = { user, loading, createUser, logOut, logIn, googleLogin }
+    const authInfo = { user, loading, createUser, logOut, logIn, googleLogin, updateUserProfile }
 
     return (
         <AuthContext.Provider value={authInfo}>

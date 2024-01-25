@@ -14,6 +14,7 @@
     "@headlessui/react": "^1.7.18",
     "@mui/icons-material": "^5.15.5",
     "@mui/material": "^5.15.6",
+    "axios": "^1.6.6",
     "clsx": "^2.1.0",
     "firebase": "^10.7.2",
     "framer-motion": "^11.0.2",
