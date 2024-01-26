@@ -37,6 +37,11 @@ const DepositForm = ({ setUserBalanceDetails }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
+
+    setPaymentError("");
+    if (!/^-?\d*\.?\d+$/.test(form.amount.value)) {
+      return setPaymentError("*Please provide a valid number amount");
+    }
     const toastId = toast.loading("Progress...", { duration: 5000 });
 
     if (!stripe || !elements) {
