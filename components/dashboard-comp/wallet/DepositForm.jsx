@@ -36,6 +36,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const form = event.target;
     const toastId = toast.loading("Progress...", { duration: 5000 });
 
     if (!stripe || !elements) {
@@ -86,7 +87,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
           transaction: paymentIntent,
           date: date,
           time: time,
-          deposit: parseInt(amount),
+          deposit: parseInt(form.amount.value),
           email: user?.email,
           name: user?.displayName,
         };
@@ -97,11 +98,21 @@ const DepositForm = ({ setUserBalanceDetails }) => {
           )
           .then((res) => {
             if (res.data.modifiedCount > 0) {
+              form.reset();
+              // Reset the Stripe CardElement
+              if (elements) {
+                elements.getElement(CardElement).clear();
+              }
               axios
                 .get(
                   `https://nex-trade-server.vercel.app/v1/api/all-users/${user?.email}`
                 )
                 .then((res) => {
+                  form.reset();
+                  // Reset the Stripe CardElement
+                  if (elements) {
+                    elements.getElement(CardElement).clear();
+                  }
                   setUserBalanceDetails(res.data[0]);
                   toast.success("Deposit Successful", {
                     id: toastId,
@@ -134,7 +145,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
           onChange={(e) => setAmount(e.target.value)}
           className="w-full border-2 mt-3 mb-8 px-4 py-2 rounded-full"
           type="text"
-          name=""
+          name="amount"
           id=""
           placeholder="amount"
         />

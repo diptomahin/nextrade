@@ -70,83 +70,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-const staticRows = [
-  {
-    action: "Deposit",
-    amount: 500,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -150,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 1000,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -500,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 200,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -750,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 800,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -1000,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 1000,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -500,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 1300,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -1050,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  // Add more static rows as needed
-];
-
 const Wallet = () => {
   const [hidePrice, setHidePrice] = React.useState(false);
   const [userBalanceDetails, setUserBalanceDetails] = React.useState({});
@@ -162,7 +85,6 @@ const Wallet = () => {
       });
   }, [user?.email]);
 
-  console.log(userBalanceDetails);
   return (
     <div className="flex justify-between gap-5 w-full p-3">
       <div className="w-9/12 flex flex-col gap-5">
