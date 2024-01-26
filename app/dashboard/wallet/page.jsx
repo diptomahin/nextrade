@@ -70,97 +70,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-const staticRows = [
-  {
-    action: "Deposit",
-    amount: 500,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -150,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 1000,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -500,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 200,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -750,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 800,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -1000,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 1000,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -500,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  {
-    action: "Deposit",
-    amount: 1300,
-    dateTime: "2022-02-16 14:30",
-    status: "Success",
-  },
-  {
-    action: "Withdrawal",
-    amount: -1050,
-    dateTime: "2022-02-15 12:45",
-    status: "Pending",
-  },
-  // Add more static rows as needed
-];
-
 const Wallet = () => {
   const [hidePrice, setHidePrice] = React.useState(false);
-  const [userBalanceDetails, setUserBalanceDetails] = React.useState(null);
+  const [userBalanceDetails, setUserBalanceDetails] = React.useState({});
   const { user } = useAuth();
-
-  console.log(userBalanceDetails);
 
   React.useEffect(() => {
     axios
-      .get(`http://localhost:5000/v1/api/all-users/${user?.email}`)
+      .get(
+        `https://nex-trade-server.vercel.app/v1/api/all-users/${user?.email}`
+      )
       .then((res) => {
         setUserBalanceDetails(res.data[0]);
       });
   }, [user?.email]);
+
   return (
     <div className="flex justify-between gap-5 w-full p-3">
       <div className="w-9/12 flex flex-col gap-5">
@@ -276,29 +200,31 @@ const Wallet = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {staticRows.map((row) => (
+                {userBalanceDetails?.depositWithdrawData?.map((row, index) => (
                   <TableRow
-                    key={row.action}
+                    key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      <p>{row.action}</p>
+                      <p>{row.deposit ? "Deposit" : "Withdraw"}</p>
                     </TableCell>
                     <TableCell align="right">
                       <p
                         className={`font-semibold ${
-                          row.amount >= 0 ? "text-green-700" : "text-red-700"
+                          row.deposit >= 0 ? "text-green-700" : "text-red-700"
                         }`}
                       >
-                        {row.amount >= 0
-                          ? `$${row.amount}`
-                          : `-$${-row.amount}`}
+                        {row.deposit >= 0
+                          ? `$${row.deposit}`
+                          : `-$${-row.deposit}`}
                       </p>
                     </TableCell>
                     <TableCell align="right">
-                      <p>{row.dateTime}</p>
+                      <p>
+                        {row.date.day}-{row.date.month}-{row.date.year}
+                      </p>
                     </TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
+                    <TableCell align="right">Complete</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
