@@ -16,7 +16,7 @@ const second = currentDate.getSeconds();
 const date = { day: day, month: month, year: year };
 const time = { second: second, minute: minute, hour: hour };
 
-const DepositForm = () => {
+const DepositForm = ({ setUserBalanceDetails }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState("");
@@ -36,7 +36,7 @@ const DepositForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const toastId = toast.loading("Progress...");
+    const toastId = toast.loading("Progress...", { duration: 5000 });
 
     if (!stripe || !elements) {
       toast.error("internal error!!!", { id: toastId, duration: 3000 });
@@ -82,43 +82,32 @@ const DepositForm = () => {
     } else {
       setPaymentError("");
       if (paymentIntent.status === "succeeded") {
-        toast.success("Deposit Successful", {
-          id: toastId,
-          duration: 4000,
-        });
         const depositData = {
           transaction: paymentIntent,
           date: date,
           time: time,
-          deposit: amount,
+          deposit: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
         };
         axios
-          .post(`http://localhost:5000/api/v1/deposit`, depositData)
-          .then((res) => console.log(res.data));
-        // axiosSecure.post("/api/sale/create", salesData).then((res) => {
-        //   if (res.data.insertedId) {
-        //     const updateProductInfo = {
-        //       sellCount: productData.sellCount + 1,
-        //       productQuantity: productData.productQuantity - 1,
-        //     };
-        //     axiosSecure
-        //       .patch(
-        //         `/api/product/update/checkout/${productData._id}`,
-        //         updateProductInfo
-        //       )
-        //       .then((res) => {
-        //         if (res.data.modifiedCount > 0) {
-        //           toast.success("Payment Successful", {
-        //             id: toastId,
-        //             duration: 4000,
-        //           });
-        //           navigate("/dashboard/sales-Collection");
-        //         }
-        //       });
-        //   }
-        // });
+          .put(
+            `http://localhost:5000/v1/api/all-users/deposit/${user?.email}`,
+            depositData
+          )
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              axios
+                .get(`http://localhost:5000/v1/api/all-users/${user?.email}`)
+                .then((res) => {
+                  setUserBalanceDetails(res.data[0]);
+                  toast.success("Deposit Successful", {
+                    id: toastId,
+                    duration: 4000,
+                  });
+                });
+            }
+          });
       }
     }
   };

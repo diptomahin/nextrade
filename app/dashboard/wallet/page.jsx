@@ -23,6 +23,8 @@ import Paper from "@mui/material/Paper";
 import DashboardButton from "@/components/library/DashboardButton";
 import React from "react";
 import { VisibilityOutlined } from "@mui/icons-material";
+import axios from "axios";
+import useAuth from "@/utils/useAuth";
 
 const stripePromise = loadStripe(
   "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
@@ -147,6 +149,18 @@ const staticRows = [
 
 const Wallet = () => {
   const [hidePrice, setHidePrice] = React.useState(false);
+  const [userBalanceDetails, setUserBalanceDetails] = React.useState(null);
+  const { user } = useAuth();
+
+  console.log(userBalanceDetails);
+
+  React.useEffect(() => {
+    axios
+      .get(`http://localhost:5000/v1/api/all-users/${user?.email}`)
+      .then((res) => {
+        setUserBalanceDetails(res.data[0]);
+      });
+  }, [user?.email]);
   return (
     <div className="flex justify-between gap-5 w-full p-3">
       <div className="w-9/12 flex flex-col gap-5">
@@ -173,7 +187,9 @@ const Wallet = () => {
                     <CardTravelOutlinedIcon className="w-5 h-5" /> Wallet
                     Balance
                   </p>
-                  <h1 className="text-3xl font-bold">$30,455.00</h1>
+                  <h1 className="text-3xl font-bold">
+                    ${userBalanceDetails?.balance}
+                  </h1>
                 </div>
               )}
               <button
@@ -297,7 +313,7 @@ const Wallet = () => {
           Select Currency & Payment
         </h1>
         <Elements stripe={stripePromise}>
-          <DepositForm />
+          <DepositForm setUserBalanceDetails={setUserBalanceDetails} />
         </Elements>
       </div>
     </div>
