@@ -11,7 +11,7 @@ const DashboardButton = ({ children, className, ...restProps }) => {
         },
       }}
       className={cn(
-        "flex items-center justify-center gap-2 px-4 py-2 bg-secondary/90 text-white rounded-full",
+        "flex items-center justify-center gap-2 px-4 py-2 bg-secondary/90 text-white rounded-full whitespace-nowrap",
         className
       )}
       {...restProps}

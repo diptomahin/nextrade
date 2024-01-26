@@ -132,7 +132,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
   return (
     <>
       <form onSubmit={handleSubmit} className="mt-5">
-        <label htmlFor="" className="font-semibold ml-4">
+        {/* <label htmlFor="" className="font-semibold ml-4">
           Select Currency
         </label>
         <input
@@ -142,7 +142,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
           name=""
           id=""
           placeholder="currency"
-        />
+        /> */}
         <label htmlFor="" className="font-semibold ml-4">
           Amount
         </label>
