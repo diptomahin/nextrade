@@ -85,6 +85,11 @@ const Wallet = () => {
       });
   }, [user?.email]);
 
+  const totalDepositAmount = userBalanceDetails?.depositWithdrawData?.reduce(
+    (accumulator, entry) => accumulator + entry.deposit,
+    0
+  );
+
   return (
     <div className="flex flex-col xl:flex-row justify-between gap-8 w-full xl:p-3">
       <div className="xl:w-9/12 flex flex-col gap-8">
@@ -112,7 +117,7 @@ const Wallet = () => {
                     Balance
                   </p>
                   <h1 className="text-3xl font-bold">
-                    ${userBalanceDetails?.balance}
+                    ${userBalanceDetails?.balance || 0}
                   </h1>
                 </div>
               )}
@@ -136,15 +141,15 @@ const Wallet = () => {
               <h6>
                 <AddCardOutlinedIcon /> Total Deposited{" "}
                 <span className="font-semibold ml-5">
-                  <FileDownloadOutlinedIcon className=" text-green-600" />{" "}
-                  $32,455.12
+                  <FileDownloadOutlinedIcon className=" text-green-600" /> $
+                  {totalDepositAmount}
                 </span>
               </h6>
 
               <h6 className="mt-4">
                 <AvTimerOutlinedIcon /> Total Withdrawals{" "}
                 <span className="font-semibold ml-10">
-                  <FileUploadOutlinedIcon className=" text-red-600" /> $2,455.12
+                  <FileUploadOutlinedIcon className=" text-red-600" /> $0
                 </span>
               </h6>
             </div>
@@ -204,22 +209,22 @@ const Wallet = () => {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      <p>{row.deposit ? "Deposit" : "Withdraw"}</p>
+                      <p>{row?.deposit ? "Deposit" : "Withdraw"}</p>
                     </TableCell>
                     <TableCell align="right">
                       <p
                         className={`font-semibold ${
-                          row.deposit >= 0 ? "text-green-700" : "text-red-700"
+                          row?.deposit >= 0 ? "text-green-700" : "text-red-700"
                         }`}
                       >
-                        {row.deposit >= 0
-                          ? `$${row.deposit}`
-                          : `-$${-row.deposit}`}
+                        {row?.deposit >= 0
+                          ? `$${row?.deposit}`
+                          : `-$${-row?.deposit}`}
                       </p>
                     </TableCell>
                     <TableCell align="right">
                       <p>
-                        {row.date.day}-{row.date.month}-{row.date.year}
+                        {row?.date.day}-{row?.date.month}-{row?.date.year}
                       </p>
                     </TableCell>
                     <TableCell align="right">Complete</TableCell>
