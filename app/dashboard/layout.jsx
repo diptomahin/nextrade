@@ -17,75 +17,74 @@ const Dashboard = ({ children }) => {
   };
 
   return (
-     <QueryClientProvider client={queryClient}>
-    <PrivateRoute>
-      <div className="min-h-screen bg-[#F1F1F1]">
-        {/* navbar */}
-        <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-[#1D366F]">
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{
-                "@media (min-width: 1280px)": {
-                  display: "none",
-                  marginRight: "8px",
-                },
-              }}
-              className="block xl:hidden mr-2"
-            >
-              <MenuIcon sx={{}} />
-            </IconButton>
-            <TradersDashboardNavbar />
-          </Toolbar>
-        </div>
-
-        {/* drawer */}
-        <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-none ">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Drawer
-            sx={{
-              "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px" },
-            }}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true,
-            }}
-          >
+    <QueryClientProvider client={queryClient}>
+      <PrivateRoute>
+        <div className="min-h-screen bg-[#F1F1F1]">
+          {/* navbar */}
+          <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-[#1D366F]">
             <Toolbar>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                className="mr-2 2xl:hidden"
+                sx={{
+                  "@media (min-width: 1280px)": {
+                    display: "none",
+                    marginRight: "8px",
+                  },
+                }}
               >
-                <CloseIcon sx={{ color: "#1D366F" }} />
+                <MenuIcon sx={{ color: "white" }} />
               </IconButton>
+              <TradersDashboardNavbar />
             </Toolbar>
+          </div>
 
-            <TradersDashboardSidebar />
-          </Drawer>
-          <Drawer
-            sx={{
-              "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px" },
-            }}
-            variant="permanent"
-            open
-          >
-            <TradersDashboardSidebar />
-          </Drawer>
-        </div>
+          {/* drawer */}
+          <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-none">
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Drawer
+              sx={{
+                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px" },
+              }}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true,
+              }}
+            >
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  onClick={handleDrawerToggle}
+                  className="mr-2 2xl:hidden"
+                >
+                  <CloseIcon sx={{ color: "#1D366F" }} />
+                </IconButton>
+              </Toolbar>
 
-        <div className="min-h-full 2xl:ml-[250px] mt-[87px] p-4 bg-[#F1F1F1]">
-          {children}
+              <TradersDashboardSidebar />
+            </Drawer>
+            <Drawer
+              sx={{
+                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px" },
+              }}
+              variant="permanent"
+              open
+            >
+              <TradersDashboardSidebar />
+            </Drawer>
+          </div>
+
+          <div className="min-h-full 2xl:ml-[250px] mt-[87px] p-4 bg-[#F1F1F1]">
+            {children}
+          </div>
         </div>
-      </div>
-    </PrivateRoute>
-       </QueryClientProvider>
+      </PrivateRoute>
+    </QueryClientProvider>
   );
 };
 
