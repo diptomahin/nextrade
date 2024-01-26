@@ -6,6 +6,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import PrivateRoute from "@/components/Routes/PrivateRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 
 const Dashboard = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -15,6 +17,7 @@ const Dashboard = ({ children }) => {
   };
 
   return (
+     <QueryClientProvider client={queryClient}>
     <PrivateRoute>
       <div className="min-h-screen bg-[#F1F1F1]">
         {/* navbar */}
@@ -82,6 +85,7 @@ const Dashboard = ({ children }) => {
         </div>
       </div>
     </PrivateRoute>
+       </QueryClientProvider>
   );
 };
 
