@@ -13,7 +13,7 @@ const CompanyStock = () => {
       <p className="mt-1 mb-5  xl:w-96 text-center mx-auto font-medium text-gray-500">
       Real-time market data is the continuous, such as stock prices, trading volumes.
       </p>
-      <TickerTape colorTheme="dark"></TickerTape>
+      <TickerTape></TickerTape>
     </div>
     </Container>
   );
