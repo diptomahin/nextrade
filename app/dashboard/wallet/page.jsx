@@ -152,11 +152,11 @@ const Wallet = () => {
   const [userBalanceDetails, setUserBalanceDetails] = React.useState(null);
   const { user } = useAuth();
 
-  console.log(userBalanceDetails);
-
   React.useEffect(() => {
     axios
-      .get(`http://localhost:5000/v1/api/all-users/${user?.email}`)
+      .get(
+        `https://nex-trade-server.vercel.app/v1/api/all-users/${user?.email}`
+      )
       .then((res) => {
         setUserBalanceDetails(res.data[0]);
       });

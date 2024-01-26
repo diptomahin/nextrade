@@ -92,13 +92,15 @@ const DepositForm = ({ setUserBalanceDetails }) => {
         };
         axios
           .put(
-            `http://localhost:5000/v1/api/all-users/deposit/${user?.email}`,
+            `https://nex-trade-server.vercel.app/v1/api/all-users/deposit/${user?.email}`,
             depositData
           )
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               axios
-                .get(`http://localhost:5000/v1/api/all-users/${user?.email}`)
+                .get(
+                  `https://nex-trade-server.vercel.app/v1/api/all-users/${user?.email}`
+                )
                 .then((res) => {
                   setUserBalanceDetails(res.data[0]);
                   toast.success("Deposit Successful", {
