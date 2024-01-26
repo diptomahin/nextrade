@@ -23,7 +23,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Image from "next/image";
 import Button from "@/components/library/Button/Button";
-import useAxiosPublic from "@/app/hooks/useAxiosPublic";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 import useAuth from "@/utils/useAuth";
 import { data } from "autoprefixer";
 import Swal from "sweetalert2";
