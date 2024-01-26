@@ -22,7 +22,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DashboardButton from "@/components/library/DashboardButton";
 import React from "react";
-import { VisibilityOutlined } from "@mui/icons-material";
+import { VerticalAlignBottom, VisibilityOutlined } from "@mui/icons-material";
 import axios from "axios";
 import useAuth from "@/utils/useAuth";
 
@@ -70,10 +70,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const hour = currentDate.getHours();
+const minute = currentDate.getMinutes();
+const second = currentDate.getSeconds();
+const date = `${day}-${month}-${year}`;
+const time = `${hour}:${minute}`;
+
 const Wallet = () => {
   const [hidePrice, setHidePrice] = React.useState(false);
   const [userBalanceDetails, setUserBalanceDetails] = React.useState({});
   const { user } = useAuth();
+
+  console.log(date, time);
 
   React.useEffect(() => {
     axios
@@ -97,7 +110,9 @@ const Wallet = () => {
           <div className="flex flex-col-reverse xl:flex-row justify-between gap-6">
             <div>
               <h1 className="text-xl font-bold">Wallet</h1>
-              <p className="text-sm opacity-70">Update 16/02/2022 at 02:30PM</p>
+              <p className="text-sm opacity-70">
+                Update {date} at {time} PM
+              </p>
             </div>
             <div className="flex items-center gap-5">
               <DashboardButton>
@@ -141,8 +156,8 @@ const Wallet = () => {
               <h6>
                 <AddCardOutlinedIcon /> Total Deposited{" "}
                 <span className="font-semibold ml-5">
-                  <FileDownloadOutlinedIcon className=" text-green-600" /> $
-                  {totalDepositAmount}
+                  <FileDownloadOutlinedIcon className=" text-green-600" />$
+                  {userBalanceDetails?.balance || 0}
                 </span>
               </h6>
 
@@ -195,7 +210,7 @@ const Wallet = () => {
                     Amount
                   </TableCell>
                   <TableCell align="right" className="font-semibold">
-                    Date/Time
+                    Date
                   </TableCell>
                   <TableCell align="right" className="font-semibold">
                     Status
