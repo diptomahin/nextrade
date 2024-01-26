@@ -54,17 +54,17 @@ const Dashboard = ({ children }) => {
                 keepMounted: true,
               }}
             >
-              <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  className="mr-2 2xl:hidden"
-                >
-                  <CloseIcon sx={{ color: "#1D366F" }} />
-                </IconButton>
-              </Toolbar>
+
+              {/* <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                className="mr-2 2xl:hidden"
+              >
+                <CloseIcon sx={{ color: "#1D366F" }} />
+              </IconButton> */}
+
 
               <TradersDashboardSidebar />
             </Drawer>
