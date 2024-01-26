@@ -37,6 +37,11 @@ const DepositForm = ({ setUserBalanceDetails }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
+
+    setPaymentError("");
+    if (!/^-?\d*\.?\d+$/.test(form.amount.value)) {
+      return setPaymentError("*Please provide a valid number amount");
+    }
     const toastId = toast.loading("Progress...", { duration: 5000 });
 
     if (!stripe || !elements) {
@@ -127,7 +132,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
   return (
     <>
       <form onSubmit={handleSubmit} className="mt-5">
-        <label htmlFor="" className="font-semibold ml-4">
+        {/* <label htmlFor="" className="font-semibold ml-4">
           Select Currency
         </label>
         <input
@@ -137,7 +142,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
           name=""
           id=""
           placeholder="currency"
-        />
+        /> */}
         <label htmlFor="" className="font-semibold ml-4">
           Amount
         </label>

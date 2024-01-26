@@ -86,10 +86,10 @@ const Wallet = () => {
   }, [user?.email]);
 
   return (
-    <div className="flex justify-between gap-5 w-full p-3">
-      <div className="w-9/12 flex flex-col gap-5">
-        <div className="p-6 bg-white rounded-md">
-          <div className="flex justify-between">
+    <div className="flex flex-col xl:flex-row justify-between gap-8 w-full xl:p-3">
+      <div className="xl:w-9/12 flex flex-col gap-8">
+        <div className="p-4 xl:p-6 bg-white rounded-md">
+          <div className="flex flex-col-reverse xl:flex-row justify-between gap-6">
             <div>
               <h1 className="text-xl font-bold">Wallet</h1>
               <p className="text-sm opacity-70">Update 16/02/2022 at 02:30PM</p>
@@ -103,7 +103,7 @@ const Wallet = () => {
               </DashboardButton>
             </div>
           </div>
-          <div className="flex justify-between mt-10">
+          <div className="flex flex-col xl:flex-row justify-between gap-6 mt-10">
             <div className="flex items-center gap-10">
               {!hidePrice && (
                 <div>
@@ -152,11 +152,9 @@ const Wallet = () => {
         </div>
 
         {/* Transaction History */}
-        <div className="p-6 bg-white rounded-md">
-          <div className="flex justify-between pb-10">
-            <div>
-              <h1 className="text-xl font-bold">Transaction History</h1>
-            </div>
+        <div className="p-4 xl:p-6 bg-white rounded-md">
+          <div className="flex flex-col xl:flex-row justify-between pb-10 gap-6">
+            <h1 className="text-xl font-bold">Transaction History</h1>
             <div>
               <Search
                 className="mr-5 bg-black/10 rounded-full"
@@ -234,7 +232,7 @@ const Wallet = () => {
       </div>
 
       {/* Select Currency & Payment */}
-      <div className="w-4/12 h-fit p-6 bg-white rounded-md">
+      <div className="xl:w-5/12 2xl:w-4/12 h-fit p-4 xl:p-6 bg-white rounded-md">
         <h1 className="text-xl text-center font-bold">
           Select Currency & Payment
         </h1>

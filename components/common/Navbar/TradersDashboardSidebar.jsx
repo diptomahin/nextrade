@@ -141,7 +141,7 @@ const TradersDashboardSidebar = () => {
 
   return (
     <div className="flex flex-col justify-between h-full bg-[#1D366F]">
-      <Stack sx={{width:"100%", paddingX:"16px"}}>
+      <Stack sx={{ width: "100%", paddingX: "16px" }}>
         <Link href={"/"} className=" flex items-center justify-center">
           <Image
             src={logo}
