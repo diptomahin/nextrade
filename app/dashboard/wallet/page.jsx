@@ -149,7 +149,7 @@ const staticRows = [
 
 const Wallet = () => {
   const [hidePrice, setHidePrice] = React.useState(false);
-  const [userBalanceDetails, setUserBalanceDetails] = React.useState(null);
+  const [userBalanceDetails, setUserBalanceDetails] = React.useState({});
   const { user } = useAuth();
 
   React.useEffect(() => {
@@ -161,6 +161,8 @@ const Wallet = () => {
         setUserBalanceDetails(res.data[0]);
       });
   }, [user?.email]);
+
+  console.log(userBalanceDetails);
   return (
     <div className="flex justify-between gap-5 w-full p-3">
       <div className="w-9/12 flex flex-col gap-5">
@@ -276,29 +278,31 @@ const Wallet = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {staticRows.map((row) => (
+                {userBalanceDetails?.depositWithdrawData?.map((row, index) => (
                   <TableRow
-                    key={row.action}
+                    key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      <p>{row.action}</p>
+                      <p>{row.deposit ? "Deposit" : "Withdraw"}</p>
                     </TableCell>
                     <TableCell align="right">
                       <p
                         className={`font-semibold ${
-                          row.amount >= 0 ? "text-green-700" : "text-red-700"
+                          row.deposit >= 0 ? "text-green-700" : "text-red-700"
                         }`}
                       >
-                        {row.amount >= 0
-                          ? `$${row.amount}`
-                          : `-$${-row.amount}`}
+                        {row.deposit >= 0
+                          ? `$${row.deposit}`
+                          : `-$${-row.deposit}`}
                       </p>
                     </TableCell>
                     <TableCell align="right">
-                      <p>{row.dateTime}</p>
+                      <p>
+                        {row.date.day}-{row.date.month}-{row.date.year}
+                      </p>
                     </TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
+                    <TableCell align="right">Complete</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
