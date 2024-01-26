@@ -20,6 +20,7 @@ import useAllUsers from "@/app/hooks/useAllUsers";
 
 const Portfolio = () => {
     
+
     const [allUsers] = useAllUsers();
     const [currentBTCPrice, setCurrentBTCPrice] = useState(0);
     const [currentLTCPrice, setCurrentLTCPrice] = useState(0);
@@ -27,7 +28,9 @@ const Portfolio = () => {
     const [currentQTUMPrice, setCurrentQTUMPrice] = useState(0);
     const [currentDOGEPrice, setCurrentDOGEPrice] = useState(0);
     const [setBuyingPriceInfo, setSetBuyingPriceInfo] = useState([]);
-    
+
+
+    // websocket the real time  currency balance api 
     React.useEffect(() => {
         const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
         
@@ -57,6 +60,7 @@ const Portfolio = () => {
         };
     }, []);
 
+    //user buying coins map to data
     React.useEffect(() => {
         const userBTCData = allUsers.flatMap(user => user.portfolio);
         const filteredAssets = userBTCData.filter(asset => 
@@ -69,11 +73,46 @@ const Portfolio = () => {
         setSetBuyingPriceInfo(filteredAssets);
     }, [allUsers]);
 
+
+    // profit and loss calculation
     const calculateDifference = (currentPrice, buyingPrice) => {
         return (currentPrice - buyingPrice).toFixed(2);
     };
 
+    // Calculate total profit 
+const calculateTotalProfit = setBuyingPriceInfo.reduce((total, asset) => {
+    const difference = calculateDifference(
+        asset.assetKey === "BTCUSDT" ? currentBTCPrice :
+        asset.assetKey === "ETHUSDT" ? currentETHPrice :
+        asset.assetKey === "LTCUSDT" ? currentLTCPrice :
+        asset.assetKey === "QTUMUSDT" ? currentQTUMPrice :
+        asset.assetKey === "DOGEUSDT" ? currentDOGEPrice : 0,
+        parseFloat(asset.assetBuyingPrice)
+    );
+    return total + parseFloat(difference);
+}, 0);
 
+
+    // calculator total loss 
+
+    const calculateTotalLoss = () => {
+        const totalLoss = setBuyingPriceInfo.reduce((total, asset) => {
+            const difference = calculateDifference(
+                asset.assetKey === "BTCUSDT" ? currentBTCPrice :
+                asset.assetKey === "ETHUSDT" ? currentETHPrice :
+                asset.assetKey === "LTCUSDT" ? currentLTCPrice :
+                asset.assetKey === "QTUMUSDT" ? currentQTUMPrice :
+                asset.assetKey === "DOGEUSDT" ? currentDOGEPrice : 0,
+                parseFloat(asset.assetBuyingPrice)
+            );
+            return total + (parseFloat(difference) < 0 ? parseFloat(difference) : 0);
+        }, 0);
+        return Math.max(Math.abs(totalLoss), 0).toFixed(2);
+    };
+    
+
+    // calculate total buying balance
+    const totalBuyingPrice = setBuyingPriceInfo.reduce((total, asset) => total + parseFloat(asset.assetBuyingPrice), 0);
 
     return (
         <div>
@@ -83,9 +122,18 @@ const Portfolio = () => {
 
             <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
                 <div>
-                    <p className="font-semibold text-gray-500">Current Balance <RemoveRedEyeOutlinedIcon className="text-base ml-2" /></p>
-                    <h1 className=" lg:text-3xl text-xl font-extrabold my-2">${10 + 10 + 10}</h1>
-                    <p className=" text-red-600 font-semibold ">-$1200.78 (-1.89%)</p>
+                    <p className="font-semibold text-gray-500">Total Buying Balance <RemoveRedEyeOutlinedIcon className="text-base ml-2" /></p>
+                    <h1 className=" lg:text-3xl text-xl font-extrabold my-2">$  {totalBuyingPrice.toFixed(2)}</h1>
+                    <div className=" flex items-center justify-between">
+                        {/* total profit */}
+                        <p className={`font-semibold ${calculateTotalProfit >= 0 ? 'text-green-700' : 'text-red-600'}`}>
+            {calculateTotalProfit >= 0 ? '+' : '-'}${Math.abs(calculateTotalProfit).toFixed(2)}
+        </p>
+                        {/* total loss */}
+                        <p className={`font-semibold ${calculateTotalProfit >= 0 ? ' text-red-700' : 'text-green-700'}`}>
+             -${calculateTotalLoss()}
+        </p>
+                    </div>
                 </div>
                 <div className="  ">
 
@@ -98,28 +146,28 @@ const Portfolio = () => {
             {/* Table boat  */}
            {/* Table */}
            <div className="mt-20">
-                <h2 className="text-3xl font-bold mb-2 font-sans">Your Holdings . . . </h2>
+                <h2 className="text-2xl font-bold mb-2 font-sans">Your Holdings . . . </h2>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead className="bg-primary">
                             <TableRow>
-                                <TableCell className="font-semibold">Company</TableCell>
-                                <TableCell align="right" className="font-semibold">Buying Price</TableCell>
-                                <TableCell align="right" className="font-semibold">Current Price</TableCell>
-                                <TableCell align="right" className="font-semibold">Carbs&nbsp;(g)</TableCell>
-                                <TableCell align="right" className="font-semibold">Protein&nbsp;(g)</TableCell>
+                                <TableCell className="font-semibold text-white">Company</TableCell>
+                                <TableCell align="right" className="font-semibold text-white ">Buying Price</TableCell>
+                                <TableCell align="right" className="font-semibold text-white">Current Price</TableCell>
+                                <TableCell align="right" className="font-semibold text-white">Profit / Loss</TableCell>
+                                <TableCell align="right" className="font-semibold text-white">-</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {setBuyingPriceInfo.map((asset, index) => (
                                 <TableRow key={index}>
-                                    <TableCell component="th" scope="row">
+                                    <TableCell component="th" scope="row" className="font-semibold">
                                         {asset.assetName}
                                     </TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="right" className="font-semibold">
                                         $ {asset.assetBuyingPrice}
                                     </TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="right" className="font-semibold">
                                         {asset.assetKey === "BTCUSDT" ? (
                                             <span className={currentBTCPrice < parseFloat(asset.assetBuyingPrice) ? 'text-red-700' : 'text-green-700'}>
                                                 ${currentBTCPrice}
@@ -166,12 +214,13 @@ const Portfolio = () => {
             asset.assetKey === "QTUMUSDT" ? currentQTUMPrice :
             asset.assetKey === "DOGEUSDT" ? currentDOGEPrice : 0,
             parseFloat(asset.assetBuyingPrice)
-        ) : '-'}
+        ) : '0.00'}
     </span>
 </TableCell>
 
+
                                     <TableCell align="right">
-                                        {/* {rows[index]?.protein} */}
+                                        ----
                                     </TableCell>
                                 </TableRow>
                             ))}
