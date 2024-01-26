@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 import useAuth from "@/utils/useAuth";
 
-    // useAxiosPublic.get(`http://localhost:5000/v1/api/all-users/${user.email}`)
 
 const useAllUsers = () => {
      const axiosPublic = useAxiosPublic();
