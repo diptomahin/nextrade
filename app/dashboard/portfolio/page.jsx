@@ -15,7 +15,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-import useAllUsers from "@/app/hooks/useAllUsers";
+import useAllUsers from "@/hooks/useAllUsers";
 
 const Portfolio = () => {
   const [allUsers] = useAllUsers();
@@ -91,11 +91,10 @@ const Portfolio = () => {
         : 0,
       parseFloat(asset.assetBuyingPrice)
     );
-    return total + parseFloat(difference);
+    return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
   }, 0);
 
-  // calculator total loss
-
+  // Calculate total loss
   const calculateTotalLoss = () => {
     const totalLoss = setBuyingPriceInfo.reduce((total, asset) => {
       const difference = calculateDifference(
@@ -114,7 +113,7 @@ const Portfolio = () => {
       );
       return total + (parseFloat(difference) < 0 ? parseFloat(difference) : 0);
     }, 0);
-    return Math.max(Math.abs(totalLoss), 0).toFixed(2);
+    return Math.abs(totalLoss).toFixed(2);
   };
 
   // calculate total buying balance
@@ -146,10 +145,11 @@ const Portfolio = () => {
               {calculateTotalProfit >= 0 ? "+" : "-"}$
               {Math.abs(calculateTotalProfit).toFixed(2)}
             </p>
+
             {/* total loss */}
             <p
               className={`font-semibold ${
-                calculateTotalProfit >= 0 ? " text-red-700" : "text-green-700"
+                calculateTotalProfit >= 0 ? "text-red-700" :  " text-green-700 "
               }`}
             >
               -${calculateTotalLoss()}
@@ -167,7 +167,6 @@ const Portfolio = () => {
           </Button>
         </div>
       </div>
-
 
       {/* Table */}
       <div className="mt-20">
