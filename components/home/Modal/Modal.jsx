@@ -12,7 +12,7 @@ const Modal = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setOpen(true);
-    }, 10000);
+    }, 1000);
     return () => clearTimeout(timeoutId);
   }, []);
 
