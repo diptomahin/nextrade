@@ -141,7 +141,7 @@ const TradersDashboardSidebar = () => {
 
   return (
     <div className="flex flex-col justify-between h-full bg-[#1D366F]">
-      <Stack sx={{width:"100%"}}>
+      <Stack sx={{width:"100%", paddingX:"16px"}}>
         <Link href={"/"} className=" flex items-center justify-center">
           <Image
             src={logo}
@@ -150,7 +150,7 @@ const TradersDashboardSidebar = () => {
             alt="logo"
           ></Image>
         </Link>
-        <List className="px-4 bg-[#1D366F]">
+        <List>
           {dashboardUpperLinkForUser.map((link, idx) => (
             <ListItem
               sx={{
