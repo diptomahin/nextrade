@@ -40,7 +40,7 @@ const navItems = [
   },
   {
     title: "Help Centre",
-    href: "/help_centre",
+    href: "/help_center",
   },
   {
     title: "Login",
