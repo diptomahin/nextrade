@@ -4,12 +4,14 @@ import { IoMdArrowDropup } from "react-icons/io";
 import "@/components/common/Navbar/navbarStyle.css";
 import useAuth from "@/utils/useAuth";
 import Navigation from "./navigation/Navigation";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
   const { user, logOut } = useAuth();
+  const pathname = usePathname();
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -31,7 +33,13 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav>
+    <nav
+      className={
+        pathname === "/register" ||
+        pathname === "/login" ||
+        (pathname.includes("/dashboard") && "hidden")
+      }
+    >
       <Navigation />
       <button
         onClick={handleScrollToTop}
