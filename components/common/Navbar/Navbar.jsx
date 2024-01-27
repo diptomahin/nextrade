@@ -33,7 +33,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-[30px] w-full ${
+      className={`fixed top-[30px] w-full z-[100] ${
         pathname === "/register" ||
         pathname === "/login" ||
         (pathname.includes("/dashboard") && "hidden")
@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
         <button
           onClick={handleScrollToTop}
-          className={`p-2 bg-gradient-to-r  from-[#239FFE] to-[#0272E5] hover:bg-gradient-to-r  hover:from-[#0272E5] hover:to-[#239FFE] border-none text-white fixed bottom-10 right-5 md:right-10 rounded-full ${
+          className={`p-2 fixed bottom-10 right-5 md:right-10 bg-primary text-white border-none rounded-full z-[100] ${
             !scrolled && "hidden"
           }`}
         >

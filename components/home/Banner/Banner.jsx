@@ -6,11 +6,12 @@ import bannerImg from "../../../assets/banner.png";
 import Button from "@/components/library/Button/Button";
 import Container from "@/components/library/Container";
 import Link from "next/link";
+import CompanyStock from "../CompanyStock/CompanyStock";
 
 const Banner = () => {
   return (
-    <div className="min-h-screen bg-[#E9EEF1] ">
-      <Container className="min-h-screen flex flex-col-reverse xl:flex-row items-center justify-center gap-5 lg:gap-10 text-white py-28">
+    <Container>
+      <div className="min-h-[90vh] flex flex-col-reverse xl:flex-row items-center justify-center gap-5 lg:gap-10">
         <div className="flex-1">
           {" "}
           <p className="text-primary mb-5 font-semibold">Next Level Trading</p>
@@ -38,27 +39,10 @@ const Banner = () => {
             src={bannerImg}
           />
         </div>
-      </Container>
-    </div>
+      </div>
+      <CompanyStock />
+    </Container>
   );
 };
 
 export default Banner;
-
-{
-  (" ");
-}
-{
-  /* Banner Image div   */
-}
-<div>
-  <Image
-    alt="Banner"
-    className="md:w-[600px]  md:mb-0  mb-10"
-    src={bannerImg}
-  />
-</div>;
-{
-  /* Banner Content div   */
-}
-<div className="lg:w-[600px]"></div>;

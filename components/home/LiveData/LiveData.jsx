@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React from "react";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 
 const LiveData = () => {
@@ -9,7 +9,8 @@ const LiveData = () => {
         Get Market Info
       </h1>
       <p className="mt-1 mb-5 xl:w-96 text-center mx-auto font-medium text-gray-500">
-        Real-time market data is continuous, such as stock prices and trading volumes.
+        Real-time market data is continuous, such as stock prices and trading
+        volumes.
       </p>
       <div className="w-full h-96 mb-10">
         <AdvancedRealTimeChart
