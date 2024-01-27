@@ -26,6 +26,8 @@ const Portfolio = () => {
   const [currentDOGEPrice, setCurrentDOGEPrice] = useState(0);
   const [setBuyingPriceInfo, setSetBuyingPriceInfo] = useState([]);
 
+  const usersRemainingBalance = parseFloat(allUsers[0].balance).toFixed(2)
+
   // websocket the real time  currency balance api
   React.useEffect(() => {
     const socket = new WebSocket(
@@ -129,7 +131,7 @@ const Portfolio = () => {
       <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
         <div>
           <p className="font-semibold text-gray-500">
-            Total Buying Balance{" "}
+            Total Asset{" "}
             <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
           </p>
           <h1 className=" lg:text-3xl text-xl font-extrabold my-2">
@@ -165,6 +167,18 @@ const Portfolio = () => {
             {" "}
             <AddIcon className=" text-white" /> Add Transaction
           </Button>
+        </div>
+      </div>
+
+      <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
+        <div>
+          <p className="font-semibold text-gray-500">
+            Remaining Balance{" "}
+            <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
+          </p>
+          <h1 className=" lg:text-3xl text-xl font-extrabold my-2">
+            $ {usersRemainingBalance}
+          </h1>
         </div>
       </div>
 

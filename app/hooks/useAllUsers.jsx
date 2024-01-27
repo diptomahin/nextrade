@@ -7,7 +7,7 @@ const useAllUsers = () => {
      const axiosPublic = useAxiosPublic();
      const {user} = useAuth();
 
-     const {data: allUsers=[], isPending:loading,refetch} = useQuery({
+     const {data: allUsers=[], isPending:loading, refetch} = useQuery({
           queryKey:['all-users'],
           queryFn:async()=>{
                const res = await axiosPublic.get(`all-users/${user.email}`);
