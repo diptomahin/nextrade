@@ -1,43 +1,37 @@
 "use client";
-// next js basic Image component
-import Image from "next/image";
-// Image import the asset file
-import bannerImg from "../../../assets/banner.png";
 import Button from "@/components/library/Button/Button";
 import Container from "@/components/library/Container";
-import Link from "next/link";
 import CompanyStock from "../CompanyStock/CompanyStock";
+import Magnetic from "@/components/library/Magnetic/Magnetic";
 
 const Banner = () => {
   return (
     <Container>
-      <div className="min-h-[90vh] flex flex-col-reverse xl:flex-row items-center justify-center gap-5 lg:gap-10">
-        <div className="flex-1">
-          {" "}
-          <p className="text-primary mb-5 font-semibold">Next Level Trading</p>
-          <h1 className="lg:text-5xl text-primary  md:text-3 text-2xl  font-bold lg:mb-8 md:mb-4 mb-4 text-center xl:text-left">
-            Start Trading In Crypto{" "}
-            <span className="text-primary">Instant</span>
-          </h1>
-          <p className="font-semibold text-gray-500 text-center xl:text-left">
+      <div className="min-h-[90vh] flex items-center justify-center gap-5 lg:gap-10 py-32">
+        <div className="">
+          <div className="text-5xl sm:text-6xl md:text-8xl xl:text-9xl font-extrabold  text-secondary md:mb-5 mb-4 flex flex-wrap items-center justify-center overflow-hidden">
+            <Magnetic>
+              <h1 className="text-primary">Innovation</h1>
+            </Magnetic>
+            .
+            <Magnetic>
+              <h1 className="text-primary">Integrity</h1>
+            </Magnetic>
+            .
+            <Magnetic>
+              <h1 className="text-primary">Investment</h1>
+            </Magnetic>
+            .
+          </div>
+          <p className="xl:w-11/12 mx-auto text-lg lg:text-2xl xl:text-3xl font-medium text-secondary text-justify md:text-center">
             {" "}
-            Unleash the power of advanced tools and market insights. From
-            beginners to pro traders, we have the resources you need.
+            Join world&apos;s biggest & trusted Exchange. Trade in Bitcoin,
+            Ethereum, LiteCoin, DOGE coin and many more currencies.
           </p>
           {/* Tow  Button start and download  */}
-          <div className="flex flex-wrap items-center xl:justify-start justify-center gap-4 lg:my-10 md:my-6 my-5">
-            <Button> Start Trading</Button>
-            <Link href={"register"}>
-              <Button> Register</Button>
-            </Link>
+          <div className="flex flex-wrap items-center justify-center gap-4 lg:my-10 md:my-6 my-5">
+            <Button>Trade Now</Button>
           </div>
-        </div>
-        <div className="flex-1">
-          <Image
-            alt="Banner"
-            className="md:w-[600px]  md:mb-0  mb-10"
-            src={bannerImg}
-          />
         </div>
       </div>
       <CompanyStock />

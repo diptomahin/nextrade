@@ -14,9 +14,11 @@ const NewsLetter = () => {
   };
 
   return (
-    <Container className=" text-white bg-secondary md:flex justify-between rounded-xl px-10 py-10">
+    <Container className=" text-white bg-primary md:flex justify-between rounded-xl px-10 py-10">
       <div className="mb-10 md:mb-0">
-        <h1 className="lg:text-3xl md:text-3xl text-4xl font-bold pb-4">Get Daily Updates</h1>
+        <h1 className="lg:text-3xl md:text-3xl text-4xl font-bold pb-4">
+          Get Daily Updates
+        </h1>
         <p className="font-light">
           Join now with NexTrade to get the latest news and bonuses
         </p>

@@ -7,6 +7,7 @@ import Image from "next/image";
 import logo from "../../../assets/logo/NexTrade-Logo-Original.png";
 import Link from "next/link";
 import Container from "@/components/library/Container";
+import Magnetic from "@/components/library/Magnetic/Magnetic";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = React.useState(false);
@@ -47,14 +48,16 @@ const Navbar = () => {
 
           <Navigation />
         </div>
-        <button
-          onClick={handleScrollToTop}
-          className={`p-2 fixed bottom-10 right-5 md:right-10 bg-primary text-white border-none rounded-full z-[99] ${
-            !scrolled && "hidden"
-          }`}
-        >
-          <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
-        </button>
+        <Magnetic>
+          <button
+            onClick={handleScrollToTop}
+            className={`p-2 fixed bottom-10 right-5 md:right-10 bg-primary text-white border-none rounded-full z-[99] ${
+              !scrolled && "hidden"
+            }`}
+          >
+            <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
+          </button>
+        </Magnetic>
       </Container>
     </nav>
   );

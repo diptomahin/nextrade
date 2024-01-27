@@ -36,12 +36,11 @@ const CssTextField = styled(TextField)({
 });
 
 const Login = () => {
-
   const axiosPublic = useAxiosPublic();
 
   const router = useRouter();
-  const { from } = router.query || { from: '/dashboard' };
-  
+  const { from } = router.query || { from: "/dashboard" };
+
   const {
     register,
     handleSubmit,
@@ -56,11 +55,9 @@ const Login = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
     logIn(data.email, data.password)
       .then((res) => {
         const loggedUser = res.user;
-        // console.log(loggedUser);
 
         Swal.fire({
           title: "Log In successful!",
@@ -85,7 +82,6 @@ const Login = () => {
     googleLogin()
       .then((res) => {
         const loggedUser = res.user;
-        console.log(loggedUser);
 
         const userInfo = {
           userID: loggedUser.uid,
@@ -93,21 +89,17 @@ const Login = () => {
           name: loggedUser.displayName,
           createdAt: loggedUser.metadata.creationTime,
           balance: 1000000,
-          portfolio: []
-        }
-        // console.log(userInfo)
+          portfolio: [],
+        };
 
-        axiosPublic.post('/all-users', userInfo)
-        .then(res => {
-            console.log(res.data);
-            Swal.fire({
-              title: "Log In successful!",
-              text: `Welcome back ${loggedUser.displayName}`,
-              icon: "success",
-            });
-            router.push(from);
-        })
-        
+        axiosPublic.post("/all-users", userInfo).then((res) => {
+          Swal.fire({
+            title: "Log In successful!",
+            text: `Welcome back ${loggedUser.displayName}`,
+            icon: "success",
+          });
+          router.push(from);
+        });
       })
       .catch((error) => {
         console.log(error.message);

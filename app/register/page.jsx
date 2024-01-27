@@ -38,7 +38,7 @@ const Register = () => {
   const axiosPublic = useAxiosPublic();
 
   const router = useRouter();
-  const { from } = router.query || { from: '/dashboard' };
+  const { from } = router.query || { from: "/dashboard" };
 
   const {
     register,
@@ -46,7 +46,6 @@ const Register = () => {
     formState: { errors },
     reset,
   } = useForm();
-
 
   const { createUser, updateUserProfile, googleLogin } = useAuth();
   const [error, setError] = useState("");
@@ -56,11 +55,8 @@ const Register = () => {
     setCaptchaValue(value);
   };
 
-
-
   // submit register form
   const onSubmit = async (data) => {
-    console.log(data);
     if (data.password != data.confirmPassword) {
       setError("Password does not match");
       return;
@@ -68,8 +64,7 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((res) => {
         const loggedUser = res.user;
-        console.log(loggedUser);
-        updateUserProfile(data.name)
+        updateUserProfile(data.name);
 
         const userInfo = {
           userID: loggedUser.uid,
@@ -77,21 +72,18 @@ const Register = () => {
           name: loggedUser.displayName,
           createdAt: loggedUser.metadata.creationTime,
           balance: 1000000,
-          portfolio: []
-        }
-        // console.log(userInfo)
+          portfolio: [],
+        };
 
-        axiosPublic.post('/all-users', userInfo)
-          .then(res => {
-            console.log(res.data)
-            Swal.fire({
-              title: "Account created successfully!",
-              text: `Welcome to NexTrade`,
-              icon: "success",
-            });
-            router.push('/');
-            reset;
-          })
+        axiosPublic.post("/all-users", userInfo).then((res) => {
+          Swal.fire({
+            title: "Account created successfully!",
+            text: `Welcome to NexTrade`,
+            icon: "success",
+          });
+          router.push("/");
+          reset;
+        });
       })
       .catch((error) => {
         console.log(error.message);
@@ -104,14 +96,11 @@ const Register = () => {
       });
   };
 
-
-
   // login with google
   const handleGoogleLogin = () => {
     googleLogin()
       .then((res) => {
         const loggedUser = res.user;
-        console.log(loggedUser);
 
         const userInfo = {
           userID: loggedUser.uid,
@@ -119,22 +108,17 @@ const Register = () => {
           name: loggedUser.displayName,
           createdAt: loggedUser.metadata.creationTime,
           balance: 1000000,
-          portfolio: []
-        }
-        // console.log(userInfo)
+          portfolio: [],
+        };
 
-        axiosPublic.post('/all-users', userInfo)
-        .then(res => {
-            console.log(res.data);
-            Swal.fire({
-              title: "Log In successful!",
-              text: `Welcome back ${loggedUser.displayName}`,
-              icon: "success",
-            });
-            router.push(from);
-        })
-
-        
+        axiosPublic.post("/all-users", userInfo).then((res) => {
+          Swal.fire({
+            title: "Log In successful!",
+            text: `Welcome back ${loggedUser.displayName}`,
+            icon: "success",
+          });
+          router.push(from);
+        });
       })
       .catch((error) => {
         console.log(error.message);
@@ -180,7 +164,6 @@ const Register = () => {
           </div>
 
           <Stack mt={4} gap={3}>
-
             {/* user name */}
             <CssTextField
               {...register("name", { required: true })}
@@ -252,10 +235,13 @@ const Register = () => {
             {error && <span className="text-red-700">{error}</span>}
 
             <Stack mt={2} alignItems="center">
-              {
-                captchaValue ? <Button type="submit"> Create Account</Button> : <Button className="disabled" type="submit">Create Account</Button>
-              }
-
+              {captchaValue ? (
+                <Button type="submit"> Create Account</Button>
+              ) : (
+                <Button className="disabled" type="submit">
+                  Create Account
+                </Button>
+              )}
             </Stack>
           </Stack>
         </form>

@@ -11,13 +11,15 @@ module.exports = {
       colors: {
         primary: '#455ce9', //blue
         // primary: '#21366c', //blue
-        secondary: '#35c07c', // green
+        secondary: '#fca104', // orange
+        third: '#35c07c ', // green
         grayPrimary: '#e9eef1' // gray  
       },
       backgroundColor: {
         primary: '#455ce9', //blue
         // primary: '#21366c', //blue
-        secondary: '#35c07c', //green
+        secondary: '#fca104', // orange
+        third: '#35c07c ', // green
         grayPrimary: '#e9eef1' // gray  
       },
       fontFamily: {

@@ -24,7 +24,6 @@ const PrivateRoute = ({ children }) => {
       shallow: true,
       query: { from: router.pathname },
     });
-    // console.log(router)
   };
 
   return redirectToLogin();
