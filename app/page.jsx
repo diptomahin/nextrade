@@ -13,7 +13,7 @@ import LiveData from "@/components/home/LiveData/LiveData";
 export default function Home() {
   return (
     <main>
-        <Banner/>
+      {/* <Banner/>
         <TradingStep/>
         <InvestmentSolutions/>
         <StartTrading/>
@@ -23,7 +23,7 @@ export default function Home() {
         <LiveData/>
         <Subscription/>
         <NewsLetter/>
-        <Modal />
+        <Modal /> */}
     </main>
-  )
+  );
 }
