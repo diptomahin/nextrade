@@ -31,12 +31,12 @@ const navItems = [
     href: "/why_choose_us",
   },
   {
-    title: "Contact",
-    href: "/contact_us",
-  },
-  {
     title: "Payment Method",
     href: "/payment_method",
+  },
+  {
+    title: "Contact Us",
+    href: "/contact_us",
   },
   {
     title: "Help Centre",
@@ -58,7 +58,7 @@ export default function index() {
       initial="initial"
       animate="enter"
       exit="exit"
-      className="menu"
+      className="menu pl-[60px] pr-5 sm:px-[70px] md:px-[100px] py-8"
     >
       <div className="body">
         <div
@@ -67,9 +67,13 @@ export default function index() {
           }}
           className="nav"
         >
+          <div className="font-extralight text-zinc-400 border-b border-primary mt-10 md:mt-[90px] pb-2 mb-4 uppercase">
+            Navigation
+          </div>
           {navItems.map((data, index) => {
             return (
               <Link
+                className="xs:text-xl md:text-3xl font-bold"
                 key={index}
                 data={{ ...data, index }}
                 isActive={selectedIndicator == data.href}

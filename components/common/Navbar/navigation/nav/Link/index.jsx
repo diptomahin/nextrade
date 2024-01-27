@@ -3,12 +3,17 @@ import { motion } from "framer-motion";
 import { slide, scale } from "../../anim";
 import "./index.css";
 
-export default function Index({ data, isActive, setSelectedIndicator }) {
+export default function Index({
+  data,
+  isActive,
+  setSelectedIndicator,
+  className,
+}) {
   const { title, href, index } = data;
 
   return (
     <motion.div
-      className="link"
+      className={`link ${className}`}
       onMouseEnter={() => {
         setSelectedIndicator(href);
       }}
@@ -21,7 +26,7 @@ export default function Index({ data, isActive, setSelectedIndicator }) {
       <motion.div
         variants={scale}
         animate={isActive ? "open" : "closed"}
-        className="indicator"
+        className={`indicator ${isActive && "active"}`}
       ></motion.div>
       <Link href={href}>{title}</Link>
     </motion.div>

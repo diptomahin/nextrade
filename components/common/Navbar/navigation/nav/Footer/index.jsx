@@ -9,7 +9,7 @@ export default function index() {
         className="flex items-center gap-1 group"
       >
         Github{" "}
-        <span className="style text-sm transition-transform group-hover:text-yellow-400 group-hover:-rotate-45 group-hover:translate-x-[3px] duration-300 ease-in-out">
+        <span className="style text-sm transition-transform group-hover:text-[#455ce9] group-hover:-rotate-45 group-hover:translate-x-[3px] duration-300 ease-in-out">
           <PiArrowRightThin />
         </span>
       </Link>
@@ -18,7 +18,7 @@ export default function index() {
         className="flex items-center gap-1 group"
       >
         Discord{" "}
-        <span className="style text-sm transition-transform group-hover:text-yellow-400 group-hover:-rotate-45 group-hover:translate-x-[3px] duration-300 ease-in-out">
+        <span className="style text-sm transition-transform group-hover:text-[#455ce9] group-hover:-rotate-45 group-hover:translate-x-[3px] duration-300 ease-in-out">
           <PiArrowRightThin />
         </span>
       </Link>
@@ -27,7 +27,7 @@ export default function index() {
         className="flex items-center gap-1 group"
       >
         Youtube{" "}
-        <span className="style text-sm transition-transform group-hover:text-yellow-400 group-hover:-rotate-45 group-hover:translate-x-[3px] duration-300 ease-in-out">
+        <span className="style text-sm transition-transform group-hover:text-[#455ce9] group-hover:-rotate-45 group-hover:translate-x-[3px] duration-300 ease-in-out">
           <PiArrowRightThin />
         </span>
       </Link>

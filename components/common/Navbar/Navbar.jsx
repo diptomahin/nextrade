@@ -33,7 +33,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-[30px] w-full z-[100] ${
+      className={`fixed top-[30px] w-full z-[99] ${
         pathname === "/register" ||
         pathname === "/login" ||
         (pathname.includes("/dashboard") && "hidden")
@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
         <button
           onClick={handleScrollToTop}
-          className={`p-2 fixed bottom-10 right-5 md:right-10 bg-primary text-white border-none rounded-full z-[100] ${
+          className={`p-2 fixed bottom-10 right-5 md:right-10 bg-primary text-white border-none rounded-full z-[99] ${
             !scrolled && "hidden"
           }`}
         >

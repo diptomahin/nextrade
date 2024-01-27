@@ -18,13 +18,13 @@ const Navigation = () => {
   return (
     <>
       <div className="main">
-        <div className="header">
+        <div className="header w-[60px] h-[60px]">
           <Magnetic>
             <div
               onClick={() => {
                 setIsActive(!isActive);
               }}
-              className="button"
+              className="button w-14 h-14 md:w-[60px] md:h-[60px]"
             >
               <div className={`burger ${isActive && "burgerActive"}`}></div>
             </div>

@@ -5,10 +5,10 @@
 }
 
 .link .indicator {
-  width: 10px;
-  height: 10px;
-  background-color: white;
+  width: 15px;
+  height: 15px;
+  background-color: #455ce9;
   border-radius: 50%;
   position: absolute;
-  left: -30px;
+  left: -35px;
 }
