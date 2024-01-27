@@ -10,7 +10,7 @@ const Button = ({ children, className, ...restProps }) => {
     <Magnetic>
       <button
         className={cn(
-          "scroll-text px-10 rounded-full font-dm font-medium text-white h-8 md:h-10 text-sm md:text-base bg-primary ",
+          "scroll-text px-10 rounded-full font-dm font-medium text-white h-10 lg:h-14 text-sm lg:text-lg bg-primary",
           className
         )}
         {...restProps}
