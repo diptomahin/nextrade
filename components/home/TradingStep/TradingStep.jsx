@@ -6,11 +6,11 @@ import Container from "@/components/library/Container";
 //material icon import
 import PersonIcon from "@mui/icons-material/Person";
 import WalletIcon from "@mui/icons-material/Wallet";
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import InventoryIcon from '@mui/icons-material/Inventory';
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import InventoryIcon from "@mui/icons-material/Inventory";
 
-// import image 
-import logo from "../../../assets/logo/nextrade-logo.svg";
+// import image
+import logo from "../../../assets/logo/NexTrade-Logo-Original.png";
 
 import Image from "next/image";
 
@@ -20,7 +20,7 @@ const TradingStep = () => {
       {/* Trading step section content */}
 
       <div className="md:w-[600px]">
-      <Image src={logo} alt="logo" width={80} className="my-2 " />
+        <Image src={logo} alt="logo" width={80} className="my-2 " />
         <h1 className=" lg:text-3xl md:text-3xl text-4xl font-bold text-primary mb-5">
           Start Trading in <br /> Few Step
         </h1>

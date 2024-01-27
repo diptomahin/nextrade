@@ -9,14 +9,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#21366c', //blue
+        primary: '#455ce9', //blue
+        // primary: '#21366c', //blue
         secondary: '#35c07c', // green
-        grayPrimary:'#e9eef1' // gray  
+        grayPrimary: '#e9eef1' // gray  
       },
       backgroundColor: {
         primary: '#21366c', //blue
         secondary: '#35c07c', //green
-        grayPrimary:'#e9eef1' // gray  
+        grayPrimary: '#e9eef1' // gray  
       },
       fontFamily: {
         dm: ['DM Sans', 'sans-serif'],

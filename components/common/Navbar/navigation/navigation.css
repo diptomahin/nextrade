@@ -1,53 +1,48 @@
-.header {
-  padding: 30px;
-  position: fixed;
-  right: 0;
+.main {
   z-index: 101;
+}
 
-  .button {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: #455ce9;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.header .button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #455ce9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .burger {
-    width: 100%;
+.header .burger {
+  width: 100%;
+}
 
-    &::after,
-    &::before {
-      content: "";
-      display: block;
-      height: 1px;
-      width: 40%;
-      margin: auto;
-      background-color: white;
-      position: relative;
-      transition: transform 0.3s;
-    }
+.header .burger::after,
+.header .burger::before {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 40%;
+  margin: auto;
+  background-color: white;
+  position: relative;
+  transition: transform 0.3s;
+}
 
-    &::after {
-      top: -5px;
-    }
+.header .burger::after {
+  top: -5px;
+}
 
-    &::before {
-      top: 5px;
-    }
-  }
+.header .burger::before {
+  top: 5px;
+}
 
-  .burgerActive {
-    &::after {
-      transform: rotate(45deg);
-      top: -1px;
-    }
+.header .burgerActive::after {
+  transform: rotate(45deg);
+  top: -1px;
+}
 
-    &::before {
-      transform: rotate(-45deg);
-      top: 0px;
-    }
-  }
+.header .burgerActive::before {
+  transform: rotate(-45deg);
+  top: 0px;
 }
