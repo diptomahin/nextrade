@@ -22,15 +22,17 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Image from "next/image";
-import Button from "@/components/library/Button/Button";
 import useAxiosPublic from "@/app/hooks/useAxiosPublic";
 import useAuth from "@/utils/useAuth";
-import { data } from "autoprefixer";
 import Swal from "sweetalert2";
 import DashboardButton from "@/components/library/DashboardButton";
+import useAllUsers from "@/app/hooks/useAllUsers";
 
 const Trading = () => {
   const { user } = useAuth();
+  const [ allUsers, loading, refetch] = useAllUsers();
+
+ 
 
   const [BTCPrice, setBTCPrice] = useState(0);
   const [LTCPrice, setLTCPrice] = useState(0);
@@ -86,6 +88,7 @@ const Trading = () => {
     createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM),
     createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE),
   ];
+  // console.log(allUsers[0].balance)
 
   const handleBuyCoin = (ast) => {
     const assetInfo = {
@@ -96,17 +99,27 @@ const Trading = () => {
       assetBuyerEmail: user.email,
     };
     // console.log('asset information', assetInfo)
+
+    // calculate remaining balance after buying a coin
+    const usersBalance = parseFloat(allUsers[0].balance).toFixed(2)
+    const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2)
+
+    // console.log(usersBalance)
+    
+
     axiosPublic
-      .put("/all-users", assetInfo)
+      .put(`/all-users/${remainingBalance}`, assetInfo)
       .then((res) => {
-        console.log(res.data);
-        if (data.modifiedCount > 0) {
+        // console.log(res.data);
+        if (res.data.modifiedCount > 0) {
           Swal.fire({
             title: `Coin Purchase successful!`,
             text: `Best of luck`,
             icon: "success",
           });
+          refetch();
         }
+        
       })
       .catch((error) => {
         console.log(error);

@@ -46,7 +46,7 @@ const Dashboard = ({ children }) => {
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             <Drawer
               sx={{
-                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px" },
+                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px", backgroundColor:"#1D366F" },
               }}
               open={mobileOpen}
               onClose={handleDrawerToggle}
@@ -70,7 +70,7 @@ const Dashboard = ({ children }) => {
             </Drawer>
             <Drawer
               sx={{
-                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px" },
+                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px"},
               }}
               variant="permanent"
               open
