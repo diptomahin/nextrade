@@ -1,4 +1,4 @@
-import Services from "@/components/common/Services/Services";
+import Services from "@/components/home/Services";
 
 export default function page() {
   return (

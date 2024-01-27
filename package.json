@@ -21,6 +21,7 @@
     "clsx": "^2.1.0",
     "firebase": "^10.7.2",
     "framer-motion": "^11.0.2",
+    "gsap": "^3.12.5",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
