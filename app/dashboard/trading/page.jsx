@@ -2,10 +2,6 @@
 
 import React from "react";
 import { useState } from "react";
-//log
-import logo from "../../../assets/nextrade-logo.png";
-
-//button
 
 //image imports
 import imageBTC from "../../../assets/coinImages/bitcoin.png";
@@ -30,9 +26,7 @@ import useAllUsers from "@/app/hooks/useAllUsers";
 
 const Trading = () => {
   const { user } = useAuth();
-  const [ allUsers, loading, refetch] = useAllUsers();
-
- 
+  const [allUsers, loading, refetch] = useAllUsers();
 
   const [BTCPrice, setBTCPrice] = useState(0);
   const [LTCPrice, setLTCPrice] = useState(0);
@@ -51,7 +45,6 @@ const Trading = () => {
     // Event listener for incoming messages
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
-      // console.log(data)
 
       // Find and update prices for BTC, LTC, and ETH
       data.forEach((ticker) => {
@@ -88,7 +81,6 @@ const Trading = () => {
     createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM),
     createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE),
   ];
-  // console.log(allUsers[0].balance)
 
   const handleBuyCoin = (ast) => {
     const assetInfo = {
@@ -98,19 +90,14 @@ const Trading = () => {
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
     };
-    // console.log('asset information', assetInfo)
 
     // calculate remaining balance after buying a coin
-    const usersBalance = parseFloat(allUsers[0].balance).toFixed(2)
-    const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2)
-
-    // console.log(usersBalance)
-    
+    const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
+    const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
 
     axiosPublic
       .put(`/all-users/${remainingBalance}`, assetInfo)
       .then((res) => {
-        // console.log(res.data);
         if (res.data.modifiedCount > 0) {
           Swal.fire({
             title: `Coin Purchase successful!`,
@@ -119,7 +106,6 @@ const Trading = () => {
           });
           refetch();
         }
-        
       })
       .catch((error) => {
         console.log(error);

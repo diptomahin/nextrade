@@ -86,8 +86,6 @@ const Wallet = () => {
   const [userBalanceDetails, setUserBalanceDetails] = React.useState({});
   const { user } = useAuth();
 
-  console.log(date, time);
-
   React.useEffect(() => {
     axios
       .get(

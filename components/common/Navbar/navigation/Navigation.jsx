@@ -10,7 +10,6 @@ import Magnetic from "@/components/library/Magnetic/Magnetic";
 const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
   const pathname = usePathname();
-  console.log(isActive);
 
   useEffect(() => {
     if (isActive) setIsActive(false);
