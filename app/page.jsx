@@ -1,25 +1,23 @@
-import Services from "@/components/home/Services";
-import Banner from "@/components/home/Banner/Banner";
-import InvestmentSolutions from "@/components/home/InvestmentSolutions/InvestmentSolutions";
-import NewsLetter from "@/components/home/NewsLetter/NewsLetter";
-import StartTrading from "@/components/home/StartTrading/StartTrading";
-import Subscription from "@/components/home/Subscription/Subscription";
-import TradingStep from "@/components/home/TradingStep/TradingStep";
-import WhyChoose from "@/components/home/WhyChoose/WhyChoose";
-import LiveData from "@/components/home/LiveData/LiveData";
 // import Modal from "@/components/home/Modal/Modal";
-// import CompanyStock from "@/components/home/CompanyStock/CompanyStock";
+import Banner from "@/components/home_comp/Banner";
+import InvestSolutions from "@/components/home_comp/InvestSolutions";
+import LiveData from "@/components/home_comp/LiveData";
+import NewsLetter from "@/components/home_comp/NewsLetter";
+import Services from "@/components/home_comp/Services";
+import StartTrading from "@/components/home_comp/StartTrading";
+import Subscription from "@/components/home_comp/Subscription";
+import TradingStep from "@/components/home_comp/TradingStep";
+import WhyChooseUs from "@/components/home_comp/WhyChooseUs";
 
 export default function Home() {
   return (
     <main>
       <Banner />
       <TradingStep />
-      <InvestmentSolutions />
+      <InvestSolutions />
       <StartTrading />
-      {/* <CompanyStock /> */}
       <Services />
-      <WhyChoose />
+      <WhyChooseUs />
       <LiveData />
       <Subscription />
       <NewsLetter />

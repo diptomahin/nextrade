@@ -10,7 +10,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CardTravelOutlinedIcon from "@mui/icons-material/CardTravelOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import AvTimerOutlinedIcon from "@mui/icons-material/AvTimerOutlined";
-import DepositForm from "@/components/dashboard-comp/wallet/DepositForm";
+import DepositForm from "@/components/dash_comp/traders_comp/wallet/DepositForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Table from "@mui/material/Table";
@@ -20,11 +20,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import DashboardButton from "@/components/library/DashboardButton";
 import React from "react";
-import { VerticalAlignBottom, VisibilityOutlined } from "@mui/icons-material";
+import { VisibilityOutlined } from "@mui/icons-material";
 import axios from "axios";
-import useAuth from "@/utils/useAuth";
+import useAuth from "@/hooks/useAuth";
+import DashboardButton from "@/components/library/buttons/DashButton";
+import DashButton from "@/components/library/buttons/DashButton";
 
 const stripePromise = loadStripe(
   "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
@@ -77,7 +78,6 @@ const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
 const hour = currentDate.getHours();
 const minute = currentDate.getMinutes();
-const second = currentDate.getSeconds();
 const date = `${day}-${month}-${year}`;
 const time = `${hour}:${minute}`;
 
@@ -113,12 +113,12 @@ const Wallet = () => {
               </p>
             </div>
             <div className="flex items-center gap-5">
-              <DashboardButton>
+              <DashButton>
                 <BorderColorIcon className="w-5 h-5" /> Edit
-              </DashboardButton>
-              <DashboardButton>
+              </DashButton>
+              <DashButton>
                 <AddIcon /> Add New Wallet
-              </DashboardButton>
+              </DashButton>
             </div>
           </div>
           <div className="flex flex-col xl:flex-row justify-between gap-6 mt-10">
@@ -136,7 +136,7 @@ const Wallet = () => {
               )}
               <button
                 onClick={() => setHidePrice(!hidePrice)}
-                className="button-sm text-xs flex items-center gap-1 bg-secondary/40 px-2 py-1 rounded-full"
+                className="button-sm text-xs flex items-center gap-1 bg-black/5 px-2 py-1 rounded-full"
               >
                 {hidePrice ? (
                   <span>
@@ -150,7 +150,7 @@ const Wallet = () => {
                 )}
               </button>
             </div>
-            <div className="bg-secondary/40 rounded-md p-3">
+            <div className="bg-black/5 rounded-md p-3">
               <h6>
                 <AddCardOutlinedIcon /> Total Deposited{" "}
                 <span className="font-semibold ml-5">
@@ -175,11 +175,12 @@ const Wallet = () => {
             <h1 className="text-xl font-bold">Transaction History</h1>
             <div>
               <Search
-                className="mr-5 bg-black/10 rounded-full"
                 sx={{
                   "&:hover": {
-                    backgroundColor: "rgba(0,0, 0, 0.15)",
+                    backgroundColor: "rgba(0,0, 0, 0.1)",
                   },
+                  backgroundColor: "rgba(0,0, 0, 0.05)",
+                  borderRadius: "50px",
                 }}
               >
                 <SearchIconWrapper>

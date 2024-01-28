@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
-import Button from "@/components/library/Button/Button";
 import AddIcon from "@mui/icons-material/Add";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 
@@ -14,19 +13,27 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import useAllUsers from "@/app/hooks/useAllUsers";
-
+import useSecureFetch from "@/hooks/useSecureFetch";
+import useAuth from "@/hooks/useAuth";
+import DashButton from "@/components/library/buttons/DashButton";
 
 const Portfolio = () => {
-  const [allUsers] = useAllUsers();
   const [currentBTCPrice, setCurrentBTCPrice] = useState(0);
   const [currentLTCPrice, setCurrentLTCPrice] = useState(0);
   const [currentETHPrice, setCurrentETHPrice] = useState(0);
   const [currentQTUMPrice, setCurrentQTUMPrice] = useState(0);
   const [currentDOGEPrice, setCurrentDOGEPrice] = useState(0);
-  const [setBuyingPriceInfo, setSetBuyingPriceInfo] = useState([]);
+  const [buyingPriceInfo, setBuyingPriceInfo] = useState([]);
 
-  const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2)
+  const { user, loading } = useAuth();
+
+  const {
+    data: allUsers = [],
+    isPending,
+    isLoading,
+  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+
+  const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
 
   // websocket the real time  currency balance api
   React.useEffect(() => {
@@ -69,8 +76,8 @@ const Portfolio = () => {
         asset.assetKey === "QTUMUSDT" ||
         asset.assetKey === "DOGEUSDT"
     );
-    setSetBuyingPriceInfo(filteredAssets);
-  }, [allUsers]);
+    setBuyingPriceInfo(filteredAssets);
+  }, [allUsers, setBuyingPriceInfo]);
 
   // profit and loss calculation
   const calculateDifference = (currentPrice, buyingPrice) => {
@@ -78,7 +85,7 @@ const Portfolio = () => {
   };
 
   // Calculate total profit
-  const calculateTotalProfit = setBuyingPriceInfo.reduce((total, asset) => {
+  const calculateTotalProfit = buyingPriceInfo.reduce((total, asset) => {
     const difference = calculateDifference(
       asset.assetKey === "BTCUSDT"
         ? currentBTCPrice
@@ -98,7 +105,7 @@ const Portfolio = () => {
 
   // Calculate total loss
   const calculateTotalLoss = () => {
-    const totalLoss = setBuyingPriceInfo.reduce((total, asset) => {
+    const totalLoss = buyingPriceInfo.reduce((total, asset) => {
       const difference = calculateDifference(
         asset.assetKey === "BTCUSDT"
           ? currentBTCPrice
@@ -119,10 +126,18 @@ const Portfolio = () => {
   };
 
   // calculate total buying balance
-  const totalBuyingPrice = setBuyingPriceInfo.reduce(
+  const totalBuyingPrice = buyingPriceInfo.reduce(
     (total, asset) => total + parseFloat(asset.assetBuyingPrice),
     0
   );
+
+  if (loading || isLoading || isPending) {
+    return (
+      <p className="h-screen flex items-center justify-center text-primary">
+        <span> loading...</span>
+      </p>
+    );
+  }
 
   return (
     <div>
@@ -131,8 +146,7 @@ const Portfolio = () => {
       <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
         <div>
           <p className="font-semibold text-gray-500">
-            Total Asset{" "}
-            <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
+            Total Asset <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
           </p>
           <h1 className=" lg:text-3xl text-xl font-extrabold my-2">
             $ {totalBuyingPrice.toFixed(2)}
@@ -151,22 +165,22 @@ const Portfolio = () => {
             {/* total loss */}
             <p
               className={`font-semibold ${
-                calculateTotalProfit >= 0 ? "text-red-700" :  " text-green-700 "
+                calculateTotalProfit >= 0 ? "text-red-700" : " text-green-700 "
               }`}
             >
               -${calculateTotalLoss()}
             </p>
           </div>
         </div>
-        <div className="  ">
-          <Button>
+        <div className="flex items-center gap-3 flex-wrap">
+          <DashButton>
             {" "}
-            <BorderColorIcon className=" text-white" /> Edit
-          </Button>
-          <Button className="lg:ml-5 mt-2 p-1">
+            <BorderColorIcon /> Edit
+          </DashButton>
+          <DashButton>
             {" "}
-            <AddIcon className=" text-white" /> Add Transaction
-          </Button>
+            <AddIcon /> Add Transaction
+          </DashButton>
         </div>
       </div>
 
@@ -191,25 +205,37 @@ const Portfolio = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead className="bg-primary">
               <TableRow>
-                <TableCell sx={{color:"white", fontWeight:"600"}}>
+                <TableCell sx={{ color: "white", fontWeight: "600" }}>
                   Company
                 </TableCell>
-                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
+                <TableCell
+                  align="right"
+                  sx={{ color: "white", fontWeight: "600" }}
+                >
                   Buying Price
                 </TableCell>
-                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
+                <TableCell
+                  align="right"
+                  sx={{ color: "white", fontWeight: "600" }}
+                >
                   Current Price
                 </TableCell>
-                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
+                <TableCell
+                  align="right"
+                  sx={{ color: "white", fontWeight: "600" }}
+                >
                   Profit / Loss
                 </TableCell>
-                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
+                <TableCell
+                  align="right"
+                  sx={{ color: "white", fontWeight: "600" }}
+                >
                   -
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {setBuyingPriceInfo.map((asset, index) => (
+              {buyingPriceInfo.map((asset, index) => (
                 <TableRow key={index}>
                   <TableCell
                     component="th"

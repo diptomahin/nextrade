@@ -1,11 +1,10 @@
 "use client";
-import TradersDashboardNavbar from "@/components/common/Navbar/TradersDashboardNavbar";
-import TradersDashboardSidebar from "@/components/common/Navbar/TradersDashboardSidebar";
+import TradersDashboardNavbar from "@/components/common/navigation/trader_nav/TradersNav";
+import TradersDashboardSidebar from "@/components/common/navigation/trader_nav/TradersSideNav";
 import { Drawer, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
-import PrivateRoute from "@/components/Routes/PrivateRoute";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
@@ -46,7 +45,11 @@ const Dashboard = ({ children }) => {
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             <Drawer
               sx={{
-                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px", backgroundColor:"#1D366F" },
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: "250px",
+                  backgroundColor: "#1D366F",
+                },
               }}
               open={mobileOpen}
               onClose={handleDrawerToggle}
@@ -54,23 +57,14 @@ const Dashboard = ({ children }) => {
                 keepMounted: true,
               }}
             >
-
-              {/* <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                className="mr-2 2xl:hidden"
-              >
-                <CloseIcon sx={{ color: "#1D366F" }} />
-              </IconButton> */}
-
-
               <TradersDashboardSidebar />
             </Drawer>
             <Drawer
               sx={{
-                "& .MuiDrawer-paper": { boxSizing: "border-box", width: "250px"},
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: "250px",
+                },
               }}
               variant="permanent"
               open

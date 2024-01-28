@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import cn from "@/components/utils/cn";
 import React from "react";
 
 const Container = ({ children, className }) => {

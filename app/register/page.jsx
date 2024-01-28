@@ -3,15 +3,15 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { Stack, TextField, Typography } from "@mui/material";
-import Button from "@/components/library/Button/Button";
+import Button from "@/components/library/buttons/root_button/RootButton";
 import styled from "@emotion/styled";
 import Container from "@/components/library/Container";
 import Swal from "sweetalert2";
-import useAuth from "@/utils/useAuth";
+import useAuth from "@/hooks/useAuth";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRouter } from "next/navigation";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+import usePublicAPI from "@/hooks/usePublicAPI";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -35,7 +35,7 @@ const CssTextField = styled(TextField)({
 });
 
 const Register = () => {
-  const axiosPublic = useAxiosPublic();
+  const publicAPI = usePublicAPI();
 
   const router = useRouter();
   const { from } = router.query || { from: "/dashboard" };
@@ -75,7 +75,7 @@ const Register = () => {
           portfolio: [],
         };
 
-        axiosPublic.post("/all-users", userInfo).then((res) => {
+        publicAPI.post("/all-users", userInfo).then((res) => {
           Swal.fire({
             title: "Account created successfully!",
             text: `Welcome to NexTrade`,
@@ -86,7 +86,6 @@ const Register = () => {
         });
       })
       .catch((error) => {
-        console.log(error.message);
         if (error.message === "Firebase: Error (auth/email-already-in-use).") {
           setError("This email is already in use");
           return;
@@ -111,7 +110,7 @@ const Register = () => {
           portfolio: [],
         };
 
-        axiosPublic.post("/all-users", userInfo).then((res) => {
+        publicAPI.post("/all-users", userInfo).then((res) => {
           Swal.fire({
             title: "Log In successful!",
             text: `Welcome back ${loggedUser.displayName}`,
