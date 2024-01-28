@@ -43,7 +43,9 @@ const Navbar = () => {
       <Container>
         <div className="flex items-center justify-between">
           <Link href="/">
-            <Image src={logo} alt="Logo" width={150} />
+            <Magnetic>
+              <Image src={logo} alt="Logo" width={180} />
+            </Magnetic>
           </Link>
 
           <Navigation />
