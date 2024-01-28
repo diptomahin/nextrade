@@ -19,9 +19,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Image from "next/image";
 import useAxiosPublic from "@/app/hooks/useAxiosPublic";
-import useAuth from "@/utils/useAuth";
+import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
-import DashboardButton from "@/components/library/DashboardButton";
+import DashboardButton from "@/components/library/buttons/DashButton";
 import useAllUsers from "@/app/hooks/useAllUsers";
 
 const Trading = () => {

@@ -10,7 +10,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CardTravelOutlinedIcon from "@mui/icons-material/CardTravelOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import AvTimerOutlinedIcon from "@mui/icons-material/AvTimerOutlined";
-import DepositForm from "@/components/dashboard-comp/wallet/DepositForm";
+import DepositForm from "@/components/dash_comp/traders_comp/wallet/DepositForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Table from "@mui/material/Table";
@@ -20,11 +20,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import DashboardButton from "@/components/library/DashboardButton";
+import DashboardButton from "@/components/library/buttons/DashButton";
 import React from "react";
 import { VerticalAlignBottom, VisibilityOutlined } from "@mui/icons-material";
 import axios from "axios";
-import useAuth from "@/utils/useAuth";
+import useAuth from "@/hooks/useAuth";
 
 const stripePromise = loadStripe(
   "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
