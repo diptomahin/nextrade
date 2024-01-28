@@ -136,7 +136,7 @@ const Wallet = () => {
               )}
               <button
                 onClick={() => setHidePrice(!hidePrice)}
-                className="button-sm text-xs flex items-center gap-1 bg-secondary/40 px-2 py-1 rounded-full"
+                className="button-sm text-xs flex items-center gap-1 bg-black/5 px-2 py-1 rounded-full"
               >
                 {hidePrice ? (
                   <span>
@@ -150,7 +150,7 @@ const Wallet = () => {
                 )}
               </button>
             </div>
-            <div className="bg-secondary/40 rounded-md p-3">
+            <div className="bg-black/5 rounded-md p-3">
               <h6>
                 <AddCardOutlinedIcon /> Total Deposited{" "}
                 <span className="font-semibold ml-5">
@@ -175,11 +175,12 @@ const Wallet = () => {
             <h1 className="text-xl font-bold">Transaction History</h1>
             <div>
               <Search
-                className="mr-5 bg-black/10 rounded-full"
                 sx={{
                   "&:hover": {
-                    backgroundColor: "rgba(0,0, 0, 0.15)",
+                    backgroundColor: "rgba(0,0, 0, 0.1)",
                   },
+                  backgroundColor: "rgba(0,0, 0, 0.05)",
+                  borderRadius: "50px",
                 }}
               >
                 <SearchIconWrapper>

@@ -97,7 +97,7 @@ const TradersDashboardNavbar = () => {
           </Typography>
 
           {/* search bar */}
-          <Search className="mr-5 text-white rounded-full">
+          <Search sx={{ borderRadius: "50px" }} className="mr-5 text-white">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

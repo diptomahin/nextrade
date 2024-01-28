@@ -172,7 +172,7 @@ const DepositForm = ({ setUserBalanceDetails }) => {
         />
         <div className="relative mt-4 text-red-600">{paymentError}</div>
         <button
-          className="w-full bg-[#1D366F]/90 hover:bg-[#1D366F] text-white border-none rounded-full py-[6px] text-lg mt-5"
+          className="w-full bg-primary/95 hover:bg-primary text-white border-none rounded-full py-[6px] text-lg mt-5"
           type="submit"
           disabled={!stripe || !elements}
         >

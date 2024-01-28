@@ -134,7 +134,7 @@ const Trading = () => {
     <div>
       {/* Table boat  */}
       <div className="p-3">
-        <h2 className=" text-xl font-semibold mb-3">Start Trading. . . . . </h2>
+        <h2 className=" text-xl font-semibold mb-3">Start Trading...</h2>
         <TableContainer
           component={Paper}
           sx={{

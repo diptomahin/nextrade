@@ -13,9 +13,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
+import DashButton from "@/components/library/buttons/DashButton";
 
 const Portfolio = () => {
   const [currentBTCPrice, setCurrentBTCPrice] = useState(0);
@@ -172,15 +172,15 @@ const Portfolio = () => {
             </p>
           </div>
         </div>
-        <div className="  ">
-          <DashboardButton>
+        <div className="flex items-center gap-3 flex-wrap">
+          <DashButton>
             {" "}
-            <BorderColorIcon className=" text-white" /> Edit
-          </DashboardButton>
-          <DashboardButton className="lg:ml-5 mt-2 p-1">
+            <BorderColorIcon /> Edit
+          </DashButton>
+          <DashButton>
             {" "}
-            <AddIcon className=" text-white" /> Add Transaction
-          </DashboardButton>
+            <AddIcon /> Add Transaction
+          </DashButton>
         </div>
       </div>
 
