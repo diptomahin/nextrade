@@ -130,7 +130,7 @@ const Wallet = () => {
                     Balance
                   </p>
                   <h1 className="text-3xl font-bold">
-                    ${userBalanceDetails?.balance || 0}
+                    ${parseFloat(userBalanceDetails.balance).toFixed(2) || 0}
                   </h1>
                 </div>
               )}
@@ -155,7 +155,7 @@ const Wallet = () => {
                 <AddCardOutlinedIcon /> Total Deposited{" "}
                 <span className="font-semibold ml-5">
                   <FileDownloadOutlinedIcon className=" text-green-600" />$
-                  {userBalanceDetails?.balance || 0}
+                  {parseFloat(userBalanceDetails.balance).toFixed(2) || 0}
                 </span>
               </h6>
 

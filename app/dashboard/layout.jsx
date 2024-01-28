@@ -6,6 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Magnetic from "@/components/library/Magnetic";
 const queryClient = new QueryClient();
 
 const Dashboard = ({ children }) => {
@@ -34,7 +35,9 @@ const Dashboard = ({ children }) => {
                   },
                 }}
               >
-                <MenuIcon sx={{ color: "white" }} />
+                <Magnetic>
+                  <MenuIcon sx={{ color: "white" }} />
+                </Magnetic>
               </IconButton>
               <TradersDashboardNavbar />
             </Toolbar>
