@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { slide, scale } from "../../../../../../utils/anim";
+import { slide, scale } from "../../../../../utils/anim";
 import "./index.css";
 
 export default function NavLink({

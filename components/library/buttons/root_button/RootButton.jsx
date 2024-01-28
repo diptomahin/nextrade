@@ -1,6 +1,6 @@
 "use client";
 
-import cn from "@/utils/cn";
+import cn from "@/components/utils/cn";
 import "./RootButton.css";
 import Magnetic from "../../Magnetic";
 

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { menuSlide } from "../../../../../../utils/anim";
+import { menuSlide } from "../../../../../utils/anim";
 import "./index.css";
 import NavLink from "../nav_link/NavLink";
 import FooterLink from "../footer_link/FooterLink";

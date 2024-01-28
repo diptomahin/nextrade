@@ -1,23 +1,22 @@
 "use client";
-import cn from "@/utils/cn";
 import { Button } from "@mui/material";
 
-const DashboardButton = ({ children, className, ...restProps }) => {
+const DashButton = ({ children, className, ...restProps }) => {
   return (
     <Button
       sx={{
         "&:hover": {
-          backgroundColor: "#35c07c",
+          backgroundColor: "#455ce9",
         },
+        backgroundColor: "#455ce9",
+        color: "white",
+        borderRadius: "50px",
+        padding: "10px 15px",
       }}
-      className={cn(
-        "flex items-center justify-center gap-2 px-4 py-2 bg-secondary/90 text-white rounded-full whitespace-nowrap",
-        className
-      )}
       {...restProps}
     >
       {children}
     </Button>
   );
 };
-export default DashboardButton;
+export default DashButton;
