@@ -148,7 +148,7 @@ const TradersDashboardSidebar = () => {
             <Image
               src={logo}
               width={150}
-              className="mx-auto my-4"
+              className="mx-auto my-6"
               alt="logo"
             ></Image>
           </Magnetic>

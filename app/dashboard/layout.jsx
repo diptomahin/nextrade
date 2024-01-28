@@ -21,7 +21,7 @@ const Dashboard = ({ children }) => {
       <PrivateRoute>
         <div className="min-h-screen bg-[#F1F1F1]">
           {/* navbar */}
-          <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-[#1D366F]">
+          <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-primary">
             <Toolbar>
               <IconButton
                 color="inherit"
@@ -45,13 +45,13 @@ const Dashboard = ({ children }) => {
 
           {/* drawer */}
           <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-none">
-            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             <Drawer
               sx={{
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: "250px",
                   backgroundColor: "#1D366F",
+                  border: "none",
                 },
               }}
               open={mobileOpen}
@@ -67,6 +67,7 @@ const Dashboard = ({ children }) => {
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: "250px",
+                  border: "none",
                 },
               }}
               variant="permanent"

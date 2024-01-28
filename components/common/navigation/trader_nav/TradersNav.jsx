@@ -173,7 +173,6 @@ const TradersDashboardNavbar = () => {
                 borderRadius: "6px",
                 "&:hover": { backgroundColor: "#455ce9", color: "white" },
               }}
-              // className="m-3 px-10 py-2 hover:bg-primary hover:text-white rounded-md"
               onClick={() => {
                 logOut();
                 handleCloseUserMenu();

@@ -9,8 +9,13 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-[100vh] text-primary text-xl font-semibold font-dm">
-        Loading...
+      <div className="h-screen flex justify-center items-center">
+        <div className="text-5xl text-primary font-semibold">
+          Loading
+          <span className="text-secondary">
+            .<span className="text-primary">.</span>.
+          </span>
+        </div>
       </div>
     );
   }
