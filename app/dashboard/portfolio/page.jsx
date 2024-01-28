@@ -26,7 +26,7 @@ const Portfolio = () => {
   const [currentDOGEPrice, setCurrentDOGEPrice] = useState(0);
   const [setBuyingPriceInfo, setSetBuyingPriceInfo] = useState([]);
 
-  const usersRemainingBalance = parseFloat(allUsers[0].balance).toFixed(2)
+  const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2)
 
   // websocket the real time  currency balance api
   React.useEffect(() => {
@@ -191,19 +191,19 @@ const Portfolio = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead className="bg-primary">
               <TableRow>
-                <TableCell className="font-semibold text-white">
+                <TableCell sx={{color:"white", fontWeight:"600"}}>
                   Company
                 </TableCell>
-                <TableCell align="right" className="font-semibold text-white ">
+                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
                   Buying Price
                 </TableCell>
-                <TableCell align="right" className="font-semibold text-white">
+                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
                   Current Price
                 </TableCell>
-                <TableCell align="right" className="font-semibold text-white">
+                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
                   Profit / Loss
                 </TableCell>
-                <TableCell align="right" className="font-semibold text-white">
+                <TableCell align="right" sx={{color:"white", fontWeight:"600"}}>
                   -
                 </TableCell>
               </TableRow>
