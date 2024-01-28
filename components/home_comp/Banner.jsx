@@ -7,7 +7,7 @@ import { TickerTape } from "react-ts-tradingview-widgets";
 const Banner = () => {
   return (
     <Container className="relative min-h-[100vh] flex flex-col items-center justify-center gap-8 py-32">
-      <div className="text-5xl sm:text-6xl md:text-8xl xl:text-9xl font-extrabold text-secondary md:mb-5 mb-4 flex flex-wrap items-center justify-center font-dm">
+      <div className="text-5xl sm:text-6xl md:text-8xl xl:text-9xl font-extrabold text-secondary md:mb-5 mb-4 flex flex-wrap items-center justify-center">
         <Magnetic>
           <h1 className="text-primary">Innovation</h1>
         </Magnetic>
