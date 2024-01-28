@@ -18,15 +18,20 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Image from "next/image";
-import useAxiosPublic from "@/app/hooks/useAxiosPublic";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import DashboardButton from "@/components/library/buttons/DashButton";
-import useAllUsers from "@/app/hooks/useAllUsers";
+import useSecureFetch from "@/hooks/useSecureFetch";
+import usePublicAPI from "@/hooks/usePublicAPI";
 
 const Trading = () => {
-  const { user } = useAuth();
-  const [allUsers, loading, refetch] = useAllUsers();
+  const { user, loading } = useAuth();
+
+  const {
+    data: allUsers = [],
+    isPending,
+    isLoading,
+  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   const [BTCPrice, setBTCPrice] = useState(0);
   const [LTCPrice, setLTCPrice] = useState(0);
@@ -34,7 +39,7 @@ const Trading = () => {
   const [QTUMPrice, setQTUMPrice] = useState(0);
   const [DOGEPrice, setDOGEPrice] = useState(0);
 
-  const axiosPublic = useAxiosPublic();
+  const publicAPI = usePublicAPI();
 
   React.useEffect(() => {
     // Create a WebSocket connection
@@ -95,7 +100,7 @@ const Trading = () => {
     const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
     const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
 
-    axiosPublic
+    publicAPI
       .put(`/all-users/${remainingBalance}`, assetInfo)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
@@ -116,6 +121,14 @@ const Trading = () => {
         });
       });
   };
+
+  if (loading || isLoading || isPending) {
+    return (
+      <p className="h-screen flex items-center justify-center text-primary">
+        <span> loading...</span>
+      </p>
+    );
+  }
 
   return (
     <div>
