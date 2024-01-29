@@ -8,6 +8,7 @@ const PortfolioAssetChart = ({ totalBuyingPrice, calculateTotalProfit, usersRema
 
     // pie chart with customized label
     const COLORS = ['#c2410c', '#65a30d', '#10b981', '#6366f1', '#d946ef', '#f43f5e'];
+    
 
     const RADIAN = Math.PI / 180;
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
