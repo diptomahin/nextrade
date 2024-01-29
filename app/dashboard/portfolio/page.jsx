@@ -16,6 +16,7 @@ import Paper from "@mui/material/Paper";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
+import PortfolioAssetChart from "@/components/charts/portfolioAssetChart";
 
 const Portfolio = () => {
   const [currentBTCPrice, setCurrentBTCPrice] = useState(0);
@@ -31,7 +32,10 @@ const Portfolio = () => {
     data: allUsers = [],
     isPending,
     isLoading,
+    refetch
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+
+  // console.log(allUsers)
 
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
 
@@ -143,6 +147,8 @@ const Portfolio = () => {
     <div>
       {/* Current balance */}
 
+      <PortfolioAssetChart totalBuyingPrice={totalBuyingPrice} calculateTotalProfit={calculateTotalProfit} usersRemainingBalance={usersRemainingBalance} calculateTotalLoss={calculateTotalLoss} allUsers={allUsers}></PortfolioAssetChart>
+
       <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
         <div>
           <p className="font-semibold text-gray-500">
@@ -181,18 +187,6 @@ const Portfolio = () => {
             {" "}
             <AddIcon /> Add Transaction
           </DashButton>
-        </div>
-      </div>
-
-      <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
-        <div>
-          <p className="font-semibold text-gray-500">
-            Remaining Balance{" "}
-            <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
-          </p>
-          <h1 className=" lg:text-3xl text-xl font-extrabold my-2">
-            $ {usersRemainingBalance}
-          </h1>
         </div>
       </div>
 
