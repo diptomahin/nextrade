@@ -31,6 +31,7 @@ const Trading = () => {
     data: allUsers = [],
     isPending,
     isLoading,
+    refetch
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   const [BTCPrice, setBTCPrice] = useState(0);
