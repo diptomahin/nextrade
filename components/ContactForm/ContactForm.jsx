@@ -2,14 +2,25 @@
 
 import Button from "@/components/library/buttons/root_button/RootButton";
 import emailjs from '@emailjs/browser';
+import { useForm } from "react-hook-form";
 
 
 const ContactForm = () => {
+    const { register, handleSubmit, reset } = useForm();
 
-    
+    const onSubmit = async (data) => {
+        try {
+            await emailjs.sendForm('service_5crf3z7', 'template_6p6drrs', data);
+            console.log('Email sent successfully');
+            reset(); // Reset the form after successful submission
+        } catch (error) {
+            console.error('Failed to send email:', error);
+        }
+    };
 
     return (
         <form
+            onSubmit={handleSubmit(onSubmit)}
             method="POST"
             action="https://getform.io/f/a699a1b2-f225-434e-b317-1fbbde8e006c"
             className="flex p-5 md:p-10 space-y-5 flex-col  w-full"
@@ -97,9 +108,8 @@ const ContactForm = () => {
                 ></textarea>
             </div>
 
-            <div>
-                <Button>Send Message</Button>
-            </div>
+            <Button type="submit">Send Message</Button>
+
         </form>
     );
 };
