@@ -21,7 +21,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <MdSpaceDashboard /> Dashboard
         </button>
@@ -32,7 +32,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/market" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <SiMarketo /> Market
         </button>
@@ -43,7 +43,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/trading" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <SiMeilisearch />
           Trading
@@ -55,7 +55,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/portfolio" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <FaMountain /> Portfolio
         </button>
@@ -66,7 +66,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/watchlist" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <IoListCircleSharp /> Watchlist
         </button>
@@ -77,7 +77,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/academy" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <SiKhanacademy /> Academy
         </button>
@@ -88,7 +88,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/profile" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <FaUserCircle /> Profile
         </button>
@@ -99,7 +99,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/wallet" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <FaWallet /> Wallet
         </button>
@@ -109,7 +109,7 @@ const SideNavLinks = () => {
         href="/"
         className="w-full font-medium hover:bg-black/5 text-primary rounded-full"
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <GoHomeFill /> Home
         </button>
@@ -120,7 +120,7 @@ const SideNavLinks = () => {
           pathname === "/dashboard/settings" && "bg-black/5"
         } text-primary rounded-full`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-[10px] ">
+        <button className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] ">
           {" "}
           <IoMdSettings /> Settings
         </button>
@@ -128,7 +128,7 @@ const SideNavLinks = () => {
 
       <button
         onClick={() => logOut()}
-        className="w-full flex items-center gap-2 px-4 py-[10px] font-medium hover:bg-black/5 text-primary  rounded-full"
+        className="w-full flex items-center gap-2 px-4 py-2 2xl:py-[10px] font-medium hover:bg-black/5 text-primary  rounded-full"
       >
         {" "}
         <IoLogOut /> Logout
