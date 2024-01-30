@@ -32,7 +32,7 @@ const Portfolio = () => {
     data: allUsers = [],
     isPending,
     isLoading,
-    refetch
+    refetch,
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   // console.log(allUsers)
@@ -63,10 +63,6 @@ const Portfolio = () => {
         }
       });
     });
-
-    return () => {
-      socket.close();
-    };
   }, []);
 
   //user buying coins map to data
@@ -80,8 +76,10 @@ const Portfolio = () => {
         asset.assetKey === "QTUMUSDT" ||
         asset.assetKey === "DOGEUSDT"
     );
-    setBuyingPriceInfo(filteredAssets);
-  }, [allUsers, setBuyingPriceInfo]);
+    if (filteredAssets.length > 0) {
+      setBuyingPriceInfo(filteredAssets);
+    }
+  }, [allUsers]);
 
   // profit and loss calculation
   const calculateDifference = (currentPrice, buyingPrice) => {
@@ -147,7 +145,13 @@ const Portfolio = () => {
     <div>
       {/* Current balance */}
 
-      <PortfolioAssetChart totalBuyingPrice={totalBuyingPrice} calculateTotalProfit={calculateTotalProfit} usersRemainingBalance={usersRemainingBalance} calculateTotalLoss={calculateTotalLoss} allUsers={allUsers}></PortfolioAssetChart>
+      <PortfolioAssetChart
+        totalBuyingPrice={totalBuyingPrice}
+        calculateTotalProfit={calculateTotalProfit}
+        usersRemainingBalance={usersRemainingBalance}
+        calculateTotalLoss={calculateTotalLoss}
+        allUsers={allUsers}
+      ></PortfolioAssetChart>
 
       <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
         <div>
