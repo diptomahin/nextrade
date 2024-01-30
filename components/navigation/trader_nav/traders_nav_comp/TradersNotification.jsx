@@ -5,7 +5,10 @@ const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
   return (
     <div className="relative">
-      <button onClick={() => setIsNotificationOpen(!isNotificationOpen)}>
+      <button
+        onClick={() => setIsNotificationOpen(!isNotificationOpen)}
+        className={`flex items-center ${isNotificationOpen && "text-primary"}`}
+      >
         {isNotificationOpen ? (
           <MdNotificationsActive className="w-6 h-6" />
         ) : (

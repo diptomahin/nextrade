@@ -17,7 +17,7 @@ const UserMenu = () => {
       </div>
       <div onClick={() => setIsOpen(!isOpen)} className="relative">
         {/* <Image alt="user photo " width={50} href={user?.photoURL} /> */}
-        <FaUserCircle className="w-8 h-8" />
+        <FaUserCircle className={`w-8 h-8 ${isOpen && "text-primary"}`} />
         {isOpen && (
           <div className="absolute top-12 right-0 w-40 bg-white flex flex-col gap-2 p-3 border rounded-xl">
             <Link href="/dashboard/profile" className="w-full">
