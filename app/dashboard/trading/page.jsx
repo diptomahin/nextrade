@@ -31,7 +31,7 @@ const Trading = () => {
     data: allUsers = [],
     isPending,
     isLoading,
-    refetch
+    refetch,
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   const [BTCPrice, setBTCPrice] = useState(0);
@@ -134,7 +134,7 @@ const Trading = () => {
   return (
     <div>
       {/* Table boat  */}
-      <div className="p-3">
+      <div>
         <h2 className=" text-xl font-semibold mb-3">Start Trading...</h2>
         <TableContainer
           component={Paper}
@@ -148,7 +148,7 @@ const Trading = () => {
                 <TableCell className="font-semibold ">Icon</TableCell>
                 <TableCell className=" font-semibold">Crypto</TableCell>
                 <TableCell className="font-semibold">Current Price</TableCell>
-                <TableCell className="font-semibold"></TableCell>
+                <TableCell className="font-semibold">Trade Option</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

@@ -1,12 +1,10 @@
 "use client";
-import TradersDashboardNavbar from "@/components/navigation/trader_nav/TradersNav";
-import TradersDashboardSidebar from "@/components/navigation/trader_nav/TradersSideNav";
-import { Drawer, IconButton, Toolbar } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Drawer } from "@mui/material";
 import { useState } from "react";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Magnetic from "@/components/library/Magnetic";
+import TradersDashboardNavbar from "@/components/navigation/trader_nav/TradersNav";
+import TradersDashboardSidebar from "@/components/navigation/trader_nav/TradersSideNav";
 const queryClient = new QueryClient();
 
 const Dashboard = ({ children }) => {
@@ -19,38 +17,22 @@ const Dashboard = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <PrivateRoute>
-        <div className="min-h-screen bg-[#F1F1F1]">
-          {/* navbar */}
-          <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-primary">
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{
-                  "@media (min-width: 1280px)": {
-                    display: "none",
-                    marginRight: "8px",
-                  },
-                }}
-              >
-                <Magnetic>
-                  <MenuIcon sx={{ color: "white" }} />
-                </Magnetic>
-              </IconButton>
-              <TradersDashboardNavbar />
-            </Toolbar>
+        <div className="min-h-screen bg-zinc-100 font-inter">
+          <div className="fixed top-0 w-full h-[70px] 2xl:pl-[230px] p-2 z-40 bg-zinc-100">
+            <TradersDashboardNavbar
+              setMobileOpen={setMobileOpen}
+              mobileOpen={mobileOpen}
+            />
           </div>
-
-          {/* drawer */}
-          <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-none">
+          <div className="hidden 2xl:block fixed left-2 top-2 pr-3 pb-4 h-full w-[222px] z-50 bg-zinc-100">
+            <TradersDashboardSidebar />
+          </div>
+          <div className="block 2xl:hidden">
             <Drawer
               sx={{
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
-                  width: "250px",
-                  backgroundColor: "#1D366F",
+                  width: "200px",
                   border: "none",
                 },
               }}
@@ -62,22 +44,9 @@ const Dashboard = ({ children }) => {
             >
               <TradersDashboardSidebar />
             </Drawer>
-            <Drawer
-              sx={{
-                "& .MuiDrawer-paper": {
-                  boxSizing: "border-box",
-                  width: "250px",
-                  border: "none",
-                },
-              }}
-              variant="permanent"
-              open
-            >
-              <TradersDashboardSidebar />
-            </Drawer>
           </div>
 
-          <div className="min-h-full 2xl:ml-[250px] mt-[87px] p-4 bg-[#F1F1F1]">
+          <div className="mx-5 2xl:ml-[238px] pt-[82px] pb-10 bg-zinc-100">
             {children}
           </div>
         </div>
