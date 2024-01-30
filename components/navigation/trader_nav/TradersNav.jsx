@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import UserMenu from "./traders_nav_comp/UserMenu";
 import { MdNotifications, MdNotificationsActive } from "react-icons/md";
 import TradersNotification from "./traders_nav_comp/TradersNotification";
+import Language from "@/components/library/Language";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -94,8 +95,11 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </Search>
       </div>
       <div className="flex items-center gap-5">
+        {/* language */}
+        <Language />
         {/* notification */}
         <TradersNotification />
+
         {/* user menubar */}
         <UserMenu />
       </div>

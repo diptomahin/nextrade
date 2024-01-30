@@ -21,26 +21,38 @@ const UserMenu = () => {
         {isOpen && (
           <div className="absolute top-12 right-0 w-40 bg-white flex flex-col gap-2 p-3 border rounded-xl">
             <Link href="/dashboard/profile" className="w-full">
-              <button className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+              >
                 {" "}
                 <FaUserCircle /> Profile
               </button>
             </Link>
             <Link href="/dashboard/settings" className="w-full">
-              <button className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+              >
                 {" "}
                 <IoMdSettings /> Settings
               </button>
             </Link>{" "}
             <hr />{" "}
             <Link href="/" className="w-full">
-              <button className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+              >
                 {" "}
                 <GoHomeFill /> Home
               </button>
             </Link>
             <button
-              onClick={() => logOut()}
+              onClick={() => {
+                logOut();
+                setIsOpen(false);
+              }}
               className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary  rounded-full"
             >
               {" "}

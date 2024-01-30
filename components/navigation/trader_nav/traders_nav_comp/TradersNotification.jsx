@@ -13,7 +13,9 @@ const TradersNotification = () => {
         )}
       </button>
       {isNotificationOpen && (
-        <div className="absolute top-12 right-0 w-40 bg-white flex flex-col gap-2 p-3 border rounded-xl"></div>
+        <div className="absolute top-12 right-1/2 transform translate-x-1/2 w-40 bg-white flex flex-col gap-2 p-3 border rounded-xl">
+          {/* Content of the dropdown */}
+        </div>
       )}
     </div>
   );
