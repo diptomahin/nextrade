@@ -1,8 +1,12 @@
 import Button from "@/components/library/buttons/root_button/RootButton";
 import emailjs from '@emailjs/browser';
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
+
+    const [submitMessage, setSubmitMessage] = useState(null);
+
     const {
         register,
         handleSubmit,
@@ -12,17 +16,19 @@ const ContactForm = () => {
 
 
     const onSubmit = async (data, e) => {
-        e.preventDefault(); // Prevent the default form submission
+        e.preventDefault();
         try {
             await emailjs.send('service_5crf3z7', 'template_6p6drrs', data, 'eKB9bGUsvbE937RGN');
+            setSubmitMessage({ type: 'success', text: 'Email sent successfully' });
             console.log('Email sent successfully');
-            reset(); // Reset the form after successful submission
+            reset();
         } catch (error) {
+            setSubmitMessage({ type: 'error', text: 'Failed to send email. Please try again later.' });
             console.error('Failed to send email:', error);
         }
     };
 
-   
+
     const validationOptions = {
         name: { required: 'Name is required' },
         phone: { required: 'Phone number is required' },
@@ -119,6 +125,13 @@ const ContactForm = () => {
                     id="message"
                 ></textarea>
             </div>
+            {/* Success or error message */}
+
+            {submitMessage && (
+                <div className={`${submitMessage.type === 'success' ? 'text-green-500' : 'text-red-500'} text-center font-semibold mt-4`}>
+                    {submitMessage.text}
+                </div>
+            )}
 
             <Button type="submit">Send Message</Button>
         </form>
