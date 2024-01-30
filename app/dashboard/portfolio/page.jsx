@@ -16,7 +16,7 @@ import Paper from "@mui/material/Paper";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
-import PortfolioAssetChart from "@/components/charts/portfolioAssetChart";
+import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAssetChart";
 
 const Portfolio = () => {
   const [currentBTCPrice, setCurrentBTCPrice] = useState(0);

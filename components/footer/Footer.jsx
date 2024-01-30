@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 //image import assets
-import logo from "../../../assets/logo/NexTrade-Logo-Original.png";
-import strip from "../../../assets/PaymentLogo/stripLogo.png";
-import bkash from "../../../assets/PaymentLogo/BKash-Icon-Logo.wine.svg";
-import paypal from "../../../assets/PaymentLogo/PaypalLogo.png";
+import logo from "../../assets/logo/NexTrade-Logo-Original.png";
+import strip from "../../assets/PaymentLogo/stripLogo.png";
+import bkash from "../../assets/PaymentLogo/BKash-Icon-Logo.wine.svg";
+import paypal from "../../assets/PaymentLogo/PaypalLogo.png";
 import Container from "@/components/library/Container";
 import { usePathname } from "next/navigation";
 
