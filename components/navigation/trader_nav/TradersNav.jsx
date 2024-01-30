@@ -76,116 +76,117 @@ const TradersDashboardNavbar = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{
-          backgroundColor: "transparent",
-          marginTop: "8px",
-          boxShadow: "none",
-        }}
-      >
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            className="text-white"
-          >
-            Dashboard
-          </Typography>
+    // <Box sx={{ flexGrow: 1 }}>
+    //   <AppBar
+    //     position="static"
+    //     sx={{
+    //       backgroundColor: "transparent",
+    //       marginTop: "8px",
+    //       boxShadow: "none",
+    //     }}
+    //   >
+    //     <Toolbar>
+    //       <Typography
+    //         variant="h6"
+    //         noWrap
+    //         component="div"
+    //         sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+    //         className="text-white"
+    //       >
+    //         Dashboard
+    //       </Typography>
 
-          {/* search bar */}
-          <Search sx={{ borderRadius: "50px" }} className="mr-5 text-white">
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-          <NotificationsRoundedIcon className="mr-5 text-white" />
+    //       {/* search bar */}
+    //       <Search sx={{ borderRadius: "50px" }} className="mr-5 text-white">
+    //         <SearchIconWrapper>
+    //           <SearchIcon />
+    //         </SearchIconWrapper>
+    //         <StyledInputBase
+    //           placeholder="Search…"
+    //           inputProps={{ "aria-label": "search" }}
+    //         />
+    //       </Search>
+    //       <NotificationsRoundedIcon className="mr-5 text-white" />
 
-          {/* user avater */}
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={2}
-            className="text-white font-dm"
-          >
-            <div className="text-right hidden lg:block">
-              <p className="">
-                {user?.displayName || (
-                  <span className=" text-white text-lg">Name</span>
-                )}
-              </p>
-              <p className="font-medium ">Trader</p>
-            </div>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="user-img" src={user?.photoURL} />
-              </IconButton>
-            </Tooltip>
-          </Stack>
+    //       {/* user avater */}
+    //       <Stack
+    //         direction="row"
+    //         alignItems="center"
+    //         spacing={2}
+    //         className="text-white font-dm"
+    //       >
+    //         <div className="text-right hidden lg:block">
+    //           <p className="">
+    //             {user?.displayName || (
+    //               <span className=" text-white text-lg">Name</span>
+    //             )}
+    //           </p>
+    //           <p className="font-medium ">Trader</p>
+    //         </div>
+    //         <Tooltip title="Open settings">
+    //           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+    //             <Avatar alt="user-img" src={user?.photoURL} />
+    //           </IconButton>
+    //         </Tooltip>
+    //       </Stack>
 
-          {/* user menu */}
-          <Menu
-            sx={{ mt: "45px", py: "0px" }}
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          >
-            {menuItemsForUser.map((menu, idx) => (
-              <Link key={idx} href={menu.pathname}>
-                <MenuItem
-                  sx={{
-                    margin: "12px",
-                    paddingX: "40px",
-                    paddingY: "8px",
-                    borderRadius: "6px",
-                    "&:hover": { backgroundColor: "#455ce9", color: "white" },
-                  }}
-                  // className="m-3 px-10 py-2 hover:bg-primary hover:text-white rounded-md"
-                  onClick={handleCloseUserMenu}
-                >
-                  <Typography textAlign="center" className=" w-full">
-                    {menu.route}
-                  </Typography>
-                </MenuItem>
-              </Link>
-            ))}
-            <MenuItem
-              sx={{
-                margin: "12px",
-                paddingX: "40px",
-                paddingY: "8px",
-                borderRadius: "6px",
-                "&:hover": { backgroundColor: "#455ce9", color: "white" },
-              }}
-              onClick={() => {
-                logOut();
-                handleCloseUserMenu();
-              }}
-            >
-              <Typography textAlign="center" className="w-full">
-                Logout
-              </Typography>
-            </MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    //       {/* user menu */}
+    //       <Menu
+    //         sx={{ mt: "45px", py: "0px" }}
+    //         anchorEl={anchorElUser}
+    //         anchorOrigin={{
+    //           vertical: "top",
+    //           horizontal: "right",
+    //         }}
+    //         keepMounted
+    //         transformOrigin={{
+    //           vertical: "top",
+    //           horizontal: "right",
+    //         }}
+    //         open={Boolean(anchorElUser)}
+    //         onClose={handleCloseUserMenu}
+    //       >
+    //         {menuItemsForUser.map((menu, idx) => (
+    //           <Link key={idx} href={menu.pathname}>
+    //             <MenuItem
+    //               sx={{
+    //                 margin: "12px",
+    //                 paddingX: "40px",
+    //                 paddingY: "8px",
+    //                 borderRadius: "6px",
+    //                 "&:hover": { backgroundColor: "#455ce9", color: "white" },
+    //               }}
+    //               // className="m-3 px-10 py-2 hover:bg-primary hover:text-white rounded-md"
+    //               onClick={handleCloseUserMenu}
+    //             >
+    //               <Typography textAlign="center" className=" w-full">
+    //                 {menu.route}
+    //               </Typography>
+    //             </MenuItem>
+    //           </Link>
+    //         ))}
+    //         <MenuItem
+    //           sx={{
+    //             margin: "12px",
+    //             paddingX: "40px",
+    //             paddingY: "8px",
+    //             borderRadius: "6px",
+    //             "&:hover": { backgroundColor: "#455ce9", color: "white" },
+    //           }}
+    //           onClick={() => {
+    //             logOut();
+    //             handleCloseUserMenu();
+    //           }}
+    //         >
+    //           <Typography textAlign="center" className="w-full">
+    //             Logout
+    //           </Typography>
+    //         </MenuItem>
+    //       </Menu>
+    //     </Toolbar>
+    //   </AppBar>
+    // </Box>
+    <div className="h-full w-full bg-white rounded-3xl"></div>
   );
 };
 

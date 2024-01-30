@@ -102,7 +102,7 @@ const Wallet = () => {
   );
 
   return (
-    <div className="flex flex-col xl:flex-row justify-between gap-8 w-full xl:p-3">
+    <div className="flex flex-col xl:flex-row justify-between gap-8 w-full">
       <div className="xl:w-9/12 flex flex-col gap-8">
         <div className="p-4 xl:p-6 bg-white rounded-md">
           <div className="flex flex-col-reverse xl:flex-row justify-between gap-6">

@@ -141,112 +141,113 @@ const TradersDashboardSidebar = () => {
   ];
 
   return (
-    <div className="flex flex-col justify-between h-full bg-primary">
-      <Stack className="bg-primary" sx={{ width: "100%", paddingX: "16px" }}>
-        <Link href={"/"} className=" flex items-center justify-center">
-          <Magnetic>
-            <Image
-              src={logo}
-              width={150}
-              className="mx-auto my-6"
-              alt="logo"
-            ></Image>
-          </Magnetic>
-        </Link>
-        <List>
-          {dashboardUpperLinkForUser.map((link, idx) => (
-            <ListItem
-              sx={{
-                "&:hover": {
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                },
-                borderRadius: "70px",
-                color: "white",
-                marginBottom: "10px",
-                overflow: "hidden",
-              }}
-              key={idx}
-              disablePadding
-            >
-              <Magnetic>
-                <Link href={link.pathname} className="w-full">
-                  <ListItemButton className="w-full">
-                    <ListItemIcon className="text-transparent">
-                      {link.icon}
-                    </ListItemIcon>
-                    <ListItemText primary={link.route} />
-                  </ListItemButton>
-                </Link>
-              </Magnetic>
-            </ListItem>
-          ))}
-        </List>
-      </Stack>
+    // <div className="flex flex-col justify-between h-full bg-primary">
+    //   <Stack className="bg-primary" sx={{ width: "100%", paddingX: "16px" }}>
+    //     <Link href={"/"} className=" flex items-center justify-center">
+    //       <Magnetic>
+    //         <Image
+    //           src={logo}
+    //           width={150}
+    //           className="mx-auto my-6"
+    //           alt="logo"
+    //         ></Image>
+    //       </Magnetic>
+    //     </Link>
+    //     <List>
+    //       {dashboardUpperLinkForUser.map((link, idx) => (
+    //         <ListItem
+    //           sx={{
+    //             "&:hover": {
+    //               backgroundColor: "rgba(255, 255, 255, 0.1)",
+    //             },
+    //             borderRadius: "70px",
+    //             color: "white",
+    //             marginBottom: "10px",
+    //             overflow: "hidden",
+    //           }}
+    //           key={idx}
+    //           disablePadding
+    //         >
+    //           <Magnetic>
+    //             <Link href={link.pathname} className="w-full">
+    //               <ListItemButton className="w-full">
+    //                 <ListItemIcon className="text-transparent">
+    //                   {link.icon}
+    //                 </ListItemIcon>
+    //                 <ListItemText primary={link.route} />
+    //               </ListItemButton>
+    //             </Link>
+    //           </Magnetic>
+    //         </ListItem>
+    //       ))}
+    //     </List>
+    //   </Stack>
 
-      <Stack className="px-4 bg-primary">
-        <Link href={"/"}>
-          <ListItemButton
-            sx={{
-              "&:hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-              },
-              borderRadius: "70px",
-              color: "white",
-              marginBottom: "10px",
-              overflow: "hidden",
-            }}
-            className="w-full"
-          >
-            <Magnetic>
-              <div className="flex items-center">
-                <ListItemIcon>
-                  <HomeIcon
-                    sx={{
-                      borderRadius: "70px",
-                      color: "white",
-                      width: "35px",
-                      height: "35px",
-                      padding: "8px",
-                    }}
-                  />
-                </ListItemIcon>
-                <ListItemText primary={"Back to Home"} />
-              </div>
-            </Magnetic>
-          </ListItemButton>
-        </Link>
-        <ListItemButton
-          onClick={handleLogOut}
-          sx={{
-            "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
-            },
-            borderRadius: "70px",
-            color: "white",
-            marginBottom: "10px",
-            overflow: "hidden",
-          }}
-          className="w-full"
-        >
-          <Magnetic>
-            <div className="flex items-center">
-              <ListItemIcon>
-                <LogoutIcon
-                  sx={{
-                    borderRadius: "70px",
-                    color: "white",
-                    width: "35px",
-                    height: "35px",
-                    padding: "8px",
-                  }}
-                />
-              </ListItemIcon>
-              <ListItemText primary={"Logout"} />
-            </div>
-          </Magnetic>
-        </ListItemButton>
-      </Stack>
-    </div>
+    //   <Stack className="px-4 bg-primary">
+    //     <Link href={"/"}>
+    //       <ListItemButton
+    //         sx={{
+    //           "&:hover": {
+    //             backgroundColor: "rgba(255, 255, 255, 0.1)",
+    //           },
+    //           borderRadius: "70px",
+    //           color: "white",
+    //           marginBottom: "10px",
+    //           overflow: "hidden",
+    //         }}
+    //         className="w-full"
+    //       >
+    //         <Magnetic>
+    //           <div className="flex items-center">
+    //             <ListItemIcon>
+    //               <HomeIcon
+    //                 sx={{
+    //                   borderRadius: "70px",
+    //                   color: "white",
+    //                   width: "35px",
+    //                   height: "35px",
+    //                   padding: "8px",
+    //                 }}
+    //               />
+    //             </ListItemIcon>
+    //             <ListItemText primary={"Back to Home"} />
+    //           </div>
+    //         </Magnetic>
+    //       </ListItemButton>
+    //     </Link>
+    //     <ListItemButton
+    //       onClick={handleLogOut}
+    //       sx={{
+    //         "&:hover": {
+    //           backgroundColor: "rgba(255, 255, 255, 0.1)",
+    //         },
+    //         borderRadius: "70px",
+    //         color: "white",
+    //         marginBottom: "10px",
+    //         overflow: "hidden",
+    //       }}
+    //       className="w-full"
+    //     >
+    //       <Magnetic>
+    //         <div className="flex items-center">
+    //           <ListItemIcon>
+    //             <LogoutIcon
+    //               sx={{
+    //                 borderRadius: "70px",
+    //                 color: "white",
+    //                 width: "35px",
+    //                 height: "35px",
+    //                 padding: "8px",
+    //               }}
+    //             />
+    //           </ListItemIcon>
+    //           <ListItemText primary={"Logout"} />
+    //         </div>
+    //       </Magnetic>
+    //     </ListItemButton>
+    //   </Stack>
+    // </div>
+    <div className="h-full w-full bg-white rounded-3xl"></div>
   );
 };
 

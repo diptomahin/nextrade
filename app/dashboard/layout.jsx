@@ -1,12 +1,12 @@
 "use client";
-import TradersDashboardNavbar from "@/components/navigation/trader_nav/TradersNav";
-import TradersDashboardSidebar from "@/components/navigation/trader_nav/TradersSideNav";
 import { Drawer, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Magnetic from "@/components/library/Magnetic";
+import TradersDashboardNavbar from "@/components/navigation/trader_nav/TradersNav";
+import TradersDashboardSidebar from "@/components/navigation/trader_nav/TradersSideNav";
 const queryClient = new QueryClient();
 
 const Dashboard = ({ children }) => {
@@ -19,8 +19,7 @@ const Dashboard = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <PrivateRoute>
-        <div className="min-h-screen bg-[#F1F1F1]">
-          {/* navbar */}
+        {/* <div className="min-h-screen bg-[#F1F1F1]">
           <div className="left-0 top-0 fixed w-full h-[82px] 2xl:pl-[250px] z-40 bg-primary">
             <Toolbar>
               <IconButton
@@ -42,8 +41,7 @@ const Dashboard = ({ children }) => {
               <TradersDashboardNavbar />
             </Toolbar>
           </div>
-
-          {/* drawer */}
+ 
           <div className="hidden 2xl:block h-full left-0 top-0 fixed w-[250px] z-50 border-none">
             <Drawer
               sx={{
@@ -78,6 +76,18 @@ const Dashboard = ({ children }) => {
           </div>
 
           <div className="min-h-full 2xl:ml-[250px] mt-[87px] p-4 bg-[#F1F1F1]">
+            {children}
+          </div>
+        </div> */}
+        <div className="min-h-screen bg-zinc-200">
+          <div className="fixed top-0 w-full h-[70px] px-3 py-[10px] z-40 bg-zinc-200">
+            <TradersDashboardNavbar />
+          </div>
+          <div className="hidden 2xl:block fixed left-3 top-[70px] h-full w-[200px] pb-[82px] z-50 bg-zinc-200">
+            <TradersDashboardSidebar />
+          </div>
+
+          <div className="ml-5 2xl:ml-[232px] mr-5 pt-20 pb-10 bg-zinc-200">
             {children}
           </div>
         </div>
