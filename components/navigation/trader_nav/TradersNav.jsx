@@ -12,6 +12,8 @@ import { Avatar, Menu, MenuItem, Stack, Tooltip } from "@mui/material";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
+import Magnetic from "@/components/library/Magnetic";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,7 +64,7 @@ const menuItemsForUser = [
   },
 ];
 
-const TradersDashboardNavbar = () => {
+const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
   const { user, logOut } = useAuth();
 
   // user menu related functions
@@ -186,7 +188,26 @@ const TradersDashboardNavbar = () => {
     //     </Toolbar>
     //   </AppBar>
     // </Box>
-    <div className="h-full w-full bg-white rounded-3xl"></div>
+    <div className="h-full w-full bg-white rounded-2xl px-5">
+      <IconButton
+        color="black"
+        aria-label="open drawer"
+        edge="start"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        sx={{
+          color: "black",
+          "@media (min-width: 1280px)": {
+            display: "none",
+            color: "black",
+            backgroundColor: "black",
+          },
+        }}
+      >
+        <Magnetic>
+          <MenuIcon sx={{ color: "white" }} />
+        </Magnetic>
+      </IconButton>
+    </div>
   );
 };
 
