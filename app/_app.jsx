@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import emailjs from 'emailjs-com';
 
-emailjs.init("GLw01ClqMXi471y7-SIwd");
+emailjs.init("eKB9bGUsvbE937RGN");
 
 function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />;

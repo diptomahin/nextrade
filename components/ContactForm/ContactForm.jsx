@@ -1,21 +1,33 @@
-"use client";
-
 import Button from "@/components/library/buttons/root_button/RootButton";
 import emailjs from '@emailjs/browser';
 import { useForm } from "react-hook-form";
 
-
 const ContactForm = () => {
-    const { register, handleSubmit, reset } = useForm();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors }
+    } = useForm();
 
-    const onSubmit = async (data) => {
+
+    const onSubmit = async (data, e) => {
+        e.preventDefault(); // Prevent the default form submission
         try {
-            await emailjs.sendForm('service_5crf3z7', 'template_6p6drrs', data);
+            await emailjs.send('service_5crf3z7', 'template_6p6drrs', data, 'eKB9bGUsvbE937RGN');
             console.log('Email sent successfully');
             reset(); // Reset the form after successful submission
         } catch (error) {
             console.error('Failed to send email:', error);
         }
+    };
+
+   
+    const validationOptions = {
+        name: { required: 'Name is required' },
+        phone: { required: 'Phone number is required' },
+        email: { required: 'Email is required' },
+        message: { required: 'Message is required' },
     };
 
     return (
@@ -29,33 +41,33 @@ const ContactForm = () => {
                 <div className="md:w-1/2 md:space-y-5">
                     <div className="flex flex-col">
                         <label
-                            for="name"
+                            htmlFor="name"
                             className="font-semibold text-primary text-xl"
                         >
                             Name:
                         </label>
                         <input
+                            {...register("name", validationOptions.name)}
                             className="bg-white rounded-lg p-2"
                             type="text"
                             placeholder="Name"
-                            name="name"
                             id="name"
                         />
                     </div>
 
                     <div className="flex flex-col">
                         <label
-                            for="name"
+                            htmlFor="phone"
                             className="font-semibold text-primary text-xl"
                         >
                             Phone:
                         </label>
                         <input
+                            {...register("phone", validationOptions.phone)}
                             className="bg-white rounded-lg p-2"
                             type="number"
                             placeholder="01 xx xxxx xxx"
-                            name="name"
-                            id="name"
+                            id="phone"
                         />
                     </div>
                 </div>
@@ -63,45 +75,45 @@ const ContactForm = () => {
                 <div className="md:w-1/2 md:space-y-5">
                     <div className="flex flex-col">
                         <label
-                            for="email"
+                            htmlFor="email"
                             className="font-semibold text-primary text-xl"
                         >
                             Email:
                         </label>
                         <input
+                            {...register("email", validationOptions.email)}
                             className="p-2 bg-white rounded-lg"
                             type="email"
                             placeholder="example@gmail.com"
-                            name="email"
                             id="email"
                         />
                     </div>
 
                     <div className="flex flex-col">
                         <label
-                            for="name"
+                            htmlFor="company"
                             className="font-semibold text-primary text-xl"
                         >
                             Company:
                         </label>
                         <input
+                            {...register("company")}
                             className="bg-white rounded-lg p-2"
                             type="text"
                             placeholder="Microsoft"
-                            name="name"
-                            id="name"
+                            id="company"
                         />
                     </div>
                 </div>
             </div>
 
             <div className="flex flex-col">
-                <label for="message" className="font-semibold text-primary text-xl">
+                <label htmlFor="message" className="font-semibold text-primary text-xl">
                     Leave us a message:
                 </label>
                 <textarea
+                    {...register("message", validationOptions.message)}
                     className="bg-white w-full rounded-lg p-2"
-                    name="message"
                     rows="5"
                     placeholder="Your Message"
                     id="message"
@@ -109,7 +121,6 @@ const ContactForm = () => {
             </div>
 
             <Button type="submit">Send Message</Button>
-
         </form>
     );
 };
