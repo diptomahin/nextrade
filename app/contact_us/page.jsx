@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "@/components/library/buttons/root_button/RootButton";
 import Container from "@/components/library/Container";
 import { Typography } from "@mui/material";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PhoneForwardedOutlinedIcon from "@mui/icons-material/PhoneForwardedOutlined";
+import ContactForm from "@/components/ContactForm/ContactForm";
 
 const page = () => {
   return (
@@ -33,98 +33,10 @@ const page = () => {
       </Typography>
 
       <div className="mx-auto 2xl:mx-24 bg-[#e9eef1] rounded-xl">
-        <form
-          method="POST"
-          action="https://getform.io/f/a699a1b2-f225-434e-b317-1fbbde8e006c"
-          className="flex p-5 md:p-10 space-y-5 flex-col  w-full"
-        >
-          <div className="md:flex justify-between gap-10">
-            <div className="md:w-1/2 md:space-y-5">
-              <div className="flex flex-col">
-                <label
-                  for="name"
-                  className="font-semibold text-primary text-xl"
-                >
-                  Name:
-                </label>
-                <input
-                  className="bg-white rounded-lg p-2"
-                  type="text"
-                  placeholder="Name"
-                  name="name"
-                  id="name"
-                />
-              </div>
+        
+      {/* contact form */}
+      <ContactForm></ContactForm>
 
-              <div className="flex flex-col">
-                <label
-                  for="name"
-                  className="font-semibold text-primary text-xl"
-                >
-                  Phone:
-                </label>
-                <input
-                  className="bg-white rounded-lg p-2"
-                  type="number"
-                  placeholder="01 xx xxxx xxx"
-                  name="name"
-                  id="name"
-                />
-              </div>
-            </div>
-
-            <div className="md:w-1/2 md:space-y-5">
-              <div className="flex flex-col">
-                <label
-                  for="email"
-                  className="font-semibold text-primary text-xl"
-                >
-                  Email:
-                </label>
-                <input
-                  className="p-2 bg-white rounded-lg"
-                  type="email"
-                  placeholder="example@gmail.com"
-                  name="email"
-                  id="email"
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label
-                  for="name"
-                  className="font-semibold text-primary text-xl"
-                >
-                  Company:
-                </label>
-                <input
-                  className="bg-white rounded-lg p-2"
-                  type="text"
-                  placeholder="Microsoft"
-                  name="name"
-                  id="name"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col">
-            <label for="message" className="font-semibold text-primary text-xl">
-              Leave us a message:
-            </label>
-            <textarea
-              className="bg-white w-full rounded-lg p-2"
-              name="message"
-              rows="5"
-              placeholder="Your Message"
-              id="message"
-            ></textarea>
-          </div>
-
-          <div>
-            <Button>Send Message</Button>
-          </div>
-        </form>
       </div>
       <div className="mx-auto mt-10 2xl:mx-24 bg-[#e9eef1] rounded-xl">
         <div className="flex flex-col md:flex-row justify-around gap-10 py-10">
@@ -134,7 +46,7 @@ const page = () => {
             </div>
             <div className=" flex-1  ">
               <p className="mt-2">Email:</p>
-              <h1 className=" font-bold text-lg">help@nexttrade.com</h1>
+              <h1 className=" font-bold text-lg">nexttrade.help@gmail.com</h1>
             </div>
           </div>
           <div className=" xl:flex p-10 items-center gap-7 shadow-md lg:p-5  rounded-lg bg-white">
