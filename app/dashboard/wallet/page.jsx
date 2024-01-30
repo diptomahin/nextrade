@@ -10,7 +10,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CardTravelOutlinedIcon from "@mui/icons-material/CardTravelOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import AvTimerOutlinedIcon from "@mui/icons-material/AvTimerOutlined";
-import DepositForm from "@/components/dash_comp/traders_comp/wallet/DepositForm";
+import DepositForm from "@/components/traders_comp/wallet/DepositForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Table from "@mui/material/Table";

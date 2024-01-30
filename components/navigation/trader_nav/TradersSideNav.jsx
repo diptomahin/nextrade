@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../../assets/logo/NexTrade-Logo-White.png";
+import logo from "../../../assets/logo/NexTrade-Logo-White.png";
 import HomeIcon from "@mui/icons-material/Home";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
