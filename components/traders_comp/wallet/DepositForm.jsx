@@ -16,7 +16,7 @@ const second = currentDate.getSeconds();
 const date = { day: day, month: month, year: year };
 const time = { second: second, minute: minute, hour: hour };
 
-const DepositForm = ({ setUserBalanceDetails }) => {
+const DepositForm = ({ refetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState("");
@@ -104,26 +104,12 @@ const DepositForm = ({ setUserBalanceDetails }) => {
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               form.reset();
-              // Reset the Stripe CardElement
-              if (elements) {
-                elements.getElement(CardElement).clear();
-              }
-              axios
-                .get(
-                  `https://nex-trade-server.vercel.app/v1/api/all-users/${user?.email}`
-                )
-                .then((res) => {
-                  form.reset();
-                  // Reset the Stripe CardElement
-                  if (elements) {
-                    elements.getElement(CardElement).clear();
-                  }
-                  setUserBalanceDetails(res.data[0]);
-                  toast.success("Deposit Successful", {
-                    id: toastId,
-                    duration: 4000,
-                  });
-                });
+              elements.getElement(CardElement).clear();
+              refetch();
+              toast.success("Deposit Successful", {
+                id: toastId,
+                duration: 4000,
+              });
             }
           });
       }
