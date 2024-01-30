@@ -3,7 +3,7 @@ import * as React from "react";
 import { IoMdArrowDropup } from "react-icons/io";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import logo from "../../../../assets/logo/NexTrade-Logo-Original.png";
+import logo from "../../../assets/logo/NexTrade-Logo-Original.png";
 import Link from "next/link";
 import Container from "@/components/library/Container";
 import Magnetic from "@/components/library/Magnetic";

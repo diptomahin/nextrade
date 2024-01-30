@@ -1,6 +1,6 @@
 "use client";
-import TradersDashboardNavbar from "@/components/common/navigation/trader_nav/TradersNav";
-import TradersDashboardSidebar from "@/components/common/navigation/trader_nav/TradersSideNav";
+import TradersDashboardNavbar from "@/components/navigation/trader_nav/TradersNav";
+import TradersDashboardSidebar from "@/components/navigation/trader_nav/TradersSideNav";
 import { Drawer, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";

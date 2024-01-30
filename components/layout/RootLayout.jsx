@@ -1,6 +1,6 @@
 import React from "react";
-import RootNav from "../common/navigation/root_nav/RootNav";
-import Footer from "../common/footer/Footer";
+import RootNav from "../navigation/root_nav/RootNav";
+import Footer from "../footer/Footer";
 
 const MainLayout = ({ children }) => {
   return (
