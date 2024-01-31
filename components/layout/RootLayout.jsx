@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const MainLayout = ({ children }) => {
   const pathname = usePathname();
   // console.log(location);
-  const noHeaderFooter = pathname.includes('login') || location.pathname.includes('register') || pathname.includes('dashboard')
+  const noHeaderFooter = pathname.includes('login') || pathname.includes('register') || pathname.includes('dashboard')
   return (
     <div className="font-dm">
       {
