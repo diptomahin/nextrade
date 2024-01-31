@@ -147,7 +147,9 @@ const Login = () => {
             </div>
 
             <Stack mt={2} alignItems="center">
-              <Button type="submit" className="w-full">Log In</Button>
+              {
+               captchaValue ? <Button type="submit" className="w-full">Log In</Button> : <Button disabled type="submit" className="w-full">Log In</Button>
+              }
             </Stack>
             <Typography className="text-lg lg:text-xl text-center ">
               Don&apos;t Have an account?{" "}
