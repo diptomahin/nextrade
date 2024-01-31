@@ -1,7 +1,24 @@
+"use client"
 import React from 'react';
 import { Avatar } from '@mui/material'
+import { AuthContext } from "@/provider/AuthProvider";
+import { useContext } from "react";
 
 const page = () => {
+
+    const { user, updateUserProfile } = useContext(AuthContext);
+
+    const profilePic = user.photoURL;
+    const updateProfileInfo = (e) => {
+      e.preventDefault();
+      const form = new FormData(e.currentTarget);
+      const name = form.get("name");
+      const photo = form.get("photo");
+      const updatedProfileInfo = { name };
+      console.log(updatedProfileInfo);
+  
+      updateUserProfile(name, photo).then(() => { });
+    };
     return (
            <div className="w-9/12 mx-auto">
        <Avatar
