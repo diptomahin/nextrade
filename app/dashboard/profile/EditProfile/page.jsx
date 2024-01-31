@@ -1,12 +1,12 @@
 "use client"
 import React from 'react';
+import { useContext } from "react";
 import { Avatar } from '@mui/material'
 import { AuthContext } from "@/provider/AuthProvider";
-import { useContext } from "react";
 
-const page = () => {
+const EditProfile = () => {
 
-    const { user, updateUserProfile } = useContext(AuthContext);
+    const { user, updateUserProfile } = useContext(AuthContext) ;
 
     const profilePic = user.photoURL;
     const updateProfileInfo = (e) => {
@@ -55,5 +55,5 @@ const page = () => {
     );
 };
 
-export default page;
+export default EditProfile;
 
