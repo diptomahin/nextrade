@@ -207,7 +207,7 @@ const Register = () => {
               {captchaValue ? (
                 <Button className="w-full" type="submit"> Create Account</Button>
               ) : (
-                <Button className="disabled w-full" type="submit">
+                <Button disabled className="w-full" type="submit">
                   Create Account
                 </Button>
               )}
