@@ -12,6 +12,10 @@ import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRouter } from "next/navigation";
 import usePublicAPI from "@/hooks/usePublicAPI";
+import Lottie from "lottie-react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import RegisterAnim from "../../assets/regiAnim"
+import Magnetic from "@/components/library/Magnetic";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -131,10 +135,14 @@ const Register = () => {
   };
 
   return (
-    <Container className="flex justify-center items-center min-h-[100vh]">
+    <Container className="flex flex-col  xl:flex-row-reverse justify-around items-center min-h-[100vh] relative">
+      <Magnetic>
+        <Link href="/" className="text-primary font-semibold flex items-center gap-3 absolute top-10 right-0 z-10"><ArrowBackIcon />Home</Link>
+      </Magnetic>
+      <Lottie className="w-full xl:w-[40%]" animationData={RegisterAnim} loop={true} />
       <Stack
         gap={2}
-        className="border-2 shadow-2xl shadow-primary rounded-2xl p-4 md:p-7 2xl:p-16 w-full md:w-3/5 lg:w-2/5"
+        className="border-2 shadow-2xl shadow-primary rounded-md p-4 md:p-6 2xl:px-14 2xl:py-12 w-full md:w-4/5 lg:w-4/5 xl:w-[50%] 2xl:w-2/5"
       >
         <form onSubmit={handleSubmit(onSubmit)} className="">
           <Typography

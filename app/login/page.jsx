@@ -15,6 +15,8 @@ import { useRouter } from "next/navigation";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import Lottie from "lottie-react";
 import loginAnim from "../../assets/loginAnim.json"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Magnetic from "@/components/library/Magnetic";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -113,10 +115,11 @@ const Login = () => {
   };
 
   return (
-    <Container className="flex flex-col  xl:flex-row justify-around items-center min-h-[100vh]">
-      {/* <Stack sx={{width:"100%", '@media (max-width: 1024px)':{width:"40%"}}}> */}
-        <Lottie className="w-full xl:w-[40%]" animationData={loginAnim} loop={true} />
-      {/* </Stack> */}
+    <Container className="flex flex-col  xl:flex-row justify-around items-center min-h-[100vh] relative">
+      <Magnetic>
+        <Link href="/" className="text-primary font-semibold flex items-center gap-3 absolute top-10 left-0 z-10"><ArrowBackIcon />Home</Link>
+      </Magnetic>
+      <Lottie className="w-full xl:w-[40%]" animationData={loginAnim} loop={true} />
       <Stack
         gap={2}
         className="border-2 shadow-2xl shadow-primary rounded-md p-4 md:p-7 2xl:p-16 w-full md:w-4/5 lg:w-4/5 xl:w-[50%] 2xl:w-2/5"
