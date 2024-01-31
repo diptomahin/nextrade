@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Stack, TextField, Typography } from "@mui/material";
 import Button from "@/components/library/buttons/root_button/RootButton";
 import styled from "@emotion/styled";
-import Container from "@/components/library/Container";
 import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -17,6 +16,7 @@ import Lottie from "lottie-react";
 import loginAnim from "../../assets/loginAnim.json"
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Magnetic from "@/components/library/Magnetic";
+import SocialLogin from "@/components/auth_comp/SocialLogin";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -81,74 +81,29 @@ const Login = () => {
       });
   };
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then((res) => {
-        const loggedUser = res.user;
-
-        const userInfo = {
-          userID: loggedUser.uid,
-          email: loggedUser.email,
-          name: loggedUser.displayName,
-          createdAt: loggedUser.metadata.creationTime,
-          balance: 1000000,
-          portfolio: [],
-        };
-
-        publicAPI.post("/all-users", userInfo).then((res) => {
-          Swal.fire({
-            title: "Log In successful!",
-            text: `Welcome back ${loggedUser.displayName}`,
-            icon: "success",
-          });
-          router.push(from);
-        });
-      })
-      .catch(() => {
-        Swal.fire({
-          title: "Log In failed!",
-          text: `Please try again`,
-          icon: "error",
-        });
-        reset;
-      });
-  };
 
   return (
-    <Container className="flex flex-col  xl:flex-row justify-around items-center min-h-[100vh] relative">
+    <div className="flex flex-col xl:flex-row-reverse xl:items-center min-h-[100vh] relative">
       <Magnetic>
-        <Link href="/" className="text-primary font-semibold flex items-center gap-3 absolute top-10 left-0 z-10"><ArrowBackIcon />Home</Link>
+        <Link href="/" className="text-white 2xl:text-primary font-semibold flex items-center gap-3 absolute top-5 2xl:top-10  left-7 2xl:right-12 z-10"><ArrowBackIcon />Home</Link>
       </Magnetic>
-      <Lottie className="w-full xl:w-[40%]" animationData={loginAnim} loop={true} />
+      
+      <Stack flex={1} sx={{ backgroundColor: "#455ce9", height: "100vh", display:"flex", justifyContent:"center", alignItems:"center" }}>
+        <Lottie className="w-full" animationData={loginAnim} loop={true} />
+      </Stack>
+
       <Stack
-        gap={2}
-        className="border-2 shadow-2xl shadow-primary rounded-md p-4 md:p-7 2xl:p-16 w-full md:w-4/5 lg:w-4/5 xl:w-[50%] 2xl:w-2/5"
+        flex={1} 
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="">
+        <form onSubmit={handleSubmit(onSubmit)} className="px-5 mx-auto my-10 xl:my-0 md:px-0 w-full md:w-[80%] 2xl:w-[70%]">
           <Typography
             variant="h2"
             mb={2}
-            fontWeight="bold"
-            className="text-primary"
-            sx={{ fontSize: ["28px", "28px", "42px"] }}
+            fontWeight="600"
+            sx={{ fontSize: ["24px", "28px", "30px"] }}
           >
-            Welcome to Login
+            Login to NexTrade
           </Typography>
-          <Typography className="text-lg lg:text-xl text-primary">
-            Don&apos;t Have an account?{" "}
-            <Link href="/register" className=" font-bold hover:underline">
-              Register here
-            </Link>
-          </Typography>
-
-          {/* Google Captcha */}
-
-          <div className="mb-3 mt-4 flex justify-center">
-            <ReCAPTCHA
-              sitekey="6LelPTApAAAAADWVe8dSbkcjltECOr38kOEygA9u"
-              onChange={onChange}
-            />
-          </div>
 
           <Stack mt={4} gap={3}>
             {/* email */}
@@ -183,24 +138,30 @@ const Login = () => {
               <span className="text-red-700">password is required !</span>
             )}
 
+            {/* Google Captcha */}
+
+            <div className="mb-3 mt-4 flex justify-center">
+              <ReCAPTCHA
+                sitekey="6LelPTApAAAAADWVe8dSbkcjltECOr38kOEygA9u"
+                onChange={onChange}
+              />
+            </div>
+
             <Stack mt={2} alignItems="center">
-              <Button type="submit">Log In</Button>
+              <Button type="submit" className="w-full">Log In</Button>
             </Stack>
+            <Typography className="text-lg lg:text-xl text-center ">
+              Don&apos;t Have an account?{" "}
+              <Link href="/register" className="text-primary font-bold hover:underline">
+                Register here
+              </Link>
+            </Typography>
           </Stack>
+          <SocialLogin />
         </form>
-        <div className="space-y-2">
-          <p className="text-center">Or</p>
-          <div className="flex justify-center">
-            <button
-              onClick={handleGoogleLogin}
-              className=" bg-gradient-to-r rounded-3xl  from-[#239FFE] to-[#0272E5] text-sm lg:text-base text-white p-3 flex gap-2 items-center"
-            >
-              Continue with<FcGoogle className="text-2xl"></FcGoogle>
-            </button>
-          </div>
-        </div>
+
       </Stack>
-    </Container>
+    </div>
   );
 };
 
