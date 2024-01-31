@@ -34,11 +34,7 @@ const RootNav = () => {
 
   return (
     <nav
-      className={`fixed top-[30px] w-full z-[99] ${
-        pathname === "/register" ||
-        pathname === "/login" ||
-        (pathname.includes("/dashboard") && "hidden")
-      }`}
+      className="fixed top-[30px] w-full z-[99]"
     >
       <Container>
         <div className="flex items-center justify-between">
