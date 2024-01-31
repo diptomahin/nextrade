@@ -14,7 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const ProfilePage = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
-  // console.log(user)
+
   const profilePic = user.photoURL;
   // const updateProfileInfo = (e) => {
   //   e.preventDefault();
