@@ -99,40 +99,6 @@ const Register = () => {
       });
   };
 
-  // login with google
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then((res) => {
-        const loggedUser = res.user;
-
-        const userInfo = {
-          userID: loggedUser.uid,
-          email: loggedUser.email,
-          name: loggedUser.displayName,
-          createdAt: loggedUser.metadata.creationTime,
-          balance: 1000000,
-          portfolio: [],
-        };
-
-        publicAPI.post("/all-users", userInfo).then((res) => {
-          Swal.fire({
-            title: "Log In successful!",
-            text: `Welcome back ${loggedUser.displayName}`,
-            icon: "success",
-          });
-          router.push(from);
-        });
-      })
-      .catch((error) => {
-        console.log(error.message);
-        Swal.fire({
-          title: "Log In failed!",
-          text: `Please try again`,
-          icon: "error",
-        });
-        reset();
-      });
-  };
 
   return (
     <div className="flex flex-col xl:flex-row xl:items-center min-h-[100vh] relative">
