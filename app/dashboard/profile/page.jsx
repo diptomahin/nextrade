@@ -11,38 +11,30 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
+import { Link } from 'next/link';
 
 const ProfilePage = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
 
-  const profilePic = user.photoURL;
-  // const updateProfileInfo = (e) => {
-  //   e.preventDefault();
-  //   const form = new FormData(e.currentTarget);
-  //   const name = form.get("name");
-  //   const photo = form.get("photo");
-  //   const updatedProfileInfo = { name };
-  //   console.log(updatedProfileInfo);
-
-  //   updateUserProfile(name, photo).then(() => { });
-  // };
 
   return (
     <Box>
-      <Card className="grid grid-cols-1 " sx={{  }}>
-        <div >
+      <Card className="grid grid-cols-1 w-10/12 mx-auto " sx={{  }}>
+        <div className="grid grid-cols-2 gap-3 mx-auto">
         <Avatar
           alt="profile Image"
           src={user.photoURL}
-          className="my-10"
-          sx={{ width: 100, height: 100, }}
+          className="my-10 "
+          sx={{ width: 200, height: 200, }}
         />
         <CardActions>
+          <Link href="/dashboard/profile/EditProfile">
           <Button size="large">
           <Typography variant="h6" className="hover:bg-primary hover:text-white p-3 text-primary border-primary rounded-lg border-2">
           <EditIcon className=""/>
             Edit
           </Typography></Button>
+          </Link>
         </CardActions>
         </div>
         <CardContent className="mt-5">
