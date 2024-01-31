@@ -14,18 +14,18 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const ProfilePage = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
-  console.log(user)
+  // console.log(user)
   const profilePic = user.photoURL;
-  const updateProfileInfo = (e) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const name = form.get("name");
-    const photo = form.get("photo");
-    const updatedProfileInfo = { name };
-    console.log(updatedProfileInfo);
+  // const updateProfileInfo = (e) => {
+  //   e.preventDefault();
+  //   const form = new FormData(e.currentTarget);
+  //   const name = form.get("name");
+  //   const photo = form.get("photo");
+  //   const updatedProfileInfo = { name };
+  //   console.log(updatedProfileInfo);
 
-    updateUserProfile(name, photo).then(() => { });
-  };
+  //   updateUserProfile(name, photo).then(() => { });
+  // };
 
   return (
     <Box>
