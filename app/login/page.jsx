@@ -40,7 +40,6 @@ const CssTextField = styled(TextField)({
 });
 
 const Login = () => {
-  const publicAPI = usePublicAPI();
 
   const router = useRouter();
   const { from } = router.query || { from: "/dashboard" };

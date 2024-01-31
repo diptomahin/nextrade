@@ -3,21 +3,40 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import RootButton from "../library/buttons/root_button/RootButton";
+import usePublicAPI from "@/hooks/usePublicAPI";
 
 
 const SocialLogin = () => {
     const { googleLogin } = useAuth();
+    const publicAPI = usePublicAPI();
     const router = useRouter();
     const { from } = router.query || { from: "/dashboard" };
 
-    const handleSocialLogin = async (login) => {
-        try {
-            await login();
-            toast.success("Register Successful!");
-            router.push(from);
-        } catch (error) {
-            toast.error(error.message.slice(10));
-        }
+    const handleSocialLogin = (login) => {
+        login()
+            .then((res) => {
+                const loggedUser = res.user;
+
+                const userInfo = {
+                    userID: loggedUser.uid,
+                    email: loggedUser.email,
+                    name: loggedUser.displayName,
+                    createdAt: loggedUser.metadata.creationTime,
+                    balance: 1000000,
+                    portfolio: [],
+                };
+
+                publicAPI.post("/all-users", userInfo).then((res) => {
+                    toast.success("Register Successful!");
+                    router.push(from);
+
+                });
+            })
+            .catch(() => {
+                toast.error(error.message.slice(10));
+                reset;
+            });
+
     };
     return (
         <>
