@@ -1,14 +1,14 @@
-# NexTrade | A online trading and business platform.
+## [NexTrade | A online trading and business platform.](https://nextrade-front-end.vercel.app/)
 
 ## Description
 NexTrade aims to provide a comprehensive online platform for businesses and traders to engage in secure and efficient trading activities. The platform will facilitate the buying and selling of various products and services while offering user-friendly features for seamless transactions.
 ## Live Link
 
-   [NexTrade Live]()
+   [NexTrade Live](https://nextrade-front-end.vercel.app/)
 
 ## Server Side
 
-  [NexTrade Server Code]()
+  [NexTrade Server Code](https://github.com/diptomahin/nexTrade-server)
 
 
 ## NexTrade Homepage
@@ -38,7 +38,7 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 - **Authentication:**
   - Gmail and Email/Password authentication system.
   - Implement JWT(Json Web Token) with private route.
-  - Utilizes OAuth 2.0 for secure user registration and login functionalities.
+  - Utilizes Firebase Authentication for secure user registration and login functionalities.
 
 
 - **Payment System:**
@@ -53,8 +53,8 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
  - **Frontend:** JavaScript, Next.js, React.js, Tailwind CSS and Material UI.
  - **Backend:** Node.js, Express.js.
  - **Database:** MongoDB.
- - **Authentication:** OAuth 2.0 Authentication with JWT.
-- **Host:** Firebase.
+ - **Authentication:** Firebase Authentication with JWT.
+- **Host:** Vercel.
 
 ## Admin Credentials
 - **Username:** admin@NexTrade.com
@@ -68,3 +68,13 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 2. Install dependencies using `npm install`.
 3. Configure environment variables for MongoDB, Firebase, and Stripe.
 4. Run the development server using `npm run dev`.
+
+## Environment Variables
+1. **Firebase**
+- NEXT_PUBLIC_VITE_apiKey=*************
+- NEXT_PUBLIC_VITE_authDomain=********
+- NEXT_PUBLIC_VITE_projectId=***********
+- NEXT_PUBLIC_VITE_storageBucket=******
+- NEXT_PUBLIC_VITE_messagingSenderId=*
+- NEXT_PUBLIC_VITE_appId=***************
+- NEXT_STRIPE_PUBLIC_KEY=**************
