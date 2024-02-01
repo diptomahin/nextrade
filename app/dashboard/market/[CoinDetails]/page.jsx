@@ -1,6 +1,5 @@
 "use client"
 
-// pages/coin/[CoinDetails].jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
@@ -8,11 +7,10 @@ import Image from 'next/image';
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
   const [coinImage, setCoinImage] = useState(null);
-  const [coinId, setCoinId] = useState("")
 
   useEffect(() => {
     // Create a WebSocket connection for BTC/USDT ticker
-    const socket = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker');
+    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails}@ticker`);
 
     // Event listener for incoming messages
     socket.addEventListener('message', (event) => {
@@ -47,7 +45,7 @@ const CoinDetails = ({ params }) => {
 
   return (
     <div>
-      <h2>BTC/USDT Details</h2>
+      <h2>{params.CoinDetails} Details</h2>
       {coinImage && <Image src={coinImage} width={400} height={400} alt="BTC/USDT Logo" />}
       {tickerData ? (
         <div>
