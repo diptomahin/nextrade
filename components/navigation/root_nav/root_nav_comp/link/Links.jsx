@@ -20,23 +20,23 @@ const links = [
     href: "/services",
   },
   {
-    title: "About NexTrade",
+    title: "About_NexTrade",
     href: "/about_nextrade",
   },
   {
-    title: "Why Choose Us",
+    title: "Why_Choose_Us",
     href: "/why_choose_us",
   },
   {
-    title: "Payment Method",
+    title: "Payment_Method",
     href: "/payment_method",
   },
   {
-    title: "Contact Us",
+    title: "Contact_Us",
     href: "/contact_us",
   },
   {
-    title: "Help Centre",
+    title: "Help_Centre",
     href: "/help_center",
   },
   {
