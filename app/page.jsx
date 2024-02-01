@@ -11,7 +11,7 @@ import WhyChooseUs from "@/components/home_comp/WhyChooseUs";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-hidden">
       <Banner />
       <TradingStep />
       <InvestSolutions />

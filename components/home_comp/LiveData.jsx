@@ -1,18 +1,38 @@
 "use client";
 import React from "react";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
+//framer motion
+import { motion } from "framer-motion";
+
+// variants
+import { fadeIn } from "../utils/variants";
 
 const LiveData = () => {
   return (
     <div className="flex flex-col items-center justify-center mx-20">
-      <h1 className="xl:text-3xl lg:text-4xl text-4xl my-2 text-primary font-bold mx-auto text-center">
+      <motion.h1
+      variants={fadeIn("up", 0.3)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.1 }}
+      className="xl:text-3xl lg:text-4xl text-4xl my-2 text-primary font-bold mx-auto text-center">
         Get Market Info
-      </h1>
-      <p className="mt-1 mb-5 xl:w-96 text-center mx-auto font-medium text-gray-500">
+      </motion.h1>
+      <motion.p
+      variants={fadeIn("up", 0.5)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.1 }}
+      className="mt-1 mb-5 xl:w-96 text-center mx-auto font-medium text-gray-500">
         Real-time market data is continuous, such as stock prices and trading
         volumes.
-      </p>
-      <div className="w-full h-96 mb-10">
+      </motion.p>
+      <motion.div
+      variants={fadeIn("up", 0.6)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.1 }}
+      className="w-full h-96 mb-10">
         <AdvancedRealTimeChart
           width="100%"
           height="100%"
@@ -41,7 +61,7 @@ const LiveData = () => {
           enabled_features={[]}
           container_id="advanced-chart-widget-container"
         />
-      </div>
+      </motion.div>
     </div>
   );
 };

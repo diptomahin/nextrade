@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 
 //import image from assets file
@@ -8,22 +9,43 @@ import Container from "@/components/library/Container";
 import DoneIcon from "@mui/icons-material/Done";
 import Button from "@/components/library/buttons/root_button/RootButton";
 
+//framer motion
+import { motion } from "framer-motion";
+
+// variants
+import { fadeIn } from "../utils/variants";
+
 const Subscription = () => {
   return (
     <Container>
       <div className=" py-10">
         <div className=" text-center">
           <Image src={logo} alt="logo" width={80} className="my-2 mx-auto" />
-          <h1 className="lg:text-3xl md:text-3xl text-4xl my-4 text-primary font-bold">
+          <motion.h1
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="lg:text-3xl md:text-3xl text-4xl my-4 text-primary font-bold">
             Get More Benefits With Subscription
-          </h1>
-          <p className="text-lg my-4 text-slate-500 font-medium">
+          </motion.h1>
+          <motion.p
+          variants={fadeIn("up", 0.4)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="text-lg my-4 text-slate-500 font-medium">
             Monthly and yearly Subscription Sell
-          </p>
+          </motion.p>
         </div>
         <div className=" grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-16">
           {/* cart 1 basic plan */}
-          <div className=" border border-gray-200 shadow p-6 py-8  rounded-lg ">
+          <motion.div
+          variants={fadeIn("right", 0.5)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.1 }}
+          className=" border border-gray-200 shadow p-6 py-8  rounded-lg ">
             <h3 className=" text-xl font-bold text-gray-600">Basic Plan</h3>
             <h1 className=" text-3xl font-extrabold py-3 ">
               $00{" "}
@@ -63,9 +85,14 @@ const Subscription = () => {
             <div className=" flex items-center justify-center">
               <Button>Continue With Basic</Button>
             </div>
-          </div>
+          </motion.div>
           {/* cart 2 Standard plan */}
-          <div className=" border border-gray-200 shadow p-6 py-8  rounded-lg ">
+          <motion.div
+          variants={fadeIn("up", 0.6)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.1 }}
+          className=" border border-gray-200 shadow p-6 py-8  rounded-lg ">
             <h3 className=" text-xl font-bold text-gray-600">Standard Plan</h3>
             <h1 className=" text-3xl font-extrabold py-3 ">
               $800{" "}
@@ -105,9 +132,14 @@ const Subscription = () => {
             <div className=" flex items-center justify-center">
               <Button>Continue With Standard</Button>
             </div>
-          </div>
+          </motion.div>
           {/* cart 1 Premium  plan */}
-          <div className=" border border-gray-200 shadow p-6 py-8  rounded-lg ">
+          <motion.div
+          variants={fadeIn("left", 0.7)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.1 }}
+          className=" border border-gray-200 shadow p-6 py-8  rounded-lg ">
             <h3 className=" text-xl font-bold text-gray-600">Premium Plan</h3>
             <h1 className=" text-3xl font-extrabold py-3 ">
               $1200{" "}
@@ -147,7 +179,7 @@ const Subscription = () => {
             <div className=" flex items-center justify-center">
               <Button>Continue With Premium</Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </Container>
