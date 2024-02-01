@@ -7,10 +7,11 @@ import Image from 'next/image';
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
   const [coinImage, setCoinImage] = useState(null);
+  const [coinName, setCoinName] = useState("")
 
   useEffect(() => {
     // Create a WebSocket connection for BTC/USDT ticker
-    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails}@ticker`);
+    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
 
     // Event listener for incoming messages
     socket.addEventListener('message', (event) => {
@@ -24,18 +25,23 @@ const CoinDetails = ({ params }) => {
       if (params.CoinDetails === "BTCUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin`);
         setCoinImage(coinDetailsResponse.data.image.large);
+        setCoinName("Bit Coin")
       } else if (params.CoinDetails === "LTCUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/litecoin`);
         setCoinImage(coinDetailsResponse.data.image.large);
+        setCoinName("Lite Coin")
       } else if (params.CoinDetails === "ETHUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/ethereum`);
         setCoinImage(coinDetailsResponse.data.image.large);
+        setCoinName("Ethereum Coin")
       } else if (params.CoinDetails === "QTUMUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/qtum`);
         setCoinImage(coinDetailsResponse.data.image.large);
+        setCoinName("QTUM Coin")
       } else if (params.CoinDetails === "DOGEUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/dogecoin`);
         setCoinImage(coinDetailsResponse.data.image.large);
+        setCoinName("DOGE Coin")
       }
     };
 
@@ -45,7 +51,7 @@ const CoinDetails = ({ params }) => {
 
   return (
     <div>
-      <h2>{params.CoinDetails} Details</h2>
+      <h2>{coinName} Details</h2>
       {coinImage && <Image src={coinImage} width={400} height={400} alt="BTC/USDT Logo" />}
       {tickerData ? (
         <div>
