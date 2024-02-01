@@ -1,5 +1,5 @@
 // import Modal from "@/components/home/Modal/Modal";
-import Banner from "@/components/home_comp/Banner";
+import Banner from "@/components/home_comp/Banner/Banner";
 import InvestSolutions from "@/components/home_comp/InvestSolutions";
 import LiveData from "@/components/home_comp/LiveData";
 import NewsLetter from "@/components/home_comp/NewsLetter";

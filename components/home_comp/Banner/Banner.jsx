@@ -25,7 +25,7 @@ import floating8 from '../../../assets/Banner/floating_8.jpg';
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../Animations/variants";
+import { fadeIn } from "../../utils/variants";
 
 const Banner = () => {
 
