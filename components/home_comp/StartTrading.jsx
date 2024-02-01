@@ -9,20 +9,21 @@ import Button from "@/components/library/buttons/root_button/RootButton";
 import { CryptoCurrencyMarket } from "react-ts-tradingview-widgets";
 
 //framer motion
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
 // variants
-import {fadeIn} from '../../components/Animations/variants'
+import { fadeIn } from "../utils/variants";
 
 const StartTrading = () => {
   return (
     <Container className="grid lg:grid-cols-2 md:grid-cols-0 item-center justify-center gap-4">
       <motion.div
-      variants={fadeIn('up',0.6)}
-      initial='hidden'
-      whileInView={'show'}
-      viewport={{once:false,amount:0.10}}
-      className="w-full py-10">
+        variants={fadeIn("up", 0.6)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="w-full py-10"
+      >
         <Image src={logo} alt="logo" width={80} className="my-2" />
         <h1 className="lg:text-3xl md:text-3xl text-4xl my-4 text-primary font-bold">
           Embark on Your Trading Journey with NexTrade: Start Trading Today
@@ -34,11 +35,12 @@ const StartTrading = () => {
         <Button>Start Trading</Button>
       </motion.div>
       <motion.div
-      variants={fadeIn('left',0.2)}
-      initial='hidden'
-      whileInView={'show'}
-      viewport={{once:false,amount:0.10}}
-      className="md:mt-0 mt-10">
+        variants={fadeIn("left", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="md:mt-0 mt-10"
+      >
         {/* <div className=" flex gap-6">
           <div className="space-y-6">
             <div className=" lg:flex border border-blue-200  items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg">

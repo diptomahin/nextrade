@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 //images
 import logo from "../../assets/nextrade-logo.png";
@@ -7,10 +7,10 @@ import Image from "next/image";
 import Container from "@/components/library/Container";
 
 //framer motion
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
 // variants
-import {fadeIn} from '../../components/Animations/variants'
+import { fadeIn } from "../utils/variants";
 
 const InvestSolutions = () => {
   return (
@@ -18,30 +18,32 @@ const InvestSolutions = () => {
       <div className="xl:flex items-center justify-between gap-20 ">
         {/* Image side */}
         <motion.div
-        variants={fadeIn('right',0.9)}
-        initial='hidden'
-        whileInView={'show'}
-        viewport={{once:false,amount:0.10}}
+          variants={fadeIn("right", 0.9)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <Image src={investImage} alt="Invest" className=" mx-auto" />
         </motion.div>
         {/* Content side */}
-        <motion.div 
-        variants={fadeIn('left',0.5)}
-        initial='hidden'
-        whileInView={'show'}
-        viewport={{once:false,amount:0.10}}
-        className="flex-1">
+        <motion.div
+          variants={fadeIn("left", 0.5)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="flex-1"
+        >
           <Image src={logo} alt="logo" width={80} className="my-2" />
           <h1 className="lg:text-3xl md:text-3xl text-4xl font-bold text-primary">
             Trading And Investment Solutions Build in MOdern Platform
           </h1>
           <motion.ul
-          variants={fadeIn('up',0.8)}
-          initial='hidden'
-          whileInView={'show'}
-          viewport={{once:false,amount:0.10}}
-          className="text-sm mt-8 font-semibold">
+            variants={fadeIn("up", 0.8)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.1 }}
+            className="text-sm mt-8 font-semibold"
+          >
             <li className=" my-2">
               <span className=" text-primary">Intuitive Interface:</span>{" "}
               Navigate with ease through a lightning-fast platform, optimized
