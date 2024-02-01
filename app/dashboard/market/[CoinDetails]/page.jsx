@@ -78,7 +78,7 @@ const CoinDetails = ({ params }) => {
 
     // calculate remaining balance after buying a coin
     const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
-    const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
+    const remainingBalance = usersBalance - parseFloat(ast.c).toFixed(2);
 
     publicAPI
       .put(`/all-users/${remainingBalance}`, assetInfo)
