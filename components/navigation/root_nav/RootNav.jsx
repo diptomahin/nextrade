@@ -41,7 +41,7 @@ export default function index() {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
-      className="header px-5 lg:px-10 2xl:px-20 py-6 bg-primary"
+      className="header px-5 lg:px-10 2xl:px-20 py-6 bg-gradient-to-br from-primary to-[#352786] "
     >
       <div className="bar">
         <Link href="/">
