@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link } from 'next/link';
+import Link  from 'next/link';
 
 const ProfilePage = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
