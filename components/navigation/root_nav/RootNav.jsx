@@ -49,25 +49,30 @@ export default function index() {
             <Image src={logo} alt="Logo" className="w-32 lg:w-40" />
           </Magnetic>
         </Link>
-        <div
-          onClick={() => {
-            setIsActive(!isActive);
-          }}
-          className="el"
-        >
-          <div className={`burger ${isActive && "burgerActive"}`}></div>
-          <div className="label">
-            <motion.p
-              variants={opacity}
-              animate={!isActive ? "open" : "closed"}
-            >
-              Menu
-            </motion.p>
-            <motion.p variants={opacity} animate={isActive ? "open" : "closed"}>
-              Close
-            </motion.p>
+        <Magnetic>
+          <div
+            onClick={() => {
+              setIsActive(!isActive);
+            }}
+            className="el"
+          >
+            <div className={`burger ${isActive && "burgerActive"}`}></div>
+            <div className="label">
+              <motion.p
+                variants={opacity}
+                animate={!isActive ? "open" : "closed"}
+              >
+                Menu
+              </motion.p>
+              <motion.p
+                variants={opacity}
+                animate={isActive ? "open" : "closed"}
+              >
+                Close
+              </motion.p>
+            </div>
           </div>
-        </div>
+        </Magnetic>
         <Magnetic>
           <button
             onClick={handleScrollToTop}
