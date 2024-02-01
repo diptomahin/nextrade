@@ -1,5 +1,4 @@
 "use client";
-import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { Stack, TextField, Typography } from "@mui/material";
@@ -12,6 +11,11 @@ import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRouter } from "next/navigation";
 import usePublicAPI from "@/hooks/usePublicAPI";
+import Lottie from "lottie-react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import RegisterAnim from "../../assets/regiAnim"
+import Magnetic from "@/components/library/Magnetic";
+import SocialLogin from "@/components/auth_comp/SocialLogin";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -71,7 +75,7 @@ const Register = () => {
           email: loggedUser.email,
           name: loggedUser.displayName,
           createdAt: loggedUser.metadata.creationTime,
-          balance: 1000000,
+          balance: 0,
           portfolio: [],
         };
 
@@ -82,7 +86,7 @@ const Register = () => {
             icon: "success",
           });
           router.push("/");
-          reset;
+          reset();
         });
       })
       .catch((error) => {
@@ -95,72 +99,29 @@ const Register = () => {
       });
   };
 
-  // login with google
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then((res) => {
-        const loggedUser = res.user;
-
-        const userInfo = {
-          userID: loggedUser.uid,
-          email: loggedUser.email,
-          name: loggedUser.displayName,
-          createdAt: loggedUser.metadata.creationTime,
-          balance: 1000000,
-          portfolio: [],
-        };
-
-        publicAPI.post("/all-users", userInfo).then((res) => {
-          Swal.fire({
-            title: "Log In successful!",
-            text: `Welcome back ${loggedUser.displayName}`,
-            icon: "success",
-          });
-          router.push(from);
-        });
-      })
-      .catch((error) => {
-        console.log(error.message);
-        Swal.fire({
-          title: "Log In failed!",
-          text: `Please try again`,
-          icon: "error",
-        });
-        reset;
-      });
-  };
 
   return (
-    <Container className="flex justify-center items-center min-h-[100vh]">
+    <div className="flex flex-col xl:flex-row xl:items-center min-h-[100vh] relative">
+      <Magnetic>
+        <Link href="/" className="text-white font-semibold flex items-center gap-3 absolute top-5 2xl:top-10 left-7 2xl:left-12 z-10"><ArrowBackIcon />Home</Link>
+      </Magnetic>
+      <Stack flex={1} sx={{ backgroundColor: "#455ce9", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Lottie className=" w-3/4" animationData={RegisterAnim} loop={true} />
+      </Stack>
       <Stack
-        gap={2}
-        className="border-2 shadow-2xl shadow-primary rounded-2xl p-4 md:p-7 2xl:p-16 w-full md:w-3/5 lg:w-2/5"
+        flex={1}
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="">
+        <form onSubmit={handleSubmit(onSubmit)} className="px-5 mx-auto my-10 xl:my-0 md:px-0 w-full md:w-[80%] 2xl:w-[70%]">
           <Typography
             variant="h2"
             mb={2}
             fontWeight="bold"
             className="text-primary"
-            sx={{ fontSize: ["28px", "28px", "42px"] }}
+            sx={{ fontSize: ["24px", "28px", "30px"] }}
           >
             Create Account
           </Typography>
-          <Typography className="text-lg lg:text-xl text-primary">
-            Have an account?{" "}
-            <Link href="/login" className=" font-bold hover:underline">
-              Login here
-            </Link>
-          </Typography>
 
-          {/* Google Captcha */}
-
-          <div className="mb-3 mt-4 flex justify-center">
-            <ReCAPTCHA
-              sitekey="6LelPTApAAAAADWVe8dSbkcjltECOr38kOEygA9u"
-              onChange={onChange}
-            />
-          </div>
 
           <Stack mt={4} gap={3}>
             {/* user name */}
@@ -233,30 +194,35 @@ const Register = () => {
             />
             {error && <span className="text-red-700">{error}</span>}
 
+            {/* Google Captcha */}
+
+            <div className="mb-3 mt-4 flex justify-center">
+              <ReCAPTCHA
+                sitekey="6LelPTApAAAAADWVe8dSbkcjltECOr38kOEygA9u"
+                onChange={onChange}
+              />
+            </div>
+
             <Stack mt={2} alignItems="center">
               {captchaValue ? (
-                <Button type="submit"> Create Account</Button>
+                <Button className="w-full" type="submit"> Create Account</Button>
               ) : (
-                <Button className="disabled" type="submit">
+                <Button disabled className="w-full" type="submit">
                   Create Account
                 </Button>
               )}
             </Stack>
+            <Typography className="text-lg lg:text-xl text-center">
+              Have an account?{" "}
+              <Link href="/login" className=" font-bold text-primary hover:underline">
+                Login here
+              </Link>
+            </Typography>
           </Stack>
+          <SocialLogin />
         </form>
-        <div className="space-y-2">
-          <p className="text-center">Or</p>
-          <div className="flex justify-center">
-            <button
-              onClick={handleGoogleLogin}
-              className=" bg-gradient-to-r rounded-3xl  from-[#239FFE] to-[#0272E5] text-sm lg:text-base text-white p-3 flex gap-2 items-center"
-            >
-              Continue with<FcGoogle className="text-2xl"></FcGoogle>
-            </button>
-          </div>
-        </div>
       </Stack>
-    </Container>
+    </div>
   );
 };
 

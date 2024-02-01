@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
   return (
-    <div className="h-full w-full flex items-center justify-between bg-white rounded-xl px-5 border">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-white rounded-xl px-5 border">
       <div className="flex items-center gap-5">
         <IconButton
           color="black"
@@ -83,6 +83,9 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             "&:hover": {
               backgroundColor: "rgba(0,0,0,0.1)",
             },
+            "@media (max-width: 640px)": {
+              display: "none",
+            },
           }}
         >
           <SearchIconWrapper>
@@ -94,7 +97,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
           />
         </Search>
       </div>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-6">
         {/* language */}
         <Language />
         {/* notification */}

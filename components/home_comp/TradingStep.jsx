@@ -10,23 +10,40 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 import Image from "next/image";
 
+import { motion } from "framer-motion";
+
+// variants
+import { fadeIn } from "../utils/variants";
+
 const TradingStep = () => {
   return (
     <Container className=" md:flex items-center justify-between  lg:mt-24   ">
       {/* Trading step section content */}
 
-      <div className="md:w-[600px]">
+      <motion.div
+        variants={fadeIn("up", 0.1)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="md:w-[600px]"
+      >
         <Image src={logo} alt="logo" width={80} className="my-2 " />
         <h1 className=" lg:text-3xl md:text-3xl text-4xl font-bold text-primary mb-5">
           Start Trading in <br /> Few Step
         </h1>
         <Button>Start Trading</Button>
-      </div>
+      </motion.div>
       <div className="md:mt-0 mt-10">
         <div className=" flex gap-6">
           <div className="space-y-6">
             {/* 1st cart */}
-            <div className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200">
+            <motion.div
+              variants={fadeIn("right", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200"
+            >
               <div className=" bg-blue-200  rounded-full w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
                 <PersonIcon className=" text-primary" />
               </div>
@@ -36,9 +53,15 @@ const TradingStep = () => {
                   Sign Up With Your Email and Mobile in just 5 Minutes.
                 </p>
               </div>
-            </div>
+            </motion.div>
             {/* 2nd cart */}
-            <div className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200">
+            <motion.div
+              variants={fadeIn("up", 0.3)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200"
+            >
               <div className=" bg-[#fff2f2]  rounded-full w-16 h-16  flex justify-center items-center lg:mb-0 mb-3">
                 <WalletIcon className=" text-[#ff5668]" />
               </div>
@@ -48,11 +71,17 @@ const TradingStep = () => {
                   Quickly Add Money to Your Investment Wallet.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
           <div className="space-y-6 -mt-14">
             {/* 3rd cart */}
-            <div className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200">
+            <motion.div
+              variants={fadeIn("left", 0.4)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200"
+            >
               <div className=" bg-[#fdf2ff]  rounded-full w-16 h-16  flex justify-center items-center lg:mb-0 mb-3">
                 <AccountBalanceIcon className=" text-[#b391ff]" />
               </div>
@@ -62,9 +91,15 @@ const TradingStep = () => {
                   Verify your bank Account in Easy Way
                 </p>
               </div>
-            </div>
+            </motion.div>
             {/* 4th cart */}
-            <div className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200">
+            <motion.div
+              variants={fadeIn("up", 0.5)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=" xl:flex items-center gap-7 shadow-md lg:p-5 p-4   rounded-lg bg-slate-200"
+            >
               <div className=" bg-[#fdfee4]  rounded-full w-16 h-16  flex justify-center items-center lg:mb-0 mb-3">
                 <InventoryIcon className=" text-[#ffbf3f]" />
               </div>
@@ -74,7 +109,7 @@ const TradingStep = () => {
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

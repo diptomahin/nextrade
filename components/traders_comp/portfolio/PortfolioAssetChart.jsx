@@ -1,10 +1,8 @@
 "use client"
-import React, { useState } from 'react';
-import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
-import { Divider } from '@mui/material';
+
 import { Cell, Legend, Pie, PieChart } from 'recharts';
 
-const PortfolioAssetChart = ({ totalBuyingPrice, calculateTotalProfit, usersRemainingBalance, calculateTotalLoss, allUsers }) => {
+const PortfolioAssetChart = ({ allUsers }) => {
 
     // pie chart with customized label
     const COLORS = ['#c2410c', '#65a30d', '#10b981', '#6366f1', '#d946ef', '#f43f5e'];
@@ -44,44 +42,6 @@ const PortfolioAssetChart = ({ totalBuyingPrice, calculateTotalProfit, usersRema
 
     return (
         <div>
-            <div className="  flex flex-col md:flex-row items-center md:justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
-                <div>
-                    <p className="font-semibold text-gray-500">
-                        Total Asset <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
-                    </p>
-                    <h1 className=" lg:text-3xl text-xl font-extrabold my-2">
-                        $ {totalBuyingPrice.toFixed(2)}
-                    </h1>
-                    <div className=" flex items-center justify-between">
-                        {/* total profit */}
-                        <p
-                            className={`font-semibold ${calculateTotalProfit >= 0 ? "text-green-700" : "text-red-600"
-                                }`}
-                        >
-                            {calculateTotalProfit >= 0 ? "+" : "-"}$
-                            {Math.abs(calculateTotalProfit).toFixed(2)}
-                        </p>
-
-                        {/* total loss */}
-                        <p
-                            className={`font-semibold ${calculateTotalProfit >= 0 ? "text-red-700" : " text-green-700 "
-                                }`}
-                        >
-                            -${calculateTotalLoss()}
-                        </p>
-                    </div>
-                </div>
-                <Divider orientation="vertical" sx={{ border: "1px solid blue" }} variant="middle" flexItem />
-                <div>
-                    <p className="font-semibold text-gray-500">
-                        Remaining Balance{" "}
-                        <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
-                    </p>
-                    <h1 className=" lg:text-3xl text-xl font-extrabold my-2">
-                        $ {usersRemainingBalance}
-                    </h1>
-                </div>
-            </div>
 
             <h1 className='text-2xl font-semibold mt-10'>Total Asset Chart</h1>
             <PieChart width={320} height={320}>
