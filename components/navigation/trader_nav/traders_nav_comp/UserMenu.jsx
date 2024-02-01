@@ -22,7 +22,7 @@ const UserMenu = () => {
       </button>
       {isOpen && (
         <div className="w-60 absolute top-[53px] right-0 bg-white rounded-xl border overflow-hidden">
-          <div className="bg-gradient-to-br from-[#3a59af] to-[#352786] text-white p-5">
+          <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
             <div className="flex flex-col items-center gap-3">
               {/* {!user?.photoURL ? (
                 <Image width={48} href={user?.photoURL} alt="user photo" />

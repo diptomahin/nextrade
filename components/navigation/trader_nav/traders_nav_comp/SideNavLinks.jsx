@@ -128,7 +128,7 @@ const SideNavLinks = () => {
 
       <button
         onClick={() => logOut()}
-        className="w-full flex items-center gap-2 px-4 py-2font-medium hover:bg-black/5 text-primary  rounded-full"
+        className="w-full flex items-center gap-2 px-4 py-2 font-medium hover:bg-black/5 text-primary  rounded-full"
       >
         {" "}
         <IoLogOut /> Logout
