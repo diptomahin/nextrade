@@ -9,6 +9,13 @@ import Container from "@/components/library/Container";
 import Magnetic from "@/components/library/Magnetic";
 import Navigation from "./root_nav_comp/Navigation";
 
+//framer motion
+import {motion} from 'framer-motion';
+
+
+// variants
+import {fadeIn} from '../../Animations/variants'
+
 const RootNav = () => {
   const [scrolled, setScrolled] = React.useState(false);
   const pathname = usePathname();
@@ -33,7 +40,11 @@ const RootNav = () => {
   }, []);
 
   return (
-    <nav
+    <motion.nav
+    variants={fadeIn('down',0.5)}
+      initial='hidden'
+      whileInView={'show'}
+      viewport={{once:false,amount:0.10}}
       className="fixed top-[30px] w-full z-[99]"
     >
       <Container>
@@ -57,7 +68,7 @@ const RootNav = () => {
           </button>
         </Magnetic>
       </Container>
-    </nav>
+    </motion.nav>
   );
 };
 
