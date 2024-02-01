@@ -11,7 +11,7 @@ export default function Body({
 }) {
   const getChars = (word) => {
     let chars = [];
-    word.split("  ").forEach((char, i) => {
+    word.split("").forEach((char, i) => {
       chars.push(
         <motion.span
           custom={[i * 0.02, (word.length - i) * 0.01]}
@@ -27,6 +27,8 @@ export default function Body({
     });
     return chars;
   };
+
+  console.log(getChars.title);
 
   return (
     <div className="body">
