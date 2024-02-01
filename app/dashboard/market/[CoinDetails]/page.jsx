@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Divider } from '@mui/material';
 import { AdvancedRealTimeChart } from 'react-ts-tradingview-widgets';
 import DashButton from '@/components/library/buttons/DashButton';
+import TopBanner from '@/components/traders_comp/market/TopBanner';
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
@@ -58,32 +59,7 @@ const CoinDetails = ({ params }) => {
     <div>
 
       {tickerData ? (
-        <div className="  flex flex-col md:flex-row items-center xl:justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
-          <div className="flex-1 flex items-center gap-2 md:gap-5">
-            {coinImage && <Image src={coinImage} width={80} height={80} alt="BTC/USDT Logo" />}
-            <div>
-              <h3 className='text-lg font-semibold'>{coinName}</h3>
-              <p>$ {tickerData.c}</p>
-            </div>
-
-          </div>
-          <Divider orientation="vertical" sx={{ border: "1px solid blue" }} variant="middle" flexItem />
-
-          <div className="flex-1 flex flex-col xl:flex-row  justify-around gap-10">
-            <div>
-              <p>24h High</p>
-              <p className='text-green-700'>$ {parseFloat(tickerData.h).toFixed(2)}</p>
-            </div>
-            <div>
-              <p>24h Low</p>
-              <p className='text-red-700'>$ {parseFloat(tickerData.l).toFixed(2)}</p>
-            </div>
-            <div>
-              <p>24h Change</p>
-              <p className={`${tickerData.p < 0 ? "text-red-700" : "text-green-700"}`}>$ {parseFloat(tickerData.p).toFixed(2)}</p>
-            </div>
-          </div>
-        </div>
+        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} />
       ) : (
         <p>Loading...</p>
       )}
@@ -119,7 +95,7 @@ const CoinDetails = ({ params }) => {
         </div>
         <div className='flex-1 flex flex-col gap-4 justify-center items-center'>
           <DashButton>Add to Watchlist</DashButton>
-          <DashButton>Purchase</DashButton>
+          <DashButton>Buy</DashButton>
         </div>
       </div>
 

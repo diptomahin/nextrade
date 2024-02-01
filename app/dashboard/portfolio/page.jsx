@@ -17,6 +17,7 @@ import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
 import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAssetChart";
+import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
 
 const Portfolio = () => {
   const [currentBTCPrice, setCurrentBTCPrice] = useState(0);
@@ -144,55 +145,18 @@ const Portfolio = () => {
   return (
     <div>
       {/* Current balance */}
-
-      <PortfolioAssetChart
+      <PortfolioTopBanner
         totalBuyingPrice={totalBuyingPrice}
         calculateTotalProfit={calculateTotalProfit}
         usersRemainingBalance={usersRemainingBalance}
         calculateTotalLoss={calculateTotalLoss}
+      ></PortfolioTopBanner>
+
+      {/* pie chart */}
+      <PortfolioAssetChart
         allUsers={allUsers}
       ></PortfolioAssetChart>
 
-      <div className="  flex items-center justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
-        <div>
-          <p className="font-semibold text-gray-500">
-            Total Asset <RemoveRedEyeOutlinedIcon className="text-base ml-2" />
-          </p>
-          <h1 className=" lg:text-3xl text-xl font-extrabold my-2">
-            $ {totalBuyingPrice.toFixed(2)}
-          </h1>
-          <div className=" flex items-center justify-between">
-            {/* total profit */}
-            <p
-              className={`font-semibold ${
-                calculateTotalProfit >= 0 ? "text-green-700" : "text-red-600"
-              }`}
-            >
-              {calculateTotalProfit >= 0 ? "+" : "-"}$
-              {Math.abs(calculateTotalProfit).toFixed(2)}
-            </p>
-
-            {/* total loss */}
-            <p
-              className={`font-semibold ${
-                calculateTotalProfit >= 0 ? "text-red-700" : " text-green-700 "
-              }`}
-            >
-              -${calculateTotalLoss()}
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 flex-wrap">
-          <DashButton>
-            {" "}
-            <BorderColorIcon /> Edit
-          </DashButton>
-          <DashButton>
-            {" "}
-            <AddIcon /> Add Transaction
-          </DashButton>
-        </div>
-      </div>
 
       {/* Table */}
       <div className="mt-20">
