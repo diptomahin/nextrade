@@ -34,11 +34,34 @@ const MarketPage = () => {
     refetch,
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
+
+  // current prices
   const [BTCPrice, setBTCPrice] = useState(0);
   const [LTCPrice, setLTCPrice] = useState(0);
   const [ETHPrice, setETHPrice] = useState(0);
   const [QTUMPrice, setQTUMPrice] = useState(0);
   const [DOGEPrice, setDOGEPrice] = useState(0);
+
+  // 24h Heigh Prices
+  const [BTCHighPrice, setBTCHeighPrice] = useState(0);
+  const [LTCHighPrice, setLTCHeighPrice] = useState(0);
+  const [ETHHighPrice, setETHHeighPrice] = useState(0);
+  const [QTUMHighPrice, setQTUMHeighPrice] = useState(0);
+  const [DOGEHighPrice, setDOGEHeighPrice] = useState(0);
+
+  // 24h Low Prices
+  const [BTCLowPrice, setBTCLowPrice] = useState(0);
+  const [LTCLowPrice, setLTCLowPrice] = useState(0);
+  const [ETHLowPrice, setETHLowPrice] = useState(0);
+  const [QTUMLowPrice, setQTUMLowPrice] = useState(0);
+  const [DOGELowPrice, setDOGELowPrice] = useState(0);
+
+  // 24h Change
+  const [BTCChange, setBTCChange] = useState(0);
+  const [LTCChange, setLTCChange] = useState(0);
+  const [ETHChange, setETHChange] = useState(0);
+  const [QTUMChange, setQTUMChange] = useState(0);
+  const [DOGEChange, setDOGEChange] = useState(0);
 
 
 
@@ -58,14 +81,29 @@ const MarketPage = () => {
 
         if (symbol === "BTCUSDT") {
           setBTCPrice(parseFloat(ticker.c).toFixed(2));
+          setBTCHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setBTCLowPrice(parseFloat(ticker.l).toFixed(2));
+          setBTCChange(parseFloat(ticker.p).toFixed(3));
         } else if (symbol === "LTCUSDT") {
           setLTCPrice(parseFloat(ticker.c).toFixed(2));
+          setLTCHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setLTCLowPrice(parseFloat(ticker.l).toFixed(2));
+          setLTCChange(parseFloat(ticker.p).toFixed(3));
         } else if (symbol === "ETHUSDT") {
           setETHPrice(parseFloat(ticker.c).toFixed(2));
+          setETHHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setETHLowPrice(parseFloat(ticker.l).toFixed(2));
+          setETHChange(parseFloat(ticker.p).toFixed(3));
         } else if (symbol === "QTUMUSDT") {
           setQTUMPrice(parseFloat(ticker.c).toFixed(2));
+          setQTUMHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setQTUMLowPrice(parseFloat(ticker.l).toFixed(2));
+          setQTUMChange(parseFloat(ticker.p).toFixed(3));
         } else if (symbol === "DOGEUSDT") {
           setDOGEPrice(parseFloat(ticker.c).toFixed(2));
+          setDOGEHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setDOGELowPrice(parseFloat(ticker.l).toFixed(2));
+          setDOGEChange(parseFloat(ticker.p).toFixed(3));
         }
       });
     });
@@ -77,16 +115,16 @@ const MarketPage = () => {
   }, []);
 
 
-function createData(name, key, price, icon) {
-  return { name, key, price, icon };
+function createData(name, key, price, icon, changePrice, heighPrice, lowPrice) {
+  return { name, key, price, icon, changePrice, heighPrice, lowPrice };
 }
 
 const assets = [
-  createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC),
-  createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH),
-  createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC),
-  createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM),
-  createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE),
+  createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC, BTCChange, BTCHighPrice, BTCLowPrice ),
+  createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH, ETHChange, ETHHighPrice, ETHLowPrice),
+  createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC, LTCChange, LTCHighPrice, LTCLowPrice),
+  createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM, QTUMChange, QTUMHighPrice, QTUMLowPrice),
+  createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE, DOGEChange, DOGEHighPrice, DOGELowPrice),
 ];
 
 
@@ -114,9 +152,12 @@ return (
           <TableHead className="mx-auto">
             <TableRow className="text-center">
               <TableCell className="font-semibold ">Icon</TableCell>
-              <TableCell className=" font-semibold">Crypto</TableCell>
+              <TableCell className=" font-semibold">Coin Name</TableCell>
               <TableCell className="font-semibold">Current Price</TableCell>
-              <TableCell className="font-semibold">Trade Option</TableCell>
+              <TableCell className="font-semibold">24%</TableCell>
+              <TableCell className="font-semibold">24h Heigh Price</TableCell>
+              <TableCell className="font-semibold">24h Low Price</TableCell>
+              <TableCell className="font-semibold">Option</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -138,6 +179,15 @@ return (
                 </TableCell>
                 <TableCell>
                   <p className={`text-lg font-semibold`}>{asset.price}</p>
+                </TableCell>
+                <TableCell>
+                  <p className={`text-lg font-semibold`}>{asset.changePrice}</p>
+                </TableCell>
+                <TableCell>
+                  <p className={`text-lg font-semibold`}>{asset.heighPrice}</p>
+                </TableCell>
+                <TableCell>
+                  <p className={`text-lg font-semibold`}>{asset.lowPrice}</p>
                 </TableCell>
                 <TableCell>
                   <DashboardButton
