@@ -23,6 +23,8 @@ import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import Link from "next/link";
 import axios from "axios";
+import Marquee from "react-fast-marquee";
+import { Stack } from "@mui/material";
 
 const MarketPage = () => {
   const { user, loading } = useAuth();
@@ -115,97 +117,114 @@ const MarketPage = () => {
   }, []);
 
 
-function createData(name, key, price, icon, changePrice, heighPrice, lowPrice) {
-  return { name, key, price, icon, changePrice, heighPrice, lowPrice };
-}
+  function createData(name, key, price, icon, changePrice, heighPrice, lowPrice) {
+    return { name, key, price, icon, changePrice, heighPrice, lowPrice };
+  }
 
-const assets = [
-  createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC, BTCChange, BTCHighPrice, BTCLowPrice ),
-  createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH, ETHChange, ETHHighPrice, ETHLowPrice),
-  createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC, LTCChange, LTCHighPrice, LTCLowPrice),
-  createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM, QTUMChange, QTUMHighPrice, QTUMLowPrice),
-  createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE, DOGEChange, DOGEHighPrice, DOGELowPrice),
-];
+  const assets = [
+    createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC, BTCChange, BTCHighPrice, BTCLowPrice),
+    createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH, ETHChange, ETHHighPrice, ETHLowPrice),
+    createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC, LTCChange, LTCHighPrice, LTCLowPrice),
+    createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM, QTUMChange, QTUMHighPrice, QTUMLowPrice),
+    createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE, DOGEChange, DOGEHighPrice, DOGELowPrice),
+  ];
 
 
 
-if (loading || isLoading || isPending) {
+  if (loading || isLoading || isPending) {
+    return (
+      <p className="h-screen flex items-center justify-center text-primary">
+        <span> loading...</span>
+      </p>
+    );
+  }
+
   return (
-    <p className="h-screen flex items-center justify-center text-primary">
-      <span> loading...</span>
-    </p>
-  );
-}
-
-return (
-  <div>
-    {/* Table boat  */}
     <div>
-      <h2 className=" text-xl font-semibold mb-3">Start Trading...</h2>
-      <TableContainer
-        component={Paper}
-        sx={{
-          border: "1px solid rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead className="mx-auto">
-            <TableRow className="text-center">
-              <TableCell className="font-semibold ">Icon</TableCell>
-              <TableCell className=" font-semibold">Coin Name</TableCell>
-              <TableCell className="font-semibold">Current Price</TableCell>
-              <TableCell className="font-semibold">24%</TableCell>
-              <TableCell className="font-semibold">24h Heigh Price</TableCell>
-              <TableCell className="font-semibold">24h Low Price</TableCell>
-              <TableCell className="font-semibold">Option</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {assets.map((asset) => (
-              <TableRow
-                key={asset.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  <Image
-                    width={80}
-                    height={80}
-                    src={asset.icon}
-                    alt="coin-icon"
-                  />
-                </TableCell>
-                <TableCell>
-                  <p className={`text-lg`}>{asset.name}</p>
-                </TableCell>
-                <TableCell>
-                  <p className={`text-lg font-semibold`}>{asset.price}</p>
-                </TableCell>
-                <TableCell>
-                  <p className={`text-lg font-semibold`}>{asset.changePrice}</p>
-                </TableCell>
-                <TableCell>
-                  <p className={`text-lg font-semibold`}>{asset.heighPrice}</p>
-                </TableCell>
-                <TableCell>
-                  <p className={`text-lg font-semibold`}>{asset.lowPrice}</p>
-                </TableCell>
-                <TableCell>
-                  <DashboardButton
-                    className="font-semibold normal-case"
-                  >
-                    <Link href={`/dashboard/market/${asset.key}`}>
-                      Explore
-                    </Link>
-                  </DashboardButton>
-                </TableCell>
+      {/* Table boat  */}
+      <div>
+        <h2 className=" text-xl font-semibold mb-3">Market</h2>
+        <Stack my={5}>
+          <Marquee direction='right'>
+            {assets.map(asset => (
+              <Stack key={asset.name} justifyContent="space-between" alignItems="center" marginX={4} gap={2} flexDirection="row">
+                <Stack>
+                  <Image height={80} width={80} src={asset.icon} alt='coin lgog'></Image>
+                </Stack>
+                <Stack>
+                  <p className="">Current Price:{asset.price}</p>
+                  <p>Heigh Price: <span className="text-green-700">{asset.heighPrice}</span></p>
+                  <p>Low Price: <span className="text-red-700">{asset.lowPrice}</span></p>
+                </Stack>
+              </Stack>
+            ))
+            }
+          </Marquee>
+        </Stack>
+        <TableContainer
+          component={Paper}
+          sx={{
+            border: "1px solid rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead className="mx-auto">
+              <TableRow className="text-center">
+                <TableCell sx={{fontWeight:700}}>Icon</TableCell>
+                <TableCell sx={{fontWeight:700}}>Coin Name</TableCell>
+                <TableCell sx={{fontWeight:700}}>Current Price</TableCell>
+                <TableCell sx={{fontWeight:700}}>24%</TableCell>
+                <TableCell sx={{fontWeight:700}}>24h Heigh Price</TableCell>
+                <TableCell sx={{fontWeight:700}}>24h Low Price</TableCell>
+                <TableCell sx={{fontWeight:700}}>Option</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {assets.map((asset) => (
+                <TableRow
+                  key={asset.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    <Image
+                      width={80}
+                      height={80}
+                      src={asset.icon}
+                      alt="coin-icon"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <p className={`font-semibold`}>{asset.name}</p>
+                  </TableCell>
+                  <TableCell>
+                    <p className={` font-semibold`}>{asset.price}</p>
+                  </TableCell>
+                  <TableCell>
+                    <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-700" : "text-green-700"}`}>{asset.changePrice}</p>
+                  </TableCell>
+                  <TableCell>
+                    <p className={` font-semibold text-green-700`}>{asset.heighPrice}</p>
+                  </TableCell>
+                  <TableCell>
+                    <p className={` font-semibold text-red-700`}>{asset.lowPrice}</p>
+                  </TableCell>
+                  <TableCell>
+                    <DashboardButton
+                      className="font-semibold normal-case"
+                    >
+                      <Link href={`/dashboard/market/${asset.key}`}>
+                        Explore
+                      </Link>
+                    </DashboardButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default MarketPage;
