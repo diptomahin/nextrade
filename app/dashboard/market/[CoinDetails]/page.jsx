@@ -1,30 +1,18 @@
 "use client"
 
-import DashButton from '@/components/library/buttons/DashButton';
-import useAuth from '@/hooks/useAuth';
-import usePublicAPI from '@/hooks/usePublicAPI';
-import useSecureFetch from '@/hooks/useSecureFetch';
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import Image from 'next/image';
-import Link from 'next/link';
+// pages/coin/[CoinDetails].jsx
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Image from 'next/image';
 
 const CoinDetails = ({ params }) => {
-    // console.log(params)
-    const { user, loading } = useAuth();
-
-    const {
-        data: allUsers = [],
-        isPending,
-        isLoading,
-        refetch,
-    } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
-
-    const [tickerData, setTickerData] = useState(null);
+  const [tickerData, setTickerData] = useState(null);
+  const [coinImage, setCoinImage] = useState(null);
+  const [coinId, setCoinId] = useState("")
 
   useEffect(() => {
-    // Create a WebSocket connection for BTC/USD ticker
-    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
+    // Create a WebSocket connection for BTC/USDT ticker
+    const socket = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker');
 
     // Event listener for incoming messages
     socket.addEventListener('message', (event) => {
@@ -32,16 +20,35 @@ const CoinDetails = ({ params }) => {
       setTickerData(data);
     });
 
-    // Cleanup function to close the WebSocket on component unmount
-    return () => {
-      console.log('Closing WebSocket connection.');
-      socket.close();
+    // Fetch coin image using CoinGecko API
+    const fetchCoinImage = async () => {
+      // Extract the coin ID from the response
+      if (params.CoinDetails === "BTCUSDT") {
+        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin`);
+        setCoinImage(coinDetailsResponse.data.image.large);
+      } else if (params.CoinDetails === "LTCUSDT") {
+        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/litecoin`);
+        setCoinImage(coinDetailsResponse.data.image.large);
+      } else if (params.CoinDetails === "ETHUSDT") {
+        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/ethereum`);
+        setCoinImage(coinDetailsResponse.data.image.large);
+      } else if (params.CoinDetails === "QTUMUSDT") {
+        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/qtum`);
+        setCoinImage(coinDetailsResponse.data.image.large);
+      } else if (params.CoinDetails === "DOGEUSDT") {
+        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/dogecoin`);
+        setCoinImage(coinDetailsResponse.data.image.large);
+      }
     };
-  }, []); // Empty dependency array ensures the effect runs only once on mount
+
+    fetchCoinImage();
+
+  }, [params.CoinDetails]); // Empty dependency array ensures the effect runs only once on mount
 
   return (
     <div>
-      <h2>{params.CoinDetails} Details</h2>
+      <h2>BTC/USDT Details</h2>
+      {coinImage && <Image src={coinImage} width={400} height={400} alt="BTC/USDT Logo" />}
       {tickerData ? (
         <div>
           <p>Last Price: {tickerData.c}</p>
@@ -58,3 +65,5 @@ const CoinDetails = ({ params }) => {
 };
 
 export default CoinDetails;
+
+

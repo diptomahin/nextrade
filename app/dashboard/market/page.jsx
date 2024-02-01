@@ -22,6 +22,7 @@ import useAuth from "@/hooks/useAuth";
 import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import Link from "next/link";
+import axios from "axios";
 
 const MarketPage = () => {
   const { user, loading } = useAuth();
@@ -38,6 +39,7 @@ const MarketPage = () => {
   const [ETHPrice, setETHPrice] = useState(0);
   const [QTUMPrice, setQTUMPrice] = useState(0);
   const [DOGEPrice, setDOGEPrice] = useState(0);
+
 
 
   React.useEffect(() => {
@@ -74,85 +76,86 @@ const MarketPage = () => {
     };
   }, []);
 
-  function createData(name, key, price, icon) {
-    return { name, key, price, icon };
-  }
 
-  const assets = [
-    createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC),
-    createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH),
-    createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC),
-    createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM),
-    createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE),
-  ];
+function createData(name, key, price, icon) {
+  return { name, key, price, icon };
+}
+
+const assets = [
+  createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC),
+  createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH),
+  createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC),
+  createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM),
+  createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE),
+];
 
 
 
-  if (loading || isLoading || isPending) {
-    return (
-      <p className="h-screen flex items-center justify-center text-primary">
-        <span> loading...</span>
-      </p>
-    );
-  }
-
+if (loading || isLoading || isPending) {
   return (
-    <div>
-      {/* Table boat  */}
-      <div>
-        <h2 className=" text-xl font-semibold mb-3">Start Trading...</h2>
-        <TableContainer
-          component={Paper}
-          sx={{
-            border: "1px solid rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead className="mx-auto">
-              <TableRow className="text-center">
-                <TableCell className="font-semibold ">Icon</TableCell>
-                <TableCell className=" font-semibold">Crypto</TableCell>
-                <TableCell className="font-semibold">Current Price</TableCell>
-                <TableCell className="font-semibold">Trade Option</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {assets.map((asset) => (
-                <TableRow
-                  key={asset.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <Image
-                      width={80}
-                      height={80}
-                      src={asset.icon}
-                      alt="coin-icon"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <p className={`text-lg`}>{asset.name}</p>
-                  </TableCell>
-                  <TableCell>
-                    <p className={`text-lg font-semibold`}>{asset.price}</p>
-                  </TableCell>
-                  <TableCell>
-                    <DashboardButton
-                      className="font-semibold normal-case"
-                    >
-                      <Link href={`/dashboard/market/${asset.key}`}>
-                        Explore
-                      </Link>
-                    </DashboardButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </div>
+    <p className="h-screen flex items-center justify-center text-primary">
+      <span> loading...</span>
+    </p>
   );
+}
+
+return (
+  <div>
+    {/* Table boat  */}
+    <div>
+      <h2 className=" text-xl font-semibold mb-3">Start Trading...</h2>
+      <TableContainer
+        component={Paper}
+        sx={{
+          border: "1px solid rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead className="mx-auto">
+            <TableRow className="text-center">
+              <TableCell className="font-semibold ">Icon</TableCell>
+              <TableCell className=" font-semibold">Crypto</TableCell>
+              <TableCell className="font-semibold">Current Price</TableCell>
+              <TableCell className="font-semibold">Trade Option</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {assets.map((asset) => (
+              <TableRow
+                key={asset.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  <Image
+                    width={80}
+                    height={80}
+                    src={asset.icon}
+                    alt="coin-icon"
+                  />
+                </TableCell>
+                <TableCell>
+                  <p className={`text-lg`}>{asset.name}</p>
+                </TableCell>
+                <TableCell>
+                  <p className={`text-lg font-semibold`}>{asset.price}</p>
+                </TableCell>
+                <TableCell>
+                  <DashboardButton
+                    className="font-semibold normal-case"
+                  >
+                    <Link href={`/dashboard/market/${asset.key}`}>
+                      Explore
+                    </Link>
+                  </DashboardButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  </div>
+);
 };
 
 export default MarketPage;
