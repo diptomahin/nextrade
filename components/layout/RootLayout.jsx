@@ -1,27 +1,30 @@
-"use client"
+"use client";
 import React from "react";
-import RootNav from "../navigation/root_nav/RootNav";
 import Footer from "../footer/Footer";
 import { usePathname } from "next/navigation";
+import RootNav from "../navigation/root_nav/RootNav";
 
 const MainLayout = ({ children }) => {
   const pathname = usePathname();
   // console.log(location);
-  const noHeaderFooter = pathname.includes('login') || pathname.includes('register') || pathname.includes('dashboard')
+  const noHeaderFooter =
+    pathname.includes("login") ||
+    pathname.includes("register") ||
+    pathname.includes("dashboard");
   return (
     <div className="font-dm">
-      {
-        noHeaderFooter || <>
+      {noHeaderFooter || (
+        <>
           <RootNav />
         </>
-      }
-      
+      )}
+
       {children}
-      {
-        noHeaderFooter || <>
+      {noHeaderFooter || (
+        <>
           <Footer></Footer>
         </>
-      }
+      )}
     </div>
   );
 };

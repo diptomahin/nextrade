@@ -1,24 +1,20 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import * as React from "react";
-import { IoMdArrowDropup } from "react-icons/io";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import logo from "../../../assets/logo/NexTrade-Logo-Original.png";
 import Link from "next/link";
-import Container from "@/components/library/Container";
+import { motion, AnimatePresence } from "framer-motion";
+import { opacity, background } from "../../utils/anim";
+import "./root_nav.css";
+import Links from "./root_nav_comp/link/Links";
 import Magnetic from "@/components/library/Magnetic";
-import Navigation from "./root_nav_comp/Navigation";
+import Image from "next/image";
+import logo from "../../../assets/logo/NexTrade-Logo-White.png";
+import { IoMdArrowDropup } from "react-icons/io";
+import { fadeIn } from "../../utils/variants";
+import React from "react";
 
-//framer motion
-import {motion} from 'framer-motion';
-
-
-// variants
-import {fadeIn} from '../../Animations/variants'
-
-const RootNav = () => {
+export default function index() {
+  const [isActive, setIsActive] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const pathname = usePathname();
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -41,21 +37,36 @@ const RootNav = () => {
 
   return (
     <motion.nav
-    variants={fadeIn('down',0.5)}
-      initial='hidden'
-      whileInView={'show'}
-      viewport={{once:false,amount:0.10}}
-      className="fixed top-[30px] w-full z-[99]"
+      variants={fadeIn("down", 0.5)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.1 }}
+      className="header px-5 lg:px-10 2xl:px-20 py-6 bg-primary"
     >
-      <Container>
-        <div className="flex items-center justify-between">
-          <Link href="/">
-            <Magnetic>
-              <Image src={logo} alt="Logo" width={180} />
-            </Magnetic>
-          </Link>
-
-          <Navigation />
+      <div className="bar">
+        <Link href="/">
+          <Magnetic>
+            <Image src={logo} alt="Logo" className="w-32 lg:w-40" />
+          </Magnetic>
+        </Link>
+        <div
+          onClick={() => {
+            setIsActive(!isActive);
+          }}
+          className="el"
+        >
+          <div className={`burger ${isActive && "burgerActive"}`}></div>
+          <div className="label">
+            <motion.p
+              variants={opacity}
+              animate={!isActive ? "open" : "closed"}
+            >
+              Menu
+            </motion.p>
+            <motion.p variants={opacity} animate={isActive ? "open" : "closed"}>
+              Close
+            </motion.p>
+          </div>
         </div>
         <Magnetic>
           <button
@@ -67,9 +78,16 @@ const RootNav = () => {
             <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
           </button>
         </Magnetic>
-      </Container>
+      </div>
+      <motion.div
+        variants={background}
+        initial="initial"
+        animate={isActive ? "open" : "closed"}
+        className="background"
+      ></motion.div>
+      <AnimatePresence mode="wait">
+        {isActive && <Links setIsActive={setIsActive} />}
+      </AnimatePresence>
     </motion.nav>
   );
-};
-
-export default RootNav;
+}

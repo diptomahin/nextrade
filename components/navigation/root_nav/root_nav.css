@@ -1,0 +1,88 @@
+.header {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  z-index: 101;
+  color: white;
+}
+
+.background {
+  background-color: black;
+  opacity: 0.2;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+}
+
+.bar p {
+  margin: 0px;
+}
+
+.bar a {
+  text-decoration: none;
+}
+
+.bar .el {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.bar .el .label {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bar .el p:nth-of-type(2) {
+  position: absolute;
+  opacity: 0;
+}
+
+.bar .el .burger {
+  width: 22.5px;
+  position: relative;
+  pointer-events: none;
+}
+
+.bar .el .burger::after,
+.bar .el .burger::before {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  display: block;
+  transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.bar .el .burger::after {
+  top: -4px;
+}
+
+.bar .el .burger::before {
+  top: 4px;
+}
+
+.bar .el .burgerActive::after {
+  transform: rotate(45deg);
+  top: -1px;
+}
+
+.bar .el .burgerActive::before {
+  transform: rotate(-45deg);
+  top: 1px;
+}
