@@ -1,27 +1,30 @@
 "use client"
 
-import { Cell, Legend, Pie, PieChart } from 'recharts';
+import React, { useState, useEffect } from 'react';
+import { Tooltip, ComposedChart, Area, Bar, CartesianGrid, Legend, Line, XAxis, YAxis } from 'recharts';
 
 const PortfolioAssetChart = ({ allUsers }) => {
-
-    // pie chart with customized label
-    const COLORS = ['#c2410c', '#65a30d', '#10b981', '#6366f1', '#d946ef', '#f43f5e'];
-
-    const RADIAN = Math.PI / 180;
-    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-        const x = cx + radius * Math.cos(-midAngle * RADIAN);
-        const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-        return (
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                {`${(percent * 100).toFixed(0)}%`}
-            </text>
-        );
-    };
-
-
+    const [chartWidth, setChartWidth] = useState(1000); 
     let allPortfolios = allUsers[0].portfolio;
+
+    useEffect(() => {
+        const handleResize = () => {
+            // Adjust width based on device size
+            const newWidth = window.innerWidth >= 1024 ? 1000 : 500; // Set width to 500 for LG devices (>=1024px)
+            setChartWidth(newWidth);
+        };
+
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Call handleResize initially to set the initial width
+        handleResize();
+
+        // Clean up event listener on component unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+   
 
     // Calculate the total assetBuyingPrice for each unique assetName
     let totalAssetPriceMap = allPortfolios.reduce((acc, asset) => {
@@ -30,37 +33,33 @@ const PortfolioAssetChart = ({ allUsers }) => {
         return acc;
     }, {});
 
-    // Convert the totalAssetPriceMap into an array of objects suitable for a pie chart
-    let pieChartData = Object.keys(totalAssetPriceMap).map(assetName => ({
+    // Convert the totalAssetPriceMap into an array of objects suitable for a composed chart
+    let composedChartData = Object.keys(totalAssetPriceMap).map(assetName => ({
         name: assetName,
-        value: totalAssetPriceMap[assetName]
+        uv: totalAssetPriceMap[assetName]
     }));
 
-    // console.log(pieChartData);
-
-
-
     return (
-        <div>
-
-            <h1 className='text-2xl font-semibold mt-10'>Total Asset Chart</h1>
-            <PieChart width={320} height={320}>
-                <Pie
-                    data={pieChartData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
+        <div className="bg-white rounded-lg p-4 my-7 overflow-x-auto">
+            <h1 className='text-2xl font-semibold my-5'>Total Asset Chart</h1>
+            <div className="">
+                <ComposedChart
+                    width={chartWidth} 
+                    height={300}
+                    data={composedChartData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                 >
-                    {pieChartData?.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                </Pie>
-                <Legend></Legend>
-            </PieChart>
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Area type="monotone" dataKey="uv" fill="#8884d8" stroke="#8884d8" />
+                    <Bar dataKey="uv" barSize={20} fill="#413ea0" />
+                    <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+                </ComposedChart>
+            </div>
+            
         </div>
     );
 };
