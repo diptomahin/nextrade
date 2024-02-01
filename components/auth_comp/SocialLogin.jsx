@@ -22,7 +22,7 @@ const SocialLogin = () => {
                     email: loggedUser.email,
                     name: loggedUser.displayName,
                     createdAt: loggedUser.metadata.creationTime,
-                    balance: 1000000,
+                    balance: 0,
                     portfolio: [],
                 };
 
