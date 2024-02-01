@@ -41,23 +41,23 @@ const CoinDetails = ({ params }) => {
       if (params.CoinDetails === "BTCUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin`);
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("Bitcoin")
+        setCoinName("Bitcoin (BTC)")
       } else if (params.CoinDetails === "LTCUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/litecoin`);
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("Lite Coin")
+        setCoinName("LiteCoin (LTC)")
       } else if (params.CoinDetails === "ETHUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/ethereum`);
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("Ethereum Coin")
+        setCoinName("Ethereum (ETC)")
       } else if (params.CoinDetails === "QTUMUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/qtum`);
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("QTUM Coin")
+        setCoinName("QTUM coin")
       } else if (params.CoinDetails === "DOGEUSDT") {
         const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/dogecoin`);
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("DOGE Coin")
+        setCoinName("DOGE coin")
       }
     };
 
