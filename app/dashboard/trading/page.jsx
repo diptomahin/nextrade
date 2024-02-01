@@ -100,6 +100,14 @@ const Trading = () => {
     // calculate remaining balance after buying a coin
     const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
     const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
+    if (usersBalance < parseFloat(ast.price)) {
+      Swal.fire({
+        title: `You Don't have enough balance!`,
+        text: `Please deposit to your account`,
+        icon: "error",
+      });
+      return;
+    }
 
     publicAPI
       .put(`/all-users/${remainingBalance}`, assetInfo)
