@@ -1,17 +1,29 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Image from 'next/image';
-import { Divider } from '@mui/material';
 import { AdvancedRealTimeChart } from 'react-ts-tradingview-widgets';
 import DashButton from '@/components/library/buttons/DashButton';
 import TopBanner from '@/components/traders_comp/market/TopBanner';
+import useAuth from '@/hooks/useAuth';
+import useSecureFetch from '@/hooks/useSecureFetch';
+import usePublicAPI from '@/hooks/usePublicAPI';
+import Swal from 'sweetalert2';
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
   const [coinImage, setCoinImage] = useState(null);
   const [coinName, setCoinName] = useState("")
+  const { user } = useAuth()
+
+  const publicAPI = usePublicAPI();
+
+  const {
+    data: allUsers = [],
+    isPending,
+    isLoading,
+    refetch,
+  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   useEffect(() => {
     // Create a WebSocket connection for BTC/USDT ticker
@@ -54,7 +66,41 @@ const CoinDetails = ({ params }) => {
   }, [params.CoinDetails]); // Empty dependency array ensures the effect runs only once on mount
 
 
+  const handleBuyCoin = (ast) => {
+    const assetInfo = {
+      assetName: coinName,
+      assetKey: params.CoinDetails,
+      assetBuyingPrice: ast.c,
+      assetBuyerUID: user.uid,
+      assetBuyerEmail: user.email,
+    };
+    // console.log(assetInfo)
 
+    // calculate remaining balance after buying a coin
+    const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
+    const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
+
+    publicAPI
+      .put(`/all-users/${remainingBalance}`, assetInfo)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            title: `Coin Purchase successful!`,
+            text: `Best of luck`,
+            icon: "success",
+          });
+          refetch();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: `Coin Purchase failed!`,
+          text: `Please try again`,
+          icon: "error",
+        });
+      });
+  }
   return (
     <div>
 
@@ -93,9 +139,9 @@ const CoinDetails = ({ params }) => {
             container_id="advanced-chart-widget-container"
           />
         </div>
-        <div className='flex-1 flex flex-col gap-4 justify-center items-center'>
+        <div className='flex-1 mt-10 xl:mt-0 flex flex-col gap-4 justify-center items-center'>
           <DashButton>Add to Watchlist</DashButton>
-          <DashButton>Buy</DashButton>
+          <DashButton onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
         </div>
       </div>
 

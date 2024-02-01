@@ -4,7 +4,7 @@ import React from 'react';
 
 const TopBanner = ({tickerData, coinImage, coinName}) => {
     return (
-        <div className="  flex flex-col md:flex-row items-center xl:justify-between bg-grayPrimary p-4 rounded-md gap-12 xl:gap-5 lg:gap-32">
+        <div className="  flex flex-col md:flex-row items-center xl:justify-between bg-grayPrimary p-4 rounded-md">
           <div className="flex-1 flex items-center gap-2 md:gap-5">
             {coinImage && <Image src={coinImage} width={80} height={80} alt="BTC/USDT Logo" />}
             <div>
@@ -15,7 +15,7 @@ const TopBanner = ({tickerData, coinImage, coinName}) => {
           </div>
           <Divider orientation="vertical" sx={{ border: "1px solid blue" }} variant="middle" flexItem />
 
-          <div className="flex-1 flex flex-col xl:flex-row  justify-around gap-10">
+          <div className="flex-1 flex flex-col lg:flex-row  justify-around gap-10">
             <div>
               <p>24h High</p>
               <p className='text-green-700'>$ {parseFloat(tickerData.h).toFixed(2)}</p>
