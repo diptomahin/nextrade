@@ -14,11 +14,22 @@ import Icon6 from "../../assets/Services/icon-6.png";
 
 import Container from "@/components/library/Container";
 
+//framer motion
+import {motion} from 'framer-motion';
+
+// variants
+import {fadeIn} from '../../components/Animations/variants'
+
 const Services = () => {
   return (
     <Container className="lg:py-24 py-14">
       <div className="text-center mx-auto">
-        <div>
+        <motion.div
+        variants={fadeIn('up',0.6)}
+        initial='hidden'
+        whileInView={'show'}
+        viewport={{once:false,amount:0.10}}
+        >
           <h1 className="xl:text-3xl lg:text-4xl text-4xl my-4 text-primary font-bold mx-auto text-center">
             Service We Offer
           </h1>
@@ -27,11 +38,16 @@ const Services = () => {
             We offer the best services around from installations to repairs,
             maintenance, and more!
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto justify-center item-center mt-10">
           {/* cart 1  */}
-          <Card className="py-14 px-2 rounded-lg border border-gray-100">
+          <motion.Card
+          variants={fadeIn('right',0.6)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once:false,amount:0.10}}
+          className="py-14 px-2 rounded-lg border border-gray-100">
             <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
               <Image
                 src={Icon1}
@@ -60,9 +76,14 @@ const Services = () => {
                 workshops, and training sessions.
               </Typography>
             </CardContent>
-          </Card>
+          </motion.Card>
           {/* cart 2  */}
-          <Card className="py-14 px-2 rounded-lg border border-gray-100">
+          <motion.Card
+           variants={fadeIn('up',0.6)}
+           initial='hidden'
+           whileInView={'show'}
+           viewport={{once:false,amount:0.10}}
+          className="py-14 px-2 rounded-lg border border-gray-100">
             <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
               <Image
                 src={Icon3}
@@ -91,9 +112,14 @@ const Services = () => {
                 trading activities.
               </Typography>
             </CardContent>
-          </Card>
+          </motion.Card>
           {/* cart 3  */}
-          <Card className="py-14 px-2 rounded-lg border border-gray-100">
+          <motion.Card
+           variants={fadeIn('left',0.6)}
+           initial='hidden'
+           whileInView={'show'}
+           viewport={{once:false,amount:0.10}}
+          className="py-14 px-2 rounded-lg border border-gray-100">
             <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
               <Image
                 src={Icon2}
@@ -122,9 +148,14 @@ const Services = () => {
                 volatility.
               </Typography>
             </CardContent>
-          </Card>
+          </motion.Card>
           {/* cart 4  */}
-          <Card className="py-14 px-2 rounded-lg border border-gray-100">
+          <motion.Card
+           variants={fadeIn('right ',0.6)}
+           initial='hidden'
+           whileInView={'show'}
+           viewport={{once:false,amount:0.10}}
+          className="py-14 px-2 rounded-lg border border-gray-100">
             <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
               <Image
                 src={Icon4}
@@ -153,9 +184,14 @@ const Services = () => {
                 emerging opportunities.
               </Typography>
             </CardContent>
-          </Card>
+          </motion.Card>
           {/* cart 5  */}
-          <Card className="py-14 px-2 rounded-lg border border-gray-100">
+          <motion.Card
+           variants={fadeIn('up',0.6)}
+           initial='hidden'
+           whileInView={'show'}
+           viewport={{once:false,amount:0.10}}
+          className="py-14 px-2 rounded-lg border border-gray-100">
             <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
               <Image
                 src={Icon6}
@@ -184,9 +220,14 @@ const Services = () => {
                 workshops, and training sessions.
               </Typography>
             </CardContent>
-          </Card>
+          </motion.Card>
           {/* cart 6  */}
-          <Card className="py-14 px-2 rounded-lg border border-gray-100">
+          <motion.Card
+           variants={fadeIn('left',0.6)}
+           initial='hidden'
+           whileInView={'show'}
+           viewport={{once:false,amount:0.10}}
+          className="py-14 px-2 rounded-lg border border-gray-100">
             <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
               <Image
                 src={Icon5}
@@ -214,7 +255,7 @@ const Services = () => {
                 strategies, ensuring precise execution and optimal returns.
               </Typography>
             </CardContent>
-          </Card>
+          </motion.Card>
         </div>
       </div>
     </Container>
