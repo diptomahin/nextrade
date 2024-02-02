@@ -1,4 +1,6 @@
 "use client";
+
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, } from "recharts";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AddIcon from "@mui/icons-material/Add";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
@@ -137,9 +139,31 @@ const Wallet = () => {
             <DepositForm refetch={refetch} />
           </Elements>
         </div>
+
         <div className="w-full h-80 p-4 xl:p-6 bg-white rounded-xl border mt-5">
-          <h1 className="text-xl text-center font-bold">Add bar chat</h1>
+          <h1 className="text-xl text-center font-bold">Transaction Report</h1>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart
+              data={[
+                {
+                  name: 'Total Deposited',
+                  amount: parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0,
+                },
+                {
+                  name: 'Total Withdrawals',
+                  amount: 0,
+                },
+              ]}
+            >
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="amount" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
+
       </div>
     </div>
   );
