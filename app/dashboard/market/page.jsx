@@ -147,7 +147,7 @@ const MarketPage = () => {
         <Stack my={5}>
           <Marquee direction='right'>
             {assets.map(asset => (
-              <Stack key={asset.name} justifyContent="space-between" alignItems="center" marginX={4} gap={2} flexDirection="row">
+              <Stack key={asset.name} sx={{ bgcolor: '#ffff',px: 2,py:1,borderRadius: '9 px' }} justifyContent="space-between"  alignItems="center" marginX={4} gap={2} flexDirection="row">
                 <Stack>
                   <Image height={80} width={80} src={asset.icon} alt='coin lgog'></Image>
                 </Stack>
@@ -197,16 +197,16 @@ const MarketPage = () => {
                     <p className={`font-semibold`}>{asset.name}</p>
                   </TableCell>
                   <TableCell>
-                    <p className={` font-semibold`}>{asset.price}</p>
+                    <p className={` font-semibold`}>$ {asset.price}</p>
                   </TableCell>
                   <TableCell>
-                    <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-700" : "text-green-700"}`}>{asset.changePrice}</p>
+                    <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-700" : "text-green-700"}`}>$ {asset.changePrice}</p>
                   </TableCell>
                   <TableCell>
-                    <p className={` font-semibold text-green-700`}>{asset.heighPrice}</p>
+                    <p className={` font-semibold text-green-700`}>$ {asset.heighPrice}</p>
                   </TableCell>
                   <TableCell>
-                    <p className={` font-semibold text-red-700`}>{asset.lowPrice}</p>
+                    <p className={` font-semibold text-red-700`}>$ {asset.lowPrice}</p>
                   </TableCell>
                   <TableCell>
                     <DashboardButton

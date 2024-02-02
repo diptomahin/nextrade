@@ -6,10 +6,12 @@ import { motion } from "framer-motion";
 
 // variants
 import { fadeIn } from "../utils/variants";
+import Container from "../library/Container";
 
 const LiveData = () => {
   return (
-    <div className="flex flex-col items-center justify-center mx-20">
+    <Container>
+     <div className="flex flex-col items-center justify-center ">
       <motion.h1
       variants={fadeIn("up", 0.3)}
       initial="hidden"
@@ -62,7 +64,9 @@ const LiveData = () => {
           container_id="advanced-chart-widget-container"
         />
       </motion.div>
-    </div>
+    </div> 
+    </Container>
+    
   );
 };
 
