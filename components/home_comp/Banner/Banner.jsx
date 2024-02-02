@@ -22,11 +22,13 @@ const Banner = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
+      className="relative h-[100vh]"
       // style={{ backgroundImage: `url(${banner})`, backgroundSize: "cover", backgroundPosition: "center" }}
     >
-      <Container 
+      <Image src={banner} alt="" className=" w-full h-full object-cover"/>
+      <div 
       
-      className="relative min-h-[100vh] flex flex-col items-center justify-center gap-8 py-32 ">
+      className="absolute w-full h-full top-0 px-10 py-32 bg-gradient-to-r from-[#0000002a] to-[#0000005d]">
         <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"
@@ -34,7 +36,7 @@ const Banner = () => {
           viewport={{ once: false, amount: 0.1 }}
           className=" lg:flex flex-row-reverse items-center justify-between gap-10"
         >
-          <Magnetic>
+          {/* <Magnetic>
             <motion.div
               variants={fadeIn("left", 0.9)}
               initial="hidden"
@@ -44,26 +46,26 @@ const Banner = () => {
             >
               <Image src={bannerImg} alt="" />
             </motion.div>
-          </Magnetic>
+          </Magnetic> */}
 
-          <div>
+          <div className=" text-center w-full mx-auto  mt-24">
             <motion.h1
               variants={fadeIn("down", 0.1)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className=" text-3xl sm:text-3xl md:text-3xl lg:text-2xl xl:text-5xl font-extrabold text-secondary md:mb-5 mb-4 flex flex-wrap items-center  "
+              className=" text-3xl sm:text-3xl md:text-3xl lg:text-2xl xl:text-6xl font-extrabold text-secondary md:mb-5 mb-4   text-center"
             >
               <Magnetic>
-                <span className="text-primary">Innovation</span>
+                <span className="text-white">Innovation</span>
               </Magnetic>
               .
               <Magnetic>
-                <span className="text-primary">Integrity</span>
+                <span className="text-white">Integrity</span>
               </Magnetic>
               .
               <Magnetic>
-                <span className="text-primary">Investment</span>
+                <span className="text-white">Investment</span>
               </Magnetic>
               .
             </motion.h1>
@@ -72,11 +74,11 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className=" text-sm md:text-md lg:text-lg xl:text-xl mb-8 font-medium text-secondary "
+              className=" text-sm md:text-md lg:text-lg xl:text-xl mb-8 font-medium text-[#e4e2e2] "
             >
               {" "}
-              Join world&apos;s biggest & trusted Exchange. Trade in Bitcoin,
-              Ethereum, LiteCoin, DOGE coin and many more currencies.
+              Join world&apos;s biggest & trusted Exchange. Trade  in Bitcoin,
+              Ethereum, LiteCoin,<br /> DOGE coin and many more currencies.
             </motion.p>
             <motion.div
               variants={fadeIn("down", 0.4)}
@@ -88,11 +90,13 @@ const Banner = () => {
             </motion.div>
           </div>
         </motion.div>
+          <Container>
 
-        <div className="absolute bottom-5 w-full">
+        <div className="absolute bottom-2 w-full mx-auto left-0  ">
           <TickerTape displayMode="adaptive"></TickerTape>
         </div>
-      </Container>
+          </Container>
+      </div>
     </motion.div>
   );
 };
