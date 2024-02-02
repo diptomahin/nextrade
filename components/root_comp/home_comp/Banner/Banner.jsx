@@ -7,7 +7,7 @@ import { TickerTape } from "react-ts-tradingview-widgets";
 
 //banner image impost asset
 // import bannerImg from "../../../assets/Trading-PNG-Photo.png";
-import banner from "../../../../assets/Banner/banner.png";
+import banner from "../../../../assets/Banner/banner2.jpg";
 
 //framer motion
 import { motion } from "framer-motion";
@@ -17,67 +17,57 @@ import { fadeIn } from "../../../utils/variants";
 
 const Banner = () => {
   return (
-    <motion.div
-      variants={fadeIn("up", 0.2)}
-      initial="hidden"
-      whileInView={"show"}
-      viewport={{ once: false, amount: 0.1 }}
-      className="relative h-[100vh]"
-      // style={{ backgroundImage: `url(${banner})`, backgroundSize: "cover", backgroundPosition: "center" }}
-    >
-      <Image src={banner} alt="" className=" w-full h-full object-cover" />
-      <div className="absolute w-full h-full top-0 px-10 py-32 bg-gradient-to-r from-[#0000002a] to-[#0000005d]">
+    <div className="relative h-[100vh]">
+      <Image
+        src={banner}
+        alt=""
+        className="absolute w-full h-full top-0 object-cover -z-10"
+      />
+      <Container className="w-full h-full py-32 bg-black/50">
         <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className=" lg:flex flex-row-reverse items-center justify-between gap-10"
+          className="h-full flex items-center justify-center"
         >
-          {/* <Magnetic>
-            <motion.div
-              variants={fadeIn("left", 0.9)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-              className=""
-            >
-              <Image src={bannerImg} alt="" />
-            </motion.div>
-          </Magnetic> */}
-
-          <div className=" text-center w-full mx-auto  mt-24">
+          <div className="text-center w-full mx-auto ">
             <motion.h1
               variants={fadeIn("down", 0.1)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className=" text-3xl sm:text-3xl md:text-3xl lg:text-2xl xl:text-6xl font-extrabold text-secondary md:mb-5 mb-4   text-center"
+              className="flex items-center justify-center flex-wrap gap-2 text-4xl md:text-[46px] lg:text-[58px] xl:text-7xl 2xl:text-[80px] 3xl:text-[90px] 4xl:text-8xl 4xl:px-5 font-extrabold text-secondary"
             >
-              <Magnetic>
-                <span className="text-white">Innovation</span>
-              </Magnetic>
-              .
-              <Magnetic>
-                <span className="text-white">Integrity</span>
-              </Magnetic>
-              .
-              <Magnetic>
-                <span className="text-white">Investment</span>
-              </Magnetic>
-              .
+              <div className="flex items-center md:gap-2">
+                <Magnetic>
+                  <h1 className="text-white">Innovation</h1>
+                </Magnetic>
+                .
+              </div>
+              <div className="flex items-center md:gap-2">
+                <Magnetic>
+                  <h1 className="text-white">Integrity</h1>
+                </Magnetic>
+                .
+              </div>
+              <div className="flex items-center md:gap-2">
+                <Magnetic>
+                  <h1 className="text-white">Investment</h1>
+                </Magnetic>
+                .
+              </div>
             </motion.h1>
             <motion.p
               variants={fadeIn("down", 0.2)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className=" text-sm md:text-md lg:text-lg xl:text-xl mb-8 font-medium text-[#e4e2e2] "
+              className="text-xs md:text-sm lg:text-base 2xl:text-lg mt-5 mb-8 md:my-8 text-white text-center font-inter"
             >
               {" "}
               Join world&apos;s biggest & trusted Exchange. Trade in Bitcoin,
-              Ethereum, LiteCoin,
-              <br /> DOGE coin and many more currencies.
+              Ethereum, LiteCoin, DOGE coin and many more currencies.
             </motion.p>
             <motion.div
               variants={fadeIn("down", 0.4)}
@@ -89,13 +79,11 @@ const Banner = () => {
             </motion.div>
           </div>
         </motion.div>
-        <Container>
-          <div className="absolute bottom-2 w-full mx-auto left-0  ">
-            <TickerTape displayMode="adaptive"></TickerTape>
-          </div>
-        </Container>
-      </div>
-    </motion.div>
+        <div className="w-full absolute left-0 bottom-2 px-5 md:px-10 2xl:px-20">
+          <TickerTape displayMode="adaptive"></TickerTape>
+        </div>
+      </Container>
+    </div>
   );
 };
 
