@@ -8,7 +8,7 @@
 }
 
 .background {
-  background-color: black;
+  background-color: #352786;
   opacity: 0.2;
   height: 100%;
   width: 100%;
@@ -34,6 +34,10 @@
 }
 
 .bar .el {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #455ce9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +57,7 @@
 }
 
 .bar .el .burger {
-  width: 22.5px;
+  width: 30px;
   position: relative;
   pointer-events: none;
 }
@@ -70,11 +74,11 @@
 }
 
 .bar .el .burger::after {
-  top: -4px;
+  top: -5px;
 }
 
 .bar .el .burger::before {
-  top: 4px;
+  top: 5px;
 }
 
 .bar .el .burgerActive::after {
