@@ -7,6 +7,7 @@ import { TickerTape } from "react-ts-tradingview-widgets";
 
 //banner image impost asset
 import bannerImg from "../../../assets/Trading-PNG-Photo.png";
+import banner from '../../../assets/Banner/banner.png'
 
 //framer motion
 import { motion } from "framer-motion";
@@ -21,8 +22,11 @@ const Banner = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
+      // style={{ backgroundImage: `url(${banner})`, backgroundSize: "cover", backgroundPosition: "center" }}
     >
-      <Container className="relative min-h-[100vh] flex flex-col items-center justify-center gap-8 py-32 ">
+      <Container 
+      
+      className="relative min-h-[100vh] flex flex-col items-center justify-center gap-8 py-32 ">
         <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"
