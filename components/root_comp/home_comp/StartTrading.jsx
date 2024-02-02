@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import logo from "../../assets/nextrade-logo.png";
+import logo from "../../../assets/nextrade-logo.png";
 // import image1 from "../../../assets/economic-world-forex-trading-background_1017-38068.png";
 // import image2 from "../../../assets/gradient-stock-market-concept_23-2149166929.png";
 import Image from "next/image";
@@ -12,7 +12,7 @@ import { CryptoCurrencyMarket } from "react-ts-tradingview-widgets";
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../utils/variants";
+import { fadeIn } from "../../utils/variants";
 
 const StartTrading = () => {
   return (

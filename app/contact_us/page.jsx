@@ -4,7 +4,7 @@ import Container from "@/components/library/Container";
 import { Typography } from "@mui/material";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PhoneForwardedOutlinedIcon from "@mui/icons-material/PhoneForwardedOutlined";
-import ContactForm from "@/components/ContactForm/ContactForm";
+import ContactForm from "@/components/root_comp/contact_comp/ContactForm";
 
 const page = () => {
   return (
@@ -33,10 +33,8 @@ const page = () => {
       </Typography>
 
       <div className="mx-auto 2xl:mx-24 bg-[#e9eef1] rounded-xl">
-        
-      {/* contact form */}
-      <ContactForm></ContactForm>
-
+        {/* contact form */}
+        <ContactForm></ContactForm>
       </div>
       <div className="mx-auto mt-10 2xl:mx-24 bg-[#e9eef1] rounded-xl">
         <div className="flex flex-col md:flex-row justify-around gap-10 py-10">
