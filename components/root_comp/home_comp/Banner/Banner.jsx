@@ -11,7 +11,7 @@ import banner from "../../../../assets/Banner/banner2.jpg";
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../../../utils/variants";
 
 const Banner = () => {
   return (
