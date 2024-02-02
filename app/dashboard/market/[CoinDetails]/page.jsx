@@ -119,7 +119,7 @@ const CoinDetails = ({ params }) => {
       )}
 
 
-      <div className='flex flex-col xl:flex-row my-10'>
+      <div className='flex flex-col xl:flex-row gap-5 my-10'>
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 ">
           <AdvancedRealTimeChart
             width="100%"
@@ -147,9 +147,9 @@ const CoinDetails = ({ params }) => {
             container_id="advanced-chart-widget-container"
           />
         </div>
-        <div className='flex-1 mt-10 xl:mt-0 flex flex-col gap-4 justify-center items-center'>
-          <DashButton>Add to Watchlist</DashButton>
-          <DashButton onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
+        <div className='flex-1 bg-grayPrimary rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7'>
+          <DashButton className="w-full">Add to Watchlist</DashButton>
+          <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
         </div>
       </div>
 

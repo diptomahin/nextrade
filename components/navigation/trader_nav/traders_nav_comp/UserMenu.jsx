@@ -1,4 +1,5 @@
 import useAuth from "@/hooks/useAuth";
+import Image from "next/image";
 // import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -17,23 +18,26 @@ const UserMenu = () => {
         <h4 className="text-xs opacity-70">{user?.email}</h4>
       </div>
       <button onClick={() => setIsOpen(!isOpen)}>
-        {/* <Image alt="user photo " width={50} href={user?.photoURL} /> */}
-        <FaUserCircle className={`w-8 h-8 ${isOpen && "text-primary"}`} />
+
+        {
+          user ? <Image src={user.photoURL} width={50} height={50} className="rounded-full border-2 border-primary" alt="user photo" />
+          : <FaUserCircle className={`w-8 h-8 ${isOpen && "text-primary"}`} />
+        }
+
       </button>
       {isOpen && (
         <div className="w-60 absolute top-[53px] right-0 bg-white rounded-xl border overflow-hidden">
           <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
             <div className="flex flex-col items-center gap-3">
-              {/* {!user?.photoURL ? (
-                <Image width={48} href={user?.photoURL} alt="user photo" />
-              ) : (
+             
+              {user ? 
+                <Image src={user.photoURL} height={48} width={48}  alt="user photo" />
+               : 
                 <p className="w-10 h-10 flex items-center justify-center bg-white rounded-full">
                   <FaUser className="w-10 h-10 m-[6px] text-sky-500 rounded-full" />
                 </p>
-              )} */}
-              <p className="w-10 h-10 flex items-center justify-center bg-white rounded-full">
-                <FaUser className="w-10 h-10 m-[6px] text-sky-500 rounded-full" />
-              </p>
+              }
+      
 
               <div className="text-center">
                 <h3 className="font-semibold">{user?.displayName}</h3>
