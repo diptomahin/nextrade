@@ -102,14 +102,14 @@ const Portfolio = () => {
       asset.assetKey === "BTCUSDT"
         ? currentBTCPrice
         : asset.assetKey === "ETHUSDT"
-        ? currentETHPrice
-        : asset.assetKey === "LTCUSDT"
-        ? currentLTCPrice
-        : asset.assetKey === "QTUMUSDT"
-        ? currentQTUMPrice
-        : asset.assetKey === "DOGEUSDT"
-        ? currentDOGEPrice
-        : 0,
+          ? currentETHPrice
+          : asset.assetKey === "LTCUSDT"
+            ? currentLTCPrice
+            : asset.assetKey === "QTUMUSDT"
+              ? currentQTUMPrice
+              : asset.assetKey === "DOGEUSDT"
+                ? currentDOGEPrice
+                : 0,
       parseFloat(asset.assetBuyingPrice)
     );
     return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
@@ -122,14 +122,14 @@ const Portfolio = () => {
         asset.assetKey === "BTCUSDT"
           ? currentBTCPrice
           : asset.assetKey === "ETHUSDT"
-          ? currentETHPrice
-          : asset.assetKey === "LTCUSDT"
-          ? currentLTCPrice
-          : asset.assetKey === "QTUMUSDT"
-          ? currentQTUMPrice
-          : asset.assetKey === "DOGEUSDT"
-          ? currentDOGEPrice
-          : 0,
+            ? currentETHPrice
+            : asset.assetKey === "LTCUSDT"
+              ? currentLTCPrice
+              : asset.assetKey === "QTUMUSDT"
+                ? currentQTUMPrice
+                : asset.assetKey === "DOGEUSDT"
+                  ? currentDOGEPrice
+                  : 0,
         parseFloat(asset.assetBuyingPrice)
       );
       return total + (parseFloat(difference) < 0 ? parseFloat(difference) : 0);
@@ -162,220 +162,228 @@ const Portfolio = () => {
       ></PortfolioTopBanner>
 
       {/* pie chart */}
-      <PortfolioAssetChart allUsers={allUsers}></PortfolioAssetChart>
+
+      {
+        totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers}></PortfolioAssetChart>
+      }
+
 
       {/* Table */}
       <div className="mt-20">
         <h2 className="text-2xl font-bold mb-2 font-sans">
           Your Holdings . . .{" "}
         </h2>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead className="bg-primary">
-              <TableRow>
-                <TableCell sx={{ color: "white", fontWeight: "600" }}>
-                  Company
-                </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ color: "white", fontWeight: "600" }}
-                >
-                  Buying Price
-                </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ color: "white", fontWeight: "600" }}
-                >
-                  Current Price
-                </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ color: "white", fontWeight: "600" }}
-                >
-                  Profit / Loss
-                </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ color: "white", fontWeight: "600" }}
-                >
-                  -
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {buyingPriceInfo.map((asset, index) => (
-                <TableRow key={index}>
-                  {/* row 1 */}
+        {totalBuyingPrice ?
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead className="bg-primary">
+                <TableRow>
+                  <TableCell sx={{ color: "white", fontWeight: "600" }}>
+                    Company
+                  </TableCell>
                   <TableCell
-                    component="th"
-                    scope="row"
-                    
+                    align="right"
+                    sx={{ color: "white", fontWeight: "600" }}
                   >
-                    <h2 className="font-semibold">{asset.assetName}</h2>
+                    Buying Price
                   </TableCell>
-                  {/* row 2 */}
-                  <TableCell align="right" >
-                    <h2 className="font-semibold">$ {asset.assetBuyingPrice}</h2>
+                  <TableCell
+                    align="right"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    Current Price
                   </TableCell>
-                  {/* row 3 */}
-                  <TableCell align="right" className="font-semibold">
-                    {asset.assetKey === "BTCUSDT" ? (
-                      <span
-                        className={
-                          currentBTCPrice < parseFloat(asset.assetBuyingPrice)
-                            ? "text-red-700 font-semibold"
-                            : "text-green-700 font-semibold"
-                        }
-                      >
-                        ${currentBTCPrice}
-                        {/* Render up arrow icon if current price is higher than buying price */}
-                        {currentBTCPrice >
-                        parseFloat(asset.assetBuyingPrice) ? (
-                          <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
-                        ) : (
-                          // Render down arrow icon if current price is lower than buying price
-                          <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
-                        )}
-                      </span>
-                    ) : asset.assetKey === "ETHUSDT" ? (
-                      <span
-                        className={
-                          currentETHPrice < parseFloat(asset.assetBuyingPrice)
-                            ? "text-red-700 font-semibold"
-                            : "text-green-700 font-semibold"
-                        }
-                      >
-                        ${currentETHPrice}
-                        {currentETHPrice >
-                        parseFloat(asset.assetBuyingPrice) ? (
-                          <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
-                        ) : (
-                          <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
-                        )}
-                      </span>
-                    ) : asset.assetKey === "LTCUSDT" ? (
-                      <span
-                        className={
-                          currentLTCPrice < parseFloat(asset.assetBuyingPrice)
-                            ? "text-red-700 font-semibold"
-                            : "text-green-700 font-semibold"
-                        }
-                      >
-                        ${currentLTCPrice}
-                        {currentLTCPrice >
-                        parseFloat(asset.assetBuyingPrice) ? (
-                          <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
-                        ) : (
-                          <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
-                        )}
-                      </span>
-                    ) : asset.assetKey === "QTUMUSDT" ? (
-                      <span
-                        className={
-                          currentQTUMPrice < parseFloat(asset.assetBuyingPrice)
-                            ? "text-red-700 font-semibold"
-                            : "text-green-700 font-semibold"
-                        }
-                      >
-                        ${currentQTUMPrice}
-                        {currentQTUMPrice >
-                        parseFloat(asset.assetBuyingPrice) ? (
-                          <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
-                        ) : (
-                          <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
-                        )}
-                      </span>
-                    ) : asset.assetKey === "DOGEUSDT" ? (
-                      <span
-                        className={
-                          currentDOGEPrice < parseFloat(asset.assetBuyingPrice)
-                            ? "text-red-700 font-semibold"
-                            : "text-green-700 font-semibold"
-                        }
-                      >
-                        ${currentDOGEPrice}
-                        {currentDOGEPrice >
-                        parseFloat(asset.assetBuyingPrice) ? (
-                          <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
-                        ) : (
-                          <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
-                        )}
-                      </span>
-                    ) : (
-                      <span>-</span>
-                    )}
+                  <TableCell
+                    align="right"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    Profit / Loss
                   </TableCell>
+                  <TableCell
+                    align="right"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    -
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {buyingPriceInfo.map((asset, index) => (
+                  <TableRow key={index}>
+                    {/* row 1 */}
+                    <TableCell
+                      component="th"
+                      scope="row"
 
-                  {/* row 4 */}
-                  <TableCell align="right">
-                    {asset.assetBuyingPrice ? (
-                      <span
-                        className={`font-semibold ${
-                          calculateDifference(
+                    >
+                      <h2 className="font-semibold">{asset.assetName}</h2>
+                    </TableCell>
+                    {/* row 2 */}
+                    <TableCell align="right" >
+                      <h2 className="font-semibold">$ {asset.assetBuyingPrice}</h2>
+                    </TableCell>
+                    {/* row 3 */}
+                    <TableCell align="right" className="font-semibold">
+                      {asset.assetKey === "BTCUSDT" ? (
+                        <span
+                          className={
+                            currentBTCPrice < parseFloat(asset.assetBuyingPrice)
+                              ? "text-red-700 font-semibold"
+                              : "text-green-700 font-semibold"
+                          }
+                        >
+                          ${currentBTCPrice}
+                          {/* Render up arrow icon if current price is higher than buying price */}
+                          {currentBTCPrice >
+                            parseFloat(asset.assetBuyingPrice) ? (
+                            <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
+                          ) : (
+                            // Render down arrow icon if current price is lower than buying price
+                            <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
+                          )}
+                        </span>
+                      ) : asset.assetKey === "ETHUSDT" ? (
+                        <span
+                          className={
+                            currentETHPrice < parseFloat(asset.assetBuyingPrice)
+                              ? "text-red-700 font-semibold"
+                              : "text-green-700 font-semibold"
+                          }
+                        >
+                          ${currentETHPrice}
+                          {currentETHPrice >
+                            parseFloat(asset.assetBuyingPrice) ? (
+                            <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
+                          ) : (
+                            <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
+                          )}
+                        </span>
+                      ) : asset.assetKey === "LTCUSDT" ? (
+                        <span
+                          className={
+                            currentLTCPrice < parseFloat(asset.assetBuyingPrice)
+                              ? "text-red-700 font-semibold"
+                              : "text-green-700 font-semibold"
+                          }
+                        >
+                          ${currentLTCPrice}
+                          {currentLTCPrice >
+                            parseFloat(asset.assetBuyingPrice) ? (
+                            <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
+                          ) : (
+                            <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
+                          )}
+                        </span>
+                      ) : asset.assetKey === "QTUMUSDT" ? (
+                        <span
+                          className={
+                            currentQTUMPrice < parseFloat(asset.assetBuyingPrice)
+                              ? "text-red-700 font-semibold"
+                              : "text-green-700 font-semibold"
+                          }
+                        >
+                          ${currentQTUMPrice}
+                          {currentQTUMPrice >
+                            parseFloat(asset.assetBuyingPrice) ? (
+                            <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
+                          ) : (
+                            <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
+                          )}
+                        </span>
+                      ) : asset.assetKey === "DOGEUSDT" ? (
+                        <span
+                          className={
+                            currentDOGEPrice < parseFloat(asset.assetBuyingPrice)
+                              ? "text-red-700 font-semibold"
+                              : "text-green-700 font-semibold"
+                          }
+                        >
+                          ${currentDOGEPrice}
+                          {currentDOGEPrice >
+                            parseFloat(asset.assetBuyingPrice) ? (
+                            <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
+                          ) : (
+                            <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
+                          )}
+                        </span>
+                      ) : (
+                        <span>-</span>
+                      )}
+                    </TableCell>
+
+                    {/* row 4 */}
+                    <TableCell align="right">
+                      {asset.assetBuyingPrice ? (
+                        <span
+                          className={`font-semibold ${calculateDifference(
                             asset.assetKey === "BTCUSDT"
                               ? currentBTCPrice
                               : asset.assetKey === "ETHUSDT"
-                              ? currentETHPrice
-                              : asset.assetKey === "LTCUSDT"
-                              ? currentLTCPrice
-                              : asset.assetKey === "QTUMUSDT"
-                              ? currentQTUMPrice
-                              : asset.assetKey === "DOGEUSDT"
-                              ? currentDOGEPrice
-                              : 0,
+                                ? currentETHPrice
+                                : asset.assetKey === "LTCUSDT"
+                                  ? currentLTCPrice
+                                  : asset.assetKey === "QTUMUSDT"
+                                    ? currentQTUMPrice
+                                    : asset.assetKey === "DOGEUSDT"
+                                      ? currentDOGEPrice
+                                      : 0,
                             parseFloat(asset.assetBuyingPrice)
                           ) > 0
-                            ? "text-green-700"
-                            : "text-red-700"
-                        }`}
-                      >
-                        $
-                        {calculateDifference(
-                          asset.assetKey === "BTCUSDT"
-                            ? currentBTCPrice
-                            : asset.assetKey === "ETHUSDT"
-                            ? currentETHPrice
-                            : asset.assetKey === "LTCUSDT"
-                            ? currentLTCPrice
-                            : asset.assetKey === "QTUMUSDT"
-                            ? currentQTUMPrice
-                            : asset.assetKey === "DOGEUSDT"
-                            ? currentDOGEPrice
-                            : 0,
-                          parseFloat(asset.assetBuyingPrice)
-                        )}
-                        {/* Render up arrow icon for profit and down arrow icon for loss */}
-                        {calculateDifference(
-                          asset.assetKey === "BTCUSDT"
-                            ? currentBTCPrice
-                            : asset.assetKey === "ETHUSDT"
-                            ? currentETHPrice
-                            : asset.assetKey === "LTCUSDT"
-                            ? currentLTCPrice
-                            : asset.assetKey === "QTUMUSDT"
-                            ? currentQTUMPrice
-                            : asset.assetKey === "DOGEUSDT"
-                            ? currentDOGEPrice
-                            : 0,
-                          parseFloat(asset.assetBuyingPrice)
-                        ) > 0 ? (
-                          <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
-                        ) : (
-                          <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
-                        )}
-                      </span>
-                    ) : (
-                      <span>0.00</span>
-                    )}
-                  </TableCell>
+                              ? "text-green-700"
+                              : "text-red-700"
+                            }`}
+                        >
+                          $
+                          {calculateDifference(
+                            asset.assetKey === "BTCUSDT"
+                              ? currentBTCPrice
+                              : asset.assetKey === "ETHUSDT"
+                                ? currentETHPrice
+                                : asset.assetKey === "LTCUSDT"
+                                  ? currentLTCPrice
+                                  : asset.assetKey === "QTUMUSDT"
+                                    ? currentQTUMPrice
+                                    : asset.assetKey === "DOGEUSDT"
+                                      ? currentDOGEPrice
+                                      : 0,
+                            parseFloat(asset.assetBuyingPrice)
+                          )}
+                          {/* Render up arrow icon for profit and down arrow icon for loss */}
+                          {calculateDifference(
+                            asset.assetKey === "BTCUSDT"
+                              ? currentBTCPrice
+                              : asset.assetKey === "ETHUSDT"
+                                ? currentETHPrice
+                                : asset.assetKey === "LTCUSDT"
+                                  ? currentLTCPrice
+                                  : asset.assetKey === "QTUMUSDT"
+                                    ? currentQTUMPrice
+                                    : asset.assetKey === "DOGEUSDT"
+                                      ? currentDOGEPrice
+                                      : 0,
+                            parseFloat(asset.assetBuyingPrice)
+                          ) > 0 ? (
+                            <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
+                          ) : (
+                            <ArrowDropDownSharpIcon className="text-red-700 ml-1" />
+                          )}
+                        </span>
+                      ) : (
+                        <span>0.00</span>
+                      )}
+                    </TableCell>
 
-                  {/* row 5 */}
-                  <TableCell align="right">----</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                    {/* row 5 */}
+                    <TableCell align="right">----</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer> :
+          <div className="flex justify-center items-center h-[40vh]">
+              <h3 className="text-red-500 text-lg 2xl:text-3xl font-semibold">Empty !!</h3>
+          </div>
+        }
       </div>
     </div>
   );
