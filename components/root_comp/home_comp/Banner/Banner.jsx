@@ -5,15 +5,13 @@ import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
 import { TickerTape } from "react-ts-tradingview-widgets";
 
-//banner image impost asset
-// import bannerImg from "../../../assets/Trading-PNG-Photo.png";
 import banner from "../../../../assets/Banner/banner2.jpg";
 
 //framer motion
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../../utils/variants";
+import { fadeIn } from "../../utils/variants";
 
 const Banner = () => {
   return (
