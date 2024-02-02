@@ -1,5 +1,4 @@
 "use client";
-import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { Stack, TextField, Typography } from "@mui/material";
@@ -9,14 +8,13 @@ import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
-// import { useRouter } from "next/router";
 import { useRouter } from "next/navigation";
-import usePublicAPI from "@/hooks/usePublicAPI";
 import Lottie from "lottie-react";
-import loginAnim from "../../assets/loginAnim.json";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Magnetic from "@/components/library/Magnetic";
 import SocialLogin from "@/components/root_comp/auth_comp/SocialLogin";
+import Image from "next/image";
+import logo from "../../assets/logo/NexTrade-Logo-Original.png";
+import loginAnim from "../../assets/loginAnim.json";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -49,7 +47,7 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const { logIn, googleLogin } = useAuth();
+  const { logIn } = useAuth();
   const [captchaValue, setCaptchaValue] = useState(null);
 
   const onChange = (value) => {
@@ -80,45 +78,40 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col xl:flex-row-reverse xl:items-center min-h-[100vh] relative">
-      <Magnetic>
-        <Link
-          href="/"
-          className="text-white 2xl:text-primary font-semibold flex items-center gap-3 absolute top-5 2xl:top-10  left-7 2xl:right-12 z-10"
-        >
-          <ArrowBackIcon />
-          Home
-        </Link>
-      </Magnetic>
-
-      <Stack
-        flex={1}
-        sx={{
-          backgroundColor: "#455ce9",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+    <div className="relative min-h-[100vh] w-full flex flex-col xl:flex-row-reverse bg-gradient-to-br from-primary to-[#352786]">
+      <Link
+        href="/"
+        className="text-white font-semibold fixed top-8 2xl:top-10 right-8 2xl:right-10 z-10 "
       >
-        <Lottie className="w-full" animationData={loginAnim} loop={true} />
-      </Stack>
-
-      <Stack flex={1}>
+        <ArrowBackIcon />
+        Home
+      </Link>
+      <Link href="/" className="fixed top-8 2xl:top-10 left-8 2xl:left-10 z-10">
+        <Image src={logo} alt="Logo" className="w-36 lg:w-40 z-10" />
+      </Link>
+      <div className="flex-1 h-full xl:min-h-[100vh] flex items-center justify-center py-12">
+        <Lottie
+          className="w-5/6 md:w-7/12 xl:w-3/5"
+          loop={true}
+          animationData={loginAnim}
+        />
+      </div>
+      <div className="flex-1 min-h-[100vh] flex items-center justify-center xl:bg-white">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="px-5 mx-auto my-10 xl:my-0 md:px-0 w-full md:w-[80%] 2xl:w-[70%]"
+          className="mx-5 my-16 xl:mx-0 p-5 md:px-10 w-full md:w-[400px] xl:w-[400px] border rounded-xl bg-white"
         >
           <Typography
             variant="h2"
-            mb={2}
-            fontWeight="600"
-            sx={{ fontSize: ["24px", "28px", "30px"] }}
+            mb={1}
+            fontWeight="bold"
+            className="text-primary text-center"
+            sx={{ fontSize: "24px" }}
           >
             Login to NexTrade
           </Typography>
 
-          <Stack mt={4} gap={3}>
+          <Stack gap={2}>
             {/* email */}
             <CssTextField
               {...register("email", { required: true })}
@@ -153,29 +146,29 @@ const Login = () => {
 
             {/* Google Captcha */}
 
-            <div className="mb-3 mt-4 flex justify-center">
+            <div className="flex justify-center">
               <ReCAPTCHA
                 sitekey="6LelPTApAAAAADWVe8dSbkcjltECOr38kOEygA9u"
                 onChange={onChange}
               />
             </div>
 
-            <Stack mt={2} alignItems="center">
+            <Stack alignItems="center">
               {captchaValue ? (
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full lg:h-12">
                   Log In
                 </Button>
               ) : (
-                <Button disabled type="submit" className="w-full">
+                <Button disabled type="submit" className="w-full lg:h-12">
                   Log In
                 </Button>
               )}
             </Stack>
-            <Typography className="text-lg lg:text-xl text-center ">
+            <Typography className="text-lg text-center">
               Don&apos;t Have an account?{" "}
               <Link
                 href="/register"
-                className="text-primary font-bold hover:underline"
+                className="ml-1 font-medium text-primary hover:underline"
               >
                 Register here
               </Link>
@@ -183,7 +176,7 @@ const Login = () => {
           </Stack>
           <SocialLogin />
         </form>
-      </Stack>
+      </div>
     </div>
   );
 };

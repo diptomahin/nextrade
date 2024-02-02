@@ -45,13 +45,21 @@ export default function index() {
         viewport={{ once: false, amount: 0.1 }}
         className="header px-5 lg:px-10 2xl:px-20 py-6"
       >
-        <div className="bar">
+        <div className="bar flex items-center justify-between">
           <Magnetic>
             <Link href="/">
               {isActive ? (
-                <Image src={logo1} alt="Logo" className="w-32 lg:w-40" />
+                <Image
+                  src={logo1}
+                  alt="Logo"
+                  className="w-36 lg:w-40 z-[100]"
+                />
               ) : (
-                <Image src={logo2} alt="Logo" className="w-32 lg:w-40" />
+                <Image
+                  src={logo2}
+                  alt="Logo"
+                  className="w-36 lg:w-40 z-[100]"
+                />
               )}
             </Link>
           </Magnetic>
@@ -61,7 +69,7 @@ export default function index() {
               onClick={() => {
                 setIsActive(!isActive);
               }}
-              className="el"
+              className="el w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16"
             >
               <div className={`burger ${isActive && "burgerActive"}`}></div>
             </div>
