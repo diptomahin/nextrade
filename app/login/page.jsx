@@ -13,10 +13,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import Lottie from "lottie-react";
-import loginAnim from "../../assets/loginAnim.json"
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import loginAnim from "../../assets/loginAnim.json";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Magnetic from "@/components/library/Magnetic";
-import SocialLogin from "@/components/auth_comp/SocialLogin";
+import SocialLogin from "@/components/root_comp/auth_comp/SocialLogin";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -40,7 +40,6 @@ const CssTextField = styled(TextField)({
 });
 
 const Login = () => {
-
   const router = useRouter();
   const { from } = router.query || { from: "/dashboard" };
 
@@ -80,21 +79,36 @@ const Login = () => {
       });
   };
 
-
   return (
     <div className="flex flex-col xl:flex-row-reverse xl:items-center min-h-[100vh] relative">
       <Magnetic>
-        <Link href="/" className="text-white 2xl:text-primary font-semibold flex items-center gap-3 absolute top-5 2xl:top-10  left-7 2xl:right-12 z-10"><ArrowBackIcon />Home</Link>
+        <Link
+          href="/"
+          className="text-white 2xl:text-primary font-semibold flex items-center gap-3 absolute top-5 2xl:top-10  left-7 2xl:right-12 z-10"
+        >
+          <ArrowBackIcon />
+          Home
+        </Link>
       </Magnetic>
-      
-      <Stack flex={1} sx={{ backgroundColor: "#455ce9", height: "100vh", display:"flex", justifyContent:"center", alignItems:"center" }}>
+
+      <Stack
+        flex={1}
+        sx={{
+          backgroundColor: "#455ce9",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Lottie className="w-full" animationData={loginAnim} loop={true} />
       </Stack>
 
-      <Stack
-        flex={1} 
-      >
-        <form onSubmit={handleSubmit(onSubmit)} className="px-5 mx-auto my-10 xl:my-0 md:px-0 w-full md:w-[80%] 2xl:w-[70%]">
+      <Stack flex={1}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="px-5 mx-auto my-10 xl:my-0 md:px-0 w-full md:w-[80%] 2xl:w-[70%]"
+        >
           <Typography
             variant="h2"
             mb={2}
@@ -147,20 +161,28 @@ const Login = () => {
             </div>
 
             <Stack mt={2} alignItems="center">
-              {
-               captchaValue ? <Button type="submit" className="w-full">Log In</Button> : <Button disabled type="submit" className="w-full">Log In</Button>
-              }
+              {captchaValue ? (
+                <Button type="submit" className="w-full">
+                  Log In
+                </Button>
+              ) : (
+                <Button disabled type="submit" className="w-full">
+                  Log In
+                </Button>
+              )}
             </Stack>
             <Typography className="text-lg lg:text-xl text-center ">
               Don&apos;t Have an account?{" "}
-              <Link href="/register" className="text-primary font-bold hover:underline">
+              <Link
+                href="/register"
+                className="text-primary font-bold hover:underline"
+              >
                 Register here
               </Link>
             </Typography>
           </Stack>
           <SocialLogin />
         </form>
-
       </Stack>
     </div>
   );

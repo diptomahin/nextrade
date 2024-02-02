@@ -7,13 +7,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import WalletIcon from "@mui/icons-material/Wallet";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import logo from "../../assets/logo/NexTrade-Logo-Original.png";
+import logo from "../../../assets/logo/NexTrade-Logo-Original.png";
 import Image from "next/image";
 
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../utils/variants";
+import { fadeIn } from "../../utils/variants";
 
 const TradingStep = () => {
   return (

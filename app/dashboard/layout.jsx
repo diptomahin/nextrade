@@ -3,8 +3,8 @@ import { Drawer } from "@mui/material";
 import { useState } from "react";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import TradersDashboardNavbar from "@/components/navigation/trader_nav/TradersNav";
-import TradersDashboardSidebar from "@/components/navigation/trader_nav/TradersSideNav";
+import TradersNav from "@/components/common/traders_nav/TradersNav";
+import TradersSideNav from "@/components/common/traders_nav/TradersSideNav";
 const queryClient = new QueryClient();
 
 const Dashboard = ({ children }) => {
@@ -19,13 +19,10 @@ const Dashboard = ({ children }) => {
       <PrivateRoute>
         <div className="min-h-screen bg-zinc-100 font-inter">
           <div className="fixed top-0 w-full h-[70px] 2xl:pl-[230px] p-2 z-40 bg-zinc-100">
-            <TradersDashboardNavbar
-              setMobileOpen={setMobileOpen}
-              mobileOpen={mobileOpen}
-            />
+            <TradersNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
           </div>
           <div className="hidden 2xl:block fixed left-2 top-2 pr-3 pb-4 h-full w-[222px] z-50 bg-zinc-100">
-            <TradersDashboardSidebar />
+            <TradersSideNav />
           </div>
           <div className="block 2xl:hidden">
             <Drawer
@@ -42,7 +39,7 @@ const Dashboard = ({ children }) => {
                 keepMounted: true,
               }}
             >
-              <TradersDashboardSidebar />
+              <TradersSideNav />
             </Drawer>
           </div>
 

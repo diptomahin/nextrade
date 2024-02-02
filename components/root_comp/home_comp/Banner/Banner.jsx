@@ -6,14 +6,14 @@ import Image from "next/image";
 import { TickerTape } from "react-ts-tradingview-widgets";
 
 //banner image impost asset
-import bannerImg from "../../../assets/Trading-PNG-Photo.png";
-import banner from '../../../assets/Banner/banner.png'
+// import bannerImg from "../../../assets/Trading-PNG-Photo.png";
+import banner from "../../../../assets/Banner/banner.png";
 
 //framer motion
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../../../utils/variants";
 
 const Banner = () => {
   return (
@@ -25,10 +25,8 @@ const Banner = () => {
       className="relative h-[100vh]"
       // style={{ backgroundImage: `url(${banner})`, backgroundSize: "cover", backgroundPosition: "center" }}
     >
-      <Image src={banner} alt="" className=" w-full h-full object-cover"/>
-      <div 
-      
-      className="absolute w-full h-full top-0 px-10 py-32 bg-gradient-to-r from-[#0000002a] to-[#0000005d]">
+      <Image src={banner} alt="" className=" w-full h-full object-cover" />
+      <div className="absolute w-full h-full top-0 px-10 py-32 bg-gradient-to-r from-[#0000002a] to-[#0000005d]">
         <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"
@@ -77,8 +75,9 @@ const Banner = () => {
               className=" text-sm md:text-md lg:text-lg xl:text-xl mb-8 font-medium text-[#e4e2e2] "
             >
               {" "}
-              Join world&apos;s biggest & trusted Exchange. Trade  in Bitcoin,
-              Ethereum, LiteCoin,<br /> DOGE coin and many more currencies.
+              Join world&apos;s biggest & trusted Exchange. Trade in Bitcoin,
+              Ethereum, LiteCoin,
+              <br /> DOGE coin and many more currencies.
             </motion.p>
             <motion.div
               variants={fadeIn("down", 0.4)}
@@ -90,12 +89,11 @@ const Banner = () => {
             </motion.div>
           </div>
         </motion.div>
-          <Container>
-
-        <div className="absolute bottom-2 w-full mx-auto left-0  ">
-          <TickerTape displayMode="adaptive"></TickerTape>
-        </div>
-          </Container>
+        <Container>
+          <div className="absolute bottom-2 w-full mx-auto left-0  ">
+            <TickerTape displayMode="adaptive"></TickerTape>
+          </div>
+        </Container>
       </div>
     </motion.div>
   );

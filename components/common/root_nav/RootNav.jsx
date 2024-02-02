@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { opacity, background } from "../../utils/anim";
 import "./root_nav.css";
-import Links from "./root_nav_comp/link/Links";
+import Links from "../../common/root_nav/root_nav_comp/link/Links";
 import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
 import logo from "../../../assets/logo/NexTrade-Logo-White.png";

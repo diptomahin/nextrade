@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 //images
-import logo from "../../assets/nextrade-logo.png";
-import investImage from "../../assets/stockImage1.png";
+import logo from "../../../assets/nextrade-logo.png";
+import investImage from "../../../assets/stockImage1.png";
 import Image from "next/image";
 import Container from "@/components/library/Container";
 
@@ -10,7 +10,7 @@ import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../utils/variants";
+import { fadeIn } from "../../utils/variants";
 
 const InvestSolutions = () => {
   return (
@@ -45,33 +45,36 @@ const InvestSolutions = () => {
             className="text-sm mt-8 font-semibold"
           >
             <motion.li
-            variants={fadeIn("up", 0.8)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className=" my-2">
+              variants={fadeIn("up", 0.8)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=" my-2"
+            >
               <span className=" text-primary">Intuitive Interface:</span>{" "}
               Navigate with ease through a lightning-fast platform, optimized
               for desktop and mobile. Crystal-clear data visualization puts
               everything you need at your fingertips.
             </motion.li>
             <motion.li
-            variants={fadeIn("up", 0.9)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className=" my-2">
+              variants={fadeIn("up", 0.9)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=" my-2"
+            >
               <span className=" text-primary">Personalized Solutions:</span>{" "}
               Tailor your experience to your unique goals and risk tolerance.
               Get matched with the right resources and educational materials to
               accelerate your learning.
             </motion.li>
             <motion.li
-            variants={fadeIn("up", 1)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className=" my-2">
+              variants={fadeIn("up", 1)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=" my-2"
+            >
               <span className=" font-semibold text-primary">
                 Unwavering Security:
               </span>
