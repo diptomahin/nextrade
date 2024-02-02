@@ -5,7 +5,6 @@ import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
 import { TickerTape } from "react-ts-tradingview-widgets";
 
-
 //banner image impost asset
 import bannerImg from "../../../assets/Trading-PNG-Photo.png";
 
@@ -16,19 +15,13 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
 
 const Banner = () => {
-
- 
-
   return (
     <motion.div
-
       variants={fadeIn("up", 0.2)}
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
-      
     >
-      
       <Container className="relative min-h-[100vh] flex flex-col items-center justify-center gap-8 py-32 ">
         <motion.div
           variants={fadeIn("up", 0.2)}
@@ -37,7 +30,7 @@ const Banner = () => {
           viewport={{ once: false, amount: 0.1 }}
           className=" lg:flex flex-row-reverse items-center justify-between gap-10"
         >
-          
+          <Magnetic>
             <motion.div
               variants={fadeIn("left", 0.9)}
               initial="hidden"
@@ -47,7 +40,7 @@ const Banner = () => {
             >
               <Image src={bannerImg} alt="" />
             </motion.div>
-          
+          </Magnetic>
 
           <div>
             <motion.h1
@@ -92,15 +85,9 @@ const Banner = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          variants={fadeIn("down", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className="absolute bottom-5 w-full"
-        >
+        <div className="absolute bottom-5 w-full">
           <TickerTape displayMode="adaptive"></TickerTape>
-        </motion.div>
+        </div>
       </Container>
     </motion.div>
   );
