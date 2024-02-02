@@ -137,9 +137,9 @@ const Wallet = () => {
             <DepositForm refetch={refetch} />
           </Elements>
         </div>
-        <div className="w-full h-80 p-4 xl:p-6 bg-white rounded-xl border mt-5">
+        {/* <div className="w-full h-80 p-4 xl:p-6 bg-white rounded-xl border mt-5">
           <h1 className="text-xl text-center font-bold">Add bar chat</h1>
-        </div>
+        </div> */}
       </div>
     </div>
   );
