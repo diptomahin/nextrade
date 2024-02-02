@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 
 // variants
 import { fadeIn } from "../../utils/variants";
+import Link from "next/link";
 
 const StartTrading = () => {
   return (
@@ -32,7 +33,10 @@ const StartTrading = () => {
           Ready to dive in? Navigate to the trading interface, choose the asset
           you want to trade
         </p>
-        <Button>Start Trading</Button>
+        <Link href="/dashboard/trading">
+          {" "}
+          <Button>Start Trading</Button>
+        </Link>
       </motion.div>
       <motion.div
         variants={fadeIn("left", 0.2)}

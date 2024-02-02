@@ -14,10 +14,11 @@ import { motion } from "framer-motion";
 
 // variants
 import { fadeIn } from "../../utils/variants";
+import Link from "next/link";
 
 const TradingStep = () => {
   return (
-    <Container className=" md:flex items-center justify-between  lg:mt-24   ">
+    <Container className="md:flex items-center justify-between md:py-20 my-20">
       {/* Trading step section content */}
 
       <motion.div
@@ -27,13 +28,16 @@ const TradingStep = () => {
         viewport={{ once: false, amount: 0.1 }}
         className="md:w-[600px]"
       >
-        <Image src={logo} alt="logo" width={80} className="my-2 " />
+        <Image src={logo} alt="logo" width={80} className="my-2" />
         <h1 className=" lg:text-3xl md:text-3xl text-4xl font-bold text-primary mb-5">
           Start Trading in <br /> Few Step
         </h1>
-        <Button>Start Trading</Button>
+        <Link href="/dashboard/trading">
+          {" "}
+          <Button>Start Trading</Button>
+        </Link>
       </motion.div>
-      <div className="md:mt-0 mt-10">
+      <div className="md:mt-0 mt-20">
         <div className=" flex gap-6">
           <div className="space-y-6">
             {/* 1st cart */}
