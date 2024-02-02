@@ -20,7 +20,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className="md:flex justify-between rounded-xl px-10 py-16 mx-5 md:mx-10 2xl:mx-20 my-20 text-primary bg-zinc-100 border">
+    <div className="md:flex justify-between rounded-xl px-10 py-16 mx-5 md:mx-10 2xl:mx-20 my-20 bg-gradient-to-br from-primary to-[#352786] text-white  border">
       <div className="mb-10 md:mb-0">
         <motion.h1
           variants={fadeIn("up", 0.3)}
