@@ -11,6 +11,7 @@ import logo from "../../assets/logo/NexTrade-Logo-White.png";
 import { IoMdArrowDropup } from "react-icons/io";
 import { fadeIn } from "../utils/variants";
 import React from "react";
+import Container from "../library/Container";
 
 export default function index() {
   const [isActive, setIsActive] = React.useState(false);
@@ -42,9 +43,9 @@ export default function index() {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="header px-5 lg:px-10 2xl:px-20 py-6"
+        className="header py-6"
       >
-        <div className="bar flex items-center justify-between">
+        <Container className="bar flex items-center justify-between">
           <Magnetic>
             <Link href="/">
               <Image src={logo} alt="Logo" className="w-36 lg:w-40 z-[100]" />
@@ -71,18 +72,20 @@ export default function index() {
               <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
             </button>
           </Magnetic>
-        </div>
+        </Container>
       </motion.nav>
-      <div className="fixed w-full h-auto px-5 lg:px-10 2xl:px-20 z-[100]  bg-gradient-to-br from-primary to-[#352786]">
-        <motion.div
-          variants={background}
-          initial="initial"
-          animate={isActive ? "open" : "closed"}
-          className="background"
-        ></motion.div>
-        <AnimatePresence mode="wait">
-          {isActive && <Links setIsActive={setIsActive} />}
-        </AnimatePresence>
+      <div className="fixed w-full h-auto z-[100] bg-gradient-to-br from-primary to-[#352786]">
+        <Container>
+          <motion.div
+            variants={background}
+            initial="initial"
+            animate={isActive ? "open" : "closed"}
+            className="background"
+          ></motion.div>
+          <AnimatePresence mode="wait">
+            {isActive && <Links setIsActive={setIsActive} />}
+          </AnimatePresence>
+        </Container>
       </div>
     </>
   );

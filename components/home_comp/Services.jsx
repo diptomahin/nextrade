@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Icon1 from "../../../assets/Services/icon-1.png";
-import Icon2 from "../../../assets/Services/icon-2.png";
-import Icon3 from "../../../assets/Services/icon-3.png";
-import Icon4 from "../../../assets/Services/icon-4.png";
-import Icon5 from "../../../assets/Services/icon-5.png";
-import Icon6 from "../../../assets/Services/icon-6.png";
+import Icon1 from "../../assets/Services/icon-1.png";
+import Icon2 from "../../assets/Services/icon-2.png";
+import Icon3 from "../../assets/Services/icon-3.png";
+import Icon4 from "../../assets/Services/icon-4.png";
+import Icon5 from "../../assets/Services/icon-5.png";
+import Icon6 from "../../assets/Services/icon-6.png";
 import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
 import Button from "@/components/library/buttons/root_button/RootButton";
@@ -23,13 +23,13 @@ const Services = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-gray font-medium"
+        className="text-center text-darkGray font-medium"
       >
         We offer the best services around from installations to repairs,
         maintenance, and more!
       </motion.p>
 
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-gray">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
         {/* cart 1  */}
         <motion.Card
           variants={fadeIn("right", 0.2)}
@@ -50,7 +50,7 @@ const Services = () => {
               Trading Education and Training
             </h3>
           </div>
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Equip yourself with the knowledge and skills needed for successful
             trading through comprehensive educational programs, workshops, and
             training sessions.
@@ -77,7 +77,7 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Stay ahead of market trends with in-depth analysis and actionable
             insights, enabling informed decision-making for your trading
             activities.
@@ -104,7 +104,7 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Navigate the complexities of the cryptocurrency market with
             specialized strategies designed to maximize returns and minimize
             volatility.
@@ -129,7 +129,7 @@ const Services = () => {
             <h3 className="text-lg font-semibold">Real-time Market Alerts</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Receive timely alerts on market movements, news, and key events,
             ensuring you stay informed and can act promptly to capitalize on
             emerging opportunities.
@@ -156,7 +156,7 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Equip yourself with the knowledge and skills needed for successful
             trading through comprehensive educational programs, workshops, and
             training sessions.
@@ -183,7 +183,7 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Leverage cutting-edge algorithms to automate your trading
             strategies, ensuring precise execution and optimal returns.
           </p>

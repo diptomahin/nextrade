@@ -7,7 +7,7 @@ import { MdAreaChart } from "react-icons/md";
 import { BsCreditCard2FrontFill } from "react-icons/bs";
 
 // variants
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
 
 const TradingStep = () => {
@@ -29,7 +29,7 @@ const TradingStep = () => {
             <RiLuggageDepositFill className="w-8 h-8 text-primary" />
             <h1 className="text-xl font-medium">Deposit</h1>
           </div>
-          <p className="text-sm mt-3">
+          <p className="text-sm mt-3 text-darkGray">
             Open real account and add funds. We work with more than 20 payment
             systems.
           </p>
@@ -46,7 +46,7 @@ const TradingStep = () => {
             <MdAreaChart className="w-8 h-8 text-primary" />
             <h1 className="text-xl font-medium">Trade</h1>
           </div>
-          <p className="text-sm mt-3">
+          <p className="text-sm mt-3 text-darkGray">
             Trade any of 100 assets and stocks. Use technical analysis and trade
             the news
           </p>
@@ -63,7 +63,7 @@ const TradingStep = () => {
             <BsCreditCard2FrontFill className="w-8 h-8 text-primary" />
             <h1 className="text-xl font-medium">Withdraw</h1>
           </div>
-          <p className="text-sm mt-3">
+          <p className="text-sm mt-3 text-darkGray">
             Get funds easily to your bank card or e-wallet. We take no
             commission.
           </p>

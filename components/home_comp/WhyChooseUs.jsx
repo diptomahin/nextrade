@@ -2,7 +2,7 @@
 import React from "react";
 import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
 import Button from "@/components/library/buttons/root_button/RootButton";
@@ -21,13 +21,13 @@ const WhyChooseUs = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-gray font-medium"
+        className="text-center text-darkGray font-medium"
       >
         At NexTrade, your trading experience is our top priority, and we stand
         out for several compelling reasons.
       </motion.p>
 
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-gray">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
         {/* cart 1  */}
         <motion.Card
           variants={fadeIn("right", 0.2)}
@@ -40,7 +40,7 @@ const WhyChooseUs = () => {
             <FaUserCheck className="w-14 h-14 text-primary" />
             <h3 className="text-lg font-semibold">Ease of Use</h3>
           </div>
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Look for a user-friendly interface that makes it easy to navigate
             the platform, execute trades, and access essential information.
             Intuitive design is particularly important for beginners.
@@ -59,7 +59,7 @@ const WhyChooseUs = () => {
             <h3 className="text-lg font-semibold">Customer Support</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Check the availability and responsiveness of customer support. A
             platform with excellent customer service can be crucial, especially
             during technical issues or if you have questions about your account.
@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
             <h3 className="text-lg font-semibold">Security Measures</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Ensure the platform employs robust security measures to protect your
             personal information and funds. Look for features like two-factor
             authentication and encryption.
@@ -97,7 +97,7 @@ const WhyChooseUs = () => {
             <h3 className="text-lg font-semibold">Research Tools</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Assess the platform&apos;s research and analysis tools. Real-time
             market data, charts, and technical analysis features can be
             essential for making informed trading decisions.
@@ -116,7 +116,7 @@ const WhyChooseUs = () => {
             <h3 className="text-lg font-semibold">Fees and Charges</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Understand the fee structure, including transaction costs,
             commissions, spreads, and any other charges associated with trading.
             Low fees can significantly impact your overall returns.
@@ -135,7 +135,7 @@ const WhyChooseUs = () => {
             <h3 className="text-lg font-semibold">Educational Resources</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-gray">
+          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
             Consider platforms that provide educational resources, tutorials,
             and tools to help you understand the basics of trading and improve
             your skills over time.

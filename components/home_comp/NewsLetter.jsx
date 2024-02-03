@@ -1,13 +1,13 @@
 "use client";
 import Container from "@/components/library/Container.jsx";
-import Button from "../../library/buttons/root_button/RootButton.jsx";
+import Button from "../library/buttons/root_button/RootButton.jsx";
 import TextField from "@mui/material/TextField";
 import React from "react";
 //framer motion
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../utils/variants.js";
+import { fadeIn } from "../utils/variants.js";
 
 const NewsLetter = () => {
   const inputStyle = {
@@ -32,7 +32,7 @@ const NewsLetter = () => {
           <h1 className="text-xl md:text-2xl font-medium pb-4">
             Get Daily Updates
           </h1>
-          <p className="text-sm text-gray font-montserrat font-medium">
+          <p className="text-sm text-darkGray font-montserrat font-medium">
             Join now with NexTrade to get the latest news and bonuses
           </p>
         </div>

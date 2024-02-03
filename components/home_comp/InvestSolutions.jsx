@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import investImage from "../../../assets/invest-solution.png";
+import investImage from "../../assets/invest-solution.png";
 import Image from "next/image";
 import Container from "@/components/library/Container";
 
@@ -8,7 +8,7 @@ import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
 
 const InvestSolutions = () => {
@@ -43,7 +43,7 @@ const InvestSolutions = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="text-sm mt-5 font-medium text-gray"
+            className="text-sm mt-5 font-medium text-darkGray"
           >
             <motion.li
               variants={fadeIn("up", 0.8)}

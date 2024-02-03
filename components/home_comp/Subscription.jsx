@@ -7,7 +7,7 @@ import Button from "@/components/library/buttons/root_button/RootButton";
 //framer motion
 import { motion } from "framer-motion";
 // variants
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
 import "./subscription.css";
@@ -22,7 +22,7 @@ const Subscription = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className=" text-gray font-medium"
+          className=" text-darkGray font-medium"
         >
           Monthly and yearly Subscription Sell
         </motion.p>
@@ -39,39 +39,40 @@ const Subscription = () => {
           <div className="text-center">
             <h3 className="text-lg font-semibold">Free Plan</h3>
             <h1 className="text-2xl font-bold py-3">
-              $0 <sub className="text-sm text-gray font-medium">/ monthly</sub>
+              $0{" "}
+              <sub className="text-sm text-darkGray font-medium">/ monthly</sub>
             </h1>
           </div>
           <div className="w-full border border-darkThree"></div>
           {/* Cart criteria */}
           <div className=" space-y-5 py-5 h-96">
             {/*criteria 1 */}
-            <p className="flex items-center gap-2 text-sm font-medium text-gray">
+            <p className="flex items-center gap-2 text-sm font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>2 charts per tab</span>
             </p>
             {/*criteria 2 */}
-            <p className=" flex items-center gap-2 text-base font-medium text-gray">
+            <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>5 indicators per chart</span>
             </p>
             {/*criteria 3 */}
-            <p className=" flex items-center gap-2 text-base font-medium text-gray">
+            <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>10K historical bars</span>
             </p>
             {/*criteria 4 */}
-            <p className=" flex items-center gap-2 text-base font-medium text-gray">
+            <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>20 price alerts</span>
             </p>
             {/*criteria 5 */}
-            <p className=" flex items-center gap-2 text-base font-medium text-gray">
+            <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>20 technical alerts</span>
             </p>
             {/*criteria 6 */}
-            <p className=" flex items-center gap-2 text-base font-medium text-gray">
+            <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>10 parallel chart connections</span>
             </p>
@@ -95,44 +96,44 @@ const Subscription = () => {
             <h3 className="text-lg font-semibold">Standard Plan</h3>
             <h1 className="text-2xl font-bold py-3">
               $9.99{" "}
-              <sub className="text-sm text-gray font-medium">/ monthly</sub>
+              <sub className="text-sm text-darkGray font-medium">/ monthly</sub>
             </h1>
           </div>
           <div className="w-full border border-darkThree"></div>
           {/* Cart criteria */}
           <div className="space-y-5 py-5 h-96">
             {/*criteria 1 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>4 charts per tab</span>
             </h3>
             {/*criteria 2 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>10 indicators per chart</span>
             </h3>
             {/*criteria 3 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>10K historical bars</span>
             </h3>
             {/*criteria 4 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>100 price alerts</span>
             </h3>
             {/*criteria 5 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>100 technical alerts</span>
             </h3>
             {/*criteria 6 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>20 parallel chart connections</span>
             </h3>
             {/*criteria 7 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
               <span>Multiple watchlists</span>
             </h3>
@@ -156,49 +157,49 @@ const Subscription = () => {
             <h3 className="text-lg font-semibold">Premium Plan</h3>
             <h1 className="text-2xl font-bold py-3">
               $14.99{" "}
-              <sub className="text-sm text-gray font-medium">/ monthly</sub>
+              <sub className="text-sm text-darkGray font-medium">/ monthly</sub>
             </h1>
           </div>
           <div className="w-full border border-darkThree"></div>
           {/* Cart criteria */}
           <div className=" space-y-5 py-5 h-96">
             {/*criteria 1 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>8 charts per tab</span>
             </h3>
             {/*criteria 2 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>25 indicators per chart</span>
             </h3>
             {/*criteria 3 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>20K historical bars</span>
             </h3>
             {/*criteria 4 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>400 price alerts</span>
             </h3>
             {/*criteria 5 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>400 technical alerts</span>
             </h3>
             {/*criteria 6 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>50 parallel chart connections</span>
             </h3>
             {/*criteria 7 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>Custom timeframes</span>
             </h3>
             {/*criteria 8 */}
-            <h3 className=" flex items-center gap-2 text-base font-medium text-gray">
+            <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
               <span>Multiple watchlists</span>
             </h3>

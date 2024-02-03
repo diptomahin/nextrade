@@ -19,7 +19,7 @@ const Footer = () => {
   const router = usePathname();
   return (
     <footer
-      className={`bg-darkBG border border-darkThree text-gray ${
+      className={`bg-darkBG border border-darkThree text-darkGray ${
         router === "/register" ||
         router === "/login" ||
         router.includes("/dashboard")
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
         </div>
       </Container>
-      <div className="border-t border-darkThree text-sm text-gray py-10">
+      <div className="border-t border-darkThree text-sm text-darkGray py-10">
         <Container className="flex justify-between gap-10">
           <p className="flex-1">
             Trading and investing involves significant level of risk and is not

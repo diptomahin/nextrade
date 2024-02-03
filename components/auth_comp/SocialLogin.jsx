@@ -2,7 +2,7 @@ import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import RootButton from "../../library/buttons/root_button/RootButton";
+import RootButton from "../library/buttons/root_button/RootButton";
 import usePublicAPI from "@/hooks/usePublicAPI";
 
 const SocialLogin = () => {

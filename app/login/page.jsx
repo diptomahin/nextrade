@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Lottie from "lottie-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import SocialLogin from "@/components/root_comp/auth_comp/SocialLogin";
+import SocialLogin from "@/components/auth_comp/SocialLogin";
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 import loginAnim from "../../assets/loginAnim.json";

@@ -8,7 +8,7 @@ import { CryptoCurrencyMarket } from "react-ts-tradingview-widgets";
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 import Link from "next/link";
 import Title from "@/components/library/Title";
 
@@ -21,7 +21,7 @@ const StartTrading = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="text-center font-medium text-gray"
+        className="text-center font-medium text-darkGray"
       >
         Ready to dive in? Navigate to the trading interface, choose the asset
         you want to trade
