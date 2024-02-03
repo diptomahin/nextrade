@@ -12,250 +12,182 @@ import Icon6 from "../../../assets/Services/icon-6.png";
 import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
+import Title from "@/components/library/Title";
 
 const Services = () => {
   return (
-    <Container className="lg:py-24 py-14">
-      <div className="text-center mx-auto">
-        <motion.div
-          variants={fadeIn("up", 0.6)}
+    <Container className="py-20">
+      <Title> Service We Offer</Title>
+      <motion.p
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="text-center text-gray font-medium"
+      >
+        We offer the best services around from installations to repairs,
+        maintenance, and more!
+      </motion.p>
+
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-gray">
+        {/* cart 1  */}
+        <motion.Card
+          variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
+          className="h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
         >
-          <h1 className="xl:text-3xl lg:text-4xl text-4xl my-4 text-primary font-bold mx-auto text-center">
-            Service We Offer
-          </h1>
-
-          <p className="mt-1  xl:w-96 text-center mx-auto font-medium text-gray-500">
-            We offer the best services around from installations to repairs,
-            maintenance, and more!
+          <div className="w-full flex items-center justify-start gap-5">
+            <Image
+              src={Icon1}
+              alt="Trad Icon"
+              width={60}
+              height={60}
+              placeholder="blur"
+            />
+            <h3 className="text-lg font-semibold">
+              Trading Education and Training
+            </h3>
+          </div>
+          <p className="text-sm text-justify font-medium mt-5">
+            Equip yourself with the knowledge and skills needed for successful
+            trading through comprehensive educational programs, workshops, and
+            training sessions.
           </p>
-        </motion.div>
+        </motion.Card>
+        {/* cart 2  */}
+        <motion.Card
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+        >
+          <div className="w-full flex items-center justify-start gap-5">
+            <Image
+              src={Icon3}
+              alt="Trad Icon"
+              width={60}
+              height={60}
+              placeholder="blur"
+            />
+            <h3 className="text-lg font-semibold">
+              Market Analysis and Insights
+            </h3>
+          </div>
 
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto justify-center item-center mt-10">
-          {/* cart 1  */}
-          <motion.Card
-            variants={fadeIn("right", 0.6)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="py-14 px-2 rounded-lg border border-gray-100"
-          >
-            <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
-              <Image
-                src={Icon1}
-                alt="Trad Icon"
-                width={400}
-                height={500}
-                placeholder="blur"
-              />
-            </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Trading Education and Training
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="font-semibold text-gray-400"
-              >
-                Equip yourself with the knowledge and skills needed for
-                successful trading through comprehensive educational programs,
-                workshops, and training sessions.
-              </Typography>
-            </CardContent>
-          </motion.Card>
-          {/* cart 2  */}
-          <motion.Card
-            variants={fadeIn("up", 0.6)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="py-14 px-2 rounded-lg border border-gray-100"
-          >
-            <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
-              <Image
-                src={Icon3}
-                alt="Trad Icon"
-                width={400}
-                height={500}
-                placeholder="blur"
-              />
-            </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Market Analysis and Insights
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="font-semibold text-gray-400"
-              >
-                Stay ahead of market trends with in-depth analysis and
-                actionable insights, enabling informed decision-making for your
-                trading activities.
-              </Typography>
-            </CardContent>
-          </motion.Card>
-          {/* cart 3  */}
-          <motion.Card
-            variants={fadeIn("left", 0.6)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="py-14 px-2 rounded-lg border border-gray-100"
-          >
-            <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
-              <Image
-                src={Icon2}
-                alt="Trad Icon"
-                width={400}
-                height={500}
-                placeholder="blur"
-              />
-            </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Cryptocurrency Investment Strategies
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="font-semibold text-gray-400"
-              >
-                Navigate the complexities of the cryptocurrency market with
-                specialized strategies designed to maximize returns and minimize
-                volatility.
-              </Typography>
-            </CardContent>
-          </motion.Card>
-          {/* cart 4  */}
-          <motion.Card
-            variants={fadeIn("right ", 0.6)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="py-14 px-2 rounded-lg border border-gray-100"
-          >
-            <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
-              <Image
-                src={Icon4}
-                alt="Trad Icon"
-                width={400}
-                height={500}
-                placeholder="blur"
-              />
-            </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Real-time Market Alerts
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="font-semibold text-gray-400"
-              >
-                Receive timely alerts on market movements, news, and key events,
-                ensuring you stay informed and can act promptly to capitalize on
-                emerging opportunities.
-              </Typography>
-            </CardContent>
-          </motion.Card>
-          {/* cart 5  */}
-          <motion.Card
-            variants={fadeIn("up", 0.6)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="py-14 px-2 rounded-lg border border-gray-100"
-          >
-            <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
-              <Image
-                src={Icon6}
-                alt="Trad Icon"
-                width={400}
-                height={500}
-                placeholder="blur"
-              />
-            </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Customized Portfolio Management
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="font-semibold text-gray-400"
-              >
-                Equip yourself with the knowledge and skills needed for
-                successful trading through comprehensive educational programs,
-                workshops, and training sessions.
-              </Typography>
-            </CardContent>
-          </motion.Card>
-          {/* cart 6  */}
-          <motion.Card
-            variants={fadeIn("left", 0.6)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="py-14 px-2 rounded-lg border border-gray-100"
-          >
-            <div className="w-24 h-fit text-center mx-auto bg-[#22356b] rounded-full">
-              <Image
-                src={Icon5}
-                alt="Trad Icon"
-                width={300}
-                height={500}
-                placeholder="blur"
-              />
-            </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Algorithmic Trading Solutions
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="font-semibold text-gray-400"
-              >
-                Leverage cutting-edge algorithms to automate your trading
-                strategies, ensuring precise execution and optimal returns.
-              </Typography>
-            </CardContent>
-          </motion.Card>
-        </div>
+          <p className="text-sm text-justify font-medium mt-5">
+            Stay ahead of market trends with in-depth analysis and actionable
+            insights, enabling informed decision-making for your trading
+            activities.
+          </p>
+        </motion.Card>
+        {/* cart 3  */}
+        <motion.Card
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+        >
+          <div className="w-full flex items-center justify-start gap-5">
+            <Image
+              src={Icon2}
+              alt="Trad Icon"
+              width={60}
+              height={60}
+              placeholder="blur"
+            />
+            <h3 className="text-lg font-semibold">
+              Cryptocurrency Investment Strategies
+            </h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5">
+            Navigate the complexities of the cryptocurrency market with
+            specialized strategies designed to maximize returns and minimize
+            volatility.
+          </p>
+        </motion.Card>
+        {/* cart 4  */}
+        <motion.Card
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+        >
+          <div className="w-full flex items-center justify-start gap-5">
+            <Image
+              src={Icon4}
+              alt="Trad Icon"
+              width={60}
+              height={60}
+              placeholder="blur"
+            />
+            <h3 className="text-lg font-semibold">Real-time Market Alerts</h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5">
+            Receive timely alerts on market movements, news, and key events,
+            ensuring you stay informed and can act promptly to capitalize on
+            emerging opportunities.
+          </p>
+        </motion.Card>
+        {/* cart 5  */}
+        <motion.Card
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+        >
+          <div className="w-full flex items-center justify-start gap-5">
+            <Image
+              src={Icon6}
+              alt="Trad Icon"
+              width={60}
+              height={60}
+              placeholder="blur"
+            />
+            <h3 className="text-lg font-semibold">
+              Customized Portfolio Management
+            </h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5">
+            Equip yourself with the knowledge and skills needed for successful
+            trading through comprehensive educational programs, workshops, and
+            training sessions.
+          </p>
+        </motion.Card>
+        {/* cart 6  */}
+        <motion.Card
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+        >
+          <div className="w-full flex items-center justify-start gap-5">
+            <Image
+              src={Icon5}
+              alt="Trad Icon"
+              width={60}
+              height={60}
+              placeholder="blur"
+            />
+            <h3 className="text-lg font-semibold">
+              Algorithmic Trading Solutions
+            </h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5">
+            Leverage cutting-edge algorithms to automate your trading
+            strategies, ensuring precise execution and optimal returns.
+          </p>
+        </motion.Card>
       </div>
     </Container>
   );

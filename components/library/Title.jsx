@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const Title = ({ children, className }) => {
   return (
     <motion.h2
-      variants={fadeIn("down", 0.1)}
+      variants={fadeIn("up", 0.1)}
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}

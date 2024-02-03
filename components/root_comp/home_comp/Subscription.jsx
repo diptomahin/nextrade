@@ -18,7 +18,7 @@ const Subscription = () => {
       <div className="text-center">
         <Title>Get More Benefits With Subscription</Title>
         <motion.p
-          variants={fadeIn("up", 0.4)}
+          variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
@@ -222,13 +222,13 @@ const Subscription = () => {
 
         {/* right */}
 
-        <div className="animate-move5 absolute right-[5%] top-[0%] bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move5 absolute right-[5%] top-[0%] bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
 
-        <div className="animate-move6 absolute -right-5 top-[35%] bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move6 absolute -right-5 top-[35%] bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
 
-        <div className="animate-move7 absolute -right-5 top-[35%] bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move7 absolute -right-5 top-[35%] bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
 
-        <div className="animate-move8 absolute right-[5%] bottom-0 bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move8 absolute right-[5%] bottom-0 bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
       </div>
     </Container>
   );
