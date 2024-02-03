@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../assets/logo/NexTrade-Logo-White.png";
+import logo from "../../assets/logo/NexTrade-Logo-White.png";
 import Container from "@/components/library/Container";
 import { usePathname } from "next/navigation";
 import {

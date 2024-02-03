@@ -23,7 +23,7 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-br from-[#1d2334] to-[#212a3f] border-x border-t border-[#2c3750] hover:bg-gradient-to-tl shadow-xl px-10 py-5 rounded-xl text-white"
+          className="bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree hover:bg-gradient-to-tl shadow-xl px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
             <RiLuggageDepositFill className="w-8 h-8 text-primary" />
@@ -40,7 +40,7 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-br from-darkOne to-darkTwo border-x border-t border-darkThree hover:bg-gradient-to-tl shadow-xl px-10 py-5 rounded-xl text-white"
+          className="bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree hover:bg-gradient-to-tl shadow-xl px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
             <MdAreaChart className="w-8 h-8 text-primary" />
@@ -57,7 +57,7 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-br from-[#1d2334] to-[#212a3f] border-x border-t border-[#2c3750] hover:bg-gradient-to-tl shadow-xl px-10 py-5 rounded-xl text-white"
+          className="bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree hover:bg-gradient-to-tl shadow-xl px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
             <BsCreditCard2FrontFill className="w-8 h-8 text-primary" />

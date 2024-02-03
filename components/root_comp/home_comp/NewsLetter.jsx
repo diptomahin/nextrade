@@ -25,8 +25,9 @@ const NewsLetter = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
+      className="mt-20 mb-40"
     >
-      <Container className="bg-gradient-to-br from-darkOne to-darkTwo border-x border-t border-darkThree shadow-xl flex items-center justify-between rounded-xl my-20 p-10">
+      <Container className="bg-gradient-to-br from-darkOne to-darkTwo border-x border-t border-darkThree shadow-xl flex items-center justify-between rounded-xl p-10">
         <div>
           <h1 className="text-xl md:text-2xl font-medium pb-4">
             Get Daily Updates

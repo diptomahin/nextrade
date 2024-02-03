@@ -2,14 +2,14 @@
 "use client";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { background } from "../../utils/anim";
+import { background } from "../utils/anim";
 import "./root_nav.css";
-import Links from "../../common/root_nav/root_nav_comp/link/Links";
+import Links from "./root_nav_comp/link/Links";
 import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
-import logo from "../../../assets/logo/NexTrade-Logo-White.png";
+import logo from "../../assets/logo/NexTrade-Logo-White.png";
 import { IoMdArrowDropup } from "react-icons/io";
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 import React from "react";
 
 export default function index() {

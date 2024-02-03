@@ -3,8 +3,8 @@ import { Drawer } from "@mui/material";
 import { useState } from "react";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import TradersNav from "@/components/common/traders_nav/TradersNav";
-import TradersSideNav from "@/components/common/traders_nav/TradersSideNav";
+import TradersNav from "@/components/common/TradersNav";
+import TradersSideNav from "@/components/common/TradersSideNav";
 const queryClient = new QueryClient();
 
 const Dashboard = ({ children }) => {

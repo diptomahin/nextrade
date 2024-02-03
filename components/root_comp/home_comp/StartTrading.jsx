@@ -15,7 +15,7 @@ import Title from "@/components/library/Title";
 const StartTrading = () => {
   return (
     <Container className="py-20">
-      <Title>Embark on Your Trading Journey with NexTrade</Title>
+      <Title>Start Your Trading Journey with NexTrade</Title>
       <motion.p
         variants={fadeIn("up", 0.2)}
         initial="hidden"
