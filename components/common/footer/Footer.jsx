@@ -74,7 +74,7 @@ const Footer = () => {
             {" "}
             Subscription
           </Link>
-          <Link className="hover:underline" href={"/payment_method"}>
+          <Link className="hover:underline" href={"/payment_method_method"}>
             Payment Method
           </Link>
         </div>
@@ -84,13 +84,13 @@ const Footer = () => {
             100% SECURE PAYMENT
           </header>
           <div className="flex flex-wrap items-center gap-5 text-white">
-            <Link href={"/payment"}>
+            <Link href={"/payment_method"}>
               <FaStripe className="w-8 h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
             </Link>
-            <Link href={"/payment"}>
+            <Link href={"/payment_method"}>
               <FaAmazonPay className="w-8 h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
             </Link>
-            <Link href={"/payment"}>
+            <Link href={"/payment_method"}>
               <FaPaypal className="w-8 h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
             </Link>
           </div>

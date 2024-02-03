@@ -8,21 +8,14 @@ import { BsCreditCard2FrontFill } from "react-icons/bs";
 
 // variants
 import { fadeIn } from "../../utils/variants";
+import Title from "@/components/library/Title";
 
 const TradingStep = () => {
   return (
     <Container className="h-[70vh]">
       {/* Trading step section content */}
 
-      <motion.h2
-        variants={fadeIn("down", 0.1)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="text-3xl md:text-4xl text-center font-semibold text-zinc-100 pt-16"
-      >
-        Start trading in few steps
-      </motion.h2>
+      <Title> Start trading in few steps</Title>
       <div className="flex items-center gap-10 py-10">
         {/* 1st cart */}
         <motion.div
