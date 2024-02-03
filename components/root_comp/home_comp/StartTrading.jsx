@@ -10,38 +10,38 @@ import { motion } from "framer-motion";
 // variants
 import { fadeIn } from "../../utils/variants";
 import Link from "next/link";
+import Title from "@/components/library/Title";
 
 const StartTrading = () => {
   return (
-    <Container className="grid lg:grid-cols-2 md:grid-cols-0 item-center justify-center gap-4">
-      <motion.div
-        variants={fadeIn("up", 0.6)}
+    <Container className="py-20">
+      <Title>Embark on Your Trading Journey with NexTrade</Title>
+      <motion.p
+        variants={fadeIn("up", 0.2)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="w-full py-10"
+        className="text-center font-medium text-gray"
       >
-        <h1 className="lg:text-3xl md:text-3xl text-4xl my-4 text-primary font-bold">
-          Embark on Your Trading Journey with NexTrade: Start Trading Today
-        </h1>
-        <p className="text-lg my-4 text-slate-500">
-          Ready to dive in? Navigate to the trading interface, choose the asset
-          you want to trade
-        </p>
-        <Link href="/dashboard/trading">
-          {" "}
-          <Button>Start Trading</Button>
-        </Link>
-      </motion.div>
+        Ready to dive in? Navigate to the trading interface, choose the asset
+        you want to trade
+      </motion.p>
       <motion.div
         variants={fadeIn("left", 0.2)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="md:mt-0 mt-10"
+        className="mt-10"
       >
         <CryptoCurrencyMarket width="100%" height={320}></CryptoCurrencyMarket>
       </motion.div>
+      <Link
+        href="/dashboard/trading"
+        className="flex items-center justify-center mt-10"
+      >
+        {" "}
+        <Button>Start Trading</Button>
+      </Link>
     </Container>
   );
 };

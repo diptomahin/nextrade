@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import investImage from "../../../assets/trading-solution1.png";
+import investImage from "../../../assets/invest-solution.png";
 import Image from "next/image";
 import Container from "@/components/library/Container";
 
