@@ -1,110 +1,161 @@
 "use client";
 import React from "react";
-import logo from "../../../assets/nextrade-logo.png";
-import Image1 from "../../../assets/metrics-concept-illustration_114360-3455.png";
-import Image from "next/image";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import Container from "@/components/library/Container";
-//framer motion
 import { motion } from "framer-motion";
-
-// variants
 import { fadeIn } from "../../utils/variants";
+import Title from "@/components/library/Title";
+import Link from "next/link";
+import Button from "@/components/library/buttons/root_button/RootButton";
+import { MdOutlineSupportAgent, MdOutlineSecurity } from "react-icons/md";
+import { FaUserCheck } from "react-icons/fa";
+import { SiRetool } from "react-icons/si";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+import { GrResources } from "react-icons/gr";
 
 const WhyChooseUs = () => {
   return (
-    <Container className="my-20 ">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Image side  */}
-        <motion.div
-          variants={fadeIn("right", 0.4)}
+    <Container className="py-20">
+      <Title>Why Choose NexTrade</Title>
+      <motion.p
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="text-center text-gray font-medium"
+      >
+        At NexTrade, your trading experience is our top priority, and we stand
+        out for several compelling reasons.
+      </motion.p>
+
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-gray">
+        {/* cart 1  */}
+        <motion.Card
+          variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className=""
+          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
-          <Image width={500} height={500} src={Image1} alt="Invest" />
-        </motion.div>
-        {/* Content side */}
-        <div className="pt-20">
-          <Image src={logo} alt="logo" width={80} className="my-4" />
-          <motion.h1
-            variants={fadeIn("up", 0.3)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="lg:text-3xl md:text-3xl text-4xl my-4 font-bold text-primary"
-          >
-            Why Choose NexTrade ???
-          </motion.h1>
-          <motion.p
-            variants={fadeIn("up", 0.4)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="text-lg my-4 text-slate-500"
-          >
-            At NexTrade, your trading experience is our top priority, and we
-            stand out for several compelling reasons.
-          </motion.p>
-          <div className="grid grid-cols-2 gap-3 font-semibold text-gray-500">
-            <motion.p
-              variants={fadeIn("up", 0.5)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-            >
-              <CheckCircleRoundedIcon className="text-primary mr-2 " />
-              Safety Comes First
-            </motion.p>
-            <motion.p
-              variants={fadeIn("up", 0.6)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-            >
-              <CheckCircleRoundedIcon className="text-primary mr-2" />
-              Bonus And Offers
-            </motion.p>
-            <motion.p
-              variants={fadeIn("up", 0.7)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-            >
-              <CheckCircleRoundedIcon className="text-primary mr-2" />
-              Low Charges
-            </motion.p>
-            <motion.p
-              variants={fadeIn("up", 0.8)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-            >
-              <CheckCircleRoundedIcon className="text-primary mr-2" />
-              Fast Transaction
-            </motion.p>
-            <motion.p
-              variants={fadeIn("up", 0.9)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-            >
-              <CheckCircleRoundedIcon className="text-primary mr-2" />
-              Easy Deposit And Withdraw
-            </motion.p>
-            <motion.p
-              variants={fadeIn("up", 1)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-            >
-              <CheckCircleRoundedIcon className="text-primary mr-2" />
-              24/7 Support
-            </motion.p>
+          <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+            <FaUserCheck className="w-14 h-14 text-primary" />
+            <h3 className="text-lg font-semibold">Ease of Use</h3>
           </div>
-        </div>
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
+            Look for a user-friendly interface that makes it easy to navigate
+            the platform, execute trades, and access essential information.
+            Intuitive design is particularly important for beginners.
+          </p>
+        </motion.Card>
+        {/* cart 2  */}
+        <motion.Card
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+        >
+          <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+            <MdOutlineSupportAgent className="w-14 h-14  text-primary" />
+            <h3 className="text-lg font-semibold">Customer Support</h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
+            Check the availability and responsiveness of customer support. A
+            platform with excellent customer service can be crucial, especially
+            during technical issues or if you have questions about your account.
+          </p>
+        </motion.Card>
+        {/* cart 3  */}
+        <motion.Card
+          variants={fadeIn("left", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+        >
+          <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+            <MdOutlineSecurity className="w-14 h-14  text-primary" />
+            <h3 className="text-lg font-semibold">Security Measures</h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
+            Ensure the platform employs robust security measures to protect your
+            personal information and funds. Look for features like two-factor
+            authentication and encryption.
+          </p>
+        </motion.Card>
+        {/* cart 4  */}
+        <motion.Card
+          variants={fadeIn("right", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+        >
+          <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+            <SiRetool className="w-14 h-14  text-primary" />
+            <h3 className="text-lg font-semibold">Research Tools</h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
+            Assess the platform&apos;s research and analysis tools. Real-time
+            market data, charts, and technical analysis features can be
+            essential for making informed trading decisions.
+          </p>
+        </motion.Card>
+        {/* cart 5  */}
+        <motion.Card
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+        >
+          <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+            <FaMoneyBillTransfer className="w-14 h-14  text-primary" />
+            <h3 className="text-lg font-semibold">Fees and Charges</h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
+            Understand the fee structure, including transaction costs,
+            commissions, spreads, and any other charges associated with trading.
+            Low fees can significantly impact your overall returns.
+          </p>
+        </motion.Card>
+        {/* cart 6  */}
+        <motion.Card
+          variants={fadeIn("left", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+        >
+          <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+            <GrResources className="w-14 h-14  text-primary" />
+            <h3 className="text-lg font-semibold">Educational Resources</h3>
+          </div>
+
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
+            Consider platforms that provide educational resources, tutorials,
+            and tools to help you understand the basics of trading and improve
+            your skills over time.
+          </p>
+        </motion.Card>
       </div>
+      <motion.div
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+      >
+        <Link
+          href="/why_choose_us"
+          className="flex items-center justify-center mt-10"
+        >
+          {" "}
+          <Button>More</Button>
+        </Link>
+      </motion.div>
     </Container>
   );
 };

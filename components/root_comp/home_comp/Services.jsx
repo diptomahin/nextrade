@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Icon1 from "../../../assets/Services/icon-1.png";
 import Icon2 from "../../../assets/Services/icon-2.png";
@@ -13,6 +11,8 @@ import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
 import Title from "@/components/library/Title";
+import Link from "next/link";
+import Button from "@/components/library/buttons/root_button/RootButton";
 
 const Services = () => {
   return (
@@ -50,7 +50,7 @@ const Services = () => {
               Trading Education and Training
             </h3>
           </div>
-          <p className="text-sm text-justify font-medium mt-5">
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
             Equip yourself with the knowledge and skills needed for successful
             trading through comprehensive educational programs, workshops, and
             training sessions.
@@ -77,7 +77,7 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5">
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
             Stay ahead of market trends with in-depth analysis and actionable
             insights, enabling informed decision-making for your trading
             activities.
@@ -104,7 +104,7 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5">
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
             Navigate the complexities of the cryptocurrency market with
             specialized strategies designed to maximize returns and minimize
             volatility.
@@ -129,7 +129,7 @@ const Services = () => {
             <h3 className="text-lg font-semibold">Real-time Market Alerts</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5">
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
             Receive timely alerts on market movements, news, and key events,
             ensuring you stay informed and can act promptly to capitalize on
             emerging opportunities.
@@ -156,7 +156,7 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5">
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
             Equip yourself with the knowledge and skills needed for successful
             trading through comprehensive educational programs, workshops, and
             training sessions.
@@ -183,12 +183,27 @@ const Services = () => {
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5">
+          <p className="text-sm text-justify font-medium mt-5 text-gray">
             Leverage cutting-edge algorithms to automate your trading
             strategies, ensuring precise execution and optimal returns.
           </p>
         </motion.Card>
       </div>
+      <motion.div
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+      >
+        {" "}
+        <Link
+          href="/services"
+          className="flex items-center justify-center mt-10"
+        >
+          {" "}
+          <Button>More</Button>
+        </Link>
+      </motion.div>
     </Container>
   );
 };
