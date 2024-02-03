@@ -5,13 +5,21 @@ import Link from "next/link";
 import logo from "../../../assets/logo/NexTrade-Logo-White.png";
 import Container from "@/components/library/Container";
 import { usePathname } from "next/navigation";
-import { FaAmazonPay, FaPaypal, FaStripe } from "react-icons/fa";
+import {
+  FaAmazonPay,
+  FaDiscord,
+  FaFacebook,
+  FaPaypal,
+  FaStripe,
+  FaYoutube,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   const router = usePathname();
   return (
     <footer
-      className={`bg-gradient-to-br from-primary to-[#352786] text-white font-inter mt-10 ${
+      className={`bg-darkBG border border-darkThree text-gray ${
         router === "/register" ||
         router === "/login" ||
         router.includes("/dashboard")
@@ -19,81 +27,111 @@ const Footer = () => {
           : "block"
       }`}
     >
-      <Container className="pt-10">
-        <Link href={"/"}>
-          <Image src={logo} alt="" width={150} />
-        </Link>
-        <div className="flex flex-wrap justify-between gap-8 my-10">
-          {/* Contact Us */}
-          <nav className="flex flex-col gap-2">
-            <header className="font-semibold border-b mb-3">About Us</header>
-            <Link
-              className="hover:underline opacity-80"
-              href={"/about_nextrade"}
-            >
-              About NexTrade
-            </Link>
-            <Link
-              className="hover:underline opacity-80"
-              href={"/why_choose_us"}
-            >
-              Why Choose Us
-            </Link>
-          </nav>
-          {/* products */}
-          <nav className="flex flex-col gap-2">
-            <header className="font-semibold border-b mb-3">
-              Contact With Us
-            </header>
-            <Link className="hover:underline opacity-80" href={"/help_center"}>
-              Help Center
-            </Link>
-            <Link className="hover:underline opacity-80" href={"/contact_us"}>
-              {" "}
-              Contact Us
-            </Link>
-          </nav>
-          {/* Services*/}
-          <nav className="flex flex-col gap-2">
-            <header className="font-semibold border-b mb-3">Services</header>
-            <Link className="hover:underline opacity-80" href={"/services"}>
-              {" "}
-              Subscription
-            </Link>
-            <Link
-              className="hover:underline opacity-80"
-              href={"/payment_method"}
-            >
-              Payment Method
-            </Link>
-          </nav>
-          {/* 100% SECURE PAYMENT */}{" "}
-          <nav className="flex flex-col gap-2">
-            <header className="font-semibold border-b mb-3">
-              100% SECURE PAYMENT
-            </header>
-            <div className="flex flex-wrap items-center gap-5 lg:mx-auto ">
-              <Link href={"/payment"}>
-                <FaStripe className="w-10 h-10" />
-              </Link>
-              <Link href={"/payment"}>
-                <FaAmazonPay className="w-10 h-10" />
-              </Link>
-              <Link href={"/payment"}>
-                <FaPaypal className="w-10 h-10" />
-              </Link>
-            </div>
-          </nav>
+      <Container className="flex justify-between gap-10 py-10">
+        <div className="flex flex-col gap-3">
+          <Link href={"/"}>
+            <Image src={logo} alt="" width={150} />
+          </Link>
+          <p className="text-sm max-w-80">
+            The Company does not provide services to citizens and/or residents
+            of Australia, Austria, Belarus, Belgium, Bulgaria, Canada, Croatia,
+            Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland,
+            France, Germany, Greece, Hungary, Iceland, Iran, Ireland, Israel,
+            Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Myanmar,
+            Netherlands, New Zealand, North Korea, Norway, Poland, Portugal,
+            Puerto Rico, Romania, Russia, Singapore, Slovakia, Slovenia, South
+            Sudan, Spain, Sudan, Sweden, Switzerland, UK, Ukraine, the USA,
+            Yemen.
+          </p>
         </div>
-        <div className="border-t text-center p-4 text-white">
-          <small>
-            Copyright © 2024 - All right reserved by{" "}
-            <Link href="/" className="hover:underline font-medium">
-              NexTrade
+        {/* Contact Us */}
+        <div className="flex flex-col gap-2">
+          <header className="text-zinc-200 font-semibold mb-3">About Us</header>
+          <Link className="hover:underline" href={"/about_nextrade"}>
+            About NexTrade
+          </Link>
+          <Link className="hover:underline" href={"/why_choose_us"}>
+            Why Choose Us
+          </Link>
+        </div>
+        {/* products */}
+        <div className="flex flex-col gap-2">
+          <header className="text-zinc-200 font-semibold mb-3">
+            Contact With Us
+          </header>
+          <Link className="hover:underline" href={"/help_center"}>
+            Help Center
+          </Link>
+          <Link className="hover:underline" href={"/contact_us"}>
+            {" "}
+            Contact Us
+          </Link>
+        </div>
+        {/* Services*/}
+        <div className="flex flex-col gap-2">
+          <header className="text-zinc-200 font-semibold mb-3">Services</header>
+          <Link className="hover:underline" href={"/services"}>
+            {" "}
+            Subscription
+          </Link>
+          <Link className="hover:underline" href={"/payment_method"}>
+            Payment Method
+          </Link>
+        </div>
+        {/* 100% SECURE PAYMENT */}{" "}
+        <div className="flex flex-col gap-2">
+          <header className="text-zinc-200 font-semibold mb-3">
+            100% SECURE PAYMENT
+          </header>
+          <div className="flex flex-wrap items-center gap-5 text-white">
+            <Link href={"/payment"}>
+              <FaStripe className="w-8 h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
             </Link>
-          </small>
+            <Link href={"/payment"}>
+              <FaAmazonPay className="w-8 h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
+            </Link>
+            <Link href={"/payment"}>
+              <FaPaypal className="w-8 h-8 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
+            </Link>
+          </div>
         </div>
       </Container>
+      <div className="border-t border-darkThree text-sm text-gray py-10">
+        <Container className="flex justify-between gap-10">
+          <p className="flex-1">
+            Trading and investing involves significant level of risk and is not
+            suitable and/or appropriate for all clients. Please make sure you
+            carefully consider your investment objectives, level of experience
+            and risk appetite before buying or selling. Buying or selling
+            entails financial risks and could result in a partial or complete
+            loss of your funds, therefore, you should not invest funds you
+            cannot afford to lose. You should be aware of and fully understand
+            all the risks associated with trading and investing, and seek advice
+            from an independent financial advisor if you have any doubts. You
+            are granted limited non-exclusive rights to use the IP contained in
+            this site for personal, non-commercial, non-transferable use only in
+            relation to the services offered on the site. <br /> Since EOLabs
+            LLC is not under the supervision of the JFSA, it is not involved
+            with any acts considered to be offering financial products and
+            solicitation for financial services to Japan and this website is not
+            aimed at residents in Japan. <br /> EOLabs LLC, Company No 377 LLC
+            2020, having its registered address at: First Floor, First St.
+            Vincent Bank Ltd., James Street, PO Box 1574, Kingstown, St. Vincent
+            and the Grenadines. Merchant Company: Techsmarty Ltd, company
+            No:120906, MOL: 5-9 Main Street, Gibraltar GX11 1AA, Gibraltar.
+          </p>
+          <div>
+            <p>© 2023–2024 NexTrade</p>
+            <p className="text-xs">NexTrade All rights reserved.</p>
+            <div className="flex items-center gap-5 mt-5 text-white">
+              <FaFacebook className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />{" "}
+              <FaXTwitter className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />{" "}
+              <FaYoutube className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
+              <FaDiscord className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />
+            </div>
+          </div>
+        </Container>
+      </div>
     </footer>
   );
 };

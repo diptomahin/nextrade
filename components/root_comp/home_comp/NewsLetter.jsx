@@ -11,23 +11,23 @@ import { fadeIn } from "../../utils/variants.js";
 
 const NewsLetter = () => {
   const inputStyle = {
-    color: "white",
-    borderColor: "white",
+    color: "#939db1",
+    borderColor: "#939db1",
   };
 
   const labelStyle = {
-    color: "white",
+    color: "#939db1",
   };
 
   return (
-    <div className="md:flex justify-between rounded-xl px-10 py-16 mx-5 md:mx-10 2xl:mx-20 my-20 bg-gradient-to-br from-primary to-[#352786] text-white  border">
-      <div className="mb-10 md:mb-0">
+    <Container className="bg-gradient-to-br from-darkOne to-darkTwo border-x border-t border-darkThree shadow-xl flex items-center justify-between rounded-xl my-20 p-10">
+      <div>
         <motion.h1
           variants={fadeIn("up", 0.3)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="lg:text-3xl md:text-3xl text-4xl font-bold pb-4"
+          className="text-xl md:text-2xl font-medium pb-4"
         >
           Get Daily Updates
         </motion.h1>
@@ -36,7 +36,7 @@ const NewsLetter = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="font-light"
+          className="text-sm text-gray font-montserrat font-medium"
         >
           Join now with NexTrade to get the latest news and bonuses
         </motion.p>
@@ -46,7 +46,7 @@ const NewsLetter = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className=" flex items-center gap-8"
+        className=" flex items-center gap-10"
       >
         <TextField
           id="standard-basic"
@@ -62,7 +62,7 @@ const NewsLetter = () => {
         />
         <Button>Subscribe</Button>
       </motion.div>
-    </div>
+    </Container>
   );
 };
 

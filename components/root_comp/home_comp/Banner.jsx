@@ -17,12 +17,12 @@ import Link from "next/link";
 const Banner = () => {
   return (
     <div className="relative h-[100vh]">
-      <Image
+      {/* <Image
         src={banner}
         alt=""
         className="absolute w-full h-full top-0 object-cover -z-10"
-      />
-      <Container className="w-full h-full py-32 bg-black/50">
+      /> */}
+      <Container className="w-full h-full py-32">
         <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"
@@ -30,35 +30,47 @@ const Banner = () => {
           viewport={{ once: false, amount: 0.1 }}
           className="h-full flex items-center justify-center"
         >
-          <div className="text-center w-full mx-auto ">
-            <motion.h1
-              variants={fadeIn("down", 0.1)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-              className="flex items-center justify-center flex-wrap gap-2 text-4xl md:text-[46px] lg:text-[58px] xl:text-7xl 2xl:text-[80px] 3xl:text-[90px] 4xl:text-8xl 4xl:px-5 font-extrabold text-secondary"
-            >
-              <div className="flex items-center md:gap-2">
+          <div className="text-center w-full mx-auto z-10">
+            <div className="flex items-center justify-center flex-wrap gap-2 text-4xl md:text-[46px] lg:text-[58px] xl:text-6xl font-extrabold text-secondary tracking-wider mx-auto">
+              <motion.div
+                variants={fadeIn("down", 0.1)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.1 }}
+                className="flex items-center md:gap-2"
+              >
                 <Magnetic>
-                  <h1 className="text-white">Innovation</h1>
+                  <h1 className="text-white">Master markets</h1>
+                </Magnetic>
+                <span className="text-primary">.</span>
+              </motion.div>
+              <motion.div
+                variants={fadeIn("down", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.1 }}
+                className="flex items-center md:gap-2"
+              >
+                <Magnetic>
+                  <h1 className="text-white">Maximize gains</h1>
+                </Magnetic>
+              </motion.div>
+              <motion.div
+                variants={fadeIn("down", 0.3)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.1 }}
+                className="flex items-center md:gap-2"
+              >
+                .
+                <Magnetic>
+                  <h1 className="text-white">Thrive in trade</h1>
                 </Magnetic>
                 .
-              </div>
-              <div className="flex items-center md:gap-2">
-                <Magnetic>
-                  <h1 className="text-white">Integrity</h1>
-                </Magnetic>
-                .
-              </div>
-              <div className="flex items-center md:gap-2">
-                <Magnetic>
-                  <h1 className="text-white">Investment</h1>
-                </Magnetic>
-                .
-              </div>
-            </motion.h1>
+              </motion.div>
+            </div>
             <motion.p
-              variants={fadeIn("down", 0.2)}
+              variants={fadeIn("down", 0.4)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -69,7 +81,7 @@ const Banner = () => {
               Ethereum, LiteCoin, DOGE coin and many more currencies.
             </motion.p>
             <motion.div
-              variants={fadeIn("down", 0.4)}
+              variants={fadeIn("down", 0.5)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -79,10 +91,11 @@ const Banner = () => {
               </Link>
             </motion.div>
           </div>
+          <div className="absolute top-[35%] bg-primary w-1/3 mx-aut h-60 blur-[300px]"></div>
         </motion.div>
-        <div className="w-full absolute left-0 bottom-2 px-5 md:px-10 2xl:px-20">
+        {/* <div className="w-full absolute left-0 -bottom-20 px-5 md:px-10 2xl:px-20">
           <TickerTape displayMode="adaptive"></TickerTape>
-        </div>
+        </div> */}
       </Container>
     </div>
   );

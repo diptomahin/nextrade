@@ -7,8 +7,7 @@ import "./root_nav.css";
 import Links from "../../common/root_nav/root_nav_comp/link/Links";
 import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
-import logo1 from "../../../assets/logo/NexTrade-Logo-White.png";
-import logo2 from "../../../assets/logo/NexTrade-Logo-Original.png";
+import logo from "../../../assets/logo/NexTrade-Logo-White.png";
 import { IoMdArrowDropup } from "react-icons/io";
 import { fadeIn } from "../../utils/variants";
 import React from "react";
@@ -48,19 +47,7 @@ export default function index() {
         <div className="bar flex items-center justify-between">
           <Magnetic>
             <Link href="/">
-              {isActive ? (
-                <Image
-                  src={logo1}
-                  alt="Logo"
-                  className="w-36 lg:w-40 z-[100]"
-                />
-              ) : (
-                <Image
-                  src={logo2}
-                  alt="Logo"
-                  className="w-36 lg:w-40 z-[100]"
-                />
-              )}
+              <Image src={logo} alt="Logo" className="w-36 lg:w-40 z-[100]" />
             </Link>
           </Magnetic>
 

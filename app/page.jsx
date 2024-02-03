@@ -2,7 +2,6 @@
 import Banner from "@/components/root_comp/home_comp/Banner";
 import InvestSolutions from "@/components/root_comp/home_comp/InvestSolutions";
 import LiveData from "@/components/root_comp/home_comp/LiveData";
-import Modal from "@/components/root_comp/home_comp/Modal";
 import NewsLetter from "@/components/root_comp/home_comp/NewsLetter";
 import Services from "@/components/root_comp/home_comp/Services";
 import StartTrading from "@/components/root_comp/home_comp/StartTrading";
@@ -12,7 +11,7 @@ import WhyChooseUs from "@/components/root_comp/home_comp/WhyChooseUs";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden bg-darkBG text-zinc-100 font-montserrat">
       <Banner />
       <TradingStep />
       <InvestSolutions />
@@ -22,7 +21,6 @@ export default function Home() {
       <LiveData />
       <Subscription />
       <NewsLetter />
-      <Modal />
     </main>
   );
 }

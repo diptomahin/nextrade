@@ -9,20 +9,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#455ce9', //blue
+        primary: '#40a0ff', //blue
+        // primary: '#007FFF', //blue
+        // primary: '#455ce9', //blue
         secondary: '#fca104', // orange
         third: '#35c07c ', // green
-        grayPrimary: '#e9eef1' // gray  
+        gray: '#939db1', // gray  
+        darkOne: '#1d2334',
+        darkTwo: '#212a3f',
+        darkThree: '#2c3750',
       },
       backgroundColor: {
         primary: '#455ce9', //blue
         secondary: '#fca104', // orange
         third: '#35c07c ', // green
-        grayPrimary: '#e9eef1' // gray  
+        grayPrimary: '#e9eef1', // gray  
+        darkBG: '#181e2c'
       },
       fontFamily: {
+        montserrat: ['Montserrat', 'Inter', 'DM Sans'],
+        inter: ['Inter', 'Montserrat'],
         dm: ['DM Sans', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
         sans: ['Graphik', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
       },
