@@ -85,7 +85,7 @@ const Services = () => {
         </motion.Card>
         {/* cart 3  */}
         <motion.Card
-          variants={fadeIn("down", 0.2)}
+          variants={fadeIn("left", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
@@ -112,7 +112,7 @@ const Services = () => {
         </motion.Card>
         {/* cart 4  */}
         <motion.Card
-          variants={fadeIn("down", 0.2)}
+          variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
@@ -137,7 +137,7 @@ const Services = () => {
         </motion.Card>
         {/* cart 5  */}
         <motion.Card
-          variants={fadeIn("down", 0.2)}
+          variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
@@ -164,7 +164,7 @@ const Services = () => {
         </motion.Card>
         {/* cart 6  */}
         <motion.Card
-          variants={fadeIn("down", 0.2)}
+          variants={fadeIn("left", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}

@@ -212,23 +212,23 @@ const Subscription = () => {
 
         {/* left */}
 
-        <div className="animate-move1 absolute left-[5%] top-[0%] bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move1 absolute left-[5%] top-[0%] bg-primary w-40 h-40 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move2 absolute -left-5 top-[35%] bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move2 absolute -left-5 top-[35%] bg-primary w-40 h-40 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move3 absolute -left-5 top-[35%] bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move3 absolute -left-5 top-[35%] bg-primary w-40 h-40 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move4 absolute left-[5%] bottom-0 bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move4 absolute left-[5%] bottom-0 bg-primary w-40 h-40 rounded-full blur-[100px]"></div>
 
         {/* right */}
 
-        <div className="animate-move5 absolute right-[5%] top-[0%] bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move5 absolute right-[5%] top-[0%] bg-secondary/90 w-40 h-40 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move6 absolute -right-5 top-[35%] bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move6 absolute -right-5 top-[35%] bg-secondary/90 w-40 h-40 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move7 absolute -right-5 top-[35%] bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move7 absolute -right-5 top-[35%] bg-secondary/90 w-40 h-40 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move8 absolute right-[5%] bottom-0 bg-secondary/90 w-40 h-40 rounded-full blur-[120px]"></div>
+        <div className="animate-move8 absolute right-[5%] bottom-0 bg-secondary/90 w-40 h-40 rounded-full blur-[100px]"></div>
       </div>
     </Container>
   );
