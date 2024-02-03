@@ -1,0 +1,125 @@
+/* left */
+.animate-move1 {
+  animation: move1 10s infinite;
+}
+
+.animate-move2 {
+  animation: move2 12s infinite;
+}
+.animate-move3 {
+  animation: move3 10s infinite;
+}
+
+.animate-move4 {
+  animation: move4 12s infinite;
+}
+
+/* right */
+.animate-move5 {
+  animation: move5 12s infinite;
+}
+
+.animate-move6 {
+  animation: move6 10s infinite;
+}
+.animate-move7 {
+  animation: move7 12s infinite;
+}
+
+.animate-move8 {
+  animation: move8 10s infinite;
+}
+
+@keyframes move1 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes move2 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes move3 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move4 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes move5 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes move6 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes move7 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move8 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

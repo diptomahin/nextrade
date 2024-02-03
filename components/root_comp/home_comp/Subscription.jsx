@@ -10,11 +10,12 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
+import "./subscription.css";
 
 const Subscription = () => {
   return (
     <Container className="py-20">
-      <div className=" text-center">
+      <div className="text-center">
         <Title>Get More Benefits With Subscription</Title>
         <motion.p
           variants={fadeIn("up", 0.4)}
@@ -26,14 +27,14 @@ const Subscription = () => {
           Monthly and yearly Subscription Sell
         </motion.p>
       </div>
-      <div className="flex flex-col xl:flex-row items-center justify-between gap-10 mt-10">
+      <div className="relative flex flex-col xl:flex-row items-center justify-between gap-10 mt-10">
         {/* cart 1 basic plan */}
         <motion.div
-          variants={fadeIn("right", 0.5)}
+          variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl"
+          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl z-10"
         >
           <div className="text-center">
             <h3 className="text-lg font-semibold">Free Plan</h3>
@@ -84,11 +85,11 @@ const Subscription = () => {
 
         {/* cart 2 Standard plan */}
         <motion.div
-          variants={fadeIn("up", 0.6)}
+          variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl"
+          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl z-10"
         >
           <div className="text-center">
             <h3 className="text-lg font-semibold">Standard Plan</h3>
@@ -145,11 +146,11 @@ const Subscription = () => {
 
         {/* cart 3 Premium  plan */}
         <motion.div
-          variants={fadeIn("left", 0.7)}
+          variants={fadeIn("left", 0.1)}
           initial="hidden"
           whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl"
+          viewport={{ once: false, amount: 0.2 }}
+          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl z-10"
         >
           <div className="text-center">
             <h3 className="text-lg font-semibold">Premium Plan</h3>
@@ -208,6 +209,26 @@ const Subscription = () => {
             </Button>
           </div>
         </motion.div>
+
+        {/* left */}
+
+        <div className="animate-move1 absolute left-[5%] top-[0%] bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+
+        <div className="animate-move2 absolute -left-5 top-[35%] bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+
+        <div className="animate-move3 absolute -left-5 top-[35%] bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+
+        <div className="animate-move4 absolute left-[5%] bottom-0 bg-primary w-40 h-40 rounded-full blur-[120px]"></div>
+
+        {/* right */}
+
+        <div className="animate-move5 absolute right-[5%] top-[0%] bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
+
+        <div className="animate-move6 absolute -right-5 top-[35%] bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
+
+        <div className="animate-move7 absolute -right-5 top-[35%] bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
+
+        <div className="animate-move8 absolute right-[5%] bottom-0 bg-secondary w-40 h-40 rounded-full blur-[120px]"></div>
       </div>
     </Container>
   );
