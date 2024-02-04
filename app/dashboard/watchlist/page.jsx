@@ -3,7 +3,7 @@ import React from 'react';
 const Watchlist = () => {
     return (
         <div>
-            <h1 className='text-2xl font-bold'>This is watchlist page</h1>
+            <h1 className='text-2xl font-bold'>This page under Construction </h1>
         </div>
     );
 };
