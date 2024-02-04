@@ -1,4 +1,4 @@
-import Banner from "@/components/home_comp/Banner";
+import Banner from "@/components/home_comp/banner/Banner";
 import InvestSolutions from "@/components/home_comp/InvestSolutions";
 import Map from "@/components/home_comp/map/Map";
 import Services from "@/components/home_comp/Services";

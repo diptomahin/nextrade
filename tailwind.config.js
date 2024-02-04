@@ -11,7 +11,6 @@ module.exports = {
       colors: {
         primary: '#40a0ff', //blue
         secondary: '#fca104', // orange
-        third: '#35c07c ', // green
         darkGray: '#939db1', // gray  
         darkOne: '#1d2334',
         darkTwo: '#212a3f',
@@ -22,8 +21,6 @@ module.exports = {
         // primary: '#455ce9', //blue
         secondary: '#fca104', // orange
         darkBG: '#181e2c',
-        third: '#35c07c ', // green
-        grayPrimary: '#e9eef1', // gray  
       },
       fontFamily: {
         montserrat: ['Montserrat', 'Inter', 'DM Sans'],

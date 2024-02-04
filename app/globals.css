@@ -14,3 +14,13 @@
 ::selection {
   color: #40a0ff;
 }
+
+.cursor {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 1005;
+}
