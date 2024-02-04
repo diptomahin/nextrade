@@ -12,6 +12,7 @@ import { IoMdArrowDropup } from "react-icons/io";
 import { fadeIn } from "../utils/variants";
 import React from "react";
 import Container from "../library/Container";
+import RootButton from "../library/buttons/root_button/RootButton";
 
 export default function index() {
   const [isActive, setIsActive] = React.useState(false);
@@ -47,20 +48,24 @@ export default function index() {
       >
         <Container className="bar flex items-center justify-between">
           <Magnetic>
-            <Link href="/">
-              <Image src={logo} alt="Logo" className="w-36 lg:w-40 z-[100]" />
-            </Link>
-          </Magnetic>
-
-          <Magnetic>
             <div
               onClick={() => {
                 setIsActive(!isActive);
               }}
-              className="el w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16"
+              className="el w-12 h-12 md:w-14 md:h-14 xl:w-16 xl:h-16 z-[1005]"
             >
               <div className={`burger ${isActive && "burgerActive"}`}></div>
             </div>
+          </Magnetic>
+          <Magnetic>
+            <Link href="/">
+              <Image src={logo} alt="Logo" className="w-36 lg:w-40 -z-[100]" />
+            </Link>
+          </Magnetic>
+          <Magnetic>
+            <Link href="/dashboard">
+              <RootButton>Trade Now</RootButton>
+            </Link>
           </Magnetic>
           <Magnetic>
             <button

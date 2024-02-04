@@ -1,10 +1,9 @@
-// import Modal from "@/components/home/Modal/Modal";
 import Banner from "@/components/home_comp/Banner";
 import InvestSolutions from "@/components/home_comp/InvestSolutions";
-import NewsLetter from "@/components/home_comp/NewsLetter";
+import Map from "@/components/home_comp/map/Map";
 import Services from "@/components/home_comp/Services";
 import StartTrading from "@/components/home_comp/StartTrading";
-import Subscription from "@/components/home_comp/Subscription";
+import Subscription from "@/components/home_comp/subscription/Subscription";
 import TradingStep from "@/components/home_comp/TradingStep";
 import WhyChooseUs from "@/components/home_comp/WhyChooseUs";
 
@@ -18,7 +17,7 @@ export default function Home() {
       <Services />
       <Subscription />
       <WhyChooseUs />
-      <NewsLetter />
+      <Map />
     </main>
   );
 }

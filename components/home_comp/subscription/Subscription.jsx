@@ -7,7 +7,7 @@ import Button from "@/components/library/buttons/root_button/RootButton";
 //framer motion
 import { motion } from "framer-motion";
 // variants
-import { fadeIn } from "../utils/variants";
+import { fadeIn } from "../../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
 import "./subscription.css";
@@ -27,7 +27,7 @@ const Subscription = () => {
           Monthly and yearly Subscription Sell
         </motion.p>
       </div>
-      <div className="relative flex flex-col xl:flex-row items-center justify-between gap-10 mt-10">
+      <div className="relative grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
         {/* cart 1 basic plan */}
         <motion.div
           variants={fadeIn("right", 0.2)}
@@ -45,7 +45,7 @@ const Subscription = () => {
           </div>
           <div className="w-full border border-darkThree"></div>
           {/* Cart criteria */}
-          <div className=" space-y-5 py-5 h-96">
+          <div className=" space-y-5 py-5 lg:h-96">
             {/*criteria 1 */}
             <p className="flex items-center gap-2 text-sm font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
@@ -101,7 +101,7 @@ const Subscription = () => {
           </div>
           <div className="w-full border border-darkThree"></div>
           {/* Cart criteria */}
-          <div className="space-y-5 py-5 h-96">
+          <div className="space-y-5 py-5 lg:h-96">
             {/*criteria 1 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
@@ -162,7 +162,7 @@ const Subscription = () => {
           </div>
           <div className="w-full border border-darkThree"></div>
           {/* Cart criteria */}
-          <div className=" space-y-5 py-5 h-96">
+          <div className=" space-y-5 py-5 lg:h-96">
             {/*criteria 1 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />

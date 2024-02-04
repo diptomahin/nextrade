@@ -27,12 +27,12 @@ const Footer = () => {
           : "block"
       }`}
     >
-      <Container className="flex justify-between gap-10 py-10">
-        <div className="flex flex-col gap-3">
+      <Container className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-6  justify-between gap-10 py-10">
+        <div className="md:col-span-2 2xl:col-span-2 flex flex-col gap-3">
           <Link href={"/"}>
             <Image src={logo} alt="" width={150} />
           </Link>
-          <p className="text-sm max-w-80">
+          <p className="text-sm 2xl:max-w-80">
             The Company does not provide services to citizens and/or residents
             of Australia, Austria, Belarus, Belgium, Bulgaria, Canada, Croatia,
             Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland,
@@ -97,7 +97,7 @@ const Footer = () => {
         </div>
       </Container>
       <div className="border-t border-darkThree text-sm text-darkGray py-10">
-        <Container className="flex justify-between gap-10">
+        <Container className="flex flex-col xl:flex-row justify-between gap-10">
           <p className="flex-1">
             Trading and investing involves significant level of risk and is not
             suitable and/or appropriate for all clients. Please make sure you
@@ -110,20 +110,25 @@ const Footer = () => {
             from an independent financial advisor if you have any doubts. You
             are granted limited non-exclusive rights to use the IP contained in
             this site for personal, non-commercial, non-transferable use only in
-            relation to the services offered on the site. <br /> Since EOLabs
-            LLC is not under the supervision of the JFSA, it is not involved
-            with any acts considered to be offering financial products and
-            solicitation for financial services to Japan and this website is not
-            aimed at residents in Japan. <br /> EOLabs LLC, Company No 377 LLC
-            2020, having its registered address at: First Floor, First St.
-            Vincent Bank Ltd., James Street, PO Box 1574, Kingstown, St. Vincent
-            and the Grenadines. Merchant Company: Techsmarty Ltd, company
-            No:120906, MOL: 5-9 Main Street, Gibraltar GX11 1AA, Gibraltar.
+            relation to the services offered on the site.{" "}
+            <span className="xl:block">
+              Since EOLabs LLC is not under the supervision of the JFSA, it is
+              not involved with any acts considered to be offering financial
+              products and solicitation for financial services to Japan and this
+              website is not aimed at residents in Japan.
+            </span>{" "}
+            <span className="xl:block">
+              EOLabs LLC, Company No 377 LLC 2020, having its registered address
+              at: First Floor, First St. Vincent Bank Ltd., James Street, PO Box
+              1574, Kingstown, St. Vincent and the Grenadines. Merchant Company:
+              Techsmarty Ltd, company No:120906, MOL: 5-9 Main Street, Gibraltar
+              GX11 1AA, Gibraltar.
+            </span>
           </p>
-          <div>
+          <div className="text-center xl:text-start">
             <p>© 2023–2024 NexTrade</p>
             <p className="text-xs">NexTrade All rights reserved.</p>
-            <div className="flex items-center gap-5 mt-5 text-white">
+            <div className="flex items-center justify-center xl:justify-start gap-5 mt-5 text-white">
               <FaFacebook className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />{" "}
               <FaXTwitter className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />{" "}
               <FaYoutube className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />

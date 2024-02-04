@@ -15,7 +15,7 @@ import { GrResources } from "react-icons/gr";
 const WhyChooseUs = () => {
   return (
     <Container className="py-20">
-      <Title>Why Choose NexTrade</Title>
+      <Title>Why Choose Us</Title>
       <motion.p
         variants={fadeIn("up", 0.2)}
         initial="hidden"
@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
             <FaUserCheck className="w-14 h-14 text-primary" />
@@ -52,7 +52,7 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
             <MdOutlineSupportAgent className="w-14 h-14  text-primary" />
@@ -71,7 +71,7 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
             <MdOutlineSecurity className="w-14 h-14  text-primary" />
@@ -90,7 +90,7 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
             <SiRetool className="w-14 h-14  text-primary" />
@@ -109,7 +109,7 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
             <FaMoneyBillTransfer className="w-14 h-14  text-primary" />
@@ -128,7 +128,7 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
             <GrResources className="w-14 h-14  text-primary" />
