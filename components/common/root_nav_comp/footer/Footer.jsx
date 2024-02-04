@@ -1,5 +1,5 @@
 import "./index.css";
-import { translate } from "../../../../utils/anim";
+import { translate } from "../../../utils/anim";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { PiArrowRightThin } from "react-icons/pi";

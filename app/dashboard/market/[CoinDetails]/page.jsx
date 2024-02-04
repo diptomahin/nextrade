@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { AdvancedRealTimeChart } from 'react-ts-tradingview-widgets';
-import DashButton from '@/components/library/buttons/DashButton';
-import TopBanner from '@/components/traders_comp/market/TopBanner';
-import useAuth from '@/hooks/useAuth';
-import useSecureFetch from '@/hooks/useSecureFetch';
-import usePublicAPI from '@/hooks/usePublicAPI';
-import Swal from 'sweetalert2';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
+import DashButton from "@/components/library/buttons/DashButton";
+import TopBanner from "@/components/traders_comp/market/TopBanner";
+import useAuth from "@/hooks/useAuth";
+import useSecureFetch from "@/hooks/useSecureFetch";
+import usePublicAPI from "@/hooks/usePublicAPI";
+import Swal from "sweetalert2";
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
   const [coinImage, setCoinImage] = useState(null);
-  const [coinName, setCoinName] = useState("")
-  const { user } = useAuth()
+  const [coinName, setCoinName] = useState("");
+  const { user } = useAuth();
 
   const publicAPI = usePublicAPI();
 
@@ -27,10 +27,12 @@ const CoinDetails = ({ params }) => {
 
   useEffect(() => {
     // Create a WebSocket connection for BTC/USDT ticker
-    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
+    const socket = new WebSocket(
+      `wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`
+    );
 
     // Event listener for incoming messages
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
       setTickerData(data);
     });
@@ -39,32 +41,40 @@ const CoinDetails = ({ params }) => {
     const fetchCoinImage = async () => {
       // Extract the coin ID from the response
       if (params.CoinDetails === "BTCUSDT") {
-        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin`);
+        const coinDetailsResponse = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/bitcoin`
+        );
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("Bitcoin (BTC)")
+        setCoinName("Bitcoin (BTC)");
       } else if (params.CoinDetails === "LTCUSDT") {
-        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/litecoin`);
+        const coinDetailsResponse = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/litecoin`
+        );
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("LiteCoin (LTC)")
+        setCoinName("LiteCoin (LTC)");
       } else if (params.CoinDetails === "ETHUSDT") {
-        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/ethereum`);
+        const coinDetailsResponse = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/ethereum`
+        );
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("Ethereum (ETC)")
+        setCoinName("Ethereum (ETC)");
       } else if (params.CoinDetails === "QTUMUSDT") {
-        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/qtum`);
+        const coinDetailsResponse = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/qtum`
+        );
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("QTUM coin")
+        setCoinName("QTUM coin");
       } else if (params.CoinDetails === "DOGEUSDT") {
-        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/dogecoin`);
+        const coinDetailsResponse = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/dogecoin`
+        );
         setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("DOGE coin")
+        setCoinName("DOGE coin");
       }
     };
 
     fetchCoinImage();
-
   }, [params.CoinDetails]); // Empty dependency array ensures the effect runs only once on mount
-
 
   const handleBuyCoin = (ast) => {
     const assetInfo = {
@@ -108,18 +118,20 @@ const CoinDetails = ({ params }) => {
           icon: "error",
         });
       });
-  }
+  };
   return (
     <div>
-
       {tickerData ? (
-        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} />
+        <TopBanner
+          tickerData={tickerData}
+          coinImage={coinImage}
+          coinName={coinName}
+        />
       ) : (
         <p>Loading...</p>
       )}
 
-
-      <div className='flex flex-col xl:flex-row gap-5 my-10'>
+      <div className="flex flex-col xl:flex-row gap-5 my-10">
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 ">
           <AdvancedRealTimeChart
             width="100%"
@@ -147,16 +159,18 @@ const CoinDetails = ({ params }) => {
             container_id="advanced-chart-widget-container"
           />
         </div>
-        <div className='flex-1 bg-grayPrimary rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7'>
+        <div className="flex-1 bg-darkGray rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
           <DashButton className="w-full">Add to Watchlist</DashButton>
-          <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
+          <DashButton
+            className="w-full"
+            onClick={() => handleBuyCoin(tickerData)}
+          >
+            Buy
+          </DashButton>
         </div>
       </div>
-
     </div>
   );
 };
 
 export default CoinDetails;
-
-

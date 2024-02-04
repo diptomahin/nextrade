@@ -2,7 +2,7 @@
 import "./index.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { height } from "../../../../utils/anim";
+import { height } from "../../../utils/anim";
 import Body from "../body/Body";
 import Footer from "../footer/Footer";
 import useAuth from "@/hooks/useAuth";

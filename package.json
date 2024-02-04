@@ -37,6 +37,7 @@
     "recharts": "^2.11.0",
     "sweetalert2": "^11.10.3",
     "tailwind-merge": "^2.2.0",
+    "typewriter-effect": "^2.21.0",
     "ws": "^8.16.0"
   },
   "devDependencies": {

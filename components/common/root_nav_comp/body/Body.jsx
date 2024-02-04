@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import "./index.css";
-import { blur, translate } from "../../../../utils/anim";
+import { blur, translate } from "../../../utils/anim";
 
 export default function Body({
   setIsActive,

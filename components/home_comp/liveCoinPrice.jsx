@@ -1,11 +1,11 @@
 "use client";
-import Container from "../../library/Container";
+import Container from "../library/Container";
 import { TickerTape } from "react-ts-tradingview-widgets";
 //framer motion
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../utils/variants";
+import { fadeIn } from "../utils/variants";
 
 const liveCoinPrice = () => {
   return (

@@ -5,8 +5,8 @@ import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import { motion } from "framer-motion";
 
 // variants
-import { fadeIn } from "../../utils/variants";
-import Container from "../../library/Container";
+import { fadeIn } from "../utils/variants";
+import Container from "../library/Container";
 
 const LiveData = () => {
   return (
