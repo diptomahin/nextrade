@@ -53,6 +53,7 @@ const CoinDetails = ({ params }) => {
     const assetInfo = {
       assetName: coinName,
       assetKey: params.CoinDetails,
+      assetImg: coinImage,
       assetBuyingPrice: ast.c,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
