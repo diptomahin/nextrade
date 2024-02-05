@@ -11,7 +11,6 @@ import logo2 from "../../../assets/logo/NexTrade_Favicon-White.png";
 import { IoMdArrowDropup } from "react-icons/io";
 import React from "react";
 import Container from "../../library/Container";
-import RootButton from "../../library/buttons/root_button/RootButton";
 import Language from "../../library/Language";
 import { fadeIn } from "../../utils/variants";
 import { GrClose } from "react-icons/gr";
@@ -48,11 +47,11 @@ export default function RootNav() {
     <>
       <nav
         className={`w-full h-auto box-border fixed transition-all duration-200 ease-out z-[1000] ${
-          scrolled ? "py-3 bg-darkTwo/50 backdrop-blur-sm" : "py-10"
+          scrolled ? "py-3 bg-darkTwo/50 backdrop-blur-sm" : "py-8"
         } z-50`}
       >
         <Container className="bar flex items-center justify-between ">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
             <Magnetic>
               <div
                 onClick={() => {
@@ -63,15 +62,20 @@ export default function RootNav() {
                 <div className={`burger ${isActive && "burgerActive"}`}></div>
               </div>
             </Magnetic>
-            <Language className="text-xl text-white" />
+            <Language className="md:text-xl text-white" />
           </div>
           <Magnetic>
-            <Link href="/">
+            <Link href="/" className="hidden xl:block">
               {scrolled ? (
                 <Image src={logo2} alt="Logo" className="w-12" />
               ) : (
                 <Image src={logo} alt="Logo" className="w-36 lg:w-40" />
               )}
+            </Link>
+          </Magnetic>
+          <Magnetic>
+            <Link href="/" className="hidden md:block xl:hidden">
+              <Image src={logo2} alt="Logo" className="w-12" />
             </Link>
           </Magnetic>
           {user?.email ? (
@@ -81,17 +85,20 @@ export default function RootNav() {
               </Link>
             </Magnetic>
           ) : (
-            <div className="flex items-center gap-5 ">
+            <div className="flex items-center gap-2 md:gap-6">
               <Magnetic>
                 <Link href="/login">
-                  <button className="hover:bg-primary/20 to-darkTwo hover:border border-darkThree py-2 px-4 text-lg font-medium rounded-xl text-primary">
+                  <button className="hover:bg-primary/20 to-darkTwo hover:border border-darkThree py-1 px-2 md:py-2 md:px-4 md:text-lg font-medium rounded-xl text-primary">
                     Login
                   </button>
                 </Link>
               </Magnetic>
               <Magnetic>
                 <Link href="/register">
-                  <DarkButton> Register</DarkButton>
+                  <DarkButton className="py-1 px-2 text-sm md:py-2 md:px-4 md:text-lg rounded-md md:rounded-xl">
+                    {" "}
+                    Register
+                  </DarkButton>
                 </Link>
               </Magnetic>
             </div>
@@ -114,7 +121,7 @@ export default function RootNav() {
         } duration-700 ease-in-out z-[1000]`}
       >
         <Container className="w-full h-full ">
-          <div className="flex items-center justify-between gap-6 py-10">
+          <div className="flex items-center justify-between gap-6 py-8">
             <Magnetic>
               <button
                 onClick={() => {
