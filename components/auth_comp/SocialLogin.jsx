@@ -23,6 +23,7 @@ const SocialLogin = () => {
           createdAt: loggedUser.metadata.creationTime,
           balance: 0,
           portfolio: [],
+          watchList: []
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {
