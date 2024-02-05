@@ -17,29 +17,35 @@ const Banner = () => {
   return (
     <div className="relative h-[100vh]">
       <div className="banner w-full h-[100vh] absolute -bottom-1/4"></div>
-      <Container className="w-full h-full py-32">
+      <Container className="w-full h-full pt-32 z-10">
         {/* left */}
-        <motion.div
-          variants={fadeIn("up", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className="relative h-full flex flex-col items-start justify-center z-10"
-        >
+        <div className="h-full flex flex-col items-start justify-center z-10">
           {/* banner title */}
-          <div className="relative h-1/3 w-full flex flex-col justify-center">
-            <h1 className="absolute left-0 top-0 text-7xl font-extrabold">
-              Trade
-            </h1>
-            <h1 className="absolute left-[8%] top-1/3 text-7xl font-extrabold">
-              With
-            </h1>
+          <div>
             <motion.h1
               variants={fadeIn("down", 0.1)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="absolute left-[16%] bottom-0 text-7xl font-extrabold text-right"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
+            >
+              Trade
+            </motion.h1>
+            <motion.h1
+              variants={fadeIn("down", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className="pl-10 sm:pl-16 2xl:pl-24 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
+            >
+              With
+            </motion.h1>
+            <motion.h1
+              variants={fadeIn("down", 0.3)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className="pl-20 sm:pl-32 2xl:pl-48 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
             >
               <Typewriter
                 options={{
@@ -89,65 +95,113 @@ const Banner = () => {
 
           {/* banner description */}
           <motion.p
-            variants={fadeIn("down", 0.4)}
+            variants={fadeIn("up", 0.1)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="text-sm 2xl:text-lg my-8 text-white"
+            className="text-sm 2xl:text-lg my-8 text-white pr-8 text-wrap z-10"
           >
             {" "}
-            <span className="text-3xl font-bold">
+            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-3xl font-bold">
               Join world&apos;s biggest & trusted Exchange.
             </span>
-            <br />
             Trade in Bitcoin, Ethereum, LiteCoin, and many more currencies.
           </motion.p>
 
           {/* group */}
-          <div className="h-16 relative w-full">
-            <Image
-              alt="icon"
-              src={icon1}
-              className="absolute left-0 w-8 h-8 rounded-full"
-            />
-            <Image
-              alt="icon"
-              src={icon2}
-              className="absolute left-6 w-8 h-8 rounded-full bg-white p-1"
-            />
-            <Image
-              alt="icon"
-              src={icon3}
-              className="absolute left-12 w-8 h-8 rounded-full"
-            />
-            <Image
-              alt="icon"
-              src={icon4}
-              className="absolute left-[72px] w-8 h-8 rounded-full"
-            />
-            <Image
-              alt="icon"
-              src={icon5}
-              className="absolute left-24 w-8 h-8 rounded-full"
-            />
-            <p className="absolute left-[120px] rounded-full bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree text-white py-1 px-3 font-semibold">
+          <div className="h-16 relative w-full z-10">
+            <motion.div
+              variants={fadeIn("up", 0.1)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=""
+            >
+              <Image
+                alt="icon"
+                src={icon1}
+                className="absolute left-0 w-8 h-8 rounded-full"
+              />
+            </motion.div>
+            <motion.div
+              variants={fadeIn("up", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=""
+            >
+              {" "}
+              <Image
+                alt="icon"
+                src={icon2}
+                className="absolute left-6 w-8 h-8 rounded-full bg-white p-1"
+              />
+            </motion.div>
+            <motion.div
+              variants={fadeIn("up", 0.3)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=""
+            >
+              <Image
+                alt="icon"
+                src={icon3}
+                className="absolute left-12 w-8 h-8 rounded-full"
+              />
+            </motion.div>
+            <motion.div
+              variants={fadeIn("up", 0.4)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=""
+            >
+              {" "}
+              <Image
+                alt="icon"
+                src={icon4}
+                className="absolute left-[72px] w-8 h-8 rounded-full"
+              />
+            </motion.div>
+            <motion.div
+              variants={fadeIn("up", 0.5)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className=""
+            >
+              <Image
+                alt="icon"
+                src={icon5}
+                className="absolute left-24 w-8 h-8 rounded-full"
+              />
+            </motion.div>
+
+            <motion.p
+              variants={fadeIn("up", 0.6)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className="absolute left-[120px] rounded-full bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree text-white py-1 px-3 font-semibold"
+            >
               +More <span className="text-sm font-normal">assets</span>
-            </p>
+            </motion.p>
           </div>
 
           {/* banner button */}
           <motion.div
-            variants={fadeIn("down", 0.5)}
+            variants={fadeIn("up", 0.3)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="mt-3"
+            className="mt-3 z-10"
           >
             <Link href="/dashboard/market">
               <Button>Trade Now</Button>
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* right */}
         <motion.div
