@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,7 +14,7 @@ import Container from "../../library/Container";
 import RootButton from "../../library/buttons/root_button/RootButton";
 import Language from "../../library/Language";
 
-export default function index() {
+export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
