@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import DashButton from "@/components/library/buttons/DashButton";
-import TopBanner from "@/components/traders_comp/market/TopBanner";
+import TopBanner from "@/components/traders/market/TopBanner";
 import useAuth from "@/hooks/useAuth";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import usePublicAPI from "@/hooks/usePublicAPI";
@@ -15,11 +15,20 @@ const CoinDetails = ({ params }) => {
   const [coinName, setCoinName] = useState("");
   const { user } = useAuth();
   const publicAPI = usePublicAPI();
-  const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+  const {
+    data: allUsers = [],
+    isPending,
+    isLoading,
+    refetch,
+  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   useEffect(() => {
-    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
-    socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
+    const socket = new WebSocket(
+      `wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`
+    );
+    socket.addEventListener("message", (event) =>
+      setTickerData(JSON.parse(event.data))
+    );
 
     const fetchCoinImage = async () => {
       const coinDetailsMap = {
@@ -35,7 +44,11 @@ const CoinDetails = ({ params }) => {
         BNBUSDT: "binancecoin",
       };
 
-      const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinDetailsMap[params.CoinDetails]}`);
+      const coinDetailsResponse = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/${
+          coinDetailsMap[params.CoinDetails]
+        }`
+      );
       setCoinImage(coinDetailsResponse.data.image.large);
       setCoinName(coinDetailsResponse.data.name);
     };
@@ -89,14 +102,18 @@ const CoinDetails = ({ params }) => {
   return (
     <div>
       {tickerData ? (
-        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} />
+        <TopBanner
+          tickerData={tickerData}
+          coinImage={coinImage}
+          coinName={coinName}
+        />
       ) : (
         <p>Loading...</p>
       )}
 
       <div className="flex flex-col xl:flex-row gap-5 my-10">
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 ">
-        <AdvancedRealTimeChart
+          <AdvancedRealTimeChart
             width="100%"
             height="100%"
             autosize
@@ -124,7 +141,12 @@ const CoinDetails = ({ params }) => {
         </div>
         <div className="flex-1 bg-darkGray rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
           <DashButton className="w-full">Add to Watchlist</DashButton>
-          <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
+          <DashButton
+            className="w-full"
+            onClick={() => handleBuyCoin(tickerData)}
+          >
+            Buy
+          </DashButton>
         </div>
       </div>
     </div>

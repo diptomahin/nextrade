@@ -13,7 +13,7 @@ import usePublicAPI from "@/hooks/usePublicAPI";
 import Lottie from "lottie-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import RegisterAnim from "../../assets/regiAnim";
-import SocialLogin from "@/components/auth_comp/SocialLogin";
+import SocialLogin from "@/components/auth/SocialLogin";
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 

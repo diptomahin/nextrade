@@ -1,6 +1,14 @@
 "use client";
 
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, } from "recharts";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from "recharts";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AddIcon from "@mui/icons-material/Add";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
@@ -9,7 +17,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CardTravelOutlinedIcon from "@mui/icons-material/CardTravelOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import AvTimerOutlinedIcon from "@mui/icons-material/AvTimerOutlined";
-import DepositForm from "@/components/traders_comp/wallet/DepositForm";
+import DepositForm from "@/components/traders/wallet/DepositForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
@@ -17,7 +25,7 @@ import { VisibilityOutlined } from "@mui/icons-material";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
-import TransactionTable from "@/components/traders_comp/wallet/TransactionTable";
+import TransactionTable from "@/components/traders/wallet/TransactionTable";
 
 const stripePromise = loadStripe(
   "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
@@ -146,11 +154,12 @@ const Wallet = () => {
             <BarChart
               data={[
                 {
-                  name: 'Total Deposited',
-                  amount: parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0,
+                  name: "Total Deposited",
+                  amount:
+                    parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0,
                 },
                 {
-                  name: 'Total Withdrawals',
+                  name: "Total Withdrawals",
                   amount: 0,
                 },
               ]}

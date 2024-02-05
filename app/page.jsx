@@ -1,11 +1,11 @@
-import Banner from "@/components/home_comp/banner/Banner";
-import InvestSolutions from "@/components/home_comp/InvestSolutions";
-import Map from "@/components/home_comp/map/Map";
-import Services from "@/components/home_comp/Services";
-import StartTrading from "@/components/home_comp/StartTrading";
-import Subscription from "@/components/home_comp/subscription/Subscription";
-import TradingStep from "@/components/home_comp/TradingStep";
-import WhyChooseUs from "@/components/home_comp/WhyChooseUs";
+import Banner from "@/components/home/banner/Banner";
+import InvestSolutions from "@/components/home/InvestSolutions";
+import Map from "@/components/home/map/Map";
+import Services from "@/components/home/Services";
+import StartTrading from "@/components/home/StartTrading";
+import Subscription from "@/components/home/subscription/Subscription";
+import TradingStep from "@/components/home/TradingStep";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 export default function Home() {
   return (
