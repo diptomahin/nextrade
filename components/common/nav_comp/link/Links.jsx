@@ -1,7 +1,7 @@
 "use client";
 import "./index.css";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { height } from "../../../utils/anim";
 import Body from "../body/Body";
 import Footer from "../footer/Footer";
@@ -61,16 +61,23 @@ export default function Links({ setIsActive }) {
   ];
 
   return (
-    <motion.div variants={height} initial="initial" animate="enter" exit="exit">
-      <div className="wrapper">
-        <Body
+    <motion.div variants={height} initial="initial" animate="open" exit="exit">
+      <AnimatePresence>
+        {" "}
+        <div className="wrapper">
+          {/* <Body
           setIsActive={setIsActive}
           links={links}
           selectedLink={selectedLink}
           setSelectedLink={setSelectedLink}
         />
-        <Footer />
-      </div>
+        <Footer /> */}
+          <div>a</div>
+          <div>a</div>
+          <div>a</div>
+          <div>a</div>
+        </div>
+      </AnimatePresence>
     </motion.div>
   );
 }
