@@ -15,6 +15,7 @@ import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
 import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAssetChart";
 import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
+import Image from "next/image";
 
 const Portfolio = () => {
   const [currentPrices, setCurrentPrices] = useState({});
@@ -112,6 +113,9 @@ const Portfolio = () => {
               <TableHead className="bg-primary">
                 <TableRow>
                   <TableCell sx={{ color: "white", fontWeight: "600" }}>
+                    Coin
+                  </TableCell>
+                  <TableCell sx={{ color: "white", fontWeight: "600" }}>
                     Company
                   </TableCell>
                   <TableCell
@@ -143,6 +147,9 @@ const Portfolio = () => {
               <TableBody>
                 {buyingPriceInfo.map((asset, index) => (
                   <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                    <Image height={45} width={45} src={asset.assetImg} alt='coin logo'></Image>
+                    </TableCell>
                     <TableCell component="th" scope="row">
                       <h2 className="font-semibold">{asset.assetName}</h2>
                     </TableCell>
