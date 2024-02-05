@@ -1,5 +1,4 @@
 "use client";
-import Button from "@/components/library/buttons/root_button/RootButton";
 import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
@@ -12,11 +11,12 @@ import icon2 from "../../../assets/Banner/ethereum-eth-logo.svg";
 import icon3 from "../../../assets/Banner/litecoin-ltc-logo.svg";
 import icon4 from "../../../assets/Banner/dogecoin-doge-logo.svg";
 import icon5 from "../../../assets/Banner/qtum-qtum-logo.svg";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 const Banner = () => {
   return (
     <div className="relative h-[100vh]">
-      <div className="banner w-full h-[100vh] absolute -bottom-1/4"></div>
+      <div className="banner w-full h-[100vh] absolute bottom-0 opacity-80"></div>
       <Container className="w-full h-full pt-32 xl:pt-0 z-10">
         {/* left */}
         <div className="relative h-full flex flex-col items-start justify-center z-10">
@@ -171,7 +171,7 @@ const Banner = () => {
             className="mt-3 z-10"
           >
             <Link href="/dashboard/market">
-              <Button>Trade Now</Button>
+              <DarkButton>Try free demo</DarkButton>
             </Link>
           </motion.div>
 

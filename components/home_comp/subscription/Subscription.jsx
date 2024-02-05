@@ -3,7 +3,6 @@
 import Container from "@/components/library/Container";
 // material icon import
 import DoneIcon from "@mui/icons-material/Done";
-import Button from "@/components/library/buttons/root_button/RootButton";
 //framer motion
 import { motion } from "framer-motion";
 // variants
@@ -11,6 +10,7 @@ import { fadeIn } from "../../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
 import "./subscription.css";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 const Subscription = () => {
   return (
@@ -78,9 +78,9 @@ const Subscription = () => {
             </p>
           </div>
           <Link href="/dashboard" className=" flex items-center justify-center">
-            <Button className="w-full lg:h-10 lg:text-sm">
+            <DarkButton className="w-full lg:h-10 lg:text-sm">
               Continue With Free
-            </Button>
+            </DarkButton>
           </Link>
         </motion.div>
 
@@ -139,9 +139,9 @@ const Subscription = () => {
             </h3>
           </div>
           <div className=" flex items-center justify-center">
-            <Button className="w-full lg:h-10 lg:text-sm">
+            <DarkButton className="w-full lg:h-10 lg:text-sm">
               Continue With Standard
-            </Button>
+            </DarkButton>
           </div>
         </motion.div>
 
@@ -205,9 +205,9 @@ const Subscription = () => {
             </h3>
           </div>
           <div className=" flex items-center justify-center">
-            <Button className="w-full lg:h-10 lg:text-sm">
+            <DarkButton className="w-full lg:h-10 lg:text-sm">
               Continue With Premium
-            </Button>
+            </DarkButton>
           </div>
         </motion.div>
 

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Container from "@/components/library/Container";
-import Button from "@/components/library/buttons/root_button/RootButton";
 import { CryptoCurrencyMarket } from "react-ts-tradingview-widgets";
 
 //framer motion
@@ -11,6 +10,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/variants";
 import Link from "next/link";
 import Title from "@/components/library/Title";
+import DarkButton from "../library/buttons/DarkButton";
 
 const StartTrading = () => {
   return (
@@ -40,7 +40,7 @@ const StartTrading = () => {
         className="flex items-center justify-center mt-10"
       >
         {" "}
-        <Button>Start Trading</Button>
+        <DarkButton>Start Trading</DarkButton>
       </Link>
     </Container>
   );

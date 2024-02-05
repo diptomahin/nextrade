@@ -2,7 +2,7 @@ import React from "react";
 import { GrLanguage } from "react-icons/gr";
 import cn from "../utils/cn";
 
-const Language = ({ className }) => {
+const Language = ({ className, icon }) => {
   const [isLangChangeOpen, setIsLangChangeOpen] = React.useState(false);
   const [isLangChange, setIsLangChange] = React.useState("");
 
@@ -28,7 +28,7 @@ const Language = ({ className }) => {
           className
         )}
       >
-        <GrLanguage className="text-2xl" />
+        <GrLanguage className={icon} />
         <span>{isLangChange}</span>
       </button>
       {isLangChangeOpen && (

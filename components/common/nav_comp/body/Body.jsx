@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import "./index.css";
 import { blur, translate } from "../../../utils/anim";
+import { usePathname } from "next/navigation";
 
 export default function Body({
   setIsActive,
@@ -9,6 +10,7 @@ export default function Body({
   selectedLink,
   setSelectedLink,
 }) {
+  const pathname = usePathname();
   const getChars = (word) => {
     let chars = [];
     word.split("").forEach((char, i) => {
@@ -28,14 +30,16 @@ export default function Body({
     return chars;
   };
 
-  console.log(getChars.title);
-
   return (
     <div className="body">
       {links.map((link, index) => {
         const { title, href } = link;
         return (
-          <Link key={`l_${index}`} href={href}>
+          <Link
+            key={`l_${index}`}
+            href={href}
+            className={pathname == href ? "text-purple-600" : ""}
+          >
             <motion.p
               onClick={() => setIsActive(false)}
               onMouseOver={() => {

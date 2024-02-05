@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
-import Button from "@/components/library/buttons/root_button/RootButton";
+import DarkButton from "../library/buttons/DarkButton";
 
 const Services = () => {
   return (
@@ -201,7 +201,7 @@ const Services = () => {
           className="flex items-center justify-center mt-10"
         >
           {" "}
-          <Button>More</Button>
+          <DarkButton>More</DarkButton>
         </Link>
       </motion.div>
     </Container>

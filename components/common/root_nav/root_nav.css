@@ -1,6 +1,5 @@
 .background {
-  background-color: #352786;
-  opacity: 0.2;
+  background-color: #40a0ff;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -16,17 +15,14 @@
   position: relative;
 }
 
-/* .bar p {
-  margin: 0px;
-} */
-
 .bar a {
   text-decoration: none;
 }
 
 .bar .el {
   border-radius: 50%;
-  background-color: white;
+  /* background-color: #40a0ff; */
+  border: 1px solid #40a0ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +42,7 @@
 }
 
 .bar .el .burger {
-  width: 25px;
+  width: 20px;
   position: relative;
   pointer-events: none;
 }
@@ -56,7 +52,7 @@
   content: "";
   height: 2px;
   width: 100%;
-  background-color: black;
+  background-color: #40a0ff;
   position: relative;
   display: block;
   transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);

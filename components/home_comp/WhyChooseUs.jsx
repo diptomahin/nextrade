@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
-import Button from "@/components/library/buttons/root_button/RootButton";
 import { MdOutlineSupportAgent, MdOutlineSecurity } from "react-icons/md";
 import { FaUserCheck } from "react-icons/fa";
 import { SiRetool } from "react-icons/si";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { GrResources } from "react-icons/gr";
+import DarkButton from "../library/buttons/DarkButton";
 
 const WhyChooseUs = () => {
   return (
@@ -153,7 +153,7 @@ const WhyChooseUs = () => {
           className="flex items-center justify-center mt-10"
         >
           {" "}
-          <Button>More</Button>
+          <DarkButton>More</DarkButton>
         </Link>
       </motion.div>
     </Container>
