@@ -93,6 +93,39 @@ const CoinDetails = ({ params }) => {
       });
   };
 
+  
+  const handleAddToWatchlist = (ast) => {
+    const assetInfo = {
+      assetName: coinName,
+      assetKey: params.CoinDetails,
+      assetImg: coinImage,
+      assetBuyingPrice: ast.c,
+      assetBuyerUID: user.uid,
+      assetBuyerEmail: user.email,
+    };
+
+    publicAPI
+      .post(`/watchlist`, assetInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: `Successfully added to watchlist!`,
+            text: `Coin has been added to Watchlist!`,
+            icon: "success",
+          });
+          refetch();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: `failed!`,
+          text: `Please try again`,
+          icon: "error",
+        });
+      });
+  };
+
   return (
     <div>
       {tickerData ? (
@@ -130,7 +163,7 @@ const CoinDetails = ({ params }) => {
           />
         </div>
         <div className="flex-1 bg-darkGray rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
-          <DashButton className="w-full">Add to Watchlist</DashButton>
+          <DashButton className="w-full" onClick={() => handleAddToWatchlist(tickerData)}>Add to Watchlist</DashButton>
           <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
         </div>
       </div>
