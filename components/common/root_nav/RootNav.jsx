@@ -15,11 +15,15 @@ import RootButton from "../../library/buttons/root_button/RootButton";
 import Language from "../../library/Language";
 import { fadeIn } from "../../utils/variants";
 import { GrClose } from "react-icons/gr";
+import useAuth from "@/hooks/useAuth";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState(false);
+
+  const { user, loading } = useAuth();
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -70,11 +74,28 @@ export default function RootNav() {
               )}
             </Link>
           </Magnetic>
-          <Magnetic>
-            <Link href="/dashboard">
-              <RootButton>Trade Now</RootButton>
-            </Link>
-          </Magnetic>
+          {user?.email ? (
+            <Magnetic>
+              <Link href="/dashboard">
+                <DarkButton> Trade Now</DarkButton>
+              </Link>
+            </Magnetic>
+          ) : (
+            <div className="flex items-center gap-5 ">
+              <Magnetic>
+                <Link href="/login">
+                  <button className="hover:bg-primary/20 to-darkTwo hover:border border-darkThree py-2 px-4 text-lg font-medium rounded-xl text-primary">
+                    Login
+                  </button>
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <Link href="/register">
+                  <DarkButton> Register</DarkButton>
+                </Link>
+              </Magnetic>
+            </div>
+          )}
         </Container>
       </nav>
       <Magnetic>
