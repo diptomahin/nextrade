@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GrLanguage } from "react-icons/gr";
+import cn from "../utils/cn";
 
-const Language = () => {
+const Language = ({ className }) => {
   const [isLangChangeOpen, setIsLangChangeOpen] = React.useState(false);
-  const [isLangChange, setIsLangChange] = React.useState("En");
+  const [isLangChange, setIsLangChange] = React.useState("");
 
   React.useEffect(() => {
     const savedLang = localStorage.getItem("isLangChange");
@@ -22,12 +23,13 @@ const Language = () => {
     <div className="relative">
       <button
         onClick={() => setIsLangChangeOpen(!isLangChangeOpen)}
-        className={`flex items-center gap-2 ${
-          isLangChangeOpen && "text-primary"
-        }`}
+        className={cn(
+          `flex items-center gap-1 ${isLangChangeOpen && "text-primary"}`,
+          className
+        )}
       >
         <span>{isLangChange}</span>
-        <GrLanguage className="w-5 h-5 " />
+        <GrLanguage className="text-2xl" />
       </button>
       {isLangChangeOpen && (
         <div className="absolute top-12 right-1/2 transform translate-x-1/2 w-40 bg-white flex flex-col gap-2 p-3 border rounded-xl">

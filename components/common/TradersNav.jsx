@@ -6,9 +6,9 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
-import UserMenu from "./traders_nav_comp/UserMenu";
+import UserMenu from "./nav_comp/UserMenu";
 import { MdNotifications, MdNotificationsActive } from "react-icons/md";
-import TradersNotification from "./traders_nav_comp/TradersNotification";
+import TradersNotification from "./nav_comp/TradersNotification";
 import Language from "@/components/library/Language";
 
 const Search = styled("div")(({ theme }) => ({
