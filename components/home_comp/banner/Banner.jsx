@@ -16,7 +16,7 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 const Banner = () => {
   return (
     <div className="relative h-[100vh]">
-      <div className="banner w-full h-[100vh] absolute -bottom-1/4"></div>
+      <div className="banner w-full h-[100vh] absolute bottom-0 opacity-80"></div>
       <Container className="w-full h-full pt-32 xl:pt-0 z-10">
         {/* left */}
         <div className="relative h-full flex flex-col items-start justify-center z-10">

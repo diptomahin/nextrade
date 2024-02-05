@@ -58,12 +58,12 @@ export default function RootNav() {
                 onClick={() => {
                   setIsActive(!isActive);
                 }}
-                className="el w-12 h-12 z-50"
+                className="el w-10 h-10 z-50"
               >
                 <div className={`burger ${isActive && "burgerActive"}`}></div>
               </div>
             </Magnetic>
-            <Language className=" text-white" />
+            <Language className="text-xl text-white" />
           </div>
           <Magnetic>
             <Link href="/">
@@ -121,9 +121,9 @@ export default function RootNav() {
                   setIsActive(false);
                   setActiveTab("");
                 }}
-                className="w-12 h-12 rounded-full bg-white shadow-xl p-3"
+                className="w-10 h-10 rounded-full border border-white p-3"
               >
-                <GrClose className="text-black w-full h-full" />
+                <GrClose className="text-white w-full h-full" />
               </button>
             </Magnetic>
             <Magnetic>
