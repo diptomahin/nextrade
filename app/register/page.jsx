@@ -77,7 +77,6 @@ const Register = () => {
           balance: 0,
           portfolio: [],
           role: "trader",
-          watchList: []
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {
