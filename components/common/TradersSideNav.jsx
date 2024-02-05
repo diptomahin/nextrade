@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
-import SideNavLinks from "./traders_nav_comp/SideNavLinks";
+import SideNavLinks from "./nav_comp/SideNavLinks";
 import Link from "next/link";
 import Magnetic from "@/components/library/Magnetic";
 

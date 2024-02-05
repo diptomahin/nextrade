@@ -2,7 +2,7 @@
 import React from "react";
 import Footer from "../common/Footer";
 import { usePathname } from "next/navigation";
-import RootNav from "../common/RootNav";
+import RootNav from "../common/root_nav/RootNav";
 import { useEffect, useState } from "react";
 
 const MainLayout = ({ children }) => {
@@ -38,10 +38,10 @@ const MainLayout = ({ children }) => {
           <Footer></Footer>
         </>
       )}
-      <div
+      {/* <div
         className="cursor blur-[50px] bg-primary rounded-full"
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
-      ></div>
+      ></div> */}
     </div>
   );
 };
