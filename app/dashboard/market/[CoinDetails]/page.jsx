@@ -33,6 +33,12 @@ const CoinDetails = ({ params }) => {
         ADAUSDT: "cardano",
         DOTUSDT: "polkadot",
         BNBUSDT: "binancecoin",
+        MATICUSDT: "matic-network",
+        UNIUSDT: "uniswap",
+        LINKUSDT: "chainlink",
+        SOLUSDT: "solana",
+        XLMUSDT: "stellar",
+        EOSUSDT: "eos",
       };
 
       const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinDetailsMap[params.CoinDetails]}`);
