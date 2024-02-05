@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import Footer from "../common/Footer";
+import Footer from "./common/Footer";
 import { usePathname } from "next/navigation";
-import RootNav from "../common/root_nav/RootNav";
+import RootNav from "./common/root_nav/RootNav";
 import { useEffect, useState } from "react";
 
 const MainLayout = ({ children }) => {

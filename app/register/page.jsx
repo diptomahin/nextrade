@@ -42,7 +42,6 @@ const Register = () => {
   const publicAPI = usePublicAPI();
 
   const router = useRouter();
-  const { from } = router.query || { from: "/dashboard" };
 
   const {
     register,
@@ -77,6 +76,7 @@ const Register = () => {
           createdAt: loggedUser.metadata.creationTime,
           balance: 0,
           portfolio: [],
+          role: "trader",
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {

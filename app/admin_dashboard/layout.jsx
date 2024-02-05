@@ -2,12 +2,12 @@
 import { Drawer } from "@mui/material";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import TradersNav from "@/components/common/TradersNav";
-import TradersSideNav from "@/components/common/TradersSideNav";
-import TradersChecker from "@/routes/TradersChecker";
+import AdminNav from "@/components/common/AdminNav";
+import AdminSideNav from "@/components/common/AdminSideNav";
+import AdminChecker from "@/routes/AdminChecker";
 const queryClient = new QueryClient();
 
-const Dashboard = ({ children }) => {
+const AdminDashboard = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -16,13 +16,13 @@ const Dashboard = ({ children }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TradersChecker>
+      <AdminChecker>
         <div className="min-h-screen bg-zinc-100 font-inter">
           <div className="fixed top-0 w-full h-[70px] 2xl:pl-[230px] p-2 z-40 bg-zinc-100">
-            <TradersNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
+            <AdminNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
           </div>
           <div className="hidden 2xl:block fixed left-2 top-2 pr-3 pb-4 h-full w-[222px] z-50 bg-zinc-100">
-            <TradersSideNav />
+            <AdminSideNav />
           </div>
           <div className="block 2xl:hidden">
             <Drawer
@@ -39,7 +39,7 @@ const Dashboard = ({ children }) => {
                 keepMounted: true,
               }}
             >
-              <TradersSideNav />
+              <AdminSideNav />
             </Drawer>
           </div>
 
@@ -47,9 +47,9 @@ const Dashboard = ({ children }) => {
             {children}
           </div>
         </div>
-      </TradersChecker>
+      </AdminChecker>
     </QueryClientProvider>
   );
 };
 
-export default Dashboard;
+export default AdminDashboard;

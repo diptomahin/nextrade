@@ -1,5 +1,5 @@
 import "./globals.css";
-import MainLayout from "@/components/layout/RootLayout";
+import MainLayout from "@/components/RootLayout";
 import { AppConfig } from "@/config/app.config";
 import AuthProvider from "@/provider/AuthProvider";
 import { Toaster } from "react-hot-toast";

@@ -9,7 +9,7 @@ import WhyChooseUs from "@/components/home_comp/WhyChooseUs";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-darkBG text-zinc-100 font-montserrat">
+    <main className="overflow-hidden text-zinc-100 font-montserrat">
       <Banner />
       <TradingStep />
       <InvestSolutions />
