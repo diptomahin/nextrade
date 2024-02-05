@@ -166,11 +166,6 @@ const MarketPage = () => {
           setMATICHeighPrice(parseFloat(ticker.h).toFixed(2));
           setMATICLowPrice(parseFloat(ticker.l).toFixed(2));
           setMATICChange(parseFloat(ticker.p).toFixed(3));
-        } else if (symbol === "MATICUSDT") {
-          setHOTPrice(parseFloat(ticker.c).toFixed(2));
-          setHOTHeighPrice(parseFloat(ticker.h).toFixed(2));
-          setHOTLowPrice(parseFloat(ticker.l).toFixed(2));
-          setHOTChange(parseFloat(ticker.p).toFixed(3));
         } 
       });
     });
@@ -197,7 +192,7 @@ const MarketPage = () => {
     createData("Cardano", "ADAUSDT", ADAPrice, imageADA, ADAChange, ADAHeighPrice, ADALowPrice),
     createData("Polkadot", "DOTUSDT", DOTPrice, imageDOT, DOTChange, DOTHeighPrice, DOTLowPrice),
     createData("Binance Coin", "BNBUSDT", BNBPrice, imageBNB, BNBChange, BNBHeighPrice, BNBLowPrice),
-    createData("Polkadot", "MATICUSDT", MATICPrice, imageMATIC, MATICChange, MATICHeighPrice, MATICLowPrice),
+    createData("Polygon", "MATICUSDT", MATICPrice, imageMATIC, MATICChange, MATICHeighPrice, MATICLowPrice),
   ];
 
 
