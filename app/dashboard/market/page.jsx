@@ -192,7 +192,7 @@ const MarketPage = () => {
     createData("Cardano", "ADAUSDT", ADAPrice, imageADA, ADAChange, ADAHeighPrice, ADALowPrice),
     createData("Polkadot", "DOTUSDT", DOTPrice, imageDOT, DOTChange, DOTHeighPrice, DOTLowPrice),
     createData("Binance Coin", "BNBUSDT", BNBPrice, imageBNB, BNBChange, BNBHeighPrice, BNBLowPrice),
-    createData("Matic Coin", "MATICUSDT", MATICPrice, imageMATIC, MATICChange, MATICHeighPrice, MATICLowPrice),
+    createData("Polygon", "MATICUSDT", MATICPrice, imageMATIC, MATICChange, MATICHeighPrice, MATICLowPrice),
   ];
 
 

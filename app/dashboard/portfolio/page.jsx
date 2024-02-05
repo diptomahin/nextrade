@@ -29,6 +29,12 @@ const Portfolio = () => {
   const [currentETHPrice, setCurrentETHPrice] = useState(0);
   const [currentQTUMPrice, setCurrentQTUMPrice] = useState(0);
   const [currentDOGEPrice, setCurrentDOGEPrice] = useState(0);
+  const [currentXRPPrice, setCurrentXRPPrice] = useState(0);
+  const [currentBCHPrice, setCurrentBCHPrice] = useState(0);
+  const [currentADAPrice, setCurrentADAPrice] = useState(0);
+  const [currentDOTPrice, setCurrentDOTPrice] = useState(0);
+  const [currentBNBPrice, setCurrentBNBPrice] = useState(0);
+  const [currentMATICPrice, setCurrentMATICPrice] = useState(0);
   const [buyingPriceInfo, setBuyingPriceInfo] = useState([]);
 
   const { user, loading } = useAuth();
@@ -65,6 +71,18 @@ const Portfolio = () => {
           setCurrentQTUMPrice(parseFloat(ticker.c).toFixed(2));
         } else if (symbol === "DOGEUSDT") {
           setCurrentDOGEPrice(parseFloat(ticker.c).toFixed(2));
+        } else if (symbol === "XRPUSDT") {
+          setCurrentXRPPrice(parseFloat(ticker.c).toFixed(2));
+        } else if (symbol === "BCHUSDT") {
+          setCurrentBCHPrice(parseFloat(ticker.c).toFixed(2));
+        } else if (symbol === "ADAUSDT") {
+          setCurrentADAPrice(parseFloat(ticker.c).toFixed(2));
+        } else if (symbol === "DOTUSDT") {
+          setCurrentDOTPrice(parseFloat(ticker.c).toFixed(2));
+        } else if (symbol === "BNBUSDT") {
+          setCurrentBNBPrice(parseFloat(ticker.c).toFixed(2));
+        } else if (symbol === "MATICUSDT") {
+          setCurrentMATICPrice(parseFloat(ticker.c).toFixed(2));
         }
       });
     });
@@ -79,7 +97,13 @@ const Portfolio = () => {
         asset.assetKey === "ETHUSDT" ||
         asset.assetKey === "LTCUSDT" ||
         asset.assetKey === "QTUMUSDT" ||
-        asset.assetKey === "DOGEUSDT"
+        asset.assetKey === "DOGEUSDT" ||
+        asset.assetKey === "XRPUSDT" ||
+        asset.assetKey === "BCHUSDT" ||
+        asset.assetKey === "ADAUSDT" ||
+        asset.assetKey === "DOTUSDT" ||
+        asset.assetKey === "BNBUSDT" ||
+        asset.assetKey === "MATICUSDT"
     );
     if (filteredAssets.length > 0) {
       setBuyingPriceInfo(filteredAssets);
@@ -109,7 +133,19 @@ const Portfolio = () => {
               ? currentQTUMPrice
               : asset.assetKey === "DOGEUSDT"
                 ? currentDOGEPrice
-                : 0,
+                : asset.assetKey === "XRPUSDT"
+                  ? currentXRPPrice
+                  : asset.assetKey === "BCHUSDT"
+                    ? currentBCHPrice
+                    : asset.assetKey === "ADAUSDT"
+                      ? currentADAPrice
+                      : asset.assetKey === "DOTUSDT"
+                        ? currentDOTPrice
+                        : asset.assetKey === "BNBUSDT"
+                          ? currentBNBPrice
+                          : asset.assetKey === "MATICUSDT"
+                            ? currentMATICPrice
+                            : 0,
       parseFloat(asset.assetBuyingPrice)
     );
     return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
@@ -129,7 +165,19 @@ const Portfolio = () => {
                 ? currentQTUMPrice
                 : asset.assetKey === "DOGEUSDT"
                   ? currentDOGEPrice
-                  : 0,
+                  : asset.assetKey === "XRPUSDT"
+                    ? currentXRPPrice
+                    : asset.assetKey === "BCHUSDT"
+                      ? currentBCHPrice
+                      : asset.assetKey === "ADAUSDT"
+                        ? currentADAPrice
+                        : asset.assetKey === "DOTUSDT"
+                          ? currentDOTPrice
+                          : asset.assetKey === "BNBUSDT"
+                            ? currentBNBPrice
+                            : asset.assetKey === "MATICUSDT"
+                              ? currentMATICPrice
+                              : 0,
         parseFloat(asset.assetBuyingPrice)
       );
       return total + (parseFloat(difference) < 0 ? parseFloat(difference) : 0);
@@ -326,11 +374,23 @@ const Portfolio = () => {
                                     ? currentQTUMPrice
                                     : asset.assetKey === "DOGEUSDT"
                                       ? currentDOGEPrice
-                                      : 0,
+                                      : asset.assetKey === "XRPUSDT"
+                                        ? currentXRPPrice
+                                        : asset.assetKey === "BCHUSDT"
+                                          ? currentBCHPrice
+                                          : asset.assetKey === "ADAUSDT"
+                                            ? currentADAPrice
+                                            : asset.assetKey === "DOTUSDT"
+                                              ? currentDOTPrice
+                                              : asset.assetKey === "BNBUSDT"
+                                                ? currentBNBPrice
+                                                : asset.assetKey === "MATICUSDT"
+                                                  ? currentMATICPrice
+                                                  : 0,
                             parseFloat(asset.assetBuyingPrice)
                           ) > 0
-                              ? "text-green-700"
-                              : "text-red-700"
+                            ? "text-green-700"
+                            : "text-red-700"
                             }`}
                         >
                           $
@@ -345,7 +405,19 @@ const Portfolio = () => {
                                     ? currentQTUMPrice
                                     : asset.assetKey === "DOGEUSDT"
                                       ? currentDOGEPrice
-                                      : 0,
+                                      : asset.assetKey === "XRPUSDT"
+                                        ? currentXRPPrice
+                                        : asset.assetKey === "BCHUSDT"
+                                          ? currentBCHPrice
+                                          : asset.assetKey === "ADAUSDT"
+                                            ? currentADAPrice
+                                            : asset.assetKey === "DOTUSDT"
+                                              ? currentDOTPrice
+                                              : asset.assetKey === "BNBUSDT"
+                                                ? currentBNBPrice
+                                                : asset.assetKey === "MATICUSDT"
+                                                  ? currentMATICPrice
+                                                  : 0,
                             parseFloat(asset.assetBuyingPrice)
                           )}
                           {/* Render up arrow icon for profit and down arrow icon for loss */}
@@ -360,7 +432,19 @@ const Portfolio = () => {
                                     ? currentQTUMPrice
                                     : asset.assetKey === "DOGEUSDT"
                                       ? currentDOGEPrice
-                                      : 0,
+                                      : asset.assetKey === "XRPUSDT"
+                                        ? currentXRPPrice
+                                        : asset.assetKey === "BCHUSDT"
+                                          ? currentBCHPrice
+                                          : asset.assetKey === "ADAUSDT"
+                                            ? currentADAPrice
+                                            : asset.assetKey === "DOTUSDT"
+                                              ? currentDOTPrice
+                                              : asset.assetKey === "BNBUSDT"
+                                                ? currentBNBPrice
+                                                : asset.assetKey === "MATICUSDT"
+                                                  ? currentMATICPrice
+                                                  : 0,
                             parseFloat(asset.assetBuyingPrice)
                           ) > 0 ? (
                             <ArrowDropUpSharpIcon className="text-green-700 ml-1" />
@@ -381,7 +465,7 @@ const Portfolio = () => {
             </Table>
           </TableContainer> :
           <div className="flex justify-center items-center h-[40vh]">
-              <h3 className="text-red-500 text-lg 2xl:text-3xl font-semibold">Empty !!</h3>
+            <h3 className="text-red-500 text-lg 2xl:text-3xl font-semibold">Empty !!</h3>
           </div>
         }
       </div>
