@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
@@ -15,66 +14,34 @@ const CoinDetails = ({ params }) => {
   const [coinImage, setCoinImage] = useState(null);
   const [coinName, setCoinName] = useState("");
   const { user } = useAuth();
-
   const publicAPI = usePublicAPI();
-
-  const {
-    data: allUsers = [],
-    isPending,
-    isLoading,
-    refetch,
-  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+  const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   useEffect(() => {
-    // Create a WebSocket connection for BTC/USDT ticker
-    const socket = new WebSocket(
-      `wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`
-    );
+    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
+    socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
 
-    // Event listener for incoming messages
-    socket.addEventListener("message", (event) => {
-      const data = JSON.parse(event.data);
-      setTickerData(data);
-    });
-
-    // Fetch coin image using CoinGecko API
     const fetchCoinImage = async () => {
-      // Extract the coin ID from the response
-      if (params.CoinDetails === "BTCUSDT") {
-        const coinDetailsResponse = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/bitcoin`
-        );
-        setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("Bitcoin (BTC)");
-      } else if (params.CoinDetails === "LTCUSDT") {
-        const coinDetailsResponse = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/litecoin`
-        );
-        setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("LiteCoin (LTC)");
-      } else if (params.CoinDetails === "ETHUSDT") {
-        const coinDetailsResponse = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/ethereum`
-        );
-        setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("Ethereum (ETC)");
-      } else if (params.CoinDetails === "QTUMUSDT") {
-        const coinDetailsResponse = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/qtum`
-        );
-        setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("QTUM coin");
-      } else if (params.CoinDetails === "DOGEUSDT") {
-        const coinDetailsResponse = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/dogecoin`
-        );
-        setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName("DOGE coin");
-      }
+      const coinDetailsMap = {
+        BTCUSDT: "bitcoin",
+        LTCUSDT: "litecoin",
+        ETHUSDT: "ethereum",
+        QTUMUSDT: "qtum",
+        DOGEUSDT: "dogecoin",
+        XRPUSDT: "ripple",
+        BCHUSDT: "bitcoin-cash",
+        ADAUSDT: "cardano",
+        DOTUSDT: "polkadot",
+        BNBUSDT: "binancecoin",
+      };
+
+      const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinDetailsMap[params.CoinDetails]}`);
+      setCoinImage(coinDetailsResponse.data.image.large);
+      setCoinName(coinDetailsResponse.data.name);
     };
 
     fetchCoinImage();
-  }, [params.CoinDetails]); // Empty dependency array ensures the effect runs only once on mount
+  }, [params.CoinDetails]);
 
   const handleBuyCoin = (ast) => {
     const assetInfo = {
@@ -84,11 +51,10 @@ const CoinDetails = ({ params }) => {
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
     };
-    // console.log(assetInfo)
 
-    // calculate remaining balance after buying a coin
     const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
     const remainingBalance = usersBalance - parseFloat(ast.c).toFixed(2);
+
     if (usersBalance < parseFloat(ast.c)) {
       Swal.fire({
         title: `You Don't have enough balance!`,
@@ -119,21 +85,18 @@ const CoinDetails = ({ params }) => {
         });
       });
   };
+
   return (
     <div>
       {tickerData ? (
-        <TopBanner
-          tickerData={tickerData}
-          coinImage={coinImage}
-          coinName={coinName}
-        />
+        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} />
       ) : (
         <p>Loading...</p>
       )}
 
       <div className="flex flex-col xl:flex-row gap-5 my-10">
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 ">
-          <AdvancedRealTimeChart
+        <AdvancedRealTimeChart
             width="100%"
             height="100%"
             autosize
@@ -161,12 +124,7 @@ const CoinDetails = ({ params }) => {
         </div>
         <div className="flex-1 bg-darkGray rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
           <DashButton className="w-full">Add to Watchlist</DashButton>
-          <DashButton
-            className="w-full"
-            onClick={() => handleBuyCoin(tickerData)}
-          >
-            Buy
-          </DashButton>
+          <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
         </div>
       </div>
     </div>

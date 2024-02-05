@@ -9,6 +9,12 @@ import imageETH from "../../../assets/coinImages/ethereum.png";
 import imageLTC from "../../../assets/coinImages/ltc.png";
 import imageQTUM from "../../../assets/coinImages/QTUM.png";
 import imageDOGE from "../../../assets/coinImages/DOGE.png";
+import imageXRP from "../../../assets/coinImages/XRP.png";
+import imageBCH from "../../../assets/coinImages/BCH.png";
+import imageADA from "../../../assets/coinImages/ADA.png";
+import imageDOT from "../../../assets/coinImages/DOT.png";
+import imageBNB from "../../../assets/coinImages/BNB.png";
+import imageMATIC from "../../../assets/coinImages/MATIC.png";
 // material imports
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -43,6 +49,12 @@ const MarketPage = () => {
   const [ETHPrice, setETHPrice] = useState(0);
   const [QTUMPrice, setQTUMPrice] = useState(0);
   const [DOGEPrice, setDOGEPrice] = useState(0);
+  const [XRPPrice, setXRPPrice] = useState(0);
+  const [BCHPrice, setBCHPrice] = useState(0);
+  const [ADAPrice, setADAPrice] = useState(0);
+  const [DOTPrice, setDOTPrice] = useState(0);
+  const [BNBPrice, setBNBPrice] = useState(0);
+  const [MATICPrice, setMATICPrice] = useState(0);
 
   // 24h Heigh Prices
   const [BTCHighPrice, setBTCHeighPrice] = useState(0);
@@ -50,6 +62,12 @@ const MarketPage = () => {
   const [ETHHighPrice, setETHHeighPrice] = useState(0);
   const [QTUMHighPrice, setQTUMHeighPrice] = useState(0);
   const [DOGEHighPrice, setDOGEHeighPrice] = useState(0);
+  const [XRPHeighPrice, setXRPHeighPrice] = useState(0);
+  const [BCHHeighPrice, setBCHHeighPrice] = useState(0);
+  const [ADAHeighPrice, setADAHeighPrice] = useState(0);
+  const [DOTHeighPrice, setDOTHeighPrice] = useState(0);
+  const [BNBHeighPrice, setBNBHeighPrice] = useState(0);
+  const [MATICHeighPrice, setMATICHeighPrice] = useState(0);
 
   // 24h Low Prices
   const [BTCLowPrice, setBTCLowPrice] = useState(0);
@@ -57,6 +75,12 @@ const MarketPage = () => {
   const [ETHLowPrice, setETHLowPrice] = useState(0);
   const [QTUMLowPrice, setQTUMLowPrice] = useState(0);
   const [DOGELowPrice, setDOGELowPrice] = useState(0);
+  const [XRPLowPrice, setXRPLowPrice] = useState(0);
+  const [BCHLowPrice, setBCHLowPrice] = useState(0);
+  const [ADALowPrice, setADALowPrice] = useState(0);
+  const [DOTLowPrice, setDOTLowPrice] = useState(0);
+  const [BNBLowPrice, setBNBLowPrice] = useState(0);
+  const [MATICLowPrice, setMATICLowPrice] = useState(0);
 
   // 24h Change
   const [BTCChange, setBTCChange] = useState(0);
@@ -64,6 +88,12 @@ const MarketPage = () => {
   const [ETHChange, setETHChange] = useState(0);
   const [QTUMChange, setQTUMChange] = useState(0);
   const [DOGEChange, setDOGEChange] = useState(0);
+  const [XRPChange, setXRPChange] = useState(0);
+  const [BCHChange, setBCHChange] = useState(0);
+  const [ADAChange, setADAChange] = useState(0);
+  const [DOTChange, setDOTChange] = useState(0);
+  const [BNBChange, setBNBChange] = useState(0);
+  const [MATICChange, setMATICChange] = useState(0);
 
 
 
@@ -106,7 +136,37 @@ const MarketPage = () => {
           setDOGEHeighPrice(parseFloat(ticker.h).toFixed(2));
           setDOGELowPrice(parseFloat(ticker.l).toFixed(2));
           setDOGEChange(parseFloat(ticker.p).toFixed(3));
-        }
+        } else if (symbol === "XRPUSDT") {             // more coin
+          setXRPPrice(parseFloat(ticker.c).toFixed(2));
+          setXRPHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setXRPLowPrice(parseFloat(ticker.l).toFixed(2));
+          setXRPChange(parseFloat(ticker.p).toFixed(3));
+        } else if (symbol === "BCHUSDT") {
+          setBCHPrice(parseFloat(ticker.c).toFixed(2));
+          setBCHHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setBCHLowPrice(parseFloat(ticker.l).toFixed(2));
+          setBCHChange(parseFloat(ticker.p).toFixed(3));
+        } else if (symbol === "ADAUSDT") {
+          setADAPrice(parseFloat(ticker.c).toFixed(2));
+          setADAHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setADALowPrice(parseFloat(ticker.l).toFixed(2));
+          setADAChange(parseFloat(ticker.p).toFixed(3));
+        } else if (symbol === "DOTUSDT") {
+          setDOTPrice(parseFloat(ticker.c).toFixed(2));
+          setDOTHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setDOTLowPrice(parseFloat(ticker.l).toFixed(2));
+          setDOTChange(parseFloat(ticker.p).toFixed(3));
+        } else if (symbol === "BNBUSDT") {
+          setBNBPrice(parseFloat(ticker.c).toFixed(2));
+          setBNBHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setBNBLowPrice(parseFloat(ticker.l).toFixed(2));
+          setBNBChange(parseFloat(ticker.p).toFixed(3));
+        } else if (symbol === "MATICUSDT") {
+          setMATICPrice(parseFloat(ticker.c).toFixed(2));
+          setMATICHeighPrice(parseFloat(ticker.h).toFixed(2));
+          setMATICLowPrice(parseFloat(ticker.l).toFixed(2));
+          setMATICChange(parseFloat(ticker.p).toFixed(3));
+        } 
       });
     });
 
@@ -127,6 +187,12 @@ const MarketPage = () => {
     createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC, LTCChange, LTCHighPrice, LTCLowPrice),
     createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM, QTUMChange, QTUMHighPrice, QTUMLowPrice),
     createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE, DOGEChange, DOGEHighPrice, DOGELowPrice),
+    createData("Ripple coin", "XRPUSDT", XRPPrice, imageXRP, XRPChange, XRPHeighPrice, XRPLowPrice),
+    createData("Bitcoin cash", "BCHUSDT", BCHPrice, imageBCH, BCHChange, BCHHeighPrice, BCHLowPrice),
+    createData("Cardano", "ADAUSDT", ADAPrice, imageADA, ADAChange, ADAHeighPrice, ADALowPrice),
+    createData("Polkadot", "DOTUSDT", DOTPrice, imageDOT, DOTChange, DOTHeighPrice, DOTLowPrice),
+    createData("Binance Coin", "BNBUSDT", BNBPrice, imageBNB, BNBChange, BNBHeighPrice, BNBLowPrice),
+    createData("Matic Coin", "MATICUSDT", MATICPrice, imageMATIC, MATICChange, MATICHeighPrice, MATICLowPrice),
   ];
 
 
