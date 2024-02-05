@@ -39,7 +39,7 @@ const MainLayout = ({ children }) => {
         </>
       )}
       <div
-        className="cursor blur-[90px] bg-primary rounded-full"
+        className="cursor blur-[50px] bg-primary rounded-full"
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       ></div>
     </div>
