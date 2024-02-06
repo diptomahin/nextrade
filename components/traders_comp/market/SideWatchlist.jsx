@@ -62,7 +62,7 @@ const SideWatchlist = ({ assets }) => {
                                 <TableBody >
                                     {watchlistData.map((asset, idx) => (
                                         <TableRow
-                                            key={asset.name}
+                                            key={asset._id}
                                             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                                         >
                                             <TableCell>

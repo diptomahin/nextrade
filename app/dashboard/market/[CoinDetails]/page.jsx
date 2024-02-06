@@ -42,6 +42,7 @@ const CoinDetails = ({ params }) => {
       };
 
       const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinDetailsMap[params.CoinDetails]}`);
+      // console.log(coinDetailsResponse.data.image.large)
       setCoinImage(coinDetailsResponse.data.image.large);
       setCoinName(coinDetailsResponse.data.name);
     };
@@ -163,7 +164,7 @@ const CoinDetails = ({ params }) => {
         </div>
         <div className="flex-1 bg-sky-100 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
           <DashButton className="w-full" onClick={() => handleAddToWatchlist(tickerData)}>Add to Watchlist</DashButton>
-          <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
+          <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
         </div>
       </div>
     </div>

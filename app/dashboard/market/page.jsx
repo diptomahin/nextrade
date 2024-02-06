@@ -4,18 +4,6 @@ import React, { useState, useEffect } from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { Stack } from "@mui/material";
 
-//image imports
-import imageBTC from "../../../assets/coinImages/bitcoin.png";
-import imageETH from "../../../assets/coinImages/ethereum.png";
-import imageLTC from "../../../assets/coinImages/ltc.png";
-import imageQTUM from "../../../assets/coinImages/QTUM.png";
-import imageDOGE from "../../../assets/coinImages/DOGE.png";
-import imageXRP from "../../../assets/coinImages/XRP.png";
-import imageBCH from "../../../assets/coinImages/BCH.png";
-import imageADA from "../../../assets/coinImages/ADA.png";
-import imageDOT from "../../../assets/coinImages/DOT.png";
-import imageBNB from "../../../assets/coinImages/BNB.png";
-import imageMATIC from "../../../assets/coinImages/MATIC.png";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
@@ -27,17 +15,17 @@ const MarketPage = () => {
   const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
 
   const [assets, setAssets] = useState([
-    createData("Bitcoin", "BTCUSDT", 0, imageBTC, 0, 0, 0),
-    createData("Ethereum", "ETHUSDT", 0, imageETH, 0, 0, 0),
-    createData("LiteCoin", "LTCUSDT", 0, imageLTC, 0, 0, 0),
-    createData("QTUM coin", "QTUMUSDT", 0, imageQTUM, 0, 0, 0),
-    createData("DOGE coin", "DOGEUSDT", 0, imageDOGE, 0, 0, 0),
-    createData("Ripple coin", "XRPUSDT", 0, imageXRP, 0, 0, 0),
-    createData("Bitcoin cash", "BCHUSDT", 0, imageBCH, 0, 0, 0),
-    createData("Cardano", "ADAUSDT", 0, imageADA, 0, 0, 0),
-    createData("Polkadot", "DOTUSDT", 0, imageDOT, 0, 0, 0),
-    createData("Binance Coin", "BNBUSDT", 0, imageBNB, 0, 0, 0),
-    createData("Polygon", "MATICUSDT", 0, imageMATIC, 0, 0, 0)
+    createData("Bitcoin", "BTCUSDT", 0, "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", 0, 0, 0),
+    createData("Ethereum", "ETHUSDT", 0, "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628", 0, 0, 0),
+    createData("LiteCoin", "LTCUSDT", 0, "https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580", 0, 0, 0),
+    createData("QTUM coin", "QTUMUSDT", 0, "https://assets.coingecko.com/coins/images/684/large/Qtum_Logo_blue_CG.png?1696501874", 0, 0, 0),
+    createData("DOGE coin", "DOGEUSDT", 0, "https://assets.coingecko.com/coins/images/5/large/dogecoin.png?1547792256", 0, 0, 0),
+    createData("Ripple coin", "XRPUSDT", 0, "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1605778731", 0, 0, 0),
+    createData("Bitcoin cash", "BCHUSDT", 0, "https://assets.coingecko.com/coins/images/780/large/bitcoin-cash-circle.png?1696501932", 0, 0, 0),
+    createData("Cardano", "ADAUSDT", 0, "https://assets.coingecko.com/coins/images/975/large/cardano.png?1547034860", 0, 0, 0),
+    createData("Polkadot", "DOTUSDT", 0, "https://assets.coingecko.com/coins/images/12171/large/polkadot.png?1696512008", 0, 0, 0),
+    createData("Binance Coin", "BNBUSDT", 0, "https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png?1547034615", 0, 0, 0),
+    createData("Polygon", "MATICUSDT", 0, "https://assets.coingecko.com/coins/images/4713/large/polygon.png?1698233745", 0, 0, 0),
     // Add more assets similarly
   ]);
 
