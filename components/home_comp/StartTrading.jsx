@@ -27,13 +27,17 @@ const StartTrading = () => {
         you want to trade
       </motion.p>
       <motion.div
-        variants={fadeIn("left", 0.2)}
+        variants={fadeIn("up", 0.3)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
         className="mt-10"
       >
-        <CryptoCurrencyMarket width="100%" height={320} colorTheme="dark"></CryptoCurrencyMarket>
+        <CryptoCurrencyMarket
+          width="100%"
+          height={320}
+          colorTheme="dark"
+        ></CryptoCurrencyMarket>
       </motion.div>
       <Link
         href="/dashboard/trading"

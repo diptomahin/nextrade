@@ -10,30 +10,24 @@ import icon4 from "../../assets/whyChooseUs-Icons/icon-4.png";
 import icon5 from "../../assets/whyChooseUs-Icons/icon-5.png";
 import icon6 from "../../assets/whyChooseUs-Icons/icon-6.png";
 import Container from "@/components/library/Container";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../components/utils/variants";
+import Title from "@/components/library/Title";
 
 const WhyChooseUs = () => {
   return (
     <Container className="py-24">
-      <Typography
-        variant="h2"
-        mt={5}
-        mb={3}
-        fontWeight="bold"
-        className="text-primary"
-        sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}
-      >
-        Why NexTrade?
-      </Typography>
-      <Typography
-        variant="h6"
-        gutterBottom
-        maxWidth={700}
-        marginX="auto"
-        sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}
+      <Title>Why NexTrade ?</Title>
+      <motion.p
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="text-center text-darkGray font-medium"
       >
         Earning Client Trust: Our Pledge to Excellence. Millions Choose Us for
         Leading Online Trading Services.
-      </Typography>
+      </motion.p>
 
       <Grid my={5} container spacing={4}>
         <Grid item xs={12} md={4}>

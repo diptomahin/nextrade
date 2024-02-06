@@ -60,8 +60,6 @@ const UserMenu = () => {
             </div>
           </div>
 
-          <div className="divider"></div>
-
           <div className="flex flex-col gap-2 p-4">
             <Link href="/dashboard/profile" className="w-full">
               <button
