@@ -4,7 +4,7 @@ import React from "react";
 
 const TopBanner = ({ tickerData, coinImage, coinName }) => {
   return (
-    <div className="  flex flex-col md:flex-row items-center xl:justify-between bg-darkGray p-4 rounded-md">
+    <div className="  flex flex-col md:flex-row items-center xl:justify-between bg-sky-100 p-4 rounded-md">
       <div className="flex-1 flex items-center gap-2 md:gap-5">
         {coinImage && (
           <Image src={coinImage} width={80} height={80} alt="BTC/USDT Logo" />
