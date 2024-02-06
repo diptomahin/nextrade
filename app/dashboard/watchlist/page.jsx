@@ -14,7 +14,7 @@ const Watchlist = () => {
     return (
         <div>
             <h1 className='text-2xl font-bold'>This page under Construction </h1>
-            <h1 className='text-2xl font-bold'>total item {watchlistData.length} </h1>
+            <h1 className='text-2xl font-bold'>Total watchlist count: {watchlistData.length} </h1>
         </div>
     );
 };
