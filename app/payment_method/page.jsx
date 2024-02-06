@@ -278,7 +278,7 @@ const PaymentMethods = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Table>
-            <TableHead sx={{ borderBottom: "2px solid #2c3750" }}>
+            <TableHead>
               <TableRow>
                 <TableCell>
                   <Typography fontWeight="bold" className="text-zinc-100">

@@ -1,38 +1,30 @@
 "use client";
 
 import Container from "@/components/library/Container";
-import { Typography } from "@mui/material";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../components/utils/variants";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PhoneForwardedOutlinedIcon from "@mui/icons-material/PhoneForwardedOutlined";
 import ContactForm from "@/components/contact/ContactForm";
+import Title from "@/components/library/Title";
 
 const page = () => {
   return (
     <Container className="pt-24 pb-10 ">
-      <Typography
-        variant="h2"
-        mt={5}
-        mb={3}
-        fontWeight="bold"
-        className="text-primary"
-        sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}
-      >
-        Get in touch
-      </Typography>
-      <Typography
-        className="text-gray-600 py-4"
-        variant="h6"
-        gutterBottom
-        maxWidth={700}
-        marginX="auto"
-        sx={{ textAlign: "center", fontSize: ["16px", "14px", "16px"] }}
+      <Title> Get in touch</Title>
+      <motion.p
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="text-center text-darkGray font-medium"
       >
         Feel free to reach out to us with any inquiries or feedback. Our
         dedicated team is here to assist you. Use the form below or send us an
         email with short description.
-      </Typography>
+      </motion.p>
 
-      <div className="mx-auto 2xl:mx-24 bg-[#e9eef1] rounded-xl">
+      <div className="mx-auto 2xl:mx-24 bg-[#e9eef1] rounded-xl my-10">
         {/* contact form */}
         <ContactForm></ContactForm>
       </div>
