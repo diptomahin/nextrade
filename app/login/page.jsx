@@ -65,7 +65,7 @@ const Login = () => {
           icon: "success",
         });
         router.push(from);
-        reset;
+        reset();
       })
       .catch(() => {
         Swal.fire({
