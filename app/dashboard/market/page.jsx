@@ -7,6 +7,7 @@ import { Stack } from "@mui/material";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
+import Watchlist from "../watchlist/page";
 
 const MarketPage = () => {
 
@@ -106,7 +107,8 @@ const MarketPage = () => {
         </div>
         <SideWatchlist assets={assets}></SideWatchlist>
       </div>
-
+       {/* Pass assets to Watchlist component */}
+      {/* <Watchlist assets={assets} /> */}
     </div>
   );
 };

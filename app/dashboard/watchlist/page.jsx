@@ -19,21 +19,22 @@ const Watchlist = ({ assets }) => {
 
 
     useEffect(() => {
-        if (assets && assets.length > 0) {
-            const keys = watchlistData.map(asset => asset.assetKey);
-            const prices = {};
-            const priceChange = {};
-            assets.forEach((asset) => {
-                const symbol = asset.key;
-                if (keys.includes(symbol)) {
-                    prices[symbol] = parseFloat(asset.price).toFixed(2);
-                    priceChange[symbol] = parseFloat(asset.changePrice).toFixed(1);
-                }
-            });
-            setCurrentPrices(prices);
-            setChangedPrices(priceChange);
-        }
-    }, [assets, watchlistData]);
+    if (assets && assets.length > 0) {
+        const keys = watchlistData.map(asset => asset.assetKey);
+        const prices = {};
+        const priceChange = {};
+        assets.forEach((asset) => {
+            const symbol = asset.key;
+            if (keys.includes(symbol)) {
+                prices[symbol] = parseFloat(asset.price).toFixed(2);
+                priceChange[symbol] = parseFloat(asset.changePrice).toFixed(1);
+            }
+        });
+        setCurrentPrices(prices);
+        setChangedPrices(priceChange);
+    }
+}, [assets, watchlistData]);
+
 
     // useEffect(() => {
     //     const keys = watchlistData.map(asset => {
