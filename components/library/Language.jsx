@@ -4,7 +4,7 @@ import cn from "../utils/cn";
 
 const Language = ({ className, icon }) => {
   const [isLangChangeOpen, setIsLangChangeOpen] = React.useState(false);
-  const [isLangChange, setIsLangChange] = React.useState("");
+  const [isLangChange, setIsLangChange] = React.useState("En");
 
   React.useEffect(() => {
     const savedLang = localStorage.getItem("isLangChange");
