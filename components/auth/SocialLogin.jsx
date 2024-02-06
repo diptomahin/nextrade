@@ -23,7 +23,7 @@ const SocialLogin = () => {
           createdAt: loggedUser.metadata.creationTime,
           balance: 0,
           portfolio: [],
-          role: "admin",
+          role: "trader",
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {
