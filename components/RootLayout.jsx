@@ -4,6 +4,9 @@ import Footer from "./common/Footer";
 import { usePathname } from "next/navigation";
 import RootNav from "./common/root_nav/RootNav";
 import { useEffect, useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const MainLayout = ({ children }) => {
   const pathname = usePathname();
@@ -25,24 +28,26 @@ const MainLayout = ({ children }) => {
     };
   }, []);
   return (
-    <div className="font-montserrat bg-darkBG">
-      {noHeaderFooter || (
-        <>
-          <RootNav />
-        </>
-      )}
+    <QueryClientProvider client={queryClient}>
+      <div className="font-montserrat bg-darkBG">
+        {noHeaderFooter || (
+          <>
+            <RootNav />
+          </>
+        )}
 
-      {children}
-      {noHeaderFooter || (
-        <>
-          <Footer></Footer>
-        </>
-      )}
-      {/* <div
+        {children}
+        {noHeaderFooter || (
+          <>
+            <Footer></Footer>
+          </>
+        )}
+        {/* <div
         className="cursor blur-[50px] bg-primary rounded-full"
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       ></div> */}
-    </div>
+      </div>
+    </QueryClientProvider>
   );
 };
 

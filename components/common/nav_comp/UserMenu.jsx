@@ -1,6 +1,6 @@
+"use client";
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
-// import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaUser, FaUserCircle } from "react-icons/fa";
@@ -10,7 +10,11 @@ import { IoLogOut } from "react-icons/io5";
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { user, logOut } = useAuth();
+  const { user, logOut, loading } = useAuth();
+
+  if (loading) {
+    return;
+  }
   return (
     <div className="relative flex items-center justify-end gap-3">
       <div className="hidden lg:flex flex-col items-end">
@@ -20,7 +24,7 @@ const UserMenu = () => {
       <button onClick={() => setIsOpen(!isOpen)}>
         {user ? (
           <Image
-            src={user.photoURL}
+            src={user?.photoURL}
             width={40}
             height={40}
             className="rounded-full"

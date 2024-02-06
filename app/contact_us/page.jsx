@@ -4,7 +4,7 @@ import Container from "@/components/library/Container";
 import { Typography } from "@mui/material";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PhoneForwardedOutlinedIcon from "@mui/icons-material/PhoneForwardedOutlined";
-import ContactForm from "@/components/contact_comp/ContactForm";
+import ContactForm from "@/components/contact/ContactForm";
 
 const page = () => {
   return (

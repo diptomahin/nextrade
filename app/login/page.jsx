@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Lottie from "lottie-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import SocialLogin from "@/components/auth_comp/SocialLogin";
+import SocialLogin from "@/components/auth/SocialLogin";
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 import loginAnim from "../../assets/loginAnim.json";
@@ -39,7 +39,7 @@ const CssTextField = styled(TextField)({
 
 const Login = () => {
   const router = useRouter();
-  const { from } = router.query || { from: "/dashboard" };
+  const { from } = router.query || { from: "/" };
 
   const {
     register,

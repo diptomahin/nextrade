@@ -1,8 +1,0 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 50px;
-  padding-top: 50px;
-  border: 1px solid tomato;
-}
