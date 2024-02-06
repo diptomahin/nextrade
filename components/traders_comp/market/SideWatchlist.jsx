@@ -1,4 +1,5 @@
 "use client"
+
 import useAuth from '@/hooks/useAuth';
 import useSecureFetch from '@/hooks/useSecureFetch';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
