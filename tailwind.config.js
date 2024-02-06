@@ -18,14 +18,12 @@ module.exports = {
       },
       backgroundColor: {
         primary: '#40a0ff', //blue
-        // primary: '#455ce9', //blue
         secondary: '#fca104', // orange
         darkBG: '#181e2c',
       },
       fontFamily: {
-        montserrat: ['Montserrat', 'Inter', 'DM Sans'],
+        montserrat: ['Montserrat', 'Inter', 'Graphik', 'Merriweather', 'sans-serif', 'serif'],
         inter: ['Inter', 'Montserrat'],
-        dm: ['DM Sans', 'sans-serif'],
         sans: ['Graphik', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
       },
@@ -42,5 +40,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    darkTheme: "light",
+  },
 }
