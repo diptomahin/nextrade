@@ -33,7 +33,7 @@ const StartTrading = () => {
         viewport={{ once: false, amount: 0.1 }}
         className="mt-10"
       >
-        <CryptoCurrencyMarket width="100%" height={320}></CryptoCurrencyMarket>
+        <CryptoCurrencyMarket width="100%" height={320} colorTheme="dark"></CryptoCurrencyMarket>
       </motion.div>
       <Link
         href="/dashboard/trading"
