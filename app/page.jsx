@@ -6,7 +6,7 @@ import Services from "@/components/home_comp/Services";
 import StartTrading from "@/components/home_comp/StartTrading";
 import Subscription from "@/components/home_comp/subscription/Subscription";
 import TradingStep from "@/components/home_comp/TradingStep";
-import WhyChooseUs from "@/components/home_comp/WhyChooseUs";
+import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -35,7 +35,7 @@ export default function Home() {
       <StartTrading />
       <Services />
       <Subscription />
-      <WhyChooseUs />
+      <WhyNexTrade />
       <Map />
     </main>
   );

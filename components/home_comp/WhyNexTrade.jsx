@@ -15,7 +15,7 @@ import DarkButton from "../library/buttons/DarkButton";
 const WhyChooseUs = () => {
   return (
     <Container className="py-20">
-      <Title>Why Choose Us</Title>
+      <Title>Why NexTrade</Title>
       <motion.p
         variants={fadeIn("up", 0.2)}
         initial="hidden"
