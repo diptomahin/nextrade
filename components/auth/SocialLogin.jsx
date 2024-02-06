@@ -45,7 +45,7 @@ const SocialLogin = () => {
       <div className="flex items-center gap-4 justify-center flex-wrap">
         <RootButton
           onClick={() => handleSocialLogin(googleLogin)}
-          className="py-1 px-2 lg:h-10 rounded-xl border border-primary bg-transparent"
+          className="w-full flex items-center justify-center py-1 px-2 lg:h-10 rounded-xl border border-primary bg-transparent"
         >
           <FcGoogle className="text-xl"></FcGoogle>
         </RootButton>
