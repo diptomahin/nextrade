@@ -39,7 +39,7 @@ const SideWatchlist = ({ assets }) => {
 
 
     return (
-        <div className="flex-1 bg-sky-100 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
+        <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
             <h1>Watchlist</h1>
 
             {
@@ -80,7 +80,7 @@ const SideWatchlist = ({ assets }) => {
                                                 <p className={` font-semibold text-xs`}>${currentPrice[asset.assetKey]}</p>
                                             </TableCell>
                                             <TableCell>
-                                                <p className={` font-semibold text-xs ${changedPrice[asset.assetKey] < 0 ? "text-red-700" : "text-green-700"}`}>${changedPrice[asset.assetKey]}</p>
+                                                <p className={` font-semibold text-xs ${changedPrice[asset.assetKey] < 0 ? "text-red-700" : "text-green-700"}`}>{changedPrice[asset.assetKey]}%</p>
                                             </TableCell>
                                         </TableRow>
                                     ))}
