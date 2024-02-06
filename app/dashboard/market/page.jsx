@@ -195,7 +195,7 @@ const MarketPage = () => {
               </Table>
             </TableContainer>
           </div>
-          <SideWatchlist></SideWatchlist>
+          <SideWatchlist assets={assets}></SideWatchlist>
         </div>
       </div>
     </div>
