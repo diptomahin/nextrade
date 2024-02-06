@@ -72,7 +72,7 @@ const SideNavLinks = () => {
         </button>
       </Link>
       <Link
-        href="/dashboard"
+        href="/dashboard/academy"
         className={`w-full font-medium hover:bg-black/5 ${
           pathname === "/dashboard/academy" && "bg-black/5"
         } text-primary rounded-full`}
