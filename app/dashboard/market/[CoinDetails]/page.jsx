@@ -99,7 +99,6 @@ const CoinDetails = ({ params }) => {
       assetName: coinName,
       assetKey: params.CoinDetails,
       assetImg: coinImage,
-      assetBuyingPrice: ast.c,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
     };
@@ -141,11 +140,11 @@ const CoinDetails = ({ params }) => {
             height="100%"
             autosize
             symbol={`${params.CoinDetails}`}
-            interval={60}
+            interval={20}
             range="1M"
             timezone="UTC"
             theme="light"
-            style={1}
+            style={2}
             locale="en"
             toolbar_bg="#f1f3f6"
             enable_publishing={false}
@@ -162,7 +161,7 @@ const CoinDetails = ({ params }) => {
             container_id="advanced-chart-widget-container"
           />
         </div>
-        <div className="flex-1 bg-darkGray rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
+        <div className="flex-1 bg-sky-100 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
           <DashButton className="w-full" onClick={() => handleAddToWatchlist(tickerData)}>Add to Watchlist</DashButton>
           <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy</DashButton>
         </div>
