@@ -33,7 +33,6 @@ const SocialLogin = () => {
       })
       .catch((error) => {
         toast.error(error.message.slice(10));
-        reset;
       });
   };
   return (

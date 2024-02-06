@@ -1,18 +1,18 @@
 "use client";
 import Link from "next/link";
-import "./root_nav.css";
 import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
-import logo from "../../../assets/logo/NexTrade-Logo-White.png";
-import logo2 from "../../../assets/logo/NexTrade_Favicon-White.png";
+import logo from "../../assets/logo/NexTrade-Logo-White.png";
+import logo2 from "../../assets/logo/NexTrade_Favicon-White.png";
 import { IoMdArrowDropup } from "react-icons/io";
 import React from "react";
-import Container from "../../library/Container";
-import Language from "../../library/Language";
+import Container from "../library/Container";
+import Language from "../library/Language";
 import useAuth from "@/hooks/useAuth";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
-import RootNavDrawer from "../nav_comp/RootNavDrawer";
+import RootNavDrawer from "./nav_comp/RootNavDrawer";
+import { RiMenu5Fill } from "react-icons/ri";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
@@ -72,9 +72,10 @@ export default function RootNav() {
                 onClick={() => {
                   setIsActive(!isActive);
                 }}
-                className="el w-10 h-10 z-50"
               >
-                <div className={`burger ${isActive && "burgerActive"}`}></div>
+                <button className="btn btn-sm bg-transparent hover:bg-transparent w-10 h-10 rounded-full border-primary hover:border-primary text-primary p-1">
+                  <RiMenu5Fill className="w-full h-full " />
+                </button>
               </div>
             </Magnetic>
             <Language className="md:text-xl text-white" />
@@ -109,7 +110,7 @@ export default function RootNav() {
             <div className="flex items-center gap-2 md:gap-6">
               <Magnetic>
                 <Link href="/login">
-                  <button className="hover:bg-primary/20 to-darkTwo hover:border border-darkThree py-1 px-2 md:py-[6px] md:px-4 md:text-lg font-medium rounded-xl text-primary">
+                  <button className="btn btn-sm md:btn-md bg-transparent hover:bg-primary/20 border-transparent hover:border-darkThree md:text-lg font-medium rounded-xl text-primary">
                     Login
                   </button>
                 </Link>
@@ -126,6 +127,8 @@ export default function RootNav() {
           )}
         </Container>
       </nav>
+
+      {/* click to top button */}
       <Magnetic>
         <button
           onClick={handleScrollToTop}
@@ -136,6 +139,8 @@ export default function RootNav() {
           <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
         </button>
       </Magnetic>
+
+      {/* root drawer */}
       <RootNavDrawer setIsActive={setIsActive} isActive={isActive} />
     </>
   );

@@ -19,15 +19,16 @@ const RootNavDrawer = ({ isActive, setIsActive }) => {
       <Container className="w-full h-full ">
         <div className="flex items-center justify-between gap-6 py-8">
           <Magnetic>
-            <button
+            <div
               onClick={() => {
                 setIsActive(false);
                 setActiveTab("");
               }}
-              className="w-10 h-10 rounded-full border border-white p-3"
             >
-              <GrClose className="text-white w-full h-full" />
-            </button>
+              <button className="btn btn-sm w-10 h-10 rounded-full bg-transparent hover:bg-transparent border-white hover:border-white text-white  p-2">
+                <GrClose className="w-full h-full" />
+              </button>
+            </div>
           </Magnetic>
           <Magnetic>
             <Link href="/">

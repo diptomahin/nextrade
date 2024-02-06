@@ -2,7 +2,7 @@
 import React from "react";
 import Footer from "./common/Footer";
 import { usePathname } from "next/navigation";
-import RootNav from "./common/root_nav/RootNav";
+import RootNav from "./common/RootNav";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
