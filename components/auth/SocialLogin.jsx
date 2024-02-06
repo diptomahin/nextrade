@@ -9,7 +9,7 @@ const SocialLogin = () => {
   const { googleLogin } = useAuth();
   const publicAPI = usePublicAPI();
   const router = useRouter();
-  const { from } = router.query || { from: "/dashboard" };
+  const { from } = router.query || { from: "/" };
 
   const handleSocialLogin = (login) => {
     login()
@@ -23,7 +23,7 @@ const SocialLogin = () => {
           createdAt: loggedUser.metadata.creationTime,
           balance: 0,
           portfolio: [],
-          role: "trader",
+          role: "admin",
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {
@@ -33,7 +33,6 @@ const SocialLogin = () => {
       })
       .catch((error) => {
         toast.error(error.message.slice(10));
-        reset;
       });
   };
   return (

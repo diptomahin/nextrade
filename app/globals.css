@@ -1,6 +1,3 @@
-/* google font DM Sans */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800&display=swap");
-
 /* google font Inter */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
@@ -13,14 +10,4 @@
 
 ::selection {
   color: #40a0ff;
-}
-
-.cursor {
-  width: 60px;
-  height: 60px;
-  position: fixed;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  mix-blend-mode: difference;
-  z-index: 1005;
 }

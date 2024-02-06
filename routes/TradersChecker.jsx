@@ -8,7 +8,7 @@ const TradersChecker = ({ children }) => {
   const { data, isPending, isLoading } = useSecureFetch(
     `/all-users/${user?.email}`,
     user?.email,
-    "all-users"
+    "userRole"
   );
 
   if (isLoading || isPending || loading) {

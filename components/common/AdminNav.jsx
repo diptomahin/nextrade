@@ -98,12 +98,12 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
       </div>
       <div className="flex items-center gap-6">
         {/* language */}
-        {/* <Language /> */}
+        <Language />
         {/* notification */}
-        {/* <TradersNotification /> */}
+        <TradersNotification />
 
         {/* user menubar */}
-        {/* <UserMenu /> */}
+        <UserMenu />
       </div>
     </div>
   );

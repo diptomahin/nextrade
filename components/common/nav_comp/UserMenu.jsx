@@ -1,6 +1,5 @@
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
-// import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaUser, FaUserCircle } from "react-icons/fa";
@@ -10,7 +9,11 @@ import { IoLogOut } from "react-icons/io5";
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { user, logOut } = useAuth();
+  const { user, logOut, loading } = useAuth();
+
+  if (loading) {
+    return;
+  }
   return (
     <div className="relative flex items-center justify-end gap-3">
       <div className="hidden lg:flex flex-col items-end">
@@ -18,9 +21,9 @@ const UserMenu = () => {
         <h4 className="text-xs opacity-70">{user?.email}</h4>
       </div>
       <button onClick={() => setIsOpen(!isOpen)}>
-        {user ? (
+        {user?.photoURL ? (
           <Image
-            src={user.photoURL}
+            src={user?.photoURL}
             width={40}
             height={40}
             className="rounded-full"
@@ -34,9 +37,9 @@ const UserMenu = () => {
         <div className="w-60 absolute top-14 right-0 bg-white rounded-xl border overflow-hidden">
           <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
             <div className="flex flex-col items-center gap-3">
-              {user ? (
+              {user?.photoURL ? (
                 <Image
-                  src={user.photoURL}
+                  src={user?.photoURL}
                   height={48}
                   width={48}
                   alt="user photo"

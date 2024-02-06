@@ -50,12 +50,12 @@ const Banner = () => {
               <Typewriter
                 options={{
                   strings: [
-                    '<span class="">NexTrade</span>',
-                    '<span class="">Strategy</span>',
-                    '<span class="">Precision</span>',
-                    '<span class="">Confidence</span>',
-                    '<span class="">Skill</span>',
-                    '<span class="">Vision</span>',
+                    "NexTrade",
+                    "Strategy",
+                    "Precision",
+                    "Confidence",
+                    "Skill",
+                    "Vision",
                   ],
                   autoStart: true,
                   loop: true,
@@ -183,7 +183,7 @@ const Banner = () => {
           <div className="w-20 absolute left-0 top-[20%] text-primary">
             <p className="icon1">
               <svg
-                class="w-10 h-10"
+                className="w-10 h-10"
                 viewBox="0 0 152 91"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
