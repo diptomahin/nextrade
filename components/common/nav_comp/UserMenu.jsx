@@ -1,4 +1,3 @@
-"use client";
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +21,7 @@ const UserMenu = () => {
         <h4 className="text-xs opacity-70">{user?.email}</h4>
       </div>
       <button onClick={() => setIsOpen(!isOpen)}>
-        {user ? (
+        {user?.photoURL ? (
           <Image
             src={user?.photoURL}
             width={40}
@@ -38,9 +37,9 @@ const UserMenu = () => {
         <div className="w-60 absolute top-14 right-0 bg-white rounded-xl border overflow-hidden">
           <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
             <div className="flex flex-col items-center gap-3">
-              {user ? (
+              {user?.photoURL ? (
                 <Image
-                  src={user.photoURL}
+                  src={user?.photoURL}
                   height={48}
                   width={48}
                   alt="user photo"

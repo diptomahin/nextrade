@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import "./root_nav.css";
 import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
@@ -10,16 +9,14 @@ import { IoMdArrowDropup } from "react-icons/io";
 import React from "react";
 import Container from "../../library/Container";
 import Language from "../../library/Language";
-import { fadeIn } from "../../utils/variants";
-import { GrClose } from "react-icons/gr";
 import useAuth from "@/hooks/useAuth";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
+import RootNavDrawer from "../nav_comp/RootNavDrawer";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [activeTab, setActiveTab] = React.useState(false);
 
   const { user, loading } = useAuth();
 
@@ -139,214 +136,7 @@ export default function RootNav() {
           <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
         </button>
       </Magnetic>
-      <div
-        className={`fixed top-0 left-0 w-full h-screen bg-primary text-white transition-transform transform  ${
-          isActive ? "translate-y-0" : "-translate-y-full"
-        } duration-700 ease-in-out z-[1000]`}
-      >
-        <Container className="w-full h-full ">
-          <div className="flex items-center justify-between gap-6 py-8">
-            <Magnetic>
-              <button
-                onClick={() => {
-                  setIsActive(false);
-                  setActiveTab("");
-                }}
-                className="w-10 h-10 rounded-full border border-white p-3"
-              >
-                <GrClose className="text-white w-full h-full" />
-              </button>
-            </Magnetic>
-            <Magnetic>
-              <Link href="/">
-                <Image src={logo} alt="Logo" className="w-36 lg:w-40" />
-              </Link>
-            </Magnetic>
-            <div className=""></div>
-          </div>
-
-          <div className="flex items-center gap-40 my-10">
-            <div className="flex flex-col gap-8 items-start text-2xl font-medium">
-              <Link
-                href="/"
-                onClick={() => setIsActive(false)}
-                className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-              >
-                Home
-              </Link>
-              <button
-                onClick={() => setActiveTab("market")}
-                className={`hover:opacity-100 transition-opacity duration-100 ease-linear ${
-                  activeTab === "market" ? "opacity-100" : "opacity-70"
-                }`}
-              >
-                Market
-              </button>
-              <button
-                onClick={() => setActiveTab("resources")}
-                className={`hover:opacity-100 transition-opacity duration-100 ease-linear ${
-                  activeTab === "resources" ? "opacity-100" : "opacity-70"
-                }`}
-              >
-                Resources
-              </button>
-              <button
-                onClick={() => setActiveTab("about")}
-                className={`hover:opacity-100 transition-opacity duration-100 ease-linear ${
-                  activeTab === "about" ? "opacity-100" : "opacity-70"
-                }`}
-              >
-                About Us
-              </button>
-              <button
-                onClick={() => setActiveTab("contact")}
-                className={`hover:opacity-100 transition-opacity duration-100 ease-linear ${
-                  activeTab === "contact" ? "opacity-100" : "opacity-70"
-                }`}
-              >
-                Contact Us
-              </button>
-            </div>
-            <AnimatePresence mode="wait">
-              {activeTab === "market" && (
-                <motion.div
-                  key="market"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="flex flex-col gap-5 items-start text-xl font-medium"
-                >
-                  <motion.h1
-                    variants={fadeIn("left", 0.1)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.1 }}
-                  >
-                    <Link
-                      href="/"
-                      onClick={() => setIsActive(false)}
-                      className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                    >
-                      Coming...
-                    </Link>
-                  </motion.h1>
-                  <motion.h1
-                    variants={fadeIn("left", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.1 }}
-                  >
-                    <Link
-                      href="/"
-                      onClick={() => setIsActive(false)}
-                      className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                    >
-                      Coming...
-                    </Link>
-                  </motion.h1>
-                </motion.div>
-              )}
-
-              {activeTab === "about" && (
-                <motion.div
-                  key="about"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="flex flex-col gap-5 items-start text-xl font-medium"
-                >
-                  <motion.h1
-                    variants={fadeIn("left", 0.1)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.1 }}
-                  >
-                    <Link
-                      href="/about_nextrade"
-                      className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                    >
-                      About NexTrade
-                    </Link>
-                  </motion.h1>
-                  <motion.h1
-                    variants={fadeIn("left", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.1 }}
-                  >
-                    <Link
-                      href="/why_choose_us"
-                      className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                    >
-                      {" "}
-                      Why Choose Us
-                    </Link>
-                  </motion.h1>
-                </motion.div>
-              )}
-              {activeTab === "resources" && (
-                <motion.div
-                  key="resources"
-                  className="flex flex-col gap-5 items-start text-xl font-medium"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <motion.h1
-                    variants={fadeIn("left", 0.2)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.1 }}
-                  >
-                    <Link
-                      href="/payment_method"
-                      className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                    >
-                      Payment Methods
-                    </Link>
-                  </motion.h1>
-                </motion.div>
-              )}
-              {activeTab === "contact" && (
-                <motion.div
-                  key="contact"
-                  className="flex flex-col gap-5 items-start text-xl font-medium"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <motion.h1
-                    variants={fadeIn("left", 0.1)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.1 }}
-                  >
-                    <Link
-                      href="/help_center"
-                      className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                    >
-                      Help Center
-                    </Link>
-                  </motion.h1>
-                  <motion.h1
-                    variants={fadeIn("left", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.1 }}
-                  >
-                    <Link
-                      href="/contact_us"
-                      className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                    >
-                      Contact Us
-                    </Link>
-                  </motion.h1>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </Container>
-      </div>
+      <RootNavDrawer setIsActive={setIsActive} isActive={isActive} />
     </>
   );
 }
