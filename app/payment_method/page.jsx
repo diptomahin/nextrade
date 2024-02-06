@@ -48,47 +48,56 @@ const PaymentMethods = () => {
       <Stack my={5}>
         <Marquee direction="right" gradient="30px" gradientColor="#181e2c">
           <Image
-            className="w-28 md:w-48 mx-12"
+            width={100}
+            className="mx-12"
             src={masterCard}
             alt="masterCard-logo"
           ></Image>
           <Image
-            className="w-28 md:w-48 mx-12"
+            width={100}
+            className=" mx-12"
             src={visaCard}
             alt="visaCard-logo"
           ></Image>
           <Image
-            className="w-28 md:w-60 mx-12"
+            width={100}
+            className="mx-12"
             src={maestroLogo}
             alt="meastro-logo"
           ></Image>
           <Image
-            className="w-28 md:w-52 mx-12"
+            width={100}
+            className="mx-12"
             src={dinersClub}
             alt="dinersClub-logo"
           ></Image>
           <Image
-            className="w-28 md:w-60 mx-12"
+            width={100}
+            className="mx-12"
             src={discoverLogo}
             alt="discover-logo"
           ></Image>
-          {/* <Image className='w-28 md:w-60 mx-12' src={unionPayLogo} alt='unionpay-logo'></Image> */}
           <Image
-            className="w-28 md:w-60 mx-12"
+            width={100}
+            className="mx-12"
             src={paypalLogo}
             alt="paypal-logo"
           ></Image>
         </Marquee>
       </Stack>
-      <Accordion defaultExpanded sx={{ marginY: "28px" }}>
-        <AccordionSummary
-          expandIcon={<ArrowDownwardIcon sx={{ color: "#1D366F" }} />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
+      <Accordion
+        defaultExpanded
+        sx={{
+          marginY: "25px",
+          backgroundColor: "#1d2334",
+          border: "1px solid #2c3750",
+          borderRadius: "0.75rem",
+        }}
+      >
+        <AccordionSummary aria-controls="panel1-content" id="panel1-header">
           <Typography
             sx={{ fontSize: ["16px", "20px", "24px"] }}
-            className="text-primary"
+            className="text-zinc-100"
             fontWeight="bold"
           >
             Credit and Debit Cards
@@ -96,20 +105,20 @@ const PaymentMethods = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Table>
-            <TableHead sx={{ borderBottom: "2px solid #1D366F" }}>
+            <TableHead sx={{ borderBottom: "2px solid #2c3750" }}>
               <TableRow>
                 <TableCell>
-                  <Typography fontWeight="bold" className="text-primary">
+                  <Typography fontWeight="bold" className="text-zinc-100">
                     Methods
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography fontWeight="bold" className="text-primary">
+                  <Typography fontWeight="bold" className="text-zinc-100">
                     Currencies Accepted
                   </Typography>
                 </TableCell>
                 <TableCell sx={{ display: ["none", "table-cell"] }}>
-                  <Typography fontWeight="bold" color="#1D366F">
+                  <Typography fontWeight="bold" className="text-zinc-100">
                     Details
                   </Typography>
                 </TableCell>
@@ -125,8 +134,13 @@ const PaymentMethods = () => {
                     alt="visa card"
                   ></Image>
                 </TableCell>
-                <TableCell>USD, EUR, GBP, etc.</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">
+                  USD, EUR, GBP, etc.
+                </TableCell>
+                <TableCell
+                  sx={{ display: ["none", "table-cell"] }}
+                  className="text-darkGray"
+                >
                   Global acceptance, secure transactions.
                 </TableCell>
               </TableRow>
@@ -140,8 +154,13 @@ const PaymentMethods = () => {
                     alt="master card"
                   ></Image>
                 </TableCell>
-                <TableCell>USD, EUR, GBP, etc.</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">
+                  USD, EUR, GBP, etc.
+                </TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Worldwide acceptance, cashback rewards, no annual fees.
                 </TableCell>
               </TableRow>
@@ -155,8 +174,13 @@ const PaymentMethods = () => {
                     alt="maestro card"
                   ></Image>
                 </TableCell>
-                <TableCell>EUR, GBP, INR, etc.</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">
+                  EUR, GBP, INR, etc.
+                </TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Accepted in multiple currencies, secure transactions.
                 </TableCell>
               </TableRow>
@@ -170,8 +194,11 @@ const PaymentMethods = () => {
                     alt="paypal card"
                   ></Image>
                 </TableCell>
-                <TableCell>Multiple</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">Multiple</TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Swift, secure checkouts, linked account convenience.
                 </TableCell>
               </TableRow>
@@ -185,8 +212,11 @@ const PaymentMethods = () => {
                     alt="discover card"
                   ></Image>
                 </TableCell>
-                <TableCell>USD</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">USD</TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Secure transactions, cashback rewards.
                 </TableCell>
               </TableRow>
@@ -200,8 +230,13 @@ const PaymentMethods = () => {
                     alt="dinersClub card"
                   ></Image>
                 </TableCell>
-                <TableCell>USD, EUR, JPY, etc.</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">
+                  USD, EUR, JPY, etc.
+                </TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Global acceptance, secure transactions.
                 </TableCell>
               </TableRow>
@@ -220,7 +255,14 @@ const PaymentMethods = () => {
       </Accordion>
 
       {/* crypto currencies */}
-      <Accordion sx={{ marginBottom: "32px" }}>
+      <Accordion
+        sx={{
+          marginY: "25px",
+          backgroundColor: "#1d2334",
+          border: "1px solid #2c3750",
+          borderRadius: "0.75rem",
+        }}
+      >
         <AccordionSummary
           expandIcon={<ArrowDownwardIcon sx={{ color: "#1D366F" }} />}
           aria-controls="panel1-content"
@@ -228,7 +270,7 @@ const PaymentMethods = () => {
         >
           <Typography
             sx={{ fontSize: ["16px", "20px", "24px"] }}
-            color="#1D366F"
+            className="text-zinc-100"
             fontWeight="bold"
           >
             Cryptocurrencies
@@ -236,20 +278,20 @@ const PaymentMethods = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Table>
-            <TableHead sx={{ borderBottom: "2px solid #1D366F" }}>
+            <TableHead sx={{ borderBottom: "2px solid #2c3750" }}>
               <TableRow>
                 <TableCell>
-                  <Typography fontWeight="bold" color="#1D366F">
+                  <Typography fontWeight="bold" className="text-zinc-100">
                     Methods
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography fontWeight="bold" color="#1D366F">
+                  <Typography fontWeight="bold" className="text-zinc-100">
                     Currencies Accepted
                   </Typography>
                 </TableCell>
                 <TableCell sx={{ display: ["none", "table-cell"] }}>
-                  <Typography fontWeight="bold" color="#1D366F">
+                  <Typography fontWeight="bold" className="text-zinc-100">
                     Details
                   </Typography>
                 </TableCell>
@@ -261,8 +303,11 @@ const PaymentMethods = () => {
                 <TableCell>
                   <Image className="w-24" src={bitcoin} alt="bitcoin"></Image>
                 </TableCell>
-                <TableCell>BTC</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">BTC</TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Secure transactions, decentralized, borderless.
                 </TableCell>
               </TableRow>
@@ -272,8 +317,11 @@ const PaymentMethods = () => {
                 <TableCell>
                   <Image className="w-24" src={Ethereum} alt="Ethereum"></Image>
                 </TableCell>
-                <TableCell>ETH</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">ETH</TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Smart contract support, decentralized transactions.
                 </TableCell>
               </TableRow>
@@ -283,8 +331,11 @@ const PaymentMethods = () => {
                 <TableCell>
                   <Image className="w-24" src={USDCoin} alt="USDCoin"></Image>
                 </TableCell>
-                <TableCell>USDC</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">USDC</TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Stablecoin pegged to USD, fast and secure transfers.
                 </TableCell>
               </TableRow>
@@ -298,8 +349,11 @@ const PaymentMethods = () => {
                     alt="lite coin"
                   ></Image>
                 </TableCell>
-                <TableCell>LTC</TableCell>
-                <TableCell sx={{ display: ["none", "table-cell"] }}>
+                <TableCell className="text-darkGray">LTC</TableCell>
+                <TableCell
+                  className="text-darkGray"
+                  sx={{ display: ["none", "table-cell"] }}
+                >
                   Fast transactions, low fees, secure blockchain.
                 </TableCell>
               </TableRow>
