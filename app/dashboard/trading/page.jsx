@@ -127,11 +127,13 @@ const Trading = () => {
 
   //Dropdown
 
-  const [age, setAge] = React.useState('');
+  const [coin, setCoin] = React.useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setCoin(event.target.value);
+
   };
+  console.log(coin)
 
   if (loading || isLoading || isPending) {
     return (
@@ -143,23 +145,26 @@ const Trading = () => {
 
   return (
     <div>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Coin"
-          onChange={handleChange}
-        >
-         {
-          // assets.map(asset =>  <MenuItem key={asset.name} value={10}>{asset.name}</MenuItem>
-          // )
-         }
-        </Select>
-      </FormControl>
+      <div className="w-1/2">
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Choose coin</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={coin}
+            label="coin"
+            onChange={handleChange}
+          >
+            {
+              assets.map(coin => <MenuItem key={coin.name} value={coin}>{coin.name}</MenuItem>
+              )
+            }
+          </Select>
+        </FormControl>
+      </div>
     </div>
-  )
-};
+  );
+}
+
 
 export default Trading;
