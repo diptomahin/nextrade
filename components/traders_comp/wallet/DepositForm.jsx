@@ -116,9 +116,8 @@ const DepositForm = ({ refetch }) => {
     }
   };
   return (
-    <>
-      <form onSubmit={handleSubmit} className="mt-5">
-        {/* <label htmlFor="" className="font-semibold ml-4">
+    <form onSubmit={handleSubmit} className="mt-5">
+      {/* <label htmlFor="" className="font-semibold ml-4">
           Select Currency
         </label>
         <input
@@ -129,43 +128,42 @@ const DepositForm = ({ refetch }) => {
           id=""
           placeholder="currency"
         /> */}
-        <label htmlFor="" className="font-semibold ml-4">
-          Amount
-        </label>
-        <input
-          onChange={(e) => setAmount(e.target.value)}
-          className="w-full border-2 mt-3 mb-8 px-4 py-2 rounded-full"
-          type="text"
-          name="amount"
-          id=""
-          placeholder="amount"
-        />
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "black",
-                "::placeholder": {
-                  color: "#aab7c4",
-                },
-              },
-              invalid: {
-                color: "#9e2146",
+      <label htmlFor="" className="font-semibold ml-4">
+        Amount
+      </label>
+      <input
+        onChange={(e) => setAmount(e.target.value)}
+        className="w-full border-2 mt-3 mb-8 px-4 py-2 rounded-xl"
+        type="text"
+        name="amount"
+        id=""
+        placeholder="amount"
+      />
+      <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: "16px",
+              color: "black",
+              "::placeholder": {
+                color: "#aab7c4",
               },
             },
-          }}
-        />
-        <div className="relative mt-4 text-red-600">{paymentError}</div>
-        <button
-          className="w-full bg-primary/95 hover:bg-primary text-white border-none rounded-full py-[6px] text-lg mt-5"
-          type="submit"
-          disabled={!stripe || !elements}
-        >
-          Deposit
-        </button>
-      </form>
-    </>
+            invalid: {
+              color: "#9e2146",
+            },
+          },
+        }}
+      />
+      <div className="relative mt-4 text-red-600">{paymentError}</div>
+      <button
+        className="w-full bg-primary/95 hover:bg-primary text-white border-none rounded-xl py-[6px] text-lg mt-5"
+        type="submit"
+        disabled={!stripe || !elements}
+      >
+        Deposit
+      </button>
+    </form>
   );
 };
 
