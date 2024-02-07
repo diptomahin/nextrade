@@ -5,14 +5,13 @@ import { useState } from "react";
 
 
 // material imports
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Image from "next/image";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
+//other imports
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import DashboardButton from "@/components/library/buttons/DashButton";
@@ -71,16 +70,16 @@ const Trading = () => {
     };
   }, []);
 
-  function createData(name, key, price, icon) {
-    return { name, key, price, icon };
+  function createData(name, key, price) {
+    return { name, key, price };
   }
 
   const assets = [
-    createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC),
-    createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH),
-    createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC),
-    createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM),
-    createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE),
+    createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice),
+    createData("Ethereum (ETC)", "ETHUSDT", ETHPrice),
+    createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice),
+    createData("QTUM coin", "QTUMUSDT", QTUMPrice),
+    createData("DOGE coin", "DOGEUSDT", DOGEPrice),
   ];
 
   const handleBuyCoin = (ast) => {
@@ -126,6 +125,14 @@ const Trading = () => {
       });
   };
 
+  //Dropdown
+
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
   if (loading || isLoading || isPending) {
     return (
       <p className="h-screen flex items-center justify-center text-primary">
@@ -135,10 +142,24 @@ const Trading = () => {
   }
 
   return (
-  <div>
-    <h1>Trading page</h1>
-  </div>
-  );
+    <div>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={age}
+          label="Coin"
+          onChange={handleChange}
+        >
+         {
+          // assets.map(asset =>  <MenuItem key={asset.name} value={10}>{asset.name}</MenuItem>
+          // )
+         }
+        </Select>
+      </FormControl>
+    </div>
+  )
 };
 
 export default Trading;
