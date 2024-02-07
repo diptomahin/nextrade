@@ -6,6 +6,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import emptyIcon from '@/assets/emptyIcon.png';
 
 const SideWatchlist = ({ assets }) => {
     const { user, loading } = useAuth();
@@ -90,8 +91,9 @@ const SideWatchlist = ({ assets }) => {
                         </Link>
                     </TableContainer>
                     :
-                    <div>
-                        <h3 className='text-red-500 text-lg font-semibold text-center mt-6'>empty !!</h3>
+                    <div className='border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8'>
+                        <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
+                        <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
                     </div>
             }
 
