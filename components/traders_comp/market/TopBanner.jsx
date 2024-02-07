@@ -10,7 +10,7 @@ const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
   return (
     <div>
       <h1 className="text-xl font-semibold">Market Stats</h1>
-      <div className="  flex flex-col md:flex-row xl:items-center xl:justify-between gap-6 xl:gap-0 bg-white p-4 rounded-md">
+      <div className="  flex flex-col md:flex-row xl:items-center xl:justify-between gap-6 xl:gap-0 bg-white p-4 rounded-md my-6">
         <div className="flex-1 flex items-center gap-2 md:gap-5">
           {coinImage && (
             <Image src={coinImage} width={50} height={50} alt="BTC/USDT Logo" />
@@ -43,8 +43,8 @@ const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
           </div>
           <Divider sx={{ border: "1px solid #40a0ff", borderRadius: "5px" }}></Divider>
           <div className="flex justify-between">
-            <p className="text-[15px] md:text-base text-red-700">Low: {parseFloat(tickerData.l).toFixed(3)}</p>
-            <p className="text-[15px] md:text-base text-green-700">High: {parseFloat(tickerData.h).toFixed(3)}</p>
+            <p className="text-[15px] md:text-base text-red-700">Low: ${parseFloat(tickerData.l).toFixed(3)}</p>
+            <p className="text-[15px] md:text-base text-green-700">High: ${parseFloat(tickerData.h).toFixed(3)}</p>
           </div>
         </div>
       </div>

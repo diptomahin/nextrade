@@ -14,7 +14,7 @@ const MarketHeadLine = ({assets}) => {
                 <Stack>
                   <Stack flexDirection="row" gap={1} alignItems="center">
                     <Image width={45} height={45} src={asset.icon} alt='coin lgog'></Image>
-                    <p>{asset.name}</p>
+                    <p className='font-semibold'>{asset.name}</p>
                   </Stack>
                   <Stack flexDirection="row" gap={2}>
                   <p>${asset.price}</p>

@@ -65,47 +65,51 @@ const MarketPage = () => {
     <div>
       {/* Table boat  */}
       <div className="bg-white p-4 rounded-xl">
-        <h2 className=" text-xl font-semibold mb-3">Market Coins</h2>
+        <h2 className=" text-2xl font-semibold mb-3">Market Coins</h2>
         <p>Choose from a wide range of trade options with hundreds of different instruments available.</p>
         <MarketHeadLine assets={assets}></MarketHeadLine>
       </div>
 
-      <Stack flexDirection="row" gap={2} marginY={2}>
-        <FormControl sx={{ width: 200 }}>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={category}
-            label="Category"
-            onChange={handleCategoryChange}
-          >
-            <MenuItem value={10} >Crypto</MenuItem>
-            <MenuItem value={20} >Currency</MenuItem>
-            <MenuItem value={30} >Stocks</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ width: 200 }}>
-          <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={category}
-            label="Sort by"
-            onChange={handleCategoryChange}
-          >
-            <MenuItem value={10} >Current Price</MenuItem>
-            <MenuItem value={20} >24h Heigh Price</MenuItem>
-            <MenuItem value={30} >24h Low Price</MenuItem>
-          </Select>
-        </FormControl>
-      </Stack>
+      <div className="bg-white p-2 my-4 max-w-min rounded">
+        <Stack flexDirection="row" gap={2}>
+          <FormControl sx={{ width: 200 }}>
+            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={category}
+              label="Category"
+              onChange={handleCategoryChange}
+            >
+              <MenuItem value={10} >Crypto</MenuItem>
+              <MenuItem value={20} >Currency</MenuItem>
+              <MenuItem value={30} >Stocks</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ width: 200 }}>
+            <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={category}
+              label="Sort by"
+              onChange={handleCategoryChange}
+            >
+              <MenuItem value={10} >Current Price</MenuItem>
+              <MenuItem value={20} >24h Heigh Price</MenuItem>
+              <MenuItem value={30} >24h Low Price</MenuItem>
+            </Select>
+          </FormControl>
+        </Stack>
+      </div>
 
       <div className="flex flex-col xl:flex-row gap-5">
-        <div className="w-full xl:w-3/4">
+        <div className="w-full p-3 bg-white rounded xl:w-3/4">
           <MarketTable assets={assets}></MarketTable>
         </div>
-        <SideWatchlist assets={assets}></SideWatchlist>
+        <div className="max-h-min">
+          <SideWatchlist assets={assets}></SideWatchlist>
+        </div>
       </div>
     </div>
   );

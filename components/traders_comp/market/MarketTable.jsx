@@ -10,9 +10,6 @@ const MarketTable = ({assets}) => {
     return (
         <TableContainer
             component={Paper}
-            sx={{
-              border: "1px solid rgba(0, 0, 0, 0.1)",
-            }}
           >
             <Table aria-label="simple table">
               <TableHead className="mx-auto bg-primary">
