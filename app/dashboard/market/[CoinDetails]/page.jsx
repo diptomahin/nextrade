@@ -94,7 +94,7 @@ const CoinDetails = ({ params }) => {
       });
   };
 
-  
+
   const handleAddToWatchlist = (ast) => {
     const assetInfo = {
       assetName: coinName,
@@ -136,7 +136,7 @@ const CoinDetails = ({ params }) => {
 
       <div className="flex flex-col xl:flex-row gap-5 my-10">
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 ">
-        <AdvancedRealTimeChart
+          <AdvancedRealTimeChart
             width="100%"
             height="100%"
             autosize
@@ -162,10 +162,14 @@ const CoinDetails = ({ params }) => {
             container_id="advanced-chart-widget-container"
           />
         </div>
-        <div className="flex-1 bg-sky-100 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
-          <DashButton className="w-full" onClick={() => handleAddToWatchlist(tickerData)}>Add to Watchlist</DashButton>
-          <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
-        </div>
+        {
+          coinImage &&
+          <div className="flex-1 bg-sky-100 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
+            <DashButton className="w-full" onClick={() => handleAddToWatchlist(tickerData)}>Add to Watchlist</DashButton>
+            <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
+          </div>
+        }
+
       </div>
     </div>
   );
