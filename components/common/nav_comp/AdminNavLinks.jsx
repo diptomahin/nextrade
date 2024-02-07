@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaMountain } from "react-icons/fa";
-import { IoListCircleSharp } from "react-icons/io5";
+import { FaUsers } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
-import { SiMarketo, SiMeilisearch } from "react-icons/si";
+import { GrServices } from "react-icons/gr";
+import { SiKhanacademy } from "react-icons/si";
+import { LuMessagesSquare } from "react-icons/lu";
 
 const AdminNavLinks = () => {
   const pathname = usePathname();
@@ -25,7 +26,7 @@ const AdminNavLinks = () => {
             : "bg-transparent"
         } text-primary rounded-full`}
       >
-        <SiMarketo /> Manage Users
+        <FaUsers /> Manage Users
       </Link>
       <Link
         href="/admin_dashboard/manage_services"
@@ -35,7 +36,7 @@ const AdminNavLinks = () => {
             : "bg-transparent"
         } text-primary rounded-full`}
       >
-        <SiMeilisearch />
+        <GrServices />
         Manage Services
       </Link>
       <Link
@@ -46,7 +47,7 @@ const AdminNavLinks = () => {
             : "bg-transparent"
         } text-primary rounded-full`}
       >
-        <FaMountain /> Manage Academy
+        <SiKhanacademy /> Manage Academy
       </Link>
       <Link
         href="/admin_dashboard/message_box"
@@ -56,7 +57,7 @@ const AdminNavLinks = () => {
             : "bg-transparent"
         } text-primary rounded-full`}
       >
-        <IoListCircleSharp /> Message Box
+        <LuMessagesSquare /> Message Box
       </Link>
     </>
   );
