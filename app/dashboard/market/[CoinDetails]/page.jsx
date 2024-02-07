@@ -59,9 +59,6 @@ const CoinDetails = ({ params }) => {
     fetchCoinImage();
   }, [params.CoinDetails]);
 
-  // fetch real-time data for flat currencies
-  const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${baseCurrency.toLowerCase()}${quoteCurrency.toLowerCase()}@ticker`);
-  socket.addEventListener("message", (event) => console.log(JSON.parse(event.data)));
 
   const handleQuantityChange = (event) => {
     const newQuantity = event.target.value;
