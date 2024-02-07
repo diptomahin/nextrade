@@ -38,13 +38,13 @@ const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
             </div>
           </div>
           <div className="flex justify-between">
-              <p><ImportExportIcon />  High / Low price</p>
-              <p className="px-2 py-1 rounded bg-sky-100">24h</p>
+            <p><ImportExportIcon />  High / Low price</p>
+            <p className="px-2 py-1 rounded bg-sky-100">24h</p>
           </div>
-          <Divider sx={{border:"2px solid blue", borderRadius:"5px"}}></Divider>
+          <Divider sx={{ border: "1px solid #40a0ff", borderRadius: "5px" }}></Divider>
           <div className="flex justify-between">
-            <p className="text-[15px] md:text-base">Low: {parseFloat(tickerData.l).toFixed(3)}</p>
-            <p className="text-[15px] md:text-base">High: {parseFloat(tickerData.h).toFixed(3)}</p>
+            <p className="text-[15px] md:text-base text-red-700">Low: {parseFloat(tickerData.l).toFixed(3)}</p>
+            <p className="text-[15px] md:text-base text-green-700">High: {parseFloat(tickerData.h).toFixed(3)}</p>
           </div>
         </div>
       </div>

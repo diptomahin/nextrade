@@ -12,21 +12,19 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
 import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAssetChart";
 import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
 import Image from "next/image";
+import BuyAndExchange from "@/components/traders_comp/portfolio/BuyAndExchange";
 
 const Portfolio = () => {
   const [currentPrices, setCurrentPrices] = useState({});
   const [buyingPriceInfo, setBuyingPriceInfo] = useState([]);
   const { user, loading } = useAuth();
-  const [tabValue, setTabValue] = useState("1");
+ 
   const {
     data: allUsers = [],
     isPending,
@@ -144,45 +142,7 @@ const Portfolio = () => {
         {/* Right side  */}
         <div className=" col-span-2 ">
           <div className="p-4  bg-white rounded-xl border">
-            <TabContext value={tabValue}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList
-                  onChange={(event, newValue) => setTabValue(newValue)}
-                  aria-label="lab API tabs example"
-                  
-                >
-                  <Tab
-                    label="Exchange Coin"
-                    value="1"
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: 600,
-                      color: "black",
-                      textTransform: 'none',
-                    }}
-                  />
-                  <Tab
-                    label="Buy / Sell Coin"
-                    value="2"
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: 600,
-                      color: "black",
-                      textTransform: 'none',
-                      
-                    }}
-                  />
-                </TabList>
-              </Box>
-              {/* Exchange Coin */}
-              <TabPanel value="1">
-                <div>
-
-                </div>
-              </TabPanel>
-              {/* Buy / Sell Coin */}
-              <TabPanel value="2">Item Two</TabPanel>
-            </TabContext>
+            <BuyAndExchange></BuyAndExchange>
           </div>
         </div>
       </div>

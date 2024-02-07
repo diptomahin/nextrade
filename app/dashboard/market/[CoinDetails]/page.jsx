@@ -8,14 +8,22 @@ import useAuth from "@/hooks/useAuth";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import Swal from "sweetalert2";
+import { Divider, TextField } from "@mui/material";
+import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import Image from "next/image";
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
   const [coinImage, setCoinImage] = useState("");
   const [coinName, setCoinName] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
   const { user } = useAuth();
   const publicAPI = usePublicAPI();
   const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+
+  const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
+  // console.log(usersRemainingBalance)
 
   useEffect(() => {
     const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
@@ -50,18 +58,27 @@ const CoinDetails = ({ params }) => {
     fetchCoinImage();
   }, [params.CoinDetails]);
 
+  const handleQuantityChange = (event) => {
+    const newQuantity = event.target.value;
+    setQuantity(newQuantity);
+  };
+
   const handleBuyCoin = (ast) => {
     const assetInfo = {
       assetName: coinName,
       assetKey: params.CoinDetails,
       assetImg: coinImage,
       assetBuyingPrice: ast.c,
+      assetQuantity: quantity,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
     };
 
+    const totalCost = parseFloat(ast.c) * parseFloat(quantity)
     const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
-    const remainingBalance = usersBalance - parseFloat(ast.c).toFixed(2);
+    const remainingBalance = usersBalance - totalCost.toFixed(2);
+
+
 
     if (usersBalance < parseFloat(ast.c)) {
       Swal.fire({
@@ -72,28 +89,41 @@ const CoinDetails = ({ params }) => {
       return;
     }
 
-    publicAPI
-      .put(`/all-users/${remainingBalance}`, assetInfo)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          Swal.fire({
-            title: `Coin Purchase successful!`,
-            text: `Best of luck`,
-            icon: "success",
+    Swal.fire({
+      title: `Are you sure to purchase ${quantity} ${coinName}?`,
+      text: `It will cost $${totalCost}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        publicAPI
+          .put(`/all-users/${remainingBalance}`, assetInfo)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              Swal.fire({
+                title: `Coin Purchase successful!`,
+                text: `Best of luck`,
+                icon: "success",
+                timer: 1500
+              });
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            Swal.fire({
+              title: `Coin Purchase failed!`,
+              text: `Please try again`,
+              icon: "error",
+            });
           });
-          refetch();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        Swal.fire({
-          title: `Coin Purchase failed!`,
-          text: `Please try again`,
-          icon: "error",
-        });
-      });
-  };
+      }
+    });
 
+  };
 
   const handleAddToWatchlist = (ast) => {
     const assetInfo = {
@@ -164,12 +194,38 @@ const CoinDetails = ({ params }) => {
         </div>
         {
           coinImage ?
-          <div className="flex-1 bg-sky-100 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
-            <DashButton className="w-full" onClick={() => handleAddToWatchlist(tickerData)}>Add to Watchlist</DashButton>
-            <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
-          </div>
-          :
-          <p>Loading...</p>
+            <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-5">
+              <div className="flex justify-between">
+                <h1 className="text-lg font-semibold">Buy {params.CoinDetails.slice(0, -4)}</h1>
+                <button onClick={() => handleAddToWatchlist(tickerData)} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
+              </div>
+              <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
+              <div className="flex justify-between">
+                <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
+                <div className="flex gap-1 items-center">
+                  {coinImage && (
+                    <Image src={coinImage} width={30} height={30} alt="Logo" />
+                  )}
+                  {parseFloat(tickerData?.c).toFixed(2)}
+                </div>
+              </div>
+              <TextField
+                required
+                fullWidth
+                defaultValue={1}
+                id="outlined-number"
+                label={`Quantity (${params.CoinDetails.slice(0, -4)})`}
+                type="number"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleQuantityChange}
+              />
+              <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
+            </div>
+            :
+            <p>Loading...</p>
         }
 
       </div>
