@@ -107,8 +107,6 @@ const MarketPage = () => {
         </div>
         <SideWatchlist assets={assets}></SideWatchlist>
       </div>
-       {/* Pass assets to Watchlist component */}
-      {/* <Watchlist assets={assets} /> */}
     </div>
   );
 };
