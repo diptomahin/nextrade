@@ -12,7 +12,7 @@ import Paper from "@mui/material/Paper";
 
 const TransactionTable = ({ userBalanceDetails }) => {
   return (
-    <div className="p-4 xl:p-6 bg-white rounded-xl border">
+    <div className="p-4 xl:p-6 bg-white rounded-xl">
       <div className="flex flex-col xl:flex-row justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
       </div>

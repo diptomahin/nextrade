@@ -1,6 +1,14 @@
 "use client";
 
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, } from "recharts";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from "recharts";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AddIcon from "@mui/icons-material/Add";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
@@ -18,6 +26,10 @@ import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import TransactionTable from "@/components/traders_comp/wallet/TransactionTable";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import "./wallet.css";
+import WithdrawForm from "@/components/traders_comp/wallet/WithdrawForm";
 
 const stripePromise = loadStripe(
   "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
@@ -57,9 +69,9 @@ const Wallet = () => {
   }
 
   return (
-    <div className="flex flex-col xl:flex-row justify-between gap-5 w-full">
+    <div className="flex flex-col xl:flex-row justify-between gap-5 w-full font-mont">
       <div className="xl:w-9/12 flex flex-col gap-5">
-        <div className="p-4 xl:p-6 bg-white rounded-xl border">
+        <div className="p-4 xl:p-6 bg-white rounded-xl">
           <div className="flex flex-col-reverse xl:flex-row justify-between gap-6">
             <div>
               <h1 className="text-xl font-bold">Wallet</h1>
@@ -131,26 +143,41 @@ const Wallet = () => {
 
       {/* Select Currency & Payment */}
       <div className="xl:w-5/12 2xl:w-4/12">
-        <div className="w-full p-4 xl:p-6 bg-white rounded-xl border">
-          <h1 className="text-xl text-center font-bold">
-            Select Currency & Payment
-          </h1>
-          <Elements stripe={stripePromise}>
-            <DepositForm refetch={refetch} />
-          </Elements>
+        <div className="w-full p-4 xl:p-6 bg-white rounded-xl">
+          <Tabs>
+            <TabList className="flex items-center justify-center gap-10 font-medium ">
+              <Tab className="font-semibold border-none outline-none cursor-pointer">
+                Deposit
+              </Tab>
+              <Tab className="font-semibold border-none outline-none cursor-pointer">
+                Withdraw
+              </Tab>
+            </TabList>
+
+            <TabPanel>
+              <Elements stripe={stripePromise}>
+                <DepositForm refetch={refetch} />
+              </Elements>
+            </TabPanel>
+            <TabPanel>
+              <WithdrawForm />
+            </TabPanel>
+          </Tabs>
         </div>
+
         {/* Transaction Report */}
-        <div className="w-full h-80 p-4 xl:p-6 bg-white rounded-xl border mt-5">
+        <div className="w-full p-4 xl:p-6 bg-white rounded-xl mt-5">
           <h1 className="text-xl text-center font-bold">Transaction Report</h1>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={[
                 {
-                  name: 'Total Deposited',
-                  amount: parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0,
+                  name: "Total Deposited",
+                  amount:
+                    parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0,
                 },
                 {
-                  name: 'Total Withdrawals',
+                  name: "Total Withdrawals",
                   amount: 0,
                 },
               ]}

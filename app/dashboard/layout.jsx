@@ -17,7 +17,7 @@ const Dashboard = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <TradersChecker>
-        <div className="min-h-screen bg-zinc-100 font-inter">
+        <div className="min-h-screen bg-zinc-100 font-montserrat">
           <div className="fixed top-0 w-full h-[70px] 2xl:pl-[230px] p-2 z-40 bg-zinc-100">
             <TradersNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
           </div>
