@@ -88,16 +88,16 @@ const Watchlist = () => {
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <p className={` font-semibold text-xs`}>${parseFloat(currentPrice[asset.assetKey]).toFixed(2)}</p>
+                                            <p className={` font-semibold text-xs`}>${currentPrice[asset.assetKey] ? parseFloat(currentPrice[asset.assetKey]).toFixed(2): 0}</p>
                                         </TableCell>
                                         <TableCell>
-                                            <p className={` font-semibold text-xs ${changedPrice[asset.assetKey] < 0 ? "text-red-700" : "text-green-700"}`}>{parseFloat(changedPrice[asset.assetKey]).toFixed(3)}%</p>
+                                            <p className={` font-semibold text-xs ${changedPrice[asset.assetKey] < 0 ? "text-red-700" : "text-green-700"}`}>{changedPrice[asset.assetKey] ? parseFloat(changedPrice[asset.assetKey]).toFixed(3): 0}%</p>
                                         </TableCell>
                                         <TableCell>
-                                            <p className={` font-semibold text-xs text-green-700`}>${parseFloat(heighPrice[asset.assetKey]).toFixed(2)}</p>
+                                            <p className={` font-semibold text-xs text-green-700`}>${heighPrice[asset.assetKey] ? parseFloat(heighPrice[asset.assetKey]).toFixed(2) : 0}</p>
                                         </TableCell>
                                         <TableCell>
-                                            <p className={` font-semibold text-xs text-red-700`}>${parseFloat(lowPrice[asset.assetKey]).toFixed(2)}</p>
+                                            <p className={` font-semibold text-xs text-red-700`}>${lowPrice[asset.assetKey] ? parseFloat(lowPrice[asset.assetKey]).toFixed(2) : 0}</p>
                                         </TableCell>
                                     </TableRow>
                                 ))}
