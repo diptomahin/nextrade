@@ -8,7 +8,7 @@ import Magnetic from "@/components/library/Magnetic";
 
 const TradersDashboardSidebar = () => {
   return (
-    <div className="h-full w-full bg-white rounded-xl p-2 border">
+    <div className="h-full w-full bg-white rounded-xl p-2">
       <Magnetic>
         <Link href="/" className="flex flex-col items-center pt-2 pb-4 ">
           {" "}

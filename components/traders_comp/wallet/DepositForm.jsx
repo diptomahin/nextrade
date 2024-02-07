@@ -157,7 +157,7 @@ const DepositForm = ({ refetch }) => {
       />
       <div className="relative mt-4 text-red-600">{paymentError}</div>
       <button
-        className="w-full bg-primary/95 hover:bg-primary text-white border-none rounded-xl py-[6px] text-lg mt-5"
+        className="btn btn-sm h-10 w-full bg-primary/90 hover:bg-primary text-white border-none rounded-xl py-[6px] text-base mt-5"
         type="submit"
         disabled={!stripe || !elements}
       >
