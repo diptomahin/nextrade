@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
-  const [coinImage, setCoinImage] = useState(null);
+  const [coinImage, setCoinImage] = useState("");
   const [coinName, setCoinName] = useState("");
   const { user } = useAuth();
   const publicAPI = usePublicAPI();
@@ -129,7 +129,7 @@ const CoinDetails = ({ params }) => {
   return (
     <div>
       {tickerData ? (
-        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} />
+        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} coinKey={params.CoinDetails} />
       ) : (
         <p>Loading...</p>
       )}
@@ -163,11 +163,13 @@ const CoinDetails = ({ params }) => {
           />
         </div>
         {
-          coinImage &&
+          coinImage ?
           <div className="flex-1 bg-sky-100 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-7">
             <DashButton className="w-full" onClick={() => handleAddToWatchlist(tickerData)}>Add to Watchlist</DashButton>
             <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
           </div>
+          :
+          <p>Loading...</p>
         }
 
       </div>
