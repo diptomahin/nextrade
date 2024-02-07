@@ -82,6 +82,7 @@ const Trading = () => {
     createData("DOGE coin", "DOGEUSDT", DOGEPrice),
   ];
 
+  //handle buy coin
   const handleBuyCoin = (ast) => {
     const assetInfo = {
       assetName: ast.name,
@@ -126,7 +127,6 @@ const Trading = () => {
   };
 
   //Dropdown
-
   const [coin, setCoin] = React.useState('');
 
   const handleChange = (event) => {
@@ -135,6 +135,8 @@ const Trading = () => {
   };
   console.log(coin)
 
+
+  //handle loading
   if (loading || isLoading || isPending) {
     return (
       <p className="h-screen flex items-center justify-center text-primary">
@@ -156,11 +158,14 @@ const Trading = () => {
             onChange={handleChange}
           >
             {
-              assets.map(coin => <MenuItem key={coin.name} value={coin}>{coin.name}</MenuItem>
+              assets.map(coin => <MenuItem key={coin.name} value={coin.name}>{coin.name}</MenuItem>
               )
             }
           </Select>
         </FormControl>
+      </div>
+      <div>
+
       </div>
     </div>
   );
