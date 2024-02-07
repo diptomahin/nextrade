@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
-import SideNavLinks from "./nav_comp/SideNavLinks";
 import Link from "next/link";
 import Magnetic from "@/components/library/Magnetic";
+import AdminNavLinks from "./nav_comp/AdminNavLinks";
 
 const AdminSideNav = () => {
   return (
@@ -16,7 +16,7 @@ const AdminSideNav = () => {
         </Link>
       </Magnetic>
       <div className="flex flex-col jus gap-2 py-3 border-t">
-        {/* <SideNavLinks /> */}
+        <AdminNavLinks />
       </div>
     </div>
   );
