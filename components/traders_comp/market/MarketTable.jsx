@@ -51,7 +51,7 @@ const MarketTable = ({assets}) => {
                       <p className={` font-semibold`}>$ {parseFloat(asset.price).toFixed(2)}</p>
                     </TableCell>
                     <TableCell>
-                      <p className={` font-semibold ${asset.changePrice <= 0 ? "text-red-700" : "text-green-700"}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon />:<TrendingUpIcon />}</p>
+                      <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-700" : asset.changePrice > 0 ? "text-green-700": ""}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon />:<TrendingUpIcon />}</p>
                     </TableCell>
                     <TableCell>
                       <p className={` font-semibold text-green-700`}>$ {asset.heighPrice}</p>

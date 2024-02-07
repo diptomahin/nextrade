@@ -10,6 +10,11 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
@@ -21,10 +26,13 @@ const Portfolio = () => {
   const [currentPrices, setCurrentPrices] = useState({});
   const [buyingPriceInfo, setBuyingPriceInfo] = useState([]);
   const { user, loading } = useAuth();
-  const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(
-    `/all-users/${user.email}`,
-    ["all-users"]
-  );
+  const [tabValue, setTabValue] = useState("1");
+  const {
+    data: allUsers = [],
+    isPending,
+    isLoading,
+    refetch,
+  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
 
@@ -38,7 +46,21 @@ const Portfolio = () => {
       const prices = {};
       data.forEach((ticker) => {
         const symbol = ticker.s;
-        if (["BTCUSDT", "ETHUSDT", "LTCUSDT", "QTUMUSDT", "DOGEUSDT", "XRPUSDT", "BCHUSDT", "ADAUSDT", "DOTUSDT", "BNBUSDT", "MATICUSDT"].includes(symbol)) {
+        if (
+          [
+            "BTCUSDT",
+            "ETHUSDT",
+            "LTCUSDT",
+            "QTUMUSDT",
+            "DOGEUSDT",
+            "XRPUSDT",
+            "BCHUSDT",
+            "ADAUSDT",
+            "DOTUSDT",
+            "BNBUSDT",
+            "MATICUSDT",
+          ].includes(symbol)
+        ) {
           prices[symbol] = parseFloat(ticker.c).toFixed(2);
         }
       });
@@ -49,7 +71,19 @@ const Portfolio = () => {
   useEffect(() => {
     const userBTCData = allUsers.flatMap((user) => user.portfolio);
     const filteredAssets = userBTCData.filter((asset) =>
-      ["BTCUSDT", "ETHUSDT", "LTCUSDT", "QTUMUSDT", "DOGEUSDT", "XRPUSDT", "BCHUSDT", "ADAUSDT", "DOTUSDT", "BNBUSDT", "MATICUSDT"].includes(asset.assetKey)
+      [
+        "BTCUSDT",
+        "ETHUSDT",
+        "LTCUSDT",
+        "QTUMUSDT",
+        "DOGEUSDT",
+        "XRPUSDT",
+        "BCHUSDT",
+        "ADAUSDT",
+        "DOTUSDT",
+        "BNBUSDT",
+        "MATICUSDT",
+      ].includes(asset.assetKey)
     );
     if (filteredAssets.length > 0) {
       setBuyingPriceInfo(filteredAssets);
@@ -94,12 +128,64 @@ const Portfolio = () => {
 
   return (
     <div>
-      <PortfolioTopBanner
-        totalBuyingPrice={totalBuyingPrice}
-        calculateTotalProfit={calculateTotalProfit}
-        usersRemainingBalance={usersRemainingBalance}
-        calculateTotalLoss={calculateTotalLoss}
-      />
+      {/* new design */}
+
+      <div className=" grid grid-cols-7 my-4 gap-5">
+        {/* left side  */}
+        <div className=" col-span-5 ">
+          {/* header */}
+          <PortfolioTopBanner
+            totalBuyingPrice={totalBuyingPrice}
+            calculateTotalProfit={calculateTotalProfit}
+            usersRemainingBalance={usersRemainingBalance}
+            calculateTotalLoss={calculateTotalLoss}
+          />
+        </div>
+        {/* Right side  */}
+        <div className=" col-span-2 ">
+          <div className="p-4  bg-white rounded-xl border">
+            <TabContext value={tabValue}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <TabList
+                  onChange={(event, newValue) => setTabValue(newValue)}
+                  aria-label="lab API tabs example"
+                  
+                >
+                  <Tab
+                    label="Exchange Coin"
+                    value="1"
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      color: "black",
+                      textTransform: 'none',
+                    }}
+                  />
+                  <Tab
+                    label="Buy / Sell Coin"
+                    value="2"
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      color: "black",
+                      textTransform: 'none',
+                      
+                    }}
+                  />
+                </TabList>
+              </Box>
+              {/* Exchange Coin */}
+              <TabPanel value="1">
+                <div>
+
+                </div>
+              </TabPanel>
+              {/* Buy / Sell Coin */}
+              <TabPanel value="2">Item Two</TabPanel>
+            </TabContext>
+          </div>
+        </div>
+      </div>
 
       {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
 
@@ -148,13 +234,20 @@ const Portfolio = () => {
                 {buyingPriceInfo.map((asset, index) => (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">
-                    <Image height={45} width={45} src={asset.assetImg} alt='coin logo'></Image>
+                      <Image
+                        height={45}
+                        width={45}
+                        src={asset.assetImg}
+                        alt="coin logo"
+                      ></Image>
                     </TableCell>
                     <TableCell component="th" scope="row">
                       <h2 className="font-semibold">{asset.assetName}</h2>
                     </TableCell>
                     <TableCell align="right">
-                      <h2 className="font-semibold">$ {asset.assetBuyingPrice}</h2>
+                      <h2 className="font-semibold">
+                        $ {asset.assetBuyingPrice}
+                      </h2>
                     </TableCell>
                     <TableCell align="right" className="font-semibold">
                       <span
@@ -168,7 +261,7 @@ const Portfolio = () => {
                         ${currentPrices[asset.assetKey]}
                       </span>
                       {currentPrices[asset.assetKey] >
-                        parseFloat(asset.assetBuyingPrice) ? (
+                      parseFloat(asset.assetBuyingPrice) ? (
                         <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
                       ) : (
                         <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
@@ -185,7 +278,8 @@ const Portfolio = () => {
                             : "text-red-700"
                         }`}
                       >
-                        ${calculateDifference(
+                        $
+                        {calculateDifference(
                           currentPrices[asset.assetKey] || 0,
                           parseFloat(asset.assetBuyingPrice)
                         )}
