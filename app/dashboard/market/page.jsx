@@ -7,11 +7,12 @@ import { Stack } from "@mui/material";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
-import Watchlist from "../watchlist/page";
+
 
 const MarketPage = () => {
 
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('Cryptos');
+  const [sort, setSort] = useState('Current Price');
 
   const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
 
@@ -52,13 +53,9 @@ const MarketPage = () => {
       });
       setAssets(updatedAssets);
     });
-
     return () => socket.close();
   }, [assets]);
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
 
 
   return (
@@ -79,25 +76,25 @@ const MarketPage = () => {
               id="demo-simple-select"
               value={category}
               label="Category"
-              onChange={handleCategoryChange}
+              onChange={(event)=>{setCategory(event.target.value)}}
             >
-              <MenuItem value={10} >Crypto</MenuItem>
-              <MenuItem value={20} >Currency</MenuItem>
-              <MenuItem value={30} >Stocks</MenuItem>
+              <MenuItem value={"Cryptos"} >Cryptos</MenuItem>
+              <MenuItem value={"Currency"} >Currency</MenuItem>
+              <MenuItem value={"Stocks"} >Stocks</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ width: 200 }}>
             <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={category}
+              labelId="demo-simple-select"
+              id="demo-simple"
+              value={sort}
               label="Sort by"
-              onChange={handleCategoryChange}
+              onChange={(event)=>{setSort(event.target.value)}}
             >
-              <MenuItem value={10} >Current Price</MenuItem>
-              <MenuItem value={20} >24h Heigh Price</MenuItem>
-              <MenuItem value={30} >24h Low Price</MenuItem>
+              <MenuItem value={"Current Price"} >Current Price</MenuItem>
+              <MenuItem value={"24h Heigh Price"} >24h Heigh Price</MenuItem>
+              <MenuItem value={"24h Low Price"} >24h Low Price</MenuItem>
             </Select>
           </FormControl>
         </Stack>
@@ -105,7 +102,15 @@ const MarketPage = () => {
 
       <div className="flex flex-col xl:flex-row gap-5">
         <div className="w-full p-3 bg-white rounded xl:w-3/4">
-          <MarketTable assets={assets}></MarketTable>
+          {
+            category === "Cryptos" ?
+            <MarketTable assets={assets}></MarketTable>
+            : 
+            <div>
+              <h1>This is Under Development</h1>
+            </div>
+          }
+          
         </div>
         <div className="max-h-min">
           <SideWatchlist assets={assets}></SideWatchlist>
