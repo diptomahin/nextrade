@@ -19,6 +19,7 @@ import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAs
 import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
 import Image from "next/image";
 import BuyAndExchange from "@/components/traders_comp/portfolio/BuyAndExchange";
+import emptyIcon from '../../../assets/emptyIcon.png';
 
 const Portfolio = () => {
   const [currentPrices, setCurrentPrices] = useState({});
@@ -252,23 +253,27 @@ const Portfolio = () => {
             </div>
             
           ) : (
-            <div className="flex justify-center items-center h-[40vh]">
-              <h3 className="text-red-500 text-lg 2xl:text-3xl font-semibold">
-                Empty !!
-              </h3>
-            </div>
+            <div className=' w-full  flex flex-col items-center justify-center gap-2 py-8'>
+                        <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
+                        <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
+                    </div>
           )}
         </div>
       </div>
 
       {/* Right side  */}
       <div className=" col-span-2 ">
+        
+        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  mb-5 ">
+          <BuyAndExchange></BuyAndExchange>
+        </div>
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
-          {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
-        </div>
-        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  my-5 ">
-          <BuyAndExchange></BuyAndExchange>
+          {totalBuyingPrice ? <PortfolioAssetChart allUsers={allUsers} /> :
+          <div className=' w-full  flex flex-col items-center justify-center gap-2 py-8'>
+          <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
+          <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
+      </div>}
         </div>
       </div>
     </div>

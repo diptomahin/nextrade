@@ -6,7 +6,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import emptyIcon from '@/assets/emptyIcon.png';
+import emptyIcon from '../../../assets/emptyIcon.png';
 
 const SideWatchlist = ({ assets }) => {
     const { user, loading } = useAuth();
