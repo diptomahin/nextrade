@@ -25,39 +25,112 @@ const CoinDetails = ({ params }) => {
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
   // console.log(usersRemainingBalance)
 
-  // fetch real-time data for crypto currency
-  useEffect(() => {
-    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
-    socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
+  if (params.CoinDetails.length > 3) {
+    // fetch real-time data for crypto currency
+    useEffect(() => {
+      const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
+      socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
 
-    const fetchCoinImage = async () => {
-      const coinDetailsMap = {
-        BTCUSDT: "bitcoin",
-        LTCUSDT: "litecoin",
-        ETHUSDT: "ethereum",
-        QTUMUSDT: "qtum",
-        DOGEUSDT: "dogecoin",
-        XRPUSDT: "ripple",
-        BCHUSDT: "bitcoin-cash",
-        ADAUSDT: "cardano",
-        DOTUSDT: "polkadot",
-        BNBUSDT: "binancecoin",
-        MATICUSDT: "matic-network",
-        UNIUSDT: "uniswap",
-        LINKUSDT: "chainlink",
-        SOLUSDT: "solana",
-        XLMUSDT: "stellar",
-        EOSUSDT: "eos",
+      const fetchCoinImage = async () => {
+        const coinDetailsMap = {
+          BTCUSDT: "bitcoin",
+          LTCUSDT: "litecoin",
+          ETHUSDT: "ethereum",
+          QTUMUSDT: "qtum",
+          DOGEUSDT: "dogecoin",
+          XRPUSDT: "ripple",
+          BCHUSDT: "bitcoin-cash",
+          ADAUSDT: "cardano",
+          DOTUSDT: "polkadot",
+          BNBUSDT: "binancecoin",
+          MATICUSDT: "matic-network",
+          UNIUSDT: "uniswap",
+          LINKUSDT: "chainlink",
+          SOLUSDT: "solana",
+          XLMUSDT: "stellar",
+          EOSUSDT: "eos",
+        };
+
+        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinDetailsMap[params.CoinDetails]}`);
+        // console.log(coinDetailsResponse.data.image.large)
+        setCoinImage(coinDetailsResponse.data.image.large);
+        setCoinName(coinDetailsResponse.data.name);
       };
 
-      const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinDetailsMap[params.CoinDetails]}`);
-      // console.log(coinDetailsResponse.data.image.large)
-      setCoinImage(coinDetailsResponse.data.image.large);
-      setCoinName(coinDetailsResponse.data.name);
-    };
+      fetchCoinImage();
+    }, [params.CoinDetails]);
+  }
 
-    fetchCoinImage();
-  }, [params.CoinDetails]);
+
+  if (params.CoinDetails.length === 3) {
+    return (
+      <div className="flex flex-col xl:flex-row gap-5 my-10">
+        <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 bg-white rounded ">
+          <AdvancedRealTimeChart
+            width="100%"
+            height="100%"
+            autosize
+            symbol={`${params.CoinDetails}`}
+            interval={20}
+            range="1M"
+            timezone="UTC"
+            theme="light"
+            style={2}
+            locale="en"
+            toolbar_bg="#f1f3f6"
+            enable_publishing={false}
+            hide_top_toolbar={false}
+            hide_legend={true}
+            withdateranges={false}
+            hide_side_toolbar={true}
+            details={false}
+            hotlist={false}
+            calendar={false}
+            studies={[]}
+            disabled_features={[]}
+            enabled_features={[]}
+            container_id="advanced-chart-widget-container"
+          />
+        </div>
+        {/* {
+          coinImage ?
+            <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
+              <div className="flex justify-between">
+                <h1 className="text-lg font-semibold">Buy {params.CoinDetails.slice(0, -4)}</h1>
+                <button onClick={() => handleAddToWatchlist(tickerData)} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
+              </div>
+              <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
+              <div className="flex justify-between">
+                <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
+                <div className="flex gap-1 items-center">
+                  {coinImage && (
+                    <Image src={coinImage} width={30} height={30} alt="Logo" />
+                  )}
+                  ${parseFloat(tickerData?.c).toFixed(2)}
+                </div>
+              </div>
+              <TextField
+                required
+                fullWidth
+                defaultValue={1}
+                id="outlined-number"
+                label={`Quantity (${params.CoinDetails.slice(0, -4)})`}
+                type="number"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleQuantityChange}
+              />
+              <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
+            </div>
+            :
+            <p>Loading...</p>
+        } */}
+
+      </div>
+    )
+  }
 
 
   const handleQuantityChange = (event) => {

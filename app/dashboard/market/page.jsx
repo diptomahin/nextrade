@@ -8,14 +8,21 @@ import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
 
+import eur from "@/assets/CurrencySymbol/eur.png"
+import aed from "@/assets/CurrencySymbol/aed.png"
+import afn from "@/assets/CurrencySymbol/afn.png"
+import axios from "axios";
+import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrencyTable";
+
 
 const MarketPage = () => {
 
   const [category, setCategory] = useState('Cryptos');
   const [sort, setSort] = useState('Current Price');
+  const [exchangeRate, setExchangeRate] = useState(null);
 
+  // create crypto currency data
   const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
-
   const [assets, setAssets] = useState([
     createData("Bitcoin", "BTCUSDT", 0, "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", 0, 0, 0),
     createData("Ethereum", "ETHUSDT", 0, "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628", 0, 0, 0),
@@ -56,6 +63,43 @@ const MarketPage = () => {
     return () => socket.close();
   }, [assets]);
 
+  const createFlatCurrencyData = (name, key, price, icon) => ({ name, key, price, icon });
+  const [flatCurrency, setflatCurrency] = useState([
+    createFlatCurrencyData("Euro", "EUR/USD", 0, eur),
+    createFlatCurrencyData("Dirham", "AED/USD", 0, aed),
+    createFlatCurrencyData("Afghani", "AFN/USD", 0, afn),
+
+    // Add more assets similarly
+  ]);
+
+  useEffect(() => {
+    const fetchCurrencyRates = async () => {
+      try {
+        const response = await axios.get(
+          'https://api.exchangerate-api.com/v4/latest/USD'
+        );
+        // Access the data property of the response to get the currency rates
+        const data = response.data.rates;
+        const updatedAssets = flatCurrency.map(cur => {
+          const currencyKey = cur.key.slice(0, -4)
+          console.log(currencyKey)
+          return createFlatCurrencyData(
+            cur.name,
+            cur.key,
+            data[currencyKey],
+            cur.icon,
+          );
+        })
+        setflatCurrency(updatedAssets)
+      } catch (error) {
+        console.error('Error fetching currency rates:', error);
+      }
+    };
+
+    fetchCurrencyRates();
+  }, []);
+  console.log(flatCurrency)
+
 
 
   return (
@@ -76,7 +120,7 @@ const MarketPage = () => {
               id="demo-simple-select"
               value={category}
               label="Category"
-              onChange={(event)=>{setCategory(event.target.value)}}
+              onChange={(event) => { setCategory(event.target.value) }}
             >
               <MenuItem value={"Cryptos"} >Cryptos</MenuItem>
               <MenuItem value={"Currency"} >Currency</MenuItem>
@@ -90,7 +134,7 @@ const MarketPage = () => {
               id="demo-simple"
               value={sort}
               label="Sort by"
-              onChange={(event)=>{setSort(event.target.value)}}
+              onChange={(event) => { setSort(event.target.value) }}
             >
               <MenuItem value={"Current Price"} >Current Price</MenuItem>
               <MenuItem value={"24h Heigh Price"} >24h Heigh Price</MenuItem>
@@ -104,13 +148,17 @@ const MarketPage = () => {
         <div className="w-full p-3 bg-white rounded xl:w-3/4">
           {
             category === "Cryptos" ?
-            <MarketTable assets={assets}></MarketTable>
-            : 
-            <div>
-              <h1>This is Under Development</h1>
-            </div>
+              <MarketTable assets={assets}></MarketTable>
+              :
+              category === "Currency"
+            ?
+            <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+            :
+          <div>
+            <h1>This is Under Development</h1>
+          </div>
           }
-          
+
         </div>
         <div className="max-h-min">
           <SideWatchlist assets={assets}></SideWatchlist>
