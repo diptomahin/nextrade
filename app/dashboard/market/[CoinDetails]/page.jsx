@@ -25,9 +25,11 @@ const CoinDetails = ({ params }) => {
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
   // console.log(usersRemainingBalance)
 
-  if (params.CoinDetails.length > 3) {
-    // fetch real-time data for crypto currency
-    useEffect(() => {
+
+  // fetch real-time data for crypto currency
+  useEffect(() => {
+
+    if (params.CoinDetails.length > 3) {
       const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
       socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
 
@@ -58,8 +60,9 @@ const CoinDetails = ({ params }) => {
       };
 
       fetchCoinImage();
-    }, [params.CoinDetails]);
-  }
+    }
+  }, [params.CoinDetails]);
+
 
 
   if (params.CoinDetails.length === 3) {
