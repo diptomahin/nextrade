@@ -17,20 +17,24 @@ const Dashboard = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <TradersChecker>
-        <div className="min-h-screen bg-zinc-100 font-montserrat">
-          <div className="fixed top-0 w-full h-[70px] 2xl:pl-[230px] p-2 z-40 bg-zinc-100">
+        <div className="min-h-screen bg-darkBG text-zinc-100 font-montserrat">
+          <div className="fixed top-0 w-full h-[70px] 2xl:pl-[230px] p-2 z-40 bg-darkBG">
             <TradersNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
           </div>
-          <div className="hidden 2xl:block fixed left-2 top-2 pr-3 pb-4 h-full w-[222px] z-50 bg-zinc-100">
+          <div className="hidden 2xl:block fixed left-2 top-2 pr-3 pb-4 h-full w-[222px] z-50 bg-darkBG">
             <TradersSideNav />
           </div>
-          <div className="block 2xl:hidden">
+          <div className="block 2xl:hidden bg-darkBG">
             <Drawer
               sx={{
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: "200px",
                   border: "none",
+                  backgroundColor: "#181e2c",
+                },
+                "@media (min-width: 1280px)": {
+                  display: "none",
                 },
               }}
               open={mobileOpen}
@@ -43,9 +47,7 @@ const Dashboard = ({ children }) => {
             </Drawer>
           </div>
 
-          <div className="mx-5 2xl:ml-[238px] pt-[82px] pb-10 bg-zinc-100">
-            {children}
-          </div>
+          <div className="mx-5 2xl:ml-[238px] pt-[82px] pb-10">{children}</div>
         </div>
       </TradersChecker>
     </QueryClientProvider>
