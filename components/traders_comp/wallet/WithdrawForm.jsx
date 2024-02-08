@@ -22,9 +22,6 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
   const { user } = useAuth();
 
   React.useEffect(() => {
-    if (totalBalance < amount) {
-      return setPaymentError("*Insufficient balance");
-    }
     axios
       .post("https://nex-trade-server.vercel.app/create-payment-intent", {
         price: amount,
@@ -32,7 +29,7 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
       .then((res) => {
         setClientSecret(res.data.clientSecret);
       });
-  }, [amount, totalBalance]);
+  }, [amount, postalCode, totalBalance]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
