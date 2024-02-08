@@ -21,7 +21,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
     // regular currency watchlist process
     const handleCurrencyWatchlist = (ast) => {
         const assetInfo = {
-            assetName: coinName,
+            assetName: currencyName,
             assetType: "regular currency",
             assetImg: coinImage,
             assetBuyerUID: user.uid,
