@@ -138,21 +138,9 @@ const Portfolio = () => {
             usersRemainingBalance={usersRemainingBalance}
             calculateTotalLoss={calculateTotalLoss}
           />
-        </div>
-        {/* Right side  */}
-        <div className=" col-span-2 ">
-          <div className="p-4  bg-white rounded-xl border">
-            <BuyAndExchange></BuyAndExchange>
-          </div>
-        </div>
-      </div>
-
-      {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
-
-      <div className="mt-20">
-        <h2 className="text-2xl font-bold mb-2 font-sans">
-          Your Holdings . . .{" "}
-        </h2>
+          {/* your holdings */}
+        <div className="mt-5">
+        
         {totalBuyingPrice ? (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -267,6 +255,23 @@ const Portfolio = () => {
           </div>
         )}
       </div>
+        </div>
+        
+        {/* Right side  */}
+        <div className=" col-span-2 ">
+          <div className="p-4  bg-white rounded-xl border">
+          {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
+          </div>
+          <div className="p-4  bg-white rounded-xl border my-5">
+          
+            <BuyAndExchange></BuyAndExchange>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
     </div>
   );
 };
