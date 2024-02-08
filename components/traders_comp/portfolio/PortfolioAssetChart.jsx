@@ -40,7 +40,7 @@ const PortfolioAssetChart = ({ allUsers }) => {
     }));
 
     return (
-        <div className="bg-white rounded-lg p-4 my-7 overflow-x-auto">
+        <div className="bg-white rounded-lg  overflow-x-auto">
             <h1 className='text-2xl font-semibold my-5'>Total Asset Chart</h1>
             <div className="">
                 <ComposedChart

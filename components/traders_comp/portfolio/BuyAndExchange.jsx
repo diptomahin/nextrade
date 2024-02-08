@@ -16,6 +16,8 @@ import Select from "@mui/material/Select";
 
 // logo
 import bitLogo from "../../../assets/btc-logo.png";
+import Link from "next/link";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 // style input
 const ITEM_HEIGHT = 48;
@@ -111,7 +113,7 @@ const BuyAndExchange = () => {
             </div>
           </div>
           {/* input field */}
-          <div>
+          
             {/* 1st input */}
             <FormControl sx={{ width: 1 }}>
               <InputLabel id="demo-multiple-name-label">Coin</InputLabel>
@@ -161,7 +163,12 @@ const BuyAndExchange = () => {
                 ))}
               </Select>
             </FormControl>
-          </div>
+            <h3 className=" font-semibold my-2 text-gray-500">No Extra Fees :</h3>
+
+            <Link href="/dashboard/market">
+              <DarkButton className={'w-full mt-5 md:rounded'}>Exchange</DarkButton>
+            </Link>
+          
         </div>
       </TabPanel>
       {/* Buy / Sell Coin */}
