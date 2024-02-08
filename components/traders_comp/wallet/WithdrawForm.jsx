@@ -1,3 +1,4 @@
+import DarkButton from "@/components/library/buttons/DarkButton";
 import { useState } from "react";
 
 const WithdrawForm = () => {
@@ -37,13 +38,13 @@ const WithdrawForm = () => {
     <form onSubmit={handleSubmit} className="text-sm mt-5 text-white">
       <div className="flex items-center justify-between gap-4 my-5">
         <div className="w-full flex flex-col">
-          <label htmlFor="" className="font-medium ml-4">
-            Select Currency
+          <label htmlFor="" className="font-medium">
+            Currency
           </label>
           <select
             name="currency"
             id=""
-            className="w-full border focus:border-primary text-xs  mt-1 px-4 py-2 rounded-xl outline-none"
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs  mt-2 px-4 py-2 rounded-xl outline-none"
           >
             <option value="" disabled selected>
               select currency
@@ -54,26 +55,25 @@ const WithdrawForm = () => {
           </select>
         </div>
         <div className="w-full flex flex-col">
-          <label htmlFor="" className="font-medium ml-4">
-            Withdraw Amount
+          <label htmlFor="" className="font-medium">
+            Amount
           </label>
           <input
-            className="w-full border focus:border-primary text-xs  mt-1 px-4 py-2 rounded-xl outline-none"
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs  mt-2 px-4 py-2 rounded-xl outline-none"
             type="text"
-            name="withdrawAmount"
+            name="amount"
             id=""
-            placeholder="withdraw amount"
+            placeholder="amount"
           />
         </div>
       </div>
       <div className="flex items-center justify-between gap-4 my-5">
         <div className="w-full flex flex-col">
-          <label htmlFor="" className="font-medium ml-4">
+          <label htmlFor="" className="font-medium">
             Bank Account Number
           </label>
           <input
-            onChange={(e) => setAmount(e.target.value)}
-            className="w-full border focus:border-primary text-xs mt-1 px-4 py-2 rounded-xl outline-none"
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs  mt-2 px-4 py-2 rounded-xl outline-none"
             type="text"
             name="accountNumber"
             id=""
@@ -81,12 +81,11 @@ const WithdrawForm = () => {
           />
         </div>
         <div className="w-full flex flex-col">
-          <label htmlFor="" className="font-medium ml-4">
+          <label htmlFor="" className="font-medium">
             Routing Number
           </label>
           <input
-            onChange={(e) => setAmount(e.target.value)}
-            className="w-full border focus:border-primary text-xs mt-1 px-4 py-2 rounded-xl outline-none"
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs  mt-2 px-4 py-2 rounded-xl outline-none"
             type="text"
             name="routingNumber"
             id=""
@@ -95,12 +94,9 @@ const WithdrawForm = () => {
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="btn btn-sm h-10 w-full bg-primary/90 focus:bg-primary text-white border-none rounded-xl py-[6px] text-base"
-      >
+      <DarkButton type="submit" className="w-full">
         Withdraw
-      </button>
+      </DarkButton>
     </form>
   );
 };

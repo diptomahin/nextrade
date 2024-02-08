@@ -90,69 +90,43 @@ const Wallet = () => {
   }
 
   return (
-    <div className="flex flex-col xl:flex-row justify-between gap-5 w-full font-mont">
+    <div className="flex flex-col xl:flex-row justify-between gap-5 w-full">
       <div className="xl:w-9/12 flex flex-col gap-5">
-        <div className="p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
-          <div className="flex flex-col-reverse xl:flex-row justify-between gap-6">
-            <div>
-              <h1 className="text-xl font-bold">Wallet</h1>
-              <p className="text-sm opacity-70">Updated on {date}</p>
-            </div>
-            <div className="flex items-center gap-5">
-              <DashButton>
-                <BorderColorIcon className="w-5 h-5" /> Edit
-              </DashButton>
-              <DashButton>
-                <AddIcon /> Add New Wallet
-              </DashButton>
-            </div>
+        <div>
+          <h1 className="text-xl font-bold">Wallet</h1>
+          <p className="text-sm opacity-70">Updated on {date}</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
+          {/* total balance */}
+          <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">
+            <h3 className="opacity-70 flex items-center gap-2">
+              <CardTravelOutlinedIcon /> Wallet Balance
+            </h3>
+            <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium">
+              $ {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0}
+            </h3>
           </div>
-          <div className="flex flex-col xl:flex-row justify-between gap-6 mt-10">
-            <div className="flex items-center gap-3 md:gap-10">
-              {!hidePrice && (
-                <div>
-                  <p className="text-sm pb-2 opacity-70 flex items-center gap-3">
-                    <CardTravelOutlinedIcon className="w-5 h-5" /> Wallet
-                    Balance
-                  </p>
-                  <h1 className="text-xl font-semibold">
-                    $
-                    {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0}
-                  </h1>
-                </div>
-              )}
-              <button
-                onClick={() => setHidePrice(!hidePrice)}
-                className="button-sm text-xs flex items-center gap-1 bg-black/5 px-2 py-1 rounded-full"
-              >
-                {hidePrice ? (
-                  <span>
-                    Show Price <VisibilityOutlined className=" w-4 h-4" />
-                  </span>
-                ) : (
-                  <span>
-                    Hide Price{" "}
-                    <VisibilityOffOutlinedIcon className=" w-4 h-4" />
-                  </span>
-                )}
-              </button>
-            </div>
-            <div className="bg-black/5 rounded-md p-3">
-              <h6>
-                <AddCardOutlinedIcon /> Total Deposited{" "}
-                <span className="font-semibold ml-5">
-                  <FileDownloadOutlinedIcon className=" text-green-600" />$
-                  {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0}
-                </span>
-              </h6>
 
-              <h6 className="mt-4">
-                <AvTimerOutlinedIcon /> Total Withdrawals{" "}
-                <span className="font-semibold ml-10">
-                  <FileUploadOutlinedIcon className=" text-red-600" /> $0
-                </span>
-              </h6>
-            </div>
+          {/* total deposit */}
+          <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">
+            <h3 className="opacity-70 flex items-center gap-2">
+              <AddCardOutlinedIcon /> Total Deposited{" "}
+            </h3>
+            <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium flex items-center gap-2">
+              <FileDownloadOutlinedIcon className=" text-green-500" />${" "}
+              {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0}
+            </h3>
+          </div>
+
+          {/* total withdraw */}
+          <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">
+            <h3 className="opacity-70 flex items-center gap-2">
+              <AvTimerOutlinedIcon /> Total Withdrawals
+            </h3>
+
+            <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium flex items-center gap-2">
+              <FileUploadOutlinedIcon className=" text-red-600" /> $ 0
+            </h3>
           </div>
         </div>
 
@@ -164,7 +138,7 @@ const Wallet = () => {
       <div className="xl:w-5/12 2xl:w-4/12">
         <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
           <Tabs>
-            <TabList className="flex items-center justify-center gap-10 font-medium ">
+            <TabList className=" flex items-center justify-center gap-10 font-medium">
               <Tab className="font-semibold border-none outline-none cursor-pointer">
                 Deposit
               </Tab>
@@ -212,7 +186,7 @@ const Wallet = () => {
               <Tooltip />
               <Legend />
               <Bar dataKey="amount" fill="#82ca9d" />
-              <Bar dataKey="Withdraw" fill="#FF0000" />
+              <Bar dataKey="Withdraw" fill="#dc2626" />
             </BarChart>
           </ResponsiveContainer>
         </div>

@@ -1,4 +1,5 @@
 "use client";
+import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
@@ -111,29 +112,39 @@ const DepositForm = ({ refetch }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="mt-5 text-white">
-      {/* <label htmlFor="" className="font-semibold ml-4">
-          Select Currency
-        </label>
-        <input
-          onChange={(e) => setAmount(e.target.value)}
-          className="w-full border-2 mt-3 mb-6 px-4 py-2 rounded-full"
-          type="text"
-          name=""
-          id=""
-          placeholder="currency"
-        /> */}
-      <label htmlFor="" className="font-semibold ml-4">
-        Amount
-      </label>
-      <input
-        onChange={(e) => setAmount(e.target.value)}
-        className="w-full border-2 mt-3 mb-8 px-4 py-2 rounded-xl"
-        type="text"
-        name="amount"
-        id=""
-        placeholder="amount"
-      />
+    <form onSubmit={handleSubmit} className="text-sm mt-5 text-white">
+      <div className="flex items-center justify-between gap-4 my-5">
+        <div className="w-full flex flex-col">
+          <label htmlFor="" className="font-medium">
+            Currency
+          </label>
+          <select
+            name="currency"
+            id=""
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs  mt-2 px-4 py-2 rounded-xl outline-none"
+          >
+            <option value="" disabled selected>
+              select currency
+            </option>
+            <option value="USD">USD</option>
+            <option value="BDT">BDT</option>
+            <option value="INR">INR</option>
+          </select>
+        </div>
+        <div className="w-full flex flex-col">
+          <label htmlFor="" className="font-medium">
+            Amount
+          </label>
+          <input
+            onChange={(e) => setAmount(e.target.value)}
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs  mt-2 px-4 py-2 rounded-xl outline-none"
+            type="text"
+            name="amount"
+            id=""
+            placeholder="amount"
+          />
+        </div>
+      </div>
       <CardElement
         options={{
           style: {
@@ -151,13 +162,13 @@ const DepositForm = ({ refetch }) => {
         }}
       />
       <div className="relative mt-4 text-red-600">{paymentError}</div>
-      <button
-        className="btn btn-sm h-10 w-full bg-primary/90 hover:bg-primary text-white border-none rounded-xl py-[6px] text-base mt-5"
+      <DarkButton
+        className="w-full mt-5"
         type="submit"
         disabled={!stripe || !elements}
       >
         Deposit
-      </button>
+      </DarkButton>
     </form>
   );
 };
