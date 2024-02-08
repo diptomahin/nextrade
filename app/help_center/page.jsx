@@ -12,234 +12,171 @@ import ApiOutlinedIcon from "@mui/icons-material/ApiOutlined";
 import Typography from "@mui/material/Typography";
 import Button from "@/components/library/buttons/root_button/RootButton";
 import Container from "@/components/library/Container";
-
+import { motion } from "framer-motion";
+import { fadeIn } from "../../components/utils/variants";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import HelpCenterCard from "@/components/library/HelpCenterCard";
+import Title from "@/components/library/Title";
 
 const page = () => {
   return (
-    <Container className="pt-24 pb-10 bg-slate-200">
-      <Typography
-        variant="h2"
-        mt={5}
-        mb={3}
-        fontWeight="bold"
-        className="text-primary"
-        sx={{ textAlign: "center", fontSize: ["28px", "28px", "52px"] }}
-      >
-        Welcome to our <br /> Help Center
-      </Typography>
+    <Container className="py-20 overflow-hidden">
+      <Title>Welcome to our Help Center</Title>
       <Typography
         variant="h6"
         gutterBottom
         maxWidth={700}
         marginX="auto"
         sx={{ textAlign: "center", fontSize: ["16px", "20px", "24px"] }}
+      ></Typography>
+      <motion.p
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="text-center text-darkGray font-medium"
       >
-        Welcome to our help center! Need assistance? <br /> We&apos;re here for
-        you. Explore our resources or contact our support team. Your
-        satisfaction is our priority!
-      </Typography>
+        Welcome to our help center! Need assistance? We&apos;re here for you.
+        Explore our resources or contact our support team. Your satisfaction is
+        our priority!
+      </motion.p>
       <div>
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto 2xl:mx-24 justify-center item-center mt-10">
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
           {/* card 1  */}
-          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
-            <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-              <NotStartedOutlinedIcon className="text-xl text-primary " />
+
+          <motion.Card
+            variants={fadeIn("right", 0.1)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.1 }}
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          >
+            <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+              <NotStartedOutlinedIcon className="w-14 h-14 text-primary" />
+              <h3 className="text-lg font-semibold">Getting started</h3>
             </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Getting started
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="text-gray-500"
-              >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Accusantium tempore ex commodi eligendi expedita soluta rerum
-                doloribus minus adipisci.
-              </Typography>
-              <div className="pt-5">
-                <Button>Browse questions</Button>
-              </div>
-            </CardContent>
-          </Card>
-          {/* card 2  */}
-          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
-            <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-              <VerifiedUserOutlinedIcon className="text-xl text-primary " />
+            <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Accusantium tempore ex commodi eligendi expedita soluta rerum
+              doloribus minus adipisci.
+            </p>
+          </motion.Card>
+
+          {/* card tow */}
+          <motion.Card
+            variants={fadeIn("down", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.1 }}
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          >
+            <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+              <VerifiedUserOutlinedIcon className="w-14 h-14 text-primary" />
+              <h3 className="text-lg font-semibold"> Authentication</h3>
             </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Authentication
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="text-gray-500"
-              >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Accusantium tempore ex commodi eligendi expedita soluta rerum
-                doloribus minus adipisci.
-              </Typography>
-              <div className="pt-5">
-                <Button>Browse questions</Button>
-              </div>
-            </CardContent>
-          </Card>
-          {/* cart 3  */}
-          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
-            <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-              <PriceChangeOutlinedIcon className="text-xl text-primary " />
+            <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Accusantium tempore ex commodi eligendi expedita soluta rerum
+              doloribus minus adipisci.
+            </p>
+          </motion.Card>
+
+          {/* card three */}
+          <motion.Card
+            variants={fadeIn("left", 0.3)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.1 }}
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          >
+            <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+              <PriceChangeOutlinedIcon className="w-14 h-14 text-primary" />
+              <h3 className="text-lg font-semibold">Limits & pricing</h3>
             </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Limits & pricing
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="text-gray-500"
-              >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Accusantium tempore ex commodi eligendi expedita soluta rerum
-                doloribus minus adipisci.
-              </Typography>
-              <div className="pt-5">
-                <Button>Browse questions</Button>
-              </div>
-            </CardContent>
-          </Card>
-          {/* cart 4  */}
-          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
-            <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-              <ConstructionOutlinedIcon className="text-xl text-primary " />
+            <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Accusantium tempore ex commodi eligendi expedita soluta rerum
+              doloribus minus adipisci.
+            </p>
+          </motion.Card>
+
+          {/* card four */}
+          <motion.Card
+            variants={fadeIn("right", 0.4)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.1 }}
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          >
+            <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+              <ConstructionOutlinedIcon className="w-14 h-14 text-primary" />
+              <h3 className="text-lg font-semibold"> Advanced settings</h3>
             </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Advanced settings
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="text-gray-500"
-              >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Accusantium tempore ex commodi eligendi expedita soluta rerum
-                doloribus minus adipisci.
-              </Typography>
-              <div className="pt-5">
-                <Button>Browse questions</Button>
-              </div>
-            </CardContent>
-          </Card>
-          {/* cart 5  */}
-          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
-            <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-              <WebhookOutlinedIcon className="text-xl text-primary " />
+            <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Accusantium tempore ex commodi eligendi expedita soluta rerum
+              doloribus minus adipisci.
+            </p>
+          </motion.Card>
+
+          {/* card five */}
+          <motion.Card
+            variants={fadeIn("up", 0.5)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.1 }}
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          >
+            <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+              <WebhookOutlinedIcon className="w-14 h-14 text-primary" />
+              <h3 className="text-lg font-semibold"> API endpoints</h3>
             </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                API endpoints
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="text-gray-500"
-              >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Accusantium tempore ex commodi eligendi expedita soluta rerum
-                doloribus minus adipisci.
-              </Typography>
-              <div className="pt-5">
-                <Button>Browse questions</Button>
-              </div>
-            </CardContent>
-          </Card>
-          {/* cart 6  */}
-          <Card className="p-5 bg-white rounded-2xl border border-slate-200">
-            <div className=" bg-blue-200 text-center mx-auto rounded-xl w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">
-              <ApiOutlinedIcon className="text-xl text-primary " />
+            <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Accusantium tempore ex commodi eligendi expedita soluta rerum
+              doloribus minus adipisci.
+            </p>
+          </motion.Card>
+
+          {/* card six */}
+          <motion.Card
+            variants={fadeIn("left", 0.6)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.1 }}
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          >
+            <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
+              <ApiOutlinedIcon className="w-14 h-14 text-primary" />
+              <h3 className="text-lg font-semibold"> Enterprise features</h3>
             </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                className="font-semibold"
-              >
-                Enterprise features
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="text-gray-500"
-              >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Accusantium tempore ex commodi eligendi expedita soluta rerum
-                doloribus minus adipisci.
-              </Typography>
-              <div className="pt-5">
-                <Button>Browse questions</Button>
-              </div>
-            </CardContent>
-          </Card>
+            <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Accusantium tempore ex commodi eligendi expedita soluta rerum
+              doloribus minus adipisci.
+            </p>
+          </motion.Card>
         </div>
       </div>
       <div className="mx-auto 2xl:mx-24">
-        <Typography
-          variant="h2"
-          mt={5}
-          mb={3}
-          fontWeight="bold"
-          className="text-primary"
-          sx={{ fontSize: ["24px", "24px", "48px"] }}
-        >
-          Popular questions?
-        </Typography>
+        <Title>Popular questions?</Title>
         <div>
-          <div className="grid xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 lg:gap-6 xl:gap-10 gap-4 text-center mx-auto 2xl:mx-24 justify-center item-center mt-10">
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
             {/* card 1  */}
             <Accordion className="rounded-xl">
-              <AccordionSummary>
+              <AccordionSummary className="rounded-xl">
                 <Typography
                   gutterBottom
                   variant="h6"
                   component="div"
-                  className="font-semibold"
+                  className="font-semibold "
                 >
                   How to contact support?
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="rounded-xl">
                 <Typography
                   variant="body2"
                   color="text.secondary"

@@ -3,21 +3,15 @@
 import React from "react";
 import { useState } from "react";
 
-//image imports
-import imageBTC from "../../../assets/coinImages/bitcoin.png";
-import imageETH from "../../../assets/coinImages/ethereum.png";
-import imageLTC from "../../../assets/coinImages/ltc.png";
-import imageQTUM from "../../../assets/coinImages/QTUM.png";
-import imageDOGE from "../../../assets/coinImages/DOGE.png";
+
 // material imports
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Image from "next/image";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
+//other imports
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import DashboardButton from "@/components/library/buttons/DashButton";
@@ -76,18 +70,19 @@ const Trading = () => {
     };
   }, []);
 
-  function createData(name, key, price, icon) {
-    return { name, key, price, icon };
+  function createData(name, key, price) {
+    return { name, key, price };
   }
 
   const assets = [
-    createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice, imageBTC),
-    createData("Ethereum (ETC)", "ETHUSDT", ETHPrice, imageETH),
-    createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice, imageLTC),
-    createData("QTUM coin", "QTUMUSDT", QTUMPrice, imageQTUM),
-    createData("DOGE coin", "DOGEUSDT", DOGEPrice, imageDOGE),
+    createData("Bitcoin (BTC)", "BTCUSDT", BTCPrice),
+    createData("Ethereum (ETC)", "ETHUSDT", ETHPrice),
+    createData("LiteCoin (LTC)", "LTCUSDT", LTCPrice),
+    createData("QTUM coin", "QTUMUSDT", QTUMPrice),
+    createData("DOGE coin", "DOGEUSDT", DOGEPrice),
   ];
 
+  //handle buy coin
   const handleBuyCoin = (ast) => {
     const assetInfo = {
       assetName: ast.name,
@@ -131,6 +126,17 @@ const Trading = () => {
       });
   };
 
+  //Dropdown
+  const [coin, setCoin] = React.useState('');
+
+  const handleChange = (event) => {
+    setCoin(event.target.value);
+
+  };
+  console.log(coin)
+
+
+  //handle loading
   if (loading || isLoading || isPending) {
     return (
       <p className="h-screen flex items-center justify-center text-primary">
@@ -141,60 +147,29 @@ const Trading = () => {
 
   return (
     <div>
-      {/* Table boat  */}
+      <div className="w-1/2">
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Choose coin</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={coin}
+            label="coin"
+            onChange={handleChange}
+          >
+            {
+              assets.map(coin => <MenuItem key={coin.name} value={coin.name}>{coin.name}</MenuItem>
+              )
+            }
+          </Select>
+        </FormControl>
+      </div>
       <div>
-        <h2 className=" text-xl font-semibold mb-3">Start Trading...</h2>
-        <TableContainer
-          component={Paper}
-          sx={{
-            border: "1px solid rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead className="mx-auto">
-              <TableRow className="text-center">
-                <TableCell className="font-semibold ">Icon</TableCell>
-                <TableCell className=" font-semibold">Crypto</TableCell>
-                <TableCell className="font-semibold">Current Price</TableCell>
-                <TableCell className="font-semibold">Trade Option</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {assets.map((asset) => (
-                <TableRow
-                  key={asset.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <Image
-                      width={100}
-                      height={100}
-                      src={asset.icon}
-                      alt="coin-icon"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <p className={`text-lg`}>{asset.name}</p>
-                  </TableCell>
-                  <TableCell>
-                    <p className={`text-lg font-semibold`}>{asset.price}</p>
-                  </TableCell>
-                  <TableCell>
-                    <DashboardButton
-                      onClick={() => handleBuyCoin(asset)}
-                      className="font-semibold normal-case"
-                    >
-                      Trade
-                    </DashboardButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+
       </div>
     </div>
   );
-};
+}
+
 
 export default Trading;

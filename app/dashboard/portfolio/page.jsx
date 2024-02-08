@@ -10,21 +10,27 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
 import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAssetChart";
 import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
 import Image from "next/image";
+import BuyAndExchange from "@/components/traders_comp/portfolio/BuyAndExchange";
 
 const Portfolio = () => {
   const [currentPrices, setCurrentPrices] = useState({});
   const [buyingPriceInfo, setBuyingPriceInfo] = useState([]);
   const { user, loading } = useAuth();
-  const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(
-    `/all-users/${user.email}`,
-    ["all-users"]
-  );
+ 
+  const {
+    data: allUsers = [],
+    isPending,
+    isLoading,
+    refetch,
+  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
 
@@ -38,7 +44,21 @@ const Portfolio = () => {
       const prices = {};
       data.forEach((ticker) => {
         const symbol = ticker.s;
-        if (["BTCUSDT", "ETHUSDT", "LTCUSDT", "QTUMUSDT", "DOGEUSDT", "XRPUSDT", "BCHUSDT", "ADAUSDT", "DOTUSDT", "BNBUSDT", "MATICUSDT"].includes(symbol)) {
+        if (
+          [
+            "BTCUSDT",
+            "ETHUSDT",
+            "LTCUSDT",
+            "QTUMUSDT",
+            "DOGEUSDT",
+            "XRPUSDT",
+            "BCHUSDT",
+            "ADAUSDT",
+            "DOTUSDT",
+            "BNBUSDT",
+            "MATICUSDT",
+          ].includes(symbol)
+        ) {
           prices[symbol] = parseFloat(ticker.c).toFixed(2);
         }
       });
@@ -49,7 +69,19 @@ const Portfolio = () => {
   useEffect(() => {
     const userBTCData = allUsers.flatMap((user) => user.portfolio);
     const filteredAssets = userBTCData.filter((asset) =>
-      ["BTCUSDT", "ETHUSDT", "LTCUSDT", "QTUMUSDT", "DOGEUSDT", "XRPUSDT", "BCHUSDT", "ADAUSDT", "DOTUSDT", "BNBUSDT", "MATICUSDT"].includes(asset.assetKey)
+      [
+        "BTCUSDT",
+        "ETHUSDT",
+        "LTCUSDT",
+        "QTUMUSDT",
+        "DOGEUSDT",
+        "XRPUSDT",
+        "BCHUSDT",
+        "ADAUSDT",
+        "DOTUSDT",
+        "BNBUSDT",
+        "MATICUSDT",
+      ].includes(asset.assetKey)
     );
     if (filteredAssets.length > 0) {
       setBuyingPriceInfo(filteredAssets);
@@ -94,19 +126,21 @@ const Portfolio = () => {
 
   return (
     <div>
-      <PortfolioTopBanner
-        totalBuyingPrice={totalBuyingPrice}
-        calculateTotalProfit={calculateTotalProfit}
-        usersRemainingBalance={usersRemainingBalance}
-        calculateTotalLoss={calculateTotalLoss}
-      />
+      {/* new design */}
 
-      {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
-
-      <div className="mt-20">
-        <h2 className="text-2xl font-bold mb-2 font-sans">
-          Your Holdings . . .{" "}
-        </h2>
+      <div className=" grid grid-cols-7 my-4 gap-5">
+        {/* left side  */}
+        <div className=" col-span-5 ">
+          {/* header */}
+          <PortfolioTopBanner
+            totalBuyingPrice={totalBuyingPrice}
+            calculateTotalProfit={calculateTotalProfit}
+            usersRemainingBalance={usersRemainingBalance}
+            calculateTotalLoss={calculateTotalLoss}
+          />
+          {/* your holdings */}
+        <div className="mt-5">
+        
         {totalBuyingPrice ? (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -148,13 +182,20 @@ const Portfolio = () => {
                 {buyingPriceInfo.map((asset, index) => (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">
-                    <Image height={45} width={45} src={asset.assetImg} alt='coin logo'></Image>
+                      <Image
+                        height={45}
+                        width={45}
+                        src={asset.assetImg}
+                        alt="coin logo"
+                      ></Image>
                     </TableCell>
                     <TableCell component="th" scope="row">
                       <h2 className="font-semibold">{asset.assetName}</h2>
                     </TableCell>
                     <TableCell align="right">
-                      <h2 className="font-semibold">$ {asset.assetBuyingPrice}</h2>
+                      <h2 className="font-semibold">
+                        $ {asset.assetBuyingPrice}
+                      </h2>
                     </TableCell>
                     <TableCell align="right" className="font-semibold">
                       <span
@@ -168,7 +209,7 @@ const Portfolio = () => {
                         ${currentPrices[asset.assetKey]}
                       </span>
                       {currentPrices[asset.assetKey] >
-                        parseFloat(asset.assetBuyingPrice) ? (
+                      parseFloat(asset.assetBuyingPrice) ? (
                         <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
                       ) : (
                         <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
@@ -185,7 +226,8 @@ const Portfolio = () => {
                             : "text-red-700"
                         }`}
                       >
-                        ${calculateDifference(
+                        $
+                        {calculateDifference(
                           currentPrices[asset.assetKey] || 0,
                           parseFloat(asset.assetBuyingPrice)
                         )}
@@ -213,6 +255,23 @@ const Portfolio = () => {
           </div>
         )}
       </div>
+        </div>
+        
+        {/* Right side  */}
+        <div className=" col-span-2 ">
+          <div className="p-4  bg-white rounded-xl border">
+          {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
+          </div>
+          <div className="p-4  bg-white rounded-xl border my-5">
+          
+            <BuyAndExchange></BuyAndExchange>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
     </div>
   );
 };

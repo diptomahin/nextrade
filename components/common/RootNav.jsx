@@ -4,7 +4,6 @@ import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-White.png";
 import logo2 from "../../assets/logo/NexTrade_Favicon-White.png";
-import { IoMdArrowDropup } from "react-icons/io";
 import React from "react";
 import Container from "../library/Container";
 import Language from "../library/Language";
@@ -13,12 +12,13 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import RootNavDrawer from "./nav_comp/RootNavDrawer";
 import { RiMenu5Fill } from "react-icons/ri";
+import { PiArrowFatLinesUpFill } from "react-icons/pi";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
-  const { user, loading } = useAuth();
+  const { user, loading, logOut } = useAuth();
 
   const { data, isPending, isLoading } = useSecureFetch(
     `/all-users/${user?.email}`,
@@ -46,16 +46,7 @@ export default function RootNav() {
   }, []);
 
   if (isLoading || isPending || loading || !data) {
-    return (
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="text-5xl text-primary font-semibold">
-          Loading
-          <span className="text-secondary">
-            .<span className="text-primary">.</span>.
-          </span>
-        </div>
-      </div>
-    );
+    return;
   }
 
   return (
@@ -65,7 +56,7 @@ export default function RootNav() {
           scrolled ? "py-3 bg-darkTwo/50 backdrop-blur-sm" : "py-8"
         } z-50`}
       >
-        <Container className="bar flex items-center justify-between ">
+        <Container className="flex items-center justify-between">
           <div className="flex items-center gap-3 md:gap-6">
             <Magnetic>
               <div
@@ -73,7 +64,7 @@ export default function RootNav() {
                   setIsActive(!isActive);
                 }}
               >
-                <button className="btn btn-sm bg-transparent hover:bg-transparent w-10 h-10 rounded-full border-primary hover:border-primary text-primary p-1">
+                <button className="btn btn-sm bg-transparent hover:bg-primary/20 w-10 h-10 rounded-full border-primary hover:border-primary text-primary p-1">
                   <RiMenu5Fill className="w-full h-full " />
                 </button>
               </div>
@@ -117,10 +108,7 @@ export default function RootNav() {
               </Magnetic>
               <Magnetic>
                 <Link href="/register">
-                  <DarkButton className="py-1 px-2 text-sm md:py-[6px] md:px-4 md:text-lg rounded-md md:rounded-xl">
-                    {" "}
-                    Register
-                  </DarkButton>
+                  <DarkButton> Register</DarkButton>
                 </Link>
               </Magnetic>
             </div>
@@ -130,18 +118,25 @@ export default function RootNav() {
 
       {/* click to top button */}
       <Magnetic>
-        <button
+        <div
           onClick={handleScrollToTop}
-          className={`p-2 fixed bottom-10 right-5 md:right-10 bg-primary text-white border-none rounded-full z-[99] ${
+          className={` fixed bottom-10 right-5 md:right-10 z-[99] ${
             !scrolled && "hidden"
           }`}
         >
-          <IoMdArrowDropup className="w-7 h-7 md:w-10 md:h-10" />
-        </button>
+          <button className="btn bg-transparent hover:bg-primary/20 border-primary hover:border-primary text-primary rounded-full p-2">
+            <PiArrowFatLinesUpFill className="w-full h-full" />
+          </button>
+        </div>
       </Magnetic>
 
       {/* root drawer */}
-      <RootNavDrawer setIsActive={setIsActive} isActive={isActive} />
+      <RootNavDrawer
+        setIsActive={setIsActive}
+        isActive={isActive}
+        user={user}
+        logOut={logOut}
+      />
     </>
   );
 }
