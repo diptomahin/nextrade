@@ -7,12 +7,12 @@ import TopBanner from "./TopBanner";
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import { useState } from "react";
 import Swal from "sweetalert2";
-import usePublicAPI from "@/hooks/usePublicAPI";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 
 const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainingBalance, user , refetch}) => {
     const [quantity, setQuantity] = useState(1);
-    const publicAPI = usePublicAPI();
+    const secureAPI = useSecureAPI();
 
 
     const handleQuantityChange = (event) => {
@@ -57,10 +57,10 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
           confirmButtonText: "Yes!"
         }).then(async (result) => {
           if (result.isConfirmed) {
-            publicAPI
-              .put(`/all-users/${remainingBalance}`, assetInfo)
+            secureAPI
+              .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
               .then((res) => {
-                if (res.data.modifiedCount > 0) {
+                if (res.data.insertedId) {
                   Swal.fire({
                     title: `Coin Purchase successful!`,
                     text: `Best of luck`,
@@ -88,12 +88,13 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
         const assetInfo = {
           assetName: coinName,
           assetKey: coinKey,
+          assetType: "crypto currency",
           assetImg: coinImage,
           assetBuyerUID: user.uid,
           assetBuyerEmail: user.email,
         };
     
-        publicAPI
+        secureAPI
           .post(`/watchlist`, assetInfo)
           .then((res) => {
             if (res.data.insertedId) {
@@ -123,7 +124,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
         )}
 
         <div className="flex flex-col xl:flex-row gap-5 my-10">
-          <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded ">
+          <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
             <AdvancedRealTimeChart
               width="100%"
               height="100%"
@@ -152,7 +153,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
           </div>
           {
             coinImage ?
-              <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
+              <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
                 <div className="flex justify-between">
                   <h1 className="text-lg font-semibold">Buy {coinKey.slice(0, -4)}</h1>
                   <button onClick={() => handleCryptoWatchlist(tickerData)} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
@@ -170,7 +171,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
                 <TextField
                   required
                   fullWidth
-                  defaultValue={1}
+                  defaultValue={quantity}
                   id="outlined-number"
                   label={`Quantity (${coinKey.slice(0, -4)})`}
                   type="number"

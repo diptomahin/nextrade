@@ -18,9 +18,10 @@ const Watchlist = () => {
         ["watchlist", user.email]
     );
     // console.log(watchlistData)
-
+    const cryptoWatchlistData = watchlistData.filter(crypto => crypto.assetType === "crypto currency")
     useEffect(() => {
-        const keys = watchlistData.map(asset => {
+        
+        const cryptoKeys = cryptoWatchlistData.map(asset => {
             return asset.assetKey
         });
         const prices = {};
@@ -28,7 +29,7 @@ const Watchlist = () => {
         const priceHeigh = {};
         const priceLow = {};
     
-        keys.forEach((symbol) => {
+        cryptoKeys.forEach((symbol) => {
             const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@ticker`);
             socket.addEventListener("message", (event) => {
                 const tickerData = JSON.parse(event.data);
@@ -44,7 +45,7 @@ const Watchlist = () => {
             });
         });
     
-    }, [watchlistData]);
+    }, [watchlistData, cryptoWatchlistData]);
 
 
 

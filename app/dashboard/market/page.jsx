@@ -7,18 +7,6 @@ import { Stack } from "@mui/material";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
-
-// coin image
-import eur from "@/assets/CurrencySymbol/eur.png"
-import aed from "@/assets/CurrencySymbol/aed.png"
-import afn from "@/assets/CurrencySymbol/afn.png"
-import bdt from "@/assets/CurrencySymbol/bdt.png"
-import idr from "@/assets/CurrencySymbol/idr.png"
-import jod from "@/assets/CurrencySymbol/jod.png"
-import ars from "@/assets/CurrencySymbol/ars.png"
-import gbp from "@/assets/CurrencySymbol/gpb.png"
-import aud from "@/assets/CurrencySymbol/aud.png"
-import amd from "@/assets/CurrencySymbol/amd.png"
 import axios from "axios";
 import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrencyTable";
 
@@ -27,7 +15,6 @@ const MarketPage = () => {
 
   const [category, setCategory] = useState('Cryptos');
   const [sort, setSort] = useState('Current Price');
-  const [exchangeRate, setExchangeRate] = useState(null);
 
   // create crypto currency data
   const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
@@ -73,16 +60,16 @@ const MarketPage = () => {
 
   const createFlatCurrencyData = (name, key, price, icon) => ({ name, key, price, icon });
   const [flatCurrency, setflatCurrency] = useState([
-    createFlatCurrencyData("Euro", "EUR/USD", 0, eur),
-    createFlatCurrencyData("Dirham", "AED/USD", 0, aed),
-    createFlatCurrencyData("Afghani", "AFN/USD", 0, afn),
-    createFlatCurrencyData("Taka", "BDT/USD", 0, bdt),
-    createFlatCurrencyData("Rupiah", "IDR/USD", 0, idr),
-    createFlatCurrencyData("Jordanian", "JOD/USD", 0, jod),
-    createFlatCurrencyData("Argentine Peso", "ARS/USD", 0, ars),
-    createFlatCurrencyData("British Pound", "GBP/USD", 0, gbp),
-    createFlatCurrencyData("Aussie Dollar", "AUD/USD", 0, aud),
-    createFlatCurrencyData("Dram", "AMD/USD", 0, amd),
+    createFlatCurrencyData("Euro", "EUR/USD", 0, 'https://i.ibb.co/hFGM72Y/eur.png'),
+    createFlatCurrencyData("Dirham", "AED/USD", 0, 'https://i.ibb.co/GnGpCGY/aed.png'),
+    createFlatCurrencyData("Afghani", "AFN/USD", 0, 'https://i.ibb.co/2FgBbdJ/afn.png'),
+    createFlatCurrencyData("Taka", "BDT/USD", 0, 'https://i.ibb.co/4mqmsFd/bdt.png'),
+    createFlatCurrencyData("Rupiah", "IDR/USD", 0, 'https://i.ibb.co/x3tp4RB/idr.png'),
+    createFlatCurrencyData("Jordanian", "JOD/USD", 0, 'https://i.ibb.co/nMLxm8Q/jod.png'),
+    createFlatCurrencyData("Argentine Peso", "ARS/USD", 0, 'https://i.ibb.co/LRkfMyS/ars.png'),
+    createFlatCurrencyData("British Pound", "GBP/USD", 0, 'https://i.ibb.co/HD8TzzV/gpb.png'),
+    createFlatCurrencyData("Aussie Dollar", "AUD/USD", 0, 'https://i.ibb.co/mBQQrcw/aud.png'),
+    createFlatCurrencyData("Dram", "AMD/USD", 0, 'https://i.ibb.co/yscsgzr/amd.png'),
 
     // Add more assets similarly
   ]);

@@ -6,18 +6,6 @@ import useSecureFetch from "@/hooks/useSecureFetch";
 import CurrencyDetails from "@/components/traders_comp/market/CurrencyDetails";
 import CryptoDetails from "@/components/traders_comp/market/CryptoDetails";
 
-// coin image
-import eur from "@/assets/CurrencySymbol/eur.png"
-import aed from "@/assets/CurrencySymbol/aed.png"
-import afn from "@/assets/CurrencySymbol/afn.png"
-import bdt from "@/assets/CurrencySymbol/bdt.png"
-import idr from "@/assets/CurrencySymbol/idr.png"
-import jod from "@/assets/CurrencySymbol/jod.png"
-import ars from "@/assets/CurrencySymbol/ars.png"
-import gbp from "@/assets/CurrencySymbol/gpb.png"
-import aud from "@/assets/CurrencySymbol/aud.png"
-import amd from "@/assets/CurrencySymbol/amd.png"
-
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
@@ -28,11 +16,13 @@ const CoinDetails = ({ params }) => {
   const [currencyName, setCurrencyName] = useState("");
 
   const { user } = useAuth();
-  
+
   const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
   // console.log(usersRemainingBalance)
+
+
 
 
   // fetch real-time data for crypto currency
@@ -71,6 +61,16 @@ const CoinDetails = ({ params }) => {
       fetchCoinImage();
 
     } else {  // operations for currencies
+
+
+      fetch('/currencyInfo.json')
+        .then(res => res.json())
+        .then(data => {
+          const currencyObject = data.find(currency => currency[params.CoinDetails]);
+          setCoinImage(currencyObject[params.CoinDetails].image)
+          setCurrencyName(currencyObject[params.CoinDetails].name)
+        })
+
       const fetchCurrencyRates = async () => {
         try {
           const response = await axios.get(
@@ -84,22 +84,18 @@ const CoinDetails = ({ params }) => {
 
       fetchCurrencyRates();
 
-      fetch('/currencyname.json')
-        .then(res => res.json())
-        .then(data => setCurrencyName(data[params.CoinDetails]))
-
 
       // set coin image
 
     }
   }, [params.CoinDetails]);
 
-  
+
 
   // show currency details
   if (params.CoinDetails.length === 3) {
     return (
-      <CurrencyDetails currencyRate={currencyRate} coinKey={params.CoinDetails} currencyName={currencyName} usersRemainingBalance={usersRemainingBalance} refetch={refetch}></CurrencyDetails>
+      <CurrencyDetails currencyRate={currencyRate} coinKey={params.CoinDetails} currencyName={currencyName} coinImage={coinImage} usersRemainingBalance={usersRemainingBalance} user={user} refetch={refetch}></CurrencyDetails>
     )
   }
 
@@ -110,7 +106,7 @@ const CoinDetails = ({ params }) => {
       <div>
 
         <CryptoDetails tickerData={tickerData} coinImage={coinImage} coinName={coinName} coinKey={params.CoinDetails} usersRemainingBalance={usersRemainingBalance} user={user} refetch={refetch}></CryptoDetails>
-        
+
       </div>
     );
 
