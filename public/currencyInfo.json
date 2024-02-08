@@ -1,0 +1,62 @@
+[
+    {
+        "EUR": {
+            "name": "Euro",
+            "image": "https://i.ibb.co/hFGM72Y/eur.png"
+        }
+    },
+    {
+        "AED": {
+            "name": "Dirham",
+            "image": "https://i.ibb.co/GnGpCGY/aed.png"
+        }
+    },
+    {
+        "AFN": {
+            "name": "AFghani",
+            "image": "https://i.ibb.co/2FgBbdJ/afn.png"
+        }
+    },
+    {
+        "BDT": {
+            "name": "Taka",
+            "image": "https://i.ibb.co/4mqmsFd/bdt.png"
+        }
+    },
+    {
+        "IDR": {
+            "name": "Rupiah",
+            "image": "https://i.ibb.co/x3tp4RB/idr.png"
+        }
+    },
+    {
+        "JOD": {
+            "name": "Jordanian",
+            "image": "https://i.ibb.co/nMLxm8Q/jod.png"
+        }
+    },
+    {
+        "ARS": {
+            "name": "Argentine Peso",
+            "image": "https://i.ibb.co/LRkfMyS/ars.png"
+        }
+    },
+    {
+        "GBP": {
+            "name": "British Pound",
+            "image": "https://i.ibb.co/HD8TzzV/gpb.png"
+        }
+    },
+    {
+        "AUD": {
+            "name": "Aussie Dollar",
+            "image": "https://i.ibb.co/mBQQrcw/aud.png"
+        }
+    },
+    {
+        "AMD": {
+            "name": "Dram",
+            "image": "https://i.ibb.co/yscsgzr/amd.png"
+        }
+    }
+]

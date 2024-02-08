@@ -87,7 +87,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
       const handleCryptoWatchlist = (ast) => {
         const assetInfo = {
           assetName: coinName,
-          assetKey: coinKey,
+          assetType: "crypto currency",
           assetImg: coinImage,
           assetBuyerUID: user.uid,
           assetBuyerEmail: user.email,
@@ -170,7 +170,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
                 <TextField
                   required
                   fullWidth
-                  defaultValue={1}
+                  defaultValue={quantity}
                   id="outlined-number"
                   label={`Quantity (${coinKey.slice(0, -4)})`}
                   type="number"
