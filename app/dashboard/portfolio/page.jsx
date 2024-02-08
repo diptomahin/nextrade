@@ -139,8 +139,8 @@ const Portfolio = () => {
             calculateTotalLoss={calculateTotalLoss}
           />
           {/* coin buying list   */}
-        <div className="my-5">
-        
+        <div className="my-5 p-4  bg-white rounded-xl border">
+        <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
         {totalBuyingPrice ? (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

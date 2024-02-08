@@ -15,8 +15,9 @@ const PortfolioTopBanner = ({
   const [hideRemainingBalance, setHideRemainingBalance] = useState(false);
   return (
     <div className="p-4 xl:p-6 bg-white rounded-xl border">
-      <div className="flex flex-col-reverse xl:flex-row justify-between gap-6">
-        <h1 className="text-xl font-bold mb-4">Portfolio</h1>
+      <div className="mb-4">
+        <h1 className="text-xl font-bold ">Portfolio</h1>
+        <p className="font-semibold text-gray-500">Explore all coins purchases, compare gains and losses.</p>
       </div>
 
       <div className="  flex flex-col md:flex-row items-center bg-white  rounded-md gap-5 justify-end ">
