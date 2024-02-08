@@ -160,7 +160,11 @@ const Wallet = () => {
                 </div>
               ) : (
                 <Elements stripe={stripePromise}>
-                  <WithdrawForm refetch={refetch} date={date} />
+                  <WithdrawForm
+                    refetch={refetch}
+                    date={date}
+                    totalBalance={userBalanceDetails[0].balance}
+                  />
                 </Elements>
               )}
             </TabPanel>
