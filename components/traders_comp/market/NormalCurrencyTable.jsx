@@ -13,8 +13,8 @@ const NormalCurrencyTable = ({assets}) => {
                 <TableRow className="text-center">
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>No.</TableCell>
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>Name</TableCell>
-                  <TableCell sx={{ fontWeight: 700, color: "white" }}>Key</TableCell>
-                  <TableCell sx={{ fontWeight: 700, color: "white" }}>Current value</TableCell>
+                  <TableCell sx={{ fontWeight: 700, color: "white" }}>Code</TableCell>
+                  <TableCell sx={{ fontWeight: 700, color: "white" }}>Current Value/USD</TableCell>
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>Option</TableCell>
                 </TableRow>
               </TableHead>
@@ -40,10 +40,10 @@ const NormalCurrencyTable = ({assets}) => {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <p className={` font-semibold`}>{asset.key}</p>
+                      <p className={` font-semibold`}>{asset.key.slice(0, -4)}</p>
                     </TableCell>
                     <TableCell>
-                      <p className={` font-semibold`}>{asset.price}</p>
+                      <p className={` font-semibold`}>{asset.price}<span className="text-[8px]">  {asset.key.slice(0, -4)}</span></p>
                     </TableCell>
                     <TableCell>
                       <DashboardButton

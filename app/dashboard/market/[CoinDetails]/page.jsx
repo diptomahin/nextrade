@@ -1,33 +1,34 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
-import DashButton from "@/components/library/buttons/DashButton";
-import TopBanner from "@/components/traders_comp/market/TopBanner";
 import useAuth from "@/hooks/useAuth";
 import useSecureFetch from "@/hooks/useSecureFetch";
-import usePublicAPI from "@/hooks/usePublicAPI";
-import Swal from "sweetalert2";
-import { Divider, TextField } from "@mui/material";
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
-import Image from "next/image";
-import TopBannerNormalCurrency from "@/components/traders_comp/market/TopBannerNormalCurrency";
+import CurrencyDetails from "@/components/traders_comp/market/CurrencyDetails";
+import CryptoDetails from "@/components/traders_comp/market/CryptoDetails";
 
-// currency image
+// coin image
 import eur from "@/assets/CurrencySymbol/eur.png"
 import aed from "@/assets/CurrencySymbol/aed.png"
 import afn from "@/assets/CurrencySymbol/afn.png"
+import bdt from "@/assets/CurrencySymbol/bdt.png"
+import idr from "@/assets/CurrencySymbol/idr.png"
+import jod from "@/assets/CurrencySymbol/jod.png"
+import ars from "@/assets/CurrencySymbol/ars.png"
+import gbp from "@/assets/CurrencySymbol/gpb.png"
+import aud from "@/assets/CurrencySymbol/aud.png"
+import amd from "@/assets/CurrencySymbol/amd.png"
+
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
   const [coinImage, setCoinImage] = useState("");
   const [coinName, setCoinName] = useState("");
-  const [quantity, setQuantity] = useState(1);
+
   const [currencyRate, setCurrencyRate] = useState(null)
   const [currencyName, setCurrencyName] = useState("");
 
   const { user } = useAuth();
-  const publicAPI = usePublicAPI();
+  
   const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
@@ -37,7 +38,7 @@ const CoinDetails = ({ params }) => {
   // fetch real-time data for crypto currency
   useEffect(() => {
 
-    if (params.CoinDetails.length > 3) {
+    if (params.CoinDetails.length > 3) {  // operations for cryptos
       const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
       socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
 
@@ -69,7 +70,7 @@ const CoinDetails = ({ params }) => {
 
       fetchCoinImage();
 
-    } else {
+    } else {  // operations for currencies
       const fetchCurrencyRates = async () => {
         try {
           const response = await axios.get(
@@ -86,253 +87,37 @@ const CoinDetails = ({ params }) => {
       fetch('/currencyname.json')
         .then(res => res.json())
         .then(data => setCurrencyName(data[params.CoinDetails]))
+
+
+      // set coin image
+
     }
   }, [params.CoinDetails]);
 
+  
 
-
+  // show currency details
   if (params.CoinDetails.length === 3) {
     return (
-      <div>
-        <TopBannerNormalCurrency currencyRate={currencyRate} coinKey={params.CoinDetails} currencyName={currencyName}></TopBannerNormalCurrency>
-
-        <div className="flex flex-col gap-6 2xl:flex-row 2xl:justify-between">
-        <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 bg-white rounded ">
-          <AdvancedRealTimeChart
-            width="100%"
-            height="100%"
-            autosize
-            symbol={`${params.CoinDetails + 'USD'}`}
-            interval={20}
-            range="1M"
-            timezone="UTC"
-            theme="light"
-            style={2}
-            locale="en"
-            toolbar_bg="#f1f3f6"
-            enable_publishing={false}
-            hide_top_toolbar={false}
-            hide_legend={true}
-            withdateranges={false}
-            hide_side_toolbar={true}
-            details={false}
-            hotlist={false}
-            calendar={false}
-            studies={[]}
-            disabled_features={[]}
-            enabled_features={[]}
-            container_id="advanced-chart-widget-container"
-          />
-        </div>
-        <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
-          <div className="flex justify-between">
-            <h1 className="text-lg font-semibold">Buy {params.CoinDetails}</h1>
-            <button className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
-          </div>
-          <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
-          <div className="flex justify-between">
-            <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
-            <div className="flex gap-1 items-center">
-              {/* {coinImage && (
-                <Image src={coinImage} width={30} height={30} alt="Logo" />
-              )} */}
-              ${parseFloat(currencyRate)}
-            </div>
-          </div>
-          <TextField
-            required
-            fullWidth
-            defaultValue={1}
-            id="outlined-number"
-            label={`Quantity (${params.CoinDetails.slice(0, -4)})`}
-            type="number"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            // onChange={handleQuantityChange}
-          />
-          <DashButton className="w-full">Buy {params.CoinDetails}</DashButton>
-        </div>
-        </div>
-      </div>
+      <CurrencyDetails currencyRate={currencyRate} coinKey={params.CoinDetails} currencyName={currencyName} usersRemainingBalance={usersRemainingBalance} refetch={refetch}></CurrencyDetails>
     )
   }
 
 
-  const handleQuantityChange = (event) => {
-    const newQuantity = event.target.value;
-    setQuantity(newQuantity);
-  };
+  // show crypto details
+  if (params.CoinDetails.length > 3) {
+    return (
+      <div>
 
-  const handleBuyCoin = (ast) => {
-    const assetInfo = {
-      assetName: coinName,
-      assetKey: params.CoinDetails,
-      assetImg: coinImage,
-      assetBuyingPrice: ast.c,
-      assetQuantity: quantity,
-      assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
-    };
-
-    const totalCost = parseFloat(ast.c) * parseFloat(quantity)
-    const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
-    const remainingBalance = usersBalance - totalCost.toFixed(2);
-
-
-
-    if (usersBalance < parseFloat(ast.c)) {
-      Swal.fire({
-        title: `You Don't have enough balance!`,
-        text: `Please deposit to your account`,
-        icon: "error",
-      });
-      return;
-    }
-
-    Swal.fire({
-      title: `Are you sure to purchase ${quantity} ${coinName}?`,
-      text: `It will cost $${totalCost}`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes!"
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        publicAPI
-          .put(`/all-users/${remainingBalance}`, assetInfo)
-          .then((res) => {
-            if (res.data.modifiedCount > 0) {
-              Swal.fire({
-                title: `Coin Purchase successful!`,
-                text: `Best of luck`,
-                icon: "success",
-                timer: 1500
-              });
-              refetch();
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            Swal.fire({
-              title: `Coin Purchase failed!`,
-              text: `Please try again`,
-              icon: "error",
-            });
-          });
-      }
-    });
-
-  };
-
-  const handleAddToWatchlist = (ast) => {
-    const assetInfo = {
-      assetName: coinName,
-      assetKey: params.CoinDetails,
-      assetImg: coinImage,
-      assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
-    };
-
-    publicAPI
-      .post(`/watchlist`, assetInfo)
-      .then((res) => {
-        if (res.data.insertedId) {
-          Swal.fire({
-            title: `Successfully added to watchlist!`,
-            text: `Coin has been added to Watchlist!`,
-            icon: "success",
-          });
-          refetch();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        Swal.fire({
-          title: `failed!`,
-          text: `Please try again`,
-          icon: "error",
-        });
-      });
-  };
-
-  return (
-    <div>
-      {tickerData ? (
-        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} coinKey={params.CoinDetails} />
-      ) : (
-        <p>Loading...</p>
-      )}
-
-      <div className="flex flex-col xl:flex-row gap-5 my-10">
-        <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 bg-white rounded ">
-          <AdvancedRealTimeChart
-            width="100%"
-            height="100%"
-            autosize
-            symbol={`${params.CoinDetails}`}
-            interval={20}
-            range="1M"
-            timezone="UTC"
-            theme="light"
-            style={2}
-            locale="en"
-            toolbar_bg="#f1f3f6"
-            enable_publishing={false}
-            hide_top_toolbar={false}
-            hide_legend={true}
-            withdateranges={false}
-            hide_side_toolbar={true}
-            details={false}
-            hotlist={false}
-            calendar={false}
-            studies={[]}
-            disabled_features={[]}
-            enabled_features={[]}
-            container_id="advanced-chart-widget-container"
-          />
-        </div>
-        {
-          coinImage ?
-            <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
-              <div className="flex justify-between">
-                <h1 className="text-lg font-semibold">Buy {params.CoinDetails.slice(0, -4)}</h1>
-                <button onClick={() => handleAddToWatchlist(tickerData)} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
-              </div>
-              <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
-              <div className="flex justify-between">
-                <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
-                <div className="flex gap-1 items-center">
-                  {coinImage && (
-                    <Image src={coinImage} width={30} height={30} alt="Logo" />
-                  )}
-                  ${parseFloat(tickerData?.c).toFixed(2)}
-                </div>
-              </div>
-              <TextField
-                required
-                fullWidth
-                defaultValue={1}
-                id="outlined-number"
-                label={`Quantity (${params.CoinDetails.slice(0, -4)})`}
-                type="number"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleQuantityChange}
-              />
-              <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
-            </div>
-            :
-            <p>Loading...</p>
-        }
-
+        <CryptoDetails tickerData={tickerData} coinImage={coinImage} coinName={coinName} coinKey={params.CoinDetails} usersRemainingBalance={usersRemainingBalance} user={user} refetch={refetch}></CryptoDetails>
+        
       </div>
-    </div>
-  );
+    );
+
+  }
+
+
+
 };
 
 export default CoinDetails;
