@@ -34,8 +34,8 @@ const UserMenu = () => {
         )}
       </button>
       {isOpen && (
-        <div className="w-60 absolute top-14 right-0 bg-white rounded-xl border overflow-hidden">
-          <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
+        <div className="w-60 absolute top-14 right-0 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  overflow-hidden">
+          <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-4">
             <div className="flex flex-col items-center gap-3">
               {user?.photoURL ? (
                 <Image
@@ -52,8 +52,8 @@ const UserMenu = () => {
               )}
 
               <div className="text-center">
-                <h3 className="font-semibold">{user?.displayName}</h3>
-                <p title={user?.email} className="opacity-70">
+                <h3 className="text-sm font-semibold">{user?.displayName}</h3>
+                <p title={user?.email} className="text-sm opacity-70">
                   <small>{user?.email}</small>
                 </p>
               </div>
@@ -64,7 +64,7 @@ const UserMenu = () => {
             <Link href="/dashboard/profile" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
               >
                 {" "}
                 <FaUserCircle /> Profile
@@ -73,17 +73,17 @@ const UserMenu = () => {
             <Link href="/dashboard/settings" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
               >
                 {" "}
                 <IoMdSettings /> Settings
               </button>
             </Link>
-            <hr />
+            <hr className="border-darkThree" />
             <Link href="/">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
               >
                 {" "}
                 <GoHomeFill /> Home
@@ -94,7 +94,7 @@ const UserMenu = () => {
                 logOut();
                 setIsOpen(false);
               }}
-              className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary  rounded-full"
+              className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
             >
               {" "}
               <IoLogOut /> Logout

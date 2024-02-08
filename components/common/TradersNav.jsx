@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import UserMenu from "./nav_comp/UserMenu";
 import TradersNotification from "./nav_comp/TradersNotification";
 import Language from "@/components/library/Language";
+import { usePathname } from "next/navigation";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,7 +53,57 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const dateWithName = `${day} ${
+  month === 1
+    ? "January"
+    : month === 2
+    ? "February"
+    : month === 3
+    ? "March"
+    : month === 4
+    ? "April"
+    : month === 5
+    ? "May"
+    : month === 6
+    ? "June"
+    : month === 7
+    ? "July"
+    : month === 8
+    ? "August"
+    : month === 9
+    ? "September"
+    : month === 10
+    ? "October"
+    : month === 11
+    ? "November"
+    : "December"
+} ${year}`;
+
 const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
+  const pathname = usePathname();
+
+  const breadcrumbs = pathname.includes("/dashboard/market")
+    ? "Market"
+    : pathname.includes("/dashboard/trading")
+    ? "Trading"
+    : pathname.includes("/dashboard/portfolio")
+    ? "Portfolio"
+    : pathname.includes("/dashboard/watchlist")
+    ? "Watchlist"
+    : pathname.includes("/dashboard/academy")
+    ? "Academy"
+    : pathname.includes("/dashboard/profile")
+    ? "Profile"
+    : pathname.includes("/dashboard/wallet")
+    ? "Wallet"
+    : pathname.includes("/dashboard/settings")
+    ? "Settings"
+    : "Dashboard";
+
   return (
     <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl px-5">
       <div className="flex items-center gap-5">
@@ -70,7 +121,13 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             <MenuIcon sx={{ color: "white" }} />
           </Magnetic>
         </IconButton>
-        {/*  */}
+
+        <div>
+          <h1 className="text-lg font-semibold">{breadcrumbs}</h1>
+          <p className="text-sm opacity-70">Updated on {dateWithName}</p>
+        </div>
+
+        {/* search  */}
         <Search
           sx={{
             borderRadius: "50px",
