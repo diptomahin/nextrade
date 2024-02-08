@@ -11,12 +11,20 @@ import Swal from "sweetalert2";
 import { Divider, TextField } from "@mui/material";
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import Image from "next/image";
+import TopBannerNormalCurrency from "@/components/traders_comp/market/TopBannerNormalCurrency";
+
+// currency image
+import eur from "@/assets/CurrencySymbol/eur.png"
+import aed from "@/assets/CurrencySymbol/aed.png"
+import afn from "@/assets/CurrencySymbol/afn.png"
 
 const CoinDetails = ({ params }) => {
   const [tickerData, setTickerData] = useState(null);
   const [coinImage, setCoinImage] = useState("");
   const [coinName, setCoinName] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [currencyRate, setCurrencyRate] = useState(null)
+  const [currencyName, setCurrencyName] = useState("");
 
   const { user } = useAuth();
   const publicAPI = usePublicAPI();
@@ -60,6 +68,24 @@ const CoinDetails = ({ params }) => {
       };
 
       fetchCoinImage();
+
+    } else {
+      const fetchCurrencyRates = async () => {
+        try {
+          const response = await axios.get(
+            `https://api.exchangerate-api.com/v4/latest/${params.CoinDetails}`
+          );
+          setCurrencyRate(response.data.rates.USD);
+        } catch (error) {
+          console.error('Error fetching currency rates:', error);
+        }
+      };
+
+      fetchCurrencyRates();
+
+      fetch('/currencyname.json')
+        .then(res => res.json())
+        .then(data => setCurrencyName(data[params.CoinDetails]))
     }
   }, [params.CoinDetails]);
 
@@ -67,13 +93,16 @@ const CoinDetails = ({ params }) => {
 
   if (params.CoinDetails.length === 3) {
     return (
-      <div className="flex flex-col xl:flex-row gap-5 my-10">
+      <div>
+        <TopBannerNormalCurrency currencyRate={currencyRate} coinKey={params.CoinDetails} currencyName={currencyName}></TopBannerNormalCurrency>
+
+        <div className="flex flex-col gap-6 2xl:flex-row 2xl:justify-between">
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 bg-white rounded ">
           <AdvancedRealTimeChart
             width="100%"
             height="100%"
             autosize
-            symbol={`${params.CoinDetails}`}
+            symbol={`${params.CoinDetails + 'USD'}`}
             interval={20}
             range="1M"
             timezone="UTC"
@@ -95,42 +124,37 @@ const CoinDetails = ({ params }) => {
             container_id="advanced-chart-widget-container"
           />
         </div>
-        {/* {
-          coinImage ?
-            <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
-              <div className="flex justify-between">
-                <h1 className="text-lg font-semibold">Buy {params.CoinDetails.slice(0, -4)}</h1>
-                <button onClick={() => handleAddToWatchlist(tickerData)} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
-              </div>
-              <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
-              <div className="flex justify-between">
-                <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
-                <div className="flex gap-1 items-center">
-                  {coinImage && (
-                    <Image src={coinImage} width={30} height={30} alt="Logo" />
-                  )}
-                  ${parseFloat(tickerData?.c).toFixed(2)}
-                </div>
-              </div>
-              <TextField
-                required
-                fullWidth
-                defaultValue={1}
-                id="outlined-number"
-                label={`Quantity (${params.CoinDetails.slice(0, -4)})`}
-                type="number"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleQuantityChange}
-              />
-              <DashButton className="w-full" onClick={() => handleBuyCoin(tickerData)}>Buy {params.CoinDetails.slice(0, -4)}</DashButton>
+        <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
+          <div className="flex justify-between">
+            <h1 className="text-lg font-semibold">Buy {params.CoinDetails}</h1>
+            <button className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
+          </div>
+          <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
+          <div className="flex justify-between">
+            <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
+            <div className="flex gap-1 items-center">
+              {/* {coinImage && (
+                <Image src={coinImage} width={30} height={30} alt="Logo" />
+              )} */}
+              ${parseFloat(currencyRate)}
             </div>
-            :
-            <p>Loading...</p>
-        } */}
-
+          </div>
+          <TextField
+            required
+            fullWidth
+            defaultValue={1}
+            id="outlined-number"
+            label={`Quantity (${params.CoinDetails.slice(0, -4)})`}
+            type="number"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            // onChange={handleQuantityChange}
+          />
+          <DashButton className="w-full">Buy {params.CoinDetails}</DashButton>
+        </div>
+        </div>
       </div>
     )
   }
