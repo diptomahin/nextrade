@@ -15,7 +15,7 @@ const TradersDashboardSidebar = () => {
           <Image src={logo} width={120} alt="logo" />
         </Link>
       </Magnetic>
-      <div className="flex flex-col jus gap-2 py-3 border-t">
+      <div className="flex flex-col jus gap-2 py-3 border-t border-darkThree">
         <SideNavLinks />
       </div>
     </div>

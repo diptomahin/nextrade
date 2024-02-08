@@ -24,13 +24,17 @@ const Dashboard = ({ children }) => {
           <div className="hidden 2xl:block fixed left-2 top-2 pr-3 pb-4 h-full w-[222px] z-50 bg-darkBG">
             <TradersSideNav />
           </div>
-          <div className="block 2xl:hidden">
+          <div className="block 2xl:hidden bg-darkBG">
             <Drawer
               sx={{
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: "200px",
                   border: "none",
+                  backgroundColor: "#181e2c",
+                },
+                "@media (min-width: 1280px)": {
+                  display: "none",
                 },
               }}
               open={mobileOpen}

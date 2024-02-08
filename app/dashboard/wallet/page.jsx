@@ -9,9 +9,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import AddIcon from "@mui/icons-material/Add";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import AddCardOutlinedIcon from "@mui/icons-material/AddCardOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CardTravelOutlinedIcon from "@mui/icons-material/CardTravelOutlined";
@@ -21,9 +18,7 @@ import DepositForm from "@/components/traders_comp/wallet/DepositForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
-import { VisibilityOutlined } from "@mui/icons-material";
 import useAuth from "@/hooks/useAuth";
-import DashButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import TransactionTable from "@/components/traders_comp/wallet/TransactionTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -66,7 +61,6 @@ const date = `${day} ${
 } ${year}`;
 
 const Wallet = () => {
-  const [hidePrice, setHidePrice] = React.useState(false);
   const { user } = useAuth();
 
   const {
@@ -138,7 +132,7 @@ const Wallet = () => {
       <div className="xl:w-5/12 2xl:w-4/12">
         <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
           <Tabs>
-            <TabList className=" flex items-center justify-center gap-10 font-medium">
+            <TabList className="text-xl flex items-center justify-center gap-10 font-medium">
               <Tab className="font-semibold border-none outline-none cursor-pointer">
                 Deposit
               </Tab>
