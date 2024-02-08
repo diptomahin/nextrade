@@ -20,15 +20,17 @@ const SideWatchlist = ({ assets }) => {
     // console.log(watchlistData)
     // console.log(assets)
 
+    const cryptoWatchlistData = watchlistData.filter(crypto => crypto.assetType === "crypto currency")
     useEffect(() => {
-        const keys = watchlistData.map(asset => {
+        
+        const cryptoKeys = cryptoWatchlistData.map(asset => {
             return asset.assetKey
-        })
+        });
         const prices = {};
         const priceChange = {};
         assets.forEach((asset) => {
             const symbol = asset.key;
-            if (keys.includes(symbol)) {
+            if (cryptoKeys.includes(symbol)) {
                 prices[symbol] = parseFloat(asset.price).toFixed(2);
                 priceChange[symbol] = parseFloat(asset.changePrice).toFixed(1)
             }
@@ -36,16 +38,17 @@ const SideWatchlist = ({ assets }) => {
         setCurrentPrices(prices);
         setChangedPrices(priceChange)
 
-    }, [assets, watchlistData]);
+    }, [assets, cryptoWatchlistData]);
     //   console.log(currentPrice)
 
 
     return (
         <div className="flex-1 w-full bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
             <h1>Watchlist</h1>
+            <p>Crypto:</p>
 
             {
-                watchlistData.length > 0 ?
+                cryptoWatchlistData.length > 0 ?
                     <TableContainer
                         component={Paper}
                         sx={{
@@ -63,7 +66,7 @@ const SideWatchlist = ({ assets }) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody >
-                                    {watchlistData.map((asset, idx) => (
+                                    {cryptoWatchlistData.map((asset, idx) => (
                                         <TableRow
                                             key={asset._id}
                                             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
