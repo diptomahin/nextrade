@@ -34,33 +34,7 @@ const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
-
 const date = { day: day, month: month, year: year };
-const dateWithName = `${day} ${
-  month === 1
-    ? "January"
-    : month === 2
-    ? "February"
-    : month === 3
-    ? "March"
-    : month === 4
-    ? "April"
-    : month === 5
-    ? "May"
-    : month === 6
-    ? "June"
-    : month === 7
-    ? "July"
-    : month === 8
-    ? "August"
-    : month === 9
-    ? "September"
-    : month === 10
-    ? "October"
-    : month === 11
-    ? "November"
-    : "December"
-} ${year}`;
 
 const Wallet = () => {
   const { user } = useAuth();
@@ -88,10 +62,6 @@ const Wallet = () => {
   return (
     <div className="flex flex-col xl:flex-row justify-between gap-5 w-full">
       <div className="xl:w-9/12 flex flex-col gap-5">
-        <div>
-          <h1 className="text-xl font-bold">Wallet</h1>
-          <p className="text-sm opacity-70">Updated on {dateWithName}</p>
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
           {/* total balance */}
           <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">

@@ -12,92 +12,68 @@ const SideNavLinks = () => {
     <>
       <Link
         href="/dashboard"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <MdSpaceDashboard /> Dashboard
-        </button>
+        <MdSpaceDashboard /> Dashboard
       </Link>
       <Link
         href="/dashboard/market"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard/market" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard/market" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <SiMarketo /> Market
-        </button>
+        <SiMarketo /> Market
       </Link>
       <Link
         href="/dashboard/trading"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard/trading" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard/trading" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <SiMeilisearch />
-          Trading
-        </button>
+        <SiMeilisearch />
+        Trading
       </Link>
       <Link
         href="/dashboard/portfolio"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard/portfolio" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard/portfolio" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <FaMountain /> Portfolio
-        </button>
+        <FaMountain /> Portfolio
       </Link>
       <Link
         href="/dashboard/watchlist"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard/watchlist" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard/watchlist" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <IoListCircleSharp /> Watchlist
-        </button>
+        <IoListCircleSharp /> Watchlist
       </Link>
       <Link
         href="/dashboard/academy"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard/academy" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard/academy" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <SiKhanacademy /> Academy
-        </button>
+        <SiKhanacademy /> Academy
       </Link>
       <Link
         href="/dashboard/profile"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard/profile" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard/profile" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <FaUserCircle /> Profile
-        </button>
+        <FaUserCircle /> Profile
       </Link>
       <Link
         href="/dashboard/wallet"
-        className={`w-full font-medium hover:bg-white/10 ${
-          pathname === "/dashboard/wallet" && "bg-white/10"
-        } text-white rounded-full`}
+        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-none shadow-none rounded-xl text-primary ${
+          pathname === "/dashboard/wallet" ? "bg-white/10" : "bg-transparent"
+        }`}
       >
-        <button className="w-full flex items-center gap-2 px-4 py-2">
-          {" "}
-          <FaWallet /> Wallet
-        </button>
+        <FaWallet /> Wallet
       </Link>
     </>
   );

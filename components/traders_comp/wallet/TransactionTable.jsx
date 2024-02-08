@@ -10,7 +10,6 @@ import React from "react";
 import Paper from "@mui/material/Paper";
 
 const TransactionTable = ({ userBalanceDetails }) => {
-  console.log(userBalanceDetails);
   return (
     <div className="p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
       <div className="flex flex-col xl:flex-row justify-between pb-10 gap-6">
