@@ -24,7 +24,7 @@ const Portfolio = () => {
   const [currentPrices, setCurrentPrices] = useState({});
   const [buyingPriceInfo, setBuyingPriceInfo] = useState([]);
   const { user, loading } = useAuth();
- 
+
   const {
     data: allUsers = [],
     isPending,
@@ -125,149 +125,146 @@ const Portfolio = () => {
   }
 
   return (
-    <div>
-      {/* new design */}
-
-      <div className=" grid md:grid-cols-7 grid-cols-1 my-4 md:gap-5">
-        {/* left side  */}
-        <div className=" col-span-5 ">
-          {/* header */}
-          <PortfolioTopBanner
-            totalBuyingPrice={totalBuyingPrice}
-            calculateTotalProfit={calculateTotalProfit}
-            usersRemainingBalance={usersRemainingBalance}
-            calculateTotalLoss={calculateTotalLoss}
-          />
-          {/* coin buying list   */}
-        <div className="my-5 p-4  bg-white rounded-xl border">
-        <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
-        {totalBuyingPrice ? (
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead className="bg-primary">
-                <TableRow>
-                  <TableCell sx={{ color: "white", fontWeight: "600" }}>
-                    Coin
-                  </TableCell>
-                  <TableCell sx={{ color: "white", fontWeight: "600" }}>
-                    Company
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{ color: "white", fontWeight: "600" }}
-                  >
-                    Buying Price
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{ color: "white", fontWeight: "600" }}
-                  >
-                    Current Price
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{ color: "white", fontWeight: "600" }}
-                  >
-                    Profit / Loss
-                  </TableCell>
-                  
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {buyingPriceInfo.map((asset, index) => (
-                  <TableRow key={index}>
-                    <TableCell component="th" scope="row">
-                      <Image
-                        height={45}
-                        width={45}
-                        src={asset.assetImg}
-                        alt="coin logo"
-                      ></Image>
+    <div className=" grid md:grid-cols-7 grid-cols-1  md:gap-5">
+      {/* left side  */}
+      <div className=" col-span-5 ">
+        {/* header */}
+        <PortfolioTopBanner
+          totalBuyingPrice={totalBuyingPrice}
+          calculateTotalProfit={calculateTotalProfit}
+          usersRemainingBalance={usersRemainingBalance}
+          calculateTotalLoss={calculateTotalLoss}
+        />
+        {/* coin buying list   */}
+        <div className="my-5 p-4  rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
+          <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
+          {totalBuyingPrice ? (
+            <div className=" bg-gradient-to-bl from-darkOne to-darkTwo  ">
+              
+              <Table sx={{ minWidth: 650, }}  aria-label="simple table">
+                <TableHead>
+                  <TableRow >
+                    <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }} >
+                      Coin
                     </TableCell>
-                    <TableCell component="th" scope="row">
-                      <h2 className="font-semibold">{asset.assetName}</h2>
+                    <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}>
+                      Company
                     </TableCell>
-                    <TableCell align="right">
-                      <h2 className="font-semibold">
-                        $ {asset.assetBuyingPrice}
-                      </h2>
+                    <TableCell
+                      
+                      sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}
+                    >
+                      Buying Price
                     </TableCell>
-                    <TableCell align="right" className="font-semibold">
-                      <span
-                        className={`${
-                          currentPrices[asset.assetKey] <
-                          parseFloat(asset.assetBuyingPrice)
-                            ? "text-red-700"
-                            : "text-green-700"
-                        }`}
-                      >
-                        ${currentPrices[asset.assetKey]}
-                      </span>
-                      {currentPrices[asset.assetKey] >
-                      parseFloat(asset.assetBuyingPrice) ? (
-                        <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
-                      ) : (
-                        <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
-                      )}
+                    <TableCell
+                      
+                      sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}
+                    >
+                      Current Price
                     </TableCell>
-                    <TableCell align="right">
-                      <span
-                        className={`font-semibold ${
-                          calculateDifference(
-                            currentPrices[asset.assetKey] || 0,
+                    <TableCell
+                      
+                      sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}
+                    >
+                      Profit / Loss
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {buyingPriceInfo.map((asset, index) => (
+                    <TableRow key={index}>
+                      {/* 1st row */}
+                      <TableCell component="th" scope="row" sx={{ color: "white", borderBottom: "1px solid #2c3750" }} >
+                        <Image
+                          height={45}
+                          width={45}
+                          src={asset.assetImg}
+                          alt="coin logo"
+                        ></Image>
+                      </TableCell>
+                       {/* 2nd row */}
+                      <TableCell component="th" scope="row" sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                        <h2 className="font-medium ">{asset.assetName}</h2>
+                      </TableCell>
+                      {/* 3rd row */}
+                      <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                        <h2 className="font-medium ">
+                          $ {asset.assetBuyingPrice}
+                        </h2>
+                      </TableCell>
+                      {/* 4th row */}
+                      <TableCell  className="font-medium" sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                        <span
+                          className={`${
+                            currentPrices[asset.assetKey] <
                             parseFloat(asset.assetBuyingPrice)
-                          ) > 0
-                            ? "text-green-700"
-                            : "text-red-700"
-                        }`}
-                      >
-                        $
-                        {calculateDifference(
-                          currentPrices[asset.assetKey] || 0,
-                          parseFloat(asset.assetBuyingPrice)
-                        )}
-                        {calculateDifference(
-                          currentPrices[asset.assetKey] || 0,
-                          parseFloat(asset.assetBuyingPrice)
-                        ) > 0 ? (
+                              ? "text-red-700"
+                              : "text-green-700"
+                          }`}
+                        >
+                          ${currentPrices[asset.assetKey]}
+                        </span>
+                        {currentPrices[asset.assetKey] >
+                        parseFloat(asset.assetBuyingPrice) ? (
                           <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
                         ) : (
                           <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
                         )}
-                      </span>
-                    </TableCell>
-                    
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        ) : (
-          <div className="flex justify-center items-center h-[40vh]">
-            <h3 className="text-red-500 text-lg 2xl:text-3xl font-semibold">
-              Empty !!
-            </h3>
-          </div>
-        )}
-      </div>
+                      </TableCell >
+                      {/* 5th row */}
+                      <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                        <span
+                          className={`font-medium ${
+                            calculateDifference(
+                              currentPrices[asset.assetKey] || 0,
+                              parseFloat(asset.assetBuyingPrice)
+                            ) > 0
+                              ? "text-green-700"
+                              : "text-red-700"
+                          }`}
+                        >
+                          $
+                          {calculateDifference(
+                            currentPrices[asset.assetKey] || 0,
+                            parseFloat(asset.assetBuyingPrice)
+                          )}
+                          {calculateDifference(
+                            currentPrices[asset.assetKey] || 0,
+                            parseFloat(asset.assetBuyingPrice)
+                          ) > 0 ? (
+                            <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
+                          ) : (
+                            <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
+                          )}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            
+            </div>
+            
+          ) : (
+            <div className="flex justify-center items-center h-[40vh]">
+              <h3 className="text-red-500 text-lg 2xl:text-3xl font-semibold">
+                Empty !!
+              </h3>
+            </div>
+          )}
         </div>
-        
-        {/* Right side  */}
-        <div className=" col-span-2 ">
-          <div className="p-4  bg-white rounded-xl border ">
+      </div>
+
+      {/* Right side  */}
+      <div className=" col-span-2 ">
+        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
           {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
-          </div>
-          <div className="p-4  bg-white rounded-xl border my-5 ">
-          
-            <BuyAndExchange></BuyAndExchange>
-          </div>
+        </div>
+        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  my-5 ">
+          <BuyAndExchange></BuyAndExchange>
         </div>
       </div>
-
-      
-
-      
     </div>
   );
 };

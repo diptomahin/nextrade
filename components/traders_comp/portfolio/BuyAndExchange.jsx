@@ -81,7 +81,7 @@ const BuyAndExchange = () => {
             sx={{
               fontSize: "13px",
               fontWeight: 600,
-              color: "black",
+              color: "white",
               textTransform: "none",
              
             }}
@@ -92,7 +92,7 @@ const BuyAndExchange = () => {
             sx={{
               fontSize: "13px",
               fontWeight: 600,
-              color: "black",
+              color: "white",
               textTransform: "none",
             }}
           />
@@ -117,8 +117,8 @@ const BuyAndExchange = () => {
           {/* input field */}
           
             {/* 1st input */}
-            <FormControl sx={{ width: 1, overflow:"hidden" }}>
-              <InputLabel id="demo-multiple-name-label">Coin</InputLabel>
+            <FormControl sx={{ width: 1, overflow:"hidden",border:'1px solid white' }}>
+              <InputLabel id="demo-multiple-name-label"  style={{ color: 'white',  }}>Coin</InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
