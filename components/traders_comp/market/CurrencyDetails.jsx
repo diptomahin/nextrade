@@ -54,7 +54,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
             <TopBannerNormalCurrency currencyRate={currencyRate} coinKey={coinKey} currencyName={currencyName} coinImage={coinImage}></TopBannerNormalCurrency>
 
             <div className="flex flex-col gap-6 2xl:flex-row 2xl:justify-between">
-                <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded ">
+                <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
                     <AdvancedRealTimeChart
                         width="100%"
                         height="100%"
@@ -81,7 +81,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
                         container_id="advanced-chart-widget-container"
                     />
                 </div>
-                <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
+                <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
                     <div className="flex justify-between">
                         <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
                         <button onClick={() => handleCurrencyWatchlist()} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
