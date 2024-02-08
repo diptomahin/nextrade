@@ -3,6 +3,6 @@ const nextConfig = {}
 
 module.exports = {
   images: {
-    domains: ['assets.coingecko.com', 'lh3.googleusercontent.com'],
+    domains: ['assets.coingecko.com', 'lh3.googleusercontent.com', 'i.ibb.co'],
   },
 };
