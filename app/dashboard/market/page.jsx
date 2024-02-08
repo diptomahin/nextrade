@@ -82,7 +82,7 @@ const MarketPage = () => {
         const data = response.data.rates;
         const updatedAssets = flatCurrency.map(cur => {
           const currencyKey = cur.key.slice(0, -4)
-          console.log(currencyKey)
+          // console.log(currencyKey)
           return createFlatCurrencyData(
             cur.name,
             cur.key,
