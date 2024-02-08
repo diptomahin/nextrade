@@ -1,26 +1,23 @@
-import Image from "next/image";
 import React from "react";
-
-import notFoundPage from "../assets/404.jpg";
 import Link from "next/link";
-import Button from "@/components/library/buttons/root_button/RootButton";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 const NotFound = () => {
   return (
-    <div>
-      <Image
-        src={notFoundPage}
-        alt=""
-        className="w-[500px] h-screen mx-auto object-cover mt-10"
-      />
-      <div className=" flex items-center justify-center">
-        <Link href={"/"}>
-          {" "}
-          <Button>Go Home</Button>{" "}
-        </Link>
+    <div className="h-screen flex flex-col justify-center items-center">
+      <div className="xl:text-[400px] md:text-[300px] text-[190px] text-center font-bold relative mt-8">
+        404
       </div>
+   <h1 className="xl:text-5xl md:text-4xl text-xl mb-8 md:-mt-16 -mt-10 text-center text-white font-semibold">
+        Sorry, This Page Doesn&apos;t Exist.
+      </h1>
+      <Link href="/">
+          <DarkButton className="text-center" >BACK TO HOMEPAGE</DarkButton>
+      </Link>
     </div>
   );
 };
 
 export default NotFound;
+
+
