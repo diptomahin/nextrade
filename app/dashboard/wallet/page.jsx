@@ -34,7 +34,9 @@ const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
-const date = `${day} ${
+
+const date = { day: day, month: month, year: year };
+const dateWithName = `${day} ${
   month === 1
     ? "January"
     : month === 2
@@ -88,7 +90,7 @@ const Wallet = () => {
       <div className="xl:w-9/12 flex flex-col gap-5">
         <div>
           <h1 className="text-xl font-bold">Wallet</h1>
-          <p className="text-sm opacity-70">Updated on {date}</p>
+          <p className="text-sm opacity-70">Updated on {dateWithName}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
           {/* total balance */}
@@ -143,11 +145,13 @@ const Wallet = () => {
 
             <TabPanel>
               <Elements stripe={stripePromise}>
-                <DepositForm refetch={refetch} />
+                <DepositForm refetch={refetch} date={date} />
               </Elements>
             </TabPanel>
             <TabPanel>
-              <WithdrawForm />
+              <Elements stripe={stripePromise}>
+                <WithdrawForm refetch={refetch} date={date} />
+              </Elements>
             </TabPanel>
           </Tabs>
         </div>
