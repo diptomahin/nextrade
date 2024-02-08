@@ -9,10 +9,11 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 const MarketTable = ({assets}) => {
     return (
         <TableContainer
+            className='bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree '
             component={Paper}
           >
             <Table aria-label="simple table">
-              <TableHead className="mx-auto bg-primary">
+              <TableHead className="mx-auto ">
                 <TableRow className="text-center">
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>No.</TableCell>
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>Coin Name</TableCell>
@@ -27,12 +28,11 @@ const MarketTable = ({assets}) => {
                 {assets.map((asset, idx) => (
                   <TableRow
                     key={asset.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
-                      {idx + 1}
+                    <TableCell sx={{ borderBottom: "1px solid #2c3750" }} component="th" scope="row">
+                      <p className='text-white'>{idx + 1}</p>
                     </TableCell>
-                    <TableCell>
+                    <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                       <div className="flex items-center gap-2">
                         <Image
                           width={40}
@@ -40,23 +40,23 @@ const MarketTable = ({assets}) => {
                           src={asset.icon}
                           alt="coin-icon"
                         />
-                        <p className={`font-semibold`}>{asset.name}</p>
-                        <span className="bg-sky-100 px-1 py-[2px] rounded text-primary text-xs">{asset.key.slice(0, -4)}</span>
+                        <p className={`font-semibold text-white`}>{asset.name}</p>
+                        <span className="bg-sky-100/10 px-1 py-[2px] rounded text-primary text-xs">{asset.key.slice(0, -4)}</span>
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <p className={` font-semibold`}>$ {parseFloat(asset.price).toFixed(2)}</p>
+                    <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+                      <p className={` font-semibold text-white`}>$ {parseFloat(asset.price).toFixed(2)}</p>
                     </TableCell>
-                    <TableCell>
-                      <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-700" : asset.changePrice > 0 ? "text-green-700": ""}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon />:<TrendingUpIcon />}</p>
+                    <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+                      <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-600" : asset.changePrice > 0 ? "text-green-600": ""}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon />:<TrendingUpIcon />}</p>
                     </TableCell>
-                    <TableCell>
+                    <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                       <p className={` font-semibold text-green-700`}>$ {asset.heighPrice}</p>
                     </TableCell>
-                    <TableCell>
-                      <p className={` font-semibold text-red-700`}>$ {asset.lowPrice}</p>
+                    <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+                      <p className={` font-semibold text-red-600`}>$ {asset.lowPrice}</p>
                     </TableCell>
-                    <TableCell>
+                    <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                       <DashboardButton
                         className="font-semibold normal-case"
                       >

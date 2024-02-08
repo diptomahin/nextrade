@@ -123,7 +123,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
         )}
 
         <div className="flex flex-col xl:flex-row gap-5 my-10">
-          <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 bg-white rounded ">
+          <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded ">
             <AdvancedRealTimeChart
               width="100%"
               height="100%"
@@ -132,7 +132,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
               interval={20}
               range="1M"
               timezone="UTC"
-              theme="light"
+              theme="dark"
               style={2}
               locale="en"
               toolbar_bg="#f1f3f6"
@@ -152,7 +152,7 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
           </div>
           {
             coinImage ?
-              <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
+              <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
                 <div className="flex justify-between">
                   <h1 className="text-lg font-semibold">Buy {coinKey.slice(0, -4)}</h1>
                   <button onClick={() => handleCryptoWatchlist(tickerData)} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>

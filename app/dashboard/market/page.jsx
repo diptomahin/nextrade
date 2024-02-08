@@ -120,30 +120,30 @@ const MarketPage = () => {
   return (
     <div>
       {/* Table boat  */}
-      <div className="bg-white p-4 rounded-xl">
+      <div className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  p-4 rounded-xl">
         <h2 className=" text-2xl font-semibold mb-3">Market Coins</h2>
         <p>Choose from a wide range of trade options with hundreds of different instruments available.</p>
         <MarketHeadLine assets={assets}></MarketHeadLine>
       </div>
 
-      <div className="bg-white p-2 my-4 max-w-min rounded">
+      <div className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  p-2 my-4 max-w-min rounded">
         <Stack flexDirection="row" gap={2}>
-          <FormControl sx={{ width: 200 }}>
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={category}
-              label="Category"
-              onChange={(event) => { setCategory(event.target.value) }}
-            >
-              <MenuItem value={"Cryptos"} >Cryptos</MenuItem>
-              <MenuItem value={"Currency"} >Currency</MenuItem>
-              <MenuItem value={"Stocks"} >Stocks</MenuItem>
-            </Select>
+          <FormControl sx={{ width: 200, backgroundColor: 'transparent' }}>
+            <InputLabel id="demo-simple-select-label"><p className="text-primary">Category</p></InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                label="Category"
+                onChange={(event) => { setCategory(event.target.value) }}
+              >
+                <MenuItem value={"Cryptos"}><p className="text-primary">Cryptos</p></MenuItem>
+                <MenuItem value={"Currency"}><p className="text-primary">Currency</p></MenuItem>
+                <MenuItem value={"Stocks"}><p className="text-primary">Stocks</p></MenuItem>
+              </Select>
           </FormControl>
           <FormControl sx={{ width: 200 }}>
-            <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+            <InputLabel id="demo-simple-select-label"><p className="text-primary">Sort by</p></InputLabel>
             <Select
               labelId="demo-simple-select"
               id="demo-simple"
@@ -151,31 +151,31 @@ const MarketPage = () => {
               label="Sort by"
               onChange={(event) => { setSort(event.target.value) }}
             >
-              <MenuItem value={"Current Price"} >Current Price</MenuItem>
-              <MenuItem value={"24h Heigh Price"} >24h Heigh Price</MenuItem>
-              <MenuItem value={"24h Low Price"} >24h Low Price</MenuItem>
+              <MenuItem value={"Current Price"} ><p className="text-primary">Current Price</p></MenuItem>
+              <MenuItem value={"24h Heigh Price"} ><p className="text-primary">24h Heigh Price</p></MenuItem>
+              <MenuItem value={"24h Low Price"} ><p className="text-primary">24h Low Price</p></MenuItem>
             </Select>
           </FormControl>
         </Stack>
       </div>
 
       <div className="flex flex-col xl:flex-row gap-5">
-        <div className="w-full p-3 bg-white rounded xl:w-3/4">
+        <div className="w-full p-3 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  rounded xl:w-3/4">
           {
             category === "Cryptos" ?
               <MarketTable assets={assets}></MarketTable>
               :
               category === "Currency"
-            ?
-            <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
-            :
-          <div>
-            <h1>This is Under Development</h1>
-          </div>
+                ?
+                <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+                :
+                <div>
+                  <h1>This is Under Development</h1>
+                </div>
           }
 
         </div>
-        <div className="max-h-min">
+        <div className="max-h-min flex-1">
           <SideWatchlist assets={assets}></SideWatchlist>
         </div>
       </div>
