@@ -73,22 +73,24 @@ const BuyAndExchange = () => {
         <TabList
           onChange={(event, newValue) => setTabValue(newValue)}
           aria-label="lab API tabs example"
+          className="mx-auto"
         >
           <Tab
             label="Exchange Coin"
             value="1"
             sx={{
-              fontSize: "16px",
+              fontSize: "13px",
               fontWeight: 600,
               color: "black",
               textTransform: "none",
+             
             }}
           />
           <Tab
             label="Buy / Sell Coin"
             value="2"
             sx={{
-              fontSize: "16px",
+              fontSize: "13px",
               fontWeight: 600,
               color: "black",
               textTransform: "none",
@@ -97,17 +99,17 @@ const BuyAndExchange = () => {
         </TabList>
       </Box>
       {/* Exchange Coin */}
-      <TabPanel value="1" sx={{ padding: 0 }}>
+      <TabPanel value="1" sx={{ padding: 0, overflow:"hidden" }}>
         <div>
-          <div className=" font-semibold flex items-center justify-between gap-4 my-4 px-3">
+          <div className=" font-semibold xl:flex items-center justify-between gap-4 my-4 px-3 ">
             <h2>
-              <WalletIcon /> <span>$ 40,000</span>{" "}
+              <WalletIcon /> <span >$ 40,000</span>{" "}
             </h2>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 xl:mt-0 mt-2">
               <Image
                 src={bitLogo}
                 alt="bitCoin"
-                className="rounded-full w-8 h-8 "
+                className="rounded-full xl:w-8 w-5 xl:h-8 h-5 "
               />{" "}
               <span>$ 70,000</span>
             </div>
@@ -115,7 +117,7 @@ const BuyAndExchange = () => {
           {/* input field */}
           
             {/* 1st input */}
-            <FormControl sx={{ width: 1 }}>
+            <FormControl sx={{ width: 1, overflow:"hidden" }}>
               <InputLabel id="demo-multiple-name-label">Coin</InputLabel>
               <Select
                 labelId="demo-multiple-name-label"

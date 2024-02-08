@@ -128,7 +128,7 @@ const Portfolio = () => {
     <div>
       {/* new design */}
 
-      <div className=" grid grid-cols-7 my-4 gap-5">
+      <div className=" grid md:grid-cols-7 grid-cols-1 my-4 md:gap-5">
         {/* left side  */}
         <div className=" col-span-5 ">
           {/* header */}
@@ -138,8 +138,8 @@ const Portfolio = () => {
             usersRemainingBalance={usersRemainingBalance}
             calculateTotalLoss={calculateTotalLoss}
           />
-          {/* your holdings */}
-        <div className="mt-5">
+          {/* coin buying list   */}
+        <div className="my-5">
         
         {totalBuyingPrice ? (
           <TableContainer component={Paper}>
@@ -170,12 +170,7 @@ const Portfolio = () => {
                   >
                     Profit / Loss
                   </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{ color: "white", fontWeight: "600" }}
-                  >
-                    -
-                  </TableCell>
+                  
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -241,7 +236,7 @@ const Portfolio = () => {
                         )}
                       </span>
                     </TableCell>
-                    <TableCell align="right">----</TableCell>
+                    
                   </TableRow>
                 ))}
               </TableBody>
@@ -259,10 +254,11 @@ const Portfolio = () => {
         
         {/* Right side  */}
         <div className=" col-span-2 ">
-          <div className="p-4  bg-white rounded-xl border">
+          <div className="p-4  bg-white rounded-xl border ">
+          <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
           {totalBuyingPrice && <PortfolioAssetChart allUsers={allUsers} />}
           </div>
-          <div className="p-4  bg-white rounded-xl border my-5">
+          <div className="p-4  bg-white rounded-xl border my-5 ">
           
             <BuyAndExchange></BuyAndExchange>
           </div>
