@@ -7,18 +7,6 @@ import { Stack } from "@mui/material";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
-
-// coin image
-import eur from "@/assets/CurrencySymbol/eur.png"
-import aed from "@/assets/CurrencySymbol/aed.png"
-import afn from "@/assets/CurrencySymbol/afn.png"
-import bdt from "@/assets/CurrencySymbol/bdt.png"
-import idr from "@/assets/CurrencySymbol/idr.png"
-import jod from "@/assets/CurrencySymbol/jod.png"
-import ars from "@/assets/CurrencySymbol/ars.png"
-import gbp from "@/assets/CurrencySymbol/gpb.png"
-import aud from "@/assets/CurrencySymbol/aud.png"
-import amd from "@/assets/CurrencySymbol/amd.png"
 import axios from "axios";
 import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrencyTable";
 
