@@ -10,14 +10,14 @@ const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
   return (
     <div>
       <h1 className="text-xl font-semibold">Market Stats</h1>
-      <div className="  flex flex-col md:flex-row xl:items-center xl:justify-between gap-6 xl:gap-0 bg-white p-4 rounded-md my-6">
+      <div className="  flex flex-col md:flex-row xl:items-center xl:justify-between gap-6 xl:gap-0 p-4 rounded-md my-6">
         <div className="flex-1 flex items-center gap-2 md:gap-5">
           {coinImage && (
             <Image src={coinImage} width={50} height={50} alt="BTC/USDT Logo" />
           )}
           <div className="flex gap-5 items-center">
-            <h3 className="text-lg font-semibold">{coinName}  <span className="bg-sky-100 px-1 py-[2px] rounded text-primary text-xs">{coinKey.slice(0, -4)}</span></h3>
-            <div className="rounded p-1 bg-sky-100">
+            <h3 className="text-lg font-semibold">{coinName}  <span className="bg-sky-100/15 px-1 py-[2px] rounded text-primary text-xs">{coinKey.slice(0, -4)}</span></h3>
+            <div className="rounded p-1 bg-sky-100/15">
               <StarIcon className="text-primary " />
             </div>
           </div>
@@ -34,12 +34,12 @@ const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
               </span>
             </p>
             <div>
-              <p className="text-xs md:text-base text-zinc-600">{coinName} price(USD)</p>
+              <p className="text-xs md:text-base">{coinName} price(USD)</p>
             </div>
           </div>
           <div className="flex justify-between">
             <p><ImportExportIcon />  High / Low price</p>
-            <p className="px-2 py-1 rounded bg-sky-100">24h</p>
+            <p className="px-2 py-1 rounded bg-sky-100/15">24h</p>
           </div>
           <Divider sx={{ border: "1px solid #40a0ff", borderRadius: "5px" }}></Divider>
           <div className="flex justify-between">

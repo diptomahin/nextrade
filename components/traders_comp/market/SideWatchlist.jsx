@@ -41,7 +41,7 @@ const SideWatchlist = ({ assets }) => {
 
 
     return (
-        <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
+        <div className="flex-1 w-full bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
             <h1>Watchlist</h1>
 
             {
@@ -51,10 +51,11 @@ const SideWatchlist = ({ assets }) => {
                         sx={{
                             border: "1px solid rgba(0, 0, 0, 0.1)",
                         }}
+                        className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree"
                     >
                         <Link href="/dashboard/watchlist">
                             <Table aria-label="simple table">
-                                <TableHead className="mx-auto bg-primary">
+                                <TableHead className="mx-auto">
                                     <TableRow className="text-center">
                                         <TableCell sx={{ fontWeight: 700, color: "white" }}>Coin Name</TableCell>
                                         <TableCell sx={{ fontWeight: 700, color: "white" }}>Price</TableCell>
@@ -75,14 +76,14 @@ const SideWatchlist = ({ assets }) => {
                                                         src={asset.assetImg}
                                                         alt="coin-icon"
                                                     />
-                                                    <p className={`font-semibold text-xs`}>{asset.assetName}</p>
+                                                    <p className={`text-xs text-white`}>{asset.assetName}</p>
                                                 </div>
                                             </TableCell>
                                             <TableCell>
-                                                <p className={` font-semibold text-xs`}>${currentPrice[asset.assetKey]}</p>
+                                                <p className={` text-xs text-white`}>${currentPrice[asset.assetKey]}</p>
                                             </TableCell>
                                             <TableCell>
-                                                <p className={` font-semibold text-xs ${changedPrice[asset.assetKey] < 0 ? "text-red-700" : "text-green-700"}`}>{changedPrice[asset.assetKey]}%</p>
+                                                <p className={`text-xs ${changedPrice[asset.assetKey] < 0 ? "text-red-600" : "text-green-600"}`}>{changedPrice[asset.assetKey]}%</p>
                                             </TableCell>
                                         </TableRow>
                                     ))}

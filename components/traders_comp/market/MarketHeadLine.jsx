@@ -10,7 +10,7 @@ const MarketHeadLine = ({assets}) => {
         <Stack mt={4}>
           <Marquee direction='right'>
             {assets.map((asset) => (
-              <Stack className="bg-sky-100 rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
+              <Stack className="bg-darkThree rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
                 <Stack>
                   <Stack flexDirection="row" gap={1} alignItems="center">
                     <Image width={45} height={45} src={asset.icon} alt='coin lgog'></Image>
@@ -18,12 +18,12 @@ const MarketHeadLine = ({assets}) => {
                   </Stack>
                   <Stack flexDirection="row" gap={2}>
                   <p>${asset.price}</p>
-                  <p className={` ${asset.changePrice < 0 ? "text-red-700" : "text-green-700"}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon />:<TrendingUpIcon />}</p>
+                  <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-500" : "text-green-700"}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon />:<TrendingUpIcon />}</p>
                   </Stack>
                 </Stack>
                 <Stack>
-                  <p>Heigh Price: <span className="text-green-700">${asset.heighPrice}</span></p>
-                  <p>Low Price: <span className="text-red-700">${asset.lowPrice}</span></p>
+                  <p>Heigh Price: <span className="text-green-700 font-semibold">${asset.heighPrice}</span></p>
+                  <p>Low Price: <span className="text-red-500 font-semibold">${asset.lowPrice}</span></p>
                 </Stack>
               </Stack>
             ))}

@@ -11,7 +11,7 @@ const CurrencyDetails = ({currencyRate, coinKey, currencyName, usersRemainingBal
             <TopBannerNormalCurrency currencyRate={currencyRate} coinKey={coinKey} currencyName={currencyName}></TopBannerNormalCurrency>
 
             <div className="flex flex-col gap-6 2xl:flex-row 2xl:justify-between">
-                <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 bg-white rounded ">
+                <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded ">
                     <AdvancedRealTimeChart
                         width="100%"
                         height="100%"
@@ -20,7 +20,7 @@ const CurrencyDetails = ({currencyRate, coinKey, currencyName, usersRemainingBal
                         interval={20}
                         range="1M"
                         timezone="UTC"
-                        theme="light"
+                        theme="dark"
                         style={2}
                         locale="en"
                         toolbar_bg="#f1f3f6"
@@ -38,7 +38,7 @@ const CurrencyDetails = ({currencyRate, coinKey, currencyName, usersRemainingBal
                         container_id="advanced-chart-widget-container"
                     />
                 </div>
-                <div className="flex-1 bg-white rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
+                <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max">
                     <div className="flex justify-between">
                         <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
                         <button className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
