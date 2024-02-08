@@ -1,4 +1,3 @@
-"use client";
 import {
   Table,
   TableBody,
@@ -11,8 +10,9 @@ import React from "react";
 import Paper from "@mui/material/Paper";
 
 const TransactionTable = ({ userBalanceDetails }) => {
+  console.log(userBalanceDetails);
   return (
-    <div className="p-4 xl:p-6 bg-white rounded-xl">
+    <div className="p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
       <div className="flex flex-col xl:flex-row justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
       </div>
@@ -21,37 +21,67 @@ const TransactionTable = ({ userBalanceDetails }) => {
       <TableContainer
         component={Paper}
         sx={{
-          border: "1px solid rgba(0, 0, 0, 0.1)",
+          color: "white",
+          borderRadius: "0.75rem",
+          boxShadow: "none",
         }}
+        className="bg-gradient-to-bl from-darkOne to-darkTwo border-none shadow-none outline-none"
       >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650, color: "white" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell className=" font-semibold">Action</TableCell>
-              <TableCell align="right" className="font-semibold">
+              <TableCell
+                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                className="font-semibold"
+              >
+                Action
+              </TableCell>
+              <TableCell
+                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                className="font-semibold"
+              >
                 Amount
               </TableCell>
-              <TableCell align="right" className="font-semibold">
+              <TableCell
+                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                className="font-semibold"
+              >
+                Currency
+              </TableCell>
+              <TableCell
+                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                className="font-semibold"
+              >
                 Date
               </TableCell>
-              <TableCell align="right" className="font-semibold">
+              <TableCell
+                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                className="font-semibold"
+              >
                 Status
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {userBalanceDetails[0]?.depositWithdrawData?.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  <p>{row?.deposit ? "Deposit" : "Withdraw"}</p>
+              <TableRow key={index}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "medium",
+                  }}
+                >
+                  {row?.deposit ? "Deposit" : "Withdraw"}
                 </TableCell>
-                <TableCell align="right">
+                <TableCell
+                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                >
                   <p
-                    className={`font-semibold ${
-                      row?.deposit >= 0 ? "text-green-700" : "text-red-700"
+                    className={`font-medium ${
+                      row?.deposit >= 0 ? "text-green-400" : "text-red-700"
                     }`}
                   >
                     {row?.deposit >= 0
@@ -59,12 +89,29 @@ const TransactionTable = ({ userBalanceDetails }) => {
                       : `-$${-row?.deposit}`}
                   </p>
                 </TableCell>
-                <TableCell align="right">
-                  <p>
-                    {row?.date.day}-{row?.date.month}-{row?.date.year}
-                  </p>
+                <TableCell
+                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                >
+                  USD
                 </TableCell>
-                <TableCell align="right">Complete</TableCell>
+                <TableCell
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "medium",
+                  }}
+                >
+                  {row?.date.day}-{row?.date.month}-{row?.date.year}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "medium",
+                  }}
+                >
+                  Complete
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

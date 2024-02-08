@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-white rounded-xl px-5">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl px-5">
       <div className="flex items-center gap-5">
         <IconButton
           color="black"

@@ -39,10 +39,31 @@ const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
-const hour = currentDate.getHours();
-const minute = currentDate.getMinutes();
-const date = `${day}-${month}-${year}`;
-const time = `${hour}:${minute}`;
+const date = `${day} ${
+  month === 1
+    ? "January"
+    : month === 2
+    ? "February"
+    : month === 3
+    ? "March"
+    : month === 4
+    ? "April"
+    : month === 5
+    ? "May"
+    : month === 6
+    ? "June"
+    : month === 7
+    ? "July"
+    : month === 8
+    ? "August"
+    : month === 9
+    ? "September"
+    : month === 10
+    ? "October"
+    : month === 11
+    ? "November"
+    : "December"
+} ${year}`;
 
 const Wallet = () => {
   const [hidePrice, setHidePrice] = React.useState(false);
@@ -71,13 +92,11 @@ const Wallet = () => {
   return (
     <div className="flex flex-col xl:flex-row justify-between gap-5 w-full font-mont">
       <div className="xl:w-9/12 flex flex-col gap-5">
-        <div className="p-4 xl:p-6 bg-white rounded-xl">
+        <div className="p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
           <div className="flex flex-col-reverse xl:flex-row justify-between gap-6">
             <div>
               <h1 className="text-xl font-bold">Wallet</h1>
-              <p className="text-sm opacity-70">
-                Update {date} at {time} PM
-              </p>
+              <p className="text-sm opacity-70">Updated on {date}</p>
             </div>
             <div className="flex items-center gap-5">
               <DashButton>
@@ -143,7 +162,7 @@ const Wallet = () => {
 
       {/* Select Currency & Payment */}
       <div className="xl:w-5/12 2xl:w-4/12">
-        <div className="w-full p-4 xl:p-6 bg-white rounded-xl">
+        <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
           <Tabs>
             <TabList className="flex items-center justify-center gap-10 font-medium ">
               <Tab className="font-semibold border-none outline-none cursor-pointer">
@@ -166,10 +185,13 @@ const Wallet = () => {
         </div>
 
         {/* Transaction Report */}
-        <div className="w-full p-4 xl:p-6 bg-white rounded-xl mt-5">
-          <h1 className="text-xl text-center font-bold">Transaction Report</h1>
+        <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree text-white rounded-xl mt-5">
+          <h1 className="text-xl text-center font-bold mb-5">
+            Transaction Report
+          </h1>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
+              margin={{ top: 20, right: 20, left: 20, bottom: 20 }} // Adjust margins to provide more space
               data={[
                 {
                   name: "Total Deposited",
@@ -182,11 +204,15 @@ const Wallet = () => {
                 },
               ]}
             >
-              <XAxis dataKey="name" />
-              <YAxis />
+              <XAxis dataKey="name" tick={{ fill: "white", fontSize: 12 }} />
+              <YAxis
+                tick={{ fill: "white", fontSize: 12 }}
+                tickFormatter={(value) => value.toFixed(2)} // Formats ticks to 2 decimal places
+              />
               <Tooltip />
               <Legend />
               <Bar dataKey="amount" fill="#82ca9d" />
+              <Bar dataKey="Withdraw" fill="#FF0000" />
             </BarChart>
           </ResponsiveContainer>
         </div>

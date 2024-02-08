@@ -10,11 +10,7 @@ const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
-const hour = currentDate.getHours();
-const minute = currentDate.getMinutes();
-const second = currentDate.getSeconds();
 const date = { day: day, month: month, year: year };
-const time = { second: second, minute: minute, hour: hour };
 
 const DepositForm = ({ refetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
@@ -91,7 +87,6 @@ const DepositForm = ({ refetch }) => {
         const depositData = {
           transaction: paymentIntent,
           date: date,
-          time: time,
           deposit: parseInt(form.amount.value),
           email: user?.email,
           name: user?.displayName,
@@ -116,7 +111,7 @@ const DepositForm = ({ refetch }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="mt-5">
+    <form onSubmit={handleSubmit} className="mt-5 text-white">
       {/* <label htmlFor="" className="font-semibold ml-4">
           Select Currency
         </label>
