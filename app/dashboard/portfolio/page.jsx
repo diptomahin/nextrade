@@ -30,9 +30,15 @@ const Portfolio = () => {
     isPending,
     isLoading,
     refetch,
-  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+  } = useSecureFetch(`/all-users/${user?.email}`, ["all-users"]);
 
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
+
+  const {
+    data: purchasedAssets = [], isPending: purchasedPending, isLoading: purchasedLoading, refetch: purchasedRefetch
+  } = useSecureFetch(`/purchasedAssets?email=${user.email}`, ['purchased-asset', user?.email])
+
+  // console.log(purchasedAssets)
 
   useEffect(() => {
     const socket = new WebSocket(
@@ -67,8 +73,8 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    const userBTCData = allUsers.flatMap((user) => user.portfolio);
-    const filteredAssets = userBTCData.filter((asset) =>
+    // const userBTCData = allUsers.flatMap((user) => user.portfolio);
+    const filteredAssets = purchasedAssets.filter((asset) =>
       [
         "BTCUSDT",
         "ETHUSDT",
@@ -86,7 +92,7 @@ const Portfolio = () => {
     if (filteredAssets.length > 0) {
       setBuyingPriceInfo(filteredAssets);
     }
-  }, [allUsers]);
+  }, [purchasedAssets]);
 
   const calculateDifference = (currentPrice, buyingPrice) => {
     return (currentPrice - buyingPrice).toFixed(2);

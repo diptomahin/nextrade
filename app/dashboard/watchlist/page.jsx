@@ -18,9 +18,9 @@ const Watchlist = () => {
         ["watchlist", user.email]
     );
     // console.log(watchlistData)
-
+    const cryptoWatchlistData = watchlistData.filter(crypto => crypto.assetType === "crypto currency")
     useEffect(() => {
-        const cryptoWatchlistData = watchlistData.filter(crypto => crypto.assetType === "crypto currency")
+        
         const cryptoKeys = cryptoWatchlistData.map(asset => {
             return asset.assetKey
         });
@@ -45,7 +45,7 @@ const Watchlist = () => {
             });
         });
     
-    }, [watchlistData]);
+    }, [watchlistData, cryptoWatchlistData]);
 
 
 
