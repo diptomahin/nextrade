@@ -16,106 +16,110 @@ const TransactionTable = ({ userBalanceDetails }) => {
         <h1 className="text-xl font-bold">Transaction History</h1>
       </div>
 
-      {/* Table Data */}
-      <TableContainer
-        component={Paper}
-        sx={{
-          color: "white",
-          borderRadius: "0.75rem",
-          boxShadow: "none",
-        }}
-        className="bg-gradient-to-bl from-darkOne to-darkTwo border-none shadow-none outline-none"
-      >
-        <Table sx={{ minWidth: 650, color: "white" }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell
-                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                className="font-semibold"
-              >
-                Action
-              </TableCell>
-              <TableCell
-                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                className="font-semibold"
-              >
-                Amount
-              </TableCell>
-              <TableCell
-                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                className="font-semibold"
-              >
-                Currency
-              </TableCell>
-              <TableCell
-                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                className="font-semibold"
-              >
-                Date
-              </TableCell>
-              <TableCell
-                sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                className="font-semibold"
-              >
-                Status
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {userBalanceDetails[0]?.depositWithdrawData?.map((row, index) => (
-              <TableRow key={index}>
+      {userBalanceDetails && userBalanceDetails[0].balance <= 0 ? (
+        <div className="text-center font-bold">
+          No transaction history available
+        </div>
+      ) : (
+        <TableContainer
+          component={Paper}
+          sx={{
+            color: "white",
+            borderRadius: "0.75rem",
+            boxShadow: "none",
+          }}
+          className="bg-gradient-to-bl from-darkOne to-darkTwo border-none shadow-none outline-none"
+        >
+          <Table
+            sx={{ minWidth: 650, color: "white" }}
+            aria-label="simple table"
+          >
+            <TableHead>
+              <TableRow>
                 <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                    fontWeight: "medium",
-                  }}
+                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                  className="font-semibold"
                 >
-                  {row?.deposit ? "Deposit" : "Withdraw"}
+                  Action
                 </TableCell>
                 <TableCell
                   sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                  className="font-semibold"
                 >
-                  <p
-                    className={`font-medium ${
-                      row?.deposit >= 0 ? "text-green-400" : "text-red-700"
-                    }`}
-                  >
-                    {row?.deposit >= 0
-                      ? `$${row?.deposit}`
-                      : `-$${-row?.deposit}`}
-                  </p>
+                  Amount
                 </TableCell>
                 <TableCell
                   sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                  className="font-semibold"
                 >
-                  USD
+                  Currency
                 </TableCell>
                 <TableCell
-                  sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                    fontWeight: "medium",
-                  }}
+                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                  className="font-semibold"
                 >
-                  {row?.date.day}-{row?.date.month}-{row?.date.year}
+                  Date
                 </TableCell>
                 <TableCell
-                  sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                    fontWeight: "medium",
-                  }}
+                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                  className="font-semibold"
                 >
-                  Complete
+                  Status
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {userBalanceDetails[0]?.depositWithdrawData?.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={{
+                      color: "white",
+                      borderBottom: "1px solid #2c3750",
+                      fontWeight: "medium",
+                    }}
+                  >
+                    {row?.deposit ? "Deposit" : "Withdraw"}
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                  >
+                    {row?.deposit ? (
+                      <span className="text-green-500">${row?.deposit}</span>
+                    ) : (
+                      <span className="text-red-500">${row?.withdraw}</span>
+                    )}
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
+                  >
+                    USD
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "white",
+                      borderBottom: "1px solid #2c3750",
+                      fontWeight: "medium",
+                    }}
+                  >
+                    {row?.date.day}-{row?.date.month}-{row?.date.year}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "white",
+                      borderBottom: "1px solid #2c3750",
+                      fontWeight: "medium",
+                    }}
+                  >
+                    Complete
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </div>
   );
 };
