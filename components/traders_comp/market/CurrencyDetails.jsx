@@ -23,13 +23,14 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
         const assetInfo = {
             assetName: currencyName,
             assetType: "regular currency",
+            assetKey: coinKey,
             assetImg: coinImage,
             assetBuyerUID: user.uid,
             assetBuyerEmail: user.email,
         };
 
-        publicAPI
-            .post(`/watchlist`, assetInfo)
+        
+        publicAPI.post(`/watchlist`, assetInfo)
             .then((res) => {
                 if (res.data.insertedId) {
                     Swal.fire({

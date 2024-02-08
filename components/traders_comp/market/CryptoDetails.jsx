@@ -7,12 +7,12 @@ import TopBanner from "./TopBanner";
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import { useState } from "react";
 import Swal from "sweetalert2";
-import usePublicAPI from "@/hooks/usePublicAPI";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 
 const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainingBalance, user , refetch}) => {
     const [quantity, setQuantity] = useState(1);
-    const publicAPI = usePublicAPI();
+    const secureAPI = useSecureAPI();
 
 
     const handleQuantityChange = (event) => {
@@ -57,10 +57,10 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
           confirmButtonText: "Yes!"
         }).then(async (result) => {
           if (result.isConfirmed) {
-            publicAPI
-              .put(`/all-users/${remainingBalance}`, assetInfo)
+            secureAPI
+              .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
               .then((res) => {
-                if (res.data.modifiedCount > 0) {
+                if (res.data.insertedId) {
                   Swal.fire({
                     title: `Coin Purchase successful!`,
                     text: `Best of luck`,
@@ -87,13 +87,14 @@ const CryptoDetails = ({tickerData, coinImage , coinName, coinKey, usersRemainin
       const handleCryptoWatchlist = (ast) => {
         const assetInfo = {
           assetName: coinName,
+          assetKey: coinKey,
           assetType: "crypto currency",
           assetImg: coinImage,
           assetBuyerUID: user.uid,
           assetBuyerEmail: user.email,
         };
     
-        publicAPI
+        secureAPI
           .post(`/watchlist`, assetInfo)
           .then((res) => {
             if (res.data.insertedId) {
