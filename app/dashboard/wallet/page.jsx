@@ -37,7 +37,7 @@ const day = currentDate.getDate();
 const date = { day: day, month: month, year: year };
 
 const Wallet = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   const {
     data: userBalanceDetails = [],
@@ -46,7 +46,7 @@ const Wallet = () => {
     refetch,
   } = useSecureFetch(`/all-users/${user.email}`, user?.email, "all-users");
 
-  if (isLoading || isPending) {
+  if (isLoading || isPending || loading) {
     return (
       <div className="h-full w-full flex justify-center items-center">
         <div className="text-5xl text-primary font-semibold">
@@ -59,6 +59,30 @@ const Wallet = () => {
     );
   }
 
+  const totalDeposit = userBalanceDetails[0]?.depositWithdrawData?.reduce(
+    (acc, obj) => {
+      // Check if the object has a 'deposit' property
+      if (obj.deposit !== undefined) {
+        // Add the deposit amount to the accumulator
+        acc += obj.deposit;
+      }
+      return acc;
+    },
+    0
+  );
+
+  const totalWithdraw = userBalanceDetails[0]?.depositWithdrawData?.reduce(
+    (acc, obj) => {
+      // Check if the object has a 'withdraw' property
+      if (obj.withdraw !== undefined) {
+        // Add the withdraw amount to the accumulator
+        acc += obj.withdraw;
+      }
+      return acc;
+    },
+    0
+  );
+
   return (
     <div className="flex flex-col xl:flex-row justify-between gap-5 w-full">
       <div className="xl:w-9/12 flex flex-col gap-5">
@@ -69,7 +93,10 @@ const Wallet = () => {
               <CardTravelOutlinedIcon /> Wallet Balance
             </h3>
             <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium">
-              $ {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0}
+              ${" "}
+              {userBalanceDetails && userBalanceDetails.length > 0
+                ? userBalanceDetails[0].balance.toFixed(2)
+                : 0.0}
             </h3>
           </div>
 
@@ -80,7 +107,7 @@ const Wallet = () => {
             </h3>
             <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium flex items-center gap-2">
               <FileDownloadOutlinedIcon className=" text-green-500" />${" "}
-              {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0}
+              {totalDeposit ? totalDeposit?.toFixed(2) : "0.00"}
             </h3>
           </div>
 
@@ -91,7 +118,8 @@ const Wallet = () => {
             </h3>
 
             <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium flex items-center gap-2">
-              <FileUploadOutlinedIcon className=" text-red-600" /> $ 0
+              <FileUploadOutlinedIcon className=" text-red-600" /> ${" "}
+              {totalWithdraw ? totalWithdraw?.toFixed(2) : "0.00"}
             </h3>
           </div>
         </div>
@@ -102,7 +130,7 @@ const Wallet = () => {
 
       {/* Select Currency & Payment */}
       <div className="xl:w-5/12 2xl:w-4/12">
-        <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
+        <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
           <Tabs>
             <TabList className="text-xl flex items-center justify-center gap-10 font-medium">
               <Tab className="font-semibold border-none outline-none cursor-pointer">
@@ -119,9 +147,22 @@ const Wallet = () => {
               </Elements>
             </TabPanel>
             <TabPanel>
-              <Elements stripe={stripePromise}>
-                <WithdrawForm refetch={refetch} date={date} />
-              </Elements>
+              {userBalanceDetails && userBalanceDetails[0].balance <= 10 ? (
+                <div className="flex flex-col items-center justify-center text-center my-10">
+                  <h4 className="text-xl 2xl:text-2xl font-bold">
+                    Please deposit first
+                  </h4>
+                  <p className="text-sm 2xl:text-base">
+                    You haven&apos;t enough money for withdraw. Minimum withdraw
+                    requirement is{" "}
+                    <span className="font-bold text-secondary">$10</span>.
+                  </p>
+                </div>
+              ) : (
+                <Elements stripe={stripePromise}>
+                  <WithdrawForm refetch={refetch} date={date} />
+                </Elements>
+              )}
             </TabPanel>
           </Tabs>
         </div>
@@ -131,18 +172,16 @@ const Wallet = () => {
           <h1 className="text-xl text-center font-bold mb-5">
             Transaction Report
           </h1>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="80%" height={300} className="mx-auto">
             <BarChart
-              margin={{ top: 20, right: 20, left: 20, bottom: 20 }} // Adjust margins to provide more space
               data={[
                 {
                   name: "Total Deposited",
-                  amount:
-                    parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || 0,
+                  Deposit: totalDeposit ? totalDeposit.toFixed(2) : "0.00",
                 },
                 {
                   name: "Total Withdrawals",
-                  amount: 0,
+                  Withdraw: totalWithdraw ? totalWithdraw.toFixed(2) : "0.00",
                 },
               ]}
             >
@@ -153,7 +192,7 @@ const Wallet = () => {
               />
               <Tooltip />
               <Legend />
-              <Bar dataKey="amount" fill="#82ca9d" />
+              <Bar dataKey="Deposit" fill="#82ca9d" />
               <Bar dataKey="Withdraw" fill="#dc2626" />
             </BarChart>
           </ResponsiveContainer>

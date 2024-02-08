@@ -48,10 +48,10 @@ const WithdrawForm = ({ refetch, date }) => {
       return setPaymentError("*Please provide a valid 4-digit postal code");
     }
 
-    const toastId = toast.loading("Progress...", { duration: 5000 });
+    const toastId = toast.loading("Progress...", { duration: 10000 });
 
     if (!stripe || !elements) {
-      toast.error("internal error!!!", { id: toastId, duration: 3000 });
+      toast.error("internal error!!!", { id: toastId, duration: 4000 });
       return;
     }
 
@@ -69,7 +69,7 @@ const WithdrawForm = ({ refetch, date }) => {
 
     if (error) {
       setPaymentError(error.message);
-      toast.error(error.message, { id: toastId, duration: 3000 });
+      toast.error(error.message, { id: toastId, duration: 4000 });
     } else {
       setPaymentError("");
     }
@@ -91,17 +91,17 @@ const WithdrawForm = ({ refetch, date }) => {
     } else {
       setPaymentError("");
       if (paymentIntent.status === "succeeded") {
-        const depositData = {
+        const withdrawData = {
           transaction: paymentIntent,
           date: date,
-          deposit: parseInt(amount),
+          withdraw: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
         };
         axios
           .put(
-            `https://nex-trade-server.vercel.app/v1/api/all-users/deposit/${user?.email}`,
-            depositData
+            `http://localhost:5000/v1/api/all-users/withdraw/${user?.email}`,
+            withdrawData
           )
           .then((res) => {
             if (res.data.modifiedCount > 0) {
@@ -112,9 +112,9 @@ const WithdrawForm = ({ refetch, date }) => {
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
               refetch();
-              toast.success("Deposit Successful", {
+              toast.success("Withdraw Successful", {
                 id: toastId,
-                duration: 4000,
+                duration: 5000,
               });
             }
           });
@@ -123,8 +123,9 @@ const WithdrawForm = ({ refetch, date }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="text-sm mt-10 text-white">
-      <div className="flex items-center justify-between gap-4 my-5">
+    <form onSubmit={handleSubmit} className="text-sm mt-5 text-white">
+      {/* section one */}
+      <div className="flex items-center justify-between gap-4 mb-5">
         <div className="w-full flex flex-col">
           <label htmlFor="" className="font-medium">
             Currency
@@ -156,9 +157,11 @@ const WithdrawForm = ({ refetch, date }) => {
           />
         </div>
       </div>
-      <div className="my-4">
-        <label className="font-medium">Card Number</label>
-        <div className="stripe-input">
+
+      {/* section two */}
+      <div className="flex items-center justify-between gap-4 my-5">
+        <div className="w-full">
+          <div className="font-medium mb-2">Card Number</div>
           <CardNumberElement
             options={{
               style: {
@@ -176,69 +179,69 @@ const WithdrawForm = ({ refetch, date }) => {
             }}
           />
         </div>
-      </div>
-      <div className="flex justify-between gap-4">
-        <div className="flex flex-col w-1/2">
-          <label className="font-medium">CVC</label>
-          <div className="stripe-input">
-            <CardCvcElement
-              options={{
-                style: {
-                  base: {
-                    fontSize: "14px",
-                    color: "white",
-                    "::placeholder": {
-                      color: "#939db1",
-                    },
-                  },
-                  invalid: {
-                    color: "#9e2146",
+
+        <div className="w-full">
+          <div className="font-medium mb-2">CVC</div>
+          <CardCvcElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "14px",
+                  color: "white",
+                  "::placeholder": {
+                    color: "#939db1",
                   },
                 },
-              }}
-            />
-          </div>
+                invalid: {
+                  color: "#9e2146",
+                },
+              },
+            }}
+          />
         </div>
-        <div className="flex flex-col w-1/2">
-          <label className="font-medium">Expiration Date</label>
-          <div className="stripe-input">
-            <CardExpiryElement
-              options={{
-                style: {
-                  base: {
-                    fontSize: "14px",
-                    color: "white",
-                    padding: "10px",
-                    border: "1px solid white",
-                    borderRadius: "5px",
-                    "::placeholder": {
-                      color: "#939db1",
-                    },
-                  },
-                  invalid: {
-                    color: "#9e2146",
+      </div>
+
+      {/* section three */}
+      <div className="flex items-center justify-between gap-4 my-5">
+        <div className="w-full">
+          <div className="font-medium mb-2">Expiration Date</div>
+          <CardExpiryElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "14px",
+                  color: "white",
+                  padding: "10px",
+                  border: "1px solid white",
+                  borderRadius: "5px",
+                  "::placeholder": {
+                    color: "#939db1",
                   },
                 },
-              }}
-            />
-          </div>
+                invalid: {
+                  color: "#9e2146",
+                },
+              },
+            }}
+          />
+        </div>
+        <div className="w-full">
+          <div className="font-medium">Postal Code</div>
+          <input
+            onChange={(e) => setPostalCode(e.target.value)}
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+            type="text"
+            name="postal_code"
+            id=""
+            placeholder="Postal Code"
+            maxLength={4}
+          />
         </div>
       </div>
-      <div className="my-4">
-        <label className="font-medium">Postal Code</label>
-        <input
-          onChange={(e) => setPostalCode(e.target.value)}
-          className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
-          type="text"
-          name="postal_code"
-          id=""
-          placeholder="Postal Code"
-          maxLength={4}
-        />
-      </div>
-      <div className="relative mt-4 text-red-600">{paymentError}</div>
+
+      <div className="relative my-3 text-red-500">{paymentError}</div>
       <DarkButton
-        className="w-full  mt-5"
+        className="w-full"
         type="submit"
         disabled={!stripe || !elements}
       >
