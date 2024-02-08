@@ -15,8 +15,8 @@ export default function RootLayout({ children }) {
       <body className="font-montserrat">
         <AuthProvider>
           <MainLayout>{children} </MainLayout>
-          <Toaster />
         </AuthProvider>
+        <Toaster />
       </body>
     </html>
   );

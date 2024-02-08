@@ -16,7 +16,7 @@ const TransactionTable = ({ userBalanceDetails }) => {
         <h1 className="text-xl font-bold">Transaction History</h1>
       </div>
 
-      {userBalanceDetails && userBalanceDetails[0].balance <= 0 ? (
+      {!userBalanceDetails && !userBalanceDetails[0].depositWithdrawData ? (
         <div className="text-center font-bold">
           No transaction history available
         </div>

@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 
-const WithdrawForm = ({ refetch, date }) => {
+const WithdrawForm = ({ refetch, date, totalBalance }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState("");
@@ -22,6 +22,9 @@ const WithdrawForm = ({ refetch, date }) => {
   const { user } = useAuth();
 
   React.useEffect(() => {
+    if (totalBalance < amount) {
+      return setPaymentError("*Insufficient balance");
+    }
     axios
       .post("https://nex-trade-server.vercel.app/create-payment-intent", {
         price: amount,
@@ -29,13 +32,17 @@ const WithdrawForm = ({ refetch, date }) => {
       .then((res) => {
         setClientSecret(res.data.clientSecret);
       });
-  }, [amount]);
+  }, [amount, totalBalance]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
 
     setPaymentError("");
+
+    if (totalBalance < amount) {
+      return setPaymentError("*Insufficient balance");
+    }
 
     if (!/^-?\d*\.?\d+$/.test(amount)) {
       form.reset();
@@ -100,7 +107,7 @@ const WithdrawForm = ({ refetch, date }) => {
         };
         axios
           .put(
-            `http://localhost:5000/v1/api/all-users/withdraw/${user?.email}`,
+            `https://nex-trade-server.vercel.app/v1/api/all-users/withdraw/${user?.email}`,
             withdrawData
           )
           .then((res) => {
@@ -239,7 +246,9 @@ const WithdrawForm = ({ refetch, date }) => {
         </div>
       </div>
 
-      <div className="relative my-3 text-red-500">{paymentError}</div>
+      <div className="relative my-3 text-red-500 text-lg flex items-center justify-center text-center">
+        <span>{paymentError}</span>
+      </div>
       <DarkButton
         className="w-full"
         type="submit"
