@@ -5,13 +5,9 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TableRow,
-  Paper,
 } from "@mui/material";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import DashButton from "@/components/library/buttons/DashButton";
@@ -246,7 +242,7 @@ const Portfolio = () => {
                         }}
                       >
                         <h2 className="font-medium ">
-                          $ {asset.assetBuyingPrice}
+                          $ {parseFloat(asset.assetBuyingPrice).toFixed(2)}
                         </h2>
                       </TableCell>
                       {/* 4th row */}

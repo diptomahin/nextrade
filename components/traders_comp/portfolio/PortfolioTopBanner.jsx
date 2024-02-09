@@ -15,21 +15,21 @@ const PortfolioTopBanner = ({
   const [hideRemainingBalance, setHideRemainingBalance] = useState(false);
   return (
     <div className="">
-      <div className="  flex flex-col md:flex-row items-center   rounded-md gap-5 justify-end ">
+      <div className="flex flex-col md:flex-row items-center rounded-md gap-5">
         {/* total asset */}
-        <div className="flex items-center gap-3  p-4 xl:p-6 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  flex-1">
+        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
           <div>
             <p className="font-semibold text-gray-500">
               Total Asset <MonetizationOnIcon className="text-base ml-2 " />
             </p>
             <div
-              className={`flex items-center justify-center py-2  ${
+              className={`flex items-center py-2  ${
                 !hideAssetAmount && "gap-3"
               } `}
             >
               <h1>
                 {!hideAssetAmount && (
-                  <span className=" lg:text-3xl text-xl font-extrabold  ">
+                  <span className=" lg:text-3xl text-xl font-bold  ">
                     $ {totalBuyingPrice.toFixed(2)}
                   </span>
                 )}
@@ -51,7 +51,7 @@ const PortfolioTopBanner = ({
               </button>
             </div>
 
-            <div className=" flex items-center justify-between gap-5  w-full ">
+            <div className=" flex items-center justify-between gap-5 w-full ">
               {/* total profit */}
               <p
                 className={`font-semibold ${
@@ -78,24 +78,22 @@ const PortfolioTopBanner = ({
 
         {/* Remaining balance */}
 
-        <div className="flex items-center gap-3  p-4 xl:p-6 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  flex-1 ">
-          <div className="pb-7">
+        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+          <div className="pb-6 w-full">
             <p className="font-semibold text-gray-500">
               Remaining Balance{" "}
               <MonetizationOnIcon className="text-base ml-2 " />
             </p>
             <div
-              className={`flex items-center justify-center py-2  ${
+              className={`flex items-center py-2  ${
                 !hideRemainingBalance && "gap-3"
               } `}
             >
-              <h1>
-                {!hideRemainingBalance && (
-                  <span className=" lg:text-3xl text-xl font-extrabold  ">
-                    $ {usersRemainingBalance}
-                  </span>
-                )}
-              </h1>
+              {!hideRemainingBalance && (
+                <h1 className=" lg:text-3xl text-xl font-bold">
+                  $ {usersRemainingBalance}
+                </h1>
+              )}
               <button
                 onClick={() => setHideRemainingBalance(!hideRemainingBalance)}
                 className="button-sm text-xs flex items-center gap-1 bg-black/5 px-2 py-2 rounded-full"
