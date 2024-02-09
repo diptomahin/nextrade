@@ -16,7 +16,7 @@ const PortfolioTopBanner = ({
   return (
     <div className="p-4 xl:p-6 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
       <div className="mb-4">
-        <h1 className="text-xl font-bold ">Portfolio</h1>
+        {/* <h1 className="text-xl font-bold ">Portfolio</h1> */}
         <p className="font-semibold text-gray-500">Explore all coins purchases, compare gains and losses.</p>
       </div>
 
