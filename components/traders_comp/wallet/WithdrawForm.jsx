@@ -22,6 +22,9 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
   const { user } = useAuth();
 
   React.useEffect(() => {
+    if (amount > 100000) {
+      return setPaymentError("The amount must be 100,000 or less.");
+    }
     axios
       .post("https://nex-trade-server.vercel.app/create-payment-intent", {
         price: amount,
@@ -130,7 +133,7 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
     <form onSubmit={handleSubmit} className="text-sm mt-5 text-white">
       {/* section one */}
       <div className="flex items-center justify-between gap-4 mb-5">
-        <div className="w-full flex flex-col">
+        {/* <div className="w-full flex flex-col">
           <label htmlFor="" className="font-medium">
             Currency
           </label>
@@ -146,7 +149,7 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
             <option value="bdt">BDT</option>
             <option value="inr">INR</option>
           </select>
-        </div>
+        </div> */}
         <div className="w-full flex flex-col">
           <label htmlFor="" className="font-medium">
             Amount
@@ -215,9 +218,6 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
                 base: {
                   fontSize: "14px",
                   color: "white",
-                  padding: "10px",
-                  border: "1px solid white",
-                  borderRadius: "5px",
                   "::placeholder": {
                     color: "#939db1",
                   },
@@ -243,8 +243,8 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
         </div>
       </div>
 
-      <div className="relative my-3 text-red-500 text-lg flex items-center justify-center text-center">
-        <span>{paymentError}</span>
+      <div className="relative my-3 text-red-500 flex items-center justify-center font-semibold">
+        {paymentError}
       </div>
       <DarkButton
         className="w-full"
