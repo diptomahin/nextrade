@@ -7,7 +7,7 @@ import moment from "moment";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
 
-const page = () => {
+const Academy = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -301,4 +301,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Academy;
