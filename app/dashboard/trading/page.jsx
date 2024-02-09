@@ -146,7 +146,7 @@ const Trading = () => {
     <div>
       <div className="w-1/2">
         <FormControl fullWidth>
-          <InputLabel  id="demo-simple-select-label">Choose coin</InputLabel>
+          <InputLabel   id="demo-simple-select-label">Choose coin</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
