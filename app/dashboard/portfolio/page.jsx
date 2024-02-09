@@ -19,7 +19,7 @@ import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAs
 import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
 import Image from "next/image";
 import BuyAndExchange from "@/components/traders_comp/portfolio/BuyAndExchange";
-import emptyIcon from '../../../assets/emptyIcon.png';
+import emptyIcon from "../../../assets/emptyIcon.png";
 
 const Portfolio = () => {
   const [currentPrices, setCurrentPrices] = useState({});
@@ -36,8 +36,14 @@ const Portfolio = () => {
   const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
 
   const {
-    data: purchasedAssets = [], isPending: purchasedPending, isLoading: purchasedLoading, refetch: purchasedRefetch
-  } = useSecureFetch(`/purchasedAssets?email=${user.email}`, ['purchased-asset', user?.email])
+    data: purchasedAssets = [],
+    isPending: purchasedPending,
+    isLoading: purchasedLoading,
+    refetch: purchasedRefetch,
+  } = useSecureFetch(`/purchasedAssets?email=${user.email}`, [
+    "purchased-asset",
+    user?.email,
+  ]);
 
   // console.log(purchasedAssets)
 
@@ -122,6 +128,11 @@ const Portfolio = () => {
     (total, asset) => total + parseFloat(asset.assetBuyingPrice),
     0
   );
+  // Calculate total current price
+  const totalCurrentPrice = buyingPriceInfo.reduce((total, asset) => {
+    const currentPrice = currentPrices[asset.assetKey] || 0;
+    return total + parseFloat(currentPrice);
+  }, 0);
 
   if (loading || isLoading || isPending) {
     return (
@@ -147,31 +158,51 @@ const Portfolio = () => {
           <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
           {totalBuyingPrice ? (
             <div className=" bg-gradient-to-bl from-darkOne to-darkTwo  ">
-              
-              <Table sx={{ minWidth: 650, }}  aria-label="simple table">
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
-                  <TableRow >
-                    <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }} >
+                  <TableRow>
+                    <TableCell
+                      sx={{
+                        color: "white",
+                        borderBottom: "1px solid #2c3750",
+                        fontWeight: "600",
+                      }}
+                    >
                       Coin
                     </TableCell>
-                    <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}>
+                    <TableCell
+                      sx={{
+                        color: "white",
+                        borderBottom: "1px solid #2c3750",
+                        fontWeight: "600",
+                      }}
+                    >
                       Company
                     </TableCell>
                     <TableCell
-                      
-                      sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}
+                      sx={{
+                        color: "white",
+                        borderBottom: "1px solid #2c3750",
+                        fontWeight: "600",
+                      }}
                     >
                       Buying Price
                     </TableCell>
                     <TableCell
-                      
-                      sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}
+                      sx={{
+                        color: "white",
+                        borderBottom: "1px solid #2c3750",
+                        fontWeight: "600",
+                      }}
                     >
                       Current Price
                     </TableCell>
                     <TableCell
-                      
-                      sx={{ color: "white", borderBottom: "1px solid #2c3750" , fontWeight:"600" }}
+                      sx={{
+                        color: "white",
+                        borderBottom: "1px solid #2c3750",
+                        fontWeight: "600",
+                      }}
                     >
                       Profit / Loss
                     </TableCell>
@@ -181,7 +212,14 @@ const Portfolio = () => {
                   {buyingPriceInfo.map((asset, index) => (
                     <TableRow key={index}>
                       {/* 1st row */}
-                      <TableCell component="th" scope="row" sx={{ color: "white", borderBottom: "1px solid #2c3750" }} >
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={{
+                          color: "white",
+                          borderBottom: "1px solid #2c3750",
+                        }}
+                      >
                         <Image
                           height={45}
                           width={45}
@@ -189,18 +227,36 @@ const Portfolio = () => {
                           alt="coin logo"
                         ></Image>
                       </TableCell>
-                       {/* 2nd row */}
-                      <TableCell component="th" scope="row" sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                      {/* 2nd row */}
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={{
+                          color: "white",
+                          borderBottom: "1px solid #2c3750",
+                        }}
+                      >
                         <h2 className="font-medium ">{asset.assetName}</h2>
                       </TableCell>
                       {/* 3rd row */}
-                      <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                      <TableCell
+                        sx={{
+                          color: "white",
+                          borderBottom: "1px solid #2c3750",
+                        }}
+                      >
                         <h2 className="font-medium ">
                           $ {asset.assetBuyingPrice}
                         </h2>
                       </TableCell>
                       {/* 4th row */}
-                      <TableCell  className="font-medium" sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                      <TableCell
+                        className="font-medium"
+                        sx={{
+                          color: "white",
+                          borderBottom: "1px solid #2c3750",
+                        }}
+                      >
                         <span
                           className={`${
                             currentPrices[asset.assetKey] <
@@ -217,9 +273,14 @@ const Portfolio = () => {
                         ) : (
                           <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
                         )}
-                      </TableCell >
+                      </TableCell>
                       {/* 5th row */}
-                      <TableCell sx={{ color: "white", borderBottom: "1px solid #2c3750" }}>
+                      <TableCell
+                        sx={{
+                          color: "white",
+                          borderBottom: "1px solid #2c3750",
+                        }}
+                      >
                         <span
                           className={`font-medium ${
                             calculateDifference(
@@ -249,31 +310,45 @@ const Portfolio = () => {
                   ))}
                 </TableBody>
               </Table>
-            
             </div>
-            
           ) : (
-            <div className=' w-full  flex flex-col items-center justify-center gap-2 py-8'>
-                        <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
-                        <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
-                    </div>
+            <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
+              <Image
+                src={emptyIcon}
+                width={70}
+                height={70}
+                alt="BTC/USDT Logo"
+              />
+              <h3 className="text-primary text-lg font-semibold text-center">
+                empty !!
+              </h3>
+            </div>
           )}
         </div>
       </div>
 
       {/* Right side  */}
       <div className=" col-span-2 ">
-        
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  mb-5 ">
           <BuyAndExchange></BuyAndExchange>
         </div>
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
-          {totalBuyingPrice ? <PortfolioAssetChart allUsers={allUsers} /> :
-          <div className=' w-full  flex flex-col items-center justify-center gap-2 py-8'>
-          <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
-          <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
-      </div>}
+          {totalBuyingPrice ? (
+            <PortfolioAssetChart totalCurrentPrice={totalCurrentPrice} />
+          ) : (
+            <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
+              <Image
+                src={emptyIcon}
+                width={70}
+                height={70}
+                alt="BTC/USDT Logo"
+              />
+              <h3 className="text-primary text-lg font-semibold text-center">
+                empty !!
+              </h3>
+            </div>
+          )}
         </div>
       </div>
     </div>
