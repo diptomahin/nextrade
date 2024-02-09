@@ -47,6 +47,69 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
         setQuantity(newQuantity);
     };
 
+     // crypto payment process
+  const handleBuyCurrency = (ast) => {
+    const assetInfo = {
+      assetName: currencyName,
+      assetKey: coinKey,
+      assetImg: coinImage,
+      assetBuyingPrice: ast,
+      assetQuantity: quantity,
+      assetBuyerUID: user.uid,
+      assetBuyerEmail: user.email,
+    };
+
+    const totalCost = parseFloat(ast) * parseFloat(quantity)
+    const usersBalance = usersRemainingBalance
+    const remainingBalance = usersBalance - totalCost.toFixed(2);
+
+
+
+    if (usersBalance < parseFloat(ast.c)) {
+      Swal.fire({
+        title: `You Don't have enough balance!`,
+        text: `Please deposit to your account`,
+        icon: "error",
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: `Are you sure to purchase ${quantity} ${currencyName}?`,
+      text: `It will cost $${totalCost}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        secureAPI
+          .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
+          .then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: `Coin Purchase successful!`,
+                text: `Best of luck`,
+                icon: "success",
+                timer: 1500
+              });
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            Swal.fire({
+              title: `Coin Purchase failed!`,
+              text: `Please try again`,
+              icon: "error",
+            });
+          });
+      }
+    });
+
+  };
+
     // regular currency watchlist process
     const handleCurrencyWatchlist = (ast) => {
         const assetInfo = {
@@ -139,7 +202,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
                         }}
                         onChange={handleQuantityChange}
                     />
-                    <DashButton className="w-full">Buy {coinKey}</DashButton>
+                    <DashButton onClick={()=>handleBuyCurrency(currencyRate)} className="w-full">Buy {coinKey}</DashButton>
                 </div>
             </div>
         </div>
