@@ -10,6 +10,7 @@ import Link from "next/link";
 const Academy = () => {
     const [data, setData] = useState([]);
 
+    
     useEffect(() => {
         fetch("/fake.json")
           .then((res) => {
