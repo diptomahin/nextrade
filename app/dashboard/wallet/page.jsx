@@ -107,7 +107,7 @@ const Wallet = () => {
               <CardTravelOutlinedIcon /> Wallet Balance
             </h3>
             <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium">
-              { userBalanceDetails[0]?.balance }
+              $ { userBalanceDetails[0]?.balance }
             </h3>
           </div>
 
