@@ -144,7 +144,7 @@ const Trading = () => {
     <div>
       <div className="w-1/2">
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Choose coin</InputLabel>
+          <InputLabel  id="demo-simple-select-label">Choose coin</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -153,13 +153,13 @@ const Trading = () => {
             onChange={handleChange}
           >
             {
-              assets.map(coin => <MenuItem key={coin.name} value={coin.key}>{coin.name}</MenuItem>
+              assets.map(coin => <MenuItem key={coin.name} value={coin.key} className="text-lg font-semibold text-primary">{coin.name}</MenuItem>
               )
             }
           </Select>
         </FormControl>
       </div>
-      <div>
+      <div className="mt-10">
       <TradingSidebar value={value} assets={assets}></TradingSidebar>
       </div>
     </div>
