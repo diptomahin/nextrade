@@ -104,10 +104,11 @@ const Wallet = () => {
           {/* total balance */}
           <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">
             <h3 className="opacity-70 flex items-center gap-2">
-              <CardTravelOutlinedIcon /> Wallet Balance
+              <CardTravelOutlinedIcon /> Total Balance
             </h3>
             <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium">
-              $ { userBalanceDetails[0]?.balance }
+              ${" "}
+              {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || "0.00"}
             </h3>
           </div>
 
