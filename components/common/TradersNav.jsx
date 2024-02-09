@@ -122,7 +122,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
           </Magnetic>
         </IconButton>
 
-        <div>
+        <div className="hidden xl:block">
           <h1 className="text-lg font-semibold">{breadcrumbs}</h1>
           <p className="text-sm opacity-70">Updated on {dateWithName}</p>
         </div>
