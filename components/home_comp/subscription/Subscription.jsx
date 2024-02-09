@@ -223,13 +223,13 @@ const Subscription = () => {
 
         {/* right */}
 
-        <div className="animate-move5 absolute right-[5%] top-[0%] bg-primary w-32 h-32 rounded-full blur-[100px]"></div>
+        <div className="animate-move5 absolute right-[5%] top-[0%] bg-secondary w-32 h-32 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move6 absolute -right-5 top-[35%] bg-primary w-32 h-32 rounded-full blur-[100px]"></div>
+        <div className="animate-move6 absolute -right-5 top-[35%] bg-secondary w-32 h-32 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move7 absolute -right-5 top-[35%] bg-primary w-32 h-32 rounded-full blur-[100px]"></div>
+        <div className="animate-move7 absolute -right-5 top-[35%] bg-secondary w-32 h-32 rounded-full blur-[100px]"></div>
 
-        <div className="animate-move8 absolute right-[5%] bottom-0 bg-primary w-32 h-32 rounded-full blur-[100px]"></div>
+        <div className="animate-move8 absolute right-[5%] bottom-0 bg-secondary w-32 h-32 rounded-full blur-[100px]"></div>
       </div>
     </Container>
   );

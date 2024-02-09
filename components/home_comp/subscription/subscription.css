@@ -1,33 +1,33 @@
 /* left */
 .animate-move1 {
-  animation: move1 6s infinite;
+  animation: move1 5s infinite;
 }
 
 .animate-move2 {
-  animation: move2 8s infinite;
+  animation: move2 7s infinite;
 }
 .animate-move3 {
-  animation: move3 6s infinite;
+  animation: move3 5s infinite;
 }
 
 .animate-move4 {
-  animation: move4 8s infinite;
+  animation: move4 7s infinite;
 }
 
 /* right */
 .animate-move5 {
-  animation: move5 8s infinite;
+  animation: move5 7s infinite;
 }
 
 .animate-move6 {
-  animation: move6 6s infinite;
+  animation: move6 5s infinite;
 }
 .animate-move7 {
-  animation: move7 8s infinite;
+  animation: move7 7s infinite;
 }
 
 .animate-move8 {
-  animation: move8 6s infinite;
+  animation: move8 5s infinite;
 }
 
 @keyframes move1 {

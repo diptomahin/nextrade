@@ -136,7 +136,7 @@ const Watchlist = () => {
                     borderBottom: "1px solid #2c3750",
                   }}
                 >
-                  Status
+                  Action
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -171,7 +171,7 @@ const Watchlist = () => {
                     }}
                   >
                     <p className={` font-semibold text-xs`}>
-                      $ {" "}
+                      ${" "}
                       {currentPrice[asset.assetKey]
                         ? parseFloat(currentPrice[asset.assetKey]).toFixed(2)
                         : 0}
@@ -203,10 +203,13 @@ const Watchlist = () => {
                     }}
                   >
                     <p className={` font-semibold text-xs text-green-700`}>
-                      $ {" "}
+                      ${" "}
                       {heighPrice[asset.assetKey]
                         ? parseFloat(heighPrice[asset.assetKey]).toFixed(2)
-                        : 0} <span><MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" /></span>
+                        : 0}{" "}
+                      <span>
+                        <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
+                      </span>
                     </p>
                   </TableCell>
                   <TableCell
@@ -219,7 +222,10 @@ const Watchlist = () => {
                       $
                       {lowPrice[asset.assetKey]
                         ? parseFloat(lowPrice[asset.assetKey]).toFixed(2)
-                        : 0} <span><MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" /></span>
+                        : 0}{" "}
+                      <span>
+                        <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
+                      </span>
                     </p>
                   </TableCell>
                   <TableCell
@@ -228,7 +234,13 @@ const Watchlist = () => {
                       borderBottom: "1px solid #2c3750",
                     }}
                   >
-                    <DarkButton className={"bg-red-600 text-white border-white"}>Delete</DarkButton>
+                    <DarkButton
+                      className={
+                        "bg-red-600 hover:bg-red-600 text-white border-none"
+                      }
+                    >
+                      Delete
+                    </DarkButton>
                   </TableCell>
                 </TableRow>
               ))}
