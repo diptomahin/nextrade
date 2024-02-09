@@ -139,7 +139,7 @@ const SideWatchlist = ({ assets, flatCurrency }) => {
                                 </div>
                         }
                     </TabPanel>
-                    <TabPanel value="2">
+                    <TabPanel sx={{ padding: "0px" }} value="2">
                     {
                             currencyWatchlistData.length > 0 ?
                                 <TableContainer

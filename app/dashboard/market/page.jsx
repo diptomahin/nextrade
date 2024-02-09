@@ -19,6 +19,7 @@ const CustomSelect = styled(Select)({
     },
   },
   '& .MuiSelect-select': {
+    color:"white",
     '&:hover': {
       backgroundColor: 'transparent', // Remove hover background color
     },
@@ -164,7 +165,7 @@ const MarketPage = () => {
             </CustomSelect>
           </FormControl>
           <FormControl sx={{ width: 200 }}>
-            <InputLabel id="demo-simple-select-label"><p >Sort by</p></InputLabel>
+            <InputLabel id="demo-simple-select-label"><p className="text-primary">Sort by</p></InputLabel>
             <CustomSelect
               labelId="demo-simple-select"
               id="demo-simple"
