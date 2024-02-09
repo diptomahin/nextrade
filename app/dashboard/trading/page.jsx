@@ -17,7 +17,7 @@ import Swal from "sweetalert2";
 import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import usePublicAPI from "@/hooks/usePublicAPI";
-import TradingSidebar from "@/components/traders_comp/trading/tradingSidebar";
+import TradingSidebar from "@/components/traders_comp/trading/TradingSidebar";
 
 const Trading = () => {
   const { user, loading } = useAuth();
@@ -122,17 +122,13 @@ const Trading = () => {
   };
 
   //Dropdown
-  const [coin, setCoin] = React.useState('');
+  const [value, setValue] = React.useState('');
 
   const handleChange = (event) => {
-    setCoin(event.target.value);
+    setValue(event.target.value);
 
 
   };
-
-  //match value
-
-
 
 
   //handle loading
@@ -152,7 +148,7 @@ const Trading = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={coin}
+            value={value}
             label="coin"
             onChange={handleChange}
           >
@@ -164,7 +160,7 @@ const Trading = () => {
         </FormControl>
       </div>
       <div>
-      <TradingSidebar coin={coin} asstes={assets}></TradingSidebar>
+      <TradingSidebar value={value} assets={assets}></TradingSidebar>
       </div>
     </div>
   );
