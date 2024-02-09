@@ -8,6 +8,35 @@ import usePublicAPI from "@/hooks/usePublicAPI";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Image from "next/image";
+import styled from "@emotion/styled";
+
+// customized TextField
+const CssTextField = styled(TextField)({
+    "& label": {
+      color: "#E0E3E7",
+    },
+    "& input": {
+      color: "#E0E3E7", // Text color for the input
+    },
+    "& label.Mui-focused": {
+      color: "#40a0ff",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#21366c",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#40a0ff",
+        color: "#E0E3E7"
+      },
+      "&:hover fieldset": {
+        borderColor: "#B2BAC2",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#6F7E8C",
+      },
+    },
+  });
 
 
 const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBalance, refetch, user, coinImage }) => {
@@ -97,7 +126,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
                             ${parseFloat(currencyRate)}
                         </div>
                     </div>
-                    <TextField
+                    <CssTextField
                         required
                         fullWidth
                         defaultValue={quantity}

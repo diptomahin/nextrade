@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, Menu, NativeSelect, InputBase } from "@mui/material";
 import { Stack } from "@mui/material";
 
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
@@ -9,6 +9,40 @@ import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
 import axios from "axios";
 import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrencyTable";
+import styled from "@emotion/styled";
+
+const CustomSelect = styled(Select)({
+  '& .MuiSelect-root': {
+    color: '#E0E3E7', // Text color
+    '&:focus': {
+      backgroundColor: 'transparent', // Remove focus background color
+    },
+  },
+  '& .MuiSelect-select': {
+    '&:hover': {
+      backgroundColor: 'transparent', // Remove hover background color
+    },
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#40a0ff', // Border color
+    '&:active': {
+      borderColor: "#4a0ff"
+    },
+    '&:hover': {
+      borderColor: "#4a0ff"
+    }
+  },
+  '& .MuiSelect-icon': {
+    color: '#40a0ff', // Color of the select icon
+  },
+  '& .MuiMenuItem-root': {
+    color: 'black', // Menu item text color
+  },
+  '& .MuiList-root': {
+    backgroundColor: '#21366c', // Background color of select options when open
+  },
+});
+
 
 
 const MarketPage = () => {
@@ -117,31 +151,31 @@ const MarketPage = () => {
         <Stack flexDirection="row" gap={2}>
           <FormControl sx={{ width: 200, backgroundColor: 'transparent' }}>
             <InputLabel id="demo-simple-select-label"><p className="text-primary">Category</p></InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={category}
-                label="Category"
-                onChange={(event) => { setCategory(event.target.value) }}
-              >
-                <MenuItem value={"Cryptos"}><p className="text-primary">Cryptos</p></MenuItem>
-                <MenuItem value={"Currency"}><p className="text-primary">Currency</p></MenuItem>
-                <MenuItem value={"Stocks"}><p className="text-primary">Stocks</p></MenuItem>
-              </Select>
+            <CustomSelect
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={category}
+              label="Category"
+              onChange={(event) => { setCategory(event.target.value) }}
+            >
+                <MenuItem value={"Cryptos"}><p >Cryptos</p></MenuItem>
+                <MenuItem value={"Currency"}><p >Currency</p></MenuItem>
+                <MenuItem value={"Stocks"}><p >Stocks</p></MenuItem>
+            </CustomSelect>
           </FormControl>
           <FormControl sx={{ width: 200 }}>
-            <InputLabel id="demo-simple-select-label"><p className="text-primary">Sort by</p></InputLabel>
-            <Select
+            <InputLabel id="demo-simple-select-label"><p >Sort by</p></InputLabel>
+            <CustomSelect
               labelId="demo-simple-select"
               id="demo-simple"
               value={sort}
               label="Sort by"
               onChange={(event) => { setSort(event.target.value) }}
             >
-              <MenuItem value={"Current Price"} ><p className="text-primary">Current Price</p></MenuItem>
-              <MenuItem value={"24h Heigh Price"} ><p className="text-primary">24h Heigh Price</p></MenuItem>
-              <MenuItem value={"24h Low Price"} ><p className="text-primary">24h Low Price</p></MenuItem>
-            </Select>
+              <MenuItem value={"Current Price"} ><p >Current Price</p></MenuItem>
+              <MenuItem value={"24h Heigh Price"} ><p >24h Heigh Price</p></MenuItem>
+              <MenuItem value={"24h Low Price"} ><p >24h Low Price</p></MenuItem>
+            </CustomSelect>
           </FormControl>
         </Stack>
       </div>
