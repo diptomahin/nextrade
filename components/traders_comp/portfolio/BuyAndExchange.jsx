@@ -13,6 +13,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import emptyIcon from '../../../assets/emptyIcon.png';
 
 // logo
 import bitLogo from "../../../assets/btc-logo.png";
@@ -168,13 +169,18 @@ const BuyAndExchange = () => {
             <h3 className=" font-semibold my-2 text-gray-500">No Extra Fees :</h3>
 
             <Link href="/dashboard/market">
-              <DarkButton className={'w-full mt-5 md:rounded'}>Exchange</DarkButton>
+              <DarkButton className={'w-full mt-5 md:rounded'}><CachedSharpIcon /> Exchange</DarkButton>
             </Link>
           
         </div>
       </TabPanel>
       {/* Buy / Sell Coin */}
-      <TabPanel value="2">Item Two</TabPanel>
+      <TabPanel value="2">
+      <div className=' w-full  flex flex-col items-center justify-center gap-2 py-8'>
+                        <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
+                        <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
+                    </div>
+      </TabPanel>
     </TabContext>
   );
 };
