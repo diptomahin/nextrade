@@ -4,11 +4,11 @@ import TopBannerNormalCurrency from "./TopBannerNormalCurrency";
 import { Divider, TextField } from "@mui/material";
 import DashButton from "@/components/library/buttons/DashButton";
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
-import usePublicAPI from "@/hooks/usePublicAPI";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -41,7 +41,7 @@ const CssTextField = styled(TextField)({
 
 const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBalance, refetch, user, coinImage }) => {
     const [quantity, setQuantity] = useState(1);
-    const publicAPI = usePublicAPI();
+    const secureAPI = useSecureAPI();
     const handleQuantityChange = (event) => {
         const newQuantity = event.target.value;
         setQuantity(newQuantity);
