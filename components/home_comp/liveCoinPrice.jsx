@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 // variants
 import { fadeIn } from "../utils/variants";
 
-const liveCoinPrice = () => {
+const LiveCoinPrice = () => {
   return (
     <Container>
       <motion.div
@@ -23,4 +23,4 @@ const liveCoinPrice = () => {
   );
 };
 
-export default liveCoinPrice;
+export default LiveCoinPrice;
