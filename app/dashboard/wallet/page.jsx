@@ -107,11 +107,7 @@ const Wallet = () => {
               <CardTravelOutlinedIcon /> Wallet Balance
             </h3>
             <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium">
-              ${" "}
-              {typeof userBalanceDetails[0]?.balance === "number" &&
-              userBalanceDetails[0]?.balance > 0
-                ? userBalanceDetails[0]?.balance.toFixed(2)
-                : "0.00"}
+              { userBalanceDetails[0]?.balance }
             </h3>
           </div>
 
