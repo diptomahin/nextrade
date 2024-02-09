@@ -36,6 +36,20 @@ const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
 const date = { day: day, month: month, year: year };
 
+const CustomXAxis = ({ dataKey, tick }) => (
+  <XAxis dataKey={dataKey} tick={tick} />
+);
+
+CustomXAxis.defaultProps = {
+  tick: { fill: "white", fontSize: 12 },
+};
+
+const CustomYAxis = ({ tick }) => <YAxis tick={tick} />;
+
+CustomYAxis.defaultProps = {
+  tick: { fill: "white", fontSize: 12 },
+};
+
 const Wallet = () => {
   const { user, loading } = useAuth();
 
@@ -189,11 +203,8 @@ const Wallet = () => {
                 },
               ]}
             >
-              <XAxis dataKey="name" tick={{ fill: "white", fontSize: 12 }} />
-              <YAxis
-                tick={{ fill: "white", fontSize: 12 }}
-                tickFormatter={(value) => value.toFixed(2)} // Formats ticks to 2 decimal places
-              />
+              <CustomXAxis dataKey="name" />
+              <CustomYAxis />
               <Tooltip />
               <Legend />
               <Bar dataKey="Deposit" fill="#82ca9d" />

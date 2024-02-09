@@ -22,6 +22,10 @@ const DepositForm = ({ refetch, date }) => {
   const { user } = useAuth();
 
   React.useEffect(() => {
+    if (amount > 100000) {
+      return setPaymentError("The amount must be 100,000 or less.");
+    }
+
     axios
       .post("https://nex-trade-server.vercel.app/create-payment-intent", {
         price: amount,
@@ -126,7 +130,7 @@ const DepositForm = ({ refetch, date }) => {
     <form onSubmit={handleSubmit} className="text-sm mt-5 text-white">
       {/* section one */}
       <div className="flex items-center justify-between gap-4 mb-5">
-        <div className="w-full flex flex-col">
+        {/* <div className="w-full flex flex-col">
           <label htmlFor="" className="font-medium">
             Currency
           </label>
@@ -142,13 +146,13 @@ const DepositForm = ({ refetch, date }) => {
             <option value="bdt">BDT</option>
             <option value="inr">INR</option>
           </select>
-        </div>
+        </div> */}
         <div className="w-full flex flex-col">
           <label htmlFor="" className="font-medium">
             Amount
           </label>
           <input
-            onChange={(e) => setAmount(e.target.value)}
+            onBlur={(e) => setAmount(e.target.value)}
             className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
             type="text"
             name="amount"
@@ -211,9 +215,6 @@ const DepositForm = ({ refetch, date }) => {
                 base: {
                   fontSize: "14px",
                   color: "white",
-                  padding: "10px",
-                  border: "1px solid white",
-                  borderRadius: "5px",
                   "::placeholder": {
                     color: "#939db1",
                   },
@@ -239,7 +240,9 @@ const DepositForm = ({ refetch, date }) => {
         </div>
       </div>
 
-      <div className="relative my-3 text-red-500">{paymentError}</div>
+      <div className="relative my-3 text-red-500 flex items-center justify-center font-semibold">
+        {paymentError}
+      </div>
       <DarkButton
         className="w-full"
         type="submit"
