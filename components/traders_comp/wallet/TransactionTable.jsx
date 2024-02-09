@@ -16,11 +16,7 @@ const TransactionTable = ({ userBalanceDetails }) => {
         <h1 className="text-xl font-bold">Transaction History</h1>
       </div>
 
-      {!userBalanceDetails && !userBalanceDetails[0].depositWithdrawData ? (
-        <div className="text-center font-bold">
-          No transaction history available
-        </div>
-      ) : (
+      {userBalanceDetails[0]?.hasOwnProperty("depositWithdrawData") ? (
         <TableContainer
           component={Paper}
           sx={{
@@ -119,6 +115,10 @@ const TransactionTable = ({ userBalanceDetails }) => {
             </TableBody>
           </Table>
         </TableContainer>
+      ) : (
+        <div className="text-center font-bold">
+          Currently, no transaction history is available.
+        </div>
       )}
     </div>
   );

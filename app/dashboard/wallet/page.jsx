@@ -108,9 +108,10 @@ const Wallet = () => {
             </h3>
             <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium">
               ${" "}
-              {userBalanceDetails && userBalanceDetails.length > 0
-                ? userBalanceDetails[0].balance.toFixed(2)
-                : 0.0}
+              {typeof userBalanceDetails[0]?.balance === "number" &&
+              userBalanceDetails[0]?.balance > 0
+                ? userBalanceDetails[0]?.balance.toFixed(2)
+                : "0.00"}
             </h3>
           </div>
 
@@ -161,15 +162,15 @@ const Wallet = () => {
               </Elements>
             </TabPanel>
             <TabPanel>
-              {userBalanceDetails && userBalanceDetails[0].balance <= 10 ? (
+              {userBalanceDetails && userBalanceDetails[0]?.balance <= 10 ? (
                 <div className="flex flex-col items-center justify-center text-center my-10">
                   <h4 className="text-xl 2xl:text-2xl font-bold">
                     Please deposit first
                   </h4>
                   <p className="text-sm 2xl:text-base">
-                    You haven&apos;t enough money for withdraw. Minimum withdraw
-                    requirement is{" "}
-                    <span className="font-bold text-secondary">$10</span>.
+                    Your account balance must meet or exceed{" "}
+                    <span className="font-semibold text-secondary">$10</span> to
+                    initiate a withdrawal.
                   </p>
                 </div>
               ) : (
