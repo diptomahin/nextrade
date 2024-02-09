@@ -1,11 +1,16 @@
 import React from 'react';
 
+
+//material
+import Button from '@mui/material/Button';
+
+
 const TradingSidebar = (params) => {
     const {value, assets} = params
     // console.log(value, assets);
 
     const selectedAsset = assets.filter(asset => asset.key == value);
-    console.log(selectedAsset[0])
+    // console.log(selectedAsset[0])
     return (
         <div className="w-1/3 p-5 rounded-lg border-x-4 border-y-4 border-primary">
             <h1 className="text-xl font-bold my-3">Trading Data For :  <span className="text-primary">{selectedAsset[0]?.name}</span></h1>
@@ -17,6 +22,10 @@ const TradingSidebar = (params) => {
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary">{selectedAsset[0].price}</h3>
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-green-500">{selectedAsset[0].heighPrice}</h3>
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-red-500">{selectedAsset[0].lowPrice}</h3>
+                              <div className="flex gap-3 mt-2">
+                              <Button variant="contained">Buy</Button>
+                              <Button variant="contained">Sell</Button>
+                              </div>
                         </div> )
                         :
                     <div className="flex flex-col gap-2 text-lg font-semibold">
@@ -25,6 +34,10 @@ const TradingSidebar = (params) => {
                         <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary">Price</h3>
                         <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-green-500">High Price</h3>
                         <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-red-500">Low Price</h3>
+                        <div classname="flex gap-3">
+                              <Button variant="contained">Buy</Button>
+                              <Button variant="contained">Sell</Button>
+                        </div>
                   </div>  
                 }
         </div>

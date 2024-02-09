@@ -3,7 +3,6 @@
 import React from "react";
 import { useState,  useEffect } from "react";
 
-
 // material imports
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,6 +16,9 @@ import Swal from "sweetalert2";
 import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import usePublicAPI from "@/hooks/usePublicAPI";
+
+//components
+import TradingGraph from "@/components/traders_comp/trading/TradingGraph"
 import TradingSidebar from "@/components/traders_comp/trading/TradingSidebar";
 
 const Trading = () => {
@@ -159,7 +161,8 @@ const Trading = () => {
           </Select>
         </FormControl>
       </div>
-      <div className="mt-10">
+      <div className="mt-10 flex gap-3">
+      <TradingGraph value={value} assets={assets}></TradingGraph>
       <TradingSidebar value={value} assets={assets}></TradingSidebar>
       </div>
     </div>
