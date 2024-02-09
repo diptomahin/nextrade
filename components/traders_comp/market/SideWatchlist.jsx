@@ -21,24 +21,27 @@ const SideWatchlist = ({ assets }) => {
     // console.log(assets)
 
     const cryptoWatchlistData = watchlistData.filter(crypto => crypto.assetType === "crypto currency")
+
     useEffect(() => {
-        
+
         const cryptoKeys = cryptoWatchlistData.map(asset => {
             return asset.assetKey
         });
-        const prices = {};
-        const priceChange = {};
+
         assets.forEach((asset) => {
             const symbol = asset.key;
             if (cryptoKeys.includes(symbol)) {
-                prices[symbol] = parseFloat(asset.price).toFixed(2);
-                priceChange[symbol] = parseFloat(asset.changePrice).toFixed(1)
+                currentPrice[symbol] = parseFloat(asset.price).toFixed(2);
+                changedPrice[symbol] = parseFloat(asset.changePrice).toFixed(1)
             }
         });
-        setCurrentPrices(prices);
-        setChangedPrices(priceChange)
 
-    }, [assets, cryptoWatchlistData]);
+        setCurrentPrices(currentPrice);
+        setChangedPrices(changedPrice)
+
+
+
+    }, [cryptoWatchlistData, assets, changedPrice,currentPrice]);
     //   console.log(currentPrice)
 
 
