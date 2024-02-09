@@ -9,7 +9,6 @@ import Link from "next/link";
 
 const Academy = () => {
     const [data, setData] = useState([]);
-
     
     useEffect(() => {
         fetch("/fake.json")
@@ -27,8 +26,6 @@ const Academy = () => {
           });
       }, []);
       
-
-      console.log(data)
 
     return (
       <div className="">
