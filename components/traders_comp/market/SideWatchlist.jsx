@@ -13,10 +13,11 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-const SideWatchlist = ({ assets }) => {
+const SideWatchlist = ({ assets, flatCurrency }) => {
     const { user, loading } = useAuth();
     const [currentPrice, setCurrentPrices] = useState({});
     const [changedPrice, setChangedPrices] = useState({});
+    const [flatCurrencyPrice, setFlatCurrencyPrice] = useState({});
 
     const { data: watchlistData = [], isPending, isLoading, refetch } = useSecureFetch(
         `/watchlist?email=${user.email}`,
@@ -24,11 +25,33 @@ const SideWatchlist = ({ assets }) => {
     );
     // console.log(watchlistData)
     // console.log(assets)
+    // console.log(flatCurrency)
 
     const cryptoWatchlistData = watchlistData.filter(crypto => crypto.assetType === "crypto currency")
+    const currencyWatchlistData = watchlistData.filter(flat => flat.assetType === "regular currency")
+    // console.log(currencyWatchlistData)
+    // console.log(cryptoWatchlistData)
+
+    useEffect(()=>{
+        const flatCurrencyKeys = currencyWatchlistData.map(asset => {
+            return asset.assetKey
+        });
+        // console.log(flatCurrencyKeys)
+    
+        flatCurrency.forEach((asset) => {
+            const symbol = asset.key;
+            // console.log(symbol)
+            if (flatCurrencyKeys.includes(symbol.slice(0, -4))) {
+                flatCurrencyPrice[symbol.slice(0, -4)] = parseFloat(asset.price).toFixed(2);
+            }
+        });
+    
+        setFlatCurrencyPrice(flatCurrencyPrice)
+    },[currencyWatchlistData, flatCurrencyPrice, flatCurrency])
+    // console.log(flatCurrencyPrice)
+
 
     useEffect(() => {
-
         const cryptoKeys = cryptoWatchlistData.map(asset => {
             return asset.assetKey
         });
@@ -43,17 +66,10 @@ const SideWatchlist = ({ assets }) => {
 
         setCurrentPrices(currentPrice);
         setChangedPrices(changedPrice)
-
-
-
     }, [cryptoWatchlistData, assets, changedPrice, currentPrice]);
-    //   console.log(currentPrice)
+    // console.log(currentPrice)
+
     const [value, setValue] = React.useState('1');
-
-
-    const [tabValue, setTabValue] = useState("1");
-    const theme = useTheme();
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -62,10 +78,10 @@ const SideWatchlist = ({ assets }) => {
             <h1>Watchlist</h1>
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
-                    <Box sx={{ borderBottom: 2, borderColor: 'divider' , marginBottom:"10px"}}>
+                    <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
-                            <Tab sx={{color:"white"}} label="Crypto Coins" value="1" />
-                            <Tab sx={{color:"white"}} label="Flat Coins" value="2" />
+                            <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
+                            <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
                         </TabList>
                     </Box>
                     <TabPanel sx={{ padding: "0px" }} value="1">
@@ -124,10 +140,55 @@ const SideWatchlist = ({ assets }) => {
                         }
                     </TabPanel>
                     <TabPanel value="2">
-                        <div className='border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8'>
-                            <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
-                            <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
-                        </div>
+                    {
+                            currencyWatchlistData.length > 0 ?
+                                <TableContainer
+                                    component={Paper}
+                                    sx={{
+                                        border: "1px solid rgba(0, 0, 0, 0.1)",
+                                    }}
+                                    className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree"
+                                >
+                                    <Link href="/dashboard/watchlist">
+                                        <Table aria-label="simple table">
+                                            <TableHead className="mx-auto">
+                                                <TableRow className="text-center">
+                                                    <TableCell sx={{ fontWeight: 700, color: "white" }}>Coin Name</TableCell>
+                                                    <TableCell sx={{ fontWeight: 700, color: "white" }}>Price/USD</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody >
+                                                {currencyWatchlistData.map((asset, idx) => (
+                                                    <TableRow
+                                                        key={asset._id}
+                                                        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                                                    >
+                                                        <TableCell>
+                                                            <div className="flex items-center gap-1">
+                                                                <Image
+                                                                    width={30}
+                                                                    height={30}
+                                                                    src={asset.assetImg}
+                                                                    alt="coin-icon"
+                                                                />
+                                                                <p className={`text-xs text-white`}>{asset.assetName}</p>
+                                                            </div>
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            <p className={` text-xs text-white`}>{flatCurrencyPrice[asset.assetKey]} <span className='text-[8px] text-white'>{asset.assetKey}</span></p>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </Link>
+                                </TableContainer>
+                                :
+                                <div className='border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8'>
+                                    <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
+                                    <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
+                                </div>
+                        }
                     </TabPanel>
                 </TabContext>
             </Box>

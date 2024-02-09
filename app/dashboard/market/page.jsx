@@ -93,7 +93,7 @@ const MarketPage = () => {
   }, [assets]);
 
   const createFlatCurrencyData = (name, key, price, icon) => ({ name, key, price, icon });
-  const [flatCurrency, setflatCurrency] = useState([
+  const [flatCurrency, setFlatCurrency] = useState([
     createFlatCurrencyData("Euro", "EUR/USD", 0, 'https://i.ibb.co/hFGM72Y/eur.png'),
     createFlatCurrencyData("Dirham", "AED/USD", 0, 'https://i.ibb.co/GnGpCGY/aed.png'),
     createFlatCurrencyData("Afghani", "AFN/USD", 0, 'https://i.ibb.co/2FgBbdJ/afn.png'),
@@ -126,14 +126,14 @@ const MarketPage = () => {
             cur.icon,
           );
         })
-        setflatCurrency(updatedAssets)
+        setFlatCurrency(updatedAssets)
       } catch (error) {
         console.error('Error fetching currency rates:', error);
       }
     };
 
     fetchCurrencyRates();
-  }, []);
+  }, [flatCurrency]);
   // console.log(flatCurrency)
 
 
@@ -197,7 +197,7 @@ const MarketPage = () => {
 
         </div>
         <div className="max-h-min flex-1">
-          <SideWatchlist assets={assets}></SideWatchlist>
+          <SideWatchlist assets={assets} flatCurrency={flatCurrency}></SideWatchlist>
         </div>
       </div>
     </div>
