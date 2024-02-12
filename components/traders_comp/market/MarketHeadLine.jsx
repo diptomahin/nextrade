@@ -22,7 +22,7 @@ const MarketHeadLine = ({assets}) => {
                   </Stack>
                 </Stack>
                 <Stack>
-                  <p>Heigh Price: <span className="text-green-700 font-semibold">${asset.heighPrice}</span></p>
+                  <p>Heigh Price: <span className="text-green-700 font-semibold">${asset.highPrice}</span></p>
                   <p>Low Price: <span className="text-red-500 font-semibold">${asset.lowPrice}</span></p>
                 </Stack>
               </Stack>

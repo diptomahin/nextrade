@@ -1,6 +1,6 @@
 "use client"
 import DashButton from "@/components/library/buttons/DashButton";
-import { Divider, TextField } from "@mui/material";
+import { Button, Divider, TextField } from "@mui/material";
 import Image from "next/image";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBanner from "./TopBanner";
@@ -210,7 +210,22 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
                 }}
                 onChange={handleQuantityChange}
               />
-              <DashButton className="w-full" onClick={() => handleBuyCrypto(tickerData)}>Buy {coinKey.slice(0, -4)}</DashButton>
+              <Button
+                disabled={quantity < 1}
+                sx={{
+                  backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
+                  color: "white",
+                  borderRadius: "50px",
+                  padding: "10px 15px",
+                  "&:hover": {
+                    backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
+                  },
+                }}
+                onClick={() => handleBuyCurrency(currencyRate)}
+              >
+                Buy {coinKey}
+              </Button>
+              {/* <DashButton className="w-full" onClick={() => handleBuyCrypto(tickerData)}>Buy {coinKey.slice(0, -4)}</DashButton> */}
             </div>
             :
             <p>Loading...</p>
