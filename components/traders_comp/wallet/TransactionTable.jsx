@@ -84,7 +84,7 @@ const TransactionTable = ({ userBalanceDetails }) => {
                     {row?.deposit ? (
                       <span className="text-[#78c350]">${row?.deposit}</span>
                     ) : (
-                      <span className="text-[#f94449]">${row?.withdraw}</span>
+                      <span className="text-[#ff5252]">${row?.withdraw}</span>
                     )}
                   </TableCell>
                   <TableCell
