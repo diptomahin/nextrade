@@ -10,13 +10,12 @@ import {
   Legend,
 } from "recharts";
 import AddCardOutlinedIcon from "@mui/icons-material/AddCardOutlined";
-import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-import CardTravelOutlinedIcon from "@mui/icons-material/CardTravelOutlined";
-import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
-import AvTimerOutlinedIcon from "@mui/icons-material/AvTimerOutlined";
+import { RiLuggageDepositFill } from "react-icons/ri";
+import { MdAccountBalance } from "react-icons/md";
 import DepositForm from "@/components/traders_comp/wallet/DepositForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { BiMoneyWithdraw } from "react-icons/bi";
 import React from "react";
 import useAuth from "@/hooks/useAuth";
 import useSecureFetch from "@/hooks/useSecureFetch";
@@ -102,36 +101,34 @@ const Wallet = () => {
       <div className="xl:w-9/12 flex flex-col gap-5">
         <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
           {/* total balance */}
-          <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">
-            <h3 className="opacity-70 flex items-center gap-2">
-              <CardTravelOutlinedIcon /> Total Balance
+          <div className="w-full p-5 bg-[#40a0ff] rounded-xl flex flex-col justify-center gap-3">
+            <h3 className="flex items-center gap-2 font-medium">
+              <MdAccountBalance className="text-2xl" /> Total Balance
             </h3>
-            <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium">
+            <h3 className="text-2xl font-semibold">
               ${" "}
               {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || "0.00"}
             </h3>
           </div>
 
           {/* total deposit */}
-          <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">
-            <h3 className="opacity-70 flex items-center gap-2">
-              <AddCardOutlinedIcon /> Total Deposited{" "}
+          <div className="w-full p-5 bg-[#78c350] rounded-xl flex flex-col justify-center gap-3">
+            <h3 className="flex items-center gap-2 font-medium">
+              <RiLuggageDepositFill className="text-2xl" /> Total Deposit
             </h3>
-            <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium flex items-center gap-2">
-              <FileDownloadOutlinedIcon className=" text-green-500" />${" "}
-              {totalDeposit ? totalDeposit?.toFixed(2) : "0.00"}
+            <h3 className="text-2xl font-semibold">
+              $ {totalDeposit ? totalDeposit?.toFixed(2) : "0.00"}
             </h3>
           </div>
 
           {/* total withdraw */}
-          <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col justify-center gap-3">
-            <h3 className="opacity-70 flex items-center gap-2">
-              <AvTimerOutlinedIcon /> Total Withdrawals
+          <div className="w-full p-5 bg-[#f94449] rounded-xl flex flex-col justify-center gap-3">
+            <h3 className="flex items-center gap-2 font-medium">
+              <BiMoneyWithdraw className="text-2xl" /> Total Withdraw
             </h3>
 
-            <h3 className="text-xl 4xl:text-lg 5xl:text-xl font-medium flex items-center gap-2">
-              <FileUploadOutlinedIcon className=" text-red-600" /> ${" "}
-              {totalWithdraw ? totalWithdraw?.toFixed(2) : "0.00"}
+            <h3 className="text-2xl font-semibold">
+              $ {totalWithdraw ? totalWithdraw?.toFixed(2) : "0.00"}
             </h3>
           </div>
         </div>
@@ -205,8 +202,8 @@ const Wallet = () => {
               <CustomYAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="Deposit" fill="#82ca9d" />
-              <Bar dataKey="Withdraw" fill="#dc2626" />
+              <Bar dataKey="Deposit" fill="#78c350" />
+              <Bar dataKey="Withdraw" fill="#f94449" />
             </BarChart>
           </ResponsiveContainer>
         </div>
