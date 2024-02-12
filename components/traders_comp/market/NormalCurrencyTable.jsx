@@ -6,17 +6,21 @@ import DashboardButton from "@/components/library/buttons/DashButton";
 const NormalCurrencyTable = ({ assets }) => {
   return (
     <TableContainer
-      className='bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree '
+      sx={{
+        borderRadius: "0.75rem",
+        boxShadow: "none",
+      }}
+      className='bg-gradient-to-bl from-darkOne to-darkTwo '
       component={Paper}
     >
       <Table aria-label="simple table">
         <TableHead className="mx-auto">
           <TableRow className="text-center">
-            <TableCell sx={{ fontWeight: 700, color: "white" }}>No.</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white" }}>Name</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white" }}>Code</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white" }}>Current Value/USD</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white" }}>Option</TableCell>
+            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>No.</TableCell>
+            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Name</TableCell>
+            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Code</TableCell>
+            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Current Value/USD</TableCell>
+            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Option</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

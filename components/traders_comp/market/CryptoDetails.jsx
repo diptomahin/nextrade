@@ -221,7 +221,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
                     backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
                   },
                 }}
-                onClick={() => handleBuyCurrency(currencyRate)}
+                onClick={() => handleBuyCrypto(tickerData)}
               >
                 Buy {coinKey}
               </Button>
