@@ -165,7 +165,6 @@ const MarketPage = () => {
             >
               <MenuItem value={"Cryptos"}><p >Cryptos</p></MenuItem>
               <MenuItem value={"Currency"}><p >Currency</p></MenuItem>
-              <MenuItem value={"Stocks"}><p >Stocks</p></MenuItem>
             </CustomSelect>
           </FormControl>
           <FormControl sx={{ width: 200 }}>
