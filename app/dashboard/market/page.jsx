@@ -10,6 +10,8 @@ import MarketTable from "@/components/traders_comp/market/MarketTable";
 import axios from "axios";
 import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrencyTable";
 import styled from "@emotion/styled";
+import usePublicFetch from "@/hooks/usePublicFetch";
+import { useQuery } from "@tanstack/react-query";
 
 const CustomSelect = styled(Select)({
   '& .MuiSelect-root': {
@@ -19,7 +21,7 @@ const CustomSelect = styled(Select)({
     },
   },
   '& .MuiSelect-select': {
-    color:"white",
+    color: "white",
     '&:hover': {
       backgroundColor: 'transparent', // Remove hover background color
     },
@@ -51,22 +53,19 @@ const MarketPage = () => {
   const [category, setCategory] = useState('Cryptos');
   const [sort, setSort] = useState('Current Price');
 
-  // create crypto currency data
-  const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
-  const [assets, setAssets] = useState([
-    createData("Bitcoin", "BTCUSDT", 0, "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", 0, 0, 0),
-    createData("Ethereum", "ETHUSDT", 0, "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628", 0, 0, 0),
-    createData("LiteCoin", "LTCUSDT", 0, "https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580", 0, 0, 0),
-    createData("QTUM coin", "QTUMUSDT", 0, "https://assets.coingecko.com/coins/images/684/large/Qtum_Logo_blue_CG.png?1696501874", 0, 0, 0),
-    createData("DOGE coin", "DOGEUSDT", 0, "https://assets.coingecko.com/coins/images/5/large/dogecoin.png?1547792256", 0, 0, 0),
-    createData("Ripple coin", "XRPUSDT", 0, "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1605778731", 0, 0, 0),
-    createData("Bitcoin cash", "BCHUSDT", 0, "https://assets.coingecko.com/coins/images/780/large/bitcoin-cash-circle.png?1696501932", 0, 0, 0),
-    createData("Cardano", "ADAUSDT", 0, "https://assets.coingecko.com/coins/images/975/large/cardano.png?1547034860", 0, 0, 0),
-    createData("Polkadot", "DOTUSDT", 0, "https://assets.coingecko.com/coins/images/12171/large/polkadot.png?1696512008", 0, 0, 0),
-    createData("Binance Coin", "BNBUSDT", 0, "https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png?1547034615", 0, 0, 0),
-    createData("Polygon", "MATICUSDT", 0, "https://assets.coingecko.com/coins/images/4713/large/polygon.png?1698233745", 0, 0, 0),
-    // Add more assets similarly
-  ]);
+  const { data: allCoins = [], isLoading, isError, refetch } = useQuery({
+    queryKey: ['allCoins'],
+    queryFn: async () => {
+      const res = await axios.get('/allCoins.json');
+      return res.data
+    }
+  });
+
+
+  const createData = (name, key, price, type, changePrice, highPrice, lowPrice, icon) => ({ name, key, price, type, changePrice, highPrice, lowPrice, icon});
+  const [assets, setAssets] = useState(allCoins.filter(coin => coin.type === "crypto coin"));
+
+  // console.log(assets)
 
   useEffect(() => {
     const socket = new WebSocket("wss://stream.binance.com:9443/ws/!ticker@arr");
@@ -80,10 +79,11 @@ const MarketPage = () => {
             asset.name,
             asset.key,
             parseFloat(ticker.c).toFixed(3),
-            asset.icon,
+            asset.type,
             parseFloat(ticker.p).toFixed(3),
             parseFloat(ticker.h).toFixed(2),
-            parseFloat(ticker.l).toFixed(2)
+            parseFloat(ticker.l).toFixed(2),
+            asset.icon,
           );
         }
         return asset;
@@ -93,21 +93,8 @@ const MarketPage = () => {
     return () => socket.close();
   }, [assets]);
 
-  const createFlatCurrencyData = (name, key, price, icon) => ({ name, key, price, icon });
-  const [flatCurrency, setFlatCurrency] = useState([
-    createFlatCurrencyData("Euro", "EUR/USD", 0, 'https://i.ibb.co/hFGM72Y/eur.png'),
-    createFlatCurrencyData("Dirham", "AED/USD", 0, 'https://i.ibb.co/GnGpCGY/aed.png'),
-    createFlatCurrencyData("Afghani", "AFN/USD", 0, 'https://i.ibb.co/2FgBbdJ/afn.png'),
-    createFlatCurrencyData("Taka", "BDT/USD", 0, 'https://i.ibb.co/4mqmsFd/bdt.png'),
-    createFlatCurrencyData("Rupiah", "IDR/USD", 0, 'https://i.ibb.co/x3tp4RB/idr.png'),
-    createFlatCurrencyData("Jordanian", "JOD/USD", 0, 'https://i.ibb.co/nMLxm8Q/jod.png'),
-    createFlatCurrencyData("Argentine Peso", "ARS/USD", 0, 'https://i.ibb.co/LRkfMyS/ars.png'),
-    createFlatCurrencyData("British Pound", "GBP/USD", 0, 'https://i.ibb.co/HD8TzzV/gpb.png'),
-    createFlatCurrencyData("Aussie Dollar", "AUD/USD", 0, 'https://i.ibb.co/mBQQrcw/aud.png'),
-    createFlatCurrencyData("Dram", "AMD/USD", 0, 'https://i.ibb.co/yscsgzr/amd.png'),
-
-    // Add more assets similarly
-  ]);
+  const createFlatCurrencyData = (name, key, type, price, icon) => ({ name, key, type, price, icon });
+  const [flatCurrency, setFlatCurrency] = useState(allCoins.filter(coin => coin.type === "flat coin"));
 
   useEffect(() => {
     const fetchCurrencyRates = async () => {
@@ -118,11 +105,12 @@ const MarketPage = () => {
         // Access the data property of the response to get the currency rates
         const data = response.data.rates;
         const updatedAssets = flatCurrency.map(cur => {
-          const currencyKey = cur.key.slice(0, -4)
+          const currencyKey = cur.key
           // console.log(currencyKey)
           return createFlatCurrencyData(
             cur.name,
             cur.key,
+            cur.type,
             data[currencyKey],
             cur.icon,
           );
@@ -159,9 +147,9 @@ const MarketPage = () => {
               label="Category"
               onChange={(event) => { setCategory(event.target.value) }}
             >
-                <MenuItem value={"Cryptos"}><p >Cryptos</p></MenuItem>
-                <MenuItem value={"Currency"}><p >Currency</p></MenuItem>
-                <MenuItem value={"Stocks"}><p >Stocks</p></MenuItem>
+              <MenuItem value={"Cryptos"}><p >Cryptos</p></MenuItem>
+              <MenuItem value={"Currency"}><p >Currency</p></MenuItem>
+              <MenuItem value={"Stocks"}><p >Stocks</p></MenuItem>
             </CustomSelect>
           </FormControl>
           <FormControl sx={{ width: 200 }}>
