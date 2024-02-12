@@ -6,14 +6,43 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
+import { BiSearchAlt } from "react-icons/bi";
 
 const TransactionTable = ({ userBalanceDetails }) => {
+  const [dynamicSearch, setDynamicSearch] = useState("userBalanceDetails");
+  console.log(dynamicSearch);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const name = e.target.search.value;
+  };
   return (
-    <div className="p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
-      <div className="flex flex-col xl:flex-row justify-between pb-10 gap-6">
+    <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
+      <div className="flex flex-col xl:flex-row items-center justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
+
+        <div className="">
+          {/* search form */}
+          <form onSubmit={handleSearch} className="relative flex items-center">
+            <input
+              onChange={(e) => setDynamicSearch(e.target.value)}
+              type="text"
+              name="search"
+              placeholder="Search..."
+              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-4 pr-9 py-[6px] outline-none rounded-xl font-medium"
+            />
+            <button
+              type="submit"
+              className="absolute right-0 bg-transparent text-lg text-white mix-blend-difference hover:bg-transparent btn btn-sm rounded-l-none shadow-none border-none"
+            >
+              <BiSearchAlt />
+            </button>
+          </form>
+          <div className="relative">
+            <button></button>
+          </div>
+        </div>
       </div>
 
       {userBalanceDetails[0]?.hasOwnProperty("depositWithdrawData") ? (
