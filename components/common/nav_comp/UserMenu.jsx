@@ -1,6 +1,7 @@
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FaUser, FaUserCircle } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
@@ -10,6 +11,7 @@ import { IoLogOut } from "react-icons/io5";
 const UserMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { user, logOut, loading } = useAuth();
+  const pathname = usePathname();
 
   if (loading) {
     return;
@@ -64,7 +66,11 @@ const UserMenu = () => {
             <Link href="/dashboard/profile" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
+                className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                  pathname === "/dashboard/profile"
+                    ? "bg-white/10 border-l-2 border-l-primary text-primary"
+                    : "bg-transparent text-white"
+                }`}
               >
                 {" "}
                 <FaUserCircle /> Profile
@@ -73,7 +79,11 @@ const UserMenu = () => {
             <Link href="/dashboard/settings" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
+                className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                  pathname === "/dashboard/settings"
+                    ? "bg-white/10 border-l-2 border-l-primary text-primary"
+                    : "bg-transparent text-white"
+                }`}
               >
                 {" "}
                 <IoMdSettings /> Settings
@@ -83,7 +93,7 @@ const UserMenu = () => {
             <Link href="/">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
+                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-white rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary"
               >
                 {" "}
                 <GoHomeFill /> Home
@@ -94,7 +104,7 @@ const UserMenu = () => {
                 logOut();
                 setIsOpen(false);
               }}
-              className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-primary border-none rounded-xl"
+              className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-white rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary"
             >
               {" "}
               <IoLogOut /> Logout
