@@ -1,6 +1,9 @@
 "use client"
+import { IconButton } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const ManageCrypto = ({ assets }) => {
     return (
@@ -19,8 +22,18 @@ const ManageCrypto = ({ assets }) => {
                         <p className='text-center text-lg font-semibold mt-3'>{asset.name}</p>
                     </div>
                     <p className='flex justify-between items-center'>Price: ${parseFloat(asset.price).toFixed(2)}<span>{asset.changePrice}%</span></p>
-                    <p>24h High: <span className='text-green-600'>${parseFloat(asset.highPrice).toFixed(2)}</span></p>
-                    <p>24h Low: <span className='text-red-600'>${parseFloat(asset.lowPrice).toFixed(2)}</span></p>
+                    <div className='flex justify-between items-center'>
+                        <p>24h High: <span className='text-green-600'>${parseFloat(asset.highPrice).toFixed(2)}</span></p>
+                        <IconButton aria-label="delete">
+                            <EditIcon className='text-gray-500' />
+                        </IconButton>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                        <p>24h Low: <span className='text-red-600'>${parseFloat(asset.lowPrice).toFixed(2)}</span></p>
+                        <IconButton aria-label="delete">
+                            <DeleteIcon className='text-gray-500' />
+                        </IconButton>
+                    </div>
                 </div>
             ))}
         </div>

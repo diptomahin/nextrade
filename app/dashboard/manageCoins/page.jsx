@@ -3,7 +3,7 @@ import ManageCrypto from '@/components/admins_comp/ManageCrypto';
 import ManageFlatCoins from '@/components/admins_comp/ManageFlatCoins';
 import DashButton from '@/components/library/buttons/DashButton';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Box, Tab } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -11,6 +11,8 @@ import React, { useEffect, useState } from 'react';
 const ManageCoins = () => {
     const [assets, setAssets] = useState([]);
     const [flatCurrency, setFlatCurrency] = useState([]);
+    const [open, setOpen] = React.useState(false);
+    const [typeValue, setTypeValue] = useState("")
 
 
     const { data: allCoins = [], isLoading, isError, refetch } = useQuery({
@@ -103,12 +105,117 @@ const ManageCoins = () => {
         setValue(newValue);
     };
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleTypeChange = (event) => {
+        setTypeValue(event.target.value);
+    };
+
+
     return (
         <div>
 
-            <div className='flex justify-between p-6 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
+            <div className='flex flex-col xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
                 <h1 className='text-3xl font-semibold'>Manage Coins</h1>
-                <DashButton className="w-full">Add new</DashButton>
+                <DashButton className="w-full" onClick={handleClickOpen}>Add new</DashButton>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    PaperProps={{
+                        component: 'form',
+                        onSubmit: (event) => {
+                            event.preventDefault();
+                            const formData = event.target;
+                            const name = formData.name.value;
+                            const key = formData.key.value;
+                            const type = typeValue;
+                            const icon = formData.icon.value
+
+                            if (type === "crypto coin") {
+                                const coinInfo = {
+                                    name,
+                                    key,
+                                    price: 0,
+                                    type,
+                                    changePrice: 0,
+                                    highPrice: 0,
+                                    lowPrice: 0,
+                                    icon
+                                }
+                                console.log(coinInfo)
+                            }else{
+                                const coinInfo = {
+                                    name,
+                                    key,
+                                    type,
+                                    price: 0,
+                                    icon
+                                }
+                                console.log(coinInfo)
+                            }
+                            handleClose();
+                        },
+                    }}
+                >
+                    <DialogTitle>Add new coin</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="name"
+                            name="name"
+                            label="Coin Name"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
+                        <FormControl variant="standard" required sx={{ width: "100%", marginTop: "15px" }}>
+                            <InputLabel id="demo-simple-select-helper-label">Coin Type</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={typeValue}
+                                label="Coin type"
+                                onChange={handleTypeChange}
+                            >
+                                <MenuItem value={"crypto coin"}>crypto coin</MenuItem>
+                                <MenuItem value={"flat coin"}>flat coin</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="key"
+                            name="key"
+                            label="Coin Key"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="icon"
+                            name="icon"
+                            label="Coin Icon URL"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <DashButton onClick={handleClose}>Cancel</DashButton>
+                        <DashButton type="submit">Add</DashButton>
+                    </DialogActions>
+                </Dialog>
             </div>
 
             <Box className='w-full my-6'>
