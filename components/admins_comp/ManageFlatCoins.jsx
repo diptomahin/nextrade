@@ -1,11 +1,21 @@
 import Image from "next/image";
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton } from "@mui/material";
 
 const ManageFlatCoins = ({ assets }) => {
     return (
         <div className='flex gap-6 flex-wrap my-6'>
             {assets.map((asset, idx) => (
                 <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
+                    <div className="absolute right-2 flex flex-col gap-2">
+                        <IconButton aria-label="delete">
+                            <EditIcon className='text-gray-500' />
+                        </IconButton>
+                        <IconButton aria-label="delete">
+                            <DeleteIcon className='text-gray-500' />
+                        </IconButton>
+                    </div>
                     <p className='absolute top-4 left-4'>{idx + 1}.</p>
                     <div >
                         <Image
