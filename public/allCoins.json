@@ -1,0 +1,183 @@
+[
+    {
+        "name": "Bitcoin",
+        "key": "BTCUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+    },
+    {
+        "name": "Ethereum",
+        "key": "ETHUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628"
+    },
+    {
+        "name": "LiteCoin",
+        "key": "LTCUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580"
+    },
+    {
+        "name": "QTUM coin",
+        "key": "QTUMUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/684/large/Qtum_Logo_blue_CG.png?1696501874"
+    },
+    {
+        "name": "DOGE coin",
+        "key": "DOGEUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/5/large/dogecoin.png?1547792256"
+    },
+    {
+        "name": "Ripple coin",
+        "key": "XRPUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1605778731"
+    },
+    {
+        "name": "Bitcoin cash",
+        "key": "BCHUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/780/large/bitcoin-cash-circle.png?1696501932"
+    },
+    {
+        "name": "Cardano",
+        "key": "ADAUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/975/large/cardano.png?1547034860"
+    },
+    {
+        "name": "Polkadot",
+        "key": "DOTUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/12171/large/polkadot.png?1696512008"
+    },
+    {
+        "name": "Binance Coin",
+        "key": "BNBUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png?1547034615"
+    },
+    {
+        "name": "Polygon",
+        "key": "MATICUSDT",
+        "price": 0,
+        "type": "crypto coin",
+        "changePrice": 0,
+        "highPrice": 0,
+        "lowPrice": 0,
+        "icon": "https://assets.coingecko.com/coins/images/4713/large/polygon.png?1698233745"
+    },
+    
+    {
+        "name": "Euro",
+        "key": "EUR",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/hFGM72Y/eur.png"  
+    },
+    {
+        "name": "Dirham",
+        "key": "AED",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/GnGpCGY/aed.png"  
+    },
+    {
+        "name": "AFghani",
+        "key": "AFN",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/2FgBbdJ/afn.png"  
+    },
+    {
+        "name": "Taka",
+        "key": "BDT",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/4mqmsFd/bdt.png"  
+    },
+    {
+        "name": "Rupiah",
+        "key": "IDR",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/x3tp4RB/idr.png"  
+    },
+    {
+        "name": "Jordanian",
+        "key": "JOD",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/nMLxm8Q/jod.png"  
+    },
+    {
+        "name": "Argentine Peso",
+        "key": "ARS",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/LRkfMyS/ars.png"  
+    },
+    {
+        "name": "British Pound",
+        "key": "GBP",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/HD8TzzV/gpb.png"  
+    },
+    {
+        "name": "Aussie Dollar",
+        "key": "AUD",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/mBQQrcw/aud.png"  
+    },
+    {
+        "name": "Dram",
+        "key": "AMD",
+        "type": "flat coin",
+        "price": 0,
+        "icon": "https://i.ibb.co/yscsgzr/amd.png"  
+    }
+]

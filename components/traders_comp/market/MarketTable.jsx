@@ -19,7 +19,7 @@ const MarketTable = ({assets}) => {
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>Coin Name</TableCell>
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>Current Price</TableCell>
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>24%</TableCell>
-                  <TableCell sx={{ fontWeight: 700, color: "white" }}>24h Heigh Price</TableCell>
+                  <TableCell sx={{ fontWeight: 700, color: "white" }}>24h High Price</TableCell>
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>24h Low Price</TableCell>
                   <TableCell sx={{ fontWeight: 700, color: "white" }}>Option</TableCell>
                 </TableRow>
@@ -51,7 +51,7 @@ const MarketTable = ({assets}) => {
                       <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-600" : asset.changePrice > 0 ? "text-green-600": ""}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon />:<TrendingUpIcon />}</p>
                     </TableCell>
                     <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                      <p className={` font-semibold text-green-700`}>$ {asset.heighPrice}</p>
+                      <p className={` font-semibold text-green-700`}>$ {asset.highPrice}</p>
                     </TableCell>
                     <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                       <p className={` font-semibold text-red-600`}>$ {asset.lowPrice}</p>

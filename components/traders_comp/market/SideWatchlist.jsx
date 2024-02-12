@@ -41,8 +41,8 @@ const SideWatchlist = ({ assets, flatCurrency }) => {
         flatCurrency.forEach((asset) => {
             const symbol = asset.key;
             // console.log(symbol)
-            if (flatCurrencyKeys.includes(symbol.slice(0, -4))) {
-                flatCurrencyPrice[symbol.slice(0, -4)] = parseFloat(asset.price).toFixed(2);
+            if (flatCurrencyKeys.includes(symbol)) {
+                flatCurrencyPrice[symbol] = parseFloat(asset.price).toFixed(2);
             }
         });
     

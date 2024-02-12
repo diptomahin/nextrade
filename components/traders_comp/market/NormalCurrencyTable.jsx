@@ -37,20 +37,20 @@ const NormalCurrencyTable = ({ assets }) => {
                     alt="coin-icon"
                   />
                   <p className={`text-white`}>{asset.name}</p>
-                  <span className="bg-sky-100/15 px-1 py-[2px] rounded text-primary text-xs">{asset.key.slice(0, -4)}</span>
+                  <span className="bg-sky-100/15 px-1 py-[2px] rounded text-primary text-xs">{asset.key}</span>
                 </div>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={`text-white`}>{asset.key.slice(0, -4)}</p>
+                <p className={`text-white`}>{asset.key}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` text-white`}>{asset.price}<span className="text-[8px]">  {asset.key.slice(0, -4)}</span></p>
+                <p className={` text-white`}>{asset.price}<span className="text-[8px]">  {asset.key}</span></p>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                 <DashboardButton
                   className="font-semibold normal-case"
                 >
-                  <Link href={`/dashboard/market/${asset.key.slice(0, -4)}`}>
+                  <Link href={`/dashboard/market/${asset.key}`}>
                     Explore
                   </Link>
                 </DashboardButton>
