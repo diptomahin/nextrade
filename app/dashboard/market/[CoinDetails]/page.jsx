@@ -25,52 +25,23 @@ const CoinDetails = ({ params }) => {
 
 
 
-  // fetch real-time data for crypto currency
+  // fetch real-time data for crypto currency and regular currency
   useEffect(() => {
+
+    fetch('/allCoins.json')
+        .then(res => res.json())
+        .then(data => {
+          const foundCurrency = data.find(currency => currency.key === params.CoinDetails);
+          setCoinImage(foundCurrency.icon)
+          setCurrencyName(foundCurrency.name)
+          // console.log(foundCurrency)
+        })
 
     if (params.CoinDetails.length > 3) {  // operations for cryptos
       const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
       socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
 
-      const fetchCoinImage = async () => {
-        const coinDetailsMap = {
-          BTCUSDT: "bitcoin",
-          LTCUSDT: "litecoin",
-          ETHUSDT: "ethereum",
-          QTUMUSDT: "qtum",
-          DOGEUSDT: "dogecoin",
-          XRPUSDT: "ripple",
-          BCHUSDT: "bitcoin-cash",
-          ADAUSDT: "cardano",
-          DOTUSDT: "polkadot",
-          BNBUSDT: "binancecoin",
-          MATICUSDT: "matic-network",
-          UNIUSDT: "uniswap",
-          LINKUSDT: "chainlink",
-          SOLUSDT: "solana",
-          XLMUSDT: "stellar",
-          EOSUSDT: "eos",
-        };
-
-        const coinDetailsResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinDetailsMap[params.CoinDetails]}`);
-        // console.log(coinDetailsResponse.data.image.large)
-        setCoinImage(coinDetailsResponse.data.image.large);
-        setCoinName(coinDetailsResponse.data.name);
-      };
-
-      fetchCoinImage();
-
     } else {  // operations for currencies
-
-
-      fetch('/currencyInfo.json')
-        .then(res => res.json())
-        .then(data => {
-          const currencyObject = data.find(currency => currency[params.CoinDetails]);
-          setCoinImage(currencyObject[params.CoinDetails].image)
-          setCurrencyName(currencyObject[params.CoinDetails].name)
-        })
-
       const fetchCurrencyRates = async () => {
         try {
           const response = await axios.get(
