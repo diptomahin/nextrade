@@ -122,7 +122,7 @@ const Wallet = () => {
           </div>
 
           {/* total withdraw */}
-          <div className="w-full p-5 bg-[#f06292] rounded-xl flex flex-col justify-center gap-3">
+          <div className="w-full p-5 bg-[#f94449] rounded-xl flex flex-col justify-center gap-3">
             <h3 className="flex items-center gap-2 font-medium">
               <BiMoneyWithdraw className="text-2xl" /> Total Withdraw
             </h3>
@@ -202,8 +202,8 @@ const Wallet = () => {
               <CustomYAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="Deposit" fill="#82ca9d" />
-              <Bar dataKey="Withdraw" fill="#dc2626" />
+              <Bar dataKey="Deposit" fill="#78c350" />
+              <Bar dataKey="Withdraw" fill="#f94449" />
             </BarChart>
           </ResponsiveContainer>
         </div>
