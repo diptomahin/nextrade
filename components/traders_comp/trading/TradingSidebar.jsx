@@ -85,7 +85,7 @@ const TradingSidebar = (params) => {
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-green-500">{selectedAsset[0].heighPrice}</h3>
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-red-500">{selectedAsset[0].lowPrice}</h3>
                               <div className="flex gap-3 mt-2">
-                              <Button onClick={} variant="contained">Buy</Button>
+                              <Button  variant="contained">Buy</Button>
                               <Button variant="contained">Sell</Button>
                               </div>
                         </div> )
