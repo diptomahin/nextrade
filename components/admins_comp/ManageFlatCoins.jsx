@@ -1,8 +1,7 @@
-"use client"
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
 
-const ManageCrypto = ({ assets }) => {
+
+const ManageFlatCoins = ({ assets }) => {
     return (
         <div className='flex gap-6 flex-wrap my-6'>
             {assets.map((asset, idx) => (
@@ -18,13 +17,11 @@ const ManageCrypto = ({ assets }) => {
                         />
                         <p className='text-center text-lg font-semibold mt-3'>{asset.name}</p>
                     </div>
-                    <p className='flex justify-between items-center'>Price: ${parseFloat(asset.price).toFixed(2)}<span>{asset.changePrice}%</span></p>
-                    <p>24h High: <span className='text-green-600'>${parseFloat(asset.highPrice).toFixed(2)}</span></p>
-                    <p>24h Low: <span className='text-red-600'>${parseFloat(asset.lowPrice).toFixed(2)}</span></p>
+                    <p className=''>Current value: {parseFloat(asset.price).toFixed(2)}{" "}<span className="text-xs text-yellow-400">{asset.key}/USD</span></p>
                 </div>
             ))}
         </div>
     );
 };
 
-export default ManageCrypto;
+export default ManageFlatCoins;

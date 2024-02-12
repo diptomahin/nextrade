@@ -1,6 +1,9 @@
 "use client"
 import ManageCrypto from '@/components/admins_comp/ManageCrypto';
-import MarketTable from '@/components/traders_comp/market/MarketTable';
+import ManageFlatCoins from '@/components/admins_comp/ManageFlatCoins';
+import DashButton from '@/components/library/buttons/DashButton';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { Box, Tab } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -95,9 +98,39 @@ const ManageCoins = () => {
     }, [flatCurrency]);
     // console.log(flatCurrency)
 
+    const [value, setValue] = React.useState('1');
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     return (
         <div>
-            <ManageCrypto assets={assets}></ManageCrypto>
+
+            <div className='flex justify-between p-6 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
+                <h1 className='text-3xl font-semibold'>Manage Coins</h1>
+                <DashButton className="w-full">Add new</DashButton>
+            </div>
+
+            <Box className='w-full my-6'>
+                <TabContext value={value}>
+                    <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
+                        <TabList onChange={handleChange} aria-label="lab API tabs example">
+                            <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
+                            <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+                        </TabList>
+                    </Box>
+                    <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
+                        <div className='w-full'>
+                            <ManageCrypto assets={assets}></ManageCrypto>
+                        </div>
+                    </TabPanel>
+                    <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
+                        <div className='w-full'>
+                            <ManageFlatCoins assets={flatCurrency}></ManageFlatCoins>
+                        </div>
+                    </TabPanel>
+                </TabContext>
+            </Box>
         </div>
     );
 };
