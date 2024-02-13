@@ -11,21 +11,16 @@ import Paper from "@mui/material/Paper";
 import { BiSearchAlt } from "react-icons/bi";
 import useSecureFetch from "@/hooks/useSecureFetch";
 
-const TransactionTable = ({ depositWithdrawData, user, loading }) => {
-  console.log(depositWithdrawData);
-  const [dynamicSearch, setDynamicSearch] = useState("userBalanceDetails");
-  console.log(dynamicSearch);
+const TransactionTable = ({ depositWithdrawData, user }) => {
+  const [dynamicSearch, setDynamicSearch] = useState("");
 
-  // const {
-  //   data = [],
-  //   isPending,
-  //   isLoading,
-  //   refetch,
-  // } = useSecureFetch(
-  //   `/${user.email}?search=${dynamicSearch}`,
-  //   user?.email,
-  //   dynamicSearch
-  // );
+  const { data = [] } = useSecureFetch(
+    `/deposit-withdraw/specific/${user.email}?search=${dynamicSearch}`,
+    user?.email,
+    dynamicSearch
+  );
+
+  console.log(data);
 
   const handleSearch = async (e) => {
     e.preventDefault();

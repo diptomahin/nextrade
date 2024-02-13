@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 
-const DepositForm = ({ refetch, date }) => {
+const DepositForm = ({ refetch, day, month, year, date }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState("");
@@ -97,10 +97,16 @@ const DepositForm = ({ refetch, date }) => {
       if (paymentIntent.status === "succeeded") {
         const depositData = {
           transaction: paymentIntent,
+          day: day,
           date: date,
+          month: month,
+          year: year,
           deposit: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
+          option: "Deposit",
+          amount: parseInt(amount),
+          currency: "usd",
         };
         axios
           .post(
@@ -115,7 +121,7 @@ const DepositForm = ({ refetch, date }) => {
               elements.getElement(CardNumberElement).clear(); // Reset card number
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
-              // refetch();
+              refetch();
               toast.success("Deposit Successful", {
                 id: toastId,
                 duration: 5000,

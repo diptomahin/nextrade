@@ -53,7 +53,7 @@ const Wallet = () => {
   const { user, loading } = useAuth();
 
   const { data: userBalance = [] } = useSecureFetch(
-    `/all-users/nmd28573@gmail.com`,
+    `/all-users/${user?.email}`,
     "userBalance"
   );
 
@@ -62,22 +62,20 @@ const Wallet = () => {
     isPending,
     isLoading,
     refetch,
-  } = useSecureFetch(`deposit-withdraw/nmd28573@gmail.com`, user?.email);
+  } = useSecureFetch(`/deposit-withdraw/${user?.email}`, user?.email);
 
-  // if (isLoading || isPending || loading) {
-  //   return (
-  //     <div className="h-full w-full flex justify-center items-center">
-  //       <div className="text-5xl text-primary font-semibold">
-  //         Loading
-  //         <span className="text-secondary">
-  //           .<span className="text-primary">.</span>.
-  //         </span>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
-  console.log(depositWithdrawData);
+  if (isLoading || isPending || loading) {
+    return (
+      <div className="h-full w-full flex justify-center items-center">
+        <div className="text-5xl text-primary font-semibold">
+          Loading
+          <span className="text-secondary">
+            .<span className="text-primary">.</span>.
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   const totalDeposit = depositWithdrawData?.reduce((acc, obj) => {
     // Check if the object has a 'deposit' property
@@ -156,7 +154,13 @@ const Wallet = () => {
 
             <TabPanel>
               <Elements stripe={stripePromise}>
-                <DepositForm refetch={refetch} date={date} />
+                <DepositForm
+                  refetch={refetch}
+                  day={day}
+                  month={month}
+                  year={year}
+                  date={date}
+                />
               </Elements>
             </TabPanel>
             <TabPanel>
@@ -175,8 +179,11 @@ const Wallet = () => {
                 <Elements stripe={stripePromise}>
                   <WithdrawForm
                     refetch={refetch}
+                    day={day}
+                    month={month}
+                    year={year}
                     date={date}
-                    // totalBalance={userBalance[0].balance}
+                    totalBalance={userBalance[0]?.balance}
                   />
                 </Elements>
               )}
