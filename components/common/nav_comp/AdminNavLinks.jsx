@@ -40,6 +40,17 @@ const AdminNavLinks = () => {
         Manage Services
       </Link>
       <Link
+        href="/admin_dashboard/manageCoins"
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-black/5 border-none shadow-none rounded-xl font-medium text-primary ${
+          pathname === "/admin_dashboard/manageCoins"
+            ? "bg-black/5"
+            : "bg-transparent"
+        } text-primary rounded-full`}
+      >
+        <GrServices />
+        Manage Coins
+      </Link>
+      <Link
         href="/admin_dashboard/manage_academy"
         className={`w-full h-10 btn btn-sm justify-start hover:bg-black/5 border-none shadow-none rounded-xl font-medium text-primary ${
           pathname === "/admin_dashboard/manage_academy"

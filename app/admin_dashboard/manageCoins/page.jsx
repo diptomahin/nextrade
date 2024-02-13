@@ -125,7 +125,8 @@ const ManageCoins = () => {
     return (
         <div>
 
-            <div className='flex flex-col xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
+            {/* <div className='flex flex-col xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'> */}
+            <div className='flex flex-col xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-indigo-200 to-sky-200'>
                 <h1 className='text-3xl font-semibold'>Manage Coins</h1>
                 <DashButton className="w-full" onClick={handleClickOpen}>Add new</DashButton>
                 <Dialog
@@ -180,7 +181,7 @@ const ManageCoins = () => {
                                     price: 0,
                                     icon
                                 }
-                                console.log(coinInfo)
+                                // console.log(coinInfo)
                                 secureAPI.post(`/allCoins`, coinInfo)
                                 .then((res) => {
                                     if (res.data.insertedId) {
@@ -265,8 +266,8 @@ const ManageCoins = () => {
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
-                            <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
-                            <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+                            <Tab sx={{ }} label="Crypto Coins" value="1" />
+                            <Tab sx={{ }} label="Flat Coins" value="2" />
                         </TabList>
                     </Box>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
