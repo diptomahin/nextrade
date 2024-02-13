@@ -62,46 +62,88 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <Box sx={{ flexGrow: 1, display: "flex", gap: 2,  }}>
-        <div className="p-4 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+      <Box sx={{ flexGrow: 1, display: "flex", gap: 2}}>
+        <div className="p-4  rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
           <Avatar
             alt="profile Image"
             src={user.photoURL}
             className="mx-auto "
-            sx={{ width: 100, height: 100 }}
+            sx={{ width: 60, height: 60 }}
           />
           <h3 className=" text-center font-semibold my-2">
             {user.displayName}
           </h3>
-          <p className=" text-center text-base text-gray-500 mb-5">
+          <p className=" text-center text-base text-gray-500 mb-5 ">
             {user.email}
           </p>
           <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs example"
-            sx={{ textAlign: "start", height: 1 }}
-          >
-            <Tab label="My Profile" {...a11yProps(0)} sx={{ color: "white" }} />
-            <Tab label="Security" {...a11yProps(1)} sx={{ color: "white" }} />
-            <Tab
-              label="Notification Preferences"
-              {...a11yProps(2)}
-              sx={{ color: "white" }}
-            />
-            <Tab
-              label="Currency Preferences"
-              {...a11yProps(3)}
-              sx={{ color: "white" }}
-            />
-            <Tab
-              label="KYC Verification"
-              {...a11yProps(4)}
-              sx={{ color: "white" }}
-            />
-          </Tabs>
+  orientation="vertical"
+  variant="scrollable"
+  value={value}
+  onChange={handleChange}
+  aria-label="Vertical tabs example"
+  sx={{ textAlign: "start", height: "100vh" }}
+>
+  <Tab
+    label="My Profile"
+    {...a11yProps(0)}
+    style={{
+      textTransform: 'none',
+      textAlign: 'start',
+      fontWeight: 700,
+      color: value === 0 ? "primary.main" : "white",
+      backgroundColor: value === 0 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+    }}
+  />
+  <Tab
+    label="Security"
+    {...a11yProps(1)}
+    style={{
+      textTransform: 'none',
+      textAlign: 'start',
+      fontWeight: 700,
+      color: value === 1 ? "primary.main" : "white",
+      backgroundColor: value === 1 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+    }}
+  />
+  <Tab
+  className="h-full"
+    label="Notification Preferences"
+    {...a11yProps(2)}
+    style={{
+      textTransform: 'none',
+      textAlign: 'start',
+      fontWeight: 700,
+      color: value === 2 ? "primary.main" : "white",
+      backgroundColor: value === 2 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+    }}
+  />
+  <Tab
+    label="Currency Preferences"
+    {...a11yProps(3)}
+    style={{
+      textTransform: 'none',
+      textAlign: 'start',
+      fontWeight: 700,
+      color: value === 3 ? "primary.main" : "white",
+      backgroundColor: value === 3 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+    }}
+  />
+  <Tab
+    label="KYC Verification"
+    {...a11yProps(4)}
+    style={{
+      textTransform: 'none',
+      textAlign: 'start',
+      fontWeight: 700,
+      color: value === 4 ? "primary.main" : "white",
+      backgroundColor: value === 4 ? "rgba(255, 255, 255, 0.1)" : "transparent",
+    }}
+  />
+</Tabs>
+
+
+
         </div>
 
         <TabPanel
