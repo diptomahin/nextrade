@@ -8,7 +8,7 @@ import Link from 'next/link';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import Magnetic from '@/components/library/Magnetic';
-
+import axios from 'axios';
 
 
 const WatchlistCryptoTable = ({ assets }) => {
@@ -17,10 +17,15 @@ const WatchlistCryptoTable = ({ assets }) => {
     const [assetList, setAssetList] = useState(assets);
 
     // Function to handle asset deletion
-    const handleDelete = (index) => {
-        const updatedAssets = [...assetList];
-        updatedAssets.splice(index, 1); // Remove the item at the specified index
-        setAssetList(updatedAssets); // Update the state with the new asset list
+    const handleDelete = async (index, id) => {
+        try {
+            await axios.delete(`/v1/api/watchlist/${id}`);
+            const updatedAssets = [...assetList];
+            updatedAssets.splice(index, 1);
+            setAssetList(updatedAssets);
+        } catch (error) {
+            console.error('Error deleting asset:', error);
+        }
     };
 
     return (
