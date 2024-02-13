@@ -9,7 +9,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import AddCardOutlinedIcon from "@mui/icons-material/AddCardOutlined";
 import { RiLuggageDepositFill } from "react-icons/ri";
 import { MdAccountBalance } from "react-icons/md";
 import DepositForm from "@/components/traders_comp/wallet/DepositForm";
@@ -52,10 +51,12 @@ CustomYAxis.defaultProps = {
 const Wallet = () => {
   const { user, loading } = useAuth();
 
-  const { data: userBalance = [] } = useSecureFetch(
-    `/all-users/${user?.email}`,
-    "userBalance"
-  );
+  const {
+    data: userBalance = [],
+    refetch: userBalanceRefetch,
+    isPending: userBalancePending,
+    isLoading: userBalanceLoading,
+  } = useSecureFetch(`/all-users/${user?.email}`, "userBalance");
 
   const {
     data: depositWithdrawData = [],
@@ -64,7 +65,10 @@ const Wallet = () => {
     refetch,
   } = useSecureFetch(`/deposit-withdraw/${user?.email}`, user?.email);
 
-  if (isLoading || isPending || loading) {
+  if (
+    (isLoading || isPending || loading || userBalanceLoading,
+    userBalancePending)
+  ) {
     return (
       <div className="h-full w-full flex justify-center items-center">
         <div className="text-5xl text-primary font-semibold">
@@ -132,11 +136,7 @@ const Wallet = () => {
         </div>
 
         {/* Transaction History */}
-        <TransactionTable
-          depositWithdrawData={depositWithdrawData}
-          user={user}
-          loading={loading}
-        />
+        <TransactionTable user={user} />
       </div>
 
       {/* Select Currency & Payment */}
@@ -155,10 +155,8 @@ const Wallet = () => {
             <TabPanel>
               <Elements stripe={stripePromise}>
                 <DepositForm
+                  userBalanceRefetch={userBalanceRefetch}
                   refetch={refetch}
-                  day={day}
-                  month={month}
-                  year={year}
                   date={date}
                 />
               </Elements>
@@ -178,10 +176,8 @@ const Wallet = () => {
               ) : (
                 <Elements stripe={stripePromise}>
                   <WithdrawForm
+                    userBalanceRefetch={userBalanceRefetch}
                     refetch={refetch}
-                    day={day}
-                    month={month}
-                    year={year}
                     date={date}
                     totalBalance={userBalance[0]?.balance}
                   />

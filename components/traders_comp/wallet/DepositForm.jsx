@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 
-const DepositForm = ({ refetch, day, month, year, date }) => {
+const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState("");
@@ -27,7 +27,7 @@ const DepositForm = ({ refetch, day, month, year, date }) => {
     }
 
     axios
-      .post("http://localhost:5000/create-payment-intent", {
+      .post("https://nex-trade-server.vercel.app/create-payment-intent", {
         price: amount,
       })
       .then((res) => {
@@ -97,20 +97,17 @@ const DepositForm = ({ refetch, day, month, year, date }) => {
       if (paymentIntent.status === "succeeded") {
         const depositData = {
           transaction: paymentIntent,
-          day: day,
           date: date,
-          month: month,
-          year: year,
           deposit: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
-          option: "Deposit",
+          action: "Deposit",
           amount: parseInt(amount),
           currency: "usd",
         };
         axios
           .post(
-            `http://localhost:5000/v1/api/deposit/${user?.email}`,
+            `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
             depositData
           )
           .then((res) => {
@@ -122,6 +119,7 @@ const DepositForm = ({ refetch, day, month, year, date }) => {
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
               refetch();
+              userBalanceRefetch();
               toast.success("Deposit Successful", {
                 id: toastId,
                 duration: 5000,

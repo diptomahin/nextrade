@@ -11,22 +11,17 @@ import Paper from "@mui/material/Paper";
 import { BiSearchAlt } from "react-icons/bi";
 import useSecureFetch from "@/hooks/useSecureFetch";
 
-const TransactionTable = ({ depositWithdrawData, user }) => {
+const TransactionTable = ({ user }) => {
   const [dynamicSearch, setDynamicSearch] = useState("");
 
-  const { data = [] } = useSecureFetch(
+  const { data: depositWithdrawData = [], refetch } = useSecureFetch(
     `/deposit-withdraw/specific/${user.email}?search=${dynamicSearch}`,
     user?.email,
     dynamicSearch
   );
 
-  console.log(data);
-
-  const handleSearch = async (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    const name = e.target.search.value;
-
-    // const res = await useSecureAPI.get(`/all-users/${user.email}`);
   };
   return (
     <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
@@ -56,7 +51,7 @@ const TransactionTable = ({ depositWithdrawData, user }) => {
         </div>
       </div>
 
-      {depositWithdrawData ? (
+      {depositWithdrawData.length !== 0 ? (
         <TableContainer
           component={Paper}
           sx={{
@@ -116,16 +111,20 @@ const TransactionTable = ({ depositWithdrawData, user }) => {
                       fontWeight: "medium",
                     }}
                   >
-                    {row?.deposit ? "Deposit" : "Withdraw"}
+                    {row?.action}
                   </TableCell>
                   <TableCell
                     sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
                   >
-                    {row?.deposit ? (
-                      <span className="text-[#78c350]">${row?.deposit}</span>
-                    ) : (
-                      <span className="text-[#ff5252]">${row?.withdraw}</span>
-                    )}
+                    <span
+                      className={
+                        row.action === "Deposit"
+                          ? "text-[#78c350]"
+                          : "text-[#ff5252]"
+                      }
+                    >
+                      ${row?.amount}
+                    </span>
                   </TableCell>
                   <TableCell
                     sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
