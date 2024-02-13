@@ -1,26 +1,21 @@
 "use client";
 import DarkButton from "@/components/library/buttons/DarkButton";
+import WatchlistCryptoTable from "@/components/traders_comp/watchlist/WatchlistCryptoTable";
+import WatchlistCurrencyTable from "@/components/traders_comp/watchlist/WatchlistCurrencyTable";
 import useAuth from "@/hooks/useAuth";
 import useSecureFetch from "@/hooks/useSecureFetch";
-import * as MuiIcons from "@mui/icons-material";
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import Image from "next/image";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { Box, Tab } from "@mui/material";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+
 
 const Watchlist = () => {
   const { user, loading } = useAuth();
-  const [currentPrice, setCurrentPrices] = useState({});
-  const [changedPrice, setChangedPrices] = useState({});
-  const [heighPrice, setHeighPrices] = useState({});
-  const [lowPrice, setLowPrices] = useState({});
+  const [assets, setAssets] = useState([]);
+  const [flatCurrency, setFlatCurrency] = useState([]);
+  const [value, setValue] = React.useState('1');
+
 
   const {
     data: watchlistData = [],
@@ -31,229 +26,120 @@ const Watchlist = () => {
     "watchlist",
     user.email,
   ]);
+
   // console.log(watchlistData)
-  const cryptoWatchlistData = watchlistData.filter(
-    (crypto) => crypto.assetType === "crypto currency"
-  );
+
   useEffect(() => {
-    const cryptoKeys = cryptoWatchlistData.map((asset) => {
-      return asset.assetKey;
-    });
-    const prices = {};
-    const priceChange = {};
-    const priceHeigh = {};
-    const priceLow = {};
+    if (watchlistData.length > 0) {
+      setAssets(watchlistData.filter(coin => coin.type === "crypto coin"))
+      setFlatCurrency(watchlistData.filter(coin => coin.type === "flat coin"))
+    }
+  }, [watchlistData])
 
-    cryptoKeys.forEach((symbol) => {
-      const socket = new WebSocket(
-        `wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@ticker`
-      );
-      socket.addEventListener("message", (event) => {
-        const tickerData = JSON.parse(event.data);
-        prices[symbol] = tickerData.c;
-        priceChange[symbol] = tickerData.p;
-        priceHeigh[symbol] = tickerData.h;
-        priceLow[symbol] = tickerData.l;
 
-        setCurrentPrices((prevPrices) => ({
-          ...prevPrices,
-          [symbol]: tickerData.c,
-        }));
-        setChangedPrices((prevChanges) => ({
-          ...prevChanges,
-          [symbol]: tickerData.p,
-        }));
-        setHeighPrices((prevHeighs) => ({
-          ...prevHeighs,
-          [symbol]: tickerData.h,
-        }));
-        setLowPrices((prevLows) => ({ ...prevLows, [symbol]: tickerData.l }));
-      });
+  const createData = (name, key, price, type, changePrice, highPrice, lowPrice, icon, email) => ({ name, key, price, type, changePrice, highPrice, lowPrice, icon, email });
+
+  useEffect(() => {
+    const socket = new WebSocket("wss://stream.binance.com:9443/ws/!ticker@arr");
+
+    socket.addEventListener("message", (event) => {
+      const data = JSON.parse(event.data);
+      if (assets.length > 0) {
+        const updatedAssets = assets.map((asset) => {
+          const ticker = data.find((item) => item.s === asset.key);
+          if (ticker) {
+            return createData(
+              asset.name,
+              asset.key,
+              parseFloat(ticker.c).toFixed(3),
+              asset.type,
+              parseFloat(ticker.p).toFixed(3),
+              parseFloat(ticker.h).toFixed(2),
+              parseFloat(ticker.l).toFixed(2),
+              asset.icon,
+              asset.email
+            );
+          }
+          return asset;
+        });
+        setAssets(updatedAssets);
+      }
     });
-  }, [watchlistData, cryptoWatchlistData]);
+    return () => socket.close();
+  }, [assets]);
+  // console.log(assets)
+
+
+  const createFlatCurrencyData = (name, key, type, price, icon, email) => ({ name, key, type, price, icon, email });
+
+  useEffect(() => {
+    const fetchCurrencyRates = async () => {
+      try {
+        if (flatCurrency.length > 0) {
+          const response = await axios.get(
+            'https://api.exchangerate-api.com/v4/latest/USD'
+          );
+          // Access the data property of the response to get the currency rates
+          const data = response.data.rates;
+          const updatedAssets = flatCurrency.map(cur => {
+            const currencyKey = cur.key
+            // console.log(currencyKey)
+            return createFlatCurrencyData(
+              cur.name,
+              cur.key,
+              cur.type,
+              data[currencyKey],
+              cur.icon,
+              cur.email
+            );
+          })
+          setFlatCurrency(updatedAssets)
+        }
+      } catch (error) {
+        console.error('Error fetching currency rates:', error);
+      }
+    };
+
+    fetchCurrencyRates();
+  }, [flatCurrency]);
+  // console.log(flatCurrency)
+
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+
+
 
   return (
     <div className="flex-1  flex flex-col gap-4 p-4 font-semibold rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
       <h1> All Coins Watchlist</h1>
 
-      {watchlistData.length > 0 ? (
-        <TableContainer
-          component={Paper}
-          sx={{ backgroundColor: "transparent", boxShadow: "none" }}
-        >
-          <Table aria-label="simple table">
-            <TableHead className="mx-auto ">
-              <TableRow className="text-center">
-                <TableCell
-                  sx={{
-                    fontWeight: 700,
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                  }}
-                >
-                  Coin Name
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 700,
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                  }}
-                >
-                  Price
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 700,
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                  }}
-                >
-                  24%
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 700,
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                  }}
-                >
-                  24h heigh price
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 700,
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                  }}
-                >
-                  24h low price
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 700,
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
-                  }}
-                >
-                  Action
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {watchlistData.map((asset, idx) => (
-                <TableRow
-                  key={asset._id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
-                    <div className="flex items-center gap-1">
-                      <Image
-                        width={30}
-                        height={30}
-                        src={asset.assetImg}
-                        alt="coin-icon"
-                      />
-                      <p className={`font-semibold text-xs`}>
-                        {asset.assetName}
-                      </p>
-                    </div>
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
-                    <p className={` font-semibold text-xs`}>
-                      ${" "}
-                      {currentPrice[asset.assetKey]
-                        ? parseFloat(currentPrice[asset.assetKey]).toFixed(2)
-                        : 0}
-                    </p>
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
-                    <p
-                      className={` font-semibold text-xs ${
-                        changedPrice[asset.assetKey] < 0
-                          ? "text-red-700"
-                          : "text-green-700"
-                      }`}
-                    >
-                      {changedPrice[asset.assetKey]
-                        ? parseFloat(changedPrice[asset.assetKey]).toFixed(3)
-                        : 0}
-                      %
-                    </p>
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
-                    <p className={` font-semibold text-xs text-green-700`}>
-                      ${" "}
-                      {heighPrice[asset.assetKey]
-                        ? parseFloat(heighPrice[asset.assetKey]).toFixed(2)
-                        : 0}{" "}
-                      <span>
-                        <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
-                      </span>
-                    </p>
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
-                    <p className={` font-semibold text-xs text-red-700`}>
-                      $
-                      {lowPrice[asset.assetKey]
-                        ? parseFloat(lowPrice[asset.assetKey]).toFixed(2)
-                        : 0}{" "}
-                      <span>
-                        <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
-                      </span>
-                    </p>
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
-                    <DarkButton
-                      className={
-                        "bg-red-600 hover:bg-red-600 text-white border-none"
-                      }
-                    >
-                      Delete
-                    </DarkButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      ) : (
-        <div>
-          <h3 className="text-red-500 text-lg font-semibold text-center mt-6">
-            empty !!
-          </h3>
-        </div>
-      )}
+      <Box className='w-full my-6'>
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
+            <TabList onChange={handleChange} aria-label="lab API tabs example">
+              <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
+              <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+            </TabList>
+          </Box>
+          <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
+
+                <WatchlistCryptoTable assets={assets}></WatchlistCryptoTable>
+
+          </TabPanel>
+          <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
+            <div className='w-full'>
+
+                  <WatchlistCurrencyTable assets={flatCurrency}></WatchlistCurrencyTable>
+
+            </div>
+          </TabPanel>
+        </TabContext>
+      </Box>
+
+
     </div>
   );
 };

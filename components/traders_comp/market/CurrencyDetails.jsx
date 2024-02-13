@@ -111,18 +111,18 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
   };
 
   // regular currency watchlist process
-  const handleCurrencyWatchlist = (ast) => {
+  const handleCurrencyWatchlist = () => {
     const assetInfo = {
-      assetName: currencyName,
-      assetType: "regular currency",
-      assetKey: coinKey,
-      assetImg: coinImage,
-      assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
+      name: currencyName,
+      key: coinKey,
+      type: "flat coin",
+      price: 0,
+      icon: coinImage,
+      email: user.email
     };
 
 
-    publicAPI.post(`/watchlist`, assetInfo)
+    secureAPI.post(`/watchlist`, assetInfo)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -205,7 +205,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
           <Button
             disabled={quantity < 1}
             sx={{
-              backgroundColor: quantity < 1 ? '#ccc' : '#455ce9', 
+              backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
               color: "white",
               borderRadius: "50px",
               padding: "10px 15px",

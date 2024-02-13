@@ -27,14 +27,14 @@ const SideWatchlist = ({ assets, flatCurrency }) => {
     // console.log(assets)
     // console.log(flatCurrency)
 
-    const cryptoWatchlistData = watchlistData.filter(crypto => crypto.assetType === "crypto currency")
-    const currencyWatchlistData = watchlistData.filter(flat => flat.assetType === "regular currency")
+    const cryptoWatchlistData = watchlistData.filter(crypto => crypto.type === "crypto coin")
+    const currencyWatchlistData = watchlistData.filter(flat => flat.type === "flat coin")
     // console.log(currencyWatchlistData)
     // console.log(cryptoWatchlistData)
 
     useEffect(()=>{
         const flatCurrencyKeys = currencyWatchlistData.map(asset => {
-            return asset.assetKey
+            return asset.key
         });
         // console.log(flatCurrencyKeys)
     
@@ -53,7 +53,7 @@ const SideWatchlist = ({ assets, flatCurrency }) => {
 
     useEffect(() => {
         const cryptoKeys = cryptoWatchlistData.map(asset => {
-            return asset.assetKey
+            return asset.key
         });
 
         assets.forEach((asset) => {
@@ -114,17 +114,17 @@ const SideWatchlist = ({ assets, flatCurrency }) => {
                                                                 <Image
                                                                     width={30}
                                                                     height={30}
-                                                                    src={asset.assetImg}
+                                                                    src={asset.icon}
                                                                     alt="coin-icon"
                                                                 />
-                                                                <p className={`text-xs text-white`}>{asset.assetName}</p>
+                                                                <p className={`text-xs text-white`}>{asset.name}</p>
                                                             </div>
                                                         </TableCell>
                                                         <TableCell>
-                                                            <p className={` text-xs text-white`}>${currentPrice[asset.assetKey]}</p>
+                                                            <p className={` text-xs text-white`}>${currentPrice[asset.key]}</p>
                                                         </TableCell>
                                                         <TableCell>
-                                                            <p className={`text-xs ${changedPrice[asset.assetKey] < 0 ? "text-red-600" : "text-green-600"}`}>{changedPrice[asset.assetKey]}%</p>
+                                                            <p className={`text-xs ${changedPrice[asset.key] < 0 ? "text-red-600" : "text-green-600"}`}>{changedPrice[asset.key]}%</p>
                                                         </TableCell>
                                                     </TableRow>
                                                 ))}
@@ -168,14 +168,14 @@ const SideWatchlist = ({ assets, flatCurrency }) => {
                                                                 <Image
                                                                     width={30}
                                                                     height={30}
-                                                                    src={asset.assetImg}
+                                                                    src={asset.icon}
                                                                     alt="coin-icon"
                                                                 />
-                                                                <p className={`text-xs text-white`}>{asset.assetName}</p>
+                                                                <p className={`text-xs text-white`}>{asset.name}</p>
                                                             </div>
                                                         </TableCell>
                                                         <TableCell>
-                                                            <p className={` text-xs text-white`}>{flatCurrencyPrice[asset.assetKey]} <span className='text-[8px] text-white'>{asset.assetKey}</span></p>
+                                                            <p className={` text-xs text-white`}>{flatCurrencyPrice[asset.key]} <span className='text-[8px] text-white'>{asset.key}</span></p>
                                                         </TableCell>
                                                     </TableRow>
                                                 ))}
