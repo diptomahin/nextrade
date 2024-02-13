@@ -27,7 +27,7 @@ const DepositForm = ({ refetch, date }) => {
     }
 
     axios
-      .post("https://nex-trade-server.vercel.app/create-payment-intent", {
+      .post("http://localhost:5000/create-payment-intent", {
         price: amount,
       })
       .then((res) => {
@@ -103,19 +103,19 @@ const DepositForm = ({ refetch, date }) => {
           name: user?.displayName,
         };
         axios
-          .put(
-            `https://nex-trade-server.vercel.app/v1/api/all-users/deposit/${user?.email}`,
+          .post(
+            `http://localhost:5000/v1/api/deposit/${user?.email}`,
             depositData
           )
           .then((res) => {
-            if (res.data.modifiedCount > 0) {
+            if (res.data.insertedId) {
               form.reset();
               setAmount("");
               setPostalCode("");
               elements.getElement(CardNumberElement).clear(); // Reset card number
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
-              refetch();
+              // refetch();
               toast.success("Deposit Successful", {
                 id: toastId,
                 duration: 5000,

@@ -9,13 +9,29 @@ import {
 import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import { BiSearchAlt } from "react-icons/bi";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
-const TransactionTable = ({ userBalanceDetails }) => {
+const TransactionTable = ({ depositWithdrawData, user, loading }) => {
+  console.log(depositWithdrawData);
   const [dynamicSearch, setDynamicSearch] = useState("userBalanceDetails");
   console.log(dynamicSearch);
-  const handleSearch = (e) => {
+
+  // const {
+  //   data = [],
+  //   isPending,
+  //   isLoading,
+  //   refetch,
+  // } = useSecureFetch(
+  //   `/${user.email}?search=${dynamicSearch}`,
+  //   user?.email,
+  //   dynamicSearch
+  // );
+
+  const handleSearch = async (e) => {
     e.preventDefault();
     const name = e.target.search.value;
+
+    // const res = await useSecureAPI.get(`/all-users/${user.email}`);
   };
   return (
     <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
@@ -30,7 +46,7 @@ const TransactionTable = ({ userBalanceDetails }) => {
               type="text"
               name="search"
               placeholder="Search..."
-              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-4 pr-9 py-[6px] outline-none rounded-xl font-medium"
+              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded-xl font-medium"
             />
             <button
               type="submit"
@@ -45,7 +61,7 @@ const TransactionTable = ({ userBalanceDetails }) => {
         </div>
       </div>
 
-      {userBalanceDetails[0]?.hasOwnProperty("depositWithdrawData") ? (
+      {depositWithdrawData ? (
         <TableContainer
           component={Paper}
           sx={{
@@ -94,7 +110,7 @@ const TransactionTable = ({ userBalanceDetails }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {userBalanceDetails[0]?.depositWithdrawData?.map((row, index) => (
+              {depositWithdrawData?.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell
                     component="th"
