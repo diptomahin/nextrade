@@ -115,12 +115,15 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
   // crypto watchlist process
   const handleCryptoWatchlist = (ast) => {
     const assetInfo = {
-      assetName: coinName,
-      assetKey: coinKey,
-      assetType: "crypto currency",
-      assetImg: coinImage,
-      assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
+      name: coinName,
+      key: coinKey,
+      price: 0,
+      type: "crypto coin",
+      changePrice: 0,
+      highPrice: 0,
+      lowPrice: 0,
+      icon: coinImage,
+      email: user.email,
     };
 
     secureAPI
@@ -221,7 +224,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
                     backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
                   },
                 }}
-                onClick={() => handleBuyCurrency(currencyRate)}
+                onClick={() => handleBuyCrypto(tickerData)}
               >
                 Buy {coinKey}
               </Button>

@@ -1,22 +1,32 @@
 "use client"
 import ManageCrypto from '@/components/admins_comp/ManageCrypto';
-import MarketTable from '@/components/traders_comp/market/MarketTable';
-import { useQuery } from '@tanstack/react-query';
+import ManageFlatCoins from '@/components/admins_comp/ManageFlatCoins';
+import DashButton from '@/components/library/buttons/DashButton';
+import usePublicFetch from '@/hooks/usePublicFetch';
+import useSecureAPI from '@/hooks/useSecureAPI';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const ManageCoins = () => {
     const [assets, setAssets] = useState([]);
     const [flatCurrency, setFlatCurrency] = useState([]);
+    const [open, setOpen] = React.useState(false);
+    const [typeValue, setTypeValue] = useState("");
+    const secureAPI = useSecureAPI();
 
 
-    const { data: allCoins = [], isLoading, isError, refetch } = useQuery({
-        queryKey: ['allCoins'],
-        queryFn: async () => {
-            const res = await axios.get('/allCoins.json');
-            return res.data
-        }
-    });
+    const {
+        data: allCoins = [],
+        isPending,
+        isLoading,
+        refetch,
+      } = usePublicFetch(`/allCoins`, [ "allCoins"]);
+    
+
+
 
     // console.log(allCoins)
     useEffect(() => {
@@ -95,9 +105,182 @@ const ManageCoins = () => {
     }, [flatCurrency]);
     // console.log(flatCurrency)
 
+    const [value, setValue] = React.useState('1');
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleTypeChange = (event) => {
+        setTypeValue(event.target.value);
+    };
+
+
     return (
         <div>
-            <ManageCrypto assets={assets}></ManageCrypto>
+
+            <div className='flex flex-col xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
+                <h1 className='text-3xl font-semibold'>Manage Coins</h1>
+                <DashButton className="w-full" onClick={handleClickOpen}>Add new</DashButton>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    PaperProps={{
+                        component: 'form',
+                        onSubmit: (event) => {
+                            event.preventDefault();
+                            const formData = event.target;
+                            const name = formData.name.value;
+                            const key = formData.key.value;
+                            const type = typeValue;
+                            const icon = formData.icon.value
+
+                            if (type === "crypto coin") {
+                                const coinInfo = {
+                                    name,
+                                    key,
+                                    price: 0,
+                                    type,
+                                    changePrice: 0,
+                                    highPrice: 0,
+                                    lowPrice: 0,
+                                    icon
+                                }
+                                // console.log(coinInfo)
+                                secureAPI.post(`/allCoins`, coinInfo)
+                                    .then((res) => {
+                                        if (res.data.insertedId) {
+                                            Swal.fire({
+                                                title: `Successfully added to market!`,
+                                                text: `${name} has been added to market!`,
+                                                icon: "success",
+                                            });
+                                            refetch();
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                        Swal.fire({
+                                            title: `failed!`,
+                                            text: `Please try again`,
+                                            icon: "error",
+                                        });
+                                    });
+                            } else {
+                                const coinInfo = {
+                                    name,
+                                    key,
+                                    type,
+                                    price: 0,
+                                    icon
+                                }
+                                console.log(coinInfo)
+                                secureAPI.post(`/allCoins`, coinInfo)
+                                .then((res) => {
+                                    if (res.data.insertedId) {
+                                        Swal.fire({
+                                            title: `Successfully added to market!`,
+                                            text: `${name} has been added to market!`,
+                                            icon: "success",
+                                        });
+                                        refetch();
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                    Swal.fire({
+                                        title: `failed!`,
+                                        text: `Please try again`,
+                                        icon: "error",
+                                    });
+                                });
+                            }
+                            handleClose();
+                        },
+                    }}
+                >
+                    <DialogTitle>Add new coin</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="name"
+                            name="name"
+                            label="Coin Name"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
+                        <FormControl variant="standard" required sx={{ width: "100%", marginTop: "15px" }}>
+                            <InputLabel id="demo-simple-select-helper-label">Coin Type</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={typeValue}
+                                label="Coin type"
+                                onChange={handleTypeChange}
+                            >
+                                <MenuItem value={"crypto coin"}>crypto coin</MenuItem>
+                                <MenuItem value={"flat coin"}>flat coin</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="key"
+                            name="key"
+                            label="Coin Key"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="icon"
+                            name="icon"
+                            label="Coin Icon URL"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <DashButton onClick={handleClose}>Cancel</DashButton>
+                        <DashButton type="submit">Add</DashButton>
+                    </DialogActions>
+                </Dialog>
+            </div>
+
+            <Box className='w-full my-6'>
+                <TabContext value={value}>
+                    <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
+                        <TabList onChange={handleChange} aria-label="lab API tabs example">
+                            <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
+                            <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+                        </TabList>
+                    </Box>
+                    <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
+                        <div className='w-full'>
+                            <ManageCrypto assets={assets}></ManageCrypto>
+                        </div>
+                    </TabPanel>
+                    <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
+                        <div className='w-full'>
+                            <ManageFlatCoins assets={flatCurrency}></ManageFlatCoins>
+                        </div>
+                    </TabPanel>
+                </TabContext>
+            </Box>
         </div>
     );
 };
