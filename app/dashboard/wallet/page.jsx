@@ -192,16 +192,25 @@ const Wallet = () => {
           <h1 className="text-xl text-center font-bold mb-5">
             Transaction Report
           </h1>
-          <ResponsiveContainer width="80%" height={300} className="mx-auto">
+          <ResponsiveContainer width="90%" height={300} className=" mx-auto">
             <BarChart
               data={[
                 {
+                  name: "Total Balance",
+                  "Total Balance":
+                    parseFloat(userBalance[0]?.balance).toFixed(2) || "0.00",
+                },
+                {
                   name: "Total Deposited",
-                  Deposit: totalDeposit ? totalDeposit.toFixed(2) : "0.00",
+                  "Total Deposit": totalDeposit
+                    ? totalDeposit.toFixed(2)
+                    : "0.00",
                 },
                 {
                   name: "Total Withdrawals",
-                  Withdraw: totalWithdraw ? totalWithdraw.toFixed(2) : "0.00",
+                  "Total Withdraw": totalWithdraw
+                    ? totalWithdraw.toFixed(2)
+                    : "0.00",
                 },
               ]}
             >
@@ -209,8 +218,9 @@ const Wallet = () => {
               <CustomYAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="Deposit" fill="#78c350" />
-              <Bar dataKey="Withdraw" fill="#ff5252" />
+              <Bar dataKey="Total Balance" fill="#40a0ff" />
+              <Bar dataKey="Total Deposit" fill="#78c350" />
+              <Bar dataKey="Total Withdraw" fill="#ff5252" />
             </BarChart>
           </ResponsiveContainer>
         </div>

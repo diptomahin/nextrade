@@ -9,9 +9,11 @@ import {
 import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import { BiSearchAlt } from "react-icons/bi";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import useSecureFetch from "@/hooks/useSecureFetch";
 
 const TransactionTable = ({ user }) => {
+  const [isOpenDot, setIsOpenDot] = useState(false);
   const [dynamicSearch, setDynamicSearch] = useState("");
 
   const { data: depositWithdrawData = [], refetch } = useSecureFetch(
@@ -19,6 +21,7 @@ const TransactionTable = ({ user }) => {
     user?.email,
     dynamicSearch
   );
+  refetch();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ const TransactionTable = ({ user }) => {
       <div className="flex flex-col xl:flex-row items-center justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
 
-        <div className="">
+        <div className="flex items-center gap-1">
           {/* search form */}
           <form onSubmit={handleSearch} className="relative flex items-center">
             <input
@@ -46,7 +49,22 @@ const TransactionTable = ({ user }) => {
             </button>
           </form>
           <div className="relative">
-            <button></button>
+            <button
+              onClick={() => setIsOpenDot(!isOpenDot)}
+              className="btn btn-sm text-base text-white bg-transparent hover:bg-transparent border-none outline-none flex items-center"
+            >
+              <BsThreeDotsVertical />
+            </button>
+            {isOpenDot && (
+              <div className="absolute right-0 top-10 flex flex-col py-4 rounded-xl bg-darkBG border border-darkThree font-medium">
+                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-white/10 border-none pr-6 pl-8  rounded-none">
+                  Download
+                </button>
+                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-[#ff5252] border-none pr-6 pl-8  rounded-none">
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
