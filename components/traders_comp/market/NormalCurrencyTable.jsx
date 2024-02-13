@@ -2,6 +2,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Image from "next/image";
 import Link from "next/link";
 import DashboardButton from "@/components/library/buttons/DashButton";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 const NormalCurrencyTable = ({ assets }) => {
   return (
@@ -51,13 +52,13 @@ const NormalCurrencyTable = ({ assets }) => {
                 <p className={` text-white`}>{asset.price}<span className="text-[8px]">  {asset.key}</span></p>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <DashboardButton
+                <DarkButton
                   className="font-semibold normal-case"
                 >
                   <Link href={`/dashboard/market/${asset.key}`}>
                     Explore
                   </Link>
-                </DashboardButton>
+                </DarkButton>
               </TableCell>
             </TableRow>
           ))}

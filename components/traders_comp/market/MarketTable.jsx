@@ -5,6 +5,7 @@ import React from 'react';
 import DashboardButton from "@/components/library/buttons/DashButton";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import DarkButton from '@/components/library/buttons/DarkButton';
 
 const MarketTable = ({ assets }) => {
   return (
@@ -61,13 +62,13 @@ const MarketTable = ({ assets }) => {
                 <p className={` font-semibold text-red-600`}>$ {asset.lowPrice}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <DashboardButton
+                <DarkButton
                   className="font-semibold normal-case"
                 >
                   <Link href={`/dashboard/market/${asset.key}`}>
                     Explore
                   </Link>
-                </DashboardButton>
+                </DarkButton>
               </TableCell>
             </TableRow>
           ))}

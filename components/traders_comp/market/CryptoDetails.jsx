@@ -1,6 +1,6 @@
 "use client"
 import DashButton from "@/components/library/buttons/DashButton";
-import { Button, Divider, TextField } from "@mui/material";
+import { Button, Divider, InputAdornment, TextField } from "@mui/material";
 import Image from "next/image";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBanner from "./TopBanner";
@@ -40,31 +40,33 @@ const CssTextField = styled(TextField)({
 
 
 const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainingBalance, user, refetch }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
 
 
-  const handleQuantityChange = (event) => {
-    const newQuantity = event.target.value;
-    setQuantity(newQuantity);
+  const handleInvestmentChange = (event) => {
+    const newInvestment = event.target.value;
+    setInvestment(newInvestment);
+
   };
 
   // crypto payment process
   const handleBuyCrypto = (ast) => {
+    const usersBalance = usersRemainingBalance
+    const remainingBalance = usersBalance - parseFloat(investment).toFixed(2);
+    const currentPrice = parseFloat(tickerData.c).toFixed(2)
+    const portion = (parseFloat(investment) / currentPrice) * 100
+
     const assetInfo = {
       assetName: coinName,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyingPrice: ast.c,
-      assetQuantity: quantity,
+      assetPortion: portion.toFixed(2),
+      totalInvestment: investment,
       assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
+      assetBuyerEmail: user.email
     };
-
-    const totalCost = parseFloat(ast.c) * parseFloat(quantity)
-    const usersBalance = usersRemainingBalance
-    const remainingBalance = usersBalance - totalCost.toFixed(2);
-
 
 
     if (usersBalance < parseFloat(ast.c)) {
@@ -77,8 +79,8 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
     }
 
     Swal.fire({
-      title: `Are you sure to purchase ${quantity} ${coinName}?`,
-      text: `It will cost $${totalCost}`,
+      title: `Are you sure to purchase ${parseInt(portion)}% of a ${coinName}?`,
+      text: `It will cost $${investment}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -203,25 +205,28 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
               <CssTextField
                 required
                 fullWidth
-                defaultValue={quantity}
+                defaultValue={investment}
                 id="outlined-number"
-                label={`Quantity (${coinKey.slice(0, -4)})`}
+                label={`Investment (${coinKey.slice(0, -4)})`}
                 type="number"
                 variant="outlined"
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={handleQuantityChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start"><p className="text-white">$</p></InputAdornment>,
+                }}
+                onChange={handleInvestmentChange}
               />
               <Button
-                disabled={quantity < 1}
+                disabled={investment <= 0}
                 sx={{
-                  backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
+                  backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
                   color: "white",
                   borderRadius: "50px",
                   padding: "10px 15px",
                   "&:hover": {
-                    backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
+                    backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
                   },
                 }}
                 onClick={() => handleBuyCrypto(tickerData)}
