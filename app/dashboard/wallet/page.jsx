@@ -9,7 +9,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import AddCardOutlinedIcon from "@mui/icons-material/AddCardOutlined";
 import { RiLuggageDepositFill } from "react-icons/ri";
 import { MdAccountBalance } from "react-icons/md";
 import DepositForm from "@/components/traders_comp/wallet/DepositForm";
@@ -53,13 +52,23 @@ const Wallet = () => {
   const { user, loading } = useAuth();
 
   const {
-    data: userBalanceDetails = [],
+    data: userBalance = [],
+    refetch: userBalanceRefetch,
+    isPending: userBalancePending,
+    isLoading: userBalanceLoading,
+  } = useSecureFetch(`/all-users/${user?.email}`, "userBalance");
+
+  const {
+    data: depositWithdrawData = [],
     isPending,
     isLoading,
     refetch,
-  } = useSecureFetch(`/all-users/${user.email}`, user?.email, "all-users");
+  } = useSecureFetch(`/deposit-withdraw/${user?.email}`, user?.email);
 
-  if (isLoading || isPending || loading) {
+  if (
+    (isLoading || isPending || loading || userBalanceLoading,
+    userBalancePending)
+  ) {
     return (
       <div className="h-full w-full flex justify-center items-center">
         <div className="text-5xl text-primary font-semibold">
@@ -72,29 +81,23 @@ const Wallet = () => {
     );
   }
 
-  const totalDeposit = userBalanceDetails[0]?.depositWithdrawData?.reduce(
-    (acc, obj) => {
-      // Check if the object has a 'deposit' property
-      if (obj.deposit !== undefined) {
-        // Add the deposit amount to the accumulator
-        acc += obj.deposit;
-      }
-      return acc;
-    },
-    0
-  );
+  const totalDeposit = depositWithdrawData?.reduce((acc, obj) => {
+    // Check if the object has a 'deposit' property
+    if (obj.deposit !== undefined) {
+      // Add the deposit amount to the accumulator
+      acc += obj.deposit;
+    }
+    return acc;
+  }, 0);
 
-  const totalWithdraw = userBalanceDetails[0]?.depositWithdrawData?.reduce(
-    (acc, obj) => {
-      // Check if the object has a 'withdraw' property
-      if (obj.withdraw !== undefined) {
-        // Add the withdraw amount to the accumulator
-        acc += obj.withdraw;
-      }
-      return acc;
-    },
-    0
-  );
+  const totalWithdraw = depositWithdrawData?.reduce((acc, obj) => {
+    // Check if the object has a 'withdraw' property
+    if (obj.withdraw !== undefined) {
+      // Add the withdraw amount to the accumulator
+      acc += obj.withdraw;
+    }
+    return acc;
+  }, 0);
 
   return (
     <div className="flex flex-col xl:flex-row justify-between gap-5 w-full">
@@ -106,8 +109,7 @@ const Wallet = () => {
               <MdAccountBalance className="text-2xl" /> Total Balance
             </h3>
             <h3 className="text-2xl font-semibold">
-              ${" "}
-              {parseFloat(userBalanceDetails[0]?.balance).toFixed(2) || "0.00"}
+              $ {parseFloat(userBalance[0]?.balance).toFixed(2) || "0.00"}
             </h3>
           </div>
 
@@ -134,7 +136,7 @@ const Wallet = () => {
         </div>
 
         {/* Transaction History */}
-        <TransactionTable userBalanceDetails={userBalanceDetails} />
+        <TransactionTable user={user} />
       </div>
 
       {/* Select Currency & Payment */}
@@ -152,11 +154,15 @@ const Wallet = () => {
 
             <TabPanel>
               <Elements stripe={stripePromise}>
-                <DepositForm refetch={refetch} date={date} />
+                <DepositForm
+                  userBalanceRefetch={userBalanceRefetch}
+                  refetch={refetch}
+                  date={date}
+                />
               </Elements>
             </TabPanel>
             <TabPanel>
-              {userBalanceDetails && userBalanceDetails[0]?.balance <= 10 ? (
+              {userBalance && userBalance[0]?.balance <= 10 ? (
                 <div className="flex flex-col items-center justify-center text-center my-10">
                   <h4 className="text-xl 2xl:text-2xl font-bold">
                     Please deposit first
@@ -170,9 +176,10 @@ const Wallet = () => {
               ) : (
                 <Elements stripe={stripePromise}>
                   <WithdrawForm
+                    userBalanceRefetch={userBalanceRefetch}
                     refetch={refetch}
                     date={date}
-                    totalBalance={userBalanceDetails[0].balance}
+                    totalBalance={userBalance[0]?.balance}
                   />
                 </Elements>
               )}

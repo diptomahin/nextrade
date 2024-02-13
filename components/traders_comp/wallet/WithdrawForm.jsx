@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 
-const WithdrawForm = ({ refetch, date, totalBalance }) => {
+const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState("");
@@ -104,14 +104,17 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
           withdraw: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
+          action: "Withdraw",
+          amount: parseInt(amount),
+          currency: "usd",
         };
         axios
-          .put(
-            `https://nex-trade-server.vercel.app/v1/api/all-users/withdraw/${user?.email}`,
+          .post(
+            `https://nex-trade-server.vercel.app/v1/api/withdraw/${user?.email}`,
             withdrawData
           )
           .then((res) => {
-            if (res.data.modifiedCount > 0) {
+            if (res.data.insertedId) {
               form.reset();
               setAmount("");
               setPostalCode("");
@@ -119,6 +122,7 @@ const WithdrawForm = ({ refetch, date, totalBalance }) => {
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
               refetch();
+              userBalanceRefetch();
               toast.success("Withdraw Successful", {
                 id: toastId,
                 duration: 5000,
