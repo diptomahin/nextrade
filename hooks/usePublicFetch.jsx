@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import usePublicAPI from "./usePublicAPI";
 
-const usePublicFetch = async ( url, ...key ) => {
+const usePublicFetch = ( url, ...key ) => {
   const usePublic = usePublicAPI();
 
   const { data, isPending, isLoading, isError, refetch } = useQuery({
@@ -13,7 +13,7 @@ const usePublicFetch = async ( url, ...key ) => {
     },
   });
 
-  return [data, isPending, isLoading, refetch, isError];
+  return {data, isPending, isLoading, refetch, isError};
 };
 
 export default usePublicFetch;

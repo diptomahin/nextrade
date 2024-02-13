@@ -2,26 +2,31 @@
 import ManageCrypto from '@/components/admins_comp/ManageCrypto';
 import ManageFlatCoins from '@/components/admins_comp/ManageFlatCoins';
 import DashButton from '@/components/library/buttons/DashButton';
+import usePublicFetch from '@/hooks/usePublicFetch';
+import useSecureAPI from '@/hooks/useSecureAPI';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
-import { useQuery } from '@tanstack/react-query';
+import { Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const ManageCoins = () => {
     const [assets, setAssets] = useState([]);
     const [flatCurrency, setFlatCurrency] = useState([]);
     const [open, setOpen] = React.useState(false);
-    const [typeValue, setTypeValue] = useState("")
+    const [typeValue, setTypeValue] = useState("");
+    const secureAPI = useSecureAPI();
 
 
-    const { data: allCoins = [], isLoading, isError, refetch } = useQuery({
-        queryKey: ['allCoins'],
-        queryFn: async () => {
-            const res = await axios.get('/allCoins.json');
-            return res.data
-        }
-    });
+    const {
+        data: allCoins = [],
+        isPending,
+        isLoading,
+        refetch,
+      } = usePublicFetch(`/allCoins`, [ "allCoins"]);
+    
+
+
 
     // console.log(allCoins)
     useEffect(() => {
@@ -147,8 +152,27 @@ const ManageCoins = () => {
                                     lowPrice: 0,
                                     icon
                                 }
-                                console.log(coinInfo)
-                            }else{
+                                // console.log(coinInfo)
+                                secureAPI.post(`/allCoins`, coinInfo)
+                                    .then((res) => {
+                                        if (res.data.insertedId) {
+                                            Swal.fire({
+                                                title: `Successfully added to market!`,
+                                                text: `${name} has been added to market!`,
+                                                icon: "success",
+                                            });
+                                            refetch();
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                        Swal.fire({
+                                            title: `failed!`,
+                                            text: `Please try again`,
+                                            icon: "error",
+                                        });
+                                    });
+                            } else {
                                 const coinInfo = {
                                     name,
                                     key,
@@ -157,6 +181,25 @@ const ManageCoins = () => {
                                     icon
                                 }
                                 console.log(coinInfo)
+                                secureAPI.post(`/allCoins`, coinInfo)
+                                .then((res) => {
+                                    if (res.data.insertedId) {
+                                        Swal.fire({
+                                            title: `Successfully added to market!`,
+                                            text: `${name} has been added to market!`,
+                                            icon: "success",
+                                        });
+                                        refetch();
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                    Swal.fire({
+                                        title: `failed!`,
+                                        text: `Please try again`,
+                                        icon: "error",
+                                    });
+                                });
                             }
                             handleClose();
                         },
