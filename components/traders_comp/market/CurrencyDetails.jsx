@@ -60,7 +60,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyingPrice: ast,
-      assetPortion: portion.toFixed(2),
+      assetPortion: parseInt(portion) + '%',
       totalInvestment: investment,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
