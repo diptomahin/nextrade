@@ -11,7 +11,6 @@ import axios from "axios";
 import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrencyTable";
 import styled from "@emotion/styled";
 import usePublicFetch from "@/hooks/usePublicFetch";
-import { useQuery } from "@tanstack/react-query";
 
 const CustomSelect = styled(Select)({
   '& .MuiSelect-root': {
@@ -56,13 +55,13 @@ const MarketPage = () => {
   const [flatCurrency, setFlatCurrency] = useState([]);
 
 
-  const { data: allCoins = [], isLoading, isError, refetch } = useQuery({
-    queryKey: ['allCoins'],
-    queryFn: async () => {
-      const res = await axios.get('/allCoins.json');
-      return res.data
-    }
-  });
+  const {
+    data: allCoins = [],
+    isPending,
+    isLoading,
+    refetch,
+  } = usePublicFetch(`/allCoins`, [ "allCoins"]);
+
 
   // console.log(allCoins)
   useEffect(()=>{
