@@ -9,24 +9,28 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import Magnetic from '@/components/library/Magnetic';
 import axios from 'axios';
+import useSecureAPI from '@/hooks/useSecureAPI';
 
 
 const WatchlistCryptoTable = ({ assets }) => {
 
-    // State to keep track of assets
     const [assetList, setAssetList] = useState(assets);
+    const secureAPI = useSecureAPI();
 
-    // Function to handle asset deletion
     const handleDelete = async (index, id) => {
         try {
-            await axios.delete(`/v1/api/watchlist/${id}`);
+            // Make a DELETE request to your backend to delete the asset with the specified ID
+            await secureAPI.delete(`/watchlist/${id}`);
+            // Update the frontend by removing the deleted asset from the assetList state
             const updatedAssets = [...assetList];
-            updatedAssets.splice(index, 1);
-            setAssetList(updatedAssets);
+            updatedAssets.splice(index, 1); // Remove the item at the specified index
+            setAssetList(updatedAssets); // Update the state with the new asset list
         } catch (error) {
             console.error('Error deleting asset:', error);
+            // Handle error, show error message or retry logic
         }
     };
+
 
     return (
         <TableContainer
@@ -90,7 +94,7 @@ const WatchlistCryptoTable = ({ assets }) => {
                                     </Link>
                                 </DashboardButton>
                                 <Magnetic>
-                                    <Button color="error" variant='contained' sx={{ borderRadius: "50px", paddingY: "10px" }} onClick={() => handleDelete(idx)}>Delete</Button>
+                                    <Button color="error" variant='contained' sx={{ borderRadius: "50px", paddingY: "10px" }} onClick={() => handleDelete(idx, asset._id)}>Delete</Button>
                                 </Magnetic>
                             </TableCell>
                         </TableRow>
