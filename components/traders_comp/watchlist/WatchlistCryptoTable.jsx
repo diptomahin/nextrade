@@ -2,7 +2,7 @@
 import DarkButton from '@/components/library/buttons/DarkButton';
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardButton from "@/components/library/buttons/DashButton";
 import Link from 'next/link';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -12,6 +12,17 @@ import Magnetic from '@/components/library/Magnetic';
 
 
 const WatchlistCryptoTable = ({ assets }) => {
+
+    // State to keep track of assets
+    const [assetList, setAssetList] = useState(assets);
+
+    // Function to handle asset deletion
+    const handleDelete = (index) => {
+        const updatedAssets = [...assetList];
+        updatedAssets.splice(index, 1); // Remove the item at the specified index
+        setAssetList(updatedAssets); // Update the state with the new asset list
+    };
+
     return (
         <TableContainer
             sx={{
@@ -74,7 +85,7 @@ const WatchlistCryptoTable = ({ assets }) => {
                                     </Link>
                                 </DashboardButton>
                                 <Magnetic>
-                                    <Button color="error" variant='contained' sx={{borderRadius:"50px", paddingY:"10px"}}>Delete</Button>
+                                    <Button color="error" variant='contained' sx={{ borderRadius: "50px", paddingY: "10px" }} onClick={() => handleDelete(idx)}>Delete</Button>
                                 </Magnetic>
                             </TableCell>
                         </TableRow>
