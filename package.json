@@ -19,7 +19,7 @@
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.4.0",
     "@tanstack/react-query": "^5.17.19",
-    "axios": "^1.6.6",
+    "axios": "^1.6.7",
     "clsx": "^2.1.0",
     "firebase": "^10.7.2",
     "framer-motion": "^11.0.2",
