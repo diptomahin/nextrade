@@ -10,6 +10,9 @@ import { CiLock, CiUser } from "react-icons/ci";
 import { PiCurrencyDollarThin, PiCardholderThin } from "react-icons/pi";
 import { MdArrowBackIosNew } from "react-icons/md";
 import MyProfile from "@/components/traders_comp/profile/MyProfile";
+import Security from "@/components/traders_comp/profile/Security";
+import Currencies from "@/components/traders_comp/profile/Currencies";
+import Payments from "@/components/traders_comp/profile/Payments";
 
 const ProfilePage = () => {
   const [isActiveProfile, setIsActiveProfile] = useState(false);
@@ -19,14 +22,14 @@ const ProfilePage = () => {
       {/* toggle menu button */}
       <button
         onClick={() => setIsActiveProfile(!isActiveProfile)}
-        className={`fixed top-[70px] md:top-[87px] xl:top-[86px] ${
+        className={`fixed top-[78px] ${
           isActiveProfile
-            ? "left-2 md:left-5 xl:left-[55px] 2xl:left-[270px]"
-            : "left-2 md:left-5 xl:left-[216px] 2xl:left-[432px]"
-        } btn btn-sm h-11 bg-transparent hover:bg-transparent active:bg-white/10 border-none shadow-none text-white rounded-full z-10 transition-all duration-300 ease-in-out`}
+            ? "left-2 xl:left-[70px] 2xl:left-[285px]"
+            : "left-2 xl:left-[230px] 2xl:left-[447px]"
+        } btn btn-sm h-9 px-[10px] bg-white/5 hover:bg-white/10 active:bg-white/20 border-none shadow-none text-white rounded-full z-20 transition-all duration-300 ease-in-out`}
       >
         <MdArrowBackIosNew
-          className={`text-xl transition-transform duration-300 ease-in-out ${
+          className={`text-base transition-transform duration-300 ease-in-out ${
             isActiveProfile ? "rotate-180" : "rotate-0"
           }`}
         />
@@ -37,7 +40,7 @@ const ProfilePage = () => {
         style={{ height: "calc(100vh - 107px)" }}
         className={`hidden xl:block fixed 2xl:left-[238px] ${
           isActiveProfile ? "w-[78px]" : "w-[240px]"
-        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl px-3 py-12 transition-all duration-300 ease-in-out`}
+        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl px-3 py-12 transition-all duration-300 ease-in-out z-10`}
       >
         <div className="flex flex-col items-center gap-4">
           {user?.photoURL &&
@@ -96,7 +99,7 @@ const ProfilePage = () => {
       <div
         className={`xl:hidden profile-menu fixed 2xl:left-[238px]  bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl flex ${
           isActiveProfile && "flex-col md:flex-row"
-        } items-center gap-5 md:pl-12 px-3 py-3 transition-all duration-300 ease-in-out`}
+        } items-center gap-5 pl-5 px-3 py-3 transition-all duration-300 ease-in-out z-10`}
       >
         <div
           className={`flex ${
@@ -177,13 +180,18 @@ const ProfilePage = () => {
           isActiveProfile ? "xl:pl-[98px]" : "xl:pl-[260px]"
         }`}
       >
-        
         <TabPanel>
           <MyProfile></MyProfile>
         </TabPanel>
-        <TabPanel>2</TabPanel>
-        <TabPanel>3</TabPanel>
-        <TabPanel>4</TabPanel>
+        <TabPanel>
+          <Security />
+        </TabPanel>
+        <TabPanel>
+          <Currencies />
+        </TabPanel>
+        <TabPanel>
+          <Payments />
+        </TabPanel>
       </div>
     </Tabs>
   );
