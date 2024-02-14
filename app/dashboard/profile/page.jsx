@@ -18,10 +18,10 @@ const ProfilePage = () => {
       {/* toggle menu button */}
       <button
         onClick={() => setIsActiveProfile(!isActiveProfile)}
-        className={`fixed top-[86px] ${
+        className={`fixed top-[70px] md:top-[87px] xl:top-[86px] ${
           isActiveProfile
-            ? "left-[55px] 2xl:left-[270px]"
-            : "left-[216px] 2xl:left-[432px]"
+            ? "left-2 md:left-5 xl:left-[55px] 2xl:left-[270px]"
+            : "left-2 md:left-5 xl:left-[216px] 2xl:left-[432px]"
         } btn btn-sm h-11 bg-transparent hover:bg-transparent active:bg-white/10 border-none shadow-none text-white rounded-full z-10 transition-all duration-300 ease-in-out`}
       >
         <MdArrowBackIosNew
@@ -93,63 +93,78 @@ const ProfilePage = () => {
 
       {/* small device profile menu */}
       <div
-        className={`block xl:hidden profile-menu fixed 2xl:left-[238px] ${
-          isActiveProfile ? "xl:w-[78px]" : "xl:w-[240px]"
-        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-row xl:flex-col items-center xl:items-start gap-5 px-3 py-3 xl:py-12 transition-all duration-300 ease-in-out`}
+        className={`xl:hidden profile-menu fixed 2xl:left-[238px]  bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl flex ${
+          isActiveProfile && "flex-col md:flex-row"
+        } items-center gap-5 md:pl-12 px-3 py-3 transition-all duration-300 ease-in-out`}
       >
-        <div className="flex flex-row xl:flex-col gap-3 xl:gap-5 items-center">
-          {user?.photoURL &&
-          user?.photoURL !== undefined &&
-          user?.photoURL !== null ? (
+        <div
+          className={`flex ${
+            isActiveProfile ? "flex-col" : "flex-row"
+          } gap-3 xl:gap-5 items-center`}
+        >
+          {isActiveProfile ? (
+            user?.photoURL !== undefined && user?.photoURL !== null ? (
+              <Image
+                alt="profile-image"
+                width={100}
+                height={100}
+                src={user?.photoURL}
+                className="rounded-full"
+              />
+            ) : (
+              <p className="text-5xl text-primary">
+                <FaUserCircle />
+              </p>
+            )
+          ) : user?.photoURL &&
+            user?.photoURL !== undefined &&
+            user?.photoURL !== null ? (
             <Image
               alt="profile-image"
-              width={100}
-              height={100}
+              width={50}
+              height={50}
               src={user?.photoURL}
               className="rounded-full"
-              style={{
-                "@media screen and (max-width: 1023px)": {
-                  width: "50px", // Adjust width for small screens
-                  height: "50px", // Adjust height for small screens
-                },
-              }}
             />
           ) : (
-            <p className="text-8xl text-primary">
+            <p className="text-5xl text-primary">
               <FaUserCircle />
             </p>
           )}
-          <div className={` ${isActiveProfile ? "hidden" : "block"}`}>
+          <div className={isActiveProfile ? "block" : "hidden"}>
             <p className="font-semibold"> {user?.displayName}</p>
             <p className="text-xs font-medium mt-1">{user?.email}</p>
           </div>
         </div>
-        <hr className="h-0 border border-darkThree" />
-        <TabList className="tab-list h-full w-full flex flex-row xl:flex-col flex-wrap gap-3">
+        <TabList
+          className={`tab-list h-full w-full flex ${
+            isActiveProfile ? "flex-col" : "flex-row"
+          } flex-wrap xs:gap-3`}
+        >
           <Tab className="react-tab custom-btn">
             {" "}
-            <CiUser className="text-xl" />
-            <span className={isActiveProfile ? "hidden" : "block"}>
+            <CiUser className="xs:text-xl" />
+            <span className={isActiveProfile ? "block" : "hidden"}>
               {" "}
               My Profile
             </span>
           </Tab>
           <Tab className="react-tab custom-btn">
-            <CiLock className="text-xl" />{" "}
-            <span className={isActiveProfile ? "hidden" : "block"}>
+            <CiLock className="xs:text-xl" />{" "}
+            <span className={isActiveProfile ? "block" : "hidden"}>
               Security
             </span>
           </Tab>
           <Tab className="react-tab custom-btn">
             {" "}
-            <PiCurrencyDollarThin className="text-xl" />
-            <span className={isActiveProfile ? "hidden" : "block"}>
+            <PiCurrencyDollarThin className="xs:text-xl" />
+            <span className={isActiveProfile ? "block" : "hidden"}>
               Currencies
             </span>
           </Tab>
           <Tab className="react-tab custom-btn">
-            <PiCardholderThin className="text-xl" />
-            <span className={isActiveProfile ? "hidden" : "block"}>
+            <PiCardholderThin className="xs:text-xl" />
+            <span className={isActiveProfile ? "block" : "hidden"}>
               Payment Option
             </span>
           </Tab>
