@@ -3,21 +3,47 @@ import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./profile.css";
+import Image from "next/image";
+import useAuth from "@/hooks/useAuth";
+import { FaUserCircle } from "react-icons/fa";
 
 const ProfilePage = () => {
+  const { user } = useAuth();
   return (
     <Tabs className="h-full relative bg-darkBG">
-      <TabList
+      <div
         style={{ height: "calc(100vh - 107px)" }}
-        className="fixed left-[238px] h-full w-[220px] flex flex-col gap-3 font-medium"
+        className="fixed left-[238px] w-[240px] bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col gap-5 px-3 py-8"
       >
-        <Tab className="react-tab custom-btn">Profile</Tab>
-        <Tab className="react-tab custom-btn">Profile</Tab>
-        <Tab className="react-tab custom-btn">Profile</Tab>
-        <Tab className="react-tab custom-btn">Profile</Tab>
-      </TabList>
+        <div className="flex flex-col items-center">
+          {user?.photoURL &&
+          user?.photoURL !== undefined &&
+          user?.photoURL !== null ? (
+            <Image
+              alt="profile-image"
+              width={100}
+              height={100}
+              src={user?.photoURL}
+              className="rounded-full"
+            />
+          ) : (
+            <p className="text-8xl text-primary">
+              <FaUserCircle />
+            </p>
+          )}
+          <h3 className="mt-5 mb-1 font-semibold">{user?.displayName}</h3>
+          <p className="text-xs font-medium">{user?.email}</p>
+        </div>
+        <hr className="h-0 border border-darkThree" />
+        <TabList className="h-full w-full flex flex-col gap-3 font-medium">
+          <Tab className="react-tab custom-btn">My Profile</Tab>
+          <Tab className="react-tab custom-btn">Security</Tab>
+          <Tab className="react-tab custom-btn">Currency Preferences</Tab>
+          <Tab className="react-tab custom-btn">Payment Option</Tab>
+        </TabList>
+      </div>
 
-      <div className="pl-[240px]">
+      <div className="pl-[260px]">
         <TabPanel>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sint
           recusandae quos distinctio unde expedita sapiente labore incidunt quas
