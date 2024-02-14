@@ -6,6 +6,8 @@ import "./profile.css";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
 import { FaUserCircle } from "react-icons/fa";
+import { CiLock, CiUser } from "react-icons/ci";
+import { PiCurrencyDollarThin, PiCardholderThin } from "react-icons/pi";
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -35,11 +37,24 @@ const ProfilePage = () => {
           <p className="text-xs font-medium">{user?.email}</p>
         </div>
         <hr className="h-0 border border-darkThree" />
-        <TabList className="h-full w-full flex flex-col gap-3 font-medium">
-          <Tab className="react-tab custom-btn">My Profile</Tab>
-          <Tab className="react-tab custom-btn">Security</Tab>
-          <Tab className="react-tab custom-btn">Currency Preferences</Tab>
-          <Tab className="react-tab custom-btn">Payment Option</Tab>
+        <TabList className="tab-list h-full w-full flex flex-col gap-3">
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <CiUser className="text-lg" />
+            My Profile
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <CiLock className="text-lg" /> Security
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <PiCurrencyDollarThin className="text-lg" />
+            Currency Preferences
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <PiCardholderThin className="text-lg" />
+            Payment Option
+          </Tab>
         </TabList>
       </div>
 

@@ -1,22 +1,28 @@
 /* Styles for .react-tabs__tab--selected */
 .react-tab {
   color: white !important;
-  background-color: transparent !important;
-  border-left: 2px solid transparent !important;
+  background-color: transparent;
+  border-width: 0px 0px 0px 2px !important;
+  border-color: transparent !important;
+  border-style: solid !important;
   outline: none !important;
+  border-radius: 0px !important;
 }
 
 .react-tab:hover {
   background-color: rgba(255, 255, 255, 0.1) !important;
-  border-left: 2px solid rgba(64, 160, 255) !important;
+  border-color: rgba(64, 160, 255) !important;
 }
 
-.react-tabs__tab--selected {
-  border-radius: 0px;
-  border-left: 2px solid rgba(64, 160, 255) !important;
-  border-style: solid !important;
+.tab-list .react-tabs__tab--selected {
   color: rgba(64, 160, 255) !important;
   background-color: rgba(255, 255, 255, 0.1) !important;
+  border-width: 0px 0px 0px 2px !important;
+  border-color: rgba(64, 160, 255) !important;
+  border-style: solid !important;
+  outline: none !important;
+  border-radius: 0px !important;
+  background: rgba(255, 255, 255, 0.1) !important ;
 }
 
 .custom-btn {
@@ -36,7 +42,7 @@
   font-size: 0.875rem /* 14px */;
   line-height: 1em;
   gap: 0.5rem /* 8px */;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration-line: none;
   text-decoration-line: none;
   transition-duration: 200ms;
