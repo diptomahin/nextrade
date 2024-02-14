@@ -94,7 +94,17 @@ const WatchlistCryptoTable = ({ assets }) => {
                                     </Link>
                                 </DashboardButton>
                                 <Magnetic>
-                                    <Button color="error" variant='contained' sx={{ borderRadius: "50px", paddingY: "10px" }} onClick={() => handleDelete(idx, asset._id)}>Delete</Button>
+                                    <Button
+                                        color="error"
+                                        variant='contained'
+                                        sx={{ borderRadius: "50px", paddingY: "10px" }}
+                                        onClick={() => {
+                                            console.log("Asset ID:", asset._id);
+                                            handleDelete(idx, asset._id);
+                                        }}
+                                    >
+                                        Delete
+                                    </Button>
                                 </Magnetic>
                             </TableCell>
                         </TableRow>
