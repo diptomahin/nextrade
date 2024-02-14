@@ -37,7 +37,7 @@ const ManageCoins = () => {
     }, [allCoins])
 
 
-    const createData = (name, key, price, type, changePrice, highPrice, lowPrice, icon) => ({ name, key, price, type, changePrice, highPrice, lowPrice, icon });
+    const createData = (_id, name, key, price, type, changePrice, highPrice, lowPrice, icon) => ({ _id, name, key, price, type, changePrice, highPrice, lowPrice, icon });
 
 
     // console.log(assets)
@@ -52,6 +52,7 @@ const ManageCoins = () => {
                     const ticker = data.find((item) => item.s === asset.key);
                     if (ticker) {
                         return createData(
+                            asset._id,
                             asset.name,
                             asset.key,
                             parseFloat(ticker.c).toFixed(3),
@@ -72,7 +73,7 @@ const ManageCoins = () => {
 
 
 
-    const createFlatCurrencyData = (name, key, type, price, icon) => ({ name, key, type, price, icon });
+    const createFlatCurrencyData = (_id, name, key, type, price, icon) => ({_id, name, key, type, price, icon });
 
     useEffect(() => {
         const fetchCurrencyRates = async () => {
@@ -87,6 +88,7 @@ const ManageCoins = () => {
                         const currencyKey = cur.key
                         // console.log(currencyKey)
                         return createFlatCurrencyData(
+                            cur._id,
                             cur.name,
                             cur.key,
                             cur.type,
@@ -138,7 +140,7 @@ const ManageCoins = () => {
                             event.preventDefault();
                             const formData = event.target;
                             const name = formData.name.value;
-                            const key = formData.key.value;
+                            const key = formData.key.value.toUpperCase();
                             const type = typeValue;
                             const icon = formData.icon.value
 
@@ -272,12 +274,12 @@ const ManageCoins = () => {
                     </Box>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
                         <div className='w-full'>
-                            <ManageCrypto assets={assets}></ManageCrypto>
+                            <ManageCrypto refetch={refetch} assets={assets}></ManageCrypto>
                         </div>
                     </TabPanel>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
                         <div className='w-full'>
-                            <ManageFlatCoins assets={flatCurrency}></ManageFlatCoins>
+                            <ManageFlatCoins refetch={refetch} assets={flatCurrency}></ManageFlatCoins>
                         </div>
                     </TabPanel>
                 </TabContext>

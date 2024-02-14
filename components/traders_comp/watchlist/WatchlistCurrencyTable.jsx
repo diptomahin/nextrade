@@ -16,7 +16,6 @@ const WatchlistCurrencyTable = ({ assets, refetch }) => {
     // console.log(id)
     secureAPI.delete(`/watchlist/${id}`)
       .then(res => {
-        refetch()
         if (res.data.deletedCount > 0) {
           Swal.fire({
             title: "Deleted!",
@@ -24,7 +23,7 @@ const WatchlistCurrencyTable = ({ assets, refetch }) => {
             icon: "success",
             timer: 1500
           });
-
+          refetch()
         }
       })
       .catch(err => {
