@@ -2,8 +2,36 @@ import Image from "next/image";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from "@mui/material";
+import useSecureAPI from "@/hooks/useSecureAPI";
+import Swal from "sweetalert2";
 
-const ManageFlatCoins = ({ assets }) => {
+const ManageFlatCoins = ({ assets, refetch }) => {
+    const secureAPI = useSecureAPI();
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await secureAPI.delete(`/allCoins/${id}`)
+                refetch()
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "product has been deleted.",
+                        icon: "success",
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
     return (
         <div className='flex gap-6 flex-wrap my-6'>
             {assets.map((asset, idx) => (
@@ -13,7 +41,7 @@ const ManageFlatCoins = ({ assets }) => {
                         <IconButton aria-label="delete">
                             <EditIcon className='text-gray-500' />
                         </IconButton>
-                        <IconButton aria-label="delete">
+                        <IconButton aria-label="delete" onClick={() => handleDelete(asset._id)}>
                             <DeleteIcon className='text-gray-500' />
                         </IconButton>
                     </div>

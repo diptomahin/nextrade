@@ -18,18 +18,16 @@ const WatchlistCryptoTable = ({ assets, refetch }) => {
     const handleDelete = (id) => {
         // console.log(id)
         secureAPI.delete(`/watchlist/${id}`)
-            .then(res =>{
-                if(res.data.deletedCount > 0){
-                    if (res.data.deletedCount > 0) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Coin has been deleted successfully.",
-                            icon: "success",
-                            timer: 1500
-                        });
-                        refetch()
-                    }
+            .then(res => {
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Coin has been deleted successfully.",
+                        icon: "success",
+                        timer: 1500
+                    });  
                 }
+                refetch()
             })
             .catch(err => {
                 Swal.fire({
