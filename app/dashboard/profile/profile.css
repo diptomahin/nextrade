@@ -1,0 +1,174 @@
+/* Styles for .react-tabs__tab--selected */
+.react-tab {
+  color: white !important;
+  background-color: transparent !important;
+  border-left: 2px solid transparent !important;
+  outline: none !important;
+}
+
+.react-tab:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-left: 2px solid rgba(64, 160, 255) !important;
+}
+
+.react-tabs__tab--selected {
+  border-radius: 0px;
+  border-left: 2px solid rgba(64, 160, 255) !important;
+  border-style: solid !important;
+  color: rgba(64, 160, 255) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.custom-btn {
+  display: inline-flex;
+  height: 2.5rem /* 40px */;
+  min-height: 2.5rem /* 40px */;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  flex-wrap: wrap;
+  align-items: center;
+  border-color: transparent;
+  background-color: transparent;
+  padding-left: 1rem /* 16px */;
+  padding-right: 1rem /* 16px */;
+  text-align: center;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1em;
+  gap: 0.5rem /* 8px */;
+  font-weight: 600;
+  text-decoration-line: none;
+  text-decoration-line: none;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-width: var(--border-btn, 1px);
+  animation: button-pop var(--animation-btn, 0.25s) ease-out;
+  transition-property: color, background-color, border-color, opacity,
+    box-shadow, transform;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline-color: var(--fallback-bc, oklch(var(--bc) / 1));
+  /* background-color: oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity)); */
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+}
+.custom-btn-disabled,
+.custom-btn[disabled],
+.custom-btn:disabled {
+  pointer-events: none;
+}
+.custom-btn-disabled,
+.custom-btn[disabled],
+.custom-btn:disabled {
+  pointer-events: none;
+}
+:where(.custom-btn:is(input[type="checkbox"])),
+:where(.custom-btn:is(input[type="radio"])) {
+  width: auto;
+  appearance: none;
+}
+:where(.custom-btn:is(input[type="checkbox"])),
+:where(.custom-btn:is(input[type="radio"])) {
+  width: auto;
+  appearance: none;
+}
+.custom-btn:is(input[type="checkbox"]):after,
+.custom-btn:is(input[type="radio"]):after {
+  --tw-content: attr(aria-label);
+  content: var(--tw-content);
+}
+.custom-btn:is(input[type="checkbox"]):after,
+.custom-btn:is(input[type="radio"]):after {
+  --tw-content: attr(aria-label);
+  content: var(--tw-content);
+}
+
+.custom-btn:active:hover,
+.custom-btn:active:focus {
+  animation: button-pop 0s ease-out;
+  transform: scale(var(--btn-focus-scale, 0.97));
+}
+.custom-btn:active:hover,
+.custom-btn:active:focus {
+  animation: button-pop 0s ease-out;
+  transform: scale(var(--btn-focus-scale, 0.97));
+}
+@supports not (color: oklch(0 0 0)) {
+  .custom-btn {
+    background-color: var(--btn-color, var(--fallback-b2));
+    border-color: var(--btn-color, var(--fallback-b2));
+  }
+}
+.custom-btn:focus-visible {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+}
+.custom-btn.glass {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline-color: currentColor;
+}
+.custom-btn.glass.custom-btn-active {
+  --glass-opacity: 25%;
+  --glass-border-opacity: 15%;
+}
+.custom-btn.custom-btn-disabled,
+.custom-btn[disabled],
+.custom-btn:disabled {
+  --tw-border-opacity: 0;
+  background-color: var(--fallback-n, oklch(var(--n) / var(--tw-bg-opacity)));
+  --tw-bg-opacity: 0.2;
+  color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
+  --tw-text-opacity: 0.2;
+}
+.custom-btn.custom-btn-disabled,
+.custom-btn[disabled],
+.custom-btn:disabled {
+  --tw-border-opacity: 0;
+  background-color: var(--fallback-n, oklch(var(--n) / var(--tw-bg-opacity)));
+  --tw-bg-opacity: 0.2;
+  color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
+  --tw-text-opacity: 0.2;
+}
+.custom-btn.custom-btn-disabled,
+.custom-btn[disabled],
+.custom-btn:disabled {
+  --tw-border-opacity: 0;
+  background-color: var(--fallback-n, oklch(var(--n) / var(--tw-bg-opacity)));
+  --tw-bg-opacity: 0.2;
+  color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
+  --tw-text-opacity: 0.2;
+}
+.custom-btn:is(input[type="checkbox"]:checked),
+.custom-btn:is(input[type="radio"]:checked) {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-p, oklch(var(--p) / var(--tw-border-opacity)));
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-p, oklch(var(--p) / var(--tw-bg-opacity)));
+  --tw-text-opacity: 1;
+  color: var(--fallback-pc, oklch(var(--pc) / var(--tw-text-opacity)));
+}
+.custom-btn:is(input[type="checkbox"]:checked),
+.custom-btn:is(input[type="radio"]:checked) {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-p, oklch(var(--p) / var(--tw-border-opacity)));
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-p, oklch(var(--p) / var(--tw-bg-opacity)));
+  --tw-text-opacity: 1;
+  color: var(--fallback-pc, oklch(var(--pc) / var(--tw-text-opacity)));
+}
+.custom-btn:is(input[type="checkbox"]:checked):focus-visible,
+.custom-btn:is(input[type="radio"]:checked):focus-visible {
+  outline-color: var(--fallback-p, oklch(var(--p) / 1));
+}
+.custom-btn:is(input[type="checkbox"]:checked):focus-visible,
+.custom-btn:is(input[type="radio"]:checked):focus-visible {
+  outline-color: var(--fallback-p, oklch(var(--p) / 1));
+}
