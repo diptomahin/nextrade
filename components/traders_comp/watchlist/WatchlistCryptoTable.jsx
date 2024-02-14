@@ -8,27 +8,37 @@ import Link from 'next/link';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import Magnetic from '@/components/library/Magnetic';
-import axios from 'axios';
 import useSecureAPI from '@/hooks/useSecureAPI';
+import Swal from 'sweetalert2';
 
 
-const WatchlistCryptoTable = ({ assets }) => {
-
-    const [assetList, setAssetList] = useState(assets);
+const WatchlistCryptoTable = ({ assets, refetch }) => {
     const secureAPI = useSecureAPI();
 
-    const handleDelete = async (index, id) => {
-        try {
-            // Make a DELETE request to your backend to delete the asset with the specified ID
-            await secureAPI.delete(`/watchlist/${id}`);
-            // Update the frontend by removing the deleted asset from the assetList state
-            const updatedAssets = [...assetList];
-            updatedAssets.splice(index, 1); // Remove the item at the specified index
-            setAssetList(updatedAssets); // Update the state with the new asset list
-        } catch (error) {
-            console.error('Error deleting asset:', error);
-            // Handle error, show error message or retry logic
-        }
+    const handleDelete = (id) => {
+        // console.log(id)
+        secureAPI.delete(`/watchlist/${id}`)
+            .then(res =>{
+                if(res.data.deletedCount > 0){
+                    if (res.data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Coin has been deleted successfully.",
+                            icon: "success",
+                            timer: 1500
+                        });
+                        refetch()
+                    }
+                }
+            })
+            .catch(err => {
+                Swal.fire({
+                    title: "Failed!",
+                    text: "Something went wrong.",
+                    icon: "error",
+                    timer: 1500
+                });
+            })
     };
 
 
@@ -94,7 +104,7 @@ const WatchlistCryptoTable = ({ assets }) => {
                                     </Link>
                                 </DashboardButton>
                                 <Magnetic>
-                                    <Button color="error" variant='contained' sx={{ borderRadius: "50px", paddingY: "10px" }} onClick={() => handleDelete(idx, asset._id)}>Delete</Button>
+                                    <Button color="error" variant='contained' sx={{ borderRadius: "50px", paddingY: "10px" }} onClick={() => handleDelete(asset._id)}>Delete</Button>
                                 </Magnetic>
                             </TableCell>
                         </TableRow>

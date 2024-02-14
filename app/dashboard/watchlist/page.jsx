@@ -37,7 +37,7 @@ const Watchlist = () => {
   }, [watchlistData])
 
 
-  const createData = (name, key, price, type, changePrice, highPrice, lowPrice, icon, email) => ({ name, key, price, type, changePrice, highPrice, lowPrice, icon, email });
+  const createData = (_id, name, key, price, type, changePrice, highPrice, lowPrice, icon, email) => ({ _id, name, key, price, type, changePrice, highPrice, lowPrice, icon, email });
 
   useEffect(() => {
     const socket = new WebSocket("wss://stream.binance.com:9443/ws/!ticker@arr");
@@ -49,6 +49,7 @@ const Watchlist = () => {
           const ticker = data.find((item) => item.s === asset.key);
           if (ticker) {
             return createData(
+              asset._id,
               asset.name,
               asset.key,
               parseFloat(ticker.c).toFixed(3),
@@ -70,7 +71,7 @@ const Watchlist = () => {
   // console.log(assets)
 
 
-  const createFlatCurrencyData = (name, key, type, price, icon, email) => ({ name, key, type, price, icon, email });
+  const createFlatCurrencyData = (_id, name, key, type, price, icon, email) => ({ _id, name, key, type, price, icon, email });
 
   useEffect(() => {
     const fetchCurrencyRates = async () => {
@@ -85,6 +86,7 @@ const Watchlist = () => {
             const currencyKey = cur.key
             // console.log(currencyKey)
             return createFlatCurrencyData(
+              cur._id,
               cur.name,
               cur.key,
               cur.type,
@@ -126,13 +128,13 @@ const Watchlist = () => {
           </Box>
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
 
-                <WatchlistCryptoTable assets={assets}></WatchlistCryptoTable>
+                <WatchlistCryptoTable assets={assets} refetch={refetch}></WatchlistCryptoTable>
 
           </TabPanel>
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
             <div className='w-full'>
 
-                  <WatchlistCurrencyTable assets={flatCurrency}></WatchlistCurrencyTable>
+                  <WatchlistCurrencyTable assets={flatCurrency} refetch={refetch}></WatchlistCurrencyTable>
 
             </div>
           </TabPanel>
