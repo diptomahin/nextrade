@@ -36,8 +36,8 @@
   align-items: center;
   border-color: transparent;
   background-color: transparent;
-  padding-left: 1rem /* 16px */;
-  padding-right: 1rem /* 16px */;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
   text-align: center;
   font-size: 0.875rem /* 14px */;
   line-height: 1em;
