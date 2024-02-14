@@ -23,8 +23,8 @@ const ManageCoins = () => {
         isPending,
         isLoading,
         refetch,
-      } = usePublicFetch(`/allCoins`, [ "allCoins"]);
-    
+    } = usePublicFetch(`/allCoins`, ["allCoins"]);
+
 
 
 
@@ -73,7 +73,7 @@ const ManageCoins = () => {
 
 
 
-    const createFlatCurrencyData = (_id, name, key, type, price, icon) => ({_id, name, key, type, price, icon });
+    const createFlatCurrencyData = (_id, name, key, type, price, icon) => ({ _id, name, key, type, price, icon });
 
     useEffect(() => {
         const fetchCurrencyRates = async () => {
@@ -185,43 +185,56 @@ const ManageCoins = () => {
                                 }
                                 // console.log(coinInfo)
                                 secureAPI.post(`/allCoins`, coinInfo)
-                                .then((res) => {
-                                    if (res.data.insertedId) {
+                                    .then((res) => {
+                                        if (res.data.insertedId) {
+                                            Swal.fire({
+                                                title: `Successfully added to market!`,
+                                                text: `${name} has been added to market!`,
+                                                icon: "success",
+                                            });
+                                            refetch();
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
                                         Swal.fire({
-                                            title: `Successfully added to market!`,
-                                            text: `${name} has been added to market!`,
-                                            icon: "success",
+                                            title: `failed!`,
+                                            text: `Please try again`,
+                                            icon: "error",
                                         });
-                                        refetch();
-                                    }
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                    Swal.fire({
-                                        title: `failed!`,
-                                        text: `Please try again`,
-                                        icon: "error",
                                     });
-                                });
                             }
                             handleClose();
                         },
                     }}
                 >
                     <DialogTitle>Add new coin</DialogTitle>
-                    <DialogContent>
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="name"
-                            name="name"
-                            label="Coin Name"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <FormControl variant="standard" required sx={{ width: "100%", marginTop: "15px" }}>
+                    <DialogContent sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                        <div className="flex flex-col md:flex-row gap-4">
+                            <TextField
+                                autoFocus
+                                required
+                                margin="dense"
+                                id="name"
+                                name="name"
+                                label="Coin Name"
+                                type="text"
+                                fullWidth
+                            // variant="standard"
+                            />
+                            <TextField
+                                autoFocus
+                                required
+                                margin="dense"
+                                id="key"
+                                name="key"
+                                label="Coin Key"
+                                type="text"
+                                fullWidth
+                            // variant="standard"
+                            />
+                        </div>
+                        <FormControl required sx={{ width: "100%", marginTop: "15px" }}>
                             <InputLabel id="demo-simple-select-helper-label">Coin Type</InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
@@ -238,23 +251,12 @@ const ManageCoins = () => {
                             autoFocus
                             required
                             margin="dense"
-                            id="key"
-                            name="key"
-                            label="Coin Key"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
                             id="icon"
                             name="icon"
                             label="Coin Icon URL"
                             type="text"
                             fullWidth
-                            variant="standard"
+                        // variant="standard"
                         />
                     </DialogContent>
                     <DialogActions>
@@ -268,8 +270,8 @@ const ManageCoins = () => {
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
-                            <Tab sx={{ }} label="Crypto Coins" value="1" />
-                            <Tab sx={{ }} label="Flat Coins" value="2" />
+                            <Tab sx={{}} label="Crypto Coins" value="1" />
+                            <Tab sx={{}} label="Flat Coins" value="2" />
                         </TabList>
                     </Box>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
