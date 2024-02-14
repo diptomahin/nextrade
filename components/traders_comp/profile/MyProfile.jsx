@@ -6,10 +6,10 @@ import { AuthContext } from "@/provider/AuthProvider";
 
 //material imports
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import Image from "next/image";
+import { FaUserCircle } from "react-icons/fa";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 const MyProfile = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
@@ -25,59 +25,178 @@ const MyProfile = () => {
     updateUserProfile(name, photo).then(() => {});
   };
   return (
-    <Box>
-      <Card
-        className=" mx-auto "
-        sx={{ backgroundColor: "transparent", boxShadow: "none" }}
-      >
-        <div className="grid grid-cols-2 w-10/12 mx-auto  ">
-          <div className="grid grid-cols-2">
-            <Avatar
-              alt="profile Image"
-              src={user.photoURL}
-              className="my-10 "
-              sx={{ width: 200, height: 200 }}
-            />
-          </div>
-          <CardContent className="mt-5">
-            <form onSubmit={updateProfileInfo}>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  defaultValue={user.displayName}
-                  size="lg"
-                  name="name"
-                  placeholder="User Name"
-                  className=" w-52 border-primary border-x-2 border-y-2 p-3 rounded-lg text-primary my-3 font-semibold "
-                />
-              </div>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  defaultValue={user.email}
-                  size="lg"
-                  name="email"
-                  placeholder="User Email"
-                  className=" w-52 border-primary border-x-2 border-y-2 p-3 rounded-lg text-primary my-3 font-semibold "
-                />
-              </div>
-              <div className="flex gap-2">
-                <input
-                  type="url"
-                  size="lg"
-                  name="photo"
-                  placeholder="Enter Photo URL"
-                  className="w-52  border-primary border-x-2 border-y-2 p-3 rounded-lg text-primary my-3 font-semibold"
-                />
-              </div>
-              <button className="p-3 rounded-lg font-semibold hover:text-primary hover:bg-white hover:border-2 hover:border-primary bg-primary text-white">
-                Submit
-              </button>
-            </form>
-          </CardContent>
+    <form className="flex items-center justify-around gap-10 p-5">
+      {/* photo url */}
+      <div className="w-80 flex flex-col items-center justify-center">
+        {user?.photoURL !== undefined && user?.photoURL !== null ? (
+          <Image
+            alt="profile-image"
+            width={150}
+            height={150}
+            src={user?.photoURL}
+            className="rounded-full"
+          />
+        ) : (
+          <p className="text-5xl text-primary">
+            <FaUserCircle />
+          </p>
+        )}
+        <div className="w-full flex flex-col mt-10">
+          <label htmlFor="" className="font-medium text-center">
+            Upload Photo
+          </label>
+          <input
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+            type="file"
+            id=""
+            placeholder="file"
+          />
         </div>
-      </Card>
-    </Box>
+      </div>
+
+      {/* user info */}
+      <div className="flex-1 flex flex-col gap-5 justify-center ">
+        {/* left side part */}
+        <div className="p-5">
+          <h3 className="text-xl font-semibold border-b w-fit">
+            Personal Information
+          </h3>
+
+          {/* first part */}
+          <div className="flex items-center gap-10 justify-between my-10">
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                First Name
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.displayName.split(" ").shift()}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                Last Name
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.displayName.split(" ").slice(1)}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+          </div>
+
+          {/* second part */}
+          <div className="flex items-center gap-10 justify-between">
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                Full Name
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.displayName}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                User Name
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.email}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+          </div>
+        </div>
+
+        <hr className="border-darkThree" />
+
+        {/* right side part */}
+        <div className="p-5">
+          <h3 className="text-xl font-semibold border-b w-fit">
+            Contact Information
+          </h3>
+
+          {/* first part */}
+          <div className="flex items-center gap-10 justify-between my-10">
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                Email
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.displayName.split(" ").shift()}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                Phone
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.displayName.split(" ").slice(1)}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+          </div>
+
+          {/* second part */}
+          <div className="flex items-center gap-10 justify-between">
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                Address
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.displayName}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="font-medium">
+                Currency
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.email}
+                id=""
+                placeholder="amount"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-end gap-5">
+          <DarkButton className="px-10">Cancel</DarkButton>
+          <DarkButton className="px-10">Save</DarkButton>
+        </div>
+      </div>
+    </form>
   );
 };
 
