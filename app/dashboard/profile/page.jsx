@@ -15,10 +15,13 @@ const ProfilePage = () => {
   const { user } = useAuth();
   return (
     <Tabs className="h-full relative bg-darkBG">
+      {/* toggle menu button */}
       <button
         onClick={() => setIsActiveProfile(!isActiveProfile)}
         className={`fixed top-[86px] ${
-          isActiveProfile ? "left-[270px]" : "left-[432px]"
+          isActiveProfile
+            ? "left-[55px] 2xl:left-[270px]"
+            : "left-[216px] 2xl:left-[432px]"
         } btn btn-sm h-11 bg-transparent hover:bg-transparent active:bg-white/10 border-none shadow-none text-white rounded-full z-10 transition-all duration-300 ease-in-out`}
       >
         <MdArrowBackIosNew
@@ -27,13 +30,15 @@ const ProfilePage = () => {
           }`}
         />
       </button>
+
+      {/* large device profile menu */}
       <div
         style={{ height: "calc(100vh - 107px)" }}
-        className={`fixed left-[238px] ${
+        className={`hidden xl:block fixed 2xl:left-[238px] ${
           isActiveProfile ? "w-[78px]" : "w-[240px]"
-        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-col gap-5 px-3 py-12 transition-all duration-300 ease-in-out`}
+        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl px-3 py-12 transition-all duration-300 ease-in-out`}
       >
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-4">
           {user?.photoURL &&
           user?.photoURL !== undefined &&
           user?.photoURL !== null ? (
@@ -49,23 +54,78 @@ const ProfilePage = () => {
               <FaUserCircle />
             </p>
           )}
-          <h3
-            className={`mt-5 mb-1 font-semibold ${
-              isActiveProfile ? "hidden" : "block"
-            }`}
-          >
-            {user?.displayName}
-          </h3>
-          <p
-            className={`text-xs font-medium ${
-              isActiveProfile ? "hidden" : "block"
-            }`}
-          >
-            {user?.email}
-          </p>
+          <div className={` ${isActiveProfile ? "hidden" : "block"}`}>
+            <p className="font-semibold"> {user?.displayName}</p>
+            <p className="text-xs font-medium mt-1">{user?.email}</p>
+          </div>
+        </div>
+        <hr className="h-0 border border-darkThree my-5" />
+        <TabList className="tab-list h-full w-full flex flex-col gap-3">
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <CiUser className="text-xl" />
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              {" "}
+              My Profile
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <CiLock className="text-xl" />{" "}
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              Security
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <PiCurrencyDollarThin className="text-xl" />
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              Currencies
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <PiCardholderThin className="text-xl" />
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              Payments
+            </span>
+          </Tab>
+        </TabList>
+      </div>
+
+      {/* small device profile menu */}
+      <div
+        className={`block xl:hidden profile-menu fixed 2xl:left-[238px] ${
+          isActiveProfile ? "xl:w-[78px]" : "xl:w-[240px]"
+        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl flex flex-row xl:flex-col items-center xl:items-start gap-5 px-3 py-3 xl:py-12 transition-all duration-300 ease-in-out`}
+      >
+        <div className="flex flex-row xl:flex-col gap-3 xl:gap-5 items-center">
+          {user?.photoURL &&
+          user?.photoURL !== undefined &&
+          user?.photoURL !== null ? (
+            <Image
+              alt="profile-image"
+              width={100}
+              height={100}
+              src={user?.photoURL}
+              className="rounded-full"
+              style={{
+                "@media screen and (max-width: 1023px)": {
+                  width: "50px", // Adjust width for small screens
+                  height: "50px", // Adjust height for small screens
+                },
+              }}
+            />
+          ) : (
+            <p className="text-8xl text-primary">
+              <FaUserCircle />
+            </p>
+          )}
+          <div className={` ${isActiveProfile ? "hidden" : "block"}`}>
+            <p className="font-semibold"> {user?.displayName}</p>
+            <p className="text-xs font-medium mt-1">{user?.email}</p>
+          </div>
         </div>
         <hr className="h-0 border border-darkThree" />
-        <TabList className="tab-list h-full w-full flex flex-col gap-3">
+        <TabList className="tab-list h-full w-full flex flex-row xl:flex-col flex-wrap gap-3">
           <Tab className="react-tab custom-btn">
             {" "}
             <CiUser className="text-xl" />
@@ -98,7 +158,7 @@ const ProfilePage = () => {
 
       <div
         className={` transition-all duration-300 ease-in-out ${
-          isActiveProfile ? "pl-[98px]" : "pl-[260px]"
+          isActiveProfile ? "xl:pl-[98px]" : "xl:pl-[260px]"
         }`}
       >
         <TabPanel>

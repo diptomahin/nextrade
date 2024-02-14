@@ -25,6 +25,18 @@
   background: rgba(255, 255, 255, 0.1) !important ;
 }
 
+.profile-menu {
+  height: calc(100vh - 107px);
+}
+
+/* Media query for small devices */
+@media screen and (max-width: 1023px) {
+  .profile-menu {
+    width: calc(100% - 40px) !important;
+    height: auto;
+  }
+}
+
 .custom-btn {
   display: inline-flex;
   height: 2.5rem /* 40px */;
