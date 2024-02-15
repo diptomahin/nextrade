@@ -35,7 +35,7 @@ const MyProfile = ({ userDataRefetch }) => {
           </h2>
           <DarkButton
             onClick={() => setIsEdit(!isEdit)}
-            className="px-5 rounded-md xl:rounded-md"
+            className="px-5 rounded xl:rounded"
           >
             <MdEditSquare /> Edit
           </DarkButton>
@@ -73,9 +73,9 @@ const MyProfile = ({ userDataRefetch }) => {
               )}
             </div>
 
-            <div className="w-full flex gap-5">
+            <div className="w-full flex flex-col md:flex-row gap-5">
               {/* left side part */}
-              <div className="flex-1 space-y-8 p-5">
+              <div className="flex-1 space-y-8 lg:p-5">
                 <div className="space-y-2">
                   <p className="text-sm font-medium opacity-70">Full Name</p>
                   <p className="font-semibold">{userDetails?.name}</p>
@@ -95,7 +95,7 @@ const MyProfile = ({ userDataRefetch }) => {
               </div>
 
               {/* right side part */}
-              <div className="flex-1 space-y-8 p-5">
+              <div className="flex-1 space-y-8 lg:p-5">
                 <div className="space-y-2">
                   <p className="text-sm font-medium opacity-70">User Name</p>
                   <p className="font-semibold">
@@ -114,7 +114,7 @@ const MyProfile = ({ userDataRefetch }) => {
                 </div>
               </div>
             </div>
-            <div className="w-full flex items-center justify-between gap-5 px-5">
+            <div className="w-full flex flex-col md:flex-row  items-center justify-between gap-5 lg:px-5">
               <div className="">
                 {userDetails?.lastUpdate !== undefined &&
                   userDetails?.lastUpdate !== null && (
@@ -132,7 +132,7 @@ const MyProfile = ({ userDataRefetch }) => {
                   <span className="font-medium">{userDetails?.createdAt}</span>
                 </p>
               </div>
-              <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs">
+              <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded">
                 Delete Account
               </button>
             </div>

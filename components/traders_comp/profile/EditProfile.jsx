@@ -170,7 +170,7 @@ const EditProfile = ({
                 Full Name
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setFullName(e.target.value)}
                 type="text"
                 name="fullName"
@@ -185,7 +185,7 @@ const EditProfile = ({
                 User Name
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 name="userName"
@@ -204,7 +204,7 @@ const EditProfile = ({
                 Email Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none cursor-not-allowed"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none cursor-not-allowed"
                 type="text"
                 name="email"
                 value={userDetails?.email}
@@ -218,7 +218,7 @@ const EditProfile = ({
                 Phone Number
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 type="text"
                 name="phone"
                 onChange={(e) => setPhone(e.target.value)}
@@ -237,7 +237,7 @@ const EditProfile = ({
                 Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 type="text"
                 name="address"
                 onChange={(e) => setAddress(e.target.value)}
@@ -253,7 +253,7 @@ const EditProfile = ({
               <select
                 name="currency"
                 id=""
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setCurrency(e.target.value)}
                 defaultValue={userDetails?.currency}
               >
@@ -274,7 +274,7 @@ const EditProfile = ({
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-5">
           <DarkButton
-            className="px-10"
+            className="px-10 rounded"
             disabled={
               fullName ||
               userName ||
@@ -301,7 +301,7 @@ const EditProfile = ({
                 ? false
                 : true
             }
-            className="px-10"
+            className="px-10 rounded"
           >
             Save
           </DarkButton>
