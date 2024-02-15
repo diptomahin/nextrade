@@ -10,6 +10,7 @@ import { PiCurrencyDollar, PiUpload } from "react-icons/pi";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
@@ -19,10 +20,23 @@ const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
 const date = { day: day, month: month, year: year };
 
-const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
+const EditProfile = ({
+  userDetails,
+  setIsEdit,
+  refetch,
+  user,
+  userDataRefetch,
+}) => {
   const [hostedImage, setHostedImage] = useState(userDetails.photo);
   const [hostedImageInfo, setHostedImageInfo] = useState(null);
   const [imageHosting, setImageHosting] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [currency, setCurrency] = useState("");
+
+  const router = useRouter();
 
   // update user profile
   const handleSubmit = async (e) => {
@@ -52,7 +66,9 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
     );
     if (res.data.modifiedCount > 0) {
       refetch();
+      userDataRefetch();
       setIsEdit(false);
+      router.push("/dashboard/profile");
       toast.success("User Information Updated", {
         id: toastId,
         duration: 5000,
@@ -99,7 +115,7 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center justify-around gap-10 px-5"
+      className="flex flex-col xl:flex-row xl:items-center gap-10 md:px-5"
     >
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
@@ -147,14 +163,15 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
         </h3>
         <div className="">
           {/* first part */}
-          <div className="flex items-center gap-5 justify-between">
+          <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <AiOutlineUser className="text-lg" />
                 Full Name
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                onChange={(e) => setFullName(e.target.value)}
                 type="text"
                 name="fullName"
                 defaultValue={userDetails?.name}
@@ -168,7 +185,8 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
                 User Name
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 name="userName"
                 defaultValue={userDetails?.username}
@@ -179,14 +197,14 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
           </div>
 
           {/* second part */}
-          <div className="flex items-center gap-5 justify-between my-10">
+          <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between my-10">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <MdOutlineEmail className="text-lg" />
                 Email Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none cursor-not-allowed"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none cursor-not-allowed"
                 type="text"
                 name="email"
                 value={userDetails?.email}
@@ -200,9 +218,10 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
                 Phone Number
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 type="text"
                 name="phone"
+                onChange={(e) => setPhone(e.target.value)}
                 defaultValue={userDetails?.phone}
                 id=""
                 placeholder="Phone Number"
@@ -211,16 +230,17 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
           </div>
 
           {/* third part */}
-          <div className="flex items-center gap-5 justify-between">
+          <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <FaRegAddressBook className="text-base" />
                 Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 type="text"
                 name="address"
+                onChange={(e) => setAddress(e.target.value)}
                 defaultValue={userDetails?.address}
                 id=""
                 placeholder="Address"
@@ -233,7 +253,8 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
               <select
                 name="currency"
                 id=""
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                onChange={(e) => setCurrency(e.target.value)}
                 defaultValue={userDetails?.currency}
               >
                 <option value="" disabled>
@@ -251,9 +272,37 @@ const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-5">
-          <DarkButton className="px-10">Cancel</DarkButton>
-          <DarkButton type="submit" className="px-10">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-5">
+          <DarkButton
+            className="px-10 rounded"
+            disabled={
+              fullName ||
+              userName ||
+              phone ||
+              address ||
+              currency ||
+              hostedImageInfo?.data.data.url
+                ? false
+                : true
+            }
+            onClick={() => setIsEdit(false)}
+          >
+            Cancel
+          </DarkButton>
+          <DarkButton
+            type="submit"
+            disabled={
+              fullName ||
+              userName ||
+              phone ||
+              address ||
+              currency ||
+              hostedImageInfo?.data.data.url
+                ? false
+                : true
+            }
+            className="px-10 rounded"
+          >
             Save
           </DarkButton>
         </div>
