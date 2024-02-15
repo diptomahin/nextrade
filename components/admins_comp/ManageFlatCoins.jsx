@@ -34,6 +34,7 @@ const ManageFlatCoins = ({ assets, refetch }) => {
     const handleTypeChange = (event) => {
         setDefaultType(event.target.value);
     };
+    
 
     const handleDelete = (id) => {
         Swal.fire({
