@@ -29,8 +29,10 @@ const MyProfile = ({ userDataRefetch }) => {
       className="flex items-center justify-center"
     >
       <div className="w-full 5xl:w-10/12 bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree flex flex-col gap-10 rounded-xl px-5 pb-8">
-        <div className="w-full flex items-center justify-between border-b border-dashed border-darkThree p-5">
-          <h2 className="text-xl font-semibold">My Profile</h2>
+        <div className="w-full flex items-center justify-between border-b border-dashed border-darkThree px-0 py-3 md:p-5">
+          <h2 className="text-sm sm:text-base md:text-xl font-semibold">
+            My Profile
+          </h2>
           <DarkButton
             onClick={() => setIsEdit(!isEdit)}
             className="px-5 rounded-md xl:rounded-md"

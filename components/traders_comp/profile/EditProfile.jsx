@@ -115,7 +115,7 @@ const EditProfile = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center justify-around gap-10 px-5"
+      className="flex flex-col xl:flex-row xl:items-center gap-10 md:px-5"
     >
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
@@ -163,7 +163,7 @@ const EditProfile = ({
         </h3>
         <div className="">
           {/* first part */}
-          <div className="flex items-center gap-5 justify-between">
+          <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <AiOutlineUser className="text-lg" />
@@ -197,7 +197,7 @@ const EditProfile = ({
           </div>
 
           {/* second part */}
-          <div className="flex items-center gap-5 justify-between my-10">
+          <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between my-10">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <MdOutlineEmail className="text-lg" />
@@ -230,7 +230,7 @@ const EditProfile = ({
           </div>
 
           {/* third part */}
-          <div className="flex items-center gap-5 justify-between">
+          <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <FaRegAddressBook className="text-base" />
@@ -272,7 +272,7 @@ const EditProfile = ({
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-5">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-5">
           <DarkButton
             className="px-10"
             disabled={
