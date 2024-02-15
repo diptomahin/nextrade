@@ -8,12 +8,12 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import EditProfile from "./EditProfile";
 import useSecureFetch from "@/hooks/useSecureFetch";
 
-const MyProfile = () => {
+const MyProfile = ({ userDataRefetch }) => {
   const [isEdit, setIsEdit] = useState(false);
   const { user, loading } = useAuth();
 
   const {
-    data: userDetails = [],
+    data: userDetails = {},
     refetch,
     isPending,
     isLoading,
@@ -46,6 +46,7 @@ const MyProfile = () => {
             refetch={refetch}
             setIsEdit={setIsEdit}
             user={user}
+            userDataRefetch={userDataRefetch}
           />
         ) : (
           <div className="flex flex-col items-center gap-5">
@@ -113,13 +114,20 @@ const MyProfile = () => {
             </div>
             <div className="w-full flex items-center justify-between gap-5 px-5">
               <div className="">
+                {userDetails?.lastUpdate !== undefined &&
+                  userDetails?.lastUpdate !== null && (
+                    <p className="text-xs text-primary/80 mt-1">
+                      Last updated:{" "}
+                      <span className="font-medium">
+                        {userDetails?.lastUpdate?.day}/
+                        {userDetails?.lastUpdate?.month}/
+                        {userDetails?.lastUpdate?.year}
+                      </span>
+                    </p>
+                  )}
                 <p className="text-xs">
-                  This account was created on {userDetails?.createdAt}
-                </p>
-                <p className="text-xs text-secondary">
-                  Last updated: {userDetails?.lastUpdate?.day}/
-                  {userDetails?.lastUpdate?.month}/
-                  {userDetails?.lastUpdate?.year}
+                  This account was created on{" "}
+                  <span className="font-medium">{userDetails?.createdAt}</span>
                 </p>
               </div>
               <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs">
