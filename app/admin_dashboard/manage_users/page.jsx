@@ -12,6 +12,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useState } from 'react';
+import UsersInfo from '@/components/admins_comp/UsersInfo';
 const ManageUsers = () => {
 
   const { user, loading } = useAuth();
@@ -45,7 +46,7 @@ const ManageUsers = () => {
     setOpen(true);
     setUserName(singleUser.name)
     setUserEmail(singleUser.email)
-    setUserPhoto(singleUser.photoURL)
+    setUserPhoto(singleUser.photo)
     setUserRole(singleUser.role)
   };
 
@@ -114,11 +115,11 @@ const ManageUsers = () => {
                         sx={{ display: "flex", justifyContent: "space-between", overflowX: "hidden" }}
                       >
                         <div className='flex items-center gap-2 md:gap-3'>
-                          {singleUser?.photoURL ? (
+                          {singleUser?.photo ? (
                             <Image
-                              src={singleUser?.photoURL}
-                              width={50}
-                              height={50}
+                              src={singleUser?.photo}
+                              width={40}
+                              height={40}
                               className="rounded-full"
                               alt="user photo"
                             />
@@ -132,13 +133,7 @@ const ManageUsers = () => {
                         </div>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <div className='text-sm lg:text-base'>
-                          <p className='xs:hidden'><span className='font-semibold'>Email: </span>{singleUser.email}</p>
-                          <p><span className='font-semibold'>User ID: </span>{singleUser.userID}</p>
-                          <p><span className='font-semibold'>Created At: </span>{singleUser.createdAt}</p>
-                          <p><span className='font-semibold'>Balance: </span>${singleUser.balance}</p>
-                          <p><span className='font-semibold'>Total Transactions: </span>{singleUser.depositWithdrawData?.length ? singleUser.depositWithdrawData.length : "0"} times</p>
-                        </div>
+                        <UsersInfo singleUser={singleUser}></UsersInfo>
                         <div className="pt-5">
                           <Button onClick={() => handleClickOpen(singleUser)} sx={{ width: "100%" }} variant="contained" startIcon={<ManageAccountsIcon />}>Manage Account</Button>
                         </div>
@@ -164,11 +159,11 @@ const ManageUsers = () => {
                         sx={{ display: "flex", justifyContent: "space-between", overflowX: "hidden" }}
                       >
                         <div className='flex items-center gap-2 md:gap-3'>
-                          {singleUser?.photoURL ? (
+                          {singleUser?.photo ? (
                             <Image
-                              src={singleUser?.photoURL}
-                              width={50}
-                              height={50}
+                              src={singleUser?.photo}
+                              width={40}
+                              height={40}
                               className="rounded-full"
                               alt="user photo"
                             />
@@ -182,13 +177,7 @@ const ManageUsers = () => {
                         </div>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <div className='text-sm lg:text-base'>
-                          <p className='xs:hidden'><span className='font-semibold'>Email: </span>{singleUser.email}</p>
-                          <p><span className='font-semibold'>User ID: </span>{singleUser.userID}</p>
-                          <p><span className='font-semibold'>Created At: </span>{singleUser.createdAt}</p>
-                          <p><span className='font-semibold'>Balance: </span>${singleUser.balance}</p>
-                          <p><span className='font-semibold'>Total Transactions: </span>{singleUser.depositWithdrawData?.length ? singleUser.depositWithdrawData.length : "0"} times</p>
-                        </div>
+                        <UsersInfo singleUser={singleUser}></UsersInfo>
                         <div className="pt-5">
                           <Button onClick={() => handleClickOpen(singleUser)} sx={{ width: "100%" }} variant="contained" startIcon={<ManageAccountsIcon />}>Manage Account</Button>
                         </div>
@@ -215,11 +204,11 @@ const ManageUsers = () => {
                         sx={{ display: "flex", justifyContent: "space-between", overflowX: "hidden" }}
                       >
                         <div className='flex items-center gap-2 md:gap-3'>
-                          {singleUser?.photoURL ? (
+                          {singleUser?.photo ? (
                             <Image
-                              src={singleUser?.photoURL}
-                              width={50}
-                              height={50}
+                              src={singleUser?.photo}
+                              width={40}
+                              height={40}
                               className="rounded-full"
                               alt="user photo"
                             />
@@ -233,13 +222,7 @@ const ManageUsers = () => {
                         </div>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <div className='text-sm lg:text-base'>
-                          <p className='xs:hidden'><span className='font-semibold'>Email: </span>{singleUser.email}</p>
-                          <p><span className='font-semibold'>User ID: </span>{singleUser.userID}</p>
-                          <p><span className='font-semibold'>Created At: </span>{singleUser.createdAt}</p>
-                          <p><span className='font-semibold'>Balance: </span>${singleUser.balance}</p>
-                          <p><span className='font-semibold'>Total Transactions: </span>{singleUser.depositWithdrawData?.length ? singleUser.depositWithdrawData.length : "0"} times</p>
-                        </div>
+                        <UsersInfo singleUser={singleUser}></UsersInfo>
                         <div className="pt-5">
                           <Button onClick={() => handleClickOpen(singleUser)} sx={{ width: "100%" }} variant="contained" startIcon={<ManageAccountsIcon />}>Manage Account</Button>
                         </div>
@@ -273,8 +256,8 @@ const ManageUsers = () => {
             {userPhoto ? (
               <Image
                 src={userPhoto}
-                width={50}
-                height={50}
+                width={40}
+                height={40}
                 className="rounded-full"
                 alt="user photo"
               />
