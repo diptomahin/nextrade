@@ -13,11 +13,24 @@ import MyProfile from "@/components/traders_comp/profile/MyProfile";
 import Security from "@/components/traders_comp/profile/Security";
 import Currencies from "@/components/traders_comp/profile/Currencies";
 import Payments from "@/components/traders_comp/profile/Payments";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
 const ProfilePage = () => {
   const [isActiveProfile, setIsActiveProfile] = useState(false);
   const [isToggleProfile, setIsToggleProfile] = useState(false);
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  const {
+    data: userDetails = {},
+    isPending,
+    isLoading,
+    refetch,
+  } = useSecureFetch(`user/${user?.email}`, "userDetail");
+
+  refetch();
+  if (isLoading || isPending || loading) {
+    return;
+  }
   return (
     <Tabs className="h-full relative bg-darkBG">
       {/* toggle menu button one */}
@@ -52,30 +65,35 @@ const ProfilePage = () => {
 
       {/* large device profile menu */}
       <div
-        style={{ height: "calc(100vh - 107px)" }}
+        style={{ height: "calc(100vh - 95px)" }}
         className={`hidden xl:block fixed 2xl:left-[238px] ${
           isActiveProfile ? "w-[78px]" : "w-[270px]"
         } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl px-3 py-14 transition-all duration-300 ease-in-out z-10`}
       >
         <div className="flex flex-col items-center gap-4">
-          {user?.photoURL &&
-          user?.photoURL !== undefined &&
-          user?.photoURL !== null ? (
-            <Image
-              alt="profile-image"
-              width={100}
-              height={100}
-              src={user?.photoURL}
-              className="rounded-full"
-            />
+          {userDetails?.photo !== undefined && userDetails?.photo !== null ? (
+            <div
+              className={`overflow-hidden rounded-full transition-all duration-300 ease-linear ${
+                isActiveProfile ? "w-[50px] h-[50px]" : "w-[100px] h-[100px] "
+              }`}
+            >
+              <Image
+                alt="profile-image"
+                width={100}
+                height={100}
+                src={userDetails?.photo}
+                className="w-full h-full rounded-full object-top object-cover"
+                priority
+              />
+            </div>
           ) : (
             <p className="text-8xl text-primary">
               <FaUserCircle />
             </p>
           )}
           <div className={` ${isActiveProfile ? "hidden" : "block"}`}>
-            <p className="font-semibold"> {user?.displayName}</p>
-            <p className="text-xs font-medium mt-1">{user?.email}</p>
+            <p className="font-semibold"> {userDetails?.name}</p>
+            <p className="text-xs font-medium mt-1">{userDetails?.email}</p>
           </div>
         </div>
         <hr className="h-0 border border-darkThree my-5" />
@@ -119,24 +137,29 @@ const ProfilePage = () => {
         } duration-300 ease-in-out z-10`}
       >
         <div className="flex flex-col items-center gap-4">
-          {user?.photoURL &&
-          user?.photoURL !== undefined &&
-          user?.photoURL !== null ? (
-            <Image
-              alt="profile-image"
-              width={100}
-              height={100}
-              src={user?.photoURL}
-              className="rounded-full"
-            />
+          {userDetails?.photo !== undefined && userDetails?.photo !== null ? (
+            <div
+              className={`overflow-hidden rounded-full transition-all duration-300 ease-linear ${
+                isActiveProfile ? "w-[50px] h-[50px]" : "w-[100px] h-[100px] "
+              }`}
+            >
+              <Image
+                alt="profile-image"
+                width={100}
+                height={100}
+                src={userDetails?.photo}
+                className="w-full h-full rounded-full object-top object-cover"
+                priority
+              />
+            </div>
           ) : (
             <p className="text-8xl text-primary">
               <FaUserCircle />
             </p>
           )}
           <div>
-            <p className="font-semibold"> {user?.displayName}</p>
-            <p className="text-xs font-medium mt-1">{user?.email}</p>
+            <p className="font-semibold"> {userDetails?.name}</p>
+            <p className="text-xs font-medium mt-1">{userDetails?.email}</p>
           </div>
         </div>
         <hr className="h-0 border border-darkThree my-5" />
@@ -166,7 +189,7 @@ const ProfilePage = () => {
         }`}
       >
         <TabPanel>
-          <MyProfile></MyProfile>
+          <MyProfile userDataRefetch={refetch}></MyProfile>
         </TabPanel>
         <TabPanel>
           <Security />
