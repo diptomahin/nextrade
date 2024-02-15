@@ -7,6 +7,22 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaRegAddressBook } from "react-icons/fa6";
 import { PiCurrencyDollar, PiUpload } from "react-icons/pi";
+<<<<<<< HEAD
+
+const EditProfile = ({ user }) => {
+  return (
+    <form className="flex items-center justify-around gap-10 px-5">
+      {/* photo url */}
+      <div className="flex-[2] flex flex-col items-center justify-center">
+        {user?.photoURL !== undefined && user?.photoURL !== null ? (
+          <Image
+            alt="profile-image"
+            width={150}
+            height={150}
+            src={user?.photoURL}
+            className="rounded-full"
+          />
+=======
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
@@ -130,6 +146,7 @@ const EditProfile = ({
               className="w-full h-full rounded-full object-top object-cover"
             />
           </div>
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
         ) : (
           <p className="text-5xl text-primary">
             <FaUserCircle />
@@ -148,8 +165,11 @@ const EditProfile = ({
           <input
             className="w-1/2 mx-auto h-20 opacity-0 z-10"
             type="file"
+<<<<<<< HEAD
+=======
             name="photo"
             onChange={handleFileChange}
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
             id=""
             placeholder="file"
           />
@@ -163,13 +183,25 @@ const EditProfile = ({
         </h3>
         <div className="">
           {/* first part */}
+<<<<<<< HEAD
+          <div className="flex items-center gap-5 justify-between">
+=======
           <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between">
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <AiOutlineUser className="text-lg" />
                 Full Name
               </label>
               <input
+<<<<<<< HEAD
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.displayName}
+                id=""
+                placeholder="amount"
+=======
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setFullName(e.target.value)}
                 type="text"
@@ -177,6 +209,7 @@ const EditProfile = ({
                 defaultValue={userDetails?.name}
                 id=""
                 placeholder="Full Name"
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
               />
             </div>
             <div className="w-full flex flex-col">
@@ -185,6 +218,14 @@ const EditProfile = ({
                 User Name
               </label>
               <input
+<<<<<<< HEAD
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.email}
+                id=""
+                placeholder="amount"
+=======
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
@@ -192,11 +233,27 @@ const EditProfile = ({
                 defaultValue={userDetails?.username}
                 id=""
                 placeholder="User Name"
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
               />
             </div>
           </div>
 
           {/* second part */}
+<<<<<<< HEAD
+          <div className="flex items-center gap-5 justify-between my-10">
+            <div className="w-full flex flex-col">
+              <label htmlFor="" className="flex items-center gap-1 font-medium">
+                <MdOutlineEmail className="text-lg" />
+                Email
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={user?.email}
+                id=""
+                placeholder="amount"
+=======
           <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between my-10">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
@@ -210,11 +267,23 @@ const EditProfile = ({
                 value={userDetails?.email}
                 disabled
                 placeholder="Email Address"
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
               />
             </div>
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <IoMdPhonePortrait className="text-lg" />
+<<<<<<< HEAD
+                Phone
+              </label>
+              <input
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={"+8801973875893"}
+                id=""
+                placeholder="amount"
+=======
                 Phone Number
               </label>
               <input
@@ -225,18 +294,31 @@ const EditProfile = ({
                 defaultValue={userDetails?.phone}
                 id=""
                 placeholder="Phone Number"
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
               />
             </div>
           </div>
 
           {/* third part */}
+<<<<<<< HEAD
+          <div className="flex items-center gap-5 justify-between">
+=======
           <div className="flex flex-col lg:flex-row xl:items-center gap-5 justify-between">
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <FaRegAddressBook className="text-base" />
                 Address
               </label>
               <input
+<<<<<<< HEAD
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                type="text"
+                name="amount"
+                defaultValue={"Jatrabari, Dhaka"}
+                id=""
+                placeholder="amount"
+=======
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 type="text"
                 name="address"
@@ -244,6 +326,7 @@ const EditProfile = ({
                 defaultValue={userDetails?.address}
                 id=""
                 placeholder="Address"
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
               />
             </div>
             <div className="w-full flex flex-col">
@@ -251,15 +334,31 @@ const EditProfile = ({
                 <PiCurrencyDollar className="text-lg" /> Currency
               </label>
               <select
+<<<<<<< HEAD
+                name=""
+                id=""
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                defaultValue="usd"
+=======
                 name="currency"
                 id=""
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setCurrency(e.target.value)}
                 defaultValue={userDetails?.currency}
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
               >
                 <option value="" disabled>
                   Select Currency
                 </option>
+<<<<<<< HEAD
+                <option value="usd">USD</option>
+                <option value="bdt">BDT</option>
+                <option value="eur">EUR</option>
+                <option value="gbp">GBP</option>
+                <option value="inr">INR</option>
+                <option value="idr">IDR</option>
+                <option value="aed">AED</option>
+=======
                 <option value="USD">USD</option>
                 <option value="BDT">BDT</option>
                 <option value="EUR">EUR</option>
@@ -267,11 +366,17 @@ const EditProfile = ({
                 <option value="INR">INR</option>
                 <option value="IDR">IDR</option>
                 <option value="AED">AED</option>
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
               </select>
             </div>
           </div>
         </div>
 
+<<<<<<< HEAD
+        <div className="flex items-center justify-end gap-5">
+          <DarkButton className="px-10">Cancel</DarkButton>
+          <DarkButton className="px-10">Save</DarkButton>
+=======
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-5">
           <DarkButton
             className="px-10 rounded"
@@ -305,6 +410,7 @@ const EditProfile = ({
           >
             Save
           </DarkButton>
+>>>>>>> 671371b4d1f7e1e96c2fea59712cafeafef4f340
         </div>
       </div>
     </form>
