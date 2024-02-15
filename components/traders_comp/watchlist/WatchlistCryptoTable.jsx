@@ -15,28 +15,18 @@ import Swal from 'sweetalert2';
 const WatchlistCryptoTable = ({ assets, refetch }) => {
     const secureAPI = useSecureAPI();
 
-    const handleDelete = (id) => {
-        // console.log(id)
-        secureAPI.delete(`/watchlist/${id}`)
-            .then(res => {
-                if (res.data.deletedCount > 0) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Coin has been deleted successfully.",
-                        icon: "success",
-                        timer: 1500
-                    });  
-                }
-                refetch()
-            })
-            .catch(err => {
-                Swal.fire({
-                    title: "Failed!",
-                    text: "Something went wrong.",
-                    icon: "error",
-                    timer: 1500
-                });
-            })
+    const handleDelete = async (index, id) => {
+        try {
+            // Make a DELETE request to your backend to delete the asset with the specified ID
+            await secureAPI.delete(`/watchlist/${id}`);
+            // Update the frontend by removing the deleted asset from the assetList state
+            const updatedAssets = [...assetList];
+            updatedAssets.splice(index, 1); // Remove the item at the specified index
+            setAssetList(updatedAssets); // Update the state with the new asset list
+        } catch (error) {
+            console.error('Error deleting asset:', error);
+            // Handle error, show error message or retry logic
+        }
     };
 
 
@@ -52,7 +42,7 @@ const WatchlistCryptoTable = ({ assets, refetch }) => {
             <Table aria-label="simple table">
                 <TableHead className="mx-auto ">
                     <TableRow className="text-center">
-                        <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>No.</TableCell>
+                        <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Sl No.</TableCell>
                         <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Coin Name</TableCell>
                         <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Current Price</TableCell>
                         <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>24%</TableCell>

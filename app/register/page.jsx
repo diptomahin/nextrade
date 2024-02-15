@@ -75,8 +75,12 @@ const Register = () => {
           name: loggedUser.displayName,
           createdAt: loggedUser.metadata.creationTime,
           balance: 0,
-          portfolio: [],
           role: "trader",
+          photo: "",
+          phone: "",
+          address: "",
+          username: loggedUser.email,
+          currency: "",
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {

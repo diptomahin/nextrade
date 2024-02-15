@@ -47,7 +47,7 @@ const WatchlistCurrencyTable = ({ assets, refetch }) => {
       <Table aria-label="simple table">
         <TableHead className="mx-auto">
           <TableRow className="text-center">
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>No.</TableCell>
+            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Sl No.</TableCell>
             <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Name</TableCell>
             <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Code</TableCell>
             <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Current Value/USD</TableCell>

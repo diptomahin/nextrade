@@ -12,6 +12,9 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import useSecureAPI from '@/hooks/useSecureAPI';
+import UsersInfo from '@/components/admins_comp/UsersInfo';
 const ManageUsers = () => {
 
   const { user, loading } = useAuth();
@@ -25,6 +28,7 @@ const ManageUsers = () => {
     setValue(newValue);
   };
 
+  const secureAPI = useSecureAPI();
 
   const {
     data: allUser = [],
@@ -39,13 +43,12 @@ const ManageUsers = () => {
 
 
   const [open, setOpen] = useState(false);
-  const [typeValue, setTypeValue] = useState("");
 
   const handleClickOpen = (singleUser) => {
     setOpen(true);
     setUserName(singleUser.name)
     setUserEmail(singleUser.email)
-    setUserPhoto(singleUser.photoURL)
+    setUserPhoto(singleUser.photo)
     setUserRole(singleUser.role)
   };
 
@@ -54,8 +57,36 @@ const ManageUsers = () => {
   };
 
   const handleTypeChange = (event) => {
-    setTypeValue(event.target.value);
+    setUserRole(event.target.value);
   };
+
+  const handleSubmitChange = e => {
+    e.preventDefault();
+    const formData = e.target;
+    const role = userRole
+
+    secureAPI.patch(`/all-users/${userEmail}/${userRole}`)
+      .then((res) => {
+        refetch();
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title: `Edit successful!`,
+            text: `${userName} has been promoted to ${role}!`,
+            icon: "success",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: `failed!`,
+          text: `Please try again`,
+          icon: "error",
+        });
+      });
+
+    handleClose();
+  }
 
 
 
@@ -114,11 +145,11 @@ const ManageUsers = () => {
                         sx={{ display: "flex", justifyContent: "space-between", overflowX: "hidden" }}
                       >
                         <div className='flex items-center gap-2 md:gap-3'>
-                          {singleUser?.photoURL ? (
+                          {singleUser?.photo ? (
                             <Image
-                              src={singleUser?.photoURL}
-                              width={50}
-                              height={50}
+                              src={singleUser?.photo}
+                              width={40}
+                              height={40}
                               className="rounded-full"
                               alt="user photo"
                             />
@@ -132,13 +163,7 @@ const ManageUsers = () => {
                         </div>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <div className='text-sm lg:text-base'>
-                          <p className='xs:hidden'><span className='font-semibold'>Email: </span>{singleUser.email}</p>
-                          <p><span className='font-semibold'>User ID: </span>{singleUser.userID}</p>
-                          <p><span className='font-semibold'>Created At: </span>{singleUser.createdAt}</p>
-                          <p><span className='font-semibold'>Balance: </span>${singleUser.balance}</p>
-                          <p><span className='font-semibold'>Total Transactions: </span>{singleUser.depositWithdrawData?.length ? singleUser.depositWithdrawData.length : "0"} times</p>
-                        </div>
+                        <UsersInfo singleUser={singleUser}></UsersInfo>
                         <div className="pt-5">
                           <Button onClick={() => handleClickOpen(singleUser)} sx={{ width: "100%" }} variant="contained" startIcon={<ManageAccountsIcon />}>Manage Account</Button>
                         </div>
@@ -164,11 +189,11 @@ const ManageUsers = () => {
                         sx={{ display: "flex", justifyContent: "space-between", overflowX: "hidden" }}
                       >
                         <div className='flex items-center gap-2 md:gap-3'>
-                          {singleUser?.photoURL ? (
+                          {singleUser?.photo ? (
                             <Image
-                              src={singleUser?.photoURL}
-                              width={50}
-                              height={50}
+                              src={singleUser?.photo}
+                              width={40}
+                              height={40}
                               className="rounded-full"
                               alt="user photo"
                             />
@@ -182,13 +207,7 @@ const ManageUsers = () => {
                         </div>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <div className='text-sm lg:text-base'>
-                          <p className='xs:hidden'><span className='font-semibold'>Email: </span>{singleUser.email}</p>
-                          <p><span className='font-semibold'>User ID: </span>{singleUser.userID}</p>
-                          <p><span className='font-semibold'>Created At: </span>{singleUser.createdAt}</p>
-                          <p><span className='font-semibold'>Balance: </span>${singleUser.balance}</p>
-                          <p><span className='font-semibold'>Total Transactions: </span>{singleUser.depositWithdrawData?.length ? singleUser.depositWithdrawData.length : "0"} times</p>
-                        </div>
+                        <UsersInfo singleUser={singleUser}></UsersInfo>
                         <div className="pt-5">
                           <Button onClick={() => handleClickOpen(singleUser)} sx={{ width: "100%" }} variant="contained" startIcon={<ManageAccountsIcon />}>Manage Account</Button>
                         </div>
@@ -215,11 +234,11 @@ const ManageUsers = () => {
                         sx={{ display: "flex", justifyContent: "space-between", overflowX: "hidden" }}
                       >
                         <div className='flex items-center gap-2 md:gap-3'>
-                          {singleUser?.photoURL ? (
+                          {singleUser?.photo ? (
                             <Image
-                              src={singleUser?.photoURL}
-                              width={50}
-                              height={50}
+                              src={singleUser?.photo}
+                              width={40}
+                              height={40}
                               className="rounded-full"
                               alt="user photo"
                             />
@@ -233,13 +252,7 @@ const ManageUsers = () => {
                         </div>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <div className='text-sm lg:text-base'>
-                          <p className='xs:hidden'><span className='font-semibold'>Email: </span>{singleUser.email}</p>
-                          <p><span className='font-semibold'>User ID: </span>{singleUser.userID}</p>
-                          <p><span className='font-semibold'>Created At: </span>{singleUser.createdAt}</p>
-                          <p><span className='font-semibold'>Balance: </span>${singleUser.balance}</p>
-                          <p><span className='font-semibold'>Total Transactions: </span>{singleUser.depositWithdrawData?.length ? singleUser.depositWithdrawData.length : "0"} times</p>
-                        </div>
+                        <UsersInfo singleUser={singleUser}></UsersInfo>
                         <div className="pt-5">
                           <Button onClick={() => handleClickOpen(singleUser)} sx={{ width: "100%" }} variant="contained" startIcon={<ManageAccountsIcon />}>Manage Account</Button>
                         </div>
@@ -258,14 +271,7 @@ const ManageUsers = () => {
         onClose={handleClose}
         PaperProps={{
           component: 'form',
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
+          onSubmit: (e) => handleSubmitChange(e)
         }}
       >
         <DialogTitle>
@@ -273,8 +279,8 @@ const ManageUsers = () => {
             {userPhoto ? (
               <Image
                 src={userPhoto}
-                width={50}
-                height={50}
+                width={40}
+                height={40}
                 className="rounded-full"
                 alt="user photo"
               />
@@ -293,7 +299,7 @@ const ManageUsers = () => {
             <Select
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
-              value={typeValue}
+              value={userRole}
               label="Coin type"
               onChange={handleTypeChange}
             >
