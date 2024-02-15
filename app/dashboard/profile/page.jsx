@@ -1,188 +1,199 @@
 "use client";
-import React from "react";
-import { AuthContext } from "@/provider/AuthProvider";
-import { useContext } from "react";
-import { Avatar, Box } from "@mui/material";
-
-//material imports
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import EditIcon from "@mui/icons-material/Edit";
-import Link from "next/link";
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import React, { useState } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import "./profile.css";
+import Image from "next/image";
+import useAuth from "@/hooks/useAuth";
+import { FaUserCircle } from "react-icons/fa";
+import { CiLock, CiUser } from "react-icons/ci";
+import { PiCurrencyDollarThin, PiCardholderThin } from "react-icons/pi";
+import { MdArrowBackIosNew } from "react-icons/md";
 import MyProfile from "@/components/traders_comp/profile/MyProfile";
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 5 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
-  };
-}
+import Security from "@/components/traders_comp/profile/Security";
+import Currencies from "@/components/traders_comp/profile/Currencies";
+import Payments from "@/components/traders_comp/profile/Payments";
 
 const ProfilePage = () => {
-  const { user, updateUserProfile } = useContext(AuthContext);
-
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+  const [isActiveProfile, setIsActiveProfile] = useState(false);
+  const { user } = useAuth();
   return (
-    <div>
-      <Box sx={{ flexGrow: 1, display: "flex", gap: 2}}>
-        <div className="p-4  rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
-          <Avatar
-            alt="profile Image"
-            src={user.photoURL}
-            className="mx-auto "
-            sx={{ width: 60, height: 60 }}
-          />
-          <h3 className=" text-center font-semibold my-2">
-            {user.displayName}
-          </h3>
-          <p className=" text-center text-base text-gray-500 mb-5 ">
-            {user.email}
-          </p>
-          <Tabs
-  orientation="vertical"
-  variant="scrollable"
-  value={value}
-  onChange={handleChange}
-  aria-label="Vertical tabs example"
-  sx={{ textAlign: "start", height: "100vh" }}
->
-  <Tab
-    label="My Profile"
-    {...a11yProps(0)}
-    style={{
-      textTransform: 'none',
-      textAlign: 'start',
-      fontWeight: 700,
-      color: value === 0 ? "primary.main" : "white",
-      backgroundColor: value === 0 ? "rgba(255, 255, 255, 0.1)" : "transparent",
-    }}
-  />
-  <Tab
-    label="Security"
-    {...a11yProps(1)}
-    style={{
-      textTransform: 'none',
-      textAlign: 'start',
-      fontWeight: 700,
-      color: value === 1 ? "primary.main" : "white",
-      backgroundColor: value === 1 ? "rgba(255, 255, 255, 0.1)" : "transparent",
-    }}
-  />
-  <Tab
-  className="h-full"
-    label="Notification Preferences"
-    {...a11yProps(2)}
-    style={{
-      textTransform: 'none',
-      textAlign: 'start',
-      fontWeight: 700,
-      color: value === 2 ? "primary.main" : "white",
-      backgroundColor: value === 2 ? "rgba(255, 255, 255, 0.1)" : "transparent",
-    }}
-  />
-  <Tab
-    label="Currency Preferences"
-    {...a11yProps(3)}
-    style={{
-      textTransform: 'none',
-      textAlign: 'start',
-      fontWeight: 700,
-      color: value === 3 ? "primary.main" : "white",
-      backgroundColor: value === 3 ? "rgba(255, 255, 255, 0.1)" : "transparent",
-    }}
-  />
-  <Tab
-    label="KYC Verification"
-    {...a11yProps(4)}
-    style={{
-      textTransform: 'none',
-      textAlign: 'start',
-      fontWeight: 700,
-      color: value === 4 ? "primary.main" : "white",
-      backgroundColor: value === 4 ? "rgba(255, 255, 255, 0.1)" : "transparent",
-    }}
-  />
-</Tabs>
+    <Tabs className="h-full relative bg-darkBG">
+      {/* toggle menu button */}
+      <button
+        onClick={() => setIsActiveProfile(!isActiveProfile)}
+        className={`fixed top-[78px] ${
+          isActiveProfile
+            ? "left-2 xl:left-[70px] 2xl:left-[285px]"
+            : "left-2 xl:left-[230px] 2xl:left-[447px]"
+        } btn btn-sm h-9 px-[10px] bg-white/5 hover:bg-white/10 active:bg-white/20 border-none shadow-none text-white rounded-full z-20 transition-all duration-300 ease-in-out`}
+      >
+        <MdArrowBackIosNew
+          className={`text-base transition-transform duration-300 ease-in-out ${
+            isActiveProfile ? "rotate-180" : "rotate-0"
+          }`}
+        />
+      </button>
 
-
-
+      {/* large device profile menu */}
+      <div
+        style={{ height: "calc(100vh - 107px)" }}
+        className={`hidden xl:block fixed 2xl:left-[238px] ${
+          isActiveProfile ? "w-[78px]" : "w-[240px]"
+        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl px-3 py-12 transition-all duration-300 ease-in-out z-10`}
+      >
+        <div className="flex flex-col items-center gap-4">
+          {user?.photoURL &&
+          user?.photoURL !== undefined &&
+          user?.photoURL !== null ? (
+            <Image
+              alt="profile-image"
+              width={100}
+              height={100}
+              src={user?.photoURL}
+              className="rounded-full"
+            />
+          ) : (
+            <p className="text-8xl text-primary">
+              <FaUserCircle />
+            </p>
+          )}
+          <div className={` ${isActiveProfile ? "hidden" : "block"}`}>
+            <p className="font-semibold"> {user?.displayName}</p>
+            <p className="text-xs font-medium mt-1">{user?.email}</p>
+          </div>
         </div>
+        <hr className="h-0 border border-darkThree my-5" />
+        <TabList className="tab-list h-full w-full flex flex-col gap-3">
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <CiUser className="text-xl" />
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              {" "}
+              My Profile
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <CiLock className="text-xl" />{" "}
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              Security
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <PiCurrencyDollarThin className="text-xl" />
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              Currencies
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <PiCardholderThin className="text-xl" />
+            <span className={isActiveProfile ? "hidden" : "block"}>
+              Payments
+            </span>
+          </Tab>
+        </TabList>
+      </div>
 
-        <TabPanel
-          value={value}
-          index={0}
-          className="p-4 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-full"
+      {/* small device profile menu */}
+      <div
+        className={`xl:hidden profile-menu fixed 2xl:left-[238px]  bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl flex ${
+          isActiveProfile && "flex-col md:flex-row"
+        } items-center gap-5 pl-5 px-3 py-3 transition-all duration-300 ease-in-out z-10`}
+      >
+        <div
+          className={`flex ${
+            isActiveProfile ? "flex-col" : "flex-row"
+          } gap-3 xl:gap-5 items-center`}
         >
+          {isActiveProfile ? (
+            user?.photoURL !== undefined && user?.photoURL !== null ? (
+              <Image
+                alt="profile-image"
+                width={100}
+                height={100}
+                src={user?.photoURL}
+                className="rounded-full"
+              />
+            ) : (
+              <p className="text-5xl text-primary">
+                <FaUserCircle />
+              </p>
+            )
+          ) : user?.photoURL &&
+            user?.photoURL !== undefined &&
+            user?.photoURL !== null ? (
+            <Image
+              alt="profile-image"
+              width={50}
+              height={50}
+              src={user?.photoURL}
+              className="rounded-full"
+            />
+          ) : (
+            <p className="text-5xl text-primary">
+              <FaUserCircle />
+            </p>
+          )}
+          <div className={isActiveProfile ? "block" : "hidden"}>
+            <p className="font-semibold"> {user?.displayName}</p>
+            <p className="text-xs font-medium mt-1">{user?.email}</p>
+          </div>
+        </div>
+        <TabList
+          className={`tab-list h-full w-full flex ${
+            isActiveProfile ? "flex-col" : "flex-row"
+          } flex-wrap xs:gap-3`}
+        >
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <CiUser className="xs:text-xl" />
+            <span className={isActiveProfile ? "block" : "hidden"}>
+              {" "}
+              My Profile
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <CiLock className="xs:text-xl" />{" "}
+            <span className={isActiveProfile ? "block" : "hidden"}>
+              Security
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            {" "}
+            <PiCurrencyDollarThin className="xs:text-xl" />
+            <span className={isActiveProfile ? "block" : "hidden"}>
+              Currencies
+            </span>
+          </Tab>
+          <Tab className="react-tab custom-btn">
+            <PiCardholderThin className="xs:text-xl" />
+            <span className={isActiveProfile ? "block" : "hidden"}>
+              Payment Option
+            </span>
+          </Tab>
+        </TabList>
+      </div>
+
+      <div
+        className={` transition-all duration-300 ease-in-out ${
+          isActiveProfile ? "xl:pl-[98px]" : "xl:pl-[260px]"
+        }`}
+      >
+        <TabPanel>
           <MyProfile></MyProfile>
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={1}
-          className="p-4 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-full"
-        >
-          Item Two
+        <TabPanel>
+          <Security />
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={2}
-          className="p-4 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-full"
-        >
-          Item Three
+        <TabPanel>
+          <Currencies />
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={3}
-          className="p-4 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-full"
-        >
-          Item Four
+        <TabPanel>
+          <Payments />
         </TabPanel>
-        <TabPanel
-          value={value}
-          index={4}
-          className="p-4 rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-full"
-        >
-          Item Five
-        </TabPanel>
-      </Box>
-    </div>
+      </div>
+    </Tabs>
   );
 };
 
