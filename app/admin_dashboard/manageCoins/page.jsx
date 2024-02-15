@@ -5,7 +5,7 @@ import DashButton from '@/components/library/buttons/DashButton';
 import usePublicFetch from '@/hooks/usePublicFetch';
 import useSecureAPI from '@/hooks/useSecureAPI';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
+import { Avatar, AvatarGroup, Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
@@ -130,7 +130,7 @@ const ManageCoins = () => {
             {/* <div className='flex flex-col xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'> */}
             <div className='flex flex-col xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-indigo-200 to-sky-200'>
                 <h1 className='text-3xl font-semibold'>Manage Coins</h1>
-                <DashButton className="w-full" onClick={handleClickOpen}>Add new</DashButton>
+                <DashButton className="w-full" onClick={handleClickOpen}>+ Add new</DashButton>
                 <Dialog
                     open={open}
                     onClose={handleClose}
@@ -264,6 +264,48 @@ const ManageCoins = () => {
                         <DashButton type="submit">Add</DashButton>
                     </DialogActions>
                 </Dialog>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5 my-6">
+                {/* total users */}
+                <div className="w-full p-5 bg-[#40a0ff] rounded-xl flex justify-between items-center text-white">
+                    <div className="font-medium">
+                        <h3 className='text-lg font-semibold'>Total Coins</h3>
+                        <h3 className="text-2xl font-semibold">{allCoins.length}</h3>
+                    </div>
+                    <AvatarGroup max={4}>
+                        <Avatar alt="bitcoin" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" />
+                        <Avatar alt="litecoin" src="https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580" />
+                        <Avatar alt="Cindy Baker" src="https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628" />
+                        <Avatar alt="Cindy Baker" src="https://i.ibb.co/hFGM72Y/eur.png" />
+                    </AvatarGroup>
+                </div>
+
+                {/* total traders */}
+                <div className="w-full p-5 bg-[#5dad3e] rounded-xl flex justify-between items-center text-white">
+                    <div className="font-medium">
+                        <h3 className='text-lg font-semibold'>Crypto Coin</h3>
+                        <h3 className="text-2xl font-semibold">{assets.length}</h3>
+                    </div>
+                    <AvatarGroup max={3}>
+                        <Avatar alt="bitcoin" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" />
+                        <Avatar alt="litecoin" src="https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580" />
+                        <Avatar alt="Cindy Baker" src="https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628" />
+                    </AvatarGroup>
+                </div>
+
+                {/* total admins */}
+                <div className="w-full p-5 bg-[#6c52ff] rounded-xl flex justify-between items-center text-white">
+                    <div className="font-medium">
+                        <h3 className='text-lg font-semibold'>Flat Coin</h3>
+                        <h3 className="text-2xl font-semibold">{flatCurrency.length}</h3>
+                    </div>
+                    <AvatarGroup max={3}>
+                        <Avatar alt="euro" src="https://i.ibb.co/hFGM72Y/eur.png" />
+                        <Avatar alt="doller" src="https://i.ibb.co/GnGpCGY/aed.png" />
+                        <Avatar alt="Cindy Baker" src="https://i.ibb.co/x3tp4RB/idr.png" />
+                    </AvatarGroup>
+                </div>
             </div>
 
             <Box className='w-full my-6'>

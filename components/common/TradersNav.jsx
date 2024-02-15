@@ -10,6 +10,8 @@ import UserMenu from "./nav_comp/UserMenu";
 import TradersNotification from "./nav_comp/TradersNotification";
 import Language from "@/components/library/Language";
 import { usePathname } from "next/navigation";
+import useSecureFetch from "@/hooks/useSecureFetch";
+import useAuth from "@/hooks/useAuth";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -86,6 +88,20 @@ const dateWithName = `${day} ${
 const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
   const pathname = usePathname();
 
+  const { user, logOut, loading } = useAuth();
+  const {
+    data: userDetails = {},
+    refetch,
+    isPending,
+    isLoading,
+  } = useSecureFetch(`user/${user?.email}`, "user");
+
+  refetch();
+
+  if (isLoading || isPending || loading) {
+    return;
+  }
+
   const breadcrumbs = pathname.includes("/dashboard/market")
     ? "Market"
     : pathname.includes("/dashboard/trading")
@@ -156,7 +172,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         <TradersNotification />
 
         {/* user menubar */}
-        <UserMenu />
+        <UserMenu userDetails={userDetails} logOut={logOut} />
       </div>
     </div>
   );
