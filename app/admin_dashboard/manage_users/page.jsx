@@ -12,6 +12,8 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import useSecureAPI from '@/hooks/useSecureAPI';
 const ManageUsers = () => {
 
   const { user, loading } = useAuth();
@@ -25,6 +27,7 @@ const ManageUsers = () => {
     setValue(newValue);
   };
 
+  const secureAPI = useSecureAPI();
 
   const {
     data: allUser = [],
@@ -39,7 +42,7 @@ const ManageUsers = () => {
 
 
   const [open, setOpen] = useState(false);
-  const [typeValue, setTypeValue] = useState("");
+
 
   const handleClickOpen = (singleUser) => {
     setOpen(true);
@@ -54,8 +57,37 @@ const ManageUsers = () => {
   };
 
   const handleTypeChange = (event) => {
-    setTypeValue(event.target.value);
+    setUserRole(event.target.value);
   };
+
+
+  const handleSubmitChange = e => {
+    e.preventDefault();
+    const formData = e.target;
+    const role = userRole
+
+    secureAPI.patch(`/all-users/${userEmail}/${userRole}`)
+      .then((res) => {
+        refetch();
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title: `Edit successful!`,
+            text: `${userName} has been promoted to ${role}!`,
+            icon: "success",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: `failed!`,
+          text: `Please try again`,
+          icon: "error",
+        });
+      });
+
+    handleClose();
+  }
 
 
 
@@ -258,14 +290,7 @@ const ManageUsers = () => {
         onClose={handleClose}
         PaperProps={{
           component: 'form',
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
+          onSubmit: (e) => handleSubmitChange(e)
         }}
       >
         <DialogTitle>
@@ -293,7 +318,7 @@ const ManageUsers = () => {
             <Select
               labelId="demo-simple-select-helper-label"
               id="demo-simple-select-helper"
-              value={typeValue}
+              value={userRole}
               label="Coin type"
               onChange={handleTypeChange}
             >
