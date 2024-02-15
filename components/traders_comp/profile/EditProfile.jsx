@@ -13,50 +13,56 @@ import { useState } from "react";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
-const EditProfile = ({ user }) => {
-  const [hostedImage, setHostedImage] = useState(user?.photoURL);
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const date = { day: day, month: month, year: year };
+
+const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
+  const [hostedImage, setHostedImage] = useState(userDetails.photo);
   const [hostedImageInfo, setHostedImageInfo] = useState(null);
+  const [imageHosting, setImageHosting] = useState(false);
 
   // update user profile
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const form = e.target;
 
-    if (!file) {
-      toast.error("Please select a file");
+    const toastId = toast.loading("Updating...", { duration: 10000 });
+
+    if (imageHosting) {
       return;
     }
 
-    // const toastId = toast.loading('Uploading image...');
+    const userDetails = {
+      name: form?.fullName.value,
+      username: form?.userName.value,
+      phone: form?.phone.value,
+      address: form?.address.value,
+      currency: form?.currency.value,
+      photo:
+        hostedImageInfo !== null ? hostedImageInfo?.data.data.url : hostedImage,
+      lastUpdate: date,
+    };
 
-    try {
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const response = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${image_hosting_key}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      if (response.data.success) {
-        setHostedImage(response.data.data.url);
-      }
-      const imageUrl = response.data.data.url;
-
-      toast.success("Image uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image");
+    const res = await axios.put(
+      `https://nex-trade-server.vercel.app/v1/api/update-user/${user?.email}`,
+      userDetails
+    );
+    if (res.data.modifiedCount > 0) {
+      refetch();
+      setIsEdit(false);
+      toast.success("User Information Updated", {
+        id: toastId,
+        duration: 5000,
+      });
     }
   };
 
+  // image hosting function
   const handleFileChange = async (e) => {
+    setImageHosting(true);
     const selectedFile = e.target.files[0];
 
     if (!selectedFile) {
@@ -80,6 +86,7 @@ const EditProfile = ({ user }) => {
       if (response.data.success) {
         setHostedImage(response.data.data.url);
         setHostedImageInfo(response);
+        setImageHosting(false);
       } else {
         toast.error("Failed to upload image");
       }
@@ -96,14 +103,15 @@ const EditProfile = ({ user }) => {
     >
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
-        {user?.photoURL !== undefined && user?.photoURL !== null ? (
+        {hostedImage !== undefined && hostedImage !== null ? (
           <div className="w-40 h-40 overflow-hidden rounded-full">
             <Image
               alt="profile-image"
               width={160}
               height={160}
               src={hostedImage}
-              className="w-full h-full rounded-full object-cover"
+              priority
+              className="w-full h-full rounded-full object-top object-cover"
             />
           </div>
         ) : (
@@ -149,7 +157,7 @@ const EditProfile = ({ user }) => {
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
                 name="fullName"
-                defaultValue={user?.displayName}
+                defaultValue={userDetails?.name}
                 id=""
                 placeholder="Full Name"
               />
@@ -163,7 +171,7 @@ const EditProfile = ({ user }) => {
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
                 name="userName"
-                defaultValue={user?.email}
+                defaultValue={userDetails?.username}
                 id=""
                 placeholder="User Name"
               />
@@ -178,11 +186,11 @@ const EditProfile = ({ user }) => {
                 Email Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none cursor-not-allowed"
                 type="text"
                 name="email"
-                defaultValue={user?.email}
-                id=""
+                value={userDetails?.email}
+                disabled
                 placeholder="Email Address"
               />
             </div>
@@ -195,7 +203,7 @@ const EditProfile = ({ user }) => {
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
                 name="phone"
-                defaultValue={"+8801973875893"}
+                defaultValue={userDetails?.phone}
                 id=""
                 placeholder="Phone Number"
               />
@@ -213,7 +221,7 @@ const EditProfile = ({ user }) => {
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
                 name="address"
-                defaultValue={"Jatrabari, Dhaka"}
+                defaultValue={userDetails?.address}
                 id=""
                 placeholder="Address"
               />
@@ -226,18 +234,18 @@ const EditProfile = ({ user }) => {
                 name="currency"
                 id=""
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
-                defaultValue="usd"
+                defaultValue={userDetails?.currency}
               >
                 <option value="" disabled>
                   Select Currency
                 </option>
-                <option value="usd">USD</option>
-                <option value="bdt">BDT</option>
-                <option value="eur">EUR</option>
-                <option value="gbp">GBP</option>
-                <option value="inr">INR</option>
-                <option value="idr">IDR</option>
-                <option value="aed">AED</option>
+                <option value="USD">USD</option>
+                <option value="BDT">BDT</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="INR">INR</option>
+                <option value="IDR">IDR</option>
+                <option value="AED">AED</option>
               </select>
             </div>
           </div>
