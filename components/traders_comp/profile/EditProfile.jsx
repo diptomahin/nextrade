@@ -7,20 +7,113 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaRegAddressBook } from "react-icons/fa6";
 import { PiCurrencyDollar, PiUpload } from "react-icons/pi";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useState } from "react";
 
-const EditProfile = ({ user }) => {
+const image_hosting_key = `4696195291e937983db500161bc852ce`;
+
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const date = { day: day, month: month, year: year };
+
+const EditProfile = ({ userDetails, setIsEdit, refetch, user }) => {
+  const [hostedImage, setHostedImage] = useState(userDetails.photo);
+  const [hostedImageInfo, setHostedImageInfo] = useState(null);
+  const [imageHosting, setImageHosting] = useState(false);
+
+  // update user profile
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const toastId = toast.loading("Updating...", { duration: 10000 });
+
+    if (imageHosting) {
+      return;
+    }
+
+    const userDetails = {
+      name: form?.fullName.value,
+      username: form?.userName.value,
+      phone: form?.phone.value,
+      address: form?.address.value,
+      currency: form?.currency.value,
+      photo:
+        hostedImageInfo !== null ? hostedImageInfo?.data.data.url : hostedImage,
+      lastUpdate: date,
+    };
+
+    const res = await axios.put(
+      `https://nex-trade-server.vercel.app/v1/api/update-user/${user?.email}`,
+      userDetails
+    );
+    if (res.data.modifiedCount > 0) {
+      refetch();
+      setIsEdit(false);
+      toast.success("User Information Updated", {
+        id: toastId,
+        duration: 5000,
+      });
+    }
+  };
+
+  // image hosting function
+  const handleFileChange = async (e) => {
+    setImageHosting(true);
+    const selectedFile = e.target.files[0];
+
+    if (!selectedFile) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${image_hosting_key}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data.success) {
+        setHostedImage(response.data.data.url);
+        setHostedImageInfo(response);
+        setImageHosting(false);
+      } else {
+        toast.error("Failed to upload image");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image");
+    }
+  };
+
   return (
-    <form className="flex items-center justify-around gap-10 px-5">
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-center justify-around gap-10 px-5"
+    >
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
-        {user?.photoURL !== undefined && user?.photoURL !== null ? (
-          <Image
-            alt="profile-image"
-            width={150}
-            height={150}
-            src={user?.photoURL}
-            className="rounded-full"
-          />
+        {hostedImage !== undefined && hostedImage !== null ? (
+          <div className="w-40 h-40 overflow-hidden rounded-full">
+            <Image
+              alt="profile-image"
+              width={160}
+              height={160}
+              src={hostedImage}
+              priority
+              className="w-full h-full rounded-full object-top object-cover"
+            />
+          </div>
         ) : (
           <p className="text-5xl text-primary">
             <FaUserCircle />
@@ -39,6 +132,8 @@ const EditProfile = ({ user }) => {
           <input
             className="w-1/2 mx-auto h-20 opacity-0 z-10"
             type="file"
+            name="photo"
+            onChange={handleFileChange}
             id=""
             placeholder="file"
           />
@@ -61,10 +156,10 @@ const EditProfile = ({ user }) => {
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
-                defaultValue={user?.displayName}
+                name="fullName"
+                defaultValue={userDetails?.name}
                 id=""
-                placeholder="amount"
+                placeholder="Full Name"
               />
             </div>
             <div className="w-full flex flex-col">
@@ -75,10 +170,10 @@ const EditProfile = ({ user }) => {
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
-                defaultValue={user?.email}
+                name="userName"
+                defaultValue={userDetails?.username}
                 id=""
-                placeholder="amount"
+                placeholder="User Name"
               />
             </div>
           </div>
@@ -88,29 +183,29 @@ const EditProfile = ({ user }) => {
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <MdOutlineEmail className="text-lg" />
-                Email
+                Email Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
+                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none cursor-not-allowed"
                 type="text"
-                name="amount"
-                defaultValue={user?.email}
-                id=""
-                placeholder="amount"
+                name="email"
+                value={userDetails?.email}
+                disabled
+                placeholder="Email Address"
               />
             </div>
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <IoMdPhonePortrait className="text-lg" />
-                Phone
+                Phone Number
               </label>
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
-                defaultValue={"+8801973875893"}
+                name="phone"
+                defaultValue={userDetails?.phone}
                 id=""
-                placeholder="amount"
+                placeholder="Phone Number"
               />
             </div>
           </div>
@@ -125,10 +220,10 @@ const EditProfile = ({ user }) => {
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
-                defaultValue={"Jatrabari, Dhaka"}
+                name="address"
+                defaultValue={userDetails?.address}
                 id=""
-                placeholder="amount"
+                placeholder="Address"
               />
             </div>
             <div className="w-full flex flex-col">
@@ -136,21 +231,21 @@ const EditProfile = ({ user }) => {
                 <PiCurrencyDollar className="text-lg" /> Currency
               </label>
               <select
-                name=""
+                name="currency"
                 id=""
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
-                defaultValue="usd"
+                defaultValue={userDetails?.currency}
               >
                 <option value="" disabled>
                   Select Currency
                 </option>
-                <option value="usd">USD</option>
-                <option value="bdt">BDT</option>
-                <option value="eur">EUR</option>
-                <option value="gbp">GBP</option>
-                <option value="inr">INR</option>
-                <option value="idr">IDR</option>
-                <option value="aed">AED</option>
+                <option value="USD">USD</option>
+                <option value="BDT">BDT</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="INR">INR</option>
+                <option value="IDR">IDR</option>
+                <option value="AED">AED</option>
               </select>
             </div>
           </div>
@@ -158,7 +253,9 @@ const EditProfile = ({ user }) => {
 
         <div className="flex items-center justify-end gap-5">
           <DarkButton className="px-10">Cancel</DarkButton>
-          <DarkButton className="px-10">Save</DarkButton>
+          <DarkButton type="submit" className="px-10">
+            Save
+          </DarkButton>
         </div>
       </div>
     </form>
