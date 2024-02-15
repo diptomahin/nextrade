@@ -6,17 +6,29 @@ import useAuth from "@/hooks/useAuth";
 import { MdEditSquare } from "react-icons/md";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import EditProfile from "./EditProfile";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
 const MyProfile = () => {
   const [isEdit, setIsEdit] = useState(false);
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  const {
+    data: userDetails = [],
+    refetch,
+    isPending,
+    isLoading,
+  } = useSecureFetch(`/all-users/${user?.email}`, "userDetails");
+
+  if (isLoading || isPending || loading) {
+    return;
+  }
 
   return (
     <div
       style={{ minHeight: "calc(100vh - 107px)" }}
-      className="flex items-center justify-center py-5"
+      className="flex items-center justify-center"
     >
-      <div className="5xl:w-4/6 bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree flex flex-col gap-10 rounded-xl px-5 pb-8">
+      <div className="w-full 5xl:w-10/12 bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree flex flex-col gap-10 rounded-xl px-5 pb-8">
         <div className="w-full flex items-center justify-between border-b border-dashed border-darkThree p-5">
           <h2 className="text-xl font-semibold">My Profile</h2>
           <DarkButton
@@ -31,7 +43,7 @@ const MyProfile = () => {
         {isEdit ? (
           <EditProfile user={user} />
         ) : (
-          <div className="flex flex-col items-center gap-5 ">
+          <div className="flex flex-col items-center gap-5">
             {/* photo url */}
             <div className="flex items-center justify-center">
               {user?.photoURL !== undefined && user?.photoURL !== null ? (
@@ -86,7 +98,7 @@ const MyProfile = () => {
             </div>
             <div className="w-full flex items-center justify-between gap-5 px-5">
               <p className="text-xs">
-                This account was created on January 10, 2024
+                This account was created on {userDetails[0]?.createdAt}
               </p>
               <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs">
                 Delete Account

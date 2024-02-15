@@ -7,20 +7,105 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaRegAddressBook } from "react-icons/fa6";
 import { PiCurrencyDollar, PiUpload } from "react-icons/pi";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useState } from "react";
+
+const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
 const EditProfile = ({ user }) => {
+  const [hostedImage, setHostedImage] = useState(user?.photoURL);
+  const [hostedImageInfo, setHostedImageInfo] = useState(null);
+
+  // update user profile
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    if (!file) {
+      toast.error("Please select a file");
+      return;
+    }
+
+    // const toastId = toast.loading('Uploading image...');
+
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${image_hosting_key}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data.success) {
+        setHostedImage(response.data.data.url);
+      }
+      const imageUrl = response.data.data.url;
+
+      toast.success("Image uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image");
+    }
+  };
+
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (!selectedFile) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${image_hosting_key}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data.success) {
+        setHostedImage(response.data.data.url);
+        setHostedImageInfo(response);
+      } else {
+        toast.error("Failed to upload image");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image");
+    }
+  };
+
   return (
-    <form className="flex items-center justify-around gap-10 px-5">
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-center justify-around gap-10 px-5"
+    >
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
         {user?.photoURL !== undefined && user?.photoURL !== null ? (
-          <Image
-            alt="profile-image"
-            width={150}
-            height={150}
-            src={user?.photoURL}
-            className="rounded-full"
-          />
+          <div className="w-40 h-40 overflow-hidden rounded-full">
+            <Image
+              alt="profile-image"
+              width={160}
+              height={160}
+              src={hostedImage}
+              className="w-full h-full rounded-full object-cover"
+            />
+          </div>
         ) : (
           <p className="text-5xl text-primary">
             <FaUserCircle />
@@ -39,6 +124,8 @@ const EditProfile = ({ user }) => {
           <input
             className="w-1/2 mx-auto h-20 opacity-0 z-10"
             type="file"
+            name="photo"
+            onChange={handleFileChange}
             id=""
             placeholder="file"
           />
@@ -61,10 +148,10 @@ const EditProfile = ({ user }) => {
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
+                name="fullName"
                 defaultValue={user?.displayName}
                 id=""
-                placeholder="amount"
+                placeholder="Full Name"
               />
             </div>
             <div className="w-full flex flex-col">
@@ -75,10 +162,10 @@ const EditProfile = ({ user }) => {
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
+                name="userName"
                 defaultValue={user?.email}
                 id=""
-                placeholder="amount"
+                placeholder="User Name"
               />
             </div>
           </div>
@@ -88,29 +175,29 @@ const EditProfile = ({ user }) => {
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <MdOutlineEmail className="text-lg" />
-                Email
+                Email Address
               </label>
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
+                name="email"
                 defaultValue={user?.email}
                 id=""
-                placeholder="amount"
+                placeholder="Email Address"
               />
             </div>
             <div className="w-full flex flex-col">
               <label htmlFor="" className="flex items-center gap-1 font-medium">
                 <IoMdPhonePortrait className="text-lg" />
-                Phone
+                Phone Number
               </label>
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
+                name="phone"
                 defaultValue={"+8801973875893"}
                 id=""
-                placeholder="amount"
+                placeholder="Phone Number"
               />
             </div>
           </div>
@@ -125,10 +212,10 @@ const EditProfile = ({ user }) => {
               <input
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 type="text"
-                name="amount"
+                name="address"
                 defaultValue={"Jatrabari, Dhaka"}
                 id=""
-                placeholder="amount"
+                placeholder="Address"
               />
             </div>
             <div className="w-full flex flex-col">
@@ -136,7 +223,7 @@ const EditProfile = ({ user }) => {
                 <PiCurrencyDollar className="text-lg" /> Currency
               </label>
               <select
-                name=""
+                name="currency"
                 id=""
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded-xl outline-none"
                 defaultValue="usd"
@@ -158,7 +245,9 @@ const EditProfile = ({ user }) => {
 
         <div className="flex items-center justify-end gap-5">
           <DarkButton className="px-10">Cancel</DarkButton>
-          <DarkButton className="px-10">Save</DarkButton>
+          <DarkButton type="submit" className="px-10">
+            Save
+          </DarkButton>
         </div>
       </div>
     </form>
