@@ -132,7 +132,74 @@ const ManageFlatCoins = ({ assets, refetch }) => {
 
     }
     return (
-        <div className='flex gap-6 flex-wrap my-6'>
+        <div className='gap-6 grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 my-6'>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                PaperProps={{
+                    component: 'form',
+                    onSubmit: (e) => handleCoinChange(e)
+                }}
+            >
+                <DialogTitle>Edit {defaultName}</DialogTitle>
+                <DialogContent sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <TextField
+                            defaultValue={defaultName}
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="name"
+                            name="name"
+                            label="Coin Name"
+                            type="text"
+                            fullWidth
+                        // variant="standard"
+                        />
+                        <TextField
+                            defaultValue={defaultKey}
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="key"
+                            name="key"
+                            label="Coin Key"
+                            type="text"
+                            fullWidth
+                        // variant="standard"
+                        />
+                    </div>
+                    <FormControl required sx={{ width: "100%" }}>
+                        <InputLabel id="demo-simple-select-helper-label">Coin Type</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
+                            value={defaultType}
+                            label="Coin type"
+                            onChange={handleTypeChange}
+                        >
+                            <MenuItem value={"crypto coin"}>crypto coin</MenuItem>
+                            <MenuItem value={"flat coin"}>flat coin</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <TextField
+                        defaultValue={defaultIcon}
+                        autoFocus
+                        required
+                        margin="dense"
+                        id="icon"
+                        name="icon"
+                        label="Coin Icon URL"
+                        type="text"
+                        fullWidth
+                    // variant="standard"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <DashButton onClick={handleClose}>Cancel</DashButton>
+                    <DashButton type="submit">Update</DashButton>
+                </DialogActions>
+            </Dialog>
             {assets.map((asset, idx) => (
                 // <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
                 <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-indigo-100 '>
@@ -144,73 +211,6 @@ const ManageFlatCoins = ({ assets, refetch }) => {
                             <DeleteIcon className='text-gray-500' />
                         </IconButton>
                     </div>
-                    <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        PaperProps={{
-                            component: 'form',
-                            onSubmit: (e) => handleCoinChange(e)
-                        }}
-                    >
-                        <DialogTitle>Edit {defaultName}</DialogTitle>
-                        <DialogContent sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                            <div className="flex flex-col md:flex-row gap-4">
-                                <TextField
-                                    defaultValue={defaultName}
-                                    autoFocus
-                                    required
-                                    margin="dense"
-                                    id="name"
-                                    name="name"
-                                    label="Coin Name"
-                                    type="text"
-                                    fullWidth
-                                // variant="standard"
-                                />
-                                <TextField
-                                    defaultValue={defaultKey}
-                                    autoFocus
-                                    required
-                                    margin="dense"
-                                    id="key"
-                                    name="key"
-                                    label="Coin Key"
-                                    type="text"
-                                    fullWidth
-                                // variant="standard"
-                                />
-                            </div>
-                            <FormControl required sx={{ width: "100%" }}>
-                                <InputLabel id="demo-simple-select-helper-label">Coin Type</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-helper-label"
-                                    id="demo-simple-select-helper"
-                                    value={defaultType}
-                                    label="Coin type"
-                                    onChange={handleTypeChange}
-                                >
-                                    <MenuItem value={"crypto coin"}>crypto coin</MenuItem>
-                                    <MenuItem value={"flat coin"}>flat coin</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <TextField
-                                defaultValue={defaultIcon}
-                                autoFocus
-                                required
-                                margin="dense"
-                                id="icon"
-                                name="icon"
-                                label="Coin Icon URL"
-                                type="text"
-                                fullWidth
-                            // variant="standard"
-                            />
-                        </DialogContent>
-                        <DialogActions>
-                            <DashButton onClick={handleClose}>Cancel</DashButton>
-                            <DashButton type="submit">Update</DashButton>
-                        </DialogActions>
-                    </Dialog>
                     <p className='absolute top-4 left-4'>{idx + 1}.</p>
                     <div >
                         <Image
