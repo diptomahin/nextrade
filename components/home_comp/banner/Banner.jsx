@@ -27,7 +27,7 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="text-3xl xs:text-4xl md:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
+              className="text-3xl xs:text-4xl md:text-5xl xl:text-6xl font-extrabold"
             >
               Trade On
             </motion.h1>
@@ -36,7 +36,7 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="pl-5 xs:pl-10 md:pl-16 2xl:pl-24 text-3xl xs:text-4xl md:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
+              className="pl-5 xs:pl-10 md:pl-16 2xl:pl-24 text-3xl xs:text-4xl md:text-5xl xl:text-6xl font-extrabold"
             >
               <Typewriter
                 options={{
@@ -62,10 +62,10 @@ const Banner = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="text-sm 2xl:text-lg my-8 text-white pr-8 text-wrap z-10"
+            className="text-sm 2xl:text-base my-8 text-white pr-8 text-wrap z-10"
           >
             {" "}
-            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-3xl font-bold mb-2 xl:mb-0">
+            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-3xl font-bold mb-2">
               Join world&apos;s biggest & trusted exchange.
             </span>
             Trade in Bitcoin, Ethereum, LiteCoin, and many more cryptos,

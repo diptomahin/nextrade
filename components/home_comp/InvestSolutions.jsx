@@ -14,21 +14,21 @@ import Title from "@/components/library/Title";
 const InvestSolutions = () => {
   return (
     <Container className="py-20">
-      <div className="flex flex-col xl:flex-row items-center justify-between gap-20">
+      <div className="flex flex-col xl:flex-row items-center justify-between xl:gap-20">
         {/* Image side */}
         <motion.div
-          variants={fadeIn("right", 0.9)}
+          variants={fadeIn("right", 0.1)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
           className="flex-1"
         >
-          <Image src={investImage} alt="Invest" className="w-full" />
+          <Image src={investImage} alt="Invest" className="w-full h-full" />
         </motion.div>
 
         {/* Content side */}
         <motion.div
-          variants={fadeIn("left", 0.5)}
+          variants={fadeIn("left", 0.1)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
@@ -36,17 +36,17 @@ const InvestSolutions = () => {
         >
           <Title className="text-start pt-10">
             {" "}
-            Trading And Investment Solutions
+            Trading snd investment solutions
           </Title>
           <motion.ul
-            variants={fadeIn("up", 0.7)}
+            variants={fadeIn("up", 0.2)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
             className="text-sm mt-5 font-medium text-darkGray"
           >
             <motion.li
-              variants={fadeIn("up", 0.8)}
+              variants={fadeIn("up", 0.2)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -59,7 +59,7 @@ const InvestSolutions = () => {
               everything you need at your fingertips.
             </motion.li>
             <motion.li
-              variants={fadeIn("up", 0.9)}
+              variants={fadeIn("up", 0.3)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -73,7 +73,7 @@ const InvestSolutions = () => {
               accelerate your learning.
             </motion.li>
             <motion.li
-              variants={fadeIn("up", 1)}
+              variants={fadeIn("up", 0.4)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}

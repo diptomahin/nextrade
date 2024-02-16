@@ -104,7 +104,7 @@ const Wallet = () => {
       <div className="xl:w-9/12 flex flex-col gap-5">
         <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
           {/* total balance */}
-          <div className="w-full p-5 bg-[#40a0ff] rounded-xl flex flex-col justify-center gap-3">
+          <div className="w-full p-5 bg-primary rounded-xl flex flex-col justify-center gap-3">
             <h3 className="flex items-center gap-2 font-medium">
               <MdAccountBalance className="text-2xl" /> Total Balance
             </h3>
@@ -114,7 +114,7 @@ const Wallet = () => {
           </div>
 
           {/* total deposit */}
-          <div className="w-full p-5 bg-[#78c350] rounded-xl flex flex-col justify-center gap-3">
+          <div className="w-full p-5 bg-thirdGreen rounded-xl flex flex-col justify-center gap-3">
             <h3 className="flex items-center gap-2 font-medium">
               <RiLuggageDepositFill className="text-2xl" /> Total Deposit
             </h3>
@@ -124,7 +124,7 @@ const Wallet = () => {
           </div>
 
           {/* total withdraw */}
-          <div className="w-full p-5 bg-[#ff5252] rounded-xl flex flex-col justify-center gap-3">
+          <div className="w-full p-5 bg-fourthPink rounded-xl flex flex-col justify-center gap-3">
             <h3 className="flex items-center gap-2 font-medium">
               <BiMoneyWithdraw className="text-2xl" /> Total Withdraw
             </h3>
