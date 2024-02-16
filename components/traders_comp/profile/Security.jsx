@@ -2,50 +2,54 @@
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import React, { useState } from 'react';
+import { updatePassword } from "firebase/auth";
 
 
 const Security = () => {
-  // Get user information using the useAuth hook
-  const { user } = useAuth();
+    // Get user information using the useAuth hook
+    const { user,updateUserPassword } = useAuth();
 
-  // State variables to manage input values and messages
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
+    // State variables to manage input values and messages
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState('');
+  
+    // Function to handle password change
+    const changePassword = async () => {
+      try {
+        // Validate inputs
+        if ( !newPassword || !confirmPassword) {
+          setError('Please fill in all fields');
+          return;
+        }
+  
+        if (newPassword !== confirmPassword) {
+          setError('New password and confirm password must match');
+          return;
+        }
 
-  // Function to handle password change
-  const changePassword = async () => {
-    try {
-      // Prompt user to re-authenticate if needed (not implemented in this example)
-
-      // Validate inputs
-      if (!oldPassword || !newPassword || !confirmPassword) {
-        setError('Please fill in all fields');
-        return;
+        updateUserPassword(user,newPassword)
+        .then(() => {
+        console.log('Update successful.');
+        }).catch((error) => {
+          console.log('error');
+        });
+  
+  
+        // Reset input fields and show success message
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setError(null);
+        setSuccessMessage('Password updated successfully');
+      } catch (error) {
+        setError(`Error updating password: ${error.message}`);
       }
+    };
 
-      if (newPassword !== confirmPassword) {
-        setError('New password and confirm password must match');
-        return;
-      }
 
-      // Update user's password
-      await user.updatePassword(newPassword);
-
-      // Reset input fields and show success message
-      setOldPassword('');
-      setNewPassword('');
-      setConfirmPassword('');
-      setError(null);
-      setSuccessMessage('Password updated successfully');
-    } catch (error) {
-      setError(`Error updating password: ${error.message}`);
-    }
-  };
-
-  // JSX structure for the Security component
   return (
     <div className="bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl w-full h-full p-5">
       <h2 className="text-xl font-semibold pb-5">Security</h2>
