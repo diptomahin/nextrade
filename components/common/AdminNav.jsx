@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const AdminNav = ({ setMobileOpen, mobileOpen }) => {
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-white rounded-xl px-5 border">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl px-5 ">
       <div className="flex items-center gap-5">
         <IconButton
           color="black"
@@ -71,14 +71,14 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
           }}
         >
           <Magnetic>
-            <MenuIcon sx={{ color: "black" }} />
+            <MenuIcon sx={{ color: "white" }} />
           </Magnetic>
         </IconButton>
         {/*  */}
         <Search
           sx={{
             borderRadius: "50px",
-            backgroundColor: "rgba(0,0,0,0.06)",
+            backgroundColor: "rgba(0,0,0,0.08)",
             "&:hover": {
               backgroundColor: "rgba(0,0,0,0.1)",
             },
@@ -88,19 +88,20 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
           }}
         >
           <SearchIconWrapper>
-            <SearchIcon />
+            <SearchIcon sx={{color:'white'}} />
           </SearchIconWrapper>
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
+            sx={{color:'white'}}
           />
         </Search>
       </div>
       <div className="flex items-center gap-6">
         {/* language */}
-        <Language />
+        <Language sx={{color:'white'}}/>
         {/* notification */}
-        <TradersNotification />
+        <TradersNotification sx={{color:'white'}}/>
 
         {/* user menubar */}
         <AdminMenu />

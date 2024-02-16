@@ -8,7 +8,7 @@ import AdminNavLinks from "./nav_comp/AdminNavLinks";
 
 const AdminSideNav = () => {
   return (
-    <div className="h-full w-full bg-white rounded-xl p-2 border">
+    <div className="h-full w-full bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded-xl p-2 ">
       <Magnetic>
         <Link href="/" className="flex flex-col items-center pt-2 pb-4 ">
           {" "}

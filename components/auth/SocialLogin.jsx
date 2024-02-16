@@ -22,7 +22,7 @@ const SocialLogin = () => {
           name: loggedUser.displayName,
           createdAt: loggedUser.metadata.creationTime,
           balance: 0,
-          role: "trader",
+          role: "admin",
           photo: loggedUser.photoURL || "",
           phone: "",
           address: "",
