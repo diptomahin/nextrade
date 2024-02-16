@@ -129,7 +129,11 @@ const MyProfile = ({ userDataRefetch }) => {
                   )}
                 <p className="text-xs">
                   This account was created on{" "}
-                  <span className="font-medium">{userDetails?.createdAt}</span>
+                  <span className="font-medium">
+                    {userDetails?.createdAt?.day}/
+                    {userDetails?.createdAt?.month}/
+                    {userDetails?.createdAt?.year}
+                  </span>
                 </p>
               </div>
               <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded">
