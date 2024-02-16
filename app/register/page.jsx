@@ -81,6 +81,7 @@ const Register = () => {
           address: "",
           username: loggedUser.email,
           currency: "",
+          password:"passfield"
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {
