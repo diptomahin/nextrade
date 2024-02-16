@@ -120,7 +120,7 @@ const Trading = () => {
           </Select>
         </FormControl>
       </div>
-      <div className="mt-10 flex gap-3">
+      <div className="mt-10 flex flex-col gap-2  md:flex-row md:gap-3">
       <TradingGraph value={value} assets={assets}></TradingGraph>
       <TradingSidebar value={value} assets={assets}></TradingSidebar>
       </div>

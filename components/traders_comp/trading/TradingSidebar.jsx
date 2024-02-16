@@ -92,7 +92,7 @@ const TradingSidebar = (params) => {
       });
     }
     return (
-        <div className="w-1/3 p-5 rounded-lg border-x-4 border-y-4 border-primary">
+        <div className=" w-full md:w-1/3  p-5 rounded-lg border-x-4 border-y-4 border-primary">
             <h1 className="text-xl font-bold my-3">Trading Data For :  <span className="text-primary">{selectedAsset[0]?.name}</span></h1>
                 {
                     selectedAsset[0] ? (
