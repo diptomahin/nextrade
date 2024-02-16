@@ -13,8 +13,8 @@ const UsersInfo = ({ singleUser }) => {
       </p>
       <p>
         <span className="font-semibold">Created At: </span>
-        {userDetails?.createdAt?.day}/{userDetails?.createdAt?.month}/
-        {userDetails?.createdAt?.year}
+        {singleUser?.createdAt?.day}/{singleUser?.createdAt?.month}/
+        {singleUser?.createdAt?.year}
       </p>
       <p>
         <span className="font-semibold">Address: </span>
