@@ -27,35 +27,25 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
+              className="text-3xl xs:text-4xl md:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
             >
-              Trade
+              Trade On
             </motion.h1>
             <motion.h1
               variants={fadeIn("down", 0.2)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="pl-10 sm:pl-16 2xl:pl-24 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
-            >
-              With
-            </motion.h1>
-            <motion.h1
-              variants={fadeIn("down", 0.3)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.1 }}
-              className="pl-20 sm:pl-32 2xl:pl-48 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
+              className="pl-5 xs:pl-10 md:pl-16 2xl:pl-24 text-3xl xs:text-4xl md:text-5xl xl:text-6xl 3xl:text-7xl leading-snug font-extrabold"
             >
               <Typewriter
                 options={{
                   strings: [
                     "NexTrade",
-                    "Strategy",
-                    "Precision",
-                    "Confidence",
-                    "Skill",
-                    "Vision",
+                    "Cryptos",
+                    "Stocks",
+                    "Currencies",
+                    "Commodities",
                   ],
                   autoStart: true,
                   loop: true,
@@ -75,10 +65,11 @@ const Banner = () => {
             className="text-sm 2xl:text-lg my-8 text-white pr-8 text-wrap z-10"
           >
             {" "}
-            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-3xl font-bold">
-              Join world&apos;s biggest & trusted Exchange.
+            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-3xl font-bold mb-2 xl:mb-0">
+              Join world&apos;s biggest & trusted exchange.
             </span>
-            Trade in Bitcoin, Ethereum, LiteCoin, and many more currencies.
+            Trade in Bitcoin, Ethereum, LiteCoin, and many more cryptos,
+            currencies and stocks.
           </motion.p>
 
           {/* group */}
