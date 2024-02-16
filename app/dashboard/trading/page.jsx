@@ -80,48 +80,7 @@ const Trading = () => {
 
 
   //handle buy coin
-  const handleBuyCoin = (ast) => {
-    const assetInfo = {
-      assetName: ast.name,
-      assetKey: ast.key,
-      assetBuyingPrice: ast.price,
-      assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
-    };
 
-    // calculate remaining balance after buying a coin
-    const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
-    const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
-    if (usersBalance < parseFloat(ast.price)) {
-      Swal.fire({
-        title: `You Don't have enough balance!`,
-        text: `Please deposit to your account`,
-        icon: "error",
-      });
-      return;
-    }
-
-    publicAPI
-      .put(`/all-users/${remainingBalance}`, assetInfo)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          Swal.fire({
-            title: `Coin Purchase successful!`,
-            text: `Best of luck`,
-            icon: "success",
-          });
-          refetch();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        Swal.fire({
-          title: `Coin Purchase failed!`,
-          text: `Please try again`,
-          icon: "error",
-        });
-      });
-  };
 
   //Dropdown
   const [value, setValue] = React.useState('');
