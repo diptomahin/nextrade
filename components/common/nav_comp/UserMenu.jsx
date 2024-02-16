@@ -69,7 +69,7 @@ const UserMenu = ({ userDetails, logOut }) => {
             <Link href="/dashboard/profile" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                className={`w-full h-8 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
                   pathname === "/dashboard/profile"
                     ? "bg-white/10 border-l-2 border-l-primary text-primary"
                     : "bg-transparent text-white"
@@ -82,7 +82,7 @@ const UserMenu = ({ userDetails, logOut }) => {
             <Link href="/dashboard/settings" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                className={`w-full h-8 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
                   pathname === "/dashboard/settings"
                     ? "bg-white/10 border-l-2 border-l-primary text-primary"
                     : "bg-transparent text-white"
@@ -96,7 +96,7 @@ const UserMenu = ({ userDetails, logOut }) => {
             <Link href="/">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-white rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary"
+                className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-white/10 text-white rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary"
               >
                 {" "}
                 <GoHomeFill /> Home
@@ -107,7 +107,7 @@ const UserMenu = ({ userDetails, logOut }) => {
                 logOut();
                 setIsOpen(false);
               }}
-              className="w-full btn btn-sm h-9 justify-start text-base bg-transparent hover:bg-white/10 text-white rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary"
+              className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-white/10 text-white rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary"
             >
               {" "}
               <IoLogOut /> Logout
