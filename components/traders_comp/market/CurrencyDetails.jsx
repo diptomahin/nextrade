@@ -1,7 +1,7 @@
 "use client"
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBannerNormalCurrency from "./TopBannerNormalCurrency";
-import { Button, Divider, TextField } from "@mui/material";
+import { Button, Divider, InputAdornment, TextField } from "@mui/material";
 import DashButton from "@/components/library/buttons/DashButton";
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import Swal from "sweetalert2";
@@ -40,32 +40,34 @@ const CssTextField = styled(TextField)({
 
 
 const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBalance, refetch, user, coinImage }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
-  const handleQuantityChange = (event) => {
-    const newQuantity = event.target.value;
-    setQuantity(newQuantity);
+
+  const handleInvestmentChange = (event) => {
+    const newInvestment = event.target.value;
+    setInvestment(newInvestment);
   };
 
   // crypto payment process
   const handleBuyCurrency = (ast) => {
+    const usersBalance = usersRemainingBalance
+    const remainingBalance = usersBalance - parseFloat(investment).toFixed(2);
+    const currentPrice = ast
+    const portion = (parseFloat(investment) / currentPrice) * 100
+
     const assetInfo = {
       assetName: currencyName,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyingPrice: ast,
-      assetQuantity: quantity,
+      assetPortion: parseInt(portion) + '%',
+      totalInvestment: investment,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
     };
 
-    const totalCost = parseFloat(ast) * parseFloat(quantity)
-    const usersBalance = usersRemainingBalance
-    const remainingBalance = usersBalance - totalCost.toFixed(2);
 
-
-
-    if (usersBalance < parseFloat(ast.c)) {
+    if (usersBalance < parseFloat(ast)) {
       Swal.fire({
         title: `You Don't have enough balance!`,
         text: `Please deposit to your account`,
@@ -75,8 +77,8 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
     }
 
     Swal.fire({
-      title: `Are you sure to purchase ${quantity} ${currencyName}?`,
-      text: `It will cost $${totalCost}`,
+      title: `Are you sure to purchase  ${parseInt(portion)}% of a ${currencyName}?`,
+      text: `It will cost $${investment}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -111,18 +113,18 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
   };
 
   // regular currency watchlist process
-  const handleCurrencyWatchlist = (ast) => {
+  const handleCurrencyWatchlist = () => {
     const assetInfo = {
-      assetName: currencyName,
-      assetType: "regular currency",
-      assetKey: coinKey,
-      assetImg: coinImage,
-      assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
+      name: currencyName,
+      key: coinKey,
+      type: "flat coin",
+      price: 0,
+      icon: coinImage,
+      email: user.email
     };
 
 
-    publicAPI.post(`/watchlist`, assetInfo)
+    secureAPI.post(`/watchlist`, assetInfo)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -192,7 +194,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
           <CssTextField
             required
             fullWidth
-            defaultValue={quantity}
+            defaultValue={investment}
             id="outlined-number"
             label={`Quantity (${coinKey})`}
             type="number"
@@ -200,17 +202,20 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={handleQuantityChange}
+            InputProps={{
+              startAdornment: <InputAdornment position="start"><p className="text-white">$</p></InputAdornment>,
+            }}
+            onChange={handleInvestmentChange}
           />
           <Button
-            disabled={quantity < 1}
+            disabled={investment <= 0}
             sx={{
-              backgroundColor: quantity < 1 ? '#ccc' : '#455ce9', 
+              backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
               color: "white",
               borderRadius: "50px",
               padding: "10px 15px",
               "&:hover": {
-                backgroundColor: quantity < 1 ? '#ccc' : '#455ce9',
+                backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
               },
             }}
             onClick={() => handleBuyCurrency(currencyRate)}

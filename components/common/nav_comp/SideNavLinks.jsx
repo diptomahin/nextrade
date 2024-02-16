@@ -12,7 +12,7 @@ const SideNavLinks = () => {
     <>
       <Link
         href="/dashboard"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
@@ -22,7 +22,7 @@ const SideNavLinks = () => {
       </Link>
       <Link
         href="/dashboard/market"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/market"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
@@ -32,7 +32,7 @@ const SideNavLinks = () => {
       </Link>
       <Link
         href="/dashboard/trading"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/trading"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
@@ -43,7 +43,7 @@ const SideNavLinks = () => {
       </Link>
       <Link
         href="/dashboard/portfolio"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/portfolio"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
@@ -53,7 +53,7 @@ const SideNavLinks = () => {
       </Link>
       <Link
         href="/dashboard/watchlist"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/watchlist"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
@@ -63,7 +63,7 @@ const SideNavLinks = () => {
       </Link>
       <Link
         href="/dashboard/academy"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/academy"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
@@ -73,7 +73,7 @@ const SideNavLinks = () => {
       </Link>
       <Link
         href="/dashboard/profile"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/profile"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
@@ -83,7 +83,7 @@ const SideNavLinks = () => {
       </Link>
       <Link
         href="/dashboard/wallet"
-        className={`w-full h-10 btn btn-sm text-base justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/wallet"
             ? "bg-white/10 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"

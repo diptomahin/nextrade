@@ -1,6 +1,7 @@
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FaUser, FaUserCircle } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
@@ -10,6 +11,8 @@ import { IoLogOut } from "react-icons/io5";
 const AdminMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { user, logOut, loading } = useAuth();
+
+  const pathname = usePathname();
 
   if (loading) {
     return;
@@ -52,11 +55,8 @@ const AdminMenu = () => {
               )}
 
               <div className="text-center">
-                <h3 className="font-semibold">
-                  {user?.displayName}{" "}
-                  <span className="text-xs font-normal">(Admin)</span>
-                </h3>
-                <p title={user?.email} className="opacity-70">
+                <h3 className="text-sm font-semibold">{user?.displayName} </h3>
+                <p title={user?.email} className="text-sm opacity-70">
                   <small>{user?.email}</small>
                 </p>
               </div>
@@ -67,7 +67,11 @@ const AdminMenu = () => {
             <Link href="/admin_dashboard/profile" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                  pathname === "/admin_dashboard/profile"
+                    ? "bg-black/5 border-l-2 border-l-primary text-primary"
+                    : "bg-transparent"
+                }`}
               >
                 {" "}
                 <FaUserCircle /> Profile
@@ -76,7 +80,11 @@ const AdminMenu = () => {
             <Link href="/admin_dashboard/settings" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                  pathname === "/admin_dashboard/settings"
+                    ? "bg-black/5 border-l-2 border-l-primary text-primary"
+                    : "bg-transparent"
+                }`}
               >
                 {" "}
                 <IoMdSettings /> Settings
@@ -86,7 +94,7 @@ const AdminMenu = () => {
             <Link href="/">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+                className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-black/5 rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
               >
                 {" "}
                 <GoHomeFill /> Home
@@ -97,7 +105,7 @@ const AdminMenu = () => {
                 logOut();
                 setIsOpen(false);
               }}
-              className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary  rounded-full"
+              className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-black/5 rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
             >
               {" "}
               <IoLogOut /> Logout

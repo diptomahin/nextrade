@@ -1,10 +1,13 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import Image from "next/image";
-import Link from "next/link";
+"use client"
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 import DashboardButton from "@/components/library/buttons/DashButton";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import Magnetic from '@/components/library/Magnetic';
 
-const NormalCurrencyTable = ({ assets }) => {
+const WatchlistCurrencyTable = ({ assets, handleDelete }) => {
+
   return (
     <TableContainer
       sx={{
@@ -17,7 +20,7 @@ const NormalCurrencyTable = ({ assets }) => {
       <Table aria-label="simple table">
         <TableHead className="mx-auto">
           <TableRow className="text-center">
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>No.</TableCell>
+            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Sl No.</TableCell>
             <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Name</TableCell>
             <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Code</TableCell>
             <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Current Value/USD</TableCell>
@@ -51,14 +54,18 @@ const NormalCurrencyTable = ({ assets }) => {
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                 <p className={` text-white`}>{asset.price}<span className="text-[8px]">  {asset.key}</span></p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <DarkButton
+              <TableCell sx={{ borderBottom: "1px solid #2c3750", display: "flex", flexDirection: "column", justifyContent: "center", gap: "20px" }}>
+                <DashboardButton
                   className="font-semibold normal-case"
                 >
                   <Link href={`/dashboard/market/${asset.key}`}>
                     Explore
                   </Link>
-                </DarkButton>
+
+                </DashboardButton>
+                <Magnetic>
+                  <Button color="error" variant='contained' sx={{ borderRadius: "50px", paddingY: "10px" }} onClick={() => handleDelete(asset._id)}>Delete</Button>
+                </Magnetic>
               </TableCell>
             </TableRow>
           ))}
@@ -68,4 +75,4 @@ const NormalCurrencyTable = ({ assets }) => {
   );
 };
 
-export default NormalCurrencyTable;
+export default WatchlistCurrencyTable;

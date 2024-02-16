@@ -38,6 +38,12 @@ const CssTextField = styled(TextField)({
   },
 });
 
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const date = { day: day, month: month, year: year };
+
 const Register = () => {
   const publicAPI = usePublicAPI();
 
@@ -73,10 +79,15 @@ const Register = () => {
           userID: loggedUser.uid,
           email: loggedUser.email,
           name: loggedUser.displayName,
-          createdAt: loggedUser.metadata.creationTime,
+          createdAt: date,
           balance: 0,
-          portfolio: [],
           role: "trader",
+          photo: "",
+          phone: "",
+          address: "",
+          username: loggedUser.email,
+          currency: "",
+          password: "passfield",
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {

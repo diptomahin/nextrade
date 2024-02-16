@@ -6,17 +6,70 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
+import { BiSearchAlt } from "react-icons/bi";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
-const TransactionTable = ({ userBalanceDetails }) => {
+const TransactionTable = ({ user }) => {
+  const [isOpenDot, setIsOpenDot] = useState(false);
+  const [dynamicSearch, setDynamicSearch] = useState("");
+
+  const { data: depositWithdrawData = [], refetch } = useSecureFetch(
+    `/deposit-withdraw/specific/${user.email}?search=${dynamicSearch}`,
+    user?.email,
+    dynamicSearch
+  );
+  refetch();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+  };
   return (
-    <div className="p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
-      <div className="flex flex-col xl:flex-row justify-between pb-10 gap-6">
+    <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
+      <div className="flex flex-col xl:flex-row items-center justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
+
+        <div className="flex items-center gap-1">
+          {/* search form */}
+          <form onSubmit={handleSearch} className="relative flex items-center">
+            <input
+              onChange={(e) => setDynamicSearch(e.target.value)}
+              type="text"
+              name="search"
+              placeholder="Search..."
+              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded-xl font-medium"
+            />
+            <button
+              type="submit"
+              className="absolute right-0 bg-transparent text-lg text-white mix-blend-difference hover:bg-transparent btn btn-sm rounded-l-none shadow-none border-none"
+            >
+              <BiSearchAlt />
+            </button>
+          </form>
+          <div className="relative">
+            <button
+              onClick={() => setIsOpenDot(!isOpenDot)}
+              className="btn btn-sm text-base text-white bg-transparent hover:bg-transparent border-none outline-none flex items-center"
+            >
+              <BsThreeDotsVertical />
+            </button>
+            {isOpenDot && (
+              <div className="absolute right-0 top-10 flex flex-col py-4 rounded-xl bg-darkBG border border-darkThree font-medium">
+                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-white/10 border-none pr-6 pl-8  rounded-none">
+                  Download
+                </button>
+                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-[#ff5252] border-none pr-6 pl-8  rounded-none">
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
-      {userBalanceDetails[0]?.hasOwnProperty("depositWithdrawData") ? (
+      {depositWithdrawData.length !== 0 ? (
         <TableContainer
           component={Paper}
           sx={{
@@ -65,7 +118,7 @@ const TransactionTable = ({ userBalanceDetails }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {userBalanceDetails[0]?.depositWithdrawData?.map((row, index) => (
+              {depositWithdrawData?.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell
                     component="th"
@@ -76,16 +129,20 @@ const TransactionTable = ({ userBalanceDetails }) => {
                       fontWeight: "medium",
                     }}
                   >
-                    {row?.deposit ? "Deposit" : "Withdraw"}
+                    {row?.action}
                   </TableCell>
                   <TableCell
                     sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
                   >
-                    {row?.deposit ? (
-                      <span className="text-[#78c350]">${row?.deposit}</span>
-                    ) : (
-                      <span className="text-[#ff5252]">${row?.withdraw}</span>
-                    )}
+                    <span
+                      className={
+                        row.action === "Deposit"
+                          ? "text-[#78c350]"
+                          : "text-[#ff5252]"
+                      }
+                    >
+                      ${row?.amount}
+                    </span>
                   </TableCell>
                   <TableCell
                     sx={{ color: "white", borderBottom: "1px solid #2c3750" }}

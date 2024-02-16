@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const AdminNav = ({ setMobileOpen, mobileOpen }) => {
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-white rounded-xl px-5 border">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-white px-5 border-b">
       <div className="flex items-center gap-5">
         <IconButton
           color="black"

@@ -5,6 +5,12 @@ import { FcGoogle } from "react-icons/fc";
 import RootButton from "../library/buttons/root_button/RootButton";
 import usePublicAPI from "@/hooks/usePublicAPI";
 
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const date = { day: day, month: month, year: year };
+
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
   const publicAPI = usePublicAPI();
@@ -20,10 +26,14 @@ const SocialLogin = () => {
           userID: loggedUser.uid,
           email: loggedUser.email,
           name: loggedUser.displayName,
-          createdAt: loggedUser.metadata.creationTime,
+          createdAt: date,
           balance: 0,
-          portfolio: [],
           role: "trader",
+          photo: loggedUser.photoURL || "",
+          phone: "",
+          address: "",
+          username: loggedUser.email,
+          currency: "",
         };
 
         publicAPI.post("/all-users", userInfo).then((res) => {

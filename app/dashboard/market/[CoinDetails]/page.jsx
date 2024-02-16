@@ -5,6 +5,7 @@ import useAuth from "@/hooks/useAuth";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import CurrencyDetails from "@/components/traders_comp/market/CurrencyDetails";
 import CryptoDetails from "@/components/traders_comp/market/CryptoDetails";
+import usePublicAPI from "@/hooks/usePublicAPI";
 
 
 const CoinDetails = ({ params }) => {
@@ -16,6 +17,7 @@ const CoinDetails = ({ params }) => {
   const [currencyName, setCurrencyName] = useState("");
 
   const { user } = useAuth();
+  const publicAPI = usePublicAPI();
 
   const { data: allUsers = [], isPending, isLoading, refetch } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
@@ -28,12 +30,12 @@ const CoinDetails = ({ params }) => {
   // fetch real-time data for crypto currency and regular currency
   useEffect(() => {
 
-    fetch('/allCoins.json')
-        .then(res => res.json())
-        .then(data => {
-          const foundCurrency = data.find(currency => currency.key === params.CoinDetails);
+    publicAPI.get('/allCoins')
+        .then(res => {
+          const foundCurrency = res.data.find(currency => currency.key === params.CoinDetails);
           setCoinImage(foundCurrency.icon)
           setCurrencyName(foundCurrency.name)
+          setCoinName(foundCurrency.name)
           // console.log(foundCurrency)
         })
 
@@ -59,7 +61,7 @@ const CoinDetails = ({ params }) => {
       // set coin image
 
     }
-  }, [params.CoinDetails]);
+  }, [params.CoinDetails, publicAPI]);
 
 
 
