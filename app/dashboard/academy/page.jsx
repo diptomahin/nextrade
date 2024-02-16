@@ -8,27 +8,32 @@ import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
 
 const Academy = () => {
-    const [data, setData] = useState([]);
-    
-    useEffect(() => {
-        fetch("/fake.json")
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return res.json();
-          })
-          .then((data) => {
-            setData(data);
-          })
-          .catch((error) => {
-            console.error("Error fetching data:", error);
-          });
-      }, []);
-      
+  const [data, setData] = useState([]);
+  const [video, setVideo] = useState([]);
 
-    return (
-      <div className="">
+  useEffect(() => {
+    fetch("https://nex-trade-server.vercel.app/v1/api/articles")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("https://nex-trade-server.vercel.app/v1/api/articles")
+      .then((res) => res.json())
+      .then((data) => {
+        setVideo(data);
+      });
+  }, []);
+
+  const opts = {
+    height: '270',
+    width: '270',
+  };
+
+  return (
+    <div className="">
       {/* top stories and recent news */}
       <div className="grid md:grid-cols-2 md:gap-10 mt-10 container mx-auto">
         <div className="mt-3">
@@ -40,17 +45,24 @@ const Academy = () => {
           </div>
           {data.slice(0, 4).map((news, index) => (
             <div className="flex gap-5 my-5" key={index}>
-              <Image
-                src={news.image}
-                alt={news.title}
-                width={200}
-                height={200}
-              />
+              <Link href={`/academy/${news._id}`} >
+                <div className="w-[200px]">
+                  <Image
+                    src={news.thumbnail}
+                    alt={news.title}
+                    width={200}
+                    height={200}
+                  />
+                </div>
+              </Link>
+
               <div className="">
                 <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                   {news.category}
                 </button>
-                <h3 className="text-xl font-semibold my-4">{news.title}</h3>
+                <Link href={`/academy/${news._id}`} >
+                  <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
+                </Link>
                 <p className="text-gray-500">
                   {moment(news.date).format("ll")}
                 </p>
@@ -61,7 +73,7 @@ const Academy = () => {
       </div>
 
       {/* Trending stories */}
-      <div className="bg-[#f6f4f4] p-10 mt-10">
+      <div className="bg-[#1e222d] p-10 mt-10">
         <div className="container mx-auto">
           <SectionTitle
             title="Trending Stories"
@@ -72,21 +84,25 @@ const Academy = () => {
               {data.slice(4, 5).map((news, index) => (
                 <div className="relative" key={index}>
                   <div>
-                    <Image
-                      src={news.image}
-                      alt={news.title}
-                      width={600}
-                      height={600}
-                    />
+                    <Link href={`/academy/${news._id}`} >
+                      <Image
+                        src={news.thumbnail}
+                        alt={news.title}
+                        width={600}
+                        height={600}
+                      />
+                    </Link>
                   </div>
 
                   <div className="absolute bottom-16 left-10">
                     <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                       {news.category}
                     </button>
-                    <h3 className="text-3xl font-semibold my-4 text-white">
-                      {news.title}
-                    </h3>
+                    <Link href={`/academy/${news._id}`}>
+                      <h3 className="text-3xl font-semibold my-4 text-white">
+                        {news.title}
+                      </h3>
+                    </Link>
                     <div className="flex gap-1">
                       <p className="text-white">
                         {moment(news.date).format("ll")} .
@@ -102,21 +118,25 @@ const Academy = () => {
               {data.slice(5, 8).map((news, index) => (
                 <div className="relative mb-5" key={index}>
                   <div>
-                    <Image
-                      src={news.image}
-                      alt={news.title}
-                      width={290}
-                      height={290}
-                    />
+                    <Link href={`/academy/${news._id}`} >
+                      <Image
+                        src={news.thumbnail}
+                        alt={news.title}
+                        width={290}
+                        height={290}
+                      />
+                    </Link>
                   </div>
 
                   <div className="absolute bottom-6 left-5">
                     <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                       {news.category}
                     </button>
-                    <h3 className="font-semibold my-1 text-white">
-                      {news.title}
-                    </h3>
+                    <Link href={`/academy/${news._id}`}>
+                      <h3 className="font-semibold my-1 text-white">
+                        {news.title}
+                      </h3>
+                    </Link>
                     <div className="flex gap-1">
                       <p className="text-white text-sm">
                         {moment(news.date).format("ll")}
@@ -137,17 +157,24 @@ const Academy = () => {
           <div>
             {data.slice(7, 10).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
-                <Image
-                  src={news.image}
-                  alt={news.title}
-                  width={200}
-                  height={200}
-                />
+                <Link href={`/academy/${news._id}`} >
+                  <div className="w-[200px]">
+                    <Image
+                      src={news.thumbnail}
+                      alt={news.title}
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                </Link>
+
                 <div className="">
                   <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                     {news.category}
                   </button>
-                  <h3 className="text-xl font-semibold my-4">{news.title}</h3>
+                  <Link href={`/academy/${news._id}`} >
+                    <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
+                  </Link>
                   <p className="text-gray-500">
                     {moment(news.date).format("ll")}
                   </p>
@@ -158,17 +185,23 @@ const Academy = () => {
           <div>
             {data.slice(10, 13).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
-                <Image
-                  src={news.image}
-                  alt={news.title}
-                  width={200}
-                  height={200}
-                />
+                <Link href={`/academy/${news._id}`} >
+                  <div className="w-[200px]">
+                    <Image
+                      src={news.thumbnail}
+                      alt={news.title}
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                </Link>
                 <div className="">
                   <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                     {news.category}
                   </button>
-                  <h3 className="text-xl font-semibold my-4">{news.title}</h3>
+                  <Link href={`/academy/${news._id}`} >
+                    <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
+                  </Link>
                   <p className="text-gray-500">
                     {moment(news.date).format("ll")}
                   </p>
@@ -180,33 +213,37 @@ const Academy = () => {
       </div>
 
       {/* Videos */}
-      <div className="bg-black p-10 mt-10">
+      <div className="bg-black p-10 my-10">
         <div className="container mx-auto">
-        <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center">
             <h2 className="text-[30px] font-semibold text-white">Videos</h2>
             <Link href="#">
-                <button className="font-semibold uppercase text-white border-b-2 border-white">All Videos</button>
+              <button className="font-semibold uppercase text-white border-b-2 border-white">All Videos</button>
             </Link>
-        </div>
+          </div>
           <div className="flex grid-cols-3 gap-10 mt-5">
             <div className="col-span-2">
               {data.slice(13, 14).map((news, index) => (
                 <div className="relative" key={index}>
-                  <div>
-                    <Image
-                      src={news.image}
-                      alt={news.title}
-                      width={600}
-                      height={600}
-                    />
-                  </div>
+                  <Link href={`/academy/${news._id}`} >
+                    <div className="w-[480px]">
+                      <Image
+                        src={news.thumbnail}
+                        alt={news.title}
+                        width={600}
+                        height={600}
+                      />
+                    </div>
+                  </Link>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-6xl text-white">
                       <FaRegCirclePlay className="text-center" />
                     </div>
-                    <h3 className="text-3xl font-semibold my-4 text-white absolute bottom-16 left-10">
-                      {news.title}
-                    </h3>
+                    <Link href={`/academy/${news._id}`} >
+                      <h3 className="text-3xl font-semibold my-4 text-white absolute bottom-16 left-10">
+                        {news.title}
+                      </h3>
+                    </Link>
                     <div className="flex gap-1 text-white absolute bottom-12 left-10">
                       <p>{moment(news.date).format("ll")} .</p>
                       <p>1k Views .</p>
@@ -217,28 +254,34 @@ const Academy = () => {
               ))}
             </div>
             <div className="col-span-1">
-              {data.slice(14, 19).map((news, index) => (
+              {data.slice(14, 18).map((news, index) => (
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
-                    <Image
-                      src={news.image}
-                      alt={news.title}
-                      width={130}
-                      height={130}
-                    />
+                    <Link href={`/academy/${news._id}`} >
+                      <div className="w-[140px]">
+                        <Image
+                          src={news.thumbnail}
+                          alt={news.title}
+                          width={130}
+                          height={130}
+                        />
+                      </div>
+                    </Link>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-3xl text-white">
                         <FaRegCirclePlay />
                       </div>
                     </div>
                   </div>
-                  <div className="">
+                  <div className="-mt-1">
                     <button className="text-blue-500 text-sm">
                       {news.category}
                     </button>
-                    <h3 className="font-semibold my-3 text-white">
-                      {news.title}
-                    </h3>
+                    <Link href={`/academy/${news._id}`} >
+                      <h3 className="font-semibold my-1 text-white text-[15px]">
+                        {news.title}
+                      </h3>
+                    </Link>
                     <p className="text-gray-500">
                       {moment(news.date).format("ll")}
                     </p>
@@ -257,7 +300,7 @@ const Academy = () => {
             {data.slice(12, 15).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
                 <Image
-                  src={news.image}
+                  src={news.thumbnail}
                   alt={news.title}
                   width={200}
                   height={200}
@@ -296,7 +339,7 @@ const Academy = () => {
        
       </div> */}
     </div>
-    );
+  );
 };
 
 export default Academy;
