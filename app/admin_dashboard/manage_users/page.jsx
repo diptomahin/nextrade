@@ -23,6 +23,8 @@ const ManageUsers = () => {
   const [userEmail, setUserEmail] = useState("")
   const [userPhoto, setUserPhoto] = useState("")
   const [userRole, setUserRole] = useState("")
+  const [userId, setUserId] = useState("")
+  const [userUID, setUserUID] = useState("")
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -37,7 +39,7 @@ const ManageUsers = () => {
     isLoading,
   } = useSecureFetch(`/all-users`, "userBalance");
 
-  console.log(allUser)
+  // console.log(allUser)
   const traderAccounts = allUser.filter(user => user.role === "trader");
   const adminAccounts = allUser.filter(admin => admin.role === "admin");
 
@@ -50,6 +52,8 @@ const ManageUsers = () => {
     setUserEmail(singleUser.email)
     setUserPhoto(singleUser.photo)
     setUserRole(singleUser.role)
+    setUserId(singleUser._id)
+    setUserUID(singleUser.userID)
   };
 
   const handleClose = () => {
@@ -86,6 +90,46 @@ const ManageUsers = () => {
       });
 
     handleClose();
+  }
+
+  const handleRemoveAccount = (id) => {
+    console.log(id)
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const resf = await secureAPI.post(`/deleteUserFromFirebase/${userUID}`)
+        // console.log(resf.data)
+        if (resf.data.success) {
+          // console.log(resf.data.message);
+          const res = await secureAPI.delete(`/all-users/${id}`)
+          refetch()
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "User has been deleted successfully.",
+              icon: "success",
+              timer: 1500
+            });
+          }
+        } else {
+          Swal.fire({
+            title: "failed!",
+            text: "Some thing went wrong.",
+            icon: "error",
+            timer: 1500
+          });
+        }
+
+      }
+    });
+    handleClose()
   }
 
 
@@ -321,7 +365,7 @@ const ManageUsers = () => {
 
             </AccordionDetails>
           </Accordion>
-          <Button variant='outlined' color='error' endIcon={<WarningAmberIcon />}>Remove Account</Button>
+          <Button variant='outlined' color='error' endIcon={<WarningAmberIcon />} onClick={() => handleRemoveAccount(userId)}>Remove Account</Button>
         </DialogContent>
         <DialogActions sx={{ padding: "15px" }}>
           <Button onClick={handleClose}>Cancel</Button>
