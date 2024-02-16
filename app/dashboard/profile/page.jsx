@@ -11,7 +11,7 @@ import { PiCurrencyDollarThin, PiCardholderThin } from "react-icons/pi";
 import { MdArrowBackIosNew } from "react-icons/md";
 import MyProfile from "@/components/traders_comp/profile/MyProfile";
 import Security from "@/components/traders_comp/profile/Security";
-import Currencies from "@/components/traders_comp/profile/Currencies";
+import Currencies from "@/components/traders_comp/profile/Currencies/Currencies";
 import Payments from "@/components/traders_comp/profile/Payments";
 import useSecureFetch from "@/hooks/useSecureFetch";
 
