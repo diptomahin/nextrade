@@ -7,6 +7,7 @@ import StartTrading from "@/components/home_comp/StartTrading";
 import Subscription from "@/components/home_comp/subscription/Subscription";
 import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
+import Modal from "@/components/home_comp/Modal";
 import useAuth from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 
@@ -45,6 +46,7 @@ export default function Home() {
         className="fixed w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference z-[150] blur-[60px] bg-primary rounded-full"
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       ></div>
+      <Modal />
       <Banner />
       <TradingStep />
       <InvestSolutions />
