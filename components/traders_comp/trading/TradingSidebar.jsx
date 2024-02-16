@@ -4,75 +4,93 @@ import React from 'react';
 //material
 import Button from '@mui/material/Button';
 
-// buy
-const handleBuyCurrency = (ast) => {
-    const assetInfo = {
-      assetName: currencyName,
-      assetKey: coinKey,
-      assetImg: coinImage,
-      assetBuyingPrice: ast,
-      assetQuantity: quantity,
-      assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
-    };
 
-    const totalCost = parseFloat(ast) * parseFloat(quantity)
-    const usersBalance = usersRemainingBalance
-    const remainingBalance = usersBalance - totalCost.toFixed(2);
+//other imports
+import useAuth from "@/hooks/useAuth";
+import Swal from "sweetalert2";
+import DashboardButton from "@/components/library/buttons/DashButton";
+import useSecureFetch from "@/hooks/useSecureFetch";
+import usePublicAPI from "@/hooks/usePublicAPI";
 
 
-
-    if (usersBalance < parseFloat(ast.c)) {
-      Swal.fire({
-        title: `You Don't have enough balance!`,
-        text: `Please deposit to your account`,
-        icon: "error",
-      });
-      return;
-    }
-
-    Swal.fire({
-      title: `Are you sure to purchase ${quantity} ${currencyName}?`,
-      text: `It will cost $${totalCost}`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes!"
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        secureAPI
-          .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
-          .then((res) => {
-            if (res.data.insertedId) {
-              Swal.fire({
-                title: `Coin Purchase successful!`,
-                text: `Best of luck`,
-                icon: "success",
-                timer: 1500
-              });
-              refetch();
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            Swal.fire({
-              title: `Coin Purchase failed!`,
-              text: `Please try again`,
-              icon: "error",
-            });
-          });
-      }
-    });
-
-  };
 
 const TradingSidebar = (params) => {
-    const {value, assets} = params
+
+  const { user, loading } = useAuth();
+  const {value, assets} = params
+  const {
+    data: allUsers = [],
+    isPending,
+    isLoading,
+    refetch,
+  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+
+  const publicAPI = usePublicAPI();
+
+  const usersBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
+    
     // console.log(value, assets);
 
     const selectedAsset = assets.filter(asset => asset.key == value);
     // console.log(selectedAsset[0])
+
+
+    //Buy coin
+    const handleBuyCoin = (ast) => {
+      // const assetInfo = {
+      //   assetName: ast.name,
+      //   assetKey: ast.key,
+      //   assetBuyingPrice: ast.price,
+      //   assetBuyerUID: user.uid,
+      //   assetBuyerEmail: user.email,
+      // };
+  
+      // calculate remaining balance after buying a coin
+      const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
+      const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
+      if (usersBalance < parseFloat(ast.price)) {
+        Swal.fire({
+          title: `You Don't have enough balance!`,
+          text: `Please deposit to your account`,
+          icon: "error",
+        });
+        return;
+      }
+      Swal.fire({
+        title: `${ast.name} sold successful!`,
+        text: `Best of luck`,
+        icon: "success",
+      });
+      // publicAPI
+      //   .post(`/spotTrading`, assetInfo)
+      //   .then((res) => {
+      //     if (res.data.modifiedCount > 0) {
+      //       Swal.fire({
+      //         title: `Coin Purchase successful!`,
+      //         text: `Best of luck`,
+      //         icon: "success",
+      //       });
+      //       refetch();
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //     Swal.fire({
+      //       title: `Coin Purchase failed!`,
+      //       text: `Please try again`,
+      //       icon: "error",
+      //     });
+      //   });
+    };
+
+    //handleSellCoin
+    const handleSellCoin =(ast)=>{
+      Swal.fire({
+        title: `${ast.name} Purchase successful!`,
+        text: `Best of luck`,
+        icon: "success",
+      });
+    }
     return (
         <div className="w-1/3 p-5 rounded-lg border-x-4 border-y-4 border-primary">
             <h1 className="text-xl font-bold my-3">Trading Data For :  <span className="text-primary">{selectedAsset[0]?.name}</span></h1>
@@ -85,8 +103,8 @@ const TradingSidebar = (params) => {
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-green-500">{selectedAsset[0].heighPrice}</h3>
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-red-500">{selectedAsset[0].lowPrice}</h3>
                               <div className="flex gap-3 mt-2">
-                              <Button  variant="contained">Buy</Button>
-                              <Button variant="contained">Sell</Button>
+                              <Button  variant="contained" onClick={()=>handleBuyCoin(selectedAsset[0])}>Buy</Button>
+                              <Button variant="contained" onClick={()=>handleBuyCoin(selectedAsset[0])}>Sell</Button>
                               </div>
                         </div> )
                         :
@@ -96,9 +114,8 @@ const TradingSidebar = (params) => {
                         <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary">Price</h3>
                         <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-green-500">High Price</h3>
                         <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-red-500">Low Price</h3>
-                        <div classname="flex gap-3">
-                              <Button variant="contained">Buy</Button>
-                              <Button variant="contained">Sell</Button>
+                        <div>
+                              
                         </div>
                   </div>  
                 }
