@@ -5,36 +5,9 @@ import Link from 'next/link';
 import React from 'react';
 import DashboardButton from "@/components/library/buttons/DashButton";
 import Magnetic from '@/components/library/Magnetic';
-import Swal from 'sweetalert2';
-import useSecureAPI from '@/hooks/useSecureAPI';
 
-const WatchlistCurrencyTable = ({ assets, refetch }) => {
+const WatchlistCurrencyTable = ({ assets, handleDelete }) => {
 
-  const secureAPI = useSecureAPI();
-
-  const handleDelete = (id) => {
-    // console.log(id)
-    secureAPI.delete(`/watchlist/${id}`)
-      .then(res => {
-        if (res.data.deletedCount > 0) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Coin has been deleted successfully.",
-            icon: "success",
-            timer: 1500
-          });
-          refetch()
-        }
-      })
-      .catch(err => {
-        Swal.fire({
-          title: "Failed!",
-          text: "Something went wrong.",
-          icon: "error",
-          timer: 1500
-        });
-      })
-  };
   return (
     <TableContainer
       sx={{

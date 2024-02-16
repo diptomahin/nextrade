@@ -8,26 +8,10 @@ import Link from 'next/link';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import Magnetic from '@/components/library/Magnetic';
-import useSecureAPI from '@/hooks/useSecureAPI';
-import Swal from 'sweetalert2';
 
 
-const WatchlistCryptoTable = ({ assets, refetch }) => {
-    const secureAPI = useSecureAPI();
+const WatchlistCryptoTable = ({ assets, handleDelete }) => {
 
-    const handleDelete = async (index, id) => {
-        try {
-            // Make a DELETE request to your backend to delete the asset with the specified ID
-            await secureAPI.delete(`/watchlist/${id}`);
-            // Update the frontend by removing the deleted asset from the assetList state
-            const updatedAssets = [...assetList];
-            updatedAssets.splice(index, 1); // Remove the item at the specified index
-            setAssetList(updatedAssets); // Update the state with the new asset list
-        } catch (error) {
-            console.error('Error deleting asset:', error);
-            // Handle error, show error message or retry logic
-        }
-    };
 
 
     return (
