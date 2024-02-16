@@ -3,11 +3,13 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import WatchlistCryptoTable from "@/components/traders_comp/watchlist/WatchlistCryptoTable";
 import WatchlistCurrencyTable from "@/components/traders_comp/watchlist/WatchlistCurrencyTable";
 import useAuth from "@/hooks/useAuth";
+import useSecureAPI from "@/hooks/useSecureAPI";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Tab } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 
 const Watchlist = () => {
@@ -15,16 +17,16 @@ const Watchlist = () => {
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [value, setValue] = React.useState('1');
+  const secureAPI = useSecureAPI();
 
 
   const {
     data: watchlistData = [],
+    refetch,
     isPending,
     isLoading,
-    refetch,
   } = useSecureFetch(`/watchlist?email=${user.email}`, [
     "watchlist",
-    user.email,
   ]);
 
   // console.log(watchlistData)
@@ -112,6 +114,34 @@ const Watchlist = () => {
   };
 
 
+  const handleDelete = (id) => {
+    // console.log(id)
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const res = await secureAPI.delete(`/watchlist/${id}`)
+            refetch()
+            if (res.data.deletedCount > 0) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Coin has been deleted successfully.",
+                    icon: "success",
+                    timer: 1500
+                });
+            }
+        }
+    });
+}
+
+
 
 
   return (
@@ -128,13 +158,13 @@ const Watchlist = () => {
           </Box>
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
 
-                <WatchlistCryptoTable assets={assets} refetch={refetch}></WatchlistCryptoTable>
+                <WatchlistCryptoTable assets={assets} handleDelete={handleDelete}></WatchlistCryptoTable>
 
           </TabPanel>
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
             <div className='w-full'>
 
-                  <WatchlistCurrencyTable assets={flatCurrency} refetch={refetch}></WatchlistCurrencyTable>
+                  <WatchlistCurrencyTable assets={flatCurrency} handleDelete={handleDelete}></WatchlistCurrencyTable>
 
             </div>
           </TabPanel>
