@@ -57,7 +57,7 @@ const TradingSidebar = (params) => {
         return;
       }
       Swal.fire({
-        title: `${ast.name} sold successful!`,
+        title: `${ast.name} purchase successful!`,
         text: `Best of luck`,
         icon: "success",
       });
@@ -86,7 +86,7 @@ const TradingSidebar = (params) => {
     //handleSellCoin
     const handleSellCoin =(ast)=>{
       Swal.fire({
-        title: `${ast.name} Purchase successful!`,
+        title: `${ast.name} sold successful!`,
         text: `Best of luck`,
         icon: "success",
       });
@@ -104,7 +104,7 @@ const TradingSidebar = (params) => {
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-red-500">{selectedAsset[0].lowPrice}</h3>
                               <div className="flex gap-3 mt-2">
                               <Button  variant="contained" onClick={()=>handleBuyCoin(selectedAsset[0])}>Buy</Button>
-                              <Button variant="contained" onClick={()=>handleBuyCoin(selectedAsset[0])}>Sell</Button>
+                              <Button variant="contained" onClick={()=>handleSellCoin(selectedAsset[0])}>Sell</Button>
                               </div>
                         </div> )
                         :
