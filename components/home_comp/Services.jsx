@@ -29,28 +29,26 @@ const Services = () => {
         maintenance, and more!
       </motion.p>
 
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
         {/* cart 1  */}
         <motion.Card
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded-xl text-white"
         >
-          <div className="w-full flex items-center justify-start gap-5">
+          <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon1}
               alt="Trad Icon"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
               placeholder="blur"
             />
-            <h3 className="text-lg font-semibold">
-              Trading Education and Training
-            </h3>
+            <h3 className="font-semibold">Trading Education and Training</h3>
           </div>
-          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+          <p className="text-sm font-medium mt-3 text-darkGray">
             Equip yourself with the knowledge and skills needed for successful
             trading through comprehensive educational programs, workshops, and
             training sessions.
@@ -62,22 +60,20 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded-xl text-white"
         >
-          <div className="w-full flex items-center justify-start gap-5">
+          <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon3}
               alt="Trad Icon"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
               placeholder="blur"
             />
-            <h3 className="text-lg font-semibold">
-              Market Analysis and Insights
-            </h3>
+            <h3 className="font-semibold">Market Analysis and Insights</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+          <p className="text-sm font-medium mt-3 text-darkGray">
             Stay ahead of market trends with in-depth analysis and actionable
             insights, enabling informed decision-making for your trading
             activities.
@@ -89,22 +85,22 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded-xl text-white"
         >
-          <div className="w-full flex items-center justify-start gap-5">
+          <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon2}
               alt="Trad Icon"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
               placeholder="blur"
             />
-            <h3 className="text-lg font-semibold">
+            <h3 className="font-semibold">
               Cryptocurrency Investment Strategies
             </h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+          <p className="text-sm font-medium mt-3 text-darkGray">
             Navigate the complexities of the cryptocurrency market with
             specialized strategies designed to maximize returns and minimize
             volatility.
@@ -116,20 +112,20 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded-xl text-white"
         >
-          <div className="w-full flex items-center justify-start gap-5">
+          <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon4}
               alt="Trad Icon"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
               placeholder="blur"
             />
-            <h3 className="text-lg font-semibold">Real-time Market Alerts</h3>
+            <h3 className="font-semibold">Real-time Market Alerts</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+          <p className="text-sm font-medium mt-3 text-darkGray">
             Receive timely alerts on market movements, news, and key events,
             ensuring you stay informed and can act promptly to capitalize on
             emerging opportunities.
@@ -141,22 +137,20 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded-xl text-white"
         >
-          <div className="w-full flex items-center justify-start gap-5">
+          <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon6}
               alt="Trad Icon"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
               placeholder="blur"
             />
-            <h3 className="text-lg font-semibold">
-              Customized Portfolio Management
-            </h3>
+            <h3 className="font-semibold">Customized Portfolio Management</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+          <p className="text-sm font-medium mt-3 text-darkGray">
             Equip yourself with the knowledge and skills needed for successful
             trading through comprehensive educational programs, workshops, and
             training sessions.
@@ -168,22 +162,20 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded-xl text-white"
+          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded-xl text-white"
         >
-          <div className="w-full flex items-center justify-start gap-5">
+          <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon5}
               alt="Trad Icon"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
               placeholder="blur"
             />
-            <h3 className="text-lg font-semibold">
-              Algorithmic Trading Solutions
-            </h3>
+            <h3 className="font-semibold">Algorithmic Trading Solutions</h3>
           </div>
 
-          <p className="text-sm text-justify font-medium mt-5 text-darkGray">
+          <p className="text-sm font-medium mt-3 text-darkGray">
             Leverage cutting-edge algorithms to automate your trading
             strategies, ensuring precise execution and optimal returns.
           </p>

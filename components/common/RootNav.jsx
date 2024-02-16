@@ -120,7 +120,7 @@ export default function RootNav() {
       <Magnetic>
         <div
           onClick={handleScrollToTop}
-          className={` fixed bottom-10 right-5 md:right-10 z-[99] ${
+          className={` fixed bottom-10 right-5 md:right-10 xl:right-20 z-[99] ${
             !scrolled && "hidden"
           }`}
         >

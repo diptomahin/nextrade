@@ -27,17 +27,17 @@ const WhyChooseUs = () => {
         out for several compelling reasons.
       </motion.p>
 
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
         {/* cart 1  */}
         <motion.Card
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-64 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
-            <FaUserCheck className="w-14 h-14 text-primary" />
+            <FaUserCheck className="w-12 h-12 text-primary" />
             <h3 className="text-lg font-semibold">Ease of Use</h3>
           </div>
           <p className="text-sm text-justify font-medium mt-5 text-darkGray">
@@ -52,10 +52,10 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-64 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
-            <MdOutlineSupportAgent className="w-14 h-14  text-primary" />
+            <MdOutlineSupportAgent className="w-12 h-12  text-primary" />
             <h3 className="text-lg font-semibold">Customer Support</h3>
           </div>
 
@@ -71,10 +71,10 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-64 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
-            <MdOutlineSecurity className="w-14 h-14  text-primary" />
+            <MdOutlineSecurity className="w-12 h-12  text-primary" />
             <h3 className="text-lg font-semibold">Security Measures</h3>
           </div>
 
@@ -90,10 +90,10 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-64 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
-            <SiRetool className="w-14 h-14  text-primary" />
+            <SiRetool className="w-12 h-12  text-primary" />
             <h3 className="text-lg font-semibold">Research Tools</h3>
           </div>
 
@@ -109,10 +109,10 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-64 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
-            <FaMoneyBillTransfer className="w-14 h-14  text-primary" />
+            <FaMoneyBillTransfer className="w-12 h-12  text-primary" />
             <h3 className="text-lg font-semibold">Fees and Charges</h3>
           </div>
 
@@ -128,10 +128,10 @@ const WhyChooseUs = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+          className="2xl:h-64 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
         >
           <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
-            <GrResources className="w-14 h-14  text-primary" />
+            <GrResources className="w-12 h-12  text-primary" />
             <h3 className="text-lg font-semibold">Educational Resources</h3>
           </div>
 

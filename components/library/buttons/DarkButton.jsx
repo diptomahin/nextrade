@@ -6,7 +6,7 @@ const DarkButton = ({ className, children, ...restProps }) => {
     <button
       {...restProps}
       className={cn(
-        "btn btn-sm h-10 bg-primary/5 hover:bg-primary/15 border-primary hover:border-primary font-medium text-primary text-nowrap text-sm md:text-base rounded-md md:rounded-xl",
+        "btn btn-sm h-10 bg-primary/5 hover:bg-primary/15 border-primary hover:border-primary font-medium text-primary text-nowrap text-sm md:text-base rounded-md",
         className
       )}
     >
