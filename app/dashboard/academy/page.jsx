@@ -45,7 +45,7 @@ const Academy = () => {
           </div>
           {data.slice(0, 4).map((news, index) => (
             <div className="flex gap-5 my-5" key={index}>
-              <Link href={`/academy/${news._id}`} >
+              <Link href={`/dashboard/academy/${news._id}`} >
                 <div className="w-[200px]">
                   <Image
                     src={news.thumbnail}
@@ -60,7 +60,7 @@ const Academy = () => {
                 <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                   {news.category}
                 </button>
-                <Link href={`/academy/${news._id}`} >
+                <Link href={`/dashboard/academy/${news._id}`} >
                   <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
                 </Link>
                 <p className="text-gray-500">
@@ -84,7 +84,7 @@ const Academy = () => {
               {data.slice(4, 5).map((news, index) => (
                 <div className="relative" key={index}>
                   <div>
-                    <Link href={`/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`} >
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
@@ -118,7 +118,7 @@ const Academy = () => {
               {data.slice(5, 8).map((news, index) => (
                 <div className="relative mb-5" key={index}>
                   <div>
-                    <Link href={`/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`} >
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
@@ -157,7 +157,7 @@ const Academy = () => {
           <div>
             {data.slice(7, 10).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
-                <Link href={`/academy/${news._id}`} >
+                <Link href={`/dashboard/academy/${news._id}`} >
                   <div className="w-[200px]">
                     <Image
                       src={news.thumbnail}
@@ -172,7 +172,7 @@ const Academy = () => {
                   <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                     {news.category}
                   </button>
-                  <Link href={`/academy/${news._id}`} >
+                  <Link href={`/dashboard/academy/${news._id}`} >
                     <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
                   </Link>
                   <p className="text-gray-500">
@@ -185,7 +185,7 @@ const Academy = () => {
           <div>
             {data.slice(10, 13).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
-                <Link href={`/academy/${news._id}`} >
+                <Link href={`/dashboard/academy/${news._id}`} >
                   <div className="w-[200px]">
                     <Image
                       src={news.thumbnail}
@@ -199,7 +199,7 @@ const Academy = () => {
                   <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                     {news.category}
                   </button>
-                  <Link href={`/academy/${news._id}`} >
+                  <Link href={`/dashboard/academy/${news._id}`} >
                     <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
                   </Link>
                   <p className="text-gray-500">
@@ -225,7 +225,7 @@ const Academy = () => {
             <div className="col-span-2">
               {data.slice(13, 14).map((news, index) => (
                 <div className="relative" key={index}>
-                  <Link href={`/academy/${news._id}`} >
+                  <Link href={`/dashboard/academy/${news._id}`} >
                     <div className="w-[480px]">
                       <Image
                         src={news.thumbnail}
@@ -239,7 +239,7 @@ const Academy = () => {
                     <div className="text-6xl text-white">
                       <FaRegCirclePlay className="text-center" />
                     </div>
-                    <Link href={`/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`} >
                       <h3 className="text-3xl font-semibold my-4 text-white absolute bottom-16 left-10">
                         {news.title}
                       </h3>
@@ -257,7 +257,7 @@ const Academy = () => {
               {data.slice(14, 18).map((news, index) => (
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
-                    <Link href={`/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`} >
                       <div className="w-[140px]">
                         <Image
                           src={news.thumbnail}
@@ -277,7 +277,7 @@ const Academy = () => {
                     <button className="text-blue-500 text-sm">
                       {news.category}
                     </button>
-                    <Link href={`/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`} >
                       <h3 className="font-semibold my-1 text-white text-[15px]">
                         {news.title}
                       </h3>
