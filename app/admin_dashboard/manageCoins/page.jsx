@@ -5,11 +5,16 @@ import DashButton from '@/components/library/buttons/DashButton';
 import usePublicFetch from '@/hooks/usePublicFetch';
 import useSecureAPI from '@/hooks/useSecureAPI';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Avatar, AvatarGroup, Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
+import { Avatar, AvatarGroup, Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
 import axios from 'axios';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import addImgIcon from '@/assets/addImgIcon.png'
 
+
+const image_hosting_key = `4696195291e937983db500161bc852ce`;
 const ManageCoins = () => {
     const [assets, setAssets] = useState([]);
     const [flatCurrency, setFlatCurrency] = useState([]);
@@ -123,6 +128,35 @@ const ManageCoins = () => {
         setTypeValue(event.target.value);
     };
 
+    const [hostedImage, setHostedImage] = useState("")
+
+    // image hosting 
+    const handleIconChange = async (e) => {
+        const coinImgFile = { image: e.target.files[0] };
+
+        try {
+            const response = await axios.post(
+                `https://api.imgbb.com/1/upload?key=${image_hosting_key}`,
+                coinImgFile,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            if (response.data.success) {
+                setHostedImage(response.data.data.url);
+
+            } else {
+                toast.error("Failed to upload image");
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            toast.error("Failed to upload image");
+        }
+    };
+
 
     return (
         <div>
@@ -142,7 +176,7 @@ const ManageCoins = () => {
                             const name = formData.name.value;
                             const key = formData.key.value.toUpperCase();
                             const type = typeValue;
-                            const icon = formData.icon.value
+                            const icon = hostedImage
 
                             if (type === "crypto coin") {
                                 const coinInfo = {
@@ -222,42 +256,64 @@ const ManageCoins = () => {
                                 fullWidth
                             // variant="standard"
                             />
-                            <TextField
-                                autoFocus
-                                required
-                                margin="dense"
-                                id="key"
-                                name="key"
-                                label="Coin Key"
-                                type="text"
-                                fullWidth
-                            // variant="standard"
-                            />
+                            <FormControl required sx={{ width: "100%", marginTop: "7px" }}>
+                                <InputLabel id="demo-simple-select-helper-label">Coin Type</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={typeValue}
+                                    label="Coin type"
+                                    onChange={handleTypeChange}
+                                >
+                                    <MenuItem value={"crypto coin"}>crypto coin</MenuItem>
+                                    <MenuItem value={"flat coin"}>flat coin</MenuItem>
+                                </Select>
+                            </FormControl>
+
                         </div>
-                        <FormControl required sx={{ width: "100%", marginTop: "15px" }}>
-                            <InputLabel id="demo-simple-select-helper-label">Coin Type</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                value={typeValue}
-                                label="Coin type"
-                                onChange={handleTypeChange}
-                            >
-                                <MenuItem value={"crypto coin"}>crypto coin</MenuItem>
-                                <MenuItem value={"flat coin"}>flat coin</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="key"
+                            name="key"
+                            label="Coin Key"
+                            type="text"
+                            fullWidth
+                        // variant="standard"
+                        />
+                        {
+                            hostedImage &&
+                            <Image
+                                width={50}
+                                height={50}
+                                src={hostedImage}
+                                alt="coin-icon"
+                            />
+                        }
                         <TextField
                             autoFocus
                             required
                             margin="dense"
                             id="icon"
                             name="icon"
-                            label="Coin Icon URL"
-                            type="text"
+                            label=""
+                            type="file"
                             fullWidth
+                            onChange={handleIconChange}
+                            sx={{ display: "none" }}
                         // variant="standard"
                         />
+                        {
+                            hostedImage || <label htmlFor="icon">
+                                <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                                    width={50}
+                                    height={50}
+                                    src={addImgIcon}
+                                    alt="coin-icon"
+                                />Coin Icon</p>
+                            </label>
+                        }
                     </DialogContent>
                     <DialogActions>
                         <DashButton onClick={handleClose}>Cancel</DashButton>
