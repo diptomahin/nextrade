@@ -10,6 +10,7 @@ import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
 import useAuth from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
+import { FacebookProvider, CustomChat } from "react-facebook";
 
 export default function Home() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -55,6 +56,9 @@ export default function Home() {
       <Subscription />
       <WhyNexTrade />
       <Map />
+      <FacebookProvider appId="429056069676911" chatSupport>
+        <CustomChat pageId="108051777809659" minimized={false} />
+      </FacebookProvider>
     </main>
   );
 }
