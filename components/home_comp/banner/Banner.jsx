@@ -63,14 +63,14 @@ const Banner = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="text-sm 2xl:text-base my-8 text-white pr-8 text-wrap z-10"
+            className="text-sm my-8 text-white pr-8 text-wrap z-10"
           >
             {" "}
-            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-3xl font-bold mb-2">
+            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl font-bold mb-2">
               Join world&apos;s biggest & trusted exchange.
             </span>
-            Trade in Bitcoin, Ethereum, LiteCoin, and many more cryptos,
-            currencies and stocks.
+            Trade in Bitcoin, Ethereum, and many more cryptos, currencies and
+            stocks.
           </motion.p>
 
           {/* group */}
@@ -198,7 +198,8 @@ const Banner = () => {
         </div>
 
         {/* right */}
-        <div className="w-[460px] 4xl:w-[500px] h-auto mx-auto">
+        <div className="w-[460px] 4xl:w-[500px] h-auto mx-auto relative">
+          <div className=" absolute left-[33%] top-[50%] bg-primary w-40 h-40 rounded-full blur-[50px]"></div>
           <div className="relative  flex items-center justify-center z-10">
             <div className="">
               <Image alt="banner" src={bg} className="w-5/6 mx-auto" />
