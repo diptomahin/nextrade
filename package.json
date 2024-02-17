@@ -24,6 +24,7 @@
     "firebase": "^10.7.2",
     "framer-motion": "^11.0.2",
     "gsap": "^3.12.5",
+    "js-cookie": "^3.0.5",
     "lottie-react": "^2.4.0",
     "moment": "^2.30.1",
     "next": "14.0.4",
