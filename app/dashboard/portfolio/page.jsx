@@ -130,7 +130,13 @@ const Portfolio = () => {
     return total + parseFloat(currentPrice);
   }, 0);
 
-  if (loading || isLoading || isPending) {
+  if (
+    loading ||
+    isLoading ||
+    isPending ||
+    purchasedLoading ||
+    purchasedPending
+  ) {
     return (
       <p className="h-screen flex items-center justify-center text-primary">
         <span>loading...</span>
@@ -150,7 +156,7 @@ const Portfolio = () => {
           calculateTotalLoss={calculateTotalLoss}
         />
         {/* coin buying list   */}
-        <div className="my-5 p-4  rounded-xl bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
+        <div className="my-5 p-4  rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
           <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
           {totalBuyingPrice ? (
             <div className=" bg-gradient-to-bl from-darkOne to-darkTwo  ">
@@ -325,10 +331,10 @@ const Portfolio = () => {
 
       {/* Right side  */}
       <div className=" col-span-2 ">
-        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  mb-5 ">
+        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  mb-5 ">
           <BuyAndExchange></BuyAndExchange>
         </div>
-        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  ">
+        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
           {totalBuyingPrice ? (
             <PortfolioAssetChart totalCurrentPrice={totalCurrentPrice} />

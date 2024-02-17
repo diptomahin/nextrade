@@ -37,7 +37,7 @@ const AdminMenu = () => {
         )}
       </button>
       {isOpen && (
-        <div className="w-60 absolute top-14 right-0 bg-white rounded-xl border overflow-hidden">
+        <div className="w-60 absolute top-14 right-0 bg-white rounded border overflow-hidden">
           <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
             <div className="flex flex-col items-center gap-3 overflow-hidden">
               {user?.photoURL ? (

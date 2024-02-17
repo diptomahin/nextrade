@@ -17,7 +17,7 @@ const PortfolioTopBanner = ({
     <div className="">
       <div className="flex flex-col md:flex-row items-center rounded-md gap-5">
         {/* total asset */}
-        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#40a0ff]">
+        <div className="w-full flex items-center gap-3  p-5 rounded bg-[#40a0ff]">
           <div>
             <p className="font-semibold ">
               Total Asset <MonetizationOnIcon className="text-base ml-2 " />
@@ -78,7 +78,7 @@ const PortfolioTopBanner = ({
 
         {/* Remaining balance */}
 
-        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#78c350]">
+        <div className="w-full flex items-center gap-3  p-5 rounded bg-[#78c350]">
           <div className="pb-6 w-full">
             <p className="font-semibold ">
               Remaining Balance{" "}

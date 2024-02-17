@@ -65,10 +65,10 @@ const ProfilePage = () => {
 
       {/* large device profile menu */}
       <div
-        style={{ height: "calc(100vh - 100px)" }}
-        className={`hidden xl:block fixed 2xl:left-[238px] ${
+        style={{ height: "calc(100vh - 104px)" }}
+        className={`hidden xl:block fixed 2xl:left-[240px] ${
           isActiveProfile ? "w-[78px]" : "w-[270px]"
-        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree px-3 py-14 transition-all duration-300 ease-in-out z-10`}
+        } bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree px-3 py-14 transition-all duration-300 ease-in-out rounded z-10`}
       >
         <div className="flex flex-col items-center gap-4">
           {userDetails?.photo !== undefined && userDetails?.photo !== null ? (
@@ -134,7 +134,7 @@ const ProfilePage = () => {
         style={{ height: "calc(100vh - 100px)" }}
         className={`xl:hidden fixed w-[270px] bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree px-6 py-14 transition-all ${
           isToggleProfile ? "translate-x-0" : "-translate-x-[275px]"
-        } duration-300 ease-in-out z-10`}
+        } duration-300 ease-in-out rounded z-10`}
       >
         <div className="flex flex-col items-center gap-4">
           {userDetails?.photo !== undefined && userDetails?.photo !== null ? (

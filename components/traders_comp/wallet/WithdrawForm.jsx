@@ -145,7 +145,7 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
             // onChange={(e) => setCurrency(e.target.value)}
             name="currency"
             id=""
-            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
           >
             <option value="usd" selected>
               USD
@@ -160,7 +160,7 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
           </label>
           <input
             onChange={(e) => setAmount(e.target.value)}
-            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
             type="text"
             name="amount"
             id=""
@@ -237,7 +237,7 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
           <div className="font-medium">Postal Code</div>
           <input
             onChange={(e) => setPostalCode(e.target.value)}
-            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
             type="text"
             name="postal_code"
             id=""

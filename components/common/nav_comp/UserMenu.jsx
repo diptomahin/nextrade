@@ -35,7 +35,7 @@ const UserMenu = ({ userDetails, logOut }) => {
         )}
       </button>
       {isOpen && (
-        <div className="w-60 absolute top-14 right-0 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl  overflow-hidden">
+        <div className="w-60 absolute top-14 right-0 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  overflow-hidden">
           <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-4">
             <div className="flex flex-col items-center gap-3">
               {userDetails?.photo !== undefined &&

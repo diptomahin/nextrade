@@ -32,7 +32,7 @@ const Language = ({ className, icon }) => {
         <span>{isLangChange}</span>
       </button>
       {isLangChangeOpen && (
-        <div className="absolute top-12 right-1/2 transform translate-x-1/2 w-40 bg-white flex flex-col gap-2 p-3 border rounded-xl">
+        <div className="absolute top-12 right-1/2 transform translate-x-1/2 w-40 bg-white flex flex-col gap-2 p-3 border rounded">
           {["En", "Bn", "Hi", "Ur", "Ar"].map((lang) => (
             <button
               key={lang}

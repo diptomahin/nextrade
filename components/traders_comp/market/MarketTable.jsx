@@ -1,11 +1,19 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 import DashboardButton from "@/components/library/buttons/DashButton";
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import DarkButton from '@/components/library/buttons/DarkButton';
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 const MarketTable = ({ assets }) => {
   return (
@@ -14,28 +22,86 @@ const MarketTable = ({ assets }) => {
         borderRadius: "0.75rem",
         boxShadow: "none",
       }}
-      className='bg-gradient-to-bl from-darkOne to-darkTwo border-none '
+      className="bg-gradient-to-bl from-darkOne to-darkTwo border-none "
       component={Paper}
     >
       <Table aria-label="simple table">
         <TableHead className="mx-auto ">
           <TableRow className="text-center">
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>No.</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Coin Name</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Current Price</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>24%</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>24h High Price</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>24h Low Price</TableCell>
-            <TableCell sx={{ fontWeight: 700, color: "white", borderBottom: "1px solid #2c3750" }}>Option</TableCell>
+            <TableCell
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                borderBottom: "1px solid #2c3750",
+              }}
+            >
+              No.
+            </TableCell>
+            <TableCell
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                borderBottom: "1px solid #2c3750",
+              }}
+            >
+              Coin Name
+            </TableCell>
+            <TableCell
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                borderBottom: "1px solid #2c3750",
+              }}
+            >
+              Current Price
+            </TableCell>
+            <TableCell
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                borderBottom: "1px solid #2c3750",
+              }}
+            >
+              24%
+            </TableCell>
+            <TableCell
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                borderBottom: "1px solid #2c3750",
+              }}
+            >
+              24h High Price
+            </TableCell>
+            <TableCell
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                borderBottom: "1px solid #2c3750",
+              }}
+            >
+              24h Low Price
+            </TableCell>
+            <TableCell
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                borderBottom: "1px solid #2c3750",
+              }}
+            >
+              Option
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {assets.map((asset, idx) => (
-            <TableRow
-              key={asset.name}
-            >
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }} component="th" scope="row">
-                <p className='text-white'>{idx + 1}</p>
+            <TableRow key={asset.name}>
+              <TableCell
+                sx={{ borderBottom: "1px solid #2c3750" }}
+                component="th"
+                scope="row"
+              >
+                <p className="text-white">{idx + 1}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                 <div className="flex items-center gap-2">
@@ -46,28 +112,47 @@ const MarketTable = ({ assets }) => {
                     alt="coin-icon"
                   />
                   <p className={`font-semibold text-white`}>{asset.name}</p>
-                  <span className="bg-sky-100/10 px-1 py-[2px] rounded text-primary text-xs">{asset.key.slice(0, -4)}</span>
+                  <span className="bg-sky-100/10 px-1 py-[2px] rounded text-primary text-xs">
+                    {asset.key.slice(0, -4)}
+                  </span>
                 </div>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` font-semibold text-white`}>$ {parseFloat(asset.price).toFixed(2)}</p>
+                <p className={` font-semibold text-white`}>
+                  $ {parseFloat(asset.price).toFixed(2)}
+                </p>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-600" : asset.changePrice > 0 ? "text-green-600" : ""}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon /> : <TrendingUpIcon />}</p>
-              </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` font-semibold text-green-700`}>$ {asset.highPrice}</p>
-              </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` font-semibold text-red-600`}>$ {asset.lowPrice}</p>
-              </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <DarkButton
-                  className="font-semibold normal-case"
+                <p
+                  className={` font-semibold ${
+                    asset.changePrice < 0
+                      ? "text-red-600"
+                      : asset.changePrice > 0
+                      ? "text-green-600"
+                      : ""
+                  }`}
                 >
-                  <Link href={`/dashboard/market/${asset.key}`}>
-                    Explore
-                  </Link>
+                  {asset.changePrice}%{" "}
+                  {asset.changePrice < 0 ? (
+                    <TrendingDownIcon />
+                  ) : (
+                    <TrendingUpIcon />
+                  )}
+                </p>
+              </TableCell>
+              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+                <p className={` font-semibold text-green-700`}>
+                  $ {asset.highPrice}
+                </p>
+              </TableCell>
+              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+                <p className={` font-semibold text-red-600`}>
+                  $ {asset.lowPrice}
+                </p>
+              </TableCell>
+              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+                <DarkButton className="font-medium normal-case h-8 xl:text-sm">
+                  <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
               </TableCell>
             </TableRow>
