@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import Cookies from "js-cookie";
+import DarkButton from "../library/buttons/DarkButton";
 
 
 const Modal = () => {
@@ -19,7 +20,7 @@ const Modal = () => {
         setOpen(true);
         // Set expiration to 1 minute
         Cookies.set("isModalShown", "true", { expires: 1 * 24 * 60 * 60 * 1000 });
-      }, 10000);
+      }, 5000);
     }
   }, []);
 
@@ -85,26 +86,14 @@ const Modal = () => {
                   />
                 </div>
                 <p className="text-gray-700 text-center">
-                Start your trading journey now and boost your earnings! Register today to enjoy a special Black Friday offer - get a 10% bonus on your first deposit. Don't miss out on this limited-time deal to enhance your trading experience and maximize your gains!
+                Start your trading journey now and boost your earnings! Register today to enjoy a special Black Friday offer - get a 10% bonus on your first deposit. Don&apos;t miss out on this limited-time deal to enhance your trading experience and maximize your gains!
                 </p>
                 <div className="flex justify-center mt-6 space-x-4">
-                  <Link href="/register">
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={() => setOpen(false)}
-                    >
-                      Register Now
-                    </button>
+                  <Link href="/register">       
+<DarkButton>Register</DarkButton>
                   </Link>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}
-                  >
-                    Cancel
-                  </button>
+                  <DarkButton onClick={() => setOpen(false)}
+                    ref={cancelButtonRef}>Cancel</DarkButton>
                 </div>
               </div>
             </Transition.Child>
