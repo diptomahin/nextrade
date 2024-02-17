@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import BannerImg from "@/assets/random/register.png";
@@ -61,23 +61,22 @@ const Modal = () => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="relative z-10 bg-white rounded-lg max-w-md w-full p-6">
-              <button onClick={() => setOpen(false)}
-                    ref={cancelButtonRef} className="text-4xl text-blue-500 hover:text-red-600 absolute -top-2 -right-2">
-              <MdCancel />
-              </button>
-
-           
+                <button
+                  onClick={() => setOpen(false)}
+                  ref={cancelButtonRef}
+                  className="text-4xl text-blue-500 hover:text-red-600 absolute -top-2 -right-2"
+                >
+                  <MdCancel />
+                </button>
                 <Dialog.Title className="text-xl font-semibold text-center text-gray-700">
                   Trade Smart, Trade Now!
                   <br />
                   Claim Your 10% Bonus.
                   <br />
                   <span className="font-normal text-lg text-gray-700">
-                    Exclusive{" "}
-                    <span className="text-black font-extrabold">Black</span>{" "}
-                    <span className="text-red-600 font-extrabold">
-                      Friday
-                    </span>{" "}
+                    Exclusive
+                    <span className="text-black font-extrabold">Black</span>
+                    <span className="text-red-600 font-extrabold">Friday</span>
                     Register Deals!
                   </span>
                 </Dialog.Title>
@@ -91,7 +90,10 @@ const Modal = () => {
                   />
                 </div>
                 <p className="text-gray-700 text-center">
-                Start your trading journey now! Register today to unlock a special Black Friday offer: Get a 10% bonus on your first deposit. Don't miss out on this limited-time deal to boost your earnings!
+                  Start your trading journey now! Register today to unlock a
+                  special Black Friday offer: Get a 10% bonus on your first
+                  deposit. Don&apos;t miss out on this limited-time deal to boost
+                  your earnings!
                 </p>
                 <div className="flex justify-center mt-4 space-x-4">
                   <Link href="/register">
