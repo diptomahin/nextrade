@@ -8,13 +8,6 @@
 .blue-move {
   animation: blue-move 5s infinite;
 }
-.orange-move {
-  animation: orange-move 5s infinite;
-}
-.icon1 {
-  animation: icon1 5s infinite;
-}
-
 @keyframes blue-move {
   0% {
     transform: translate3d(-90%, -90%, 0);
@@ -27,6 +20,9 @@
   }
 }
 
+.orange-move {
+  animation: orange-move 5s infinite;
+}
 @keyframes orange-move {
   0% {
     transform: translate3d(90%, 90%, 0);
@@ -39,6 +35,9 @@
   }
 }
 
+.icon1 {
+  animation: icon1 5s infinite;
+}
 @keyframes icon1 {
   0% {
     transform: translate3d(10%, 10%, 0);
@@ -48,5 +47,69 @@
   }
   100% {
     transform: translate3d(10%, 10%, 0);
+  }
+}
+
+.box-one {
+  scale: 75%;
+  animation: box-one 3.5s infinite ease;
+}
+@keyframes box-one {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(40%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.box-one-shadow {
+  scale: 75%;
+  animation: box-one-shadow 3.5s infinite ease;
+}
+@keyframes box-one-shadow {
+  0% {
+    transform: scale(45%);
+  }
+  50% {
+    transform: scale(90%);
+  }
+  100% {
+    transform: scale(45%);
+  }
+}
+
+.box-two {
+  scale: 75%;
+  animation: box-two 3.5s infinite ease;
+}
+@keyframes box-two {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(40%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.box-two-shadow {
+  scale: 75%;
+  animation: box-two-shadow 3.5s infinite ease;
+}
+@keyframes box-two-shadow {
+  0% {
+    transform: scale(45%);
+  }
+  50% {
+    transform: scale(90%);
+  }
+  100% {
+    transform: scale(45%);
   }
 }
