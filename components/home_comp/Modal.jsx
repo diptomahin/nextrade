@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import BannerImg from "@/assets/random/register.png";
@@ -7,7 +7,7 @@ import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import Cookies from "js-cookie";
 import DarkButton from "../library/buttons/DarkButton";
-
+import { MdCancel } from "react-icons/md";
 
 const Modal = () => {
   const [open, setOpen] = useState(false);
@@ -18,8 +18,7 @@ const Modal = () => {
     if (!isModalShown) {
       setTimeout(() => {
         setOpen(true);
-        // Set expiration to 1 minute
-        Cookies.set("isModalShown", "true", { expires: 1 * 24 * 60 * 60 * 1000 });
+        Cookies.set("isModalShown", "true", { expires: 1 / 24 }); // 1 hour expiration
       }, 5000);
     }
   }, []);
@@ -62,17 +61,22 @@ const Modal = () => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="relative z-10 bg-white rounded-lg max-w-md w-full p-6">
-                <Dialog.Title className="text-xl font-semibold text-center">
+                <button
+                  onClick={() => setOpen(false)}
+                  ref={cancelButtonRef}
+                  className="text-4xl text-blue-500 hover:text-red-600 absolute -top-2 -right-2"
+                >
+                  <MdCancel />
+                </button>
+                <Dialog.Title className="text-xl font-semibold text-center text-gray-700">
                   Trade Smart, Trade Now!
                   <br />
                   Claim Your 10% Bonus.
                   <br />
                   <span className="font-normal text-lg text-gray-700">
-                    Exclusive{" "}
-                    <span className="text-black font-extrabold">Black</span>{" "}
-                    <span className="text-blue-500 font-extrabold">
-                      Friday
-                    </span>{" "}
+                    Exclusive
+                    <span className="text-black font-extrabold">Black</span>
+                    <span className="text-red-600 font-extrabold">Friday</span>
                     Register Deals!
                   </span>
                 </Dialog.Title>
@@ -80,20 +84,21 @@ const Modal = () => {
                   <Image
                     src={BannerImg}
                     alt="Trade Icon"
-                    width={300}
-                    height={200}
+                    width={350}
+                    height={100}
                     className="rounded"
                   />
                 </div>
                 <p className="text-gray-700 text-center">
-                Start your trading journey now and boost your earnings! Register today to enjoy a special Black Friday offer - get a 10% bonus on your first deposit. Don&apos;t miss out on this limited-time deal to enhance your trading experience and maximize your gains!
+                  Start your trading journey now! Register today to unlock a
+                  special Black Friday offer: Get a 10% bonus on your first
+                  deposit. Don&apos;t miss out on this limited-time deal to boost
+                  your earnings!
                 </p>
-                <div className="flex justify-center mt-6 space-x-4">
-                  <Link href="/register">       
-<DarkButton>Register</DarkButton>
+                <div className="flex justify-center mt-4 space-x-4">
+                  <Link href="/register">
+                    <DarkButton>Register Now</DarkButton>
                   </Link>
-                  <DarkButton onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}>Cancel</DarkButton>
                 </div>
               </div>
             </Transition.Child>
