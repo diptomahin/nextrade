@@ -59,7 +59,7 @@ export default function Home() {
       <FacebookProvider appId="429056069676911" chatSupport>
         <CustomChat 
           pageId="108051777809659" 
-          minimized={false} 
+          minimized={true} 
           loggedInGreeting="Welcome! How can we assist you today?"
           loggedOutGreeting="Welcome! Feel free to ask any questions."
         />
