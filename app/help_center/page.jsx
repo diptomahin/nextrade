@@ -51,7 +51,7 @@ const page = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded text-white"
           >
             <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
               <NotStartedOutlinedIcon className="w-14 h-14 text-primary" />
@@ -70,7 +70,7 @@ const page = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded text-white"
           >
             <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
               <VerifiedUserOutlinedIcon className="w-14 h-14 text-primary" />
@@ -89,7 +89,7 @@ const page = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded text-white"
           >
             <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
               <PriceChangeOutlinedIcon className="w-14 h-14 text-primary" />
@@ -108,7 +108,7 @@ const page = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded text-white"
           >
             <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
               <ConstructionOutlinedIcon className="w-14 h-14 text-primary" />
@@ -127,7 +127,7 @@ const page = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded text-white"
           >
             <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
               <WebhookOutlinedIcon className="w-14 h-14 text-primary" />
@@ -146,7 +146,7 @@ const page = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded-xl text-white"
+            className="2xl:h-72 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-5 rounded text-white"
           >
             <div className="flex flex-col items-center justify-center gap-3 border-b border-darkThree pb-2">
               <ApiOutlinedIcon className="w-14 h-14 text-primary" />
@@ -165,8 +165,8 @@ const page = () => {
         <div>
           <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
             {/* card 1  */}
-            <Accordion className="rounded-xl">
-              <AccordionSummary className="rounded-xl">
+            <Accordion className="rounded">
+              <AccordionSummary className="rounded">
                 <Typography
                   gutterBottom
                   variant="h6"
@@ -176,7 +176,7 @@ const page = () => {
                   How to contact support?
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails className="rounded-xl">
+              <AccordionDetails className="rounded">
                 <Typography
                   variant="body2"
                   color="text.secondary"
@@ -189,7 +189,7 @@ const page = () => {
               </AccordionDetails>
             </Accordion>
             {/* card 2  */}
-            <Accordion className="rounded-xl">
+            <Accordion className="rounded">
               <AccordionSummary>
                 <Typography
                   gutterBottom
@@ -213,7 +213,7 @@ const page = () => {
               </AccordionDetails>
             </Accordion>
             {/* card 3  */}
-            <Accordion className="rounded-xl">
+            <Accordion className="rounded">
               <AccordionSummary>
                 <Typography
                   gutterBottom
@@ -237,7 +237,7 @@ const page = () => {
               </AccordionDetails>
             </Accordion>
             {/* card 4  */}
-            <Accordion className="rounded-xl">
+            <Accordion className="rounded">
               <AccordionSummary>
                 <Typography
                   gutterBottom

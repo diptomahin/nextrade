@@ -25,10 +25,10 @@ const MyProfile = ({ userDataRefetch }) => {
 
   return (
     <div
-      style={{ minHeight: "calc(100vh - 107px)" }}
-      className="flex items-center justify-center"
+      style={{ minHeight: "calc(100vh - 104px)" }}
+      className="flex justify-center"
     >
-      <div className="w-full 5xl:w-10/12 bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree flex flex-col gap-10 rounded-xl px-5 pb-8">
+      <div className="w-full bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree flex flex-col gap-10 rounded px-5 pb-8">
         <div className="w-full flex items-center justify-between border-b border-dashed border-darkThree px-0 py-3 md:p-5">
           <h2 className="text-sm sm:text-base md:text-xl font-semibold">
             My Profile
@@ -51,7 +51,7 @@ const MyProfile = ({ userDataRefetch }) => {
             userDataRefetch={userDataRefetch}
           />
         ) : (
-          <div className="flex flex-col items-center gap-5">
+          <div className="h-full flex flex-col items-center justify-between gap-5">
             {/* photo url */}
             <div className="flex items-center justify-center">
               {userDetails?.photo !== undefined &&

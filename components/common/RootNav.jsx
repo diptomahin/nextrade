@@ -101,7 +101,7 @@ export default function RootNav() {
             <div className="flex items-center gap-2 md:gap-6">
               <Magnetic>
                 <Link href="/login">
-                  <button className="btn btn-sm md:btn-md bg-transparent hover:bg-primary/20 border-transparent hover:border-darkThree md:text-lg font-medium rounded-xl text-primary">
+                  <button className="btn btn-sm md:btn-md bg-transparent hover:bg-primary/20 border-transparent hover:border-darkThree md:text-lg font-medium rounded text-primary">
                     Login
                   </button>
                 </Link>

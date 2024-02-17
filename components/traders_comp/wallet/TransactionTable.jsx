@@ -27,7 +27,7 @@ const TransactionTable = ({ user }) => {
     e.preventDefault();
   };
   return (
-    <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
+    <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded">
       <div className="flex flex-col xl:flex-row items-center justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
 
@@ -39,7 +39,7 @@ const TransactionTable = ({ user }) => {
               type="text"
               name="search"
               placeholder="Search..."
-              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded-xl font-medium"
+              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded font-medium"
             />
             <button
               type="submit"
@@ -56,7 +56,7 @@ const TransactionTable = ({ user }) => {
               <BsThreeDotsVertical />
             </button>
             {isOpenDot && (
-              <div className="absolute right-0 top-10 flex flex-col py-4 rounded-xl bg-darkBG border border-darkThree font-medium">
+              <div className="absolute right-0 top-10 flex flex-col py-4 rounded bg-darkBG border border-darkThree font-medium">
                 <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-white/10 border-none pr-6 pl-8  rounded-none">
                   Download
                 </button>

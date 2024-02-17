@@ -24,11 +24,11 @@ const page = () => {
         email with short description.
       </motion.p>
 
-      <div className="mx-auto 2xl:mx-24 bg-[#e9eef1] rounded-xl my-10">
+      <div className="mx-auto 2xl:mx-24 bg-[#e9eef1] rounded my-10">
         {/* contact form */}
         <ContactForm></ContactForm>
       </div>
-      <div className="mx-auto mt-10 2xl:mx-24 bg-[#e9eef1] rounded-xl">
+      <div className="mx-auto mt-10 2xl:mx-24 bg-[#e9eef1] rounded">
         <div className="flex flex-col md:flex-row justify-around gap-10 py-10">
           <div className=" xl:flex p-10 items-center gap-7 shadow-md lg:p-5  rounded-lg bg-white">
             <div className=" bg-blue-200  rounded-full w-16 h-16  flex justify-center items-center lg:mb-0 mb-3 ">

@@ -104,7 +104,7 @@ const Wallet = () => {
       <div className="xl:w-9/12 flex flex-col gap-5">
         <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
           {/* total balance */}
-          <div className="w-full p-5 bg-primary rounded-xl flex flex-col justify-center gap-3">
+          <div className="w-full p-5 bg-primary rounded flex flex-col justify-center gap-3">
             <h3 className="flex items-center gap-2 font-medium">
               <MdAccountBalance className="text-2xl" /> Total Balance
             </h3>
@@ -114,7 +114,7 @@ const Wallet = () => {
           </div>
 
           {/* total deposit */}
-          <div className="w-full p-5 bg-thirdGreen rounded-xl flex flex-col justify-center gap-3">
+          <div className="w-full p-5 bg-thirdGreen rounded flex flex-col justify-center gap-3">
             <h3 className="flex items-center gap-2 font-medium">
               <RiLuggageDepositFill className="text-2xl" /> Total Deposit
             </h3>
@@ -124,7 +124,7 @@ const Wallet = () => {
           </div>
 
           {/* total withdraw */}
-          <div className="w-full p-5 bg-fourthPink rounded-xl flex flex-col justify-center gap-3">
+          <div className="w-full p-5 bg-fourthPink rounded flex flex-col justify-center gap-3">
             <h3 className="flex items-center gap-2 font-medium">
               <BiMoneyWithdraw className="text-2xl" /> Total Withdraw
             </h3>
@@ -141,7 +141,7 @@ const Wallet = () => {
 
       {/* Select Currency & Payment */}
       <div className="xl:w-5/12 2xl:w-4/12">
-        <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-xl">
+        <div className="w-full p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded">
           <Tabs>
             <TabList className="text-xl flex items-center justify-center gap-10 font-medium">
               <Tab className="font-semibold border-none outline-none cursor-pointer">
@@ -188,7 +188,7 @@ const Wallet = () => {
         </div>
 
         {/* Transaction Report */}
-        <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree text-white rounded-xl mt-5">
+        <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree text-white rounded mt-5">
           <h1 className="text-xl text-center font-bold mb-5">
             Transaction Report
           </h1>

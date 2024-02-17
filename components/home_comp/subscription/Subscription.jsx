@@ -34,7 +34,7 @@ const Subscription = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl z-10"
+          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded z-10"
         >
           <div className="text-center">
             <h3 className="text-lg font-semibold">Free Plan</h3>
@@ -90,7 +90,7 @@ const Subscription = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl z-10"
+          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded z-10"
         >
           <div className="text-center">
             <h3 className="text-lg font-semibold">Standard Plan</h3>
@@ -151,7 +151,7 @@ const Subscription = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.2 }}
-          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded-xl z-10"
+          className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded z-10"
         >
           <div className="text-center">
             <h3 className="text-lg font-semibold">Premium Plan</h3>
