@@ -36,10 +36,10 @@ const ManageCoins = () => {
     useEffect(() => {
         axios.get('/cryptoKeys.json')
             .then(res => {
-                if(typeValue === "crypto coin"){
-                    setCoinKeys(res.data);  
+                if (typeValue === "crypto coin") {
+                    setCoinKeys(res.data);
                 }
-                 
+
             })
     }, [typeValue]);
 
@@ -47,14 +47,14 @@ const ManageCoins = () => {
     useEffect(() => {
         axios.get('/currencyKeys.json')
             .then(res => {
-                if(typeValue === "flat coin"){
+                if (typeValue === "flat coin") {
                     setCoinKeys(res.data);
                 }
-                   
+
             })
     }, [typeValue]);
 
-    const handleKeyChange =(event, value) =>{
+    const handleKeyChange = (event, value) => {
         // console.log(value.key)
         setSelectedKey(value.key)
 
@@ -312,15 +312,7 @@ const ManageCoins = () => {
                             onChange={handleKeyChange}
                             renderInput={(params) => <TextField required {...params} label="CoinKey" />}
                         />
-                        {
-                            hostedImage &&
-                            <Image
-                                width={50}
-                                height={50}
-                                src={hostedImage}
-                                alt="coin-icon"
-                            />
-                        }
+
                         <TextField
                             autoFocus
                             required
@@ -334,16 +326,24 @@ const ManageCoins = () => {
                             sx={{ display: "none" }}
                         // variant="standard"
                         />
-                        {
-                            hostedImage || <label htmlFor="icon">
-                                <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
-                                    width={50}
-                                    height={50}
-                                    src={addImgIcon}
-                                    alt="coin-icon"
-                                />Coin Icon</p>
-                            </label>
-                        }
+                        <label htmlFor="icon">
+                            {
+                                hostedImage ?
+                                    <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                                        width={50}
+                                        height={50}
+                                        src={hostedImage}
+                                        alt="coin-icon"
+                                    />Change Icon</p>
+                                    :
+                                    <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                                        width={50}
+                                        height={50}
+                                        src={addImgIcon}
+                                        alt="coin-icon"
+                                    />Coin Icon</p>
+                            }
+                        </label>
                     </DialogContent>
                     <DialogActions>
                         <DashButton onClick={handleClose}>Cancel</DashButton>
