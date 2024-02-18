@@ -8,37 +8,36 @@
 .blue-move {
   animation: blue-move 5s infinite;
 }
+@keyframes blue-move {
+  0% {
+    transform: translate3d(-50%, -50%, 0);
+  }
+  50% {
+    transform: translate3d(50%, 50%, 0);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
 .orange-move {
   animation: orange-move 5s infinite;
 }
+@keyframes orange-move {
+  0% {
+    transform: translate3d(50%, 50%, 0);
+  }
+  50% {
+    transform: translate3d(-50%, -50%, 0);
+  }
+  100% {
+    transform: translate3d(50%, 50%, 0);
+  }
+}
+
 .icon1 {
   animation: icon1 5s infinite;
 }
-
-@keyframes blue-move {
-  0% {
-    transform: translate3d(-90%, -90%, 0);
-  }
-  50% {
-    transform: translate3d(90%, 90%, 0);
-  }
-  100% {
-    transform: translate3d(-90%, -90%, 0);
-  }
-}
-
-@keyframes orange-move {
-  0% {
-    transform: translate3d(90%, 90%, 0);
-  }
-  50% {
-    transform: translate3d(-90%, -90%, 0);
-  }
-  100% {
-    transform: translate3d(90%, 90%, 0);
-  }
-}
-
 @keyframes icon1 {
   0% {
     transform: translate3d(10%, 10%, 0);
@@ -48,5 +47,138 @@
   }
   100% {
     transform: translate3d(10%, 10%, 0);
+  }
+}
+
+.line-one {
+  scale: 75%;
+  animation: line-one 3.5s infinite ease-in-out;
+}
+@keyframes line-one {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.line-one-shadow {
+  scale: 75%;
+  animation: line-one-shadow 3.5s infinite ease-in-out;
+}
+@keyframes line-one-shadow {
+  0% {
+    transform: scale(70%);
+  }
+  50% {
+    transform: scale(90%);
+  }
+  100% {
+    transform: scale(70%);
+  }
+}
+
+.line-two {
+  scale: 75%;
+  animation: line-two 3.5s infinite ease-in-out;
+}
+@keyframes line-two {
+  0% {
+    transform: translateY(20%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(20%);
+  }
+}
+
+.line-two-shadow {
+  scale: 75%;
+  animation: line-two-shadow 3.5s infinite ease-in-out;
+}
+@keyframes line-two-shadow {
+  0% {
+    transform: scale(90%);
+  }
+  50% {
+    transform: scale(70%);
+  }
+  100% {
+    transform: scale(90%);
+  }
+}
+
+.line-three {
+  scale: 75%;
+  animation: line-three 3.5s infinite ease-in-out;
+}
+@keyframes line-three {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.line-three-shadow {
+  scale: 75%;
+  animation: line-three-shadow 3.5s infinite ease-in-out;
+}
+@keyframes line-three-shadow {
+  0% {
+    transform: scale(70%);
+  }
+  50% {
+    transform: scale(90%);
+  }
+  100% {
+    transform: scale(70%);
+  }
+}
+
+@media (max-width: 639px) {
+  .line-one,
+  .line-two,
+  .line-three,
+  .line-one-shadow,
+  .line-two-shadow,
+  .line-three-shadow {
+    scale: 50%;
+  }
+}
+
+.banner-img-bg {
+  animation: banner-img-bg 10s infinite linear;
+}
+@keyframes banner-img-bg {
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+}
+
+.banner-img-bg-two {
+  animation: banner-img-bg-two 10s infinite linear;
+}
+@keyframes banner-img-bg-two {
+  0%,
+  100% {
+    transform: translateY(50%);
+  }
+  50% {
+    transform: translateY(-50%);
   }
 }

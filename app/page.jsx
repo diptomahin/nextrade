@@ -9,24 +9,10 @@ import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
 import useAuth from "@/hooks/useAuth";
-import { useEffect, useState } from "react";
 import { FacebookProvider, CustomChat } from "react-facebook";
 
 export default function Home() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const { loading } = useAuth();
-
-  useEffect(() => {
-    const updatePosition = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    document.addEventListener("mousemove", updatePosition);
-
-    return () => {
-      document.removeEventListener("mousemove", updatePosition);
-    };
-  }, []);
 
   if (loading) {
     return (
@@ -43,10 +29,6 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden text-zinc-100 font-montserrat">
-      <div
-        className="fixed w-16 h-16 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference z-[150] blur-[60px] bg-primary rounded-full"
-        style={{ left: `${position.x}px`, top: `${position.y}px` }}
-      ></div>
       <Modal />
       <Banner />
       <TradingStep />
@@ -57,9 +39,9 @@ export default function Home() {
       <WhyNexTrade />
       <Map />
       <FacebookProvider appId="429056069676911" chatSupport>
-        <CustomChat 
-          pageId="108051777809659" 
-          minimized={true} 
+        <CustomChat
+          pageId="108051777809659"
+          minimized={true}
           loggedInGreeting="Welcome! How can we assist you today?"
           loggedOutGreeting="Welcome! Feel free to ask any questions."
         />

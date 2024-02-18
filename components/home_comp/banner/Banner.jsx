@@ -11,15 +11,15 @@ import icon2 from "../../../assets/Banner/ethereum-eth-logo.svg";
 import icon3 from "../../../assets/Banner/litecoin-ltc-logo.svg";
 import icon4 from "../../../assets/Banner/dogecoin-doge-logo.svg";
 import icon5 from "../../../assets/Banner/qtum-qtum-logo.svg";
+import bg from "../../../assets/Banner/banner.png";
 import DarkButton from "@/components/library/buttons/DarkButton";
 
 const Banner = () => {
   return (
     <div className="relative min-h-[100vh]">
-      <div className="banner w-full min-h-[100vh] absolute bottom-28 opacity-80"></div>
-      <Container className="w-full min-h-[100vh] py-20 z-10">
-        {/* left */}
-        <div className="relative min-h-[100vh] flex flex-col items-start justify-center z-10">
+      <div className="banner w-full min-h-full absolute left-0 bottom-0 4xl:-bottom-24 opacity-80"></div>
+      <Container className="relative flex flex-col-reverse xl:flex-row xl:items-center xl:justify-between gap-20 xl:gap-10 min-h-[100vh] pt-32 xl:py-0 z-10">
+        <div className="w-full xl:flex-1 relative min-h-[100vh] flex flex-col items-start xl:justify-center z-10">
           {/* banner title */}
           <div className="z-10">
             <motion.h1
@@ -62,14 +62,14 @@ const Banner = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="text-sm 2xl:text-base my-8 text-white pr-8 text-wrap z-10"
+            className="text-sm my-8 text-white pr-8 text-wrap z-10"
           >
             {" "}
-            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-3xl font-bold mb-2">
+            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl font-bold mb-2">
               Join world&apos;s biggest & trusted exchange.
             </span>
-            Trade in Bitcoin, Ethereum, LiteCoin, and many more cryptos,
-            currencies and stocks.
+            Trade in Bitcoin, Ethereum, and many more cryptos, currencies and
+            stocks.
           </motion.p>
 
           {/* group */}
@@ -159,10 +159,15 @@ const Banner = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="mt-3 z-10"
+            className="mt-3 z-10 flex items-center gap-5"
           >
+            <Link href="/dashboard/trading">
+              <DarkButton> Start Trading</DarkButton>
+            </Link>
             <Link href="/dashboard/market">
-              <DarkButton>Try free demo</DarkButton>
+              <DarkButton className="bg-transparent border-none">
+                Explore Market
+              </DarkButton>
             </Link>
           </motion.div>
 
@@ -197,13 +202,170 @@ const Banner = () => {
         </div>
 
         {/* right */}
-        <motion.div
-          variants={fadeIn("up", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className="z-10"
-        ></motion.div>
+        <div className="w-[300px] md:w-[470px] h-auto mx-auto relative">
+          {/* bg part */}
+          <div className="banner-img-bg absolute left-[40%] top-[50%] bg-primary w-28 h-28 blur-[80px]"></div>
+
+          {/*  */}
+          <div className="banner-img-bg-two absolute left-[40%] top-[50%] bg-secondary/90 w-28 h-28 blur-[80px]"></div>
+
+          {/*  */}
+          <div className="relative  flex items-center justify-center z-10">
+            <div className="z-20">
+              <Image alt="banner" src={bg} className="w-5/6 mx-auto" />
+            </div>
+
+            {/* box one */}
+            <div className="absolute -left-2 md:left-12 top-5">
+              <div className="line-one w-fit relative z-10">
+                <div className="flex z-10">
+                  <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                </div>
+                {/*  */}
+                <div className="flex absolute h-16 left-0 top-1 -z-10">
+                  <div className="border-t-[26px] border-r-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[26px] border-l-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                </div>
+              </div>
+              {/* box one shadow */}
+              <div className="line-one-shadow absolute left-[9%] -bottom-9 blur-[1px]">
+                <div className="w-fit relative right-0">
+                  {/*  */}
+                  <div className="flex">
+                    <div className="border-t-[25px] border-r-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                    <div className="border-t-[25px] border-l-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* box two */}
+            <div className="absolute -right-2 md:right-12 top-5">
+              <div className="line-one w-fit relative z-10">
+                <div className="flex z-10">
+                  <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                </div>
+                {/*  */}
+                <div className="flex absolute h-16 left-0 top-1 -z-10">
+                  <div className="border-t-[26px] border-r-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[26px] border-l-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                </div>
+              </div>
+              {/* box one shadow */}
+              <div className="line-one-shadow absolute left-[9%] -bottom-10 blur-[1px]">
+                <div className="w-fit relative right-0">
+                  {/*  */}
+                  <div className="flex">
+                    <div className="border-t-[25px] border-r-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                    <div className="border-t-[25px] border-l-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* box three */}
+            <div className="absolute -left-10 md:left-0 top-[40%]">
+              <div className="line-two w-fit relative z-10">
+                <div className="flex z-10">
+                  <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                </div>
+                {/*  */}
+                <div className="flex absolute h-16 left-0 top-1 -z-10">
+                  <div className="border-t-[26px] border-r-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[26px] border-l-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                </div>
+              </div>
+              {/* box one shadow */}
+              <div className="line-two-shadow absolute left-[9%] -bottom-10 blur-[1px]">
+                <div className="w-fit relative right-0">
+                  {/*  */}
+                  <div className="flex">
+                    <div className="border-t-[25px] border-r-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                    <div className="border-t-[25px] border-l-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* box four */}
+            <div className="absolute -right-10 md:right-0 top-[40%]">
+              <div className="line-two w-fit relative z-10">
+                <div className="flex z-10">
+                  <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                </div>
+                {/*  */}
+                <div className="flex absolute h-16 left-0 top-1 -z-10">
+                  <div className="border-t-[26px] border-r-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[26px] border-l-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                </div>
+              </div>
+              {/* box one shadow */}
+              <div className="line-two-shadow absolute left-[9%] -bottom-10 blur-[1px]">
+                <div className="w-fit relative right-0">
+                  {/*  */}
+                  <div className="flex">
+                    <div className="border-t-[25px] border-r-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                    <div className="border-t-[25px] border-l-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* box five */}
+            <div className="absolute left-0 md:left-14 bottom-2">
+              <div className="line-three w-fit relative z-10">
+                <div className="flex z-10">
+                  <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                </div>
+                {/*  */}
+                <div className="flex absolute h-16 left-0 top-1 -z-10">
+                  <div className="border-t-[26px] border-r-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[26px] border-l-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                </div>
+              </div>
+              {/* box one shadow */}
+              <div className="line-three-shadow absolute left-[9%] -bottom-10 blur-[1px]">
+                <div className="w-fit relative right-0">
+                  {/*  */}
+                  <div className="flex">
+                    <div className="border-t-[25px] border-r-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                    <div className="border-t-[25px] border-l-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* box six */}
+            <div className="absolute right-0 md:right-14 bottom-2">
+              <div className="line-three w-fit relative z-10 ">
+                <div className="flex z-10">
+                  <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
+                </div>
+                {/*  */}
+                <div className="flex absolute h-16 left-0 top-1 -z-10">
+                  <div className="border-t-[26px] border-r-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                  <div className="border-t-[26px] border-l-[50px] border-b-[30px]  border-x-[#3749b0] border-t-transparent border-b-transparent"></div>
+                </div>
+              </div>
+              {/* box one shadow */}
+              <div className="line-three-shadow absolute left-[9%] -bottom-10 blur-[1px]">
+                <div className="w-fit relative right-0">
+                  {/*  */}
+                  <div className="flex">
+                    <div className="border-t-[25px] border-r-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                    <div className="border-t-[25px] border-l-[40px] border-b-[25px]  border-x-gray-500 border-t-transparent border-b-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </Container>
     </div>
   );
