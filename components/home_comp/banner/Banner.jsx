@@ -17,9 +17,8 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 const Banner = () => {
   return (
     <div className="relative min-h-[100vh]">
-      <div className="banner w-full min-h-full absolute left-0 bottom-0 opacity-80"></div>
+      <div className="banner w-full min-h-full absolute left-0 bottom-0 4xl:-bottom-24 opacity-80"></div>
       <Container className="relative flex flex-col-reverse xl:flex-row xl:items-center xl:justify-between gap-20 xl:gap-10 min-h-[100vh] pt-32 xl:py-0 z-10">
-        {/* left */}
         <div className="w-full xl:flex-1 relative min-h-[100vh] flex flex-col items-start xl:justify-center z-10">
           {/* banner title */}
           <div className="z-10">
@@ -160,10 +159,15 @@ const Banner = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="mt-3 z-10"
+            className="mt-3 z-10 flex items-center gap-5"
           >
+            <Link href="/dashboard/trading">
+              <DarkButton> Start Trading</DarkButton>
+            </Link>
             <Link href="/dashboard/market">
-              <DarkButton>Try free demo</DarkButton>
+              <DarkButton className="bg-transparent border-none">
+                Explore Market
+              </DarkButton>
             </Link>
           </motion.div>
 
@@ -198,15 +202,21 @@ const Banner = () => {
         </div>
 
         {/* right */}
-        <div className="w-[460px] 4xl:w-[500px] h-auto mx-auto relative">
-          <div className=" absolute left-[33%] top-[50%] bg-primary w-40 h-40 rounded-full blur-[50px]"></div>
+        <div className="w-[300px] md:w-[470px] h-auto mx-auto relative">
+          {/* bg part */}
+          <div className="banner-img-bg absolute left-[40%] top-[50%] bg-primary w-28 h-28 blur-[80px]"></div>
+
+          {/*  */}
+          <div className="banner-img-bg-two absolute left-[40%] top-[50%] bg-secondary/90 w-28 h-28 blur-[80px]"></div>
+
+          {/*  */}
           <div className="relative  flex items-center justify-center z-10">
-            <div className="">
+            <div className="z-20">
               <Image alt="banner" src={bg} className="w-5/6 mx-auto" />
             </div>
 
             {/* box one */}
-            <div className="absolute left-12 top-5">
+            <div className="absolute -left-2 md:left-12 top-5">
               <div className="line-one w-fit relative z-10">
                 <div className="flex z-10">
                   <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
@@ -219,7 +229,7 @@ const Banner = () => {
                 </div>
               </div>
               {/* box one shadow */}
-              <div className="line-one-shadow absolute left-[9%] -bottom-9">
+              <div className="line-one-shadow absolute left-[9%] -bottom-9 blur-[1px]">
                 <div className="w-fit relative right-0">
                   {/*  */}
                   <div className="flex">
@@ -231,8 +241,8 @@ const Banner = () => {
             </div>
 
             {/* box two */}
-            <div className="absolute right-12 top-5">
-              <div className="line-one w-fit relative z-10 scale-75">
+            <div className="absolute -right-2 md:right-12 top-5">
+              <div className="line-one w-fit relative z-10">
                 <div className="flex z-10">
                   <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
                   <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
@@ -244,7 +254,7 @@ const Banner = () => {
                 </div>
               </div>
               {/* box one shadow */}
-              <div className="line-one-shadow absolute left-[9%] -bottom-10 scale-75">
+              <div className="line-one-shadow absolute left-[9%] -bottom-10 blur-[1px]">
                 <div className="w-fit relative right-0">
                   {/*  */}
                   <div className="flex">
@@ -256,8 +266,8 @@ const Banner = () => {
             </div>
 
             {/* box three */}
-            <div className="absolute left-0 top-[40%]">
-              <div className="line-two w-fit relative z-10 scale-75">
+            <div className="absolute -left-10 md:left-0 top-[40%]">
+              <div className="line-two w-fit relative z-10">
                 <div className="flex z-10">
                   <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
                   <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
@@ -269,7 +279,7 @@ const Banner = () => {
                 </div>
               </div>
               {/* box one shadow */}
-              <div className="line-two-shadow absolute left-[9%] -bottom-10 scale-75">
+              <div className="line-two-shadow absolute left-[9%] -bottom-10 blur-[1px]">
                 <div className="w-fit relative right-0">
                   {/*  */}
                   <div className="flex">
@@ -281,8 +291,8 @@ const Banner = () => {
             </div>
 
             {/* box four */}
-            <div className="absolute right-0 top-[40%]">
-              <div className="line-two w-fit relative z-10 scale-75">
+            <div className="absolute -right-10 md:right-0 top-[40%]">
+              <div className="line-two w-fit relative z-10">
                 <div className="flex z-10">
                   <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
                   <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
@@ -294,7 +304,7 @@ const Banner = () => {
                 </div>
               </div>
               {/* box one shadow */}
-              <div className="line-two-shadow absolute left-[9%] -bottom-10 scale-75">
+              <div className="line-two-shadow absolute left-[9%] -bottom-10 blur-[1px]">
                 <div className="w-fit relative right-0">
                   {/*  */}
                   <div className="flex">
@@ -306,8 +316,8 @@ const Banner = () => {
             </div>
 
             {/* box five */}
-            <div className="absolute left-14 bottom-2">
-              <div className="line-three w-fit relative z-10 scale-75">
+            <div className="absolute left-0 md:left-14 bottom-2">
+              <div className="line-three w-fit relative z-10">
                 <div className="flex z-10">
                   <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
                   <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
@@ -319,7 +329,7 @@ const Banner = () => {
                 </div>
               </div>
               {/* box one shadow */}
-              <div className="line-three-shadow absolute left-[9%] -bottom-10 scale-75">
+              <div className="line-three-shadow absolute left-[9%] -bottom-10 blur-[1px]">
                 <div className="w-fit relative right-0">
                   {/*  */}
                   <div className="flex">
@@ -331,8 +341,8 @@ const Banner = () => {
             </div>
 
             {/* box six */}
-            <div className="absolute right-14 bottom-2">
-              <div className="line-three w-fit relative z-10 scale-75">
+            <div className="absolute right-0 md:right-14 bottom-2">
+              <div className="line-three w-fit relative z-10 ">
                 <div className="flex z-10">
                   <div className="border-t-[30px] border-r-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
                   <div className="border-t-[30px] border-l-[50px] border-b-[30px]  border-x-[#d2e2fc] border-t-transparent border-b-transparent"></div>
@@ -344,7 +354,7 @@ const Banner = () => {
                 </div>
               </div>
               {/* box one shadow */}
-              <div className="line-three-shadow absolute left-[9%] -bottom-10 scale-75">
+              <div className="line-three-shadow absolute left-[9%] -bottom-10 blur-[1px]">
                 <div className="w-fit relative right-0">
                   {/*  */}
                   <div className="flex">

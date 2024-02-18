@@ -10,13 +10,13 @@
 }
 @keyframes blue-move {
   0% {
-    transform: translate3d(-90%, -90%, 0);
+    transform: translate3d(-50%, -50%, 0);
   }
   50% {
-    transform: translate3d(90%, 90%, 0);
+    transform: translate3d(50%, 50%, 0);
   }
   100% {
-    transform: translate3d(-90%, -90%, 0);
+    transform: translate3d(-50%, -50%, 0);
   }
 }
 
@@ -25,13 +25,13 @@
 }
 @keyframes orange-move {
   0% {
-    transform: translate3d(90%, 90%, 0);
+    transform: translate3d(50%, 50%, 0);
   }
   50% {
-    transform: translate3d(-90%, -90%, 0);
+    transform: translate3d(-50%, -50%, 0);
   }
   100% {
-    transform: translate3d(90%, 90%, 0);
+    transform: translate3d(50%, 50%, 0);
   }
 }
 
@@ -143,5 +143,42 @@
   }
   100% {
     transform: scale(70%);
+  }
+}
+
+@media (max-width: 639px) {
+  .line-one,
+  .line-two,
+  .line-three,
+  .line-one-shadow,
+  .line-two-shadow,
+  .line-three-shadow {
+    scale: 50%;
+  }
+}
+
+.banner-img-bg {
+  animation: banner-img-bg 10s infinite linear;
+}
+@keyframes banner-img-bg {
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+}
+
+.banner-img-bg-two {
+  animation: banner-img-bg-two 10s infinite linear;
+}
+@keyframes banner-img-bg-two {
+  0%,
+  100% {
+    transform: translateY(50%);
+  }
+  50% {
+    transform: translateY(-50%);
   }
 }
