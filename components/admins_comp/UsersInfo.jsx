@@ -2,7 +2,7 @@ import React from "react";
 
 const UsersInfo = ({ singleUser }) => {
   return (
-    <div className="text-sm lg:text-base">
+    <div className="text-sm lg:text-base text-white">
       <p className="xs:hidden">
         <span className="font-semibold">Email: </span>
         {singleUser.email}
