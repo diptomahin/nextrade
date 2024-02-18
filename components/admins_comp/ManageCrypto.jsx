@@ -7,7 +7,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import Swal from 'sweetalert2';
 import useSecureAPI from '@/hooks/useSecureAPI';
 import DashButton from '../library/buttons/DashButton';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
+const image_hosting_key = `4696195291e937983db500161bc852ce`;
 const ManageCrypto = ({ assets, refetch }) => {
     const [open, setOpen] = React.useState(false);
     const secureAPI = useSecureAPI();
@@ -67,7 +70,7 @@ const ManageCrypto = ({ assets, refetch }) => {
         const name = formData.name.value;
         const key = formData.key.value.toUpperCase();
         const type = defaultType;
-        const icon = formData.icon.value
+        const icon = hostedImage
 
         if (type === "crypto coin") {
             const coinInfo = {
@@ -133,6 +136,35 @@ const ManageCrypto = ({ assets, refetch }) => {
 
     }
 
+    const [hostedImage, setHostedImage] = useState()
+
+    // image hosting 
+    const handleIconChange = async (e) => {
+        const coinImgFile = { image: e.target.files[0] };
+
+        try {
+            const response = await axios.post(
+                `https://api.imgbb.com/1/upload?key=${image_hosting_key}`,
+                coinImgFile,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            if (response.data.success) {
+                setHostedImage(response.data.data.url);
+
+            } else {
+                toast.error("Failed to upload image");
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            toast.error("Failed to upload image");
+        }
+    };
+
 
     return (
         <div className='gap-6 grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 my-6'>
@@ -186,17 +218,36 @@ const ManageCrypto = ({ assets, refetch }) => {
                         </Select>
                     </FormControl>
                     <TextField
-                        defaultValue={defaultIcon}
                         autoFocus
                         required
                         margin="dense"
                         id="icon"
                         name="icon"
-                        label="Coin Icon URL"
-                        type="text"
+                        label=""
+                        type="file"
                         fullWidth
+                        onChange={handleIconChange}
+                        sx={{ display: "none" }}
                     // variant="standard"
                     />
+                    <label htmlFor="icon">
+                        {
+                            hostedImage ?
+                                <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                                    width={50}
+                                    height={50}
+                                    src={hostedImage}
+                                    alt="coin-icon"
+                                />Change Icon</p>
+                                :
+                                <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                                    width={50}
+                                    height={50}
+                                    src={defaultIcon}
+                                    alt="coin-icon"
+                                />Coin Icon</p>
+                        }
+                    </label>
                 </DialogContent>
                 <DialogActions>
                     <DashButton onClick={handleClose}>Cancel</DashButton>
