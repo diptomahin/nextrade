@@ -256,7 +256,7 @@ const ManageCrypto = ({ assets, refetch }) => {
             </Dialog>
             {assets.map((asset, idx) => (
                 // <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
-                <div key={idx} className='rounded-lg p-6 space-y-4  relative bg-indigo-100 '>
+                <div key={idx} className='rounded-lg p-6 space-y-4  relative bg-darkTwo text-white'>
                     <p className='absolute top-4 left-4'>{idx + 1}.</p>
                     <div >
                         <Image

@@ -398,8 +398,8 @@ const ManageCoins = () => {
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
-                            <Tab sx={{}} label="Crypto Coins" value="1" />
-                            <Tab sx={{}} label="Flat Coins" value="2" />
+                            <Tab sx={{color:"white"}} label="Crypto Coins" value="1" />
+                            <Tab sx={{color:"white"}} label="Flat Coins" value="2" />
                         </TabList>
                     </Box>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
