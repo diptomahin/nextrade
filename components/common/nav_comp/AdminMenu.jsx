@@ -19,7 +19,7 @@ const AdminMenu = () => {
   }
   return (
     <div className="relative flex items-center justify-end gap-3">
-      <div className="hidden lg:flex flex-col items-end">
+      <div className="hidden lg:flex flex-col items-end text-white">
         <h4 className="text-sm font-semibold">{user?.displayName}</h4>
         <h4 className="text-xs opacity-70">{user?.email}</h4>
       </div>
@@ -37,7 +37,7 @@ const AdminMenu = () => {
         )}
       </button>
       {isOpen && (
-        <div className="w-60 absolute top-14 right-0 bg-white rounded border overflow-hidden">
+        <div className="w-60 absolute top-14 right-0 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded border overflow-hidden">
           <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
             <div className="flex flex-col items-center gap-3 overflow-hidden">
               {user?.photoURL ? (
@@ -54,8 +54,8 @@ const AdminMenu = () => {
                 </p>
               )}
 
-              <div className="text-center">
-                <h3 className="text-sm font-semibold">{user?.displayName} </h3>
+              <div className="text-center text-white">
+                <h3 className="text-sm font-semibold ">{user?.displayName} </h3>
                 <p title={user?.email} className="text-sm opacity-70">
                   <small>{user?.email}</small>
                 </p>
@@ -67,7 +67,7 @@ const AdminMenu = () => {
             <Link href="/admin_dashboard/profile" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 text-white hover:border-l-primary rounded-none shadow-none ${
                   pathname === "/admin_dashboard/profile"
                     ? "bg-black/5 border-l-2 border-l-primary text-primary"
                     : "bg-transparent"
@@ -80,7 +80,7 @@ const AdminMenu = () => {
             <Link href="/admin_dashboard/settings" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 text-white hover:border-l-primary rounded-none shadow-none ${
                   pathname === "/admin_dashboard/settings"
                     ? "bg-black/5 border-l-2 border-l-primary text-primary"
                     : "bg-transparent"
@@ -90,11 +90,11 @@ const AdminMenu = () => {
                 <IoMdSettings /> Settings
               </button>
             </Link>
-            <hr />
+            <hr className="border-darkThree"/>
             <Link href="/">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-black/5 rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
+                className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-black/5 rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 text-white hover:border-l-primary shadow-none"
               >
                 {" "}
                 <GoHomeFill /> Home
@@ -105,7 +105,7 @@ const AdminMenu = () => {
                 logOut();
                 setIsOpen(false);
               }}
-              className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-black/5 rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
+              className="w-full btn btn-sm h-8 justify-start bg-transparent hover:bg-black/5 rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 text-white hover:border-l-primary shadow-none"
             >
               {" "}
               <IoLogOut /> Logout

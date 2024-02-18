@@ -5,7 +5,7 @@ import DashButton from '@/components/library/buttons/DashButton';
 import usePublicFetch from '@/hooks/usePublicFetch';
 import useSecureAPI from '@/hooks/useSecureAPI';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Avatar, AvatarGroup, Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
+import { Autocomplete, Avatar, AvatarGroup, Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -21,6 +21,8 @@ const ManageCoins = () => {
     const [open, setOpen] = React.useState(false);
     const [typeValue, setTypeValue] = useState("");
     const secureAPI = useSecureAPI();
+    const [coinKeys, setCoinKeys] = useState();
+    const [selectedKey, setSelectedKey] = useState();
 
 
     const {
@@ -29,6 +31,34 @@ const ManageCoins = () => {
         isLoading,
         refetch,
     } = usePublicFetch(`/allCoins`, ["allCoins"]);
+
+    // fetch crypto keys
+    useEffect(() => {
+        axios.get('/cryptoKeys.json')
+            .then(res => {
+                if (typeValue === "crypto coin") {
+                    setCoinKeys(res.data);
+                }
+
+            })
+    }, [typeValue]);
+
+    // fetch currency keys
+    useEffect(() => {
+        axios.get('/currencyKeys.json')
+            .then(res => {
+                if (typeValue === "flat coin") {
+                    setCoinKeys(res.data);
+                }
+
+            })
+    }, [typeValue]);
+
+    const handleKeyChange = (event, value) => {
+        // console.log(value.key)
+        setSelectedKey(value.key)
+
+    }
 
 
 
@@ -174,7 +204,7 @@ const ManageCoins = () => {
                             event.preventDefault();
                             const formData = event.target;
                             const name = formData.name.value;
-                            const key = formData.key.value.toUpperCase();
+                            const key = selectedKey
                             const type = typeValue;
                             const icon = hostedImage
 
@@ -199,6 +229,7 @@ const ManageCoins = () => {
                                                 icon: "success",
                                             });
                                             refetch();
+                                            setHostedImage('')
                                         }
                                     })
                                     .catch((error) => {
@@ -227,6 +258,7 @@ const ManageCoins = () => {
                                                 icon: "success",
                                             });
                                             refetch();
+                                            setHostedImage('')
                                         }
                                     })
                                     .catch((error) => {
@@ -271,26 +303,16 @@ const ManageCoins = () => {
                             </FormControl>
 
                         </div>
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="key"
-                            name="key"
-                            label="Coin Key"
-                            type="text"
-                            fullWidth
-                        // variant="standard"
+                        <Autocomplete
+                            disablePortal
+                            disabled={!typeValue}
+                            options={coinKeys}   // step-2) display all division in options
+                            getOptionLabel={(option) => option.key}
+                            sx={{ width: "100%" }}
+                            onChange={handleKeyChange}
+                            renderInput={(params) => <TextField required {...params} label="CoinKey" />}
                         />
-                        {
-                            hostedImage &&
-                            <Image
-                                width={50}
-                                height={50}
-                                src={hostedImage}
-                                alt="coin-icon"
-                            />
-                        }
+
                         <TextField
                             autoFocus
                             required
@@ -304,16 +326,24 @@ const ManageCoins = () => {
                             sx={{ display: "none" }}
                         // variant="standard"
                         />
-                        {
-                            hostedImage || <label htmlFor="icon">
-                                <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
-                                    width={50}
-                                    height={50}
-                                    src={addImgIcon}
-                                    alt="coin-icon"
-                                />Coin Icon</p>
-                            </label>
-                        }
+                        <label htmlFor="icon">
+                            {
+                                hostedImage ?
+                                    <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                                        width={50}
+                                        height={50}
+                                        src={hostedImage}
+                                        alt="coin-icon"
+                                    />Change Icon</p>
+                                    :
+                                    <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                                        width={50}
+                                        height={50}
+                                        src={addImgIcon}
+                                        alt="coin-icon"
+                                    />Coin Icon</p>
+                            }
+                        </label>
                     </DialogContent>
                     <DialogActions>
                         <DashButton onClick={handleClose}>Cancel</DashButton>

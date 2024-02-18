@@ -150,8 +150,7 @@ const ManageUsers = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold">Manage Users</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5 my-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5 mb-6 ">
         {/* total users */}
         <div className="w-full p-5 bg-[#40a0ff] rounded flex justify-between items-center text-white">
           <div className="font-medium">
@@ -184,14 +183,14 @@ const ManageUsers = () => {
           <Box
             sx={{
               borderBottom: 2,
-              borderColor: "divider",
+              borderColor: "#2c3750",
               marginBottom: "20px",
             }}
           >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="All Users" sx={{ px: { xs: 1, md: 3 } }} value="1" />
-              <Tab label="Traders" sx={{ px: { xs: 1, md: 3 } }} value="2" />
-              <Tab label="Admins" sx={{ px: { xs: 1, md: 3 } }} value="3" />
+              <Tab label="All Users" sx={{ px: { xs: 1, md: 3 },color:'white' }} value="1" />
+              <Tab label="Traders" sx={{ px: { xs: 1, md: 3 },color:'white' }} value="2" />
+              <Tab label="Admins" sx={{ px: { xs: 1, md: 3 },color:'white' }} value="3" />
             </TabList>
           </Box>
 
@@ -199,8 +198,9 @@ const ManageUsers = () => {
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
             <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
               {allUser.map((singleUser) => (
-                <div key={singleUser._id} className="min-w-[200px]">
+                <div key={singleUser._id} className="min-w-[200px] ">
                   <Accordion
+                  className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
                     sx={{
                       border: "1px solid #40a0ff",
                       boxShadow: "0px 0px 0px 0px",
@@ -208,13 +208,14 @@ const ManageUsers = () => {
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon />}
+                      expandIcon={<ArrowDownwardIcon style={{ color: 'white' }}/>}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
                         display: "flex",
                         justifyContent: "space-between",
                         overflowX: "hidden",
+                        
                       }}
                     >
                       <div className="flex items-center gap-2 md:gap-3">
@@ -231,7 +232,7 @@ const ManageUsers = () => {
                             className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
                           />
                         )}
-                        <div className="text-sm lg:text-base">
+                        <div className="text-sm lg:text-base text-white">
                           <h1 className="font-semibold">
                             {singleUser.name}{" "}
                             <span
@@ -246,13 +247,13 @@ const ManageUsers = () => {
                               {singleUser.role}
                             </span>
                           </h1>
-                          <h1 className="hidden xs:block">
+                          <h1 className="hidden xs:block text-gray-500">
                             {singleUser.email}
                           </h1>
                         </div>
                       </div>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails >
                       <UsersInfo singleUser={singleUser}></UsersInfo>
                       <div className="pt-5">
                         <Button
@@ -277,6 +278,7 @@ const ManageUsers = () => {
               {traderAccounts.map((singleUser) => (
                 <div key={singleUser._id} className="min-w-[200px]">
                   <Accordion
+                    className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
                     sx={{
                       border: "1px solid #40a0ff",
                       boxShadow: "0px 0px 0px 0px",
@@ -284,7 +286,7 @@ const ManageUsers = () => {
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon />}
+                      expandIcon={<ArrowDownwardIcon sx={{color:'white'}}/>}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
@@ -307,7 +309,7 @@ const ManageUsers = () => {
                             className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
                           />
                         )}
-                        <div className="text-sm lg:text-base">
+                        <div className="text-sm lg:text-base text-white">
                           <h1 className="font-semibold">
                             {singleUser.name}{" "}
                             <span
@@ -322,7 +324,7 @@ const ManageUsers = () => {
                               {singleUser.role}
                             </span>
                           </h1>
-                          <h1 className="hidden xs:block">
+                          <h1 className="hidden xs:block text-gray-400">
                             {singleUser.email}
                           </h1>
                         </div>
@@ -353,6 +355,7 @@ const ManageUsers = () => {
               {adminAccounts.map((singleUser) => (
                 <div key={singleUser._id} className="min-w-[200px]">
                   <Accordion
+                    className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
                     sx={{
                       border: "1px solid #40a0ff",
                       boxShadow: "0px 0px 0px 0px",
@@ -360,7 +363,7 @@ const ManageUsers = () => {
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon />}
+                      expandIcon={<ArrowDownwardIcon sx={{color:'white'}}/>}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
@@ -383,7 +386,7 @@ const ManageUsers = () => {
                             className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
                           />
                         )}
-                        <div className="text-sm lg:text-base">
+                        <div className="text-sm lg:text-base text-white">
                           <h1 className="font-semibold">
                             {singleUser.name}{" "}
                             <span
@@ -398,7 +401,7 @@ const ManageUsers = () => {
                               {singleUser.role}
                             </span>
                           </h1>
-                          <h1 className="hidden xs:block">
+                          <h1 className="hidden xs:block text-gray-400">
                             {singleUser.email}
                           </h1>
                         </div>
@@ -426,15 +429,17 @@ const ManageUsers = () => {
       </Box>
 
       <Dialog
+      
         open={open}
         onClose={handleClose}
         PaperProps={{
           component: "form",
           onSubmit: (e) => handleSubmitChange(e),
         }}
+        
       >
         <DialogTitle>
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-2 md:gap-3 ">
             {userPhoto ? (
               <Image
                 src={userPhoto}
@@ -448,7 +453,7 @@ const ManageUsers = () => {
                 className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
               />
             )}
-            <div className="text-sm lg:text-base">
+            <div className="text-sm lg:text-base ">
               <h1 className="font-semibold">
                 {userName}{" "}
                 <span

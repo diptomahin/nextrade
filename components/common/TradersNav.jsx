@@ -137,7 +137,8 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             <MenuIcon sx={{ color: "white" }} />
           </Magnetic>
         </IconButton>
-
+        
+          {/* dynamic tittle and date time */}
         <div className="hidden xl:block">
           <h1 className="font-semibold">{breadcrumbs}</h1>
           <p className="text-xs opacity-70">Updated on {dateWithName}</p>

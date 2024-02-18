@@ -7,7 +7,7 @@ const TradersNotification = () => {
     <div className="relative">
       <button
         onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-        className={`flex items-center ${isNotificationOpen && "text-primary"}`}
+        className={`flex items-center text-white ${isNotificationOpen && "text-primary"}`}
       >
         {isNotificationOpen ? (
           <MdNotificationsActive className="w-6 h-6" />
