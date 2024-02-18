@@ -61,6 +61,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
       assetName: coinName,
       assetKey: coinKey,
       assetImg: coinImage,
+      assetType: "crypto coin",
       assetBuyingPrice: ast.c,
       currentPrice: 0,
       assetPortion: parseInt(portion) + '%',

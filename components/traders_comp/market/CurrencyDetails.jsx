@@ -58,6 +58,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
       assetName: currencyName,
       assetKey: coinKey,
       assetImg: coinImage,
+      assetType: "flat coin",
       assetBuyingPrice: ast,
       currentPrice:0,
       assetPortion: parseInt(portion) + '%',
