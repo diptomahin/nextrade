@@ -24,7 +24,7 @@ const Language = ({ className, icon }) => {
       <button
         onClick={() => setIsLangChangeOpen(!isLangChangeOpen)}
         className={cn(
-          `flex items-center gap-1 ${isLangChangeOpen && "text-primary"}`,
+          `flex items-center text-white gap-1 ${isLangChangeOpen && "text-primary"}`,
           className
         )}
       >

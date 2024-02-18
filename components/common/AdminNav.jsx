@@ -9,6 +9,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import TradersNotification from "./nav_comp/TradersNotification";
 import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
+import { usePathname } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,9 +55,70 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const dateWithName = `${day} ${
+  month === 1
+    ? "January"
+    : month === 2
+    ? "February"
+    : month === 3
+    ? "March"
+    : month === 4
+    ? "April"
+    : month === 5
+    ? "May"
+    : month === 6
+    ? "June"
+    : month === 7
+    ? "July"
+    : month === 8
+    ? "August"
+    : month === 9
+    ? "September"
+    : month === 10
+    ? "October"
+    : month === 11
+    ? "November"
+    : "December"
+} ${year}`;
+
+
+
 const AdminNav = ({ setMobileOpen, mobileOpen }) => {
+    const pathname = usePathname();
+
+  const { user, logOut, loading } = useAuth();
+  const {
+    data: userDetails = {},
+    refetch,
+    isPending,
+    isLoading,
+  } = useSecureFetch(`user/${user?.email}`, "user");
+
+refetch();
+
+if (isLoading || isPending || loading) {
+  return;
+}
+
+const breadcrumbs = pathname.includes("/admin_dashboard/manage_users")
+  ? "Manage Users"
+  : pathname.includes("/admin_dashboard/manage_services")
+  ? "Manage Services"
+  : pathname.includes("/admin_dashboard/manageCoins")
+  ? "Manage Coins"
+  : pathname.includes("/admin_dashboard/manage_academy")
+  ? "Manage Academy"
+  : pathname.includes("/dashboard/academy")
+  ? "Academy"
+  : pathname.includes("/admin_dashboard/message_box")
+  ? " Message Box"
+  : "Dashboard";
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-white px-5 border-b">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-bl from-darkOne to-darkTwo border-b border-darkThree px-5 ">
       <div className="flex items-center gap-5">
         <IconButton
           color="black"
@@ -62,22 +126,28 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
           edge="start"
           onClick={() => setMobileOpen(!mobileOpen)}
           sx={{
-            color: "black",
+            color: "white",
             "@media (min-width: 1280px)": {
               display: "none",
-              color: "black",
+              color: "white",
               backgroundColor: "black",
             },
           }}
         >
           <Magnetic>
-            <MenuIcon sx={{ color: "black" }} />
+            <MenuIcon sx={{ color: "white" }} />
           </Magnetic>
         </IconButton>
         {/*  */}
+        {/* dynamic tittle and date time */}
+        <div className="hidden xl:block text-white">
+          <h1 className="font-semibold">{breadcrumbs}</h1>
+          <p className="text-xs opacity-70">Updated on {dateWithName}</p>
+        </div>
         <Search
           sx={{
             borderRadius: "50px",
+            color: "white",
             backgroundColor: "rgba(0,0,0,0.06)",
             "&:hover": {
               backgroundColor: "rgba(0,0,0,0.1)",
