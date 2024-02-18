@@ -215,18 +215,6 @@ const ManageFlatCoins = ({ assets, refetch }) => {
                             <MenuItem value={"flat coin"}>flat coin</MenuItem>
                         </Select>
                     </FormControl>
-                    {/* <TextField
-                        defaultValue={defaultIcon}
-                        autoFocus
-                        required
-                        margin="dense"
-                        id="icon"
-                        name="icon"
-                        label="Coin Icon URL"
-                        type="text"
-                        fullWidth
-                    // variant="standard"
-                    /> */}
                     <TextField
                         autoFocus
                         required
@@ -266,7 +254,7 @@ const ManageFlatCoins = ({ assets, refetch }) => {
             </Dialog>
             {assets.map((asset, idx) => (
                 // <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
-                <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-indigo-100 '>
+                <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-darkTwo text-white '>
                     <div className="absolute right-2 flex flex-col gap-2">
                         <IconButton aria-label="delete" onClick={() => handleClickOpen(asset)}>
                             <EditIcon className='text-gray-500' />
@@ -286,7 +274,7 @@ const ManageFlatCoins = ({ assets, refetch }) => {
                         />
                         <p className='text-center text-lg font-semibold mt-3'>{asset.name}</p>
                     </div>
-                    <p className='font-semibold'>Current value: {parseFloat(asset.price).toFixed(2)}{" "}<span className="text-xs text-indigo-700">{asset.key}/USD</span></p>
+                    <p className='font-semibold'>Current value: {parseFloat(asset.price).toFixed(2)}{" "}<span className="text-xs text-indigo-400">{asset.key}/USD</span></p>
                 </div>
             ))}
         </div>
