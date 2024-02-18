@@ -52,14 +52,14 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
   const handleBuyCurrency = (ast) => {
     const usersBalance = usersRemainingBalance
     const remainingBalance = usersBalance - parseFloat(investment).toFixed(2);
-    const currentPrice = ast
-    const portion = (parseFloat(investment) / currentPrice) * 100
+    const portion = (parseFloat(investment) / ast) * 100
 
     const assetInfo = {
       assetName: currencyName,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyingPrice: ast,
+      currentPrice:0,
       assetPortion: parseInt(portion) + '%',
       totalInvestment: investment,
       assetBuyerUID: user.uid,
