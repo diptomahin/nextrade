@@ -5,7 +5,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { useState } from "react";
 import WalletIcon from "@mui/icons-material/Wallet";
-import CachedSharpIcon from '@mui/icons-material/CachedSharp';
+import CachedSharpIcon from "@mui/icons-material/CachedSharp";
 import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -13,7 +13,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import emptyIcon from '../../../assets/emptyIcon.png';
+import emptyIcon from "../../../assets/emptyIcon.png";
 
 // logo
 import bitLogo from "../../../assets/btc-logo.png";
@@ -32,31 +32,23 @@ const MenuProps = {
   },
 };
 
-const coinNames = [
-  'BTC',
-  'EHT',
-  'CTC'
-];
-const exchangeNames = [
-  'BTC',
-  'EHT',
-  'CTC'
-];
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
-    personName.indexOf(name) === -1
+      personName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
 
-const BuyAndExchange = () => {
+const BuyAndExchange = ({ cryptoData }) => {
   const [tabValue, setTabValue] = useState("1");
   const theme = useTheme();
   const [personName, setPersonName] = useState([]);
   const [personNameExchange, setPersonNameExchange] = useState([]);
+
+  const coinNames = cryptoData?.map((asset) => asset.assetKey);
+  const exchangeNames = cryptoData?.map((asset) => asset.assetKey);
 
   const handleChangeCoins = (event) => {
     const {
@@ -93,7 +85,6 @@ const BuyAndExchange = () => {
               fontWeight: 600,
               color: "white",
               textTransform: "none",
-             
             }}
           />
           <Tab
@@ -109,11 +100,11 @@ const BuyAndExchange = () => {
         </TabList>
       </Box>
       {/* Exchange Coin */}
-      <TabPanel value="1" sx={{ padding: 0, overflow:"hidden" }}>
+      <TabPanel value="1" sx={{ padding: 0, overflow: "hidden" }}>
         <div>
           <div className=" font-semibold xl:flex items-center justify-between gap-4 my-4 px-3 ">
             <h2>
-              <WalletIcon /> <span >$ 40,000</span>{" "}
+              <WalletIcon /> <span>$ 40,000</span>{" "}
             </h2>
             <div className="flex items-center gap-2 xl:mt-0 mt-2">
               <Image
@@ -125,70 +116,64 @@ const BuyAndExchange = () => {
             </div>
           </div>
           {/* input field */}
-          
-            {/* 1st input */}
-            <FormControl sx={{ width: 1, overflow:"hidden" }}>
-              <InputLabel id="demo-multiple-name-label"  >Coin</InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={personName}
-                onChange={handleChangeCoins}
-                input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
-              >
-                {coinNames.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <div className=" text-center my-2">
-              <CachedSharpIcon style={{ fontSize: "2rem" }} />
-            </div>
-            {/* 2nd input */}
-            <FormControl sx={{ width: 1 }}>
-              <InputLabel id="demo-multiple-name-label">Change</InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={personNameExchange}
-                onChange={handleChangeExchange}
-                input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
-              >
-                {exchangeNames.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personNameExchange, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <h3 className=" font-semibold my-2 text-gray-500">No Extra Fees :</h3>
 
-            
-              <DarkButton className={'w-full mt-5 md:rounded'}><CachedSharpIcon /> Exchange</DarkButton>
-            
-          
+          {/* 1st input */}
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Coin Name</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Coin Name"
+              onChange={handleChangeCoins}
+            >
+              {coinNames.map((name) => (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <div className=" text-center my-2">
+            <CachedSharpIcon style={{ fontSize: "2rem" }} />
+          </div>
+          {/* 2nd input */}
+          <FormControl sx={{ width: 1 }}>
+            <InputLabel id="demo-multiple-name-label">Change</InputLabel>
+            <Select
+              labelId="demo-multiple-name-label"
+              id="demo-multiple-name"
+              multiple
+              value={personNameExchange}
+              onChange={handleChangeExchange}
+              input={<OutlinedInput label="Name" />}
+              MenuProps={MenuProps}
+            >
+              {exchangeNames.map((name) => (
+                <MenuItem
+                  key={name}
+                  value={name}
+                  style={getStyles(name, personNameExchange, theme)}
+                >
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <h3 className=" font-semibold my-2 text-gray-500">No Extra Fees :</h3>
+
+          <DarkButton className={"w-full mt-5 md:rounded"}>
+            <CachedSharpIcon /> Exchange
+          </DarkButton>
         </div>
       </TabPanel>
       {/* Buy / Sell Coin */}
       <TabPanel value="2">
-      <div className=' w-full  flex flex-col items-center justify-center gap-2 py-8'>
-                        <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
-                        <h3 className='text-primary text-lg font-semibold text-center'>empty !!</h3>
-                    </div>
+        <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
+          <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
+          <h3 className="text-primary text-lg font-semibold text-center">
+            empty !!
+          </h3>
+        </div>
       </TabPanel>
     </TabContext>
   );

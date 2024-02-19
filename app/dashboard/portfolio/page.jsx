@@ -151,30 +151,39 @@ const Portfolio = () => {
     fetchCurrencyRates();
   }, [currencyData]);
 
-  console.log(cryptoData);
+  // console.log(cryptoData);
 
-  // const calculateDifference = (currentPrice, buyingPrice) => {
-  //   return (currentPrice - buyingPrice).toFixed(2);
-  // };
+  // profit and loss calculator
 
-  // const calculateTotalProfit = buyingPriceInfo.reduce((total, asset) => {
-  //   const difference = calculateDifference(
-  //     currentPrices[asset.assetKey] || 0,
-  //     parseFloat(asset.assetBuyingPrice)
-  //   );
-  //   return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
-  // }, 0);
+  const calculateDifference = (currentPrice, buyingPrice,portion) => {
+  const profitLoss = (currentPrice - buyingPrice)*(parseFloat(portion.slice(0,-1))/100);
+    return profitLoss;
+  };
 
-  // const calculateTotalLoss = () => {
-  //   const totalLoss = buyingPriceInfo.reduce((total, asset) => {
-  //     const difference = calculateDifference(
-  //       currentPrices[asset.assetKey] || 0,
-  //       parseFloat(asset.assetBuyingPrice)
-  //     );
-  //     return total + (parseFloat(difference) < 0 ? parseFloat(difference) : 0);
-  //   }, 0);
-  //   return Math.abs(totalLoss).toFixed(2);
-  // };
+  
+
+  const calculateTotalProfit = cryptoData.reduce((total, asset) => {
+    const difference = calculateDifference(
+      asset.currentPrice,
+      asset.assetBuyingPrice,
+      asset.assetPortion
+    );
+    return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
+  }, 0);
+
+
+    const calculateTotalLoss = cryptoData.reduce((total, asset) => {
+      const difference = calculateDifference(
+        asset.currentPrice,
+        asset.assetBuyingPrice,
+        asset.assetPortion
+      );
+      
+      return total + (parseFloat(difference) < 0 ? Math.abs(parseFloat(difference)) : 0);
+    }, 0);
+    
+  
+  
 
   const totalBuyingPrice = purchasedAssets.reduce(
     (total, asset) => total + parseFloat(asset.assetBuyingPrice),
@@ -187,19 +196,19 @@ const Portfolio = () => {
     0
   );
 
-  // if (
-  //   loading ||
-  //   isLoading ||
-  //   isPending ||
-  //   purchasedLoading ||
-  //   purchasedPending
-  // ) {
-  //   return (
-  //     <p className="h-screen flex items-center justify-center text-primary">
-  //       <span>loading...</span>
-  //     </p>
-  //   );
-  // }
+  if (
+    loading ||
+    isLoading ||
+    isPending ||
+    purchasedLoading ||
+    purchasedPending
+  ) {
+    return (
+      <p className="h-screen flex items-center justify-center text-primary">
+        <span>loading...</span>
+      </p>
+    );
+  }
 
   return (
     <div className=" grid md:grid-cols-7 grid-cols-1  md:gap-5">
@@ -208,9 +217,9 @@ const Portfolio = () => {
         {/* header */}
         <PortfolioTopBanner
           totalBuyingPrice={totalBuyingPrice}
-          // calculateTotalProfit={calculateTotalProfit}
+          calculateTotalProfit={calculateTotalProfit}
           usersRemainingBalance={usersRemainingBalance}
-          // calculateTotalLoss={calculateTotalLoss}
+          calculateTotalLoss={calculateTotalLoss}
         />
         {/* coin buying list   */}
         <div className="my-5 p-4  rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
@@ -265,7 +274,7 @@ const Portfolio = () => {
                     >
                       Current Price
                     </TableCell>
-                    {/* <TableCell
+                    <TableCell
                       sx={{
                         color: "white",
                         borderBottom: "1px solid #2c3750",
@@ -273,7 +282,7 @@ const Portfolio = () => {
                       }}
                     >
                       Profit / Loss
-                    </TableCell> */}
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -354,7 +363,7 @@ const Portfolio = () => {
                         )}
                       </TableCell>
                       {/* 6th row */}
-                      {/* <TableCell
+                      <TableCell
                         sx={{
                           color: "white",
                           borderBottom: "1px solid #2c3750",
@@ -363,28 +372,31 @@ const Portfolio = () => {
                         <span
                           className={`font-medium ${
                             calculateDifference(
-                              currentPrices[asset.assetKey] || 0,
-                              parseFloat(asset.assetBuyingPrice)
-                            ) > 0
+                              asset.currentPrice,
+                              parseFloat(asset.assetBuyingPrice),
+                              asset.assetPortion
+                            ).toFixed(2) > 0
                               ? "text-green-700"
                               : "text-red-700"
                           }`}
                         >
                           $
                           {calculateDifference(
-                            currentPrices[asset.assetKey] || 0,
-                            parseFloat(asset.assetBuyingPrice)
-                          )}
+                            asset.currentPrice,
+                            parseFloat(asset.assetBuyingPrice),
+                            asset.assetPortion
+                          ).toFixed(2)}
                           {calculateDifference(
-                            currentPrices[asset.assetKey] || 0,
-                            parseFloat(asset.assetBuyingPrice)
-                          ) > 0 ? (
+                            asset.currentPrice,
+                            parseFloat(asset.assetBuyingPrice),
+                            asset.assetPortion
+                          ).toFixed(2) > 0 ? (
                             <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
                           ) : (
                             <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
                           )}
                         </span>
-                      </TableCell> */}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -409,7 +421,7 @@ const Portfolio = () => {
       {/* Right side  */}
       <div className=" col-span-2 ">
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  mb-5 ">
-          <BuyAndExchange></BuyAndExchange>
+          <BuyAndExchange cryptoData={cryptoData}></BuyAndExchange>
         </div>
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>

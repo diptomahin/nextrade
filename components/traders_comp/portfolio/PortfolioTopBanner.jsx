@@ -7,8 +7,9 @@ import { useState } from "react";
 
 const PortfolioTopBanner = ({
   totalBuyingPrice,
-
-  usersRemainingBalance,
+  calculateTotalProfit,
+  calculateTotalLoss,
+  usersRemainingBalance
 }) => {
   const [hideAssetAmount, setHideAssetAmount] = useState(false);
   const [hideRemainingBalance, setHideRemainingBalance] = useState(false);
@@ -52,32 +53,32 @@ const PortfolioTopBanner = ({
 
             <div className=" flex items-center justify-between gap-5 w-full ">
               {/* total profit */}
-              {/* <p
+              <p
                 className={`font-semibold ${
-                  "calculateTotalProfit" >= 0
+                  calculateTotalProfit >= 0
                     ? "text-green-700"
                     : "text-red-600"
                 }`}
               >
-                {"calculateTotalProfit" >= 0 ? "+ $" : "- $"}{" "}
-                {Math.abs("calculateTotalProfit").toFixed(2)}
-              </p> */}
+                {calculateTotalProfit >= 0 ? "+ $" : "- $"}{" "}
+                {Math.abs(calculateTotalProfit).toFixed(2)}
+              </p> 
 
               {/* total loss */}
-              {/* <p
+              <p
                 className={`font-semibold ${
-                  "calculateTotalProfit" >= 0
+                  calculateTotalProfit >= 0
                     ? "text-red-700"
                     : " text-green-700 "
                 }`}
               >
-                - $ {"calculateTotalLoss"}
-              </p> */}
+                - $ {calculateTotalLoss.toFixed(2)}
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Remaining balance */}
+        {/*  Remaining balance */}
 
         <div className="w-full flex items-center gap-3  p-5 rounded bg-[#78c350]">
           <div className="pb-6 w-full">
