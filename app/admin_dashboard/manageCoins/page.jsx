@@ -30,7 +30,7 @@ const ManageCoins = () => {
         isPending,
         isLoading,
         refetch,
-    } = usePublicFetch(`/allCoins`, ["allCoins"]);
+    } = usePublicFetch(`/manageAllCoins`, "manageCoins");
 
     // fetch crypto keys
     useEffect(() => {

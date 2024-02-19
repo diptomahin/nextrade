@@ -234,7 +234,7 @@ const ManageUsers = () => {
                         )}
                         <div className="text-sm lg:text-base text-white">
                           <h1 className="font-semibold">
-                            {singleUser.name}{" "}
+                            {singleUser.name ? singleUser.name: "No name"}{" "}
                             <span
                               className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
                                 singleUser.role === "admin"
@@ -455,7 +455,7 @@ const ManageUsers = () => {
             )}
             <div className="text-sm lg:text-base ">
               <h1 className="font-semibold">
-                {userName}{" "}
+                {userName? userName : "No name"}{" "}
                 <span
                   className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
                     userRole === "admin"
@@ -491,7 +491,7 @@ const ManageUsers = () => {
               <MenuItem value={"admin"}>Admin</MenuItem>
             </Select>
           </FormControl>
-          <Accordion sx={{ border: "0.2px solid #b4b1b1" }}>
+          {/* <Accordion sx={{ border: "0.2px solid #b4b1b1" }}>
             <AccordionSummary
               expandIcon={<ArrowDownwardIcon />}
               aria-controls="panel1-content"
@@ -505,7 +505,7 @@ const ManageUsers = () => {
               <p>Send Mail</p>
             </AccordionSummary>
             <AccordionDetails></AccordionDetails>
-          </Accordion>
+          </Accordion> */}
           <Button
             variant="outlined"
             color="error"
