@@ -270,9 +270,7 @@ const MarketPage = () => {
                   sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
                   placeholder="Search by name..."
                   inputProps={{ "aria-label": "search" }}
-                  onChange={(e) => {
-                    setSearchText(e.target.value)
-                  }}
+                  onChange={(e) => setSearchText(e.target.value)}
                 />
               </Search>
             </Stack>
