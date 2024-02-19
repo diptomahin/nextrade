@@ -19,6 +19,7 @@ import emptyIcon from "../../../assets/emptyIcon.png";
 import bitLogo from "../../../assets/btc-logo.png";
 import Link from "next/link";
 import DarkButton from "@/components/library/buttons/DarkButton";
+import { Input } from "@mui/material";
 
 // style input
 const ITEM_HEIGHT = 48;
@@ -118,13 +119,14 @@ const BuyAndExchange = ({ cryptoData }) => {
           {/* input field */}
 
           {/* 1st input */}
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Coin Name</InputLabel>
+          <FormControl fullWidth sx={{ borderBottom: "1px solid white",borderLeft: "1px solid white",borderRight: "1px solid white",borderRadius:'5px' }}>
+            <InputLabel id="demo-simple-select-label"style={{ color: "white" }} >Coin Name</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="Coin Name"
               onChange={handleChangeCoins}
+              sx={{ color: "white",border:'black' }}
             >
               {coinNames.map((name) => (
                 <MenuItem key={name} value={name}>
@@ -137,23 +139,18 @@ const BuyAndExchange = ({ cryptoData }) => {
             <CachedSharpIcon style={{ fontSize: "2rem" }} />
           </div>
           {/* 2nd input */}
-          <FormControl sx={{ width: 1 }}>
-            <InputLabel id="demo-multiple-name-label">Change</InputLabel>
+          <FormControl fullWidth sx={{ borderBottom: "1px solid white",borderLeft: "1px solid white",borderRight: "1px solid white",borderRadius:'5px' }}>
+            <InputLabel id="demo-simple-select-label"
+            style={{ color: "white" }}>Exchange Name</InputLabel>
             <Select
-              labelId="demo-multiple-name-label"
-              id="demo-multiple-name"
-              multiple
-              value={personNameExchange}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Exchange Name"
               onChange={handleChangeExchange}
-              input={<OutlinedInput label="Name" />}
-              MenuProps={MenuProps}
+              style={{ color: "white" }}
             >
               {exchangeNames.map((name) => (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, personNameExchange, theme)}
-                >
+                <MenuItem key={name} value={name}>
                   {name}
                 </MenuItem>
               ))}

@@ -353,7 +353,7 @@ const Portfolio = () => {
                               : "text-green-700"
                           }`}
                         >
-                          ${asset.currentPrice}
+                          ${parseFloat(asset.currentPrice).toFixed(2)}
                         </span>
                         {asset.currentPrice >
                         parseFloat(asset.assetBuyingPrice) ? (
