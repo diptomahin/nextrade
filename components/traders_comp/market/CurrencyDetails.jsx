@@ -197,7 +197,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
             fullWidth
             defaultValue={investment}
             id="outlined-number"
-            label={`Quantity (${coinKey})`}
+            label={`Investment (${coinKey})`}
             type="number"
             variant="outlined"
             InputLabelProps={{
