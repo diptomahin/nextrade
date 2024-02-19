@@ -31,9 +31,7 @@ const Trading = () => {
     refetch,
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
 
-  const publicAPI = usePublicAPI();
-
-  
+ 
   const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
 
   const [assets, setAssets] = useState([
