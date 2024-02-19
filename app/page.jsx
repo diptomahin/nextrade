@@ -12,7 +12,7 @@ import useAuth from "@/hooks/useAuth";
 import { FacebookProvider, CustomChat } from "react-facebook";
 
 export default function Home() {
-  const { loading, user } = useAuth();
+  const { loading } = useAuth();
 
   if (loading) {
     return (
@@ -41,8 +41,9 @@ export default function Home() {
       <FacebookProvider appId="429056069676911">
         <CustomChat
           pageId="108051777809659"
-          loggedInGreeting={`Welcome back, ${user}! Looking for assistance? Ariful from NexTrade is ready to assist you.`}
-          loggedOutGreeting={`Welcome back, ${user}! Looking for assistance? Ariful from NexTrade is ready to assist you.`}
+          minimized={false}
+          loggedInGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
+          loggedOutGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
         />
       </FacebookProvider>
     </main>
