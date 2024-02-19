@@ -38,14 +38,14 @@ export default function Home() {
       <Subscription />
       <WhyNexTrade />
       <Map />
-      <FacebookProvider appId="429056069676911" chatSupport>
-        <CustomChat
-          pageId="108051777809659"
-          minimized={true}
-          loggedInGreeting="Welcome! How can we assist you today?"
-          loggedOutGreeting="Welcome! Feel free to ask any questions."
-        />
-      </FacebookProvider>
+      <FacebookProvider appId="429056069676911">
+  <CustomChat 
+    pageId="108051777809659" 
+    minimized={false} 
+    loggedInGreeting="Welcome! How can we assist you today?"
+    loggedOutGreeting={`Welcome back, ${user}! Looking for assistance? Ariful from NexTrade is ready to assist you.`}
+  />
+</FacebookProvider>
     </main>
   );
 }
