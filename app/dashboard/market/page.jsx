@@ -101,14 +101,16 @@ const MarketPage = () => {
   const [sort, setSort] = useState("Current Price");
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
-  const [searchText, setSearchText] = useState(null);
+  const [searchText, setSearchText] = useState('');
+
+
 
   const {
     data: allCoins = [],
     isPending,
     isLoading,
     refetch,
-  } = usePublicFetch(`/allCoins?search=${searchText}`, ["allCoins"]);
+  } = usePublicFetch(`/allCoins?search=${searchText}`, "allCoins", searchText);
 
   // console.log(allCoins)
   useEffect(() => {
@@ -118,11 +120,8 @@ const MarketPage = () => {
     }
   }, [allCoins]);
 
+  // console.log(searchText)
 
-  // search functionality
-  const handleSearchChange = (event) => {
-    searchText(event.target.value);
-  };
 
   // create new objects 
   const createData = (
@@ -271,7 +270,9 @@ const MarketPage = () => {
                   sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
                   placeholder="Search by name..."
                   inputProps={{ "aria-label": "search" }}
-                  onChange={handleSearchChange}
+                  onChange={(e) => {
+                    setSearchText(e.target.value)
+                  }}
                 />
               </Search>
             </Stack>
