@@ -144,9 +144,11 @@ const Subscription = () => {
             </h3>
           </div>
           <div className=" flex items-center justify-center">
-            <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
-              Continue With Standard
-            </DarkButton>
+            <Link href="https://buy.stripe.com/test_28og2n9AQcVf7DOeUU">
+              <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
+                Continue With Standard
+              </DarkButton>
+            </Link>
           </div>
         </motion.div>
 
@@ -210,9 +212,11 @@ const Subscription = () => {
             </h3>
           </div>
           <div className=" flex items-center justify-center">
-            <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
-              Continue With Premium
-            </DarkButton>
+            <Link href="https://buy.stripe.com/test_14kbM7dR68EZ0bm7st">
+              <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
+                Continue With Premium
+              </DarkButton>
+            </Link>
           </div>
         </motion.div>
 
