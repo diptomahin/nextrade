@@ -19,10 +19,8 @@ import emptyIcon from "../../../assets/emptyIcon.png";
 import axios from "axios";
 
 const Portfolio = () => {
-  // const [currentPrices, setCurrentPrices] = useState({});
-  // const [buyingPriceInfo, setBuyingPriceInfo] = useState([]);
+
   const { user, loading } = useAuth();
-  const [tickerData, setTickerData] = useState([]);
   const [cryptoData, setCryptoData] = useState([]);
   const [currencyData, setCurrencyData] = useState([]);
 
@@ -125,36 +123,31 @@ const Portfolio = () => {
     const fetchCurrencyRates = async () => {
       try {
         if (currencyData.length > 0) {
-          const response = await axios.get(
-            "https://api.exchangerate-api.com/v4/latest/USD"
-          );
-          // Access the data property of the response to get the currency rates
-          const data = response.data.rates;
-          const updatedAssets = currencyData.map((asset) => {
+          const updatedAssets = await Promise.all(currencyData.map(async (asset) => {
             const currencyKey = asset.assetKey;
-            
-          
+            const response = await axios.get(
+              `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+            );
             return createCryptoData(
               asset.assetName,
               asset.assetKey,
               asset.assetImg,
               asset.assetType,
               asset.assetBuyingPrice,
-              data[currencyKey],
+              response.data.rates.USD,
               asset.assetPortion,
               asset.totalInvestment,
               asset.assetBuyerUID,
               asset.assetBuyerEmail
             );
-          });
+          }));
           setCryptoData((prevCryptoData) => [...prevCryptoData, ...updatedAssets]);
-
         }
       } catch (error) {
         console.error("Error fetching currency rates:", error);
       }
     };
-
+  
     fetchCurrencyRates();
   }, [currencyData]);
 

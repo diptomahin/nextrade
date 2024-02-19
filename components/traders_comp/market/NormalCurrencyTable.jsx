@@ -104,8 +104,7 @@ const NormalCurrencyTable = ({ assets }) => {
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
                 <p className={` text-white`}>
-                  {asset.price}
-                  <span className="text-[8px]"> {asset.key}</span>
+                  $ {asset.price}
                 </p>
               </TableCell>
               <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
