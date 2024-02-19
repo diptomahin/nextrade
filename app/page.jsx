@@ -42,8 +42,8 @@ export default function Home() {
         <CustomChat
           pageId="108051777809659"
           minimized={false}
-          loggedInGreeting={`Welcome back, ${user}! Looking for assistance? Ariful from NexTrade is ready to assist you.`}
-          loggedOutGreeting={`Welcome back, ${user}! Looking for assistance? Ariful from NexTrade is ready to assist you.`}
+          loggedInGreeting="Welcome! Looking for assistance? Ariful from NexTrade is ready to assist you."
+          loggedOutGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
         />
       </FacebookProvider>
     </main>
