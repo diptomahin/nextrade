@@ -25,7 +25,7 @@ import "./wallet.css";
 import WithdrawForm from "@/components/traders_comp/wallet/WithdrawForm";
 
 const stripePromise = loadStripe(
-  "pk_test_51OcLnwB6RMsoXbxVtHu6thbvRXkoM5hYmM60zlvPZu7kr6bdIyG1vZs6G1ZiJYtf0pT8pmRgu4GDlL0d7edJPAIW00iHrYjfqo"
+  "pk_test_51OlajqDiMQeSaa5LxC7tWUKZSGttpwdEYpHonWb6QkYttv3vgJlGazlArbsWPutWsDsua0zPbK9oUvEYYspfs0Rf00viBhriC3"
 );
 
 const currentDate = new Date();
