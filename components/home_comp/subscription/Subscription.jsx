@@ -16,7 +16,7 @@ const Subscription = () => {
   return (
     <Container className="py-20">
       <div className="text-center">
-        <Title>Get More Benefits With Subscription</Title>
+        <Title>Get more benefits with subscription</Title>
         <motion.p
           variants={fadeIn("up", 0.2)}
           initial="hidden"
@@ -24,7 +24,7 @@ const Subscription = () => {
           viewport={{ once: false, amount: 0.1 }}
           className=" text-darkGray font-medium"
         >
-          Monthly and yearly Subscription Sell
+          Monthly subscription sell
         </motion.p>
       </div>
       <div className="relative grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
@@ -37,9 +37,9 @@ const Subscription = () => {
           className="w-full bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl px-8 py-5 rounded z-10"
         >
           <div className="text-center">
-            <h3 className="text-lg font-semibold">Free Plan</h3>
+            <h3 className="text-lg font-semibold">Basic Plan</h3>
             <h1 className="text-2xl font-bold py-3">
-              $0{" "}
+              Free
               <sub className="text-sm text-darkGray font-medium">/ monthly</sub>
             </h1>
           </div>
@@ -47,39 +47,44 @@ const Subscription = () => {
           {/* Cart criteria */}
           <div className=" space-y-5 py-5 lg:h-96">
             {/*criteria 1 */}
-            <p className="flex items-center gap-2 text-sm font-medium text-darkGray">
+            <p className="flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>2 charts per tab</span>
+              <span>Limited market data</span>
             </p>
             {/*criteria 2 */}
             <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>5 indicators per chart</span>
+              <span>Basic charting tools</span>
             </p>
             {/*criteria 3 */}
             <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>10K historical bars</span>
+              <span>Limited trading features</span>
             </p>
             {/*criteria 4 */}
             <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>20 price alerts</span>
+              <span>Basic portfolio tracking</span>
             </p>
             {/*criteria 5 */}
             <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>20 technical alerts</span>
+              <span>Basic research tools</span>
             </p>
             {/*criteria 6 */}
             <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>10 parallel chart connections</span>
+              <span>Basic customer support</span>
+            </p>
+            {/*criteria 7 */}
+            <p className=" flex items-center gap-2 text-base font-medium text-darkGray">
+              <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
+              <span>Limited educational recourses</span>
             </p>
           </div>
           <Link href="/dashboard" className=" flex items-center justify-center">
-            <DarkButton className="w-full lg:h-10 lg:text-sm">
-              Continue With Free
+            <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
+              Get Started
             </DarkButton>
           </Link>
         </motion.div>
@@ -95,7 +100,7 @@ const Subscription = () => {
           <div className="text-center">
             <h3 className="text-lg font-semibold">Standard Plan</h3>
             <h1 className="text-2xl font-bold py-3">
-              $9.99{" "}
+              $4.99{" "}
               <sub className="text-sm text-darkGray font-medium">/ monthly</sub>
             </h1>
           </div>
@@ -105,41 +110,41 @@ const Subscription = () => {
             {/*criteria 1 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>4 charts per tab</span>
+              <span>Enhanced market data</span>
             </h3>
             {/*criteria 2 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>10 indicators per chart</span>
+              <span>Advanced charting tools</span>
             </h3>
             {/*criteria 3 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>10K historical bars</span>
+              <span>Advanced trading features</span>
             </h3>
             {/*criteria 4 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>100 price alerts</span>
+              <span>Enhanced portfolio tracking</span>
             </h3>
             {/*criteria 5 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>100 technical alerts</span>
+              <span>Additional research tools</span>
             </h3>
             {/*criteria 6 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>20 parallel chart connections</span>
+              <span>Priority customer support</span>
             </h3>
             {/*criteria 7 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white  w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>Multiple watchlists</span>
+              <span>expanded educational recourses</span>
             </h3>
           </div>
           <div className=" flex items-center justify-center">
-            <DarkButton className="w-full lg:h-10 lg:text-sm">
+            <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
               Continue With Standard
             </DarkButton>
           </div>
@@ -156,7 +161,7 @@ const Subscription = () => {
           <div className="text-center">
             <h3 className="text-lg font-semibold">Premium Plan</h3>
             <h1 className="text-2xl font-bold py-3">
-              $14.99{" "}
+              $9.99{" "}
               <sub className="text-sm text-darkGray font-medium">/ monthly</sub>
             </h1>
           </div>
@@ -166,46 +171,46 @@ const Subscription = () => {
             {/*criteria 1 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>8 charts per tab</span>
+              <span>Full market data access</span>
             </h3>
             {/*criteria 2 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>25 indicators per chart</span>
+              <span>Comprehensive charting tools</span>
             </h3>
             {/*criteria 3 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>20K historical bars</span>
+              <span>Advanced trading strategies</span>
             </h3>
             {/*criteria 4 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>400 price alerts</span>
+              <span>Advanced portfolio analysis</span>
             </h3>
             {/*criteria 5 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>400 technical alerts</span>
+              <span>Exclusive research tools</span>
             </h3>
             {/*criteria 6 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>50 parallel chart connections</span>
+              <span>Advanced priority support</span>
             </h3>
             {/*criteria 7 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>Custom timeframes</span>
+              <span>Advanced educational recourses</span>
             </h3>
             {/*criteria 8 */}
             <h3 className=" flex items-center gap-2 text-base font-medium text-darkGray">
               <DoneIcon className="text-white w-5 h-5 p-1 bg-primary rounded-full" />
-              <span>Multiple watchlists</span>
+              <span>Customizable alert</span>
             </h3>
           </div>
           <div className=" flex items-center justify-center">
-            <DarkButton className="w-full lg:h-10 lg:text-sm">
+            <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
               Continue With Premium
             </DarkButton>
           </div>
