@@ -13,7 +13,7 @@ const Success = () => {
         // Fetch checkout session details from Stripe
         try {
           const response = await axios.get(
-            `http://localhost:5000/checkout-session/${session_id}`
+            `https://nex-trade-server.vercel.app/checkout-session/${session_id}`
           );
           console.log(response.data);
           if (response.data.status) {
