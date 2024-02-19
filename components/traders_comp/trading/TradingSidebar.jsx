@@ -8,24 +8,21 @@ import Button from '@mui/material/Button';
 //other imports
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
-import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
-import usePublicAPI from "@/hooks/usePublicAPI";
-
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 
 const TradingSidebar = (params) => {
 
   const { user, loading } = useAuth();
   const {value, assets} = params
+  const secureAPI = useSecureAPI();
   const {
     data: allUsers = [],
     isPending,
     isLoading,
     refetch,
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
-
-  const publicAPI = usePublicAPI();
 
   const usersBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
     
@@ -37,15 +34,14 @@ const TradingSidebar = (params) => {
 
     //Buy coin
     const handleBuyCoin = (ast) => {
-      // const assetInfo = {
-      //   assetName: ast.name,
-      //   assetKey: ast.key,
-      //   assetBuyingPrice: ast.price,
-      //   assetBuyerUID: user.uid,
-      //   assetBuyerEmail: user.email,
-      // };
-  
-      // calculate remaining balance after buying a coin
+      const assetInfo = {
+        assetName: ast.name,
+        assetKey: ast.key,
+        assetBuyingPrice: ast.price,
+        assetBuyerUID: user.uid,
+        assetBuyerEmail: user.email,
+      };
+      //calculate remaining balance after buying a coin
       const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
       const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
       if (usersBalance < parseFloat(ast.price)) {
@@ -56,31 +52,30 @@ const TradingSidebar = (params) => {
         });
         return;
       }
-      Swal.fire({
-        title: `${ast.name} purchase successful!`,
-        text: `Best of luck`,
-        icon: "success",
+     else
+     {
+      secureAPI
+      .post(`/spotTrading`, assetInfo)
+      .then((res) => {
+        console.log(res)
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: `${ast.name} Purchase successful!`,
+            text: `Best of luck`,
+            icon: "success",
+          });
+          refetch();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: `Coin Purchase failed!`,
+          text: `Please try again`,
+          icon: "error",
+        });
       });
-      // publicAPI
-      //   .post(`/spotTrading`, assetInfo)
-      //   .then((res) => {
-      //     if (res.data.modifiedCount > 0) {
-      //       Swal.fire({
-      //         title: `Coin Purchase successful!`,
-      //         text: `Best of luck`,
-      //         icon: "success",
-      //       });
-      //       refetch();
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     Swal.fire({
-      //       title: `Coin Purchase failed!`,
-      //       text: `Please try again`,
-      //       icon: "error",
-      //     });
-      //   });
+     }
     };
 
     //handleSellCoin
