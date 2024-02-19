@@ -42,7 +42,7 @@ export default function Home() {
         <CustomChat
           pageId="108051777809659"
           minimized={false}
-          loggedInGreeting="Welcome! Looking for assistance? Ariful from NexTrade is ready to assist you."
+          loggedInGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
           loggedOutGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
         />
       </FacebookProvider>
