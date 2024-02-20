@@ -53,7 +53,7 @@ const TradersNotification = () => {
                 <MoreVertIcon className="cursor-pointer"/>
               </button>
               {isOpenDot && (
-                <div className="absolute right-3 top-10 flex flex-col  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree font-medium rounded-md">
+                <div className="absolute right-10 top-0 flex flex-col  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree font-medium rounded-md">
                   <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent rounded-md hover:bg-[#ff5252] border-none pr-6 pl-8 ">
                     Delete
                   </button>
