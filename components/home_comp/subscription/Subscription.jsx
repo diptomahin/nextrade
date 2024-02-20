@@ -82,7 +82,10 @@ const Subscription = () => {
               <span>Limited educational recourses</span>
             </p>
           </div>
-          <Link href="/dashboard" className=" flex items-center justify-center">
+          <Link
+            href="/dashboard"
+            className="w-full flex items-center justify-center"
+          >
             <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
               Get Started
             </DarkButton>
@@ -143,13 +146,14 @@ const Subscription = () => {
               <span>expanded educational recourses</span>
             </h3>
           </div>
-          <div className=" flex items-center justify-center">
-            <Link href="https://buy.stripe.com/test_28og2n9AQcVf7DOeUU">
-              <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
-                Continue With Standard
-              </DarkButton>
-            </Link>
-          </div>
+          <Link
+            href="https://buy.stripe.com/test_28og2n9AQcVf7DOeUU"
+            className="w-full flex items-center justify-center"
+          >
+            <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
+              Continue With Standard
+            </DarkButton>
+          </Link>
         </motion.div>
 
         {/* cart 3 Premium  plan */}
@@ -211,13 +215,14 @@ const Subscription = () => {
               <span>Customizable alert</span>
             </h3>
           </div>
-          <div className=" flex items-center justify-center">
-            <Link href="https://buy.stripe.com/test_14kbM7dR68EZ0bm7st">
-              <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
-                Continue With Premium
-              </DarkButton>
-            </Link>
-          </div>
+          <Link
+            href="https://buy.stripe.com/test_14kbM7dR68EZ0bm7st"
+            className=" flex items-center justify-center"
+          >
+            <DarkButton className="w-full lg:h-10 lg:text-sm bg-primary/90 hover:bg-primary text-white">
+              Continue With Premium
+            </DarkButton>
+          </Link>
         </motion.div>
 
         {/* left */}
