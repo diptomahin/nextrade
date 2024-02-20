@@ -32,6 +32,26 @@ const Security = () => {
       updateUserPassword(user, newPassword)
         .then(() => {
           console.log("Update successful.");
+
+          // post notification data sen database
+        const notificationInfo = {
+          title: "Password Change ",
+          description: 'Your account password has been changed',
+          assetKey: "",
+          assetImg: "",
+          assetBuyerUID: "",
+          assetBuyerEmail: user.email,
+        };
+
+        // post to  notification data in database
+        secureAPI
+          .post("/notifications", notificationInfo)
+          .then((res) => {
+            console.log("Successfully coin added:", res);
+          })
+          .catch((error) => {
+            console.error("Error sending notification:", error);
+          });
         })
         .catch((error) => {
           console.log("error");
