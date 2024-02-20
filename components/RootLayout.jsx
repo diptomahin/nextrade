@@ -12,7 +12,8 @@ const MainLayout = ({ children }) => {
   const noHeaderFooter =
     pathname.includes("login") ||
     pathname.includes("register") ||
-    pathname.includes("dashboard");
+    pathname.includes("dashboard") ||
+    pathname.includes("success");
   return (
     <QueryClientProvider client={queryClient}>
       <div className="font-montserrat bg-darkBG">
