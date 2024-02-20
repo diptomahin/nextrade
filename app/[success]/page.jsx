@@ -9,7 +9,13 @@ import { useEffect, useState } from "react";
 const Success = () => {
   const [purchaseLoading, setPurchaseLoading] = useState(true);
   const [purchasedProduct, setPurchasedProduct] = useState(() => {
-    return JSON.parse(sessionStorage.getItem("purchaseProduct")) || null;
+    if (typeof window !== "undefined") {
+      // Check if window is defined (i.e., if code is running in the browser)
+      const storedProduct = sessionStorage.getItem("purchaseProduct");
+      return storedProduct ? JSON.parse(storedProduct) : null;
+    } else {
+      return null; // Return null if running in a non-browser environment
+    }
   });
   const pathname = usePathname();
   const session_id = pathname.split("/").pop();
