@@ -222,10 +222,10 @@ const Portfolio = () => {
           calculateTotalLoss={calculateTotalLoss}
         />
         {/* coin buying list   */}
-        <div className="my-5 p-4  rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
+        <div className="my-5 p-4   rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
           <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
           {cryptoData ? (
-            <div className=" bg-gradient-to-bl from-darkOne to-darkTwo  ">
+            <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
