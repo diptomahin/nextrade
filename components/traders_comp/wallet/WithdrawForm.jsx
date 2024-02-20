@@ -140,6 +140,7 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
           .post("/notifications", notificationInfo)
           .then((res) => {
             console.log("Successfully coin added:", res);
+            refetch()
           })
           .catch((error) => {
             console.error("Error sending notification:", error);
