@@ -30,7 +30,7 @@ const CoinDetails = ({ params }) => {
   // fetch real-time data for crypto currency and regular currency
   useEffect(() => {
 
-    publicAPI.get('/allCoins')
+    publicAPI.get('/manageAllCoins')
         .then(res => {
           const foundCurrency = res.data.find(currency => currency.key === params.CoinDetails);
           setCoinImage(foundCurrency.icon)
