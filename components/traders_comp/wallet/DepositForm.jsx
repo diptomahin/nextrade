@@ -10,6 +10,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
@@ -20,6 +21,7 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
+  const secureAPI = useSecureAPI();
 
   React.useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -116,6 +118,27 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
           amount: parseInt(amount),
           currency: "usd",
         };
+
+        // post notification data sen database
+        const notificationInfo = {
+          title: "Deposit Successfully",
+          description: `Money has been added to your account ${parseInt(amount) + "$"}`,
+          assetKey: '',
+          assetImg: '',
+          assetBuyerUID: '',
+          assetBuyerEmail: user.email,
+        };
+
+        // post to  notification data in database
+        secureAPI
+  .post('/notifications', notificationInfo)
+  .then((res) => {
+    console.log("Successfully coin added:", res);
+  })
+  .catch((error) => {
+    console.error("Error sending notification:", error);
+    
+  });
         axios
           .post(
             `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
