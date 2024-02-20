@@ -43,10 +43,6 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
 
     setPaymentError("");
 
-    if (totalBalance < amount) {
-      return setPaymentError("*Insufficient balance");
-    }
-
     if (!/^-?\d*\.?\d+$/.test(amount)) {
       form.reset();
       setAmount(0);
@@ -59,6 +55,10 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
 
     if (amount > 100000) {
       return setPaymentError("*The amount must be 100,000 or less.");
+    }
+
+    if (totalBalance < amount) {
+      return setPaymentError("*Insufficient balance");
     }
 
     if (!/^\d{4}$/.test(postalCode)) {
