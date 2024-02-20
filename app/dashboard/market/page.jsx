@@ -7,6 +7,10 @@ import {
   Select,
   MenuItem,
   InputBase,
+  Box,
+  Tab,
+  ToggleButtonGroup,
+  ToggleButton,
 } from "@mui/material";
 import { Stack } from "@mui/material";
 
@@ -19,40 +23,45 @@ import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrency
 import usePublicFetch from "@/hooks/usePublicFetch";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from '@mui/material/styles';
-
-const CustomSelect = styled(Select)({
-  "& .MuiSelect-root": {
-    color: "#E0E3E7", // Text color
-    "&:focus": {
-      backgroundColor: "transparent", // Remove focus background color
-    },
-  },
-  "& .MuiSelect-select": {
-    color: "white",
-    "&:hover": {
-      backgroundColor: "transparent", // Remove hover background color
-    },
-  },
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderRadius: "50px",
-    borderColor: "#40a0ff", // Border color
-    "&:active": {
-      borderColor: "#40a0ff",
-    },
-    "&:hover": {
-      borderColor: "#40a0ff",
-    },
-  },
-  "& .MuiSelect-icon": {
-    color: "#40a0ff", // Color of the select icon
-  },
-  "& .MuiMenuItem-root": {
-    color: "black", // Menu item text color
-  },
-  "& .MuiList-root": {
-    backgroundColor: "#21366c", // Background color of select options when open
-  },
-});
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import GridViewIcon from '@mui/icons-material/GridView';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
+// const CustomSelect = styled(Select)({
+//   "& .MuiSelect-root": {
+//     color: "#E0E3E7", // Text color
+//     "&:focus": {
+//       backgroundColor: "transparent", // Remove focus background color
+//     },
+//   },
+//   "& .MuiSelect-select": {
+//     color: "white",
+//     "&:hover": {
+//       backgroundColor: "transparent", // Remove hover background color
+//     },
+//   },
+//   "& .MuiOutlinedInput-notchedOutline": {
+//     borderRadius: "50px",
+//     borderColor: "#40a0ff", // Border color
+//     "&:active": {
+//       borderColor: "#40a0ff",
+//     },
+//     "&:hover": {
+//       borderColor: "#40a0ff",
+//     },
+//   },
+//   "& .MuiSelect-icon": {
+//     color: "#40a0ff", // Color of the select icon
+//   },
+//   "& .MuiMenuItem-root": {
+//     color: "black", // Menu item text color
+//   },
+//   "& .MuiList-root": {
+//     backgroundColor: "#21366c", // Background color of select options when open
+//   },
+// });
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,7 +73,7 @@ const Search = styled("div")(({ theme }) => ({
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
+    // marginLeft: theme.spacing(1),
     width: "auto",
   },
 }));
@@ -87,7 +96,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("xs")]: {
       width: "16ch",
       "&:focus": {
         width: "25ch",
@@ -97,12 +106,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const MarketPage = () => {
-  const [category, setCategory] = useState("Cryptos");
-  const [sort, setSort] = useState("Current Price");
+  // const [category, setCategory] = useState("Cryptos");
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [searchText, setSearchText] = useState('');
-
+  const [value, setValue] = React.useState("1");
 
 
   const {
@@ -209,6 +217,16 @@ const MarketPage = () => {
   }, [flatCurrency]);
   // console.log(flatCurrency)
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const [view, setView] = React.useState('list');
+
+  const handleViewChange = (event, nextView) => {
+    setView(nextView);
+  };
+
   return (
     <div>
       <div className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  p-4 rounded">
@@ -218,17 +236,17 @@ const MarketPage = () => {
           instruments available.
         </p>
         {/* market headline */}
-        <MarketHeadLine assets={assets}></MarketHeadLine>
+        <MarketHeadLine></MarketHeadLine>
       </div>
 
 
 
       <div className="flex flex-col xl:flex-row gap-5 my-4">
         <div className="w-full p-3 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  rounded xl:w-3/4">
-          <div className="p-2 my-4 max-w-min rounded">
-            <Stack flexDirection="row" gap={2}>
+          {/* <div className="p-2 my-4 max-w-min rounded">
+            <Stack flexDirection="row" gap={2} justifyContent="space-between">
 
-              {/* category select */}
+             
               <FormControl sx={{ width: 200, backgroundColor: "transparent" }}>
                 <InputLabel id="demo-simple-select-label">
                   <p className="text-primary">Category</p>
@@ -251,12 +269,37 @@ const MarketPage = () => {
                 </CustomSelect>
               </FormControl>
 
+              
+            </Stack>
+          </div> */}
+
+
+          {/* market tables */}
+          {/* {category === "Cryptos" ? (
+            <MarketTable assets={assets}></MarketTable>
+          ) : category === "Currency" ? (
+            <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+          ) : (
+            <div>
+              <h1>This is Under Development</h1>
+            </div>
+          )} */}
+
+          <TabContext value={value}>
+            
+              <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
+
+              <TabList onChange={handleChange} aria-label="lab API tabs example">
+                <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
+                <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+              </TabList>
+
               {/* search field */}
               <Search
                 sx={{
                   display: "flex", alignItems: "center",
                   borderRadius: "50px",
-                  border: "1px solid #40a0ff",
+                  border: "1px solid #2c3750",
                   backgroundColor: "rgba(0,0,0,0.06)",
                   "&:hover": {
                     backgroundColor: "rgba(0,0,0,0.1)",
@@ -270,23 +313,43 @@ const MarketPage = () => {
                   sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
                   placeholder="Search by name..."
                   inputProps={{ "aria-label": "search" }}
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={(e) => {
+                    setSearchText(e.target.value)
+                    if (e.target.value === "") {
+                      refetch()
+                    }
+                  }}
                 />
               </Search>
-            </Stack>
-          </div>
+
+              {/* view options */}
+              <ToggleButtonGroup
+                orientation="horizontal"
+                value={view}
+                exclusive
+                onChange={handleViewChange}
+              >
+                <ToggleButton value="list" aria-label="list">
+                  <ViewListIcon className="text-primary" />
+                </ToggleButton>
+                <ToggleButton value="module" aria-label="module">
+                  <ViewModuleIcon className="text-primary" />
+                </ToggleButton>
+                <ToggleButton value="quilt" aria-label="quilt">
+                  <ViewQuiltIcon className="text-primary" />
+                </ToggleButton>
+              </ToggleButtonGroup>
+              </div>
+            
+            <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
+              <MarketTable assets={assets}></MarketTable>
+            </TabPanel>
+            <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
+              <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+            </TabPanel>
+          </TabContext>
 
 
-          {/* market tables */}
-          {category === "Cryptos" ? (
-            <MarketTable assets={assets}></MarketTable>
-          ) : category === "Currency" ? (
-            <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
-          ) : (
-            <div>
-              <h1>This is Under Development</h1>
-            </div>
-          )}
         </div>
 
         {/* side watchlist */}

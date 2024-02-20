@@ -19,7 +19,6 @@ const MarketTable = ({ assets }) => {
   return (
     <TableContainer
       sx={{
-        borderRadius: "0.75rem",
         boxShadow: "none",
       }}
       className="bg-gradient-to-bl from-darkOne to-darkTwo border-none "
@@ -32,7 +31,8 @@ const MarketTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               No.
@@ -41,7 +41,8 @@ const MarketTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               Coin Name
@@ -50,7 +51,8 @@ const MarketTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               Current Price
@@ -59,7 +61,8 @@ const MarketTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               24%
@@ -68,7 +71,8 @@ const MarketTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               24h High Price
@@ -77,7 +81,8 @@ const MarketTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               24h Low Price
@@ -86,7 +91,8 @@ const MarketTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               Option
@@ -97,13 +103,13 @@ const MarketTable = ({ assets }) => {
           {assets.map((asset, idx) => (
             <TableRow key={asset.name}>
               <TableCell
-                sx={{ borderBottom: "1px solid #2c3750" }}
+                sx={{ borderBottom: "none" }}
                 component="th"
                 scope="row"
               >
                 <p className="text-white">{idx + 1}</p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <div className="flex items-center gap-2">
                   <Image
                     width={40}
@@ -117,12 +123,12 @@ const MarketTable = ({ assets }) => {
                   </span>
                 </div>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <p className={` font-semibold text-white`}>
                   $ {parseFloat(asset.price).toFixed(2)}
                 </p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <p
                   className={` font-semibold ${
                     asset.changePrice < 0
@@ -140,17 +146,17 @@ const MarketTable = ({ assets }) => {
                   )}
                 </p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <p className={` font-semibold text-green-700`}>
                   $ {asset.highPrice}
                 </p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <p className={` font-semibold text-red-600`}>
                   $ {asset.lowPrice}
                 </p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <DarkButton className="font-medium normal-case h-8 xl:text-sm">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>

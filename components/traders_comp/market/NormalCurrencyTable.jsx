@@ -16,7 +16,6 @@ const NormalCurrencyTable = ({ assets }) => {
   return (
     <TableContainer
       sx={{
-        borderRadius: "0.75rem",
         boxShadow: "none",
       }}
       className="bg-gradient-to-bl from-darkOne to-darkTwo "
@@ -29,7 +28,8 @@ const NormalCurrencyTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               No.
@@ -38,7 +38,8 @@ const NormalCurrencyTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               Name
@@ -47,7 +48,8 @@ const NormalCurrencyTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               Code
@@ -56,7 +58,8 @@ const NormalCurrencyTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               Current Value/USD
@@ -65,7 +68,8 @@ const NormalCurrencyTable = ({ assets }) => {
               sx={{
                 fontWeight: 700,
                 color: "white",
-                borderBottom: "1px solid #2c3750",
+                borderBottom: "2px solid #2c3750",
+                borderTop: "2px solid #2c3750"
               }}
             >
               Option
@@ -79,13 +83,13 @@ const NormalCurrencyTable = ({ assets }) => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell
-                sx={{ borderBottom: "1px solid #2c3750" }}
+                sx={{ borderBottom: "none" }}
                 component="th"
                 scope="row"
               >
                 <p className="text-white">{idx + 1}</p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <div className="flex items-center gap-2">
                   <Image
                     width={40}
@@ -99,15 +103,15 @@ const NormalCurrencyTable = ({ assets }) => {
                   </span>
                 </div>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <p className={`text-white`}>{asset.key}</p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <p className={` text-white`}>
                   $ {asset.price}
                 </p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell sx={{ borderBottom: "none" }}>
                 <DarkButton className="font-medium normal-case h-8 xl:text-sm">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
