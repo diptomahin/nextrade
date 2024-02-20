@@ -1,0 +1,32 @@
+/* Translate.module.css */
+
+body > .skiptranslate {
+    display: none;
+  }
+  
+  .goog-te-gadget {
+    font-size: 0px !important;
+  }
+  
+  #google_translate_element {
+    color: transparent;
+  }
+  
+  #google_translate_element a {
+    display: none;
+  }
+  
+  .goog-te-banner-frame.skiptranslate {
+    display: none !important;
+  }
+  
+  body {
+    top: 0px !important;
+  }
+  
+  @media print {
+    #google_translate_element {
+      display: none;
+    }
+  }
+  
