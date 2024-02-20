@@ -78,7 +78,7 @@ const Success = () => {
   }
 
   return (
-    <div className="h-[70vh] w-full flex flex-col gap-10 items-center justify-center py-20">
+    <div className="h-screen w-full flex flex-col gap-10 items-center justify-center py-20">
       <h1 className="text-5xl font-semibold text-white">
         Thanks For Subscribing Our {purchasedProduct && purchasedProduct?.name}
       </h1>
