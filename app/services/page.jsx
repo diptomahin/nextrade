@@ -11,8 +11,6 @@ import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../components/utils/variants";
 import Title from "@/components/library/Title";
-import Link from "next/link";
-import DarkButton from "../../components/library/buttons/DarkButton";
 
 const Services = () => {
   return (
@@ -31,7 +29,7 @@ const Services = () => {
 
       <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
         {/* cart 1  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -55,9 +53,9 @@ const Services = () => {
             trading through comprehensive educational programs, workshops, and
             training sessions.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 2  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("down", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -82,9 +80,9 @@ const Services = () => {
             insights, enabling informed decision-making for your trading
             activities.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 3  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("left", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -109,9 +107,9 @@ const Services = () => {
             specialized strategies designed to maximize returns and minimize
             volatility.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 4  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -134,9 +132,9 @@ const Services = () => {
             ensuring you stay informed and can act promptly to capitalize on
             emerging opportunities.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 5  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -161,9 +159,9 @@ const Services = () => {
             trading through comprehensive educational programs, workshops, and
             training sessions.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 6  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("left", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -187,7 +185,7 @@ const Services = () => {
             Leverage cutting-edge algorithms to automate your trading
             strategies, ensuring precise execution and optimal returns.
           </p>
-        </motion.Card>
+        </motion.div>
       </div>
       <motion.div
         variants={fadeIn("up", 0.2)}

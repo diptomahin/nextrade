@@ -77,7 +77,11 @@ const AboutNexTrade = () => {
         alignItems="center"
       >
         <Stack flex={1} direction="row">
-          <Image src={mission} alt="business growth"></Image>
+          <Image
+            src={mission}
+            alt="business growth"
+            style={{ width: "auto", height: "auto" }}
+          ></Image>
         </Stack>
         <Stack flex={1}>
           <Typography
@@ -87,10 +91,10 @@ const AboutNexTrade = () => {
             Our mission at nexTrade is to provide an expansive, seamless, and
             highly secure trading experience, unlocking the vast potential of
             global markets for everyone. Committed to fostering financial
-            inclusivity, we empower our users to trade with confidence and
+            inclusively, we empower our users to trade with confidence and
             embrace a world of diverse investment opportunities. By prioritizing
             accessibility and security, nexTrade is dedicated to shaping a
-            future where trading is not just a transaction but a transformative
+            future where trading is not just a transaction but a transformation
             journey towards financial empowerment for all.
           </Typography>
         </Stack>
@@ -123,8 +127,9 @@ const AboutNexTrade = () => {
             <CardContent>
               <Image
                 src={tradeCurrency}
-                className="w-40 mx-auto"
+                className=" mx-auto"
                 alt="trade currency"
+                style={{ width: "180px", height: "auto" }}
               ></Image>
               <Typography variant="h6" fontWeight="bold">
                 Trade Currencies
@@ -153,8 +158,9 @@ const AboutNexTrade = () => {
             <CardContent>
               <Image
                 src={investment}
-                className="mx-auto w-48"
+                className="mx-auto"
                 alt="investment image"
+                style={{ width: "180px", height: "auto" }}
               ></Image>
               <Typography variant="h6" fontWeight="bold">
                 Invest in Shares
@@ -182,8 +188,9 @@ const AboutNexTrade = () => {
             <CardContent>
               <Image
                 src={cryptocurrencyTrade}
-                className="mx-auto w-40"
+                className="mx-auto"
                 alt="crypto image"
+                style={{ width: "180px", height: "auto" }}
               ></Image>
               <Typography variant="h6" fontWeight="bold">
                 Cryptocurrency Trading

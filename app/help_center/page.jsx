@@ -1,8 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import NotStartedOutlinedIcon from "@mui/icons-material/NotStartedOutlined";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 import PriceChangeOutlinedIcon from "@mui/icons-material/PriceChangeOutlined";
@@ -10,7 +8,6 @@ import ConstructionOutlinedIcon from "@mui/icons-material/ConstructionOutlined";
 import WebhookOutlinedIcon from "@mui/icons-material/WebhookOutlined";
 import ApiOutlinedIcon from "@mui/icons-material/ApiOutlined";
 import Typography from "@mui/material/Typography";
-import Button from "@/components/library/buttons/root_button/RootButton";
 import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../components/utils/variants";
@@ -43,11 +40,11 @@ const page = () => {
         our priority!
       </motion.p>
       <div>
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
           {/* card 1  */}
 
-          <motion.Card
-            variants={fadeIn("right", 0.1)}
+          <motion.div
+            variants={fadeIn("right", 0.03)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
@@ -62,11 +59,11 @@ const page = () => {
               Accusantium tempore ex commodi eligendi expedita soluta rerum
               doloribus minus adipisci.
             </p>
-          </motion.Card>
+          </motion.div>
 
           {/* card tow */}
-          <motion.Card
-            variants={fadeIn("down", 0.2)}
+          <motion.div
+            variants={fadeIn("down", 0.06)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
@@ -81,11 +78,11 @@ const page = () => {
               Accusantium tempore ex commodi eligendi expedita soluta rerum
               doloribus minus adipisci.
             </p>
-          </motion.Card>
+          </motion.div>
 
           {/* card three */}
-          <motion.Card
-            variants={fadeIn("left", 0.3)}
+          <motion.div
+            variants={fadeIn("left", 0.09)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
@@ -100,11 +97,11 @@ const page = () => {
               Accusantium tempore ex commodi eligendi expedita soluta rerum
               doloribus minus adipisci.
             </p>
-          </motion.Card>
+          </motion.div>
 
           {/* card four */}
-          <motion.Card
-            variants={fadeIn("right", 0.4)}
+          <motion.div
+            variants={fadeIn("right", 0.12)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
@@ -119,11 +116,11 @@ const page = () => {
               Accusantium tempore ex commodi eligendi expedita soluta rerum
               doloribus minus adipisci.
             </p>
-          </motion.Card>
+          </motion.div>
 
           {/* card five */}
-          <motion.Card
-            variants={fadeIn("up", 0.5)}
+          <motion.div
+            variants={fadeIn("up", 0.15)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
@@ -138,11 +135,11 @@ const page = () => {
               Accusantium tempore ex commodi eligendi expedita soluta rerum
               doloribus minus adipisci.
             </p>
-          </motion.Card>
+          </motion.div>
 
           {/* card six */}
-          <motion.Card
-            variants={fadeIn("left", 0.6)}
+          <motion.div
+            variants={fadeIn("left", 0.18)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
@@ -157,7 +154,7 @@ const page = () => {
               Accusantium tempore ex commodi eligendi expedita soluta rerum
               doloribus minus adipisci.
             </p>
-          </motion.Card>
+          </motion.div>
         </div>
       </div>
       <div className="mx-auto 2xl:mx-24">

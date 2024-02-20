@@ -66,8 +66,11 @@ const Wallet = () => {
   } = useSecureFetch(`/deposit-withdraw/${user?.email}`, user?.email);
 
   if (
-    (isLoading || isPending || loading || userBalanceLoading,
-    userBalancePending)
+    isLoading ||
+    isPending ||
+    loading ||
+    userBalanceLoading ||
+    userBalancePending
   ) {
     return (
       <div className="h-full w-full flex justify-center items-center">
@@ -82,18 +85,16 @@ const Wallet = () => {
   }
 
   const totalDeposit = depositWithdrawData?.reduce((acc, obj) => {
-    // Check if the object has a 'deposit' property
-    if (obj.deposit !== undefined) {
-      // Add the deposit amount to the accumulator
+    if (obj?.deposit !== undefined) {
+      // Added safe navigation operator ?.
       acc += obj.deposit;
     }
     return acc;
   }, 0);
 
   const totalWithdraw = depositWithdrawData?.reduce((acc, obj) => {
-    // Check if the object has a 'withdraw' property
-    if (obj.withdraw !== undefined) {
-      // Add the withdraw amount to the accumulator
+    if (obj?.withdraw !== undefined) {
+      // Added safe navigation operator ?.
       acc += obj.withdraw;
     }
     return acc;

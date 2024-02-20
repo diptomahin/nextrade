@@ -14,7 +14,7 @@ import useAuth from "@/hooks/useAuth";
 const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
-  const [amount, setAmount] = React.useState("");
+  const [amount, setAmount] = React.useState(0);
   const [postalCode, setPostalCode] = React.useState(0);
   // const [currency, setCurrency] = React.useState("");
   const stripe = useStripe();
@@ -22,8 +22,11 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
   const { user } = useAuth();
 
   React.useEffect(() => {
+    if (amount <= 0 || !amount) {
+      return;
+    }
     if (amount > 100000) {
-      return setPaymentError("The amount must be 100,000 or less.");
+      return setPaymentError("*The amount must be 100,000 or less.");
     }
     axios
       .post("https://nex-trade-server.vercel.app/create-payment-intent", {
@@ -40,18 +43,26 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
 
     setPaymentError("");
 
+    if (!/^-?\d*\.?\d+$/.test(amount)) {
+      form.reset();
+      setAmount(0);
+      return setPaymentError("*Please provide a valid number amount");
+    }
+
+    if (amount <= 0 || !amount) {
+      return setPaymentError("*Please provide a valid amount");
+    }
+
+    if (amount > 100000) {
+      return setPaymentError("*The amount must be 100,000 or less.");
+    }
+
     if (totalBalance < amount) {
       return setPaymentError("*Insufficient balance");
     }
 
-    if (!/^-?\d*\.?\d+$/.test(amount)) {
-      form.reset();
-      setAmount("");
-      return setPaymentError("*Please provide a valid number amount");
-    }
-
     if (!/^\d{4}$/.test(postalCode)) {
-      setPostalCode("");
+      setPostalCode(0);
       return setPaymentError("*Please provide a valid 4-digit postal code");
     }
 
@@ -116,8 +127,8 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
           .then((res) => {
             if (res.data.insertedId) {
               form.reset();
-              setAmount("");
-              setPostalCode("");
+              setAmount(0);
+              setPostalCode(0);
               elements.getElement(CardNumberElement).clear(); // Reset card number
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
