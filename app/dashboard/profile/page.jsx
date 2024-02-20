@@ -79,7 +79,7 @@ const ProfilePage = () => {
               <FaUserCircle />
             </p>
           )}
-          <div className={` ${isActiveProfile && "xl:hidden"}`}>
+          <div className={` ${isActiveProfile ? "xl:hidden" : ""}`}>
             <p className="font-semibold"> {userDetails?.name}</p>
             <p className="text-xs font-medium mt-1">{userDetails?.email}</p>
           </div>
@@ -89,22 +89,25 @@ const ProfilePage = () => {
           <Tab className="react-tab custom-btn">
             {" "}
             <CiUser className="text-xl" />
-            <span className={isActiveProfile && "xl:hidden"}> My Profile</span>
+            <span className={isActiveProfile ? "xl:hidden" : ""}>
+              {" "}
+              My Profile
+            </span>
           </Tab>
           <Tab className="react-tab custom-btn">
             <CiLock className="text-xl" />{" "}
-            <span className={isActiveProfile && "xl:hidden"}>Security</span>
+            <span className={isActiveProfile ? "xl:hidden" : ""}>Security</span>
           </Tab>
           <Tab className="react-tab custom-btn">
             {" "}
             <PiCurrencyDollarThin className="text-xl" />
-            <span className={isActiveProfile && "xl:hidden"}>
+            <span className={isActiveProfile ? "xl:hidden" : ""}>
               Currency Preferences
             </span>
           </Tab>
           <Tab className="react-tab custom-btn">
             <PiCardholderThin className="text-xl" />
-            <span className={isActiveProfile && "xl:hidden"}>
+            <span className={isActiveProfile ? "xl:hidden" : ""}>
               Payment Option
             </span>
           </Tab>
