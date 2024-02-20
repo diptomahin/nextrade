@@ -35,11 +35,11 @@ const Academy = () => {
   return (
     <div className="">
       {/* top stories and recent news */}
-      <div className="grid md:grid-cols-2 md:gap-10 mt-10 container mx-auto">
-        <div className="mt-3">
+      <div className="grid xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 container mx-auto">
+        <div className="lg:mt-1">
           <Timeline colorTheme="dark" height={700} width="100%" />
         </div>
-        <div>
+        <div className="mt-10 lg:mt-0">
           <div>
             <SectionTitle title="Recent News" btnText="ALL RECENT NEWS" />
           </div>
@@ -61,7 +61,7 @@ const Academy = () => {
                   {news.category}
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`} >
-                  <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
+                  <h3 className="lg:text-[16px] text-[14px]  font-semibold my-3">{news.title}</h3>
                 </Link>
                 <p className="text-gray-500">
                   {moment(news.date).format("ll")}
@@ -73,7 +73,7 @@ const Academy = () => {
       </div>
 
       {/* Trending stories */}
-      <div className="bg-[#1e222d] p-10 mt-10">
+      {/* <div className="bg-[#1e222d] p-10 mt-10">
         <div className="container mx-auto">
           <SectionTitle
             title="Trending Stories"
@@ -148,10 +148,10 @@ const Academy = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* All Market News */}
-      <div className="mt-10 container mx-auto">
+      {/* <div className="mt-10 container mx-auto">
         <SectionTitle title="Market News" btnText="ALL Market News" />
         <div className="grid grid-cols-2">
           <div>
@@ -210,10 +210,10 @@ const Academy = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Videos */}
-      <div className="bg-black p-10 my-10">
+      {/* <div className="bg-black p-10 my-10">
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <h2 className="text-[30px] font-semibold text-white">Videos</h2>
@@ -291,7 +291,7 @@ const Academy = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* lowest */}
       {/* <div className="mt-10 container mx-auto">
