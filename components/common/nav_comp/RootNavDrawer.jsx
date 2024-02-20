@@ -35,12 +35,20 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
           </Magnetic>
           <Magnetic>
             <Link href="/" className="hidden xl:block">
-              <Image src={logo} alt="Logo" width={144} height={160} />
+              <Image
+                src={logo}
+                alt="Logo"
+                style={{ width: "144px", height: "160" }}
+              />
             </Link>
           </Magnetic>
           <Magnetic>
             <Link href="/" className="hidden md:block xl:hidden">
-              <Image src={logo2} alt="Logo" className="w-12" />
+              <Image
+                src={logo2}
+                alt="Logo"
+                style={{ width: "50px", height: "auto" }}
+              />
             </Link>
           </Magnetic>
           {user?.email && (
