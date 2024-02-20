@@ -222,6 +222,7 @@ const Banner = () => {
                 src={bg}
                 className=" mx-auto"
                 style={{ width: "84%", height: "auto" }}
+                priority
               />
             </div>
 
