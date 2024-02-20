@@ -29,7 +29,7 @@ const WhyChooseUs = () => {
 
       <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
         {/* cart 1  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -45,9 +45,9 @@ const WhyChooseUs = () => {
             the platform, execute trades, and access essential information.
             Intuitive design is particularly important for beginners.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 2  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("down", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -64,9 +64,9 @@ const WhyChooseUs = () => {
             platform with excellent customer service can be crucial, especially
             during technical issues or if you have questions about your account.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 3  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("left", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -83,9 +83,9 @@ const WhyChooseUs = () => {
             personal information and funds. Look for features like two-factor
             authentication and encryption.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 4  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -102,9 +102,9 @@ const WhyChooseUs = () => {
             market data, charts, and technical analysis features can be
             essential for making informed trading decisions.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 5  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -121,9 +121,9 @@ const WhyChooseUs = () => {
             commissions, spreads, and any other charges associated with trading.
             Low fees can significantly impact your overall returns.
           </p>
-        </motion.Card>
+        </motion.div>
         {/* cart 6  */}
-        <motion.Card
+        <motion.div
           variants={fadeIn("left", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -140,7 +140,7 @@ const WhyChooseUs = () => {
             and tools to help you understand the basics of trading and improve
             your skills over time.
           </p>
-        </motion.Card>
+        </motion.div>
       </div>
       <motion.div
         variants={fadeIn("up", 0.2)}

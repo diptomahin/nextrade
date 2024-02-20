@@ -17,18 +17,10 @@ const MainLayout = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="font-montserrat bg-darkBG">
-        {noHeaderFooter || (
-          <>
-            <RootNav />
-          </>
-        )}
+        {noHeaderFooter || <RootNav />}
 
         {children}
-        {noHeaderFooter || (
-          <>
-            <Footer></Footer>
-          </>
-        )}
+        {noHeaderFooter || <Footer></Footer>}
       </div>
     </QueryClientProvider>
   );

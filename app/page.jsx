@@ -9,7 +9,7 @@ import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
 import useAuth from "@/hooks/useAuth";
-import { FacebookProvider, CustomChat } from "react-facebook";
+// import { FacebookProvider, CustomChat } from "react-facebook";
 
 export default function Home() {
   const { loading } = useAuth();
@@ -38,14 +38,14 @@ export default function Home() {
       <Subscription />
       <WhyNexTrade />
       <Map />
-      <FacebookProvider appId="429056069676911">
+      {/* <FacebookProvider appId="429056069676911">
         <CustomChat
           pageId="108051777809659"
           minimized={false}
           loggedInGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
           loggedOutGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
         />
-      </FacebookProvider>
+      </FacebookProvider> */}
     </main>
   );
 }

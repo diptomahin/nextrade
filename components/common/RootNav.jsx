@@ -74,15 +74,27 @@ export default function RootNav() {
           <Magnetic>
             <Link href="/" className="hidden xl:block">
               {scrolled ? (
-                <Image src={logo2} alt="Logo" className="w-12" />
+                <Image
+                  src={logo2}
+                  alt="Logo"
+                  style={{ width: "50px", height: "auto" }}
+                />
               ) : (
-                <Image src={logo} alt="Logo" className="w-36 lg:w-40" />
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: "160px", height: "auto" }}
+                />
               )}
             </Link>
           </Magnetic>
           <Magnetic>
             <Link href="/" className="hidden md:block xl:hidden">
-              <Image src={logo2} alt="Logo" className="w-12" />
+              <Image
+                src={logo2}
+                alt="Logo"
+                style={{ width: "50px", height: "auto" }}
+              />
             </Link>
           </Magnetic>
           {user?.email ? (
