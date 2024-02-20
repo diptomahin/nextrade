@@ -8,6 +8,7 @@ import Subscription from "@/components/home_comp/subscription/Subscription";
 import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
+import Translate from "@/components/home_comp/Translate";
 import useAuth from "@/hooks/useAuth";
 // import { FacebookProvider, CustomChat } from "react-facebook";
 
@@ -38,6 +39,7 @@ export default function Home() {
       <Subscription />
       <WhyNexTrade />
       <Map />
+      <Translate />
       {/* <FacebookProvider appId="429056069676911">
         <CustomChat
           pageId="108051777809659"
