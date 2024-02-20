@@ -234,7 +234,7 @@ const Academy = () => {
               {data.slice(13, 14).map((news, index) => (
                 <div className="relative" key={index}>
                   <Link href={`/dashboard/academy/${news._id}`}>
-                    <div className="w-[480px] md:w-full md:h-full md:mx-auto md:flex md:justify-center">
+                    <div className="lg:w-[480px] md:w-full md:h-full md:mx-auto md:flex md:justify-center">
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
@@ -244,15 +244,15 @@ const Academy = () => {
                     </div>
                   </Link>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl text-white">
+                    <div className="md:text-6xl text-4xl text-white">
                       <FaRegCirclePlay className="text-center" />
                     </div>
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="text-3xl font-semibold my-4 md:mr-10 text-white absolute bottom-16 left-10">
+                      <h3 className="md:text-3xl text-xl font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11">
                         {news.title}
                       </h3>
                     </Link>
-                    <div className="flex gap-1 text-white absolute bottom-12 left-10">
+                    <div className="flex gap-1 text-white absolute md:bottom-12 bottom-8 md:left-10 left-4">
                       <p>{moment(news.date).format("ll")} .</p>
                       <p>1k Views .</p>
                       <p>210 Shares</p>
@@ -261,7 +261,7 @@ const Academy = () => {
                 </div>
               ))}
             </div>
-            <div className="col-span-1 md:mt-10">
+            <div className="col-span-1 md:mt-10 mt-10">
               {data.slice(14, 18).map((news, index) => (
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
