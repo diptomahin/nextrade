@@ -29,6 +29,8 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
+import CryptoMarketModuleView from "@/components/traders_comp/market/CryptoMarketModuleView";
+import CurrencyMarketModuleView from "@/components/traders_comp/market/CurrencyMarketModuleView";
 // const CustomSelect = styled(Select)({
 //   "& .MuiSelect-root": {
 //     color: "#E0E3E7", // Text color
@@ -221,7 +223,7 @@ const MarketPage = () => {
     setValue(newValue);
   };
 
-  const [view, setView] = React.useState('list');
+  const [view, setView] = React.useState('module');
 
   const handleViewChange = (event, nextView) => {
     setView(nextView);
@@ -242,6 +244,7 @@ const MarketPage = () => {
 
 
       <div className="flex flex-col xl:flex-row gap-5 my-4">
+
         <div className="w-full p-3 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  rounded xl:w-3/4">
           {/* <div className="p-2 my-4 max-w-min rounded">
             <Stack flexDirection="row" gap={2} justifyContent="space-between">
@@ -286,8 +289,8 @@ const MarketPage = () => {
           )} */}
 
           <TabContext value={value}>
-            
-              <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
+
+            <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
 
               <TabList onChange={handleChange} aria-label="lab API tabs example">
                 <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
@@ -329,23 +332,40 @@ const MarketPage = () => {
                 exclusive
                 onChange={handleViewChange}
               >
-                <ToggleButton value="list" aria-label="list">
-                  <ViewListIcon className="text-primary" />
-                </ToggleButton>
+
                 <ToggleButton value="module" aria-label="module">
                   <ViewModuleIcon className="text-primary" />
+                </ToggleButton>
+                <ToggleButton value="list" aria-label="list">
+                  <ViewListIcon className="text-primary" />
                 </ToggleButton>
                 <ToggleButton value="quilt" aria-label="quilt">
                   <ViewQuiltIcon className="text-primary" />
                 </ToggleButton>
               </ToggleButtonGroup>
-              </div>
-            
+            </div>
+
             <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
-              <MarketTable assets={assets}></MarketTable>
+              {
+                view === "list" ?
+                  <MarketTable assets={assets}></MarketTable>
+                  :
+                  <CryptoMarketModuleView assets={assets}></CryptoMarketModuleView>
+
+
+              }
+
+
             </TabPanel>
             <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
-              <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+
+              {
+                view === "list" ?
+                <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+                :
+                <CurrencyMarketModuleView assets={flatCurrency}></CurrencyMarketModuleView>
+              }
+              
             </TabPanel>
           </TabContext>
 
