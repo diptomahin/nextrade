@@ -25,9 +25,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold">Getting started</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+          New to our platform? This section provides step-by-step guidance to help you get up and running quickly. From account setup to initial configuration, we&apos;ve got you covered.
         </p>
       </motion.div>
 
@@ -44,9 +42,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold"> Authentication</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+          Learn about our authentication methods and best practices for securing your account. Whether it&apos;s setting up two-factor authentication or managing access controls, find everything you need here.
         </p>
       </motion.div>
 
@@ -63,9 +59,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold">Limits & pricing</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+          Understand the usage limits and pricing structure of our services. Get clarity on subscription tiers, usage thresholds, and any associated costs to make informed decisions for your needs.
         </p>
       </motion.div>
 
@@ -82,9 +76,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold"> Advanced settings</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+          Customize your experience with our advanced settings. Explore features beyond the basics and tailor the platform to suit your specific requirements for enhanced functionality.
         </p>
       </motion.div>
 
@@ -101,9 +93,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold"> API endpoints</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+          Developers, rejoice! Discover our API endpoints for seamless integration with your applications. From data retrieval to automation, leverage our APIs to extend the capabilities of your solutions.
         </p>
       </motion.div>
 
@@ -120,9 +110,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold"> Enterprise features</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+          Explore our enterprise-grade features designed to meet the demands of large-scale deployments. From advanced security measures to dedicated support, unlock the full potential of our platform for your enterprise needs.
         </p>
       </motion.div>
     </div>

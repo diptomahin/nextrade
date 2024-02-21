@@ -41,9 +41,7 @@ const page = () => {
                   color="text.secondary"
                   className="text-gray-500 text-left"
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  You can contact our support team via email at nexttrade.help@gmail.com or by filling out the contact form on our website. Additionally, you can reach us by phone at +880 1963-895488. We&apos;re here to assist you!
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -65,9 +63,7 @@ const page = () => {
                   color="text.secondary"
                   className="text-gray-500 text-left"
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  Our support center operates from 9:AM on 5 days of the week. Rest assured, we strive to respond to all inquiries promptly during our operating hours.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -89,9 +85,7 @@ const page = () => {
                   color="text.secondary"
                   className="text-gray-500 text-left"
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  To submit a support ticket, simply navigate to our website&apos;s support page and fill out the provided form with details regarding your issue. Alternatively, you can email us directly at nexttrade.help@gmail.com or call our support hotline at +880 1963-895488. Be sure to include as much information as possible to expedite the resolution process.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -113,9 +107,7 @@ const page = () => {
                   color="text.secondary"
                   className="text-gray-500 text-left"
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  We offer comprehensive support for various issues including technical difficulties, account inquiries, billing concerns, and general assistance with our platform. Whether you&apos;re experiencing a bug or need guidance on using our services, our dedicated support team is here to help. If you&apos;re unsure whether your issue falls within our scope of support, don&apos;t hesitate to reach out, and we&apos;ll be happy to assist you.
                 </Typography>
               </AccordionDetails>
             </Accordion>
