@@ -90,25 +90,24 @@ const page = () => {
             </Accordion>
 
             {/* card 4  */}
-            <Accordion className="rounded">
-              <AccordionSummary>
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
                   component="div"
-                  className="font-semibold"
+                  className="font-semibold "
                 >
                   Types of issues supported?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
-                >
-                  We offer comprehensive support for various issues including technical difficulties, account inquiries, billing concerns, and general assistance with our platform. Whether you&apos;re experiencing a bug or need guidance on using our services, our dedicated support team is here to help. If you&apos;re unsure whether your issue falls within our scope of support, don&apos;t hesitate to reach out, and we&apos;ll be happy to assist you.
-                </Typography>
+                We offer comprehensive support for various issues including technical difficulties, account inquiries, billing concerns, and general assistance with our platform. Whether you&apos;re experiencing a bug or need guidance on using our services, our dedicated support team is here to help. If you&apos;re unsure whether your issue falls within our scope of support, don&apos;t hesitate to reach out, and we&apos;ll be happy to assist you.
               </AccordionDetails>
             </Accordion>
           </div>
