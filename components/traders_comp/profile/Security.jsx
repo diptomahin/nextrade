@@ -2,7 +2,6 @@
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import React, { useState } from "react";
-import { updatePassword } from "firebase/auth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import date from '../../utils/date'
 import useNotificationData from "@/hooks/useNotificationData";
