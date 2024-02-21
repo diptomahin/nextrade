@@ -25,9 +25,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold">Getting started</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+        New to our platform? This section provides step-by-step guidance to help you get up and running quickly. From account setup to initial configuration, we&apos;ve got you covered.
         </p>
       </motion.div>
 
