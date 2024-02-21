@@ -1,30 +1,21 @@
-import Image from "next/image";
+
 import React, { useEffect } from "react";
 import { MdNotifications, MdNotificationsActive } from "react-icons/md";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import useAuth from "@/hooks/useAuth";
-import useSecureFetch from "@/hooks/useSecureFetch";
 import Link from "next/link";
+import useNotificationData from "@/hooks/useNotificationData";
 
 const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
   const [isOpenDot, setIsOpenDot] = React.useState(false);
-  const [notificationsData,setNotificationsData] = React.useState('');
-  const {user} = useAuth()
+  const {notificationsData,notificationRefetch}=useNotificationData();
 
-  const {
-    data: notifications = [],
-    refetch,
-    isPending,
-    isLoading,
-  } = useSecureFetch(`/notifications?email=${user.email}`, ["notifications"]);
+  
 
-  React.useEffect(() => {
-    setNotificationsData(notifications);
-    refetch();
-  }, [notifications, refetch]);
+  console.log(notificationsData);
+ 
   
   return (
     <div className="relative">

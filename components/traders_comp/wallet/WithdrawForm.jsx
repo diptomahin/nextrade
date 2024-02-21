@@ -11,17 +11,22 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import useNotificationData from "@/hooks/useNotificationData";
+import date from '../../utils/date'
 
-const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
+const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState(0);
   const [postalCode, setPostalCode] = React.useState(0);
   // const [currency, setCurrency] = React.useState("");
+
+  const {notificationRefetch}= useNotificationData()
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
+  console.log(date);
 
   React.useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -133,6 +138,7 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
+          postedDate:date
         };
 
         // post to  notification data in database
@@ -140,7 +146,8 @@ const WithdrawForm = ({ refetch, totalBalance, date, userBalanceRefetch }) => {
           .post("/notifications", notificationInfo)
           .then((res) => {
             console.log("Successfully coin added:", res);
-            refetch()
+            
+            notificationRefetch()
           })
           .catch((error) => {
             console.error("Error sending notification:", error);

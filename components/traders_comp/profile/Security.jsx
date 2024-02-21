@@ -4,11 +4,13 @@ import useAuth from "@/hooks/useAuth";
 import React, { useState } from "react";
 import { updatePassword } from "firebase/auth";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import date from '../../utils/date'
 
 const Security = () => {
   // Get user information using the useAuth hook
   const { user, updateUserPassword } = useAuth();
   const secureAPI = useSecureAPI()
+  const {notificationRefetch}= useNotificationData()
 
   // State variables to manage input values and messages
   const [oldPassword, setOldPassword] = useState("");
@@ -43,6 +45,7 @@ const Security = () => {
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
+          postedDate:date
         };
 
         // post to  notification data in database
@@ -50,6 +53,7 @@ const Security = () => {
           .post("/notifications", notificationInfo)
           .then((res) => {
             console.log("Successfully coin added:", res);
+            notificationRefetch()
             
           })
           .catch((error) => {
