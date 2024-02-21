@@ -2,8 +2,8 @@ import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import RootButton from "../library/buttons/root_button/RootButton";
 import usePublicAPI from "@/hooks/usePublicAPI";
+import DarkButton from "../library/buttons/DarkButton";
 
 const currentDate = new Date();
 const year = currentDate.getFullYear();
@@ -53,12 +53,12 @@ const SocialLogin = () => {
         <div className="h-[1px] w-full bg-black"></div>
       </div>
       <div className="flex items-center gap-4 justify-center flex-wrap">
-        <RootButton
+        <DarkButton
           onClick={() => handleSocialLogin(googleLogin)}
           className="w-full flex items-center justify-center py-1 px-2 lg:h-10 rounded border border-primary bg-transparent"
         >
           <FcGoogle className="text-xl"></FcGoogle>
-        </RootButton>
+        </DarkButton>
       </div>
     </>
   );
