@@ -9,11 +9,12 @@ import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
 import Translate from "@/components/home_comp/Translate";
-// import { FacebookProvider, CustomChat } from "react-facebook";
+import CustomerChat from "@/components/home_comp/CustomerChat";
 
 export default function Home() {
   return (
     <main className="overflow-hidden text-zinc-100 font-montserrat">
+      <Translate />
       <Modal />
       <Banner />
       <TradingStep />
@@ -23,15 +24,7 @@ export default function Home() {
       <Subscription />
       <WhyNexTrade />
       <Map />
-      <Translate />
-      {/* <FacebookProvider appId="429056069676911">
-        <CustomChat
-          pageId="108051777809659"
-          minimized={false}
-          loggedInGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
-          loggedOutGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
-        />
-      </FacebookProvider> */}
+      <CustomerChat />
     </main>
   );
 }

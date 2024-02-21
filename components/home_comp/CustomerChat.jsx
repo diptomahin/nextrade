@@ -1,0 +1,19 @@
+import React from "react";
+import { FacebookProvider, CustomChat } from "react-facebook";
+
+const CustomerChat = () => {
+  return (
+    <>
+      <FacebookProvider appId="429056069676911">
+        <CustomChat
+          pageId="108051777809659"
+          minimized={false}
+          loggedInGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
+          loggedOutGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
+        />
+      </FacebookProvider>
+    </>
+  );
+};
+
+export default CustomerChat;
