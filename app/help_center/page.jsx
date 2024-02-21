@@ -46,6 +46,7 @@ const page = () => {
             </Accordion>
 
             {/* card 2  */}
+
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -68,27 +69,26 @@ const page = () => {
 
             {/* card 3  */}
 
-            <Accordion className="rounded">
-              <AccordionSummary>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
                   component="div"
-                  className="font-semibold"
+                  className="font-semibold "
                 >
                   How to submit a support ticket?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
-                >
-                  To submit a support ticket, simply navigate to our website&apos;s support page and fill out the provided form with details regarding your issue. Alternatively, you can email us directly at nexttrade.help@gmail.com or call our support hotline at +880 1963-895488. Be sure to include as much information as possible to expedite the resolution process.
-                </Typography>
+                To submit a support ticket, simply navigate to our website&apos;s support page and fill out the provided form with details regarding your issue. Alternatively, you can email us directly at nexttrade.help@gmail.com or call our support hotline at +880 1963-895488. Be sure to include as much information as possible to expedite the resolution process.
               </AccordionDetails>
             </Accordion>
+
             {/* card 4  */}
             <Accordion className="rounded">
               <AccordionSummary>
