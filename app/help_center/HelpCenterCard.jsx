@@ -42,9 +42,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold"> Authentication</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+        Learn about our authentication methods and best practices for securing your account. Whether it&apos;s setting up two-factor authentication or managing access controls, find everything you need here.
         </p>
       </motion.div>
 
