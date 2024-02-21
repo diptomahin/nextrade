@@ -63,9 +63,7 @@ const page = () => {
                   color="text.secondary"
                   className="text-gray-500 text-left"
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  Our support center operates from 9:AM on 5 days of the week. Rest assured, we strive to respond to all inquiries promptly during our operating hours.
                 </Typography>
               </AccordionDetails>
             </Accordion>
