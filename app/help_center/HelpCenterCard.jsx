@@ -76,9 +76,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold"> Advanced settings</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+        Customize your experience with our advanced settings. Explore features beyond the basics and tailor the platform to suit your specific requirements for enhanced functionality.
         </p>
       </motion.div>
 
