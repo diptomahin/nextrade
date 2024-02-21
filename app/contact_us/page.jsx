@@ -1,28 +1,19 @@
-"use client";
-
 import Container from "@/components/library/Container";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../components/utils/variants";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PhoneForwardedOutlinedIcon from "@mui/icons-material/PhoneForwardedOutlined";
 import ContactForm from "@/components/contact/ContactForm";
 import Title from "@/components/library/Title";
+import Subtitle from "@/components/library/Subtitle";
 
 const page = () => {
   return (
     <Container className="pt-24 pb-10 ">
       <Title> Get in touch</Title>
-      <motion.p
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-darkGray font-medium"
-      >
+      <Subtitle>
         Feel free to reach out to us with any inquiries or feedback. Our
         dedicated team is here to assist you. Use the form below or send us an
         email with short description.
-      </motion.p>
+      </Subtitle>
 
       <div className="mx-auto 2xl:mx-24 bg-[#e9eef1] rounded my-10">
         {/* contact form */}
