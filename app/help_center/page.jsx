@@ -1,6 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Container from "@/components/library/Container";
 import Accordion from "@mui/material/Accordion";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Title from "@/components/library/Title";
@@ -22,10 +23,14 @@ const page = () => {
       <div className="mx-auto 2xl:mx-24">
         <Title>Popular questions?</Title>
         <div>
-          <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
+          <div className=" mt-10 text-darkGray">
             {/* card 1  */}
-            <Accordion className="rounded">
-              <AccordionSummary className="rounded">
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
@@ -35,16 +40,11 @@ const page = () => {
                   How to contact support?
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails className="rounded">
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
-                >
-                  You can contact our support team via email at nexttrade.help@gmail.com or by filling out the contact form on our website. Additionally, you can reach us by phone at +880 1963-895488. We&apos;re here to assist you!
-                </Typography>
+              <AccordionDetails>
+                You can contact our support team via email at nexttrade.help@gmail.com or by filling out the contact form on our website. Additionally, you can reach us by phone at +880 1963-895488. We&apos;re here to assist you!
               </AccordionDetails>
             </Accordion>
+
             {/* card 2  */}
             <Accordion className="rounded">
               <AccordionSummary>
