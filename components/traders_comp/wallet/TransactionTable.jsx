@@ -156,7 +156,7 @@ const TransactionTable = ({ user }) => {
                       fontWeight: "medium",
                     }}
                   >
-                    {row?.date.day}-{row?.date.month}-{row?.date.year}
+                    {row?.date?.day}-{row?.date?.month}-{row?.date?.year}
                   </TableCell>
                   <TableCell
                     sx={{
