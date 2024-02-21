@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionDetails,
@@ -28,60 +26,54 @@ import Marquee from "react-fast-marquee";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import Container from "@/components/library/Container";
 import Title from "@/components/library/Title";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../components/utils/variants";
+import Subtitle from "@/components/library/Subtitle";
 
 const PaymentMethods = () => {
   return (
     <Container className="py-20">
       <Title>Payment Methods</Title>
-      <motion.p
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-darkGray font-medium"
-      >
+      <Subtitle>
+        {" "}
         Explore our varied deposit and withdrawal options. Learn about our
         payment methods and their usage for a seamless financial experience.
-      </motion.p>
+      </Subtitle>
       <Stack my={5}>
         <Marquee direction="right" gradient="30px" gradientColor="#181e2c">
           <Image
-            width={100}
+            style={{ width: "100px", height: "auto" }}
             className="mx-12"
             src={masterCard}
             alt="masterCard-logo"
           ></Image>
           <Image
-            width={100}
+            style={{ width: "100px", height: "auto" }}
             className=" mx-12"
             src={visaCard}
             alt="visaCard-logo"
           ></Image>
           <Image
-            width={100}
+            style={{ width: "100px", height: "auto" }}
             className="mx-12"
             src={maestroLogo}
             alt="meastro-logo"
           ></Image>
           <Image
-            width={100}
+            style={{ width: "100px", height: "auto" }}
             className="mx-12"
             src={dinersClub}
             alt="dinersClub-logo"
           ></Image>
           <Image
-            width={100}
+            style={{ width: "100px", height: "auto" }}
             className="mx-12"
             src={discoverLogo}
             alt="discover-logo"
           ></Image>
           <Image
-            width={100}
             className="mx-12"
             src={paypalLogo}
             alt="paypal-logo"
+            style={{ width: "100px", height: "auto" }}
           ></Image>
         </Marquee>
       </Stack>
@@ -129,9 +121,10 @@ const PaymentMethods = () => {
               <TableRow>
                 <TableCell>
                   <Image
-                    className="w-24"
                     src={visaCard}
                     alt="visa card"
+                    width={80}
+                    height="auto"
                   ></Image>
                 </TableCell>
                 <TableCell className="text-darkGray">
@@ -149,7 +142,8 @@ const PaymentMethods = () => {
               <TableRow>
                 <TableCell>
                   <Image
-                    className="w-24"
+                    width={80}
+                    height="auto"
                     src={masterCard}
                     alt="master card"
                   ></Image>
@@ -169,7 +163,8 @@ const PaymentMethods = () => {
               <TableRow>
                 <TableCell>
                   <Image
-                    className="w-24"
+                    width={80}
+                    height="auto"
                     src={maestroLogo}
                     alt="maestro card"
                   ></Image>
@@ -189,7 +184,9 @@ const PaymentMethods = () => {
               <TableRow>
                 <TableCell>
                   <Image
-                    className="w-24 my-6"
+                    width={80}
+                    height="auto"
+                    className="my-6"
                     src={paypalLogo}
                     alt="paypal card"
                   ></Image>
@@ -207,7 +204,9 @@ const PaymentMethods = () => {
               <TableRow>
                 <TableCell>
                   <Image
-                    className="w-24 my-6"
+                    width={80}
+                    height="auto"
+                    className="my-6"
                     src={discoverLogo}
                     alt="discover card"
                   ></Image>
@@ -225,7 +224,8 @@ const PaymentMethods = () => {
               <TableRow>
                 <TableCell>
                   <Image
-                    className="w-24"
+                    width={80}
+                    height="auto"
                     src={dinersClub}
                     alt="dinersClub card"
                   ></Image>
@@ -301,7 +301,12 @@ const PaymentMethods = () => {
               {/* Visa */}
               <TableRow>
                 <TableCell>
-                  <Image className="w-24" src={bitcoin} alt="bitcoin"></Image>
+                  <Image
+                    width={80}
+                    height="auto"
+                    src={bitcoin}
+                    alt="bitcoin"
+                  ></Image>
                 </TableCell>
                 <TableCell className="text-darkGray">BTC</TableCell>
                 <TableCell
@@ -315,7 +320,12 @@ const PaymentMethods = () => {
               {/* Ethereum */}
               <TableRow>
                 <TableCell>
-                  <Image className="w-24" src={Ethereum} alt="Ethereum"></Image>
+                  <Image
+                    width={80}
+                    height="auto"
+                    src={Ethereum}
+                    alt="Ethereum"
+                  ></Image>
                 </TableCell>
                 <TableCell className="text-darkGray">ETH</TableCell>
                 <TableCell
@@ -329,7 +339,12 @@ const PaymentMethods = () => {
               {/* USD Coin */}
               <TableRow>
                 <TableCell>
-                  <Image className="w-24" src={USDCoin} alt="USDCoin"></Image>
+                  <Image
+                    width={80}
+                    height="auto"
+                    src={USDCoin}
+                    alt="USDCoin"
+                  ></Image>
                 </TableCell>
                 <TableCell className="text-darkGray">USDC</TableCell>
                 <TableCell
@@ -344,7 +359,8 @@ const PaymentMethods = () => {
               <TableRow>
                 <TableCell>
                   <Image
-                    className="w-24"
+                    width={80}
+                    height="auto"
                     src={LiteCoin}
                     alt="lite coin"
                   ></Image>

@@ -30,7 +30,11 @@ const Footer = () => {
       <Container className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-6  justify-between gap-10 py-10">
         <div className="md:col-span-2 2xl:col-span-2 flex flex-col gap-3">
           <Link href={"/"}>
-            <Image src={logo} alt="" width={150} />
+            <Image
+              src={logo}
+              alt=""
+              style={{ width: "150px", height: "auto" }}
+            />
           </Link>
           <p className="text-sm 2xl:max-w-80">
             The Company does not provide services to citizens and/or residents

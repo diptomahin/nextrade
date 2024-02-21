@@ -84,7 +84,8 @@ const Banner = () => {
               <Image
                 alt="icon"
                 src={icon1}
-                className="absolute left-0 w-8 h-8 rounded-full"
+                className="absolute left-0 rounded-full"
+                style={{ width: "32px", height: "32px" }}
               />
             </motion.div>
             <motion.div
@@ -98,7 +99,8 @@ const Banner = () => {
               <Image
                 alt="icon"
                 src={icon2}
-                className="absolute left-6 w-8 h-8 rounded-full bg-white p-1"
+                className="absolute left-6 rounded-full bg-white p-1"
+                style={{ width: "32px", height: "32px" }}
               />
             </motion.div>
             <motion.div
@@ -111,7 +113,8 @@ const Banner = () => {
               <Image
                 alt="icon"
                 src={icon3}
-                className="absolute left-12 w-8 h-8 rounded-full"
+                className="absolute left-12 rounded-full"
+                style={{ width: "32px", height: "32px" }}
               />
             </motion.div>
             <motion.div
@@ -125,7 +128,8 @@ const Banner = () => {
               <Image
                 alt="icon"
                 src={icon4}
-                className="absolute left-[72px] w-8 h-8 rounded-full"
+                className="absolute left-[72px] rounded-full"
+                style={{ width: "32px", height: "32px" }}
               />
             </motion.div>
             <motion.div
@@ -138,7 +142,8 @@ const Banner = () => {
               <Image
                 alt="icon"
                 src={icon5}
-                className="absolute left-24 w-8 h-8 rounded-full"
+                className="absolute left-24 rounded-full"
+                style={{ width: "32px", height: "32px" }}
               />
             </motion.div>
 
@@ -212,7 +217,13 @@ const Banner = () => {
           {/*  */}
           <div className="relative  flex items-center justify-center z-10">
             <div className="z-20">
-              <Image alt="banner" src={bg} className="w-5/6 mx-auto" />
+              <Image
+                alt="banner"
+                src={bg}
+                className=" mx-auto"
+                style={{ width: "84%", height: "auto" }}
+                priority
+              />
             </div>
 
             {/* box one */}

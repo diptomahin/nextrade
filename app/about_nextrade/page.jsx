@@ -1,33 +1,22 @@
-"use client";
-
 import { Card, CardContent, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../components/utils/variants";
 import shakeHand from "../../assets/shakeHand.png";
 import mission from "../../assets/mission.png";
 import tradeCurrency from "../../assets/tradeCurrency.png";
 import investment from "../../assets/investment.png";
 import cryptocurrencyTrade from "../../assets/cryptocurrencyTrade.png";
-
 import Image from "next/image";
 import Container from "@/components/library/Container";
 import Title from "@/components/library/Title";
+import Subtitle from "@/components/library/Subtitle";
 
 const AboutNexTrade = () => {
   return (
     <Container className="py-20 text-darkGray">
       <Title>About NexTrade</Title>
-      <motion.p
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-darkGray font-medium"
-      >
-        {" "}
+      <Subtitle>
         Welcome to nexTrade – Your Gateway to Global Trading Excellence!
-      </motion.p>
+      </Subtitle>
 
       {/* What is NexTrade */}
       <Title className="text-left"> What is NexTrade ?</Title>
@@ -77,7 +66,11 @@ const AboutNexTrade = () => {
         alignItems="center"
       >
         <Stack flex={1} direction="row">
-          <Image src={mission} alt="business growth"></Image>
+          <Image
+            src={mission}
+            alt="business growth"
+            style={{ width: "auto", height: "auto" }}
+          ></Image>
         </Stack>
         <Stack flex={1}>
           <Typography
@@ -87,10 +80,10 @@ const AboutNexTrade = () => {
             Our mission at nexTrade is to provide an expansive, seamless, and
             highly secure trading experience, unlocking the vast potential of
             global markets for everyone. Committed to fostering financial
-            inclusivity, we empower our users to trade with confidence and
+            inclusively, we empower our users to trade with confidence and
             embrace a world of diverse investment opportunities. By prioritizing
             accessibility and security, nexTrade is dedicated to shaping a
-            future where trading is not just a transaction but a transformative
+            future where trading is not just a transaction but a transformation
             journey towards financial empowerment for all.
           </Typography>
         </Stack>
@@ -123,8 +116,9 @@ const AboutNexTrade = () => {
             <CardContent>
               <Image
                 src={tradeCurrency}
-                className="w-40 mx-auto"
+                className=" mx-auto"
                 alt="trade currency"
+                style={{ width: "180px", height: "auto" }}
               ></Image>
               <Typography variant="h6" fontWeight="bold">
                 Trade Currencies
@@ -153,8 +147,9 @@ const AboutNexTrade = () => {
             <CardContent>
               <Image
                 src={investment}
-                className="mx-auto w-48"
+                className="mx-auto"
                 alt="investment image"
+                style={{ width: "180px", height: "auto" }}
               ></Image>
               <Typography variant="h6" fontWeight="bold">
                 Invest in Shares
@@ -182,8 +177,9 @@ const AboutNexTrade = () => {
             <CardContent>
               <Image
                 src={cryptocurrencyTrade}
-                className="mx-auto w-40"
+                className="mx-auto"
                 alt="crypto image"
+                style={{ width: "180px", height: "auto" }}
               ></Image>
               <Typography variant="h6" fontWeight="bold">
                 Cryptocurrency Trading

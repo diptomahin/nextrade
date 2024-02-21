@@ -10,20 +10,25 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
-  const [amount, setAmount] = React.useState("");
+  const [amount, setAmount] = React.useState(0);
   const [postalCode, setPostalCode] = React.useState(0);
   // const [currency, setCurrency] = React.useState("");
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
+  const secureAPI = useSecureAPI();
 
   React.useEffect(() => {
+    if (amount <= 0 || !amount) {
+      return;
+    }
     if (amount > 100000) {
-      return setPaymentError("The amount must be 100,000 or less.");
+      return setPaymentError("*The amount must be 100,000 or less.");
     }
 
     axios
@@ -43,12 +48,20 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
 
     if (!/^-?\d*\.?\d+$/.test(amount)) {
       form.reset();
-      setAmount("");
+      setAmount(0);
       return setPaymentError("*Please provide a valid number amount");
     }
 
+    if (amount <= 0 || !amount) {
+      return setPaymentError("*Please provide a valid amount");
+    }
+
+    if (amount > 100000) {
+      return setPaymentError("*The amount must be 100,000 or less.");
+    }
+
     if (!/^\d{4}$/.test(postalCode)) {
-      setPostalCode("");
+      setPostalCode(0);
       return setPaymentError("*Please provide a valid 4-digit postal code");
     }
 
@@ -105,6 +118,28 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
           amount: parseInt(amount),
           currency: "usd",
         };
+
+        // post notification data sen database
+        const notificationInfo = {
+          title: "Deposit Successfully",
+          description: `Money has been added to your account ${parseInt(amount) + "$"}`,
+          assetKey: '',
+          assetImg: '',
+          assetBuyerUID: '',
+          assetBuyerEmail: user.email,
+        };
+
+        // post to  notification data in database
+        secureAPI
+  .post('/notifications', notificationInfo)
+  .then((res) => {
+    console.log("Successfully coin added:", res);
+    refetch();
+  })
+  .catch((error) => {
+    console.error("Error sending notification:", error);
+    
+  });
         axios
           .post(
             `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
@@ -113,8 +148,8 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
           .then((res) => {
             if (res.data.insertedId) {
               form.reset();
-              setAmount("");
-              setPostalCode("");
+              setAmount(0);
+              setPostalCode(0);
               elements.getElement(CardNumberElement).clear(); // Reset card number
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();

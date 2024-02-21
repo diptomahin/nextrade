@@ -3,10 +3,12 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import React, { useState } from "react";
 import { updatePassword } from "firebase/auth";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 const Security = () => {
   // Get user information using the useAuth hook
   const { user, updateUserPassword } = useAuth();
+  const secureAPI = useSecureAPI()
 
   // State variables to manage input values and messages
   const [oldPassword, setOldPassword] = useState("");
@@ -32,6 +34,27 @@ const Security = () => {
       updateUserPassword(user, newPassword)
         .then(() => {
           console.log("Update successful.");
+
+          // post notification data sen database
+        const notificationInfo = {
+          title: "Password Change ",
+          description: 'Your account password has been changed',
+          assetKey: "",
+          assetImg: "",
+          assetBuyerUID: "",
+          assetBuyerEmail: user.email,
+        };
+
+        // post to  notification data in database
+        secureAPI
+          .post("/notifications", notificationInfo)
+          .then((res) => {
+            console.log("Successfully coin added:", res);
+            
+          })
+          .catch((error) => {
+            console.error("Error sending notification:", error);
+          });
         })
         .catch((error) => {
           console.log("error");

@@ -23,7 +23,12 @@ const InvestSolutions = () => {
           viewport={{ once: false, amount: 0.1 }}
           className="flex-1"
         >
-          <Image src={investImage} alt="Invest" className="w-full h-full" />
+          <Image
+            src={investImage}
+            alt="Invest"
+            priority
+            style={{ width: "100%", height: "100%" }}
+          />
         </motion.div>
 
         {/* Content side */}

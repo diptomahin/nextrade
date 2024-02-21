@@ -70,6 +70,16 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
       assetBuyerEmail: user.email
     };
 
+   
+    const notificationInfo = {
+      title: `Purchased Successfully ${coinName}`,
+      description: `You Investment ${investment + '$'} in ${parseInt(portion) + "%"}`,
+      assetKey: coinKey,
+      assetImg: coinImage,
+      assetBuyerUID: user.uid,
+      assetBuyerEmail: user.email,
+    };
+    
 
     if (usersBalance < parseFloat(ast.c)) {
       Swal.fire({
@@ -90,6 +100,21 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
       confirmButtonText: "Yes!"
     }).then(async (result) => {
       if (result.isConfirmed) {
+
+        // post to  notification data in database
+        secureAPI
+  .post('/notifications', notificationInfo)
+  .then((res) => {
+    console.log("Successfully coin added:", res);
+    refetch();
+  })
+  .catch((error) => {
+    console.error("Error sending notification:", error);
+    
+  });
+
+
+          // post purchasedAssets data in database
         secureAPI
           .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
           .then((res) => {
@@ -112,6 +137,8 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
             });
           });
       }
+
+     
     });
 
   };

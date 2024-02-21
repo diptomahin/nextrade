@@ -28,8 +28,8 @@ const Academy = () => {
   }, []);
 
   const opts = {
-    height: '270',
-    width: '270',
+    height: "270",
+    width: "270",
   };
 
   return (
@@ -45,7 +45,7 @@ const Academy = () => {
           </div>
           {data.slice(0, 4).map((news, index) => (
             <div className="flex gap-5 my-5" key={index}>
-              <Link href={`/dashboard/academy/${news._id}`} >
+              <Link href={`/dashboard/academy/${news._id}`}>
                 <div className="w-[200px]">
                   <Image
                     src={news.thumbnail}
@@ -79,12 +79,12 @@ const Academy = () => {
             title="Trending Stories"
             btnText="ALL Trending Stories"
           />
-          <div className="flex grid-cols-3 gap-10 mt-5">
-            <div className="col-span-2">
+          <div className="grid-cols-3 md:grid-cols-1 gap-10 mt-5">
+            <div className="col-span-2 md:col-span-1">
               {data.slice(4, 5).map((news, index) => (
                 <div className="relative" key={index}>
                   <div>
-                    <Link href={`/dashboard/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
@@ -114,11 +114,11 @@ const Academy = () => {
                 </div>
               ))}
             </div>
-            <div className="col-span-1 ">
+            <div className="col-span-1">
               {data.slice(5, 8).map((news, index) => (
                 <div className="relative mb-5" key={index}>
                   <div>
-                    <Link href={`/dashboard/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
@@ -153,11 +153,11 @@ const Academy = () => {
       {/* All Market News */}
       {/* <div className="mt-10 container mx-auto">
         <SectionTitle title="Market News" btnText="ALL Market News" />
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 md:grid-cols-1">
           <div>
             {data.slice(7, 10).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
-                <Link href={`/dashboard/academy/${news._id}`} >
+                <Link href={`/dashboard/academy/${news._id}`}>
                   <div className="w-[200px]">
                     <Image
                       src={news.thumbnail}
@@ -172,8 +172,10 @@ const Academy = () => {
                   <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                     {news.category}
                   </button>
-                  <Link href={`/dashboard/academy/${news._id}`} >
-                    <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
+                  <Link href={`/dashboard/academy/${news._id}`}>
+                    <h3 className="text-[16px] font-semibold my-3">
+                      {news.title}
+                    </h3>
                   </Link>
                   <p className="text-gray-500">
                     {moment(news.date).format("ll")}
@@ -185,7 +187,7 @@ const Academy = () => {
           <div>
             {data.slice(10, 13).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
-                <Link href={`/dashboard/academy/${news._id}`} >
+                <Link href={`/dashboard/academy/${news._id}`}>
                   <div className="w-[200px]">
                     <Image
                       src={news.thumbnail}
@@ -199,8 +201,10 @@ const Academy = () => {
                   <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                     {news.category}
                   </button>
-                  <Link href={`/dashboard/academy/${news._id}`} >
-                    <h3 className="text-[16px] font-semibold my-3">{news.title}</h3>
+                  <Link href={`/dashboard/academy/${news._id}`}>
+                    <h3 className="text-[16px] font-semibold my-3">
+                      {news.title}
+                    </h3>
                   </Link>
                   <p className="text-gray-500">
                     {moment(news.date).format("ll")}
@@ -218,33 +222,35 @@ const Academy = () => {
           <div className="flex justify-between items-center">
             <h2 className="text-[30px] font-semibold text-white">Videos</h2>
             <Link href="#">
-              <button className="font-semibold uppercase text-white border-b-2 border-white">All Videos</button>
+              <button className="font-semibold uppercase text-white border-b-2 border-white">
+                All Videos
+              </button>
             </Link>
           </div>
-          <div className="flex grid-cols-3 gap-10 mt-5">
-            <div className="col-span-2">
+          <div className="grid-cols-3 gap-10 mt-5 md:grid-cols-1">
+            <div className="col-span-2 md:col-span-1">
               {data.slice(13, 14).map((news, index) => (
                 <div className="relative" key={index}>
-                  <Link href={`/dashboard/academy/${news._id}`} >
-                    <div className="w-[480px]">
+                  <Link href={`/dashboard/academy/${news._id}`}>
+                    <div className="lg:w-[480px] md:w-full md:h-full md:mx-auto md:flex md:justify-center">
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
-                        width={600}
-                        height={600}
+                        width={700}
+                        height={700}
                       />
                     </div>
                   </Link>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl text-white">
+                    <div className="md:text-6xl text-4xl text-white">
                       <FaRegCirclePlay className="text-center" />
                     </div>
-                    <Link href={`/dashboard/academy/${news._id}`} >
-                      <h3 className="text-3xl font-semibold my-4 text-white absolute bottom-16 left-10">
+                    <Link href={`/dashboard/academy/${news._id}`}>
+                      <h3 className="md:text-3xl text-xl font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11">
                         {news.title}
                       </h3>
                     </Link>
-                    <div className="flex gap-1 text-white absolute bottom-12 left-10">
+                    <div className="flex gap-1 text-white absolute md:bottom-12 bottom-8 md:left-10 left-4">
                       <p>{moment(news.date).format("ll")} .</p>
                       <p>1k Views .</p>
                       <p>210 Shares</p>
@@ -253,11 +259,11 @@ const Academy = () => {
                 </div>
               ))}
             </div>
-            <div className="col-span-1">
+            <div className="col-span-1 md:mt-10 mt-10">
               {data.slice(14, 18).map((news, index) => (
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
-                    <Link href={`/dashboard/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <div className="w-[140px]">
                         <Image
                           src={news.thumbnail}
@@ -277,7 +283,7 @@ const Academy = () => {
                     <button className="text-blue-500 text-sm">
                       {news.category}
                     </button>
-                    <Link href={`/dashboard/academy/${news._id}`} >
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 text-white text-[15px]">
                         {news.title}
                       </h3>
@@ -293,6 +299,11 @@ const Academy = () => {
         </div>
       </div> */}
 
+      {/* video section */}
+      <div>
+
+      </div>
+   
       {/* lowest */}
       {/* <div className="mt-10 container mx-auto">
         <div className="grid grid-cols-2">
@@ -327,16 +338,14 @@ const Academy = () => {
           title="Tutorial & Resource"
           btnText="ALL Tutorial & Resource"
         />
-       
-       <div className="mt-5 flex justify-between gap-5">
-  {video.slice(0, 4).map((video, index) => (
-    <div className="relative mb-5" key={index}>
-      <YouTube videoId={video.url}  opts={opts}  />
-    </div>
-  ))}
-</div>
 
-       
+        <div className="mt-5 flex justify-between gap-5">
+          {video.slice(0, 4).map((video, index) => (
+            <div className="relative mb-5" key={index}>
+              <YouTube videoId={video.url} opts={opts} />
+            </div>
+          ))}
+        </div>
       </div> */}
     </div>
   );

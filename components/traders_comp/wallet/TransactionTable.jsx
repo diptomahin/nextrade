@@ -60,7 +60,7 @@ const TransactionTable = ({ user }) => {
                 <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-white/10 border-none pr-6 pl-8  rounded-none">
                   Download
                 </button>
-                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-[#ff5252] border-none pr-6 pl-8  rounded-none">
+                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-fourthPink border-none pr-6 pl-8  rounded-none">
                   Delete
                 </button>
               </div>
