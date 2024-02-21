@@ -85,9 +85,7 @@ const page = () => {
                   color="text.secondary"
                   className="text-gray-500 text-left"
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  To submit a support ticket, simply navigate to our website&apos;s support page and fill out the provided form with details regarding your issue. Alternatively, you can email us directly at nexttrade.help@gmail.com or call our support hotline at +880 1963-895488. Be sure to include as much information as possible to expedite the resolution process.
                 </Typography>
               </AccordionDetails>
             </Accordion>
