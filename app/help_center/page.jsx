@@ -110,6 +110,28 @@ const page = () => {
                 We offer comprehensive support for various issues including technical difficulties, account inquiries, billing concerns, and general assistance with our platform. Whether you&apos;re experiencing a bug or need guidance on using our services, our dedicated support team is here to help. If you&apos;re unsure whether your issue falls within our scope of support, don&apos;t hesitate to reach out, and we&apos;ll be happy to assist you.
               </AccordionDetails>
             </Accordion>
+
+            {/* card 5  */}
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  className="font-semibold "
+                >
+                  What is refund policy?
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                Curious about our refund policy? Learn about our guidelines regarding refunds, including eligibility criteria and the process for requesting refunds. We aim to ensure transparency and fairness in our refund procedures.
+              </AccordionDetails>
+            </Accordion>
           </div>
         </div>
       </div>
