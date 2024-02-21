@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import styled from "@emotion/styled";
 
 //other imports
 import useAuth from "@/hooks/useAuth";
@@ -75,18 +75,44 @@ const Trading = () => {
   }, [assets]);
 
 
-
-  //handle buy coin
-
-
   //Dropdown
+  const CustomSelect = styled(Select)({
+    '& .MuiSelect-root': {
+      color: '#E0E3E7', // Text color
+      '&:focus': {
+        backgroundColor: 'transparent', // Remove focus background color
+      },
+    },
+    '& .MuiSelect-select': {
+      color: "white",
+      '&:hover': {
+        backgroundColor: 'transparent', // Remove hover background color
+      },
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#40a0ff', // Border color
+      '&:active': {
+        borderColor: "#4a0ff"
+      },
+      '&:hover': {
+        borderColor: "#4a0ff"
+      }
+    },
+    '& .MuiSelect-icon': {
+      color: '#40a0ff', // Color of the select icon
+    },
+    '& .MuiMenuItem-root': {
+      color: 'black', // Menu item text color
+    },
+    '& .MuiList-root': {
+      backgroundColor: '#21366c', // Background color of select options when open
+    },
+  });
+  
+  
   const [value, setValue] = React.useState(``);
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
 
-
-  };
 
 
   //handle loading
@@ -101,8 +127,21 @@ const Trading = () => {
   return (
     <div>
       <div className="w-1/2">
-        <FormControl fullWidth>
-          <InputLabel   id="demo-simple-select-label">Choose coin</InputLabel>
+      <FormControl sx={{ width: 200, backgroundColor: 'transparent' }}>
+        <InputLabel id="demo-simple-select-label"><p className="text-primary">Select Crypto</p></InputLabel>
+            <CustomSelect
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={value}
+              label="coin"
+              onChange={(event) => { setValue(event.target.value) }}
+            >
+             {
+              assets.map(coin => <MenuItem key={coin.name} value={coin.key} className="text-lg font-semibold text-primary">{coin.name}</MenuItem>
+              )
+            }
+            </CustomSelect>
+          {/* <InputLabel   id="demo-simple-select-label">Choose coin</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -110,11 +149,8 @@ const Trading = () => {
             label="coin"
             onChange={handleChange}
           >
-            {
-              assets.map(coin => <MenuItem key={coin.name} value={coin.key} className="text-lg font-semibold text-primary">{coin.name}</MenuItem>
-              )
-            }
-          </Select>
+            
+          </Select> */}
         </FormControl>
       </div>
       <div className="mt-10 flex flex-col gap-2  md:flex-row md:gap-3">
