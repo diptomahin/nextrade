@@ -27,7 +27,7 @@ const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
   const elements = useElements();
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
-  const data = getDate()
+  const date = getDate()
 
   React.useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -139,7 +139,7 @@ const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate:data
+          postedDate:date
         };
 
         // post to  notification data in database
