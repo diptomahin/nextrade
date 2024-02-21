@@ -183,50 +183,47 @@ const Academy = () => {
       <div className="mt-10 container mx-auto lg:p-10 xl:p-10 2xl:p-10 4xl:p-10 5xl:p-0">
         <SectionTitle title="Market News" btnText="ALL Market News" />
 
-
         <div>
+          <div className="xl:grid grid-cols-2 gap-5">
+            {data.slice(7, 13).map((news, index) => (
+              <div
+                className="flex gap-5 my-1 xl:mt-10 mt-5"
+                key={index}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={() => handleMouseLeave(index)}
+              >
+                <Link href={`/dashboard/academy/${news._id}`}>
+                  <div
+                    className={`w-[200px] transition-transform ${
+                      isZoomed[index] ? "scale-110" : ""
+                    }`}
+                  >
+                    <Image
+                      src={news.thumbnail}
+                      alt={news.title}
+                      width={200}
+                      height={200}
+                      className="transform-gpu"
+                    />
+                  </div>
+                </Link>
 
-
-
-        <div className="xl:grid grid-cols-2 gap-5">
-      {data.slice(7, 13).map((news, index) => (
-        <div 
-          className="flex gap-5 my-1 xl:mt-10 mt-5"
-          key={index}
-          onMouseEnter={() => handleMouseEnter(index)}
-          onMouseLeave={() => handleMouseLeave(index)}
-        >
-          <Link href={`/dashboard/academy/${news._id}`}>
-            <div className={`w-[200px] transition-transform ${isZoomed[index] ? 'scale-110' : ''}`}>
-              <Image
-                src={news.thumbnail}
-                alt={news.title}
-                width={200}
-                height={200}
-                className="transform-gpu"
-              />
-            </div>
-          </Link>
-
-          <div className="">
-            <button className="bg-blue-500 xl:px-2 px-1 py-1 xl:text-sm text-[12px] text-white">
-              {news.category}
-            </button>
-            <Link href={`/dashboard/academy/${news._id}`}>
-              <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1">
-                {news.title}
-              </h3>
-            </Link>
-            <p className="text-gray-500 text-[14px]">
-              {moment(news.date).format("ll")}
-            </p>
+                <div className="">
+                  <button className="bg-blue-500 xl:px-2 px-1 py-1 xl:text-sm text-[12px] text-white">
+                    {news.category}
+                  </button>
+                  <Link href={`/dashboard/academy/${news._id}`}>
+                    <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1">
+                      {news.title}
+                    </h3>
+                  </Link>
+                  <p className="text-gray-500 text-[14px]">
+                    {moment(news.date).format("ll")}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      ))}
-    </div>
-
-
-
         </div>
       </div>
 
@@ -234,7 +231,9 @@ const Academy = () => {
       <div className="bg-black lg:p-10 my-10">
         <div className="container mx-auto">
           <div className="flex justify-between items-center py-5">
-            <h2 className="lg:text-[30px] text-xl font-semibold text-white">Videos</h2>
+            <h2 className="lg:text-[30px] text-xl font-semibold text-white">
+              Videos
+            </h2>
             <Link href="#">
               <button className="font-semibold uppercase text-white border-b-2 border-white lg:text-normal text-[14px]">
                 All Videos
@@ -325,11 +324,6 @@ const Academy = () => {
       </div>
 
       {/* lowest */}
-      
-
-
-
-
 
       {/* Tutorial */}
       {/* <div className="container mx-auto mt-10">
