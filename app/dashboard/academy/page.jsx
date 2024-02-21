@@ -35,7 +35,7 @@ const Academy = () => {
   return (
     <div className="">
       {/* top stories and recent news */}
-      <div className="grid xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 container mx-auto">
+      {/* <div className="grid xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 container mx-auto">
         <div className="lg:mt-1">
           <Timeline colorTheme="dark" height={700} width="100%" />
         </div>
@@ -70,10 +70,10 @@ const Academy = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Trending stories */}
-      <div className="bg-[#1e222d] lg:p-10 p-4 mt-10">
+      {/* <div className="bg-[#1e222d] lg:p-10 p-4 mt-10">
         <div className="container mx-auto">
           <SectionTitle
             title="Trending Stories"
@@ -164,15 +164,15 @@ const Academy = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* All Market News */}
-      {/* <div className="mt-10 container mx-auto">
+      <div className="mt-10 container mx-auto">
         <SectionTitle title="Market News" btnText="ALL Market News" />
-        <div className="grid grid-cols-2 md:grid-cols-1">
-          <div>
-            {data.slice(7, 10).map((news, index) => (
-              <div className="flex gap-5 my-5" key={index}>
+        <div >
+          <div className="xl:grid grid-cols-2 gap-5">
+            {data.slice(7, 13).map((news, index) => (
+              <div className="flex gap-5 my-1 xl:mt-10 mt-5" key={index}>
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <div className="w-[200px]">
                     <Image
@@ -185,22 +185,25 @@ const Academy = () => {
                 </Link>
 
                 <div className="">
-                  <button className="bg-blue-500 px-2 py-1 text-sm text-white">
+                  <button className="bg-blue-500 xl:px-2 px-1 py-1 xl:text-sm text-[12px] text-white">
                     {news.category}
                   </button>
                   <Link href={`/dashboard/academy/${news._id}`}>
-                    <h3 className="text-[16px] font-semibold my-3">
+                    <h3 className="xl:text-[16px] text-[15px] font-semibold xl:my-3 my-1">
                       {news.title}
                     </h3>
                   </Link>
-                  <p className="text-gray-500">
+                  <p className="text-gray-500 text-[14px]">
                     {moment(news.date).format("ll")}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <div>
+        </div>
+      </div>
+
+       {/* <div>
             {data.slice(10, 13).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
                 <Link href={`/dashboard/academy/${news._id}`}>
@@ -228,9 +231,7 @@ const Academy = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </div> */}
+          </div> */}
 
       {/* Videos */}
       {/* <div className="bg-black p-10 my-10">
