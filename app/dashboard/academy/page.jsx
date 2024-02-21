@@ -167,7 +167,7 @@ const Academy = () => {
       </div> */}
 
       {/* All Market News */}
-      <div className="mt-10 container mx-auto">
+      {/* <div className="mt-10 container mx-auto">
         <SectionTitle title="Market News" btnText="ALL Market News" />
         <div >
           <div className="xl:grid grid-cols-2 gap-5">
@@ -201,9 +201,9 @@ const Academy = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
-       {/* <div>
+      {/* <div>
             {data.slice(10, 13).map((news, index) => (
               <div className="flex gap-5 my-5" key={index}>
                 <Link href={`/dashboard/academy/${news._id}`}>
@@ -234,7 +234,7 @@ const Academy = () => {
           </div> */}
 
       {/* Videos */}
-      {/* <div className="bg-black p-10 my-10">
+      <div className="bg-black p-10 my-10">
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <h2 className="text-[30px] font-semibold text-white">Videos</h2>
@@ -244,26 +244,33 @@ const Academy = () => {
               </button>
             </Link>
           </div>
-          <div className="grid-cols-3 gap-10 mt-5 md:grid-cols-1">
-            <div className="col-span-2 md:col-span-1">
+          <div className="xl:flex justify-between gap-10">
+            <div className="">
               {data.slice(13, 14).map((news, index) => (
-                <div className="relative" key={index}>
-                  <Link href={`/dashboard/academy/${news._id}`}>
-                    <div className="lg:w-[480px] md:w-full md:h-full md:mx-auto md:flex md:justify-center">
-                      <Image
-                        src={news.thumbnail}
-                        alt={news.title}
-                        width={700}
-                        height={700}
-                      />
-                    </div>
-                  </Link>
+                <div className="relative mt-10" key={index}>
+               <div>
+  <Link href={`/dashboard/academy/${news._id}`}>
+    <Image
+      src={news.thumbnail}
+      alt={news.title}
+      width={900}
+      height={600}
+      sizes="(max-width: 1500px) 200vw, (max-width: 2500px) 70vw"
+      style={{
+        width: "100%",
+        height: "auto",
+      }}
+    />
+  </Link>
+</div>
+
+
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="md:text-6xl text-4xl text-white">
                       <FaRegCirclePlay className="text-center" />
                     </div>
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="md:text-3xl text-xl font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11">
+                      <h3 className="xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11">
                         {news.title}
                       </h3>
                     </Link>
@@ -281,13 +288,18 @@ const Academy = () => {
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <div className="w-[140px]">
-                        <Image
-                          src={news.thumbnail}
-                          alt={news.title}
-                          width={130}
-                          height={130}
-                        />
+                      <div className="lg:w-[180px] xl:w-[180px] md:w-[120px] w-[100px]">
+                      <Image
+                        src={news.thumbnail}
+                        alt={news.title}
+                        width={400} // Provide the width property here
+                        height={400} // Provide the height property if necessary
+                        sizes="100vw"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                        }}
+                      />
                       </div>
                     </Link>
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -297,15 +309,15 @@ const Academy = () => {
                     </div>
                   </div>
                   <div className="-mt-1">
-                    <button className="text-blue-500 text-sm">
+                    <button className="text-blue-500 lg:text-[16px] text-sm">
                       {news.category}
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="font-semibold my-1 text-white text-[15px]">
+                      <h3 className="font-semibold my-1 text-white lg:text-[17px] xl:text-[15px] text-[13px]">
                         {news.title}
                       </h3>
                     </Link>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 xl:text-[15px] lg:text-[17px] text-[13px]">
                       {moment(news.date).format("ll")}
                     </p>
                   </div>
@@ -314,13 +326,11 @@ const Academy = () => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* video section */}
-      <div>
+      <div></div>
 
-      </div>
-   
       {/* lowest */}
       {/* <div className="mt-10 container mx-auto">
         <div className="grid grid-cols-2">
