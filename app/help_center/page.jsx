@@ -9,6 +9,12 @@ import Subtitle from "@/components/library/Subtitle";
 import HelpCenterCard from "./HelpCenterCard";
 import NewsLatter from "./NewsLatter";
 
+// add title in metadata
+export const metadata = {
+  title: "NexTrade - Help Center ",
+  description: 'Help Center page from Nextrade',
+};
+
 const page = () => {
   return (
     <Container className="py-20 overflow-hidden">

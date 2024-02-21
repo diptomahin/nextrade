@@ -5,6 +5,12 @@ import ContactForm from "@/components/contact/ContactForm";
 import Title from "@/components/library/Title";
 import Subtitle from "@/components/library/Subtitle";
 
+// add title in metadata
+export const metadata = {
+  title: "NexTrade - Contact Us",
+  description: 'Contact Us Nextrade',
+};
+
 const page = () => {
   return (
     <Container className="pt-24 pb-10 ">
