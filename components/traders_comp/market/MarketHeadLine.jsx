@@ -120,7 +120,7 @@ const MarketHeadLine = () => {
       <Stack gap={2}>
         <Marquee direction='right'>
           {assets.map((asset) => (
-            <Stack className="bg-darkThree rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
+            <Stack className="bg-darkBG rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
               <Stack>
                 <Stack flexDirection="row" gap={1} alignItems="center">
                   <Image width={45} height={45} src={asset.icon} alt='coin lgog'></Image>
@@ -128,11 +128,11 @@ const MarketHeadLine = () => {
                 </Stack>
                 <Stack flexDirection="row" gap={2}>
                   <p>${asset.price}</p>
-                  <p className={` font-semibold ${asset.changePrice < 0 ? "text-red-500" : "text-green-700"}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon /> : <TrendingUpIcon />}</p>
+                  <p className={` font-semibold text-sm ${asset.changePrice < 0 ? "text-red-500" : "text-green-700"}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon /> : <TrendingUpIcon />}</p>
                 </Stack>
               </Stack>
               <Stack>
-                <p>Heigh Price: <span className="text-green-700 font-semibold">${asset.highPrice}</span></p>
+                <p>High Price: <span className="text-green-700 font-semibold">${asset.highPrice}</span></p>
                 <p>Low Price: <span className="text-red-500 font-semibold">${asset.lowPrice}</span></p>
               </Stack>
             </Stack>
@@ -140,7 +140,7 @@ const MarketHeadLine = () => {
         </Marquee>
         <Marquee direction='left'>
           {flatCurrency.map((asset) => (
-            <Stack className="bg-darkThree rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
+            <Stack className="bg-darkBG rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
               <Stack>
                 <Stack flexDirection="row" gap={1} alignItems="center">
                   <Image width={45} height={45} src={asset.icon} alt='coin logo'></Image>
