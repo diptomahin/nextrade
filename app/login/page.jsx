@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
-import Lottie from "lottie-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
-import loginAnim from "../../assets/loginAnim.json";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
@@ -21,11 +19,7 @@ const Login = () => {
         <Image src={logo} alt="Logo" className="w-36 lg:w-40 z-10" />
       </Link>
       <div className="flex-1 h-full xl:min-h-[100vh] flex items-center justify-center py-12">
-        <Lottie
-          className="w-5/6 md:w-7/12 xl:w-3/5"
-          loop={true}
-          animationData={loginAnim}
-        />
+        {/* image field */}
       </div>
       <div className="flex-1 min-h-[100vh] flex items-center justify-center xl:bg-white">
         <LoginForm />
