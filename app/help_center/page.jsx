@@ -46,28 +46,28 @@ const page = () => {
             </Accordion>
 
             {/* card 2  */}
-            <Accordion className="rounded">
-              <AccordionSummary>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
                   component="div"
-                  className="font-semibold"
+                  className="font-semibold "
                 >
                   Support center operating hours?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
-                >
-                  Our support center operates from 9:AM on 5 days of the week. Rest assured, we strive to respond to all inquiries promptly during our operating hours.
-                </Typography>
+                Our support center operates from 9:AM on 5 days of the week. Rest assured, we strive to respond to all inquiries promptly during our operating hours.
               </AccordionDetails>
             </Accordion>
+
             {/* card 3  */}
+
             <Accordion className="rounded">
               <AccordionSummary>
                 <Typography
