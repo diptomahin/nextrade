@@ -8,8 +8,8 @@ const CustomerChat = () => {
         <CustomChat
           pageId="108051777809659"
           minimized={false}
-          loggedInGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
-          loggedOutGreeting="Welcome back! Seeking assistance? Ariful from NexTrade is here to help."
+          loggedInGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
+          loggedOutGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
         />
       </FacebookProvider>
     </>
