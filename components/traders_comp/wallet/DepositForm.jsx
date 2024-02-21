@@ -11,8 +11,8 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import date from '../../utils/date'
 import useNotificationData from "@/hooks/useNotificationData";
+import getDate from "@/components/utils/date";
 
 const DepositForm = ({ refetch, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
@@ -24,8 +24,8 @@ const DepositForm = ({ refetch, userBalanceRefetch }) => {
   const elements = useElements();
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
-  const {notificationRefetch}= useNotificationData()
-  
+  const { notificationRefetch } = useNotificationData();
+  const date = getDate();
 
   React.useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -126,25 +126,26 @@ const DepositForm = ({ refetch, userBalanceRefetch }) => {
         // post notification data sen database
         const notificationInfo = {
           title: "Deposit Successfully",
-          description: `Money has been added to your account ${parseInt(amount) + "$"}`,
-          assetKey: '',
-          assetImg: '',
-          assetBuyerUID: '',
+          description: `Money has been added to your account ${
+            parseInt(amount) + "$"
+          }`,
+          assetKey: "",
+          assetImg: "",
+          assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate:date
+          postedDate: date,
         };
 
         // post to  notification data in database
         secureAPI
-  .post('/notifications', notificationInfo)
-  .then((res) => {
-    console.log("Successfully coin added:", res);
-    notificationRefetch();
-  })
-  .catch((error) => {
-    console.error("Error sending notification:", error);
-    
-  });
+          .post("/notifications", notificationInfo)
+          .then((res) => {
+            console.log("Successfully coin added:", res);
+            notificationRefetch();
+          })
+          .catch((error) => {
+            console.error("Error sending notification:", error);
+          });
         axios
           .post(
             `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,

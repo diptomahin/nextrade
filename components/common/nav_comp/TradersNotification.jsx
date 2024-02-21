@@ -7,14 +7,12 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Link from "next/link";
 import useNotificationData from "@/hooks/useNotificationData";
 
+
 const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
   const [isOpenDot, setIsOpenDot] = React.useState(false);
   const {notificationsData,notificationRefetch}=useNotificationData();
 
-  
-
-  console.log(notificationsData);
  
   
   return (
