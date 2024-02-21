@@ -132,6 +132,28 @@ const page = () => {
                 Curious about our refund policy? Learn about our guidelines regarding refunds, including eligibility criteria and the process for requesting refunds. We aim to ensure transparency and fairness in our refund procedures.
               </AccordionDetails>
             </Accordion>
+
+            {/* card 6  */}
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  className="font-semibold "
+                >
+                  Data Security & Privacy?
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                Concerned about the security of your data? Discover how we prioritize data security and protect your privacy. Explore our measures for data encryption, compliance with regulations, and our commitment to safeguarding your information.
+              </AccordionDetails>
+            </Accordion>
           </div>
         </div>
       </div>
