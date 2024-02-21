@@ -1,4 +1,5 @@
 "use client";
+import Translate from "@/components/home_comp/Translate";
 import Banner from "@/components/home_comp/banner/Banner";
 import InvestSolutions from "@/components/home_comp/InvestSolutions";
 import Map from "@/components/home_comp/map/Map";
@@ -8,7 +9,6 @@ import Subscription from "@/components/home_comp/subscription/Subscription";
 import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
-import Translate from "@/components/home_comp/Translate";
 import CustomerChat from "@/components/home_comp/CustomerChat";
 
 export default function Home() {
