@@ -30,7 +30,8 @@ const CoinDetails = ({ params }) => {
   // fetch real-time data for crypto currency and regular currency
   useEffect(() => {
 
-    publicAPI.get('/manageAllCoins')
+    if (params.CoinDetails.length > 3) {
+      publicAPI.get('/manageAllCryptoCoins')
         .then(res => {
           const foundCurrency = res.data.find(currency => currency.key === params.CoinDetails);
           setCoinImage(foundCurrency.icon)
@@ -39,11 +40,18 @@ const CoinDetails = ({ params }) => {
           // console.log(foundCurrency)
         })
 
-    if (params.CoinDetails.length > 3) {  // operations for cryptos
       const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${params.CoinDetails.toLowerCase()}@ticker`);
       socket.addEventListener("message", (event) => setTickerData(JSON.parse(event.data)));
 
-    } else {  // operations for currencies
+    }else {  // operations for currencies
+      publicAPI.get('/manageAllFlatCoins')
+        .then(res => {
+          const foundCurrency = res.data.find(currency => currency.key === params.CoinDetails);
+          setCoinImage(foundCurrency.icon)
+          setCurrencyName(foundCurrency.name)
+          setCoinName(foundCurrency.name)
+          // console.log(foundCurrency)
+        })
       const fetchCurrencyRates = async () => {
         try {
           const response = await axios.get(
