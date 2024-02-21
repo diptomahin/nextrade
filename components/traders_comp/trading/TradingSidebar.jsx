@@ -10,29 +10,25 @@ import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import useTrading from '@/hooks/useTrading';
 
 
 const TradingSidebar = (params) => {
 
   const { user, loading } = useAuth();
-  const {value, assets} = params
-  const secureAPI = useSecureAPI();
-  const {
-    data: allUsers = [],
+  const {value, assets, trader} = params
+  const {data: trading=[],     
     isPending,
     isLoading,
-    refetch,
-  } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+    refetch,} = useTrading(["trading"]);
 
-  const usersBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
-    
-    // console.log(value, assets);
+  const secureAPI = useSecureAPI();
+  
+  const usersBalance = parseFloat(trader.balance).toFixed(2);
 
-    const selectedAsset = assets.filter(asset => asset.key == value);
-    // console.log(selectedAsset[0])
-
-
-    //Buy coin
+  const selectedAsset = assets.filter(asset => asset.key == value);
+  
+   //Buy coin
     const handleBuyCoin = (ast) => {
       const assetInfo = {
         assetName: ast.name,
@@ -42,7 +38,7 @@ const TradingSidebar = (params) => {
         assetBuyerEmail: user.email,
       };
       //calculate remaining balance after buying a coin
-      const usersBalance = parseFloat(allUsers[0].balance).toFixed(2);
+      const usersBalance = parseFloat(trader.balance).toFixed(2);
       const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
       if (usersBalance < parseFloat(ast.price)) {
         Swal.fire({
@@ -65,6 +61,7 @@ const TradingSidebar = (params) => {
             icon: "success",
           });
           refetch();
+
         }
       })
       .catch((error) => {
@@ -75,16 +72,31 @@ const TradingSidebar = (params) => {
           icon: "error",
         });
       });
+      // secureAPI
+      // .put(`/all-users`, )
+      // .then((res) => {
+      //   console.log(res)
+      //   if (res.data.insertedId) {
+      //     Swal.fire({
+      //       title: `${ast.name} Purchase successful!`,
+      //       text: `Best of luck`,
+      //       icon: "success",
+      //     });
+      //     refetch();
+
+      //   }
+      // })
      }
     };
 
     //handleSellCoin
     const handleSellCoin =(ast)=>{
-      Swal.fire({
-        title: `${ast.name} sold successful!`,
-        text: `Best of luck`,
-        icon: "success",
-      });
+      
+      // Swal.fire({
+      //   title: `${ast.name} sold successful!`,
+      //   text: `Best of luck`,
+      //   icon: "success",
+      // });
     }
     return (
         <div className=" w-full md:w-1/3  p-5 rounded-lg border-x-4 border-y-4 border-primary">
