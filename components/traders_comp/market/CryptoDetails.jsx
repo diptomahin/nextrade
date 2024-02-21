@@ -46,7 +46,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
   const {notificationRefetch}= useNotificationData()
-  const data = getDate()
+  const date = getDate()
 
 
   const handleInvestmentChange = (event) => {

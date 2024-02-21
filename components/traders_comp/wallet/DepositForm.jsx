@@ -133,7 +133,7 @@ const DepositForm = ({ refetch, userBalanceRefetch }) => {
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate: date,
+          postedDate: {date},
         };
 
         // post to  notification data in database

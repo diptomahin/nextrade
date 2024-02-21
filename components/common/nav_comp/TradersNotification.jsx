@@ -84,6 +84,15 @@ const TradersNotification = () => {
                       <p className="text-gray-400 text-sm">
                         {asset.description}
                       </p>
+                      <p className="text-gray-400 text-sm flex items-center justify-end gap-3">
+                        {/* Date */}
+                        <span>
+                        {asset?.postedDate?.day || ' '}-{asset?.postedDate?.month || ' '}-{asset?.postedDate?.year || ' '}
+                        </span>
+                        {/* Time */}
+                        <span></span>
+                        {asset?.postedDate?.hours || ' '}:{asset?.postedDate?.minutes || ' '}
+                      </p>
                     </div>
                   </div>
                   {/* 3 dots button */}
