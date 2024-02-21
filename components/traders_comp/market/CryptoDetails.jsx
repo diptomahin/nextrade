@@ -9,6 +9,8 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import styled from "@emotion/styled";
+import date from '../../utils/date'
+import useNotificationData from "@/hooks/useNotificationData";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -42,6 +44,7 @@ const CssTextField = styled(TextField)({
 const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainingBalance, user, refetch }) => {
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
+  const {notificationRefetch}= useNotificationData()
 
 
   const handleInvestmentChange = (event) => {
@@ -78,6 +81,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
       assetImg: coinImage,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
+      postedDate:date
     };
     
 
@@ -106,7 +110,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
   .post('/notifications', notificationInfo)
   .then((res) => {
     console.log("Successfully coin added:", res);
-    refetch();
+    notificationRefetch();
   })
   .catch((error) => {
     console.error("Error sending notification:", error);

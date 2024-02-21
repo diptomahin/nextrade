@@ -11,8 +11,10 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import date from '../../utils/date'
+import useNotificationData from "@/hooks/useNotificationData";
 
-const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
+const DepositForm = ({ refetch, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
   const [clientSecret, setClientSecret] = React.useState("");
   const [amount, setAmount] = React.useState(0);
@@ -22,6 +24,8 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
   const elements = useElements();
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
+  const {notificationRefetch}= useNotificationData()
+  
 
   React.useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -127,6 +131,7 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
           assetImg: '',
           assetBuyerUID: '',
           assetBuyerEmail: user.email,
+          postedDate:date
         };
 
         // post to  notification data in database
@@ -134,7 +139,7 @@ const DepositForm = ({ refetch, date, userBalanceRefetch }) => {
   .post('/notifications', notificationInfo)
   .then((res) => {
     console.log("Successfully coin added:", res);
-    refetch();
+    notificationRefetch();
   })
   .catch((error) => {
     console.error("Error sending notification:", error);

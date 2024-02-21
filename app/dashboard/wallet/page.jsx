@@ -28,11 +28,7 @@ const stripePromise = loadStripe(
   "pk_test_51OlajqDiMQeSaa5LxC7tWUKZSGttpwdEYpHonWb6QkYttv3vgJlGazlArbsWPutWsDsua0zPbK9oUvEYYspfs0Rf00viBhriC3"
 );
 
-const currentDate = new Date();
-const year = currentDate.getFullYear();
-const month = currentDate.getMonth() + 1;
-const day = currentDate.getDate();
-const date = { day: day, month: month, year: year };
+
 
 const CustomXAxis = ({ dataKey, tick }) => (
   <XAxis dataKey={dataKey} tick={tick} />
@@ -158,7 +154,6 @@ const Wallet = () => {
                 <DepositForm
                   userBalanceRefetch={userBalanceRefetch}
                   refetch={refetch}
-                  date={date}
                 />
               </Elements>
             </TabPanel>
@@ -179,7 +174,6 @@ const Wallet = () => {
                   <WithdrawForm
                     userBalanceRefetch={userBalanceRefetch}
                     refetch={refetch}
-                    date={date}
                     totalBalance={userBalance[0]?.balance}
                   />
                 </Elements>
