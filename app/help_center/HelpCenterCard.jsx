@@ -93,9 +93,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold"> API endpoints</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+        Developers, rejoice! Discover our API endpoints for seamless integration with your applications. From data retrieval to automation, leverage our APIs to extend the capabilities of your solutions.
         </p>
       </motion.div>
 
