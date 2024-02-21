@@ -12,7 +12,8 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useNotificationData from "@/hooks/useNotificationData";
-import date from '../../utils/date'
+import getDate from "@/components/utils/date";
+
 
 const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
   const [paymentError, setPaymentError] = React.useState("");
@@ -26,7 +27,7 @@ const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
   const elements = useElements();
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
-  console.log(date);
+  const data = getDate()
 
   React.useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -138,7 +139,7 @@ const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate:date
+          postedDate:data
         };
 
         // post to  notification data in database

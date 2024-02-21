@@ -3,8 +3,8 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import React, { useState } from "react";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import date from '../../utils/date'
 import useNotificationData from "@/hooks/useNotificationData";
+import getDate from "../../utils/date";
 
 const Security = () => {
   // Get user information using the useAuth hook
@@ -18,6 +18,7 @@ const Security = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
+  const data = getDate()
 
    // post notification data sen database
    const notificationInfo = {

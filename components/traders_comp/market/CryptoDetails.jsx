@@ -9,8 +9,9 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import styled from "@emotion/styled";
-import date from '../../utils/date'
+
 import useNotificationData from "@/hooks/useNotificationData";
+import getDate from "../../utils/date";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -45,6 +46,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
   const {notificationRefetch}= useNotificationData()
+  const data = getDate()
 
 
   const handleInvestmentChange = (event) => {
