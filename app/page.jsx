@@ -9,6 +9,12 @@ import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
 import Testimonials from "@/components/home_comp/Testimonials";
 
+// add title in metadata
+export const metadata = {
+  title: "NexTrade - Home ",
+  description: 'Home page from Nextrade',
+};
+
 export default function Home() {
   return (
     <main className="overflow-hidden text-zinc-100 font-montserrat">

@@ -28,6 +28,12 @@ import Container from "@/components/library/Container";
 import Title from "@/components/library/Title";
 import Subtitle from "@/components/library/Subtitle";
 
+// add title in metadata
+export const metadata = {
+  title: "NexTrade - Payment Methods ",
+  description: 'Payment Methods page from Nextrade',
+};
+
 const PaymentMethods = () => {
   return (
     <Container className="py-20">
