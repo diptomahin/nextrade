@@ -59,9 +59,7 @@ const HelpCenterCard = () => {
           <h3 className="text-lg font-semibold">Limits & pricing</h3>
         </div>
         <p className="text-sm text-justify font-medium mt-5 text-darkGray">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium
-          tempore ex commodi eligendi expedita soluta rerum doloribus minus
-          adipisci.
+        Understand the usage limits and pricing structure of our services. Get clarity on subscription tiers, usage thresholds, and any associated costs to make informed decisions for your needs.
         </p>
       </motion.div>
 
