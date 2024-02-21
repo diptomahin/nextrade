@@ -41,9 +41,7 @@ const page = () => {
                   color="text.secondary"
                   className="text-gray-500 text-left"
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  You can contact our support team via email at nexttrade.help@gmail.com or by filling out the contact form on our website. Additionally, you can reach us by phone at +880 1963-895488. We&apos;re here to assist you!
                 </Typography>
               </AccordionDetails>
             </Accordion>
