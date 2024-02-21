@@ -3,21 +3,18 @@ import cn from "../utils/cn";
 import { fadeIn } from "../utils/variants";
 import { motion } from "framer-motion";
 
-const Title = ({ children, className }) => {
+const Subtitle = ({ children, className }) => {
   return (
-    <motion.h2
-      variants={fadeIn("up", 0.05)}
+    <motion.p
+      variants={fadeIn("up", 0.1)}
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
-      className={cn(
-        "text-3xl md:text-4xl text-center font-semibold text-zinc-100 pt-16 pb-5",
-        className
-      )}
+      className={cn("text-center text-darkGray font-medium", className)}
     >
       {children}
-    </motion.h2>
+    </motion.p>
   );
 };
 
-export default Title;
+export default Subtitle;

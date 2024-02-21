@@ -1,33 +1,22 @@
-"use client";
-
 import { Card, CardContent, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../components/utils/variants";
 import shakeHand from "../../assets/shakeHand.png";
 import mission from "../../assets/mission.png";
 import tradeCurrency from "../../assets/tradeCurrency.png";
 import investment from "../../assets/investment.png";
 import cryptocurrencyTrade from "../../assets/cryptocurrencyTrade.png";
-
 import Image from "next/image";
 import Container from "@/components/library/Container";
 import Title from "@/components/library/Title";
+import Subtitle from "@/components/library/Subtitle";
 
 const AboutNexTrade = () => {
   return (
     <Container className="py-20 text-darkGray">
       <Title>About NexTrade</Title>
-      <motion.p
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-darkGray font-medium"
-      >
-        {" "}
+      <Subtitle>
         Welcome to nexTrade – Your Gateway to Global Trading Excellence!
-      </motion.p>
+      </Subtitle>
 
       {/* What is NexTrade */}
       <Title className="text-left"> What is NexTrade ?</Title>
