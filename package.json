@@ -39,6 +39,7 @@
     "react-rating": "^2.0.5",
     "react-select": "^5.8.0",
     "react-tabs": "^6.0.2",
+    "react-toastify": "^10.0.4",
     "react-ts-tradingview-widgets": "^1.2.3",
     "recharts": "^2.12.0",
     "sweetalert2": "^11.6.13",
