@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionDetails,
@@ -28,23 +26,17 @@ import Marquee from "react-fast-marquee";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import Container from "@/components/library/Container";
 import Title from "@/components/library/Title";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../components/utils/variants";
+import Subtitle from "@/components/library/Subtitle";
 
 const PaymentMethods = () => {
   return (
     <Container className="py-20">
       <Title>Payment Methods</Title>
-      <motion.p
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-darkGray font-medium"
-      >
+      <Subtitle>
+        {" "}
         Explore our varied deposit and withdrawal options. Learn about our
         payment methods and their usage for a seamless financial experience.
-      </motion.p>
+      </Subtitle>
       <Stack my={5}>
         <Marquee direction="right" gradient="30px" gradientColor="#181e2c">
           <Image
