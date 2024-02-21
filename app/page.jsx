@@ -7,6 +7,7 @@ import Subscription from "@/components/home_comp/subscription/Subscription";
 import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Modal from "@/components/home_comp/Modal";
+import Testimonials from "@/components/home_comp/Testimonials";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Services />
       <Subscription />
       <WhyNexTrade />
+      <Testimonials />
       <Map />
     </main>
   );
