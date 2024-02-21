@@ -12,10 +12,9 @@ import Select from '@mui/material/Select';
 
 //other imports
 import useAuth from "@/hooks/useAuth";
-import Swal from "sweetalert2";
+
 import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
-import usePublicAPI from "@/hooks/usePublicAPI";
 
 //components
 import TradingGraph from "@/components/traders_comp/trading/TradingGraph"
@@ -30,8 +29,8 @@ const Trading = () => {
     isLoading,
     refetch,
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
+  const trader = allUsers[0] ;
 
- 
   const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
 
   const [assets, setAssets] = useState([
@@ -81,7 +80,7 @@ const Trading = () => {
 
 
   //Dropdown
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(``);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -119,8 +118,8 @@ const Trading = () => {
         </FormControl>
       </div>
       <div className="mt-10 flex flex-col gap-2  md:flex-row md:gap-3">
-      <TradingGraph value={value} assets={assets}></TradingGraph>
-      <TradingSidebar value={value} assets={assets}></TradingSidebar>
+      <TradingGraph value={value} assets={assets} ></TradingGraph>
+      <TradingSidebar value={value} assets={assets} trader={trader}></TradingSidebar>
       </div>
     </div>
   );
