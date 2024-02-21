@@ -14,19 +14,27 @@ const MarketHeadLine = () => {
 
 
   const {
-    data: allCoins = [],
-    isPending,
-    isLoading,
-    refetch,
-  } = usePublicFetch(`/manageAllCoins`, "allCoinData");
+    data: allCryptoCoins = [],
+    isPending: cryptoPending,
+    isLoading: cryptoLoading,
+    refetch: cryptoRefetch,
+  } = usePublicFetch(`/manageAllCryptoCoins`, "allCryptos");
+
+  const {
+    data: allFlatCoins = [],
+    isPending: flatPending,
+    isLoading: flatLoading,
+    refetch: flatRefetch,
+  } = usePublicFetch(`/manageAllFlatCoins`, "allFlats");
+
 
   // console.log(allCoins)
   useEffect(() => {
-    if (allCoins.length > 0) {
-      setAssets(allCoins.filter((coin) => coin.type === "crypto coin"));
-      setFlatCurrency(allCoins.filter((coin) => coin.type === "flat coin"));
+    if (allCryptoCoins.length > 0 && allFlatCoins.length >0 ) {
+      setAssets(allCryptoCoins);
+      setFlatCurrency(allFlatCoins);
     }
-  }, [allCoins]);
+  }, [allCryptoCoins, allFlatCoins]);
 
   // console.log(searchText)
 

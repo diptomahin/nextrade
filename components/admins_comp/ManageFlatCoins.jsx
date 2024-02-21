@@ -50,7 +50,7 @@ const ManageFlatCoins = ({ assets, refetch }) => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await secureAPI.delete(`/allCoins/${id}`)
+                const res = await secureAPI.delete(`/allFlatCoins/${id}`)
                 refetch()
                 if (res.data.deletedCount > 0) {
                     Swal.fire({
@@ -70,21 +70,19 @@ const ManageFlatCoins = ({ assets, refetch }) => {
         const name = formData.name.value;
         const key = formData.key.value.toUpperCase();
         const type = defaultType;
-        const icon = hostedImage
+        const icon = defaultIcon
 
-        if (type === "crypto coin") {
+        if (type === "flat coin") {
+
             const coinInfo = {
                 name,
                 key,
-                price: 0,
                 type,
-                changePrice: 0,
-                highPrice: 0,
-                lowPrice: 0,
+                price: 0,
                 icon
             }
             // console.log(coinInfo)
-            secureAPI.put(`/allCoins/${assetId}`, coinInfo)
+            secureAPI.put(`/allFlatCoins/${assetId}`, coinInfo)
                 .then((res) => {
                     if (res.data.modifiedCount) {
                         Swal.fire({
@@ -107,12 +105,15 @@ const ManageFlatCoins = ({ assets, refetch }) => {
             const coinInfo = {
                 name,
                 key,
-                type,
                 price: 0,
+                type,
+                changePrice: 0,
+                highPrice: 0,
+                lowPrice: 0,
                 icon
             }
             // console.log(coinInfo)
-            secureAPI.put(`/allCoins/${assetId}`, coinInfo)
+            secureAPI.put(`/allCryptoCoins/${assetId}`, coinInfo)
                 .then((res) => {
                     if (res.data.modifiedCount) {
                         Swal.fire({
@@ -136,7 +137,6 @@ const ManageFlatCoins = ({ assets, refetch }) => {
 
     }
 
-    const [hostedImage, setHostedImage] = useState("")
 
     // image hosting 
     const handleIconChange = async (e) => {
@@ -154,7 +154,7 @@ const ManageFlatCoins = ({ assets, refetch }) => {
             );
 
             if (response.data.success) {
-                setHostedImage(response.data.data.url);
+                setDefaultIcon(response.data.data.url);
 
             } else {
                 toast.error("Failed to upload image");
@@ -217,7 +217,7 @@ const ManageFlatCoins = ({ assets, refetch }) => {
                     </FormControl>
                     <TextField
                         autoFocus
-                        required
+                        // required
                         margin="dense"
                         id="icon"
                         name="icon"
@@ -229,22 +229,14 @@ const ManageFlatCoins = ({ assets, refetch }) => {
                     // variant="standard"
                     />
                     <label htmlFor="icon">
-                        {
-                            hostedImage ?
-                                <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
-                                    width={50}
-                                    height={50}
-                                    src={hostedImage}
-                                    alt="coin-icon"
-                                />Change Icon</p>
-                                :
-                                <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
-                                    width={50}
-                                    height={50}
-                                    src={defaultIcon}
-                                    alt="coin-icon"
-                                />Coin Icon</p>
-                        }
+
+                        <p className='border-2 p-2 rounded w-max cursor-pointer'> <Image
+                            width={50}
+                            height={50}
+                            src={defaultIcon}
+                            alt="coin-icon"
+                        />Change Icon</p>
+
                     </label>
                 </DialogContent>
                 <DialogActions>

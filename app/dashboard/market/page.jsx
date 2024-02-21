@@ -116,19 +116,26 @@ const MarketPage = () => {
 
 
   const {
-    data: allCoins = [],
-    isPending,
-    isLoading,
-    refetch,
-  } = usePublicFetch(`/allCoins?search=${searchText}`, "allCoins", searchText);
+    data: allCryptoCoins = [],
+    isPending: cryptoPending,
+    isLoading: cryptoLoading,
+    refetch: cryptoRefetch,
+  } = usePublicFetch(`/allCryptoCoins?search=${searchText}`, "allCryptoCoins", searchText);
+
+  const {
+    data: allFlatCoins = [],
+    isPending: flatPending,
+    isLoading: flatLoading,
+    refetch: flatRefetch,
+  } = usePublicFetch(`/allFlatCoins?search=${searchText}`, "allFlatCoins", searchText);
 
   // console.log(allCoins)
   useEffect(() => {
-    if (allCoins.length > 0) {
-      setAssets(allCoins.filter((coin) => coin.type === "crypto coin"));
-      setFlatCurrency(allCoins.filter((coin) => coin.type === "flat coin"));
+    if (allFlatCoins.length > 0 && allCryptoCoins.length > 0 ) {
+      setAssets(allCryptoCoins);
+      setFlatCurrency(allFlatCoins);
     }
-  }, [allCoins]);
+  }, [allCryptoCoins, allFlatCoins]);
 
   // console.log(searchText)
 
@@ -319,7 +326,8 @@ const MarketPage = () => {
                   onChange={(e) => {
                     setSearchText(e.target.value)
                     if (e.target.value === "") {
-                      refetch()
+                      flatRefetch()
+                      cryptoRefetch()
                     }
                   }}
                 />
