@@ -1,5 +1,7 @@
 "use client";
 
+import Container from "@/components/library/Container";
+import Title from "@/components/library/Title";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -19,8 +21,8 @@ const Testimonials = () => {
     }, [])
 
     return (
-        <div className="p-8">
-            <h2 className="text-red-600 pt-2 text-center mx-auto font-bold text-4xl">Testimonials</h2>
+        <Container className="py-10">
+            <Title>Testimonials</Title>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -39,7 +41,7 @@ const Testimonials = () => {
                     reviews.map(review => <SwiperSlide key={review._id} >
                         <div className="my-5 mx-16 flex flex-col items-center">
                             <img className="rounded-full md:w-1/6" src={review.avatar} alt="avatar" />
-                            <h3 className="text-2xl text-red-600">{review.name}</h3>
+                            <h3 className="text-lg py-5 font-semibold">{review.name}</h3>
                             <p className="py-8">{review.details}</p>
                             <Rating
                                 style={{ maxWidth: 180 }}
@@ -53,7 +55,7 @@ const Testimonials = () => {
                 }
 
             </Swiper>
-        </div>
+        </Container>
     );
 };
 
