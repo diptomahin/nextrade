@@ -1,7 +1,7 @@
 "use client";
 import useTransactionData from "@/hooks/useTransactionData";
 import useUserData from "@/hooks/useUserData";
-import { BiMoneyWithdraw } from "react-icons/bi";
+import { FaCreditCard } from "react-icons/fa6";
 import { MdAccountBalance } from "react-icons/md";
 import { RiLuggageDepositFill } from "react-icons/ri";
 
@@ -46,34 +46,42 @@ const BalanceSection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
       {/* total balance */}
-      <div className="w-full p-5 bg-primary rounded flex flex-col justify-center gap-3">
-        <h3 className="flex items-center gap-2 font-medium">
-          <MdAccountBalance className="text-2xl" /> Total Balance
-        </h3>
-        <h3 className="text-2xl font-semibold">
-          $ {parseFloat(userData?.balance).toFixed(2) || "0.00"}
-        </h3>
+      <div className="w-full p-5 bg-primary rounded flex items-center justify-between gap-3">
+        <div>
+          <h3 className="font-medium">Total Balance</h3>
+          <h3 className="text-xl font-semibold">
+            $ {parseFloat(userData?.balance).toFixed(2) || "0.00"}
+          </h3>
+        </div>
+        <div className="w-16 h-16 bg-white/10 flex items-center justify-center rounded-full">
+          <MdAccountBalance className="text-4xl" />
+        </div>
       </div>
 
       {/* total deposit */}
-      <div className="w-full p-5 bg-thirdGreen rounded flex flex-col justify-center gap-3">
-        <h3 className="flex items-center gap-2 font-medium">
-          <RiLuggageDepositFill className="text-2xl" /> Total Deposit
-        </h3>
-        <h3 className="text-2xl font-semibold">
-          $ {totalDeposit ? totalDeposit?.toFixed(2) : "0.00"}
-        </h3>
+      <div className="w-full p-5 bg-thirdGreen rounded flex items-center justify-between gap-3">
+        <div>
+          <h3 className="font-medium">Total Deposit</h3>
+          <h3 className="text-xl font-semibold">
+            $ {totalDeposit ? totalDeposit?.toFixed(2) : "0.00"}
+          </h3>
+        </div>
+        <div className="w-16 h-16 bg-white/10 flex items-center justify-center rounded-full">
+          <RiLuggageDepositFill className="text-4xl" />
+        </div>
       </div>
 
       {/* total withdraw */}
-      <div className="w-full p-5 bg-fourthPink rounded flex flex-col justify-center gap-3">
-        <h3 className="flex items-center gap-2 font-medium">
-          <BiMoneyWithdraw className="text-2xl" /> Total Withdraw
-        </h3>
-
-        <h3 className="text-2xl font-semibold">
-          $ {totalWithdraw ? totalWithdraw?.toFixed(2) : "0.00"}
-        </h3>
+      <div className="w-full p-5 bg-fourthPink rounded flex items-center justify-between gap-3">
+        <div>
+          <h3 className="font-medium">Total Withdraw</h3>
+          <h3 className="text-xl font-semibold">
+            $ {totalWithdraw ? totalWithdraw?.toFixed(2) : "0.00"}
+          </h3>
+        </div>
+        <div className="w-16 h-16 bg-white/10 flex items-center justify-center rounded-full">
+          <FaCreditCard className="text-3xl" />
+        </div>
       </div>
     </div>
   );

@@ -12,9 +12,9 @@ const AdminNavLinks = () => {
     <>
       <Link
         href="/admin_dashboard"
-        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/admin_dashboard"
-            ? "bg-white/10 border-l-2 border-l-primary text-primary"
+            ? "bg-white/5 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
         }`}
       >
@@ -22,9 +22,9 @@ const AdminNavLinks = () => {
       </Link>
       <Link
         href="/admin_dashboard/manage_users"
-        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/admin_dashboard/manage_users"
-            ? "bg-white/10 border-l-2 border-l-primary text-primary"
+            ? "bg-white/5 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
         }`}
       >
@@ -32,9 +32,9 @@ const AdminNavLinks = () => {
       </Link>
       <Link
         href="/admin_dashboard/manage_services"
-        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/admin_dashboard/manage_services"
-            ? "bg-white/10 border-l-2 border-l-primary text-primary"
+            ? "bg-white/5 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
         }`}
       >
@@ -43,9 +43,9 @@ const AdminNavLinks = () => {
       </Link>
       <Link
         href="/admin_dashboard/manageCoins"
-        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/admin_dashboard/manageCoins"
-            ? "bg-white/10 border-l-2 border-l-primary text-primary"
+            ? "bg-white/5 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
         }`}
       >
@@ -54,9 +54,9 @@ const AdminNavLinks = () => {
       </Link>
       <Link
         href="/admin_dashboard/manage_academy"
-        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/admin_dashboard/manage_academy"
-            ? "bg-white/10 border-l-2 border-l-primary text-primary"
+            ? "bg-white/5 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
         }`}
       >
@@ -64,9 +64,9 @@ const AdminNavLinks = () => {
       </Link>
       <Link
         href="/admin_dashboard/message_box"
-        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/10 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 btn btn-sm justify-start  hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/admin_dashboard/message_box"
-            ? "bg-white/10 border-l-2 border-l-primary text-primary"
+            ? "bg-white/5 border-l-2 border-l-primary text-primary"
             : "bg-transparent text-white"
         }`}
       >

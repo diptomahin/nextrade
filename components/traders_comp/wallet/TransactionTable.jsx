@@ -32,6 +32,21 @@ const TransactionTable = () => {
     return;
   }
 
+  // Helper function to format time in 12-hour format
+  const formatTime = (hours) => {
+    return hours % 12 || 12; // Convert to 12-hour format
+  };
+
+  // Helper function to pad zero for single-digit minutes
+  const padZero = (minutes) => {
+    return minutes < 10 ? `0${minutes}` : minutes;
+  };
+
+  // Helper function to determine AM or PM
+  const getAmPm = (hours) => {
+    return hours >= 12 ? "PM" : "AM";
+  };
+
   const handleSearch = (e) => {
     e.preventDefault();
   };
@@ -95,32 +110,62 @@ const TransactionTable = () => {
             <TableHead>
               <TableRow>
                 <TableCell
-                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                  className="font-semibold"
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
                 >
                   Action
                 </TableCell>
                 <TableCell
-                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                  className="font-semibold"
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
                 >
                   Amount
                 </TableCell>
                 <TableCell
-                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                  className="font-semibold"
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
                 >
                   Currency
                 </TableCell>
                 <TableCell
-                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                  className="font-semibold"
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
                 >
                   Date
                 </TableCell>
                 <TableCell
-                  sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                  className="font-semibold"
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                >
+                  Time
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
                 >
                   Status
                 </TableCell>
@@ -135,7 +180,6 @@ const TransactionTable = () => {
                     sx={{
                       color: "white",
                       borderBottom: "1px solid #2c3750",
-                      fontWeight: "medium",
                     }}
                   >
                     {row?.action}
@@ -150,7 +194,7 @@ const TransactionTable = () => {
                           : "text-[#ff5252]"
                       }
                     >
-                      ${row?.amount}
+                      $ {row?.amount}
                     </span>
                   </TableCell>
                   <TableCell
@@ -162,16 +206,27 @@ const TransactionTable = () => {
                     sx={{
                       color: "white",
                       borderBottom: "1px solid #2c3750",
-                      fontWeight: "medium",
                     }}
                   >
-                    {row?.date?.day}-{row?.date?.month}-{row?.date?.year}
+                    {row?.date?.day}/{row?.date?.month}/{row?.date?.year}
                   </TableCell>
                   <TableCell
                     sx={{
                       color: "white",
                       borderBottom: "1px solid #2c3750",
-                      fontWeight: "medium",
+                    }}
+                  >
+                    {/* Time */}
+                    <span>
+                      {formatTime(row?.date?.hours || " ")}:
+                      {padZero(row?.date?.minutes || " ")}{" "}
+                      {getAmPm(row?.date?.hours || " ")}
+                    </span>
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "white",
+                      borderBottom: "1px solid #2c3750",
                     }}
                   >
                     Complete

@@ -24,20 +24,22 @@ const Language = ({ className, icon }) => {
       <button
         onClick={() => setIsLangChangeOpen(!isLangChangeOpen)}
         className={cn(
-          `flex items-center text-white gap-1 ${isLangChangeOpen && "text-primary"}`,
+          `flex items-center text-white gap-2 ${
+            isLangChangeOpen && "text-primary"
+          }`,
           className
         )}
       >
-        <GrLanguage className={icon} />
-        <span>{isLangChange}</span>
+        <span className="font-medium">{isLangChange}</span>
+        <GrLanguage className={`text-xl ${icon}`} />
       </button>
       {isLangChangeOpen && (
-        <div className="absolute top-12 right-1/2 transform translate-x-1/2 w-40 bg-white flex flex-col gap-2 p-3 border rounded">
+        <div className="absolute top-[64px] right-1/2 transform translate-x-1/2 w-40 bg-gradient-to-bl from-darkOne to-darkTwo border-darkThree flex flex-col py-3 border rounded">
           {["En", "Bn", "Hi", "Ur", "Ar"].map((lang) => (
             <button
               key={lang}
               onClick={() => handleLangChange(lang)}
-              className="w-full flex items-center gap-2 px-3 py-[6px] font-medium hover:bg-black/5 text-primary rounded-full"
+              className="w-full btn btn-sm font-medium bg-transparent text-white hover:bg-white/5 border-none rounded-none"
             >
               {lang === "En" && "English"}
               {lang === "Bn" && "Bangla"}

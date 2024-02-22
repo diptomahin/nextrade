@@ -121,7 +121,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
     : "Dashboard";
 
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-bl from-darkOne to-darkTwo border-b border-darkThree px-5">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-r from-darkOne to-darkTwo border-b border-darkThree px-5">
       <div className="flex items-center gap-5">
         <IconButton
           aria-label="open drawer"
@@ -137,8 +137,8 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             <MenuIcon sx={{ color: "white" }} />
           </Magnetic>
         </IconButton>
-        
-          {/* dynamic tittle and date time */}
+
+        {/* dynamic tittle and date time */}
         <div className="hidden xl:block">
           <h1 className="font-semibold">{breadcrumbs}</h1>
           <p className="text-xs opacity-70">Updated on {dateWithName}</p>
