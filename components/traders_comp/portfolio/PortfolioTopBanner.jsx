@@ -20,7 +20,7 @@ const PortfolioTopBanner = ({
         <div className="w-full flex items-center gap-3  p-5 rounded bg-[#40a0ff]">
           <div className="w-full">
             <p className="font-semibold ">
-              Total Asset <MonetizationOnIcon className="text-base ml-2 " />
+              Total Investment <MonetizationOnIcon className="text-base ml-2 " />
             </p>
             <div
               className={`flex items-center py-2  ${

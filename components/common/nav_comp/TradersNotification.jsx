@@ -95,7 +95,7 @@ const TradersNotification = () => {
         )}
         {notificationsData?.length ? (
           <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {Object.values(cardValue).reduce((sum, count) => sum + count,notificationsData?.length)}
+            {Object.values(cardValue).reduce((sum, count) => sum - count,notificationsData?.length)}
           </p>
         ) : (
           " "
