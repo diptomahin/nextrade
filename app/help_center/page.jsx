@@ -1,12 +1,19 @@
 import Typography from "@mui/material/Typography";
 import Container from "@/components/library/Container";
 import Accordion from "@mui/material/Accordion";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Title from "@/components/library/Title";
 import Subtitle from "@/components/library/Subtitle";
 import HelpCenterCard from "./HelpCenterCard";
 import NewsLatter from "./NewsLatter";
+
+// add title in metadata
+export const metadata = {
+  title: "NexTrade - Help Center ",
+  description: 'Help Center page from Nextrade',
+};
 
 const page = () => {
   return (
@@ -22,10 +29,14 @@ const page = () => {
       <div className="mx-auto 2xl:mx-24">
         <Title>Popular questions?</Title>
         <div>
-          <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
+          <div className=" mt-10 text-darkGray">
             {/* card 1  */}
-            <Accordion className="rounded">
-              <AccordionSummary className="rounded">
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
@@ -35,88 +46,118 @@ const page = () => {
                   How to contact support?
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails className="rounded">
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
-                >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
-                </Typography>
+              <AccordionDetails>
+                You can contact our support team via email at nexttrade.help@gmail.com or by filling out the contact form on our website. Additionally, you can reach us by phone at +880 1963-895488. We&apos;re here to assist you!
               </AccordionDetails>
             </Accordion>
+
             {/* card 2  */}
-            <Accordion className="rounded">
-              <AccordionSummary>
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
                   component="div"
-                  className="font-semibold"
+                  className="font-semibold "
                 >
                   Support center operating hours?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
-                >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
-                </Typography>
+                Our support center operates from 9:AM on 5 days of the week. Rest assured, we strive to respond to all inquiries promptly during our operating hours.
               </AccordionDetails>
             </Accordion>
+
             {/* card 3  */}
-            <Accordion className="rounded">
-              <AccordionSummary>
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
                   component="div"
-                  className="font-semibold"
+                  className="font-semibold "
                 >
                   How to submit a support ticket?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
-                >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
-                </Typography>
+                To submit a support ticket, simply navigate to our website&apos;s support page and fill out the provided form with details regarding your issue. Alternatively, you can email us directly at nexttrade.help@gmail.com or call our support hotline at +880 1963-895488. Be sure to include as much information as possible to expedite the resolution process.
               </AccordionDetails>
             </Accordion>
+
             {/* card 4  */}
-            <Accordion className="rounded">
-              <AccordionSummary>
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
                   gutterBottom
                   variant="h6"
                   component="div"
-                  className="font-semibold"
+                  className="font-semibold "
                 >
                   Types of issues supported?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
+                We offer comprehensive support for various issues including technical difficulties, account inquiries, billing concerns, and general assistance with our platform. Whether you&apos;re experiencing a bug or need guidance on using our services, our dedicated support team is here to help. If you&apos;re unsure whether your issue falls within our scope of support, don&apos;t hesitate to reach out, and we&apos;ll be happy to assist you.
+              </AccordionDetails>
+            </Accordion>
+
+            {/* card 5  */}
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
                 <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  className="text-gray-500 text-left"
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  className="font-semibold "
                 >
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Accusantium tempore ex commodi eligendi expedita soluta rerum
-                  doloribus minus adipisci.
+                  What is refund policy?
                 </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                Curious about our refund policy? Learn about our guidelines regarding refunds, including eligibility criteria and the process for requesting refunds. We aim to ensure transparency and fairness in our refund procedures.
+              </AccordionDetails>
+            </Accordion>
+
+            {/* card 6  */}
+
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  className="font-semibold "
+                >
+                  Data Security & Privacy?
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                Concerned about the security of your data? Discover how we prioritize data security and protect your privacy. Explore our measures for data encryption, compliance with regulations, and our commitment to safeguarding your information.
               </AccordionDetails>
             </Accordion>
           </div>

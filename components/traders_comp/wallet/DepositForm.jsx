@@ -12,8 +12,8 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import getDate from "../../utils/date";
-import useNotificationData from "@/hooks/useNotificationData";
 import { useEffect, useState } from "react";
+import useNotificationData from "@/hooks/useNotificationData";
 
 const DepositForm = ({
   refetchUserData,
@@ -30,6 +30,7 @@ const DepositForm = ({
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
   const { notificationRefetch } = useNotificationData();
+  const date = getDate();
 
   useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -138,6 +139,7 @@ const DepositForm = ({
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
           postedDate: getDate,
+
         };
 
         // post to  notification data in database

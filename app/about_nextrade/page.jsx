@@ -10,6 +10,12 @@ import Container from "@/components/library/Container";
 import Title from "@/components/library/Title";
 import Subtitle from "@/components/library/Subtitle";
 
+// add title in metadata
+export const metadata = {
+  title: "NexTrade - AboutNexTrade ",
+  description: 'About page from Nextrade',
+};
+
 const AboutNexTrade = () => {
   return (
     <Container className="py-20 text-darkGray">

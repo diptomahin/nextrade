@@ -4,6 +4,12 @@ import Image from "next/image";
 import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 import RegisterForm from "./RegisterForm";
 
+// add title in metadata
+export const metadata = {
+  title: "NexTrade - Register ",
+  description: 'Register page from Nextrade',
+};
+
 const Register = () => {
   return (
     <div className="relative min-h-[100vh] w-full flex flex-col xl:flex-row bg-gradient-to-br from-primary to-[#352786]">

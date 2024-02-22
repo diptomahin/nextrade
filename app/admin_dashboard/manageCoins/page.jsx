@@ -26,11 +26,17 @@ const ManageCoins = () => {
 
 
     const {
-        data: allCoins = [],
-        isPending,
-        isLoading,
-        refetch,
-    } = usePublicFetch(`/manageAllCoins`, "manageCoins");
+        data: allCryptoCoins = [],
+        isPending:cryptoPending,
+        isLoading:cryptoLoading,
+        refetch:cryptoRefetch,
+    } = usePublicFetch(`/manageAllCryptoCoins`, "manageCryptos");
+    const {
+        data: allFlatCoins = [],
+        isPending:flatPending,
+        isLoading:flatLoading,
+        refetch:flatRefetch,
+    } = usePublicFetch(`/manageAllFlatCoins`, "manageFlats");
 
     // fetch crypto keys
     useEffect(() => {
@@ -65,11 +71,11 @@ const ManageCoins = () => {
 
     // console.log(allCoins)
     useEffect(() => {
-        if (allCoins.length > 0) {
-            setAssets(allCoins.filter(coin => coin.type === "crypto coin"))
-            setFlatCurrency(allCoins.filter(coin => coin.type === "flat coin"))
+        if (allCryptoCoins.length > 0 && allFlatCoins.length > 0) {
+            setAssets(allCryptoCoins)
+            setFlatCurrency(allFlatCoins)
         }
-    }, [allCoins])
+    }, [allCryptoCoins, allFlatCoins])
 
 
     const createData = (_id, name, key, price, type, changePrice, highPrice, lowPrice, icon) => ({ _id, name, key, price, type, changePrice, highPrice, lowPrice, icon });
@@ -220,7 +226,7 @@ const ManageCoins = () => {
                                     icon
                                 }
                                 // console.log(coinInfo)
-                                secureAPI.post(`/allCoins`, coinInfo)
+                                secureAPI.post(`/allCryptoCoins`, coinInfo)
                                     .then((res) => {
                                         if (res.data.insertedId) {
                                             Swal.fire({
@@ -228,7 +234,7 @@ const ManageCoins = () => {
                                                 text: `${name} has been added to market!`,
                                                 icon: "success",
                                             });
-                                            refetch();
+                                            cryptoRefetch();
                                             setHostedImage('')
                                         }
                                     })
@@ -249,7 +255,7 @@ const ManageCoins = () => {
                                     icon
                                 }
                                 // console.log(coinInfo)
-                                secureAPI.post(`/allCoins`, coinInfo)
+                                secureAPI.post(`/allFlatCoins`, coinInfo)
                                     .then((res) => {
                                         if (res.data.insertedId) {
                                             Swal.fire({
@@ -257,7 +263,7 @@ const ManageCoins = () => {
                                                 text: `${name} has been added to market!`,
                                                 icon: "success",
                                             });
-                                            refetch();
+                                            flatRefetch();
                                             setHostedImage('')
                                         }
                                     })
@@ -357,7 +363,7 @@ const ManageCoins = () => {
                 <div className="w-full p-5 bg-[#40a0ff] rounded-xl flex justify-between items-center text-white">
                     <div className="font-medium">
                         <h3 className='text-lg font-semibold'>Total Coins</h3>
-                        <h3 className="text-2xl font-semibold">{allCoins.length}</h3>
+                        <h3 className="text-2xl font-semibold">{allCryptoCoins.length + allFlatCoins.length}</h3>
                     </div>
                     <AvatarGroup max={4}>
                         <Avatar alt="bitcoin" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" />
@@ -404,12 +410,12 @@ const ManageCoins = () => {
                     </Box>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
                         <div className='w-full'>
-                            <ManageCrypto refetch={refetch} assets={assets}></ManageCrypto>
+                            <ManageCrypto refetch={cryptoRefetch} assets={assets}></ManageCrypto>
                         </div>
                     </TabPanel>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
                         <div className='w-full'>
-                            <ManageFlatCoins refetch={refetch} assets={flatCurrency}></ManageFlatCoins>
+                            <ManageFlatCoins refetch={flatRefetch} assets={flatCurrency}></ManageFlatCoins>
                         </div>
                     </TabPanel>
                 </TabContext>

@@ -4,12 +4,20 @@ const getDate = () => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth() + 1;
   const day = currentDate.getDate();
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes();
+  const seconds = currentDate.getSeconds();
+
   const date = {
-    day: day,
+    year: year,
     month: month,
-    year: year
+    day: day,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds,
   };
+
   return date;
 };
 
-export default getDate();
+export default getDate;
