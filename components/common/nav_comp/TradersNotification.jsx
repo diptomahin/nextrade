@@ -8,6 +8,7 @@ import Link from "next/link";
 import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
@@ -124,48 +125,53 @@ const TradersNotification = () => {
         )}
       </button>
       {isNotificationOpen && (
-        <div className="absolute overflow-y-auto max-h-[500px] top-12 md:right-40 right-24 transform translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree flex flex-col gap-2 p-3 md:w-96 w-80  ">
-          <div className="flex items-center justify-between">
+        <div className="w-80 absolute overflow-x-hidden overflow-y-scroll max-h-[500px] top-[64px] right-24 transform translate-x-1/2 duration-200 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree flex flex-col gap-2 rounded shadow-2xl shadow-gray-900">
+          <div className="flex items-center justify-between border-b-2 border-darkThree px-4 py-3">
             <h2 className="font-semibold">Notifications</h2>
             <Link href={"/dashboard/settings"} className="cursor-pointer">
               <SettingsIcon />
             </Link>
           </div>
-          <div className="bg-darkThree p-[0.8px] my-2"></div>
           {notificationsData?.length ? (
             <>
-              {notificationsData.map((asset) => (
+              {notificationsData?.map((asset) => (
                 <div
                   onClick={() => handleCardClick(asset)}
                   key={asset._id}
-                  className={`bg-darkBG border cursor-pointer p-4 rounded-xl ${
-                    cardValue[asset._id] === 1
-                      ? " border-darkThree"
-                      : "border-primary"
-                  }`}
+                  className={`border-b border-darkThree px-4 py-1`}
                 >
-                  <div className="flex justify-between gap-2 ">
-                    <div className="flex items-center gap-3">
-                      <NotificationsNoneIcon />
-                      <div>
-                        <h2 className="font-medium">{asset.title}</h2>
-                        <p className="text-gray-400 text-sm">
-                          {asset.description}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="relative left-5">
+                  <div className="flex flex-col gap-1 pb-1">
+                    <h2 className="text-sm font-medium">{asset.title}</h2>
+                    <p className="text-gray-400 text-xs">{asset.description}</p>
+                  </div>
+
+                  <div className="flex items-ce justify-between">
+                    <p className="text-darkGray text-xs flex items-center justify-end gap-3">
+                      {/* Date */}
+                      <span>
+                        {asset?.postedDate?.day || " "}-
+                        {asset?.postedDate?.month || " "}-
+                        {asset?.postedDate?.year || " "}
+                      </span>
+                      {/* Time */}
+                      <span>
+                        {formatTime(asset?.postedDate?.hours || " ")}:
+                        {padZero(asset?.postedDate?.minutes || " ")}{" "}
+                        {getAmPm(asset?.postedDate?.hours || " ")}
+                      </span>
+                    </p>
+                    <div className="relative">
                       <button
                         onClick={() => toggleDeleteOptions(asset._id)}
-                        className="btn btn-sm text-base text-white bg-transparent hover:bg-transparent border-none outline-none"
+                        className="btn btn-sm text-base text-white bg-transparent hover:bg-transparent border-none outline-none px-0 "
                       >
-                        <MoreVertIcon className="cursor-pointer" />
+                        <BsThreeDotsVertical />
                       </button>
                       {openDeleteOptions[asset._id] && (
-                        <div className="absolute right-10 top-0 flex flex-col bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree font-medium rounded-md">
+                        <div className="absolute right-5 top-1 flex flex-col bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree font-medium rounded-md">
                           <button
                             onClick={() => handleDeleteNotification(asset._id)}
-                            className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent rounded-md hover:bg-[#ff5252] border-none pr-6 pl-8"
+                            className="w-full btn btn-xs text-white/80 justify-end bg-[#ff5252] rounded-md hover:bg-[#ff5252] border-none"
                           >
                             Delete
                           </button>
@@ -187,6 +193,7 @@ const TradersNotification = () => {
                       {getAmPm(asset?.postedDate?.hours || " ")}
                     </span>
                   </p>
+
                 </div>
               ))}
             </>

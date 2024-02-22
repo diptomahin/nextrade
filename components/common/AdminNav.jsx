@@ -10,8 +10,6 @@ import TradersNotification from "./nav_comp/TradersNotification";
 import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
 import { usePathname } from "next/navigation";
-import useAuth from "@/hooks/useAuth";
-import useSecureFetch from "@/hooks/useSecureFetch";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -102,7 +100,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
     ? " Message Box"
     : "Dashboard";
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-bl from-darkOne to-darkTwo border-b border-darkThree px-5 ">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-r from-darkOne to-darkTwo border-b border-darkThree px-5 ">
       <div className="flex items-center gap-5">
         <IconButton
           color="black"
