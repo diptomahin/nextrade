@@ -75,19 +75,10 @@ const Academy = () => {
                   {news.category}
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
-
-
-
-
-                    
-                 
-                  <h3 className='group text-blue-500 transition-all duration-300 ease-in-out'> 
-    <span className='bg-left-bottom bg-gradient-to-r from-blue-500 to-blue-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> 
-    {news.title}
-    </span> 
-    </h3>
-
-
+                  <h3 className='lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out'> 
+                  <span className='bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> {news.title}
+                  </span> 
+                  </h3>
                 </Link>
                 <p className="text-gray-500">
                   {moment(news.date).format("ll")}
@@ -130,9 +121,10 @@ const Academy = () => {
                       {news.category}
                     </button>
                     <Link href={`/academy/${news._id}`}>
-                      <h3 className="lg:text-3xl text-xl font-semibold my-2 lg:my-4 text-white">
-                        {news.title}
-                      </h3>
+                      <h3 className="lg:text-3xl text-xl font-semibold my-2 lg:my-4 group text-white transition-all duration-300 ease-in-out"> 
+                  <span className='bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> {news.title}
+                  </span> 
+                  </h3>
                     </Link>
                     <div className="flex gap-1">
                       <p className="text-white">
@@ -172,9 +164,10 @@ const Academy = () => {
                       {news.category}
                     </button>
                     <Link href={`/academy/${news._id}`}>
-                      <h3 className="font-semibold my-1 text-white">
-                        {news.title}
-                      </h3>
+                      <h3 className="font-semibold my-1 group text-white transition-all duration-300 ease-in-out"> 
+                  <span className='bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> {news.title}
+                  </span> 
+                  </h3>
                     </Link>
                     <div className="flex gap-1">
                       <p className="text-white text-sm">
@@ -223,9 +216,10 @@ const Academy = () => {
                     {news.category}
                   </button>
                   <Link href={`/dashboard/academy/${news._id}`}>
-                    <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1">
-                      {news.title}
-                    </h3>
+                    <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out"> 
+                  <span className='bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> {news.title}
+                  </span> 
+                  </h3>
                   </Link>
                   <p className="text-gray-500 text-[14px]">
                     {moment(news.date).format("ll")}
@@ -266,7 +260,7 @@ const Academy = () => {
           }}
         >
           <span className="absolute bottom-0 left-0 bg-white" />
-          All Video's
+          All Video&apos;s
         </button>
             </Link>
           </div>
@@ -295,9 +289,10 @@ const Academy = () => {
                       <FaRegCirclePlay className="text-center" />
                     </div>
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11">
-                        {news.title}
-                      </h3>
+                      <h3 className="xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11 group text-white transition-all duration-300 ease-in-out"> 
+                  <span className='bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> {news.title}
+                  </span> 
+                  </h3>
                     </Link>
                     <div className="flex gap-1 text-white absolute md:bottom-12 bottom-8 md:left-10 left-4">
                       <p>{moment(news.date).format("ll")} .</p>
@@ -338,9 +333,10 @@ const Academy = () => {
                       {news.category}
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="font-semibold my-1 text-white lg:text-[17px] xl:text-[15px] text-[13px]">
-                        {news.title}
-                      </h3>
+                      <h3 className="font-semibold my-1 lg:text-[17px] xl:text-[15px] text-[13px] group text-white transition-all duration-300 ease-in-out"> 
+                  <span className='bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> {news.title}
+                  </span> 
+                  </h3>
                     </Link>
                     <p className="text-gray-500 xl:text-[15px] lg:text-[17px] text-[13px]">
                       {moment(news.date).format("ll")}
