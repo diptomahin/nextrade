@@ -85,38 +85,22 @@ const dateWithName = `${day} ${
     : "December"
 } ${year}`;
 
-
-
 const AdminNav = ({ setMobileOpen, mobileOpen }) => {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-  const { user, logOut, loading } = useAuth();
-  const {
-    data: userDetails = {},
-    refetch,
-    isPending,
-    isLoading,
-  } = useSecureFetch(`user/${user?.email}`, "user");
-
-refetch();
-
-if (isLoading || isPending || loading) {
-  return;
-}
-
-const breadcrumbs = pathname.includes("/admin_dashboard/manage_users")
-  ? "Manage Users"
-  : pathname.includes("/admin_dashboard/manage_services")
-  ? "Manage Services"
-  : pathname.includes("/admin_dashboard/manageCoins")
-  ? "Manage Coins"
-  : pathname.includes("/admin_dashboard/manage_academy")
-  ? "Manage Academy"
-  : pathname.includes("/dashboard/academy")
-  ? "Academy"
-  : pathname.includes("/admin_dashboard/message_box")
-  ? " Message Box"
-  : "Dashboard";
+  const breadcrumbs = pathname.includes("/admin_dashboard/manage_users")
+    ? "Manage Users"
+    : pathname.includes("/admin_dashboard/manage_services")
+    ? "Manage Services"
+    : pathname.includes("/admin_dashboard/manageCoins")
+    ? "Manage Coins"
+    : pathname.includes("/admin_dashboard/manage_academy")
+    ? "Manage Academy"
+    : pathname.includes("/dashboard/academy")
+    ? "Academy"
+    : pathname.includes("/admin_dashboard/message_box")
+    ? " Message Box"
+    : "Dashboard";
   return (
     <div className="h-full w-full flex items-center justify-between gap-6 bg-gradient-to-bl from-darkOne to-darkTwo border-b border-darkThree px-5 ">
       <div className="flex items-center gap-5">

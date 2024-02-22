@@ -20,4 +20,4 @@ const getDate = () => {
   return date;
 };
 
-export default getDate();
+export default getDate;

@@ -51,8 +51,7 @@ const CryptoDetails = ({
 }) => {
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
-  const {notificationRefetch}= useNotificationData()
-  const date = getDate()
+  const { notificationRefetch } = useNotificationData();
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -88,7 +87,7 @@ const CryptoDetails = ({
       assetImg: coinImage,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
-      postedDate: getDate,
+      postedDate: getDate(),
     };
 
     if (usersBalance < parseFloat(ast.c)) {
