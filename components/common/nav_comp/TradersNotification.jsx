@@ -15,13 +15,20 @@ const TradersNotification = () => {
   const [openDeleteOptions, setOpenDeleteOptions] = React.useState({});
   const { notificationsData, notificationRefetch } = useNotificationData();
   const secureAPI = useSecureAPI();
+  const [alertNotification, setAlertNotification] = React.useState(() => {
+    const getLocal =
+    JSON.parse(localStorage.getItem("notificationCount")) || [];
+    return getLocal.length
+    
+  });
+  console.log(alertNotification,'text');
 
   // Initialize cardValue with initial values based on the length of notificationsData
   const initialCardValue = Array.isArray(notificationsData)
-    ? notificationsData.reduce((acc, asset) => {
+   && notificationsData.reduce((acc, asset) => {
         return { ...acc, [asset._id]: 0 };
       }, {})
-    : {};
+     ;
 
   const [cardValue, setCardValue] = React.useState(initialCardValue);
 
@@ -78,10 +85,23 @@ const TradersNotification = () => {
     }));
 
     // Update notificationsData?.length based on the click
-    notificationRefetch(); // Assuming notificationRefetch is a function that refetches notificationsData
+    notificationRefetch();
+
+    // Parse the existing value from localStorage or use an empty array if it doesn't exist
+    const getLocal =
+      JSON.parse(localStorage.getItem("notificationCount")) || [];
+
+    // Update localStorage with the new value, using the parsed getLocal array
+    localStorage.setItem(
+      "notificationCount",
+      JSON.stringify([...getLocal, cardValue])
+    );
   };
 
-  console.log(initialCardValue);
+  // Save the calculated value to localStorage whenever cardValue or notificationsData changes
+  // React.useEffect(() => {
+
+  // }, [cardValue, notificationsData]);
 
   return (
     <div className="relative">
@@ -96,12 +116,9 @@ const TradersNotification = () => {
         ) : (
           <MdNotifications className="w-6 h-6" />
         )}
-        {notificationsData?.length ? (
+        {cardValue ? (
           <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {Object.values(cardValue).reduce(
-              (sum, count) => sum + count,
-              notificationsData?.length
-            )}
+            {notificationsData?.length - alertNotification}
           </p>
         ) : (
           " "
@@ -162,6 +179,21 @@ const TradersNotification = () => {
                       )}
                     </div>
                   </div>
+                  <p className="mt-2 text-gray-500 text-sm flex items-center justify-end gap-3">
+                    {/* Date */}
+                    <span>
+                      {asset?.postedDate?.day || " "}-
+                      {asset?.postedDate?.month || " "}-
+                      {asset?.postedDate?.year || " "}
+                    </span>
+                    {/* Time */}
+                    <span>
+                      {formatTime(asset?.postedDate?.hours || " ")}:
+                      {padZero(asset?.postedDate?.minutes || " ")}{" "}
+                      {getAmPm(asset?.postedDate?.hours || " ")}
+                    </span>
+                  </p>
+
                 </div>
               ))}
             </>
