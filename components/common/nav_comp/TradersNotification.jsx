@@ -113,7 +113,7 @@ const TradersNotification = () => {
           {notificationsData?.length ? (
             <>
               {notificationsData.map((asset) => (
-                <div onClick={() => handleCardClick(asset)} key={asset._id} className="bg-darkBG border border-darkThree p-4 rounded-xl">
+                <div onClick={() => handleCardClick(asset)} key={asset._id} className={`bg-darkBG border p-4 rounded-xl ${cardValue[asset._id] === 1 ? 'border-primary' : 'border-none'}`}>
                   <div className="flex justify-between gap-2 ">
                     <div className="flex items-center gap-3">
                       <NotificationsNoneIcon />
