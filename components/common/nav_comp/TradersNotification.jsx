@@ -3,7 +3,7 @@ import React from "react";
 import { MdNotifications, MdNotificationsActive } from "react-icons/md";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SettingsIcon from "@mui/icons-material/Settings";
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Link from "next/link";
 import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
@@ -14,13 +14,20 @@ const TradersNotification = () => {
   const [openDeleteOptions, setOpenDeleteOptions] = React.useState({});
   const { notificationsData, notificationRefetch } = useNotificationData();
   const secureAPI = useSecureAPI();
+  const [alertNotification, setAlertNotification] = React.useState(() => {
+    const getLocal =
+    JSON.parse(localStorage.getItem("notificationCount")) || [];
+    return getLocal.length
+    
+  });
+  console.log(alertNotification,'text');
 
   // Initialize cardValue with initial values based on the length of notificationsData
   const initialCardValue = Array.isArray(notificationsData)
-    ? notificationsData.reduce((acc, asset) => {
+   && notificationsData.reduce((acc, asset) => {
         return { ...acc, [asset._id]: 0 };
       }, {})
-    : {};
+     ;
 
   const [cardValue, setCardValue] = React.useState(initialCardValue);
 
@@ -63,7 +70,7 @@ const TradersNotification = () => {
 
   // Helper function to determine AM or PM
   const getAmPm = (hours) => {
-    return hours >= 12 ? 'PM' : 'AM';
+    return hours >= 12 ? "PM" : "AM";
   };
 
   // Click event handler for notification cards
@@ -77,25 +84,40 @@ const TradersNotification = () => {
     }));
 
     // Update notificationsData?.length based on the click
-    notificationRefetch(); // Assuming notificationRefetch is a function that refetches notificationsData
+    notificationRefetch();
+
+    // Parse the existing value from localStorage or use an empty array if it doesn't exist
+    const getLocal =
+      JSON.parse(localStorage.getItem("notificationCount")) || [];
+
+    // Update localStorage with the new value, using the parsed getLocal array
+    localStorage.setItem(
+      "notificationCount",
+      JSON.stringify([...getLocal, cardValue])
+    );
   };
 
-  console.log(initialCardValue);
+  // Save the calculated value to localStorage whenever cardValue or notificationsData changes
+  // React.useEffect(() => {
+
+  // }, [cardValue, notificationsData]);
 
   return (
     <div className="relative">
       <button
         onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-        className={`flex items-center text-white ${isNotificationOpen && "text-primary"}`}
+        className={`flex items-center text-white ${
+          isNotificationOpen && "text-primary"
+        }`}
       >
         {isNotificationOpen ? (
           <MdNotificationsActive className="w-6 h-6" />
         ) : (
           <MdNotifications className="w-6 h-6" />
         )}
-        {notificationsData?.length ? (
+        {cardValue ? (
           <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {Object.values(cardValue).reduce((sum, count) => sum - count,notificationsData?.length)}
+            {notificationsData?.length - alertNotification}
           </p>
         ) : (
           " "
@@ -105,7 +127,7 @@ const TradersNotification = () => {
         <div className="absolute overflow-y-auto max-h-[500px] top-12 md:right-40 right-24 transform translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree flex flex-col gap-2 p-3 md:w-96 w-80  ">
           <div className="flex items-center justify-between">
             <h2 className="font-semibold">Notifications</h2>
-            <Link href={'/dashboard/settings'} className="cursor-pointer">
+            <Link href={"/dashboard/settings"} className="cursor-pointer">
               <SettingsIcon />
             </Link>
           </div>
@@ -113,7 +135,15 @@ const TradersNotification = () => {
           {notificationsData?.length ? (
             <>
               {notificationsData.map((asset) => (
-                <div onClick={() => handleCardClick(asset)} key={asset._id} className={`bg-darkBG border p-4 rounded-xl ${cardValue[asset._id] === 1 ? 'border-primary' : 'border-none'}`}>
+                <div
+                  onClick={() => handleCardClick(asset)}
+                  key={asset._id}
+                  className={`bg-darkBG border cursor-pointer p-4 rounded-xl ${
+                    cardValue[asset._id] === 1
+                      ? " border-darkThree"
+                      : "border-primary"
+                  }`}
+                >
                   <div className="flex justify-between gap-2 ">
                     <div className="flex items-center gap-3">
                       <NotificationsNoneIcon />
@@ -146,11 +176,15 @@ const TradersNotification = () => {
                   <p className="mt-2 text-gray-500 text-sm flex items-center justify-end gap-3">
                     {/* Date */}
                     <span>
-                      {asset?.postedDate?.day || ' '}-{asset?.postedDate?.month || ' '}-{asset?.postedDate?.year || ' '}
+                      {asset?.postedDate?.day || " "}-
+                      {asset?.postedDate?.month || " "}-
+                      {asset?.postedDate?.year || " "}
                     </span>
                     {/* Time */}
                     <span>
-                      {formatTime(asset?.postedDate?.hours || ' ')}:{padZero(asset?.postedDate?.minutes || ' ')} {getAmPm(asset?.postedDate?.hours || ' ')}
+                      {formatTime(asset?.postedDate?.hours || " ")}:
+                      {padZero(asset?.postedDate?.minutes || " ")}{" "}
+                      {getAmPm(asset?.postedDate?.hours || " ")}
                     </span>
                   </p>
                 </div>
