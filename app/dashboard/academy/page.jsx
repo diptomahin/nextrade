@@ -106,8 +106,8 @@ const Academy = () => {
                   </div>
 
                   <div className="absolute lg:bottom-16 bottom-10 lg:left-10 left-5">
-                    <button className="bg-blue-500 px-2 py-1 text-sm text-white">
-                      {news.category}
+                    <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                      <span class="relative z-10">{news.category}</span>
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="lg:text-3xl text-xl font-semibold my-2 lg:my-4 group text-white transition-all duration-300 ease-in-out">
@@ -151,8 +151,8 @@ const Academy = () => {
                   </div>
 
                   <div className="absolute bottom-6 left-5">
-                    <button className="bg-blue-500 px-2 py-1 text-sm text-white">
-                      {news.category}
+                    <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                      <span class="relative z-10">{news.category}</span>
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 group text-white transition-all duration-300 ease-in-out">
@@ -195,8 +195,8 @@ const Academy = () => {
                 </Link>
 
                 <div className="">
-                  <button className="bg-blue-500 xl:px-2 px-1 py-1 xl:text-sm text-[12px] text-white">
-                    {news.category}
+                  <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                    <span class="relative z-10">{news.category}</span>
                   </button>
                   <Link href={`/dashboard/academy/${news._id}`}>
                     <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out">
@@ -314,8 +314,8 @@ const Academy = () => {
                     </div>
                   </div>
                   <div className="-mt-1">
-                    <button className="text-blue-500 lg:text-[16px] text-sm">
-                      {news.category}
+                    <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                      <span class="relative z-10">{news.category}</span>
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 lg:text-[17px] xl:text-[15px] text-[13px] group text-white transition-all duration-300 ease-in-out">
