@@ -75,11 +75,19 @@ const Academy = () => {
                   {news.category}
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                  <h3
-                    className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 relative before:content-[''] before:absolute before:block before:w-full before:h-[2px]  before:bottom-0 before:left-0 before:bg-white before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300"
-                  >
-                    {news.title}
-                  </h3>
+
+
+
+
+                    
+                 
+                  <h3 className='group text-blue-500 transition-all duration-300 ease-in-out'> 
+    <span className='bg-left-bottom bg-gradient-to-r from-blue-500 to-blue-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'> 
+    {news.title}
+    </span> 
+    </h3>
+
+
                 </Link>
                 <p className="text-gray-500">
                   {moment(news.date).format("ll")}
@@ -237,9 +245,29 @@ const Academy = () => {
               Videos
             </h2>
             <Link href="#">
-              <button className="font-semibold uppercase text-white border-b-2 border-white lg:text-normal text-[14px]">
-                All Videos
-              </button>
+            <button
+          className="relative font-semibold uppercase lg:text-normal text-[14px]"
+          style={{
+            display: "inline-block",
+            paddingBottom: "2px",
+            backgroundImage: "linear-gradient(white, white)",
+            backgroundPosition: "0 100%",
+            backgroundSize: "0% 2px",
+            backgroundRepeat: "no-repeat",
+            transition: "background-size 0.3s, background-position 0s 0.3s",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundPosition = "100% 100%";
+            e.target.style.backgroundSize = "100% 2px";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundPosition = "0 100%";
+            e.target.style.backgroundSize = "0% 2px";
+          }}
+        >
+          <span className="absolute bottom-0 left-0 bg-white" />
+          All Video's
+        </button>
             </Link>
           </div>
           <div className="xl:flex justify-between gap-10">
