@@ -61,6 +61,7 @@ const Portfolio = () => {
 
   // data information create object
   const createCryptoData = (
+    _id,
     assetName,
     assetKey,
     assetImg,
@@ -73,6 +74,7 @@ const Portfolio = () => {
     assetBuyerEmail
   ) => {
     return {
+      _id,
       assetName,
       assetKey,
       assetImg,
@@ -98,6 +100,7 @@ const Portfolio = () => {
           const ticker = data.find((item) => item.s === asset.assetKey);
           if (ticker) {
             return createCryptoData(
+              asset._id,
               asset.assetName,
               asset.assetKey,
               asset.assetImg,
@@ -129,6 +132,7 @@ const Portfolio = () => {
               `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
             );
             return createCryptoData(
+              asset._id,
               asset.assetName,
               asset.assetKey,
               asset.assetImg,
@@ -421,7 +425,7 @@ const Portfolio = () => {
       {/* Right side  */}
       <div className=" col-span-2 ">
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  mb-5 ">
-          <BuyAndExchange cryptoData={cryptoData}></BuyAndExchange>
+          <BuyAndExchange cryptoData={cryptoData} remainingBalance={usersRemainingBalance} refetch={purchasedRefetch}></BuyAndExchange>
         </div>
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>

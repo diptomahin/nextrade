@@ -6,11 +6,11 @@ import Image from "next/image";
 import moment from "moment";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
+// import "./academy.css"
 
 const Academy = () => {
   const [data, setData] = useState([]);
   const [video, setVideo] = useState([]);
-
   const [isZoomed, setIsZoomed] = useState(new Array(data.length).fill(false));
 
   const handleMouseEnter = (index) => {
@@ -75,7 +75,9 @@ const Academy = () => {
                   {news.category}
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                  <h3 className="lg:text-[16px] text-[14px]  font-semibold my-3">
+                  <h3
+                    className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 relative before:content-[''] before:absolute before:block before:w-full before:h-[2px]  before:bottom-0 before:left-0 before:bg-white before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300"
+                  >
                     {news.title}
                   </h3>
                 </Link>
@@ -104,8 +106,8 @@ const Academy = () => {
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
-                        width={980} // Provide the width property here
-                        height={600} // Provide the height property if necessary
+                        width={980}
+                        height={600}
                         sizes="170vw"
                         style={{
                           width: "100%",
@@ -143,14 +145,14 @@ const Academy = () => {
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
-                        width={80} // Provide the width property here
-                        height={100} // Provide the height property if necessary
+                        width={80}
+                        height={100}
                         sizes="40vw"
                         style={{
                           width: "100%",
-                          height: "50%", // Default height for large devices
+                          height: "50%",
                           "@media (max-width: 600px)": {
-                            height: "25%", // Height for small devices
+                            height: "25%",
                           },
                         }}
                       />
@@ -287,8 +289,8 @@ const Academy = () => {
                         <Image
                           src={news.thumbnail}
                           alt={news.title}
-                          width={400} // Provide the width property here
-                          height={400} // Provide the height property if necessary
+                          width={400}
+                          height={400}
                           sizes="100vw"
                           style={{
                             width: "100%",

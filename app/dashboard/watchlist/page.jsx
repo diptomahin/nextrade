@@ -1,5 +1,6 @@
 "use client";
 import DarkButton from "@/components/library/buttons/DarkButton";
+import FeedbackForm from "@/components/traders_comp/feedback/FeedbackForm";
 import WatchlistCryptoTable from "@/components/traders_comp/watchlist/WatchlistCryptoTable";
 import WatchlistCurrencyTable from "@/components/traders_comp/watchlist/WatchlistCurrencyTable";
 import useAuth from "@/hooks/useAuth";
@@ -201,6 +202,7 @@ const Watchlist = () => {
           </TabPanel>
         </TabContext>
       </Box>
+      <FeedbackForm></FeedbackForm>
     </div>
   );
 };
