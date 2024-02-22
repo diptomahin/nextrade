@@ -68,45 +68,55 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const MarketPage = () => {
-  const [allCryptoCoins, setAllCryptoCoins] = useState([])
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [value, setValue] = React.useState("1");
-  const [pageCount, setPageCount] = useState(0);
+  const [cryptoPageCount, setCryptoPageCount] = useState(0);
+  const [flatPageCount, setFlatPageCount] = useState(0);
   const [coinPerPage, setCoinPerPage] = useState(5)
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentCryptoPage, setCurrentCryptoPage] = useState(0);
+  const [currentFlatPage, setCurrentFlatPage] = useState(0);
   const publicAPI = usePublicAPI()
 
 
   useEffect(() => {
     publicAPI.get('/totalCryptoCount')
-      .then(res => setPageCount(res.data.count))
+      .then(res => setCryptoPageCount(res.data.count))
       .catch(error => console.log(error))
   }, [publicAPI])
 
-  const numberOfPages = Math.ceil(pageCount / coinPerPage);
+  useEffect(() => {
+    publicAPI.get('/totalFlatCount')
+      .then(res => setFlatPageCount(res.data.count))
+      .catch(error => console.log(error))
+  }, [publicAPI])
 
-  const pages = [...Array(numberOfPages).keys()]
+  const numberOfCryptoPages = Math.ceil(cryptoPageCount / coinPerPage);
+  const numberOfFlatPages = Math.ceil(flatPageCount / coinPerPage);
+
+  const cryptoPages = [...Array(numberOfCryptoPages).keys()]
+  const flatPages = [...Array(numberOfFlatPages).keys()]
 
   const handleCoinPerPages = (e) => {
     const val = parseInt(e.target.value);
     // console.log(val);
     setCoinPerPage(val)
-    setCurrentPage(0)
+    setCurrentCryptoPage(0)
+    setCurrentFlatPage(0)
   }
 
   useEffect(() => {
-    publicAPI.get(`/allCryptoCoins?search=${searchText}&page=${currentPage}&size=${coinPerPage}`)
+    publicAPI.get(`/allCryptoCoins?search=${searchText}&page=${currentCryptoPage}&size=${coinPerPage}`)
       .then(res => setAssets(res.data))
-  }, [coinPerPage, searchText, currentPage, publicAPI])
+  }, [coinPerPage, searchText, currentCryptoPage, publicAPI])
 
   // console.log(assets)
 
   useEffect(() => {
-    publicAPI.get(`/allFlatCoins?search=${searchText}&page=${currentPage}&size=${coinPerPage}`)
+    publicAPI.get(`/allFlatCoins?search=${searchText}&page=${currentFlatPage}&size=${coinPerPage}`)
       .then(res => setFlatCurrency(res.data))
-  }, [coinPerPage, searchText, currentPage, publicAPI])
+  }, [coinPerPage, searchText, currentFlatPage, publicAPI])
 
 
 
@@ -194,7 +204,7 @@ const MarketPage = () => {
     fetchCurrencyRates();
 
   }, [flatCurrency]);
-  console.log(flatCurrency)
+  // console.log(flatCurrency)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -284,9 +294,6 @@ const MarketPage = () => {
                 <ToggleButton value="list" aria-label="list">
                   <ViewListIcon className="text-primary" />
                 </ToggleButton>
-                <ToggleButton value="quilt" aria-label="quilt">
-                  <ViewQuiltIcon className="text-primary" />
-                </ToggleButton>
               </ToggleButtonGroup>
             </div>
 
@@ -309,8 +316,8 @@ const MarketPage = () => {
                       color: 'white', // Change arrow color
                     }
                   }}
-                  count={pages.length}
-                  onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
+                  count={cryptoPages.length}
+                  onChange={(event, v) => setCurrentCryptoPage(parseInt(v) - 1)}
                   variant="outlined"
                   shape="rounded"
                 />
@@ -336,8 +343,8 @@ const MarketPage = () => {
                       color: 'white', // Change arrow color
                     }
                   }}
-                  count={pages.length}
-                  onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
+                  count={flatPages.length}
+                  onChange={(event, v) => setCurrentFlatPage(parseInt(v) - 1)}
                   variant="outlined"
                   shape="rounded"
                 />
