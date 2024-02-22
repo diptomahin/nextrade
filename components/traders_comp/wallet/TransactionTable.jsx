@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -10,18 +11,26 @@ import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import { BiSearchAlt } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import useSecureFetch from "@/hooks/useSecureFetch";
+import useSpecificTransactionData from "@/hooks/useSpecificTransactionData";
 
-const TransactionTable = ({ user }) => {
+const TransactionTable = () => {
   const [isOpenDot, setIsOpenDot] = useState(false);
   const [dynamicSearch, setDynamicSearch] = useState("");
 
-  const { data: depositWithdrawData = [], refetch } = useSecureFetch(
-    `/deposit-withdraw/specific/${user.email}?search=${dynamicSearch}`,
-    user?.email,
-    dynamicSearch
-  );
-  refetch();
+  const {
+    specificTransactionsData,
+    SpecificTransactionsDataLoading,
+    SpecificTransactionsDataPending,
+    SpecificTransactionsDataError,
+  } = useSpecificTransactionData(dynamicSearch);
+
+  if (
+    SpecificTransactionsDataLoading ||
+    SpecificTransactionsDataPending ||
+    SpecificTransactionsDataError
+  ) {
+    return;
+  }
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -69,7 +78,7 @@ const TransactionTable = ({ user }) => {
         </div>
       </div>
 
-      {depositWithdrawData.length !== 0 ? (
+      {specificTransactionsData.length !== 0 ? (
         <TableContainer
           component={Paper}
           sx={{
@@ -118,7 +127,7 @@ const TransactionTable = ({ user }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {depositWithdrawData?.map((row, index) => (
+              {specificTransactionsData?.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell
                     component="th"

@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import {
   useStripe,
   useElements,
@@ -11,15 +11,20 @@ import toast from "react-hot-toast";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import getDate from "../../utils/date";
+import { useEffect, useState } from "react";
 import useNotificationData from "@/hooks/useNotificationData";
-import getDate from "@/components/utils/date";
 
-const DepositForm = ({ refetch, userBalanceRefetch }) => {
-  const [paymentError, setPaymentError] = React.useState("");
-  const [clientSecret, setClientSecret] = React.useState("");
-  const [amount, setAmount] = React.useState(0);
-  const [postalCode, setPostalCode] = React.useState(0);
-  // const [currency, setCurrency] = React.useState("");
+const DepositForm = ({
+  refetchUserData,
+  refetchTransactionsData,
+  refetchSpecificTransactionsData,
+}) => {
+  const [paymentError, setPaymentError] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [postalCode, setPostalCode] = useState(0);
+  // const [currency, setCurrency] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -27,7 +32,7 @@ const DepositForm = ({ refetch, userBalanceRefetch }) => {
   const { notificationRefetch } = useNotificationData();
   const date = getDate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (amount <= 0 || !amount) {
       return;
     }
@@ -114,7 +119,7 @@ const DepositForm = ({ refetch, userBalanceRefetch }) => {
       if (paymentIntent.status === "succeeded") {
         const depositData = {
           transaction: paymentIntent,
-          date: date,
+          date: getDate,
           deposit: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
@@ -133,7 +138,8 @@ const DepositForm = ({ refetch, userBalanceRefetch }) => {
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate: {date},
+          postedDate: getDate,
+
         };
 
         // post to  notification data in database
@@ -159,8 +165,9 @@ const DepositForm = ({ refetch, userBalanceRefetch }) => {
               elements.getElement(CardNumberElement).clear(); // Reset card number
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
-              refetch();
-              userBalanceRefetch();
+              refetchUserData();
+              refetchTransactionsData();
+              refetchSpecificTransactionsData();
               toast.success("Deposit Successful", {
                 id: toastId,
                 duration: 5000,

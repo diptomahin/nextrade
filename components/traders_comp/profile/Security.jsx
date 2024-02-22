@@ -9,8 +9,8 @@ import getDate from "../../utils/date";
 const Security = () => {
   // Get user information using the useAuth hook
   const { user, updateUserPassword } = useAuth();
-  const secureAPI = useSecureAPI()
-  const {notificationRefetch}= useNotificationData()
+  const secureAPI = useSecureAPI();
+  const { notificationRefetch } = useNotificationData();
 
   // State variables to manage input values and messages
   const [oldPassword, setOldPassword] = useState("");
