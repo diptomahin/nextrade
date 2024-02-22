@@ -10,7 +10,7 @@ import Link from "next/link";
 const Academy = () => {
   const [data, setData] = useState([]);
   const [video, setVideo] = useState([]);
-  
+
   useEffect(() => {
     fetch("https://nex-trade-server.vercel.app/v1/api/articles")
       .then((res) => res.json())
@@ -57,9 +57,9 @@ const Academy = () => {
                 </div>
               </Link>
 
-              <div className="">
-                <button className="bg-blue-500 px-2 py-1 text-sm text-white">
-                  {news.category}
+              <div>
+                <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                  <span class="relative z-10">{news.category}</span>
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out">
@@ -89,7 +89,7 @@ const Academy = () => {
               {data.slice(4, 5).map((news, index) => (
                 <div className="relative xl:my-0 my-10 mb-10" key={index}>
                   <div className="overflow-hidden">
-                  <Link href={`/dashboard/academy/${news._id}`}>
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
@@ -131,7 +131,7 @@ const Academy = () => {
               {data.slice(5, 7).map((news, index) => (
                 <div className="relative mb-5" key={index}>
                   <div className="overflow-hidden">
-                  <Link href={`/dashboard/academy/${news._id}`}>
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <Image
                         className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                         src={news.thumbnail}
