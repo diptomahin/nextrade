@@ -8,7 +8,6 @@ import WalletIcon from "@mui/icons-material/Wallet";
 import CachedSharpIcon from "@mui/icons-material/CachedSharp";
 import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -17,59 +16,75 @@ import emptyIcon from "../../../assets/emptyIcon.png";
 
 // logo
 import bitLogo from "../../../assets/btc-logo.png";
-import Link from "next/link";
 import DarkButton from "@/components/library/buttons/DarkButton";
-import { Input } from "@mui/material";
+import Swal from "sweetalert2";
+import useSecureAPI from "@/hooks/useSecureAPI";
+import { Avatar, AvatarGroup } from "@mui/material";
 
-// style input
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
-const BuyAndExchange = ({ cryptoData }) => {
+const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
   const [tabValue, setTabValue] = useState("1");
+  const [firstCoinId, setFirstCoinId] = useState();
+  const [secondCoinId, setSecondCoinId] = useState();
+  const [firstCoinName, setFirstCoinName] = useState();
+  const [secondCoinName, setSecondCoinName] = useState();
+  const secureAPI = useSecureAPI();
   const theme = useTheme();
-  const [personName, setPersonName] = useState([]);
-  const [personNameExchange, setPersonNameExchange] = useState([]);
 
-  const coinNames = cryptoData?.map((asset) => asset.assetKey);
-  const exchangeNames = cryptoData?.map((asset) => asset.assetKey);
 
   const handleChangeCoins = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setFirstCoinId(event.target.value)
+    setFirstCoinName(cryptoData.find(asset => asset._id === event.target.value).assetName)
   };
 
   const handleChangeExchange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonNameExchange(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setSecondCoinId(event.target.value)
+    setSecondCoinName(cryptoData.find(asset => asset._id === event.target.value).assetName)
   };
+
+  const handleExChange = () => {
+          if(firstCoinId === secondCoinId){
+            Swal.fire({
+              title: `You Can't exchange same coins`,
+              icon: "error",
+            });
+            return
+          }
+    Swal.fire({
+      title: `Are you sure to exchange ${firstCoinName} to ${secondCoinName}?`,
+      text: `You won't be able to revert this!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        secureAPI
+          .put(`/exchangeAssets/${firstCoinId}/${secondCoinId}`)
+          .then((res) => {
+            if (res.data.modifiedCount) {
+              Swal.fire({
+                title: `Coin exchange successful!`,
+                text: `Best of luck`,
+                icon: "success",
+                timer: 1500,
+              });
+              refetch();
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: `Coin exchange failed!`,
+              text: `Please try again`,
+              icon: "error",
+            });
+          });
+      }
+    })
+  }
+
+
   return (
     <TabContext value={tabValue}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -105,7 +120,7 @@ const BuyAndExchange = ({ cryptoData }) => {
         <div>
           <div className=" font-semibold xl:flex items-center justify-between gap-4 my-4 px-3 ">
             <h2>
-              <WalletIcon /> <span>$ 40,000</span>{" "}
+              <WalletIcon /> <span>$ {remainingBalance}</span>{" "}
             </h2>
             <div className="flex items-center gap-2 xl:mt-0 mt-2">
               <Image
@@ -115,22 +130,25 @@ const BuyAndExchange = ({ cryptoData }) => {
               />{" "}
               <span>$ 70,000</span>
             </div>
+            <div>
+            </div>
           </div>
           {/* input field */}
 
           {/* 1st input */}
-          <FormControl fullWidth sx={{ borderBottom: "1px solid white",borderLeft: "1px solid white",borderRight: "1px solid white",borderRadius:'5px' }}>
-            <InputLabel id="demo-simple-select-label"style={{ color: "white" }} >Coin Name</InputLabel>
+          <FormControl fullWidth sx={{ borderBottom: "1px solid white", borderLeft: "1px solid white", borderRight: "1px solid white", borderRadius: '5px' }}>
+            <InputLabel id="demo-simple-select-label" style={{ color: "white" }} >From:</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="Coin Name"
+              label="Form"
               onChange={handleChangeCoins}
-              sx={{ color: "white",border:'black' }}
+              sx={{ color: "white", border: 'black' }}
             >
-              {coinNames.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
+              <p className="mx-4 my-2">Asset Name-Invested amount</p>
+              {cryptoData.map((asset, idx) => (
+                <MenuItem key={idx} value={asset._id}>
+                  <p className="flex justify-between gap-6 items-center">{asset.assetName}-${asset.totalInvestment} <Image src={asset.assetImg} height={30} width={30} alt="logo"></Image></p>
                 </MenuItem>
               ))}
             </Select>
@@ -139,26 +157,27 @@ const BuyAndExchange = ({ cryptoData }) => {
             <CachedSharpIcon style={{ fontSize: "2rem" }} />
           </div>
           {/* 2nd input */}
-          <FormControl fullWidth sx={{ borderBottom: "1px solid white",borderLeft: "1px solid white",borderRight: "1px solid white",borderRadius:'5px' }}>
+          <FormControl fullWidth sx={{ borderBottom: "1px solid white", borderLeft: "1px solid white", borderRight: "1px solid white", borderRadius: '5px' }}>
             <InputLabel id="demo-simple-select-label"
-            style={{ color: "white" }}>Exchange Name</InputLabel>
+              style={{ color: "white" }}>To:</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="Exchange Name"
+              label="To"
               onChange={handleChangeExchange}
               style={{ color: "white" }}
             >
-              {exchangeNames.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
+              <p className="mx-4 my-2">Asset Name-Invested amount</p>
+              {cryptoData.map((asset, idx) => (
+                <MenuItem key={idx} value={asset._id}>
+                  <p className="flex justify-between gap-6 items-center">{asset.assetName}-${asset.totalInvestment} <Image src={asset.assetImg} height={30} width={30} alt="logo"></Image></p>
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
           <h3 className=" font-semibold my-2 text-gray-500">No Extra Fees :</h3>
 
-          <DarkButton className={"w-full mt-5 md:rounded"}>
+          <DarkButton className={"w-full mt-5 md:rounded"} onClick={handleExChange}>
             <CachedSharpIcon /> Exchange
           </DarkButton>
         </div>
