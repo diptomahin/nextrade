@@ -2,17 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   InputBase,
-  Box,
   Tab,
   ToggleButtonGroup,
   ToggleButton,
+  Pagination,
 } from "@mui/material";
-import { Stack } from "@mui/material";
 
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 import MarketHeadLine from "@/components/traders_comp/market/MarketHeadLine";
@@ -20,50 +15,15 @@ import MarketTable from "@/components/traders_comp/market/MarketTable";
 import axios from "axios";
 import NormalCurrencyTable from "@/components/traders_comp/market/NormalCurrencyTable";
 // import styled from "@emotion/styled";
-import usePublicFetch from "@/hooks/usePublicFetch";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from '@mui/material/styles';
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import GridViewIcon from '@mui/icons-material/GridView';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import CryptoMarketModuleView from "@/components/traders_comp/market/CryptoMarketModuleView";
 import CurrencyMarketModuleView from "@/components/traders_comp/market/CurrencyMarketModuleView";
-// const CustomSelect = styled(Select)({
-//   "& .MuiSelect-root": {
-//     color: "#E0E3E7", // Text color
-//     "&:focus": {
-//       backgroundColor: "transparent", // Remove focus background color
-//     },
-//   },
-//   "& .MuiSelect-select": {
-//     color: "white",
-//     "&:hover": {
-//       backgroundColor: "transparent", // Remove hover background color
-//     },
-//   },
-//   "& .MuiOutlinedInput-notchedOutline": {
-//     borderRadius: "50px",
-//     borderColor: "#40a0ff", // Border color
-//     "&:active": {
-//       borderColor: "#40a0ff",
-//     },
-//     "&:hover": {
-//       borderColor: "#40a0ff",
-//     },
-//   },
-//   "& .MuiSelect-icon": {
-//     color: "#40a0ff", // Color of the select icon
-//   },
-//   "& .MuiMenuItem-root": {
-//     color: "black", // Menu item text color
-//   },
-//   "& .MuiList-root": {
-//     backgroundColor: "#21366c", // Background color of select options when open
-//   },
-// });
+import usePublicAPI from "@/hooks/usePublicAPI";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -108,36 +68,46 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const MarketPage = () => {
-  // const [category, setCategory] = useState("Cryptos");
+  const [allCryptoCoins, setAllCryptoCoins] = useState([])
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [value, setValue] = React.useState("1");
+  const [pageCount, setPageCount] = useState(0);
+  const [coinPerPage, setCoinPerPage] = useState(5)
+  const [currentPage, setCurrentPage] = useState(0);
+  const publicAPI = usePublicAPI()
 
 
-  const {
-    data: allCryptoCoins = [],
-    isPending: cryptoPending,
-    isLoading: cryptoLoading,
-    refetch: cryptoRefetch,
-  } = usePublicFetch(`/allCryptoCoins?search=${searchText}`, "allCryptoCoins", searchText);
-
-  const {
-    data: allFlatCoins = [],
-    isPending: flatPending,
-    isLoading: flatLoading,
-    refetch: flatRefetch,
-  } = usePublicFetch(`/allFlatCoins?search=${searchText}`, "allFlatCoins", searchText);
-
-  // console.log(allCoins)
   useEffect(() => {
-    if (allFlatCoins.length > 0 && allCryptoCoins.length > 0 ) {
-      setAssets(allCryptoCoins);
-      setFlatCurrency(allFlatCoins);
-    }
-  }, [allCryptoCoins, allFlatCoins]);
+    publicAPI.get('/totalCryptoCount')
+      .then(res => setPageCount(res.data.count))
+      .catch(error => console.log(error))
+  }, [publicAPI])
 
-  // console.log(searchText)
+  const numberOfPages = Math.ceil(pageCount / coinPerPage);
+
+  const pages = [...Array(numberOfPages).keys()]
+
+  const handleCoinPerPages = (e) => {
+    const val = parseInt(e.target.value);
+    // console.log(val);
+    setCoinPerPage(val)
+    setCurrentPage(0)
+  }
+
+  useEffect(() => {
+    publicAPI.get(`/allCryptoCoins?search=${searchText}&page=${currentPage}&size=${coinPerPage}`)
+      .then(res => setAssets(res.data))
+  }, [coinPerPage, searchText, currentPage, publicAPI])
+
+  // console.log(assets)
+
+  useEffect(() => {
+    publicAPI.get(`/allFlatCoins?search=${searchText}&page=${currentPage}&size=${coinPerPage}`)
+      .then(res => setFlatCurrency(res.data))
+  }, [coinPerPage, searchText, currentPage, publicAPI])
+
 
 
   // create new objects 
@@ -224,7 +194,7 @@ const MarketPage = () => {
     fetchCurrencyRates();
 
   }, [flatCurrency]);
-  // console.log(flatCurrency)
+  console.log(flatCurrency)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -253,47 +223,7 @@ const MarketPage = () => {
       <div className="flex flex-col xl:flex-row gap-5 my-4">
 
         <div className="w-full p-3 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  rounded xl:w-3/4">
-          {/* <div className="p-2 my-4 max-w-min rounded">
-            <Stack flexDirection="row" gap={2} justifyContent="space-between">
 
-             
-              <FormControl sx={{ width: 200, backgroundColor: "transparent" }}>
-                <InputLabel id="demo-simple-select-label">
-                  <p className="text-primary">Category</p>
-                </InputLabel>
-                <CustomSelect
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={category}
-                  label="Category"
-                  onChange={(event) => {
-                    setCategory(event.target.value);
-                  }}
-                >
-                  <MenuItem value={"Cryptos"}>
-                    <p>Cryptos</p>
-                  </MenuItem>
-                  <MenuItem value={"Currency"}>
-                    <p>Currency</p>
-                  </MenuItem>
-                </CustomSelect>
-              </FormControl>
-
-              
-            </Stack>
-          </div> */}
-
-
-          {/* market tables */}
-          {/* {category === "Cryptos" ? (
-            <MarketTable assets={assets}></MarketTable>
-          ) : category === "Currency" ? (
-            <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
-          ) : (
-            <div>
-              <h1>This is Under Development</h1>
-            </div>
-          )} */}
 
           <TabContext value={value}>
 
@@ -325,13 +255,20 @@ const MarketPage = () => {
                   inputProps={{ "aria-label": "search" }}
                   onChange={(e) => {
                     setSearchText(e.target.value)
-                    if (e.target.value === "") {
-                      flatRefetch()
-                      cryptoRefetch()
-                    }
                   }}
                 />
               </Search>
+
+              {/* show coin count */}
+              <div className="flex items-center gap-1">
+                <p>Show: </p>
+                <select value={coinPerPage} onChange={handleCoinPerPages} className="bg-transparent border border-primary rounded-md p-1 text-sm" name="" id="">
+                  <option className="text-black" value="5">5</option>
+                  <option className="text-black" value="10">10</option>
+                  <option className="text-black" value="15">15</option>
+                  <option className="text-black" value="20">20</option>
+                </select>
+              </div>
 
               {/* view options */}
               <ToggleButtonGroup
@@ -353,27 +290,59 @@ const MarketPage = () => {
               </ToggleButtonGroup>
             </div>
 
+
+            {/* display crypto coins */}
             <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
               {
                 view === "list" ?
                   <MarketTable assets={assets}></MarketTable>
                   :
                   <CryptoMarketModuleView assets={assets}></CryptoMarketModuleView>
-
-
               }
 
-
+              {/* Pagination */}
+              <div className="my-6 flex justify-center">
+                <Pagination
+                  color="primary" sx={{
+                    '& .MuiPaginationItem-page': { color: 'white' },
+                    '& .MuiPaginationItem-icon': {
+                      color: 'white', // Change arrow color
+                    }
+                  }}
+                  count={pages.length}
+                  onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
+                  variant="outlined"
+                  shape="rounded"
+                />
+              </div>
             </TabPanel>
+
+            {/* display flat coin */}
             <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
 
               {
                 view === "list" ?
-                <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
-                :
-                <CurrencyMarketModuleView assets={flatCurrency}></CurrencyMarketModuleView>
+                  <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+                  :
+                  <CurrencyMarketModuleView assets={flatCurrency}></CurrencyMarketModuleView>
               }
-              
+
+              {/* Pagination */}
+              <div className="my-6 flex justify-center">
+                <Pagination
+                  color="primary" sx={{
+                    '& .MuiPaginationItem-page': { color: 'white' },
+                    '& .MuiPaginationItem-icon': {
+                      color: 'white', // Change arrow color
+                    }
+                  }}
+                  count={pages.length}
+                  onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
+                  variant="outlined"
+                  shape="rounded"
+                />
+              </div>
+
             </TabPanel>
           </TabContext>
 
