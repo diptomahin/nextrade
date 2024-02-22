@@ -103,7 +103,7 @@ const Academy = () => {
             <div className="">
               {data.slice(4, 5).map((news, index) => (
                 <div className="relative xl:my-0 my-10 mb-10" key={index}>
-                  <div>
+                  <div className="overflow-hidden">
                     <Link href={`/academy/${news._id}`}>
                       <Image
                         src={news.thumbnail}
@@ -115,6 +115,7 @@ const Academy = () => {
                           width: "100%",
                           height: "auto",
                         }}
+                        className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                       />
                     </Link>
                   </div>
@@ -145,9 +146,10 @@ const Academy = () => {
             <div className="">
               {data.slice(5, 7).map((news, index) => (
                 <div className="relative mb-5" key={index}>
-                  <div>
+                  <div className="overflow-hidden">
                     <Link href={`/academy/${news._id}`}>
                       <Image
+                        className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                         src={news.thumbnail}
                         alt={news.title}
                         width={80}
@@ -196,24 +198,15 @@ const Academy = () => {
         <div>
           <div className="xl:grid grid-cols-2 gap-5">
             {data.slice(7, 13).map((news, index) => (
-              <div
-                className="flex gap-5 my-1 xl:mt-10 mt-5"
-                key={index}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-              >
+              <div className="flex gap-5 my-1 xl:mt-10 mt-5" key={index}>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                  <div
-                    className={`w-[200px] transition-transform ${
-                      isZoomed[index] ? "scale-110" : ""
-                    }`}
-                  >
+                  <div className="w-[200px] overflow-hidden">
                     <Image
+                      className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                       src={news.thumbnail}
                       alt={news.title}
                       width={200}
                       height={200}
-                      className="transform-gpu"
                     />
                   </div>
                 </Link>
@@ -278,9 +271,10 @@ const Academy = () => {
             <div className="">
               {data.slice(13, 14).map((news, index) => (
                 <div className="relative mt-10" key={index}>
-                  <div>
+                  <div className="overflow-hidden">
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <Image
+                        className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                         src={news.thumbnail}
                         alt={news.title}
                         width={900}
@@ -292,25 +286,24 @@ const Academy = () => {
                         }}
                       />
                     </Link>
+
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <FaRegCirclePlay className="text-3xl text-white" />
+                    </div>
                   </div>
 
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="md:text-6xl text-4xl text-white">
-                      <FaRegCirclePlay className="text-center" />
-                    </div>
-                    <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11 group transition-all duration-300 ease-in-out">
-                        <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                          {" "}
-                          {news.title}
-                        </span>
-                      </h3>
-                    </Link>
-                    <div className="flex gap-1 text-white absolute md:bottom-12 bottom-8 md:left-10 left-4">
-                      <p>{moment(news.date).format("ll")} .</p>
-                      <p>1k Views .</p>
-                      <p>210 Shares</p>
-                    </div>
+                  <Link href={`/dashboard/academy/${news._id}`}>
+                    <h3 className="xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11 group transition-all duration-300 ease-in-out">
+                      <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                        {" "}
+                        {news.title}
+                      </span>
+                    </h3>
+                  </Link>
+                  <div className="flex gap-1 text-white absolute md:bottom-12 bottom-8 md:left-10 left-4">
+                    <p>{moment(news.date).format("ll")} .</p>
+                    <p>1k Views .</p>
+                    <p>210 Shares</p>
                   </div>
                 </div>
               ))}
@@ -320,7 +313,7 @@ const Academy = () => {
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <div className="lg:w-[180px] xl:w-[180px] md:w-[120px] w-[100px]">
+                      <div className="lg:w-[180px] xl:w-[180px] md:w-[120px] w-[100px] overflow-hidden">
                         <Image
                           src={news.thumbnail}
                           alt={news.title}
@@ -331,13 +324,12 @@ const Academy = () => {
                             width: "100%",
                             height: "auto",
                           }}
+                          className="w-full h-full object-cover transition-transform duration-500 transform-gpu hover:scale-110 cursor-pointer"
                         />
                       </div>
                     </Link>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-3xl text-white">
-                        <FaRegCirclePlay />
-                      </div>
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <FaRegCirclePlay className="text-3xl text-white" />
                     </div>
                   </div>
                   <div className="-mt-1">
