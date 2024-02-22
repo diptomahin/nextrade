@@ -208,6 +208,8 @@ const MarketPage = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setCurrentCryptoPage(0);
+    setCurrentFlatPage(0)
   };
 
   const [view, setView] = React.useState('module');
