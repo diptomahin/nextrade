@@ -33,6 +33,7 @@ const WithdrawForm = ({
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
 
+  const date = getDate();
 
   useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -125,7 +126,7 @@ const WithdrawForm = ({
       if (paymentIntent.status === "succeeded") {
         const withdrawData = {
           transaction: paymentIntent,
-          date: getDat(),
+          date: date,
           withdraw: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
@@ -144,7 +145,7 @@ const WithdrawForm = ({
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate: getDate(),
+          postedDate: date,
         };
 
         // post to  notification data in database
