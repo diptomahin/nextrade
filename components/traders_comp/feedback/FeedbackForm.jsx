@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import FeedbackForm from './FeedbackForm';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
+import DarkButton from '@/components/library/buttons/DarkButton';
 
 const style = {
     position: 'absolute',
@@ -15,10 +16,11 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 500,
-    height: 300,
+    height: 350,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
+    borderRadius: 5,
     p: 4,
 };
 
@@ -46,8 +48,10 @@ export default function TransitionsModal() {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <Button onClick={handleOpen}>Feedback</Button> {/* Changed button text to "Feedback" */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'top', height: '100vh' }}>
+
+            <DarkButton onClick={handleOpen}>Feedback </DarkButton>
+
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -62,8 +66,9 @@ export default function TransitionsModal() {
                 <Fade in={open}>
                     <Box sx={style}>
                         <Typography id="transition-modal-title" variant="h6" component="h2">
-                            Feedback Form {/* Changed modal title */}
+                            Tell Us How We&apos;re Doing {/* Changed modal title */}
                         </Typography>
+                        <p className='text-sm pb-5'>Your feedback shapes our platform&apos;s future. Share your thoughts to enhance your trading experience.</p>
                         <Rating
                             name="simple-controlled"
                             value={rating}
