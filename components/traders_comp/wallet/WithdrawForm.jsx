@@ -33,6 +33,7 @@ const WithdrawForm = ({
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
 
+
   useEffect(() => {
     if (amount <= 0 || !amount) {
       return;

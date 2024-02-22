@@ -15,6 +15,15 @@ const TradersNotification = () => {
   const { notificationsData, notificationRefetch } = useNotificationData();
   const secureAPI = useSecureAPI();
 
+  // Initialize cardValue with initial values based on the length of notificationsData
+  const initialCardValue = Array.isArray(notificationsData)
+    ? notificationsData.reduce((acc, asset) => {
+        return { ...acc, [asset._id]: 0 };
+      }, {})
+    : {};
+
+  const [cardValue, setCardValue] = React.useState(initialCardValue);
+
   // Function to handle notification deletion
   const handleDeleteNotification = async (notificationId) => {
     try {
@@ -45,17 +54,33 @@ const TradersNotification = () => {
   // Helper function to format time in 12-hour format
   const formatTime = (hours) => {
     return hours % 12 || 12; // Convert to 12-hour format
-  }
+  };
 
   // Helper function to pad zero for single-digit minutes
   const padZero = (minutes) => {
     return minutes < 10 ? `0${minutes}` : minutes;
-  }
+  };
 
   // Helper function to determine AM or PM
   const getAmPm = (hours) => {
     return hours >= 12 ? 'PM' : 'AM';
-  }
+  };
+
+  // Click event handler for notification cards
+  const handleCardClick = (asset) => {
+    // Your logic for handling click on notification card
+    // For example, increment or decrement value
+    const updatedValue = cardValue[asset._id] ? cardValue[asset._id] - 1 : 1;
+    setCardValue((prevCardValue) => ({
+      ...prevCardValue,
+      [asset._id]: updatedValue,
+    }));
+
+    // Update notificationsData?.length based on the click
+    notificationRefetch(); // Assuming notificationRefetch is a function that refetches notificationsData
+  };
+
+  console.log(initialCardValue);
 
   return (
     <div className="relative">
@@ -70,7 +95,7 @@ const TradersNotification = () => {
         )}
         {notificationsData?.length ? (
           <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {notificationsData?.length}
+            {Object.values(cardValue).reduce((sum, count) => sum + count,notificationsData?.length)}
           </p>
         ) : (
           " "
@@ -88,7 +113,7 @@ const TradersNotification = () => {
           {notificationsData?.length ? (
             <>
               {notificationsData.map((asset) => (
-                <div key={asset._id} className="bg-darkBG border border-darkThree p-4 rounded-xl">
+                <div onClick={() => handleCardClick(asset)} key={asset._id} className="bg-darkBG border border-darkThree p-4 rounded-xl">
                   <div className="flex justify-between gap-2 ">
                     <div className="flex items-center gap-3">
                       <NotificationsNoneIcon />
