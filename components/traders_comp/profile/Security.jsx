@@ -4,13 +4,13 @@ import useAuth from "@/hooks/useAuth";
 import React, { useState } from "react";
 import { updatePassword } from "firebase/auth";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import date from '../../utils/date'
+import getDate from "../../utils/date";
 
 const Security = () => {
   // Get user information using the useAuth hook
   const { user, updateUserPassword } = useAuth();
-  const secureAPI = useSecureAPI()
-  const {notificationRefetch}= useNotificationData()
+  const secureAPI = useSecureAPI();
+  const { notificationRefetch } = useNotificationData();
 
   // State variables to manage input values and messages
   const [oldPassword, setOldPassword] = useState("");
@@ -38,27 +38,26 @@ const Security = () => {
           console.log("Update successful.");
 
           // post notification data sen database
-        const notificationInfo = {
-          title: "Password Change ",
-          description: 'Your account password has been changed',
-          assetKey: "",
-          assetImg: "",
-          assetBuyerUID: "",
-          assetBuyerEmail: user.email,
-          postedDate:date
-        };
+          const notificationInfo = {
+            title: "Password Change ",
+            description: "Your account password has been changed",
+            assetKey: "",
+            assetImg: "",
+            assetBuyerUID: "",
+            assetBuyerEmail: user.email,
+            postedDate: getDate,
+          };
 
-        // post to  notification data in database
-        secureAPI
-          .post("/notifications", notificationInfo)
-          .then((res) => {
-            console.log("Successfully coin added:", res);
-            notificationRefetch()
-            
-          })
-          .catch((error) => {
-            console.error("Error sending notification:", error);
-          });
+          // post to  notification data in database
+          secureAPI
+            .post("/notifications", notificationInfo)
+            .then((res) => {
+              console.log("Successfully coin added:", res);
+              notificationRefetch();
+            })
+            .catch((error) => {
+              console.error("Error sending notification:", error);
+            });
         })
         .catch((error) => {
           console.log("error");

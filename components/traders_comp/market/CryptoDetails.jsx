@@ -1,15 +1,15 @@
-"use client"
+"use client";
 import DashButton from "@/components/library/buttons/DashButton";
 import { Button, Divider, InputAdornment, TextField } from "@mui/material";
 import Image from "next/image";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBanner from "./TopBanner";
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import styled from "@emotion/styled";
-import date from '../../utils/date'
+import getDate from "../../utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
 
 // customized TextField
@@ -29,7 +29,7 @@ const CssTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "#40a0ff",
-      color: "#E0E3E7"
+      color: "#E0E3E7",
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
@@ -40,25 +40,30 @@ const CssTextField = styled(TextField)({
   },
 });
 
-
-const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainingBalance, user, refetch }) => {
+const CryptoDetails = ({
+  tickerData,
+  coinImage,
+  coinName,
+  coinKey,
+  usersRemainingBalance,
+  user,
+  refetch,
+}) => {
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
-  const {notificationRefetch}= useNotificationData()
-
+  const { notificationRefetch } = useNotificationData();
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
     setInvestment(newInvestment);
-
   };
 
   // crypto payment process
   const handleBuyCrypto = (ast) => {
-    const usersBalance = usersRemainingBalance
+    const usersBalance = usersRemainingBalance;
     const remainingBalance = usersBalance - parseFloat(investment).toFixed(2);
-    const currentPrice = parseFloat(tickerData.c).toFixed(2)
-    const portion = (parseFloat(investment) / currentPrice) * 100
+    const currentPrice = parseFloat(tickerData.c).toFixed(2);
+    const portion = (parseFloat(investment) / currentPrice) * 100;
 
     const assetInfo = {
       assetName: coinName,
@@ -67,23 +72,23 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
       assetType: "crypto coin",
       assetBuyingPrice: ast.c,
       currentPrice: 0,
-      assetPortion: parseInt(portion) + '%',
+      assetPortion: parseInt(portion) + "%",
       totalInvestment: investment,
       assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email
+      assetBuyerEmail: user.email,
     };
 
-   
     const notificationInfo = {
       title: `Purchased Successfully ${coinName}`,
-      description: `You Investment ${investment + '$'} in ${parseInt(portion) + "%"}`,
+      description: `You Investment ${investment + "$"} in ${
+        parseInt(portion) + "%"
+      }`,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
-      postedDate:date
+      postedDate: getDate,
     };
-    
 
     if (usersBalance < parseFloat(ast.c)) {
       Swal.fire({
@@ -101,24 +106,21 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes!"
+      confirmButtonText: "Yes!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-
         // post to  notification data in database
         secureAPI
-  .post('/notifications', notificationInfo)
-  .then((res) => {
-    console.log("Successfully coin added:", res);
-    notificationRefetch();
-  })
-  .catch((error) => {
-    console.error("Error sending notification:", error);
-    
-  });
+          .post("/notifications", notificationInfo)
+          .then((res) => {
+            console.log("Successfully coin added:", res);
+            notificationRefetch();
+          })
+          .catch((error) => {
+            console.error("Error sending notification:", error);
+          });
 
-
-          // post purchasedAssets data in database
+        // post purchasedAssets data in database
         secureAPI
           .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
           .then((res) => {
@@ -127,7 +129,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
                 title: `Coin Purchase successful!`,
                 text: `Best of luck`,
                 icon: "success",
-                timer: 1500
+                timer: 1500,
               });
               refetch();
             }
@@ -141,10 +143,7 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
             });
           });
       }
-
-     
     });
-
   };
 
   // crypto watchlist process
@@ -185,7 +184,12 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
   return (
     <div>
       {tickerData ? (
-        <TopBanner tickerData={tickerData} coinImage={coinImage} coinName={coinName} coinKey={coinKey} />
+        <TopBanner
+          tickerData={tickerData}
+          coinImage={coinImage}
+          coinName={coinName}
+          coinKey={coinKey}
+        />
       ) : (
         <p>Loading...</p>
       )}
@@ -218,59 +222,71 @@ const CryptoDetails = ({ tickerData, coinImage, coinName, coinKey, usersRemainin
             container_id="advanced-chart-widget-container"
           />
         </div>
-        {
-          coinImage ?
-            <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
-              <div className="flex justify-between">
-                <h1 className="text-lg font-semibold">Buy {coinKey.slice(0, -4)}</h1>
-                <button onClick={() => handleCryptoWatchlist(tickerData)} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
-              </div>
-              <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
-              <div className="flex justify-between">
-                <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
-                <div className="flex gap-1 items-center">
-                  {coinImage && (
-                    <Image src={coinImage} width={30} height={30} alt="Logo" />
-                  )}
-                  ${parseFloat(tickerData?.c).toFixed(2)}
-                </div>
-              </div>
-              <CssTextField
-                required
-                fullWidth
-                defaultValue={investment}
-                id="outlined-number"
-                label={`Investment (${coinKey.slice(0, -4)})`}
-                type="number"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  startAdornment: <InputAdornment position="start"><p className="text-white">$</p></InputAdornment>,
-                }}
-                onChange={handleInvestmentChange}
-              />
-              <Button
-                disabled={investment <= 0}
-                sx={{
-                  backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
-                  color: "white",
-                  borderRadius: "50px",
-                  padding: "10px 15px",
-                  "&:hover": {
-                    backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
-                  },
-                }}
-                onClick={() => handleBuyCrypto(tickerData)}
+        {coinImage ? (
+          <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+            <div className="flex justify-between">
+              <h1 className="text-lg font-semibold">
+                Buy {coinKey.slice(0, -4)}
+              </h1>
+              <button
+                onClick={() => handleCryptoWatchlist(tickerData)}
+                className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform"
               >
-                Buy {coinKey}
-              </Button>
-              {/* <DashButton className="w-full" onClick={() => handleBuyCrypto(tickerData)}>Buy {coinKey.slice(0, -4)}</DashButton> */}
+                Add to watchlist
+              </button>
             </div>
-            :
-            <p>Loading...</p>
-        }
+            <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
+            <div className="flex justify-between">
+              <p>
+                <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
+              </p>
+              <div className="flex gap-1 items-center">
+                {coinImage && (
+                  <Image src={coinImage} width={30} height={30} alt="Logo" />
+                )}
+                ${parseFloat(tickerData?.c).toFixed(2)}
+              </div>
+            </div>
+            <CssTextField
+              required
+              fullWidth
+              defaultValue={investment}
+              id="outlined-number"
+              label={`Investment (${coinKey.slice(0, -4)})`}
+              type="number"
+              variant="outlined"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <p className="text-white">$</p>
+                  </InputAdornment>
+                ),
+              }}
+              onChange={handleInvestmentChange}
+            />
+            <Button
+              disabled={investment <= 0}
+              sx={{
+                backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
+                color: "white",
+                borderRadius: "50px",
+                padding: "10px 15px",
+                "&:hover": {
+                  backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
+                },
+              }}
+              onClick={() => handleBuyCrypto(tickerData)}
+            >
+              Buy {coinKey}
+            </Button>
+            {/* <DashButton className="w-full" onClick={() => handleBuyCrypto(tickerData)}>Buy {coinKey.slice(0, -4)}</DashButton> */}
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </div>
   );

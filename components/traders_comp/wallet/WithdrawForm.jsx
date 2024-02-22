@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import {
   useStripe,
   useElements,
@@ -12,23 +12,28 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useNotificationData from "@/hooks/useNotificationData";
-import date from '../../utils/date'
+import getDate from "../../utils/date";
+import { useEffect, useState } from "react";
 
-const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
-  const [paymentError, setPaymentError] = React.useState("");
-  const [clientSecret, setClientSecret] = React.useState("");
-  const [amount, setAmount] = React.useState(0);
-  const [postalCode, setPostalCode] = React.useState(0);
-  // const [currency, setCurrency] = React.useState("");
+const WithdrawForm = ({
+  refetchUserData,
+  totalBalance,
+  refetchTransactionsData,
+  refetchSpecificTransactionsData,
+}) => {
+  const [paymentError, setPaymentError] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [postalCode, setPostalCode] = useState(0);
+  // const [currency, setCurrency] = useState("");
 
-  const {notificationRefetch}= useNotificationData()
+  const { notificationRefetch } = useNotificationData();
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
-  console.log(date);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (amount <= 0 || !amount) {
       return;
     }
@@ -119,7 +124,7 @@ const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
       if (paymentIntent.status === "succeeded") {
         const withdrawData = {
           transaction: paymentIntent,
-          date: date,
+          date: getDate,
           withdraw: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
@@ -138,16 +143,14 @@ const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate:date
+          postedDate: getDate,
         };
 
         // post to  notification data in database
         secureAPI
           .post("/notifications", notificationInfo)
           .then((res) => {
-            console.log("Successfully coin added:", res);
-            
-            notificationRefetch()
+            notificationRefetch();
           })
           .catch((error) => {
             console.error("Error sending notification:", error);
@@ -166,8 +169,9 @@ const WithdrawForm = ({ refetch, totalBalance, userBalanceRefetch }) => {
               elements.getElement(CardNumberElement).clear(); // Reset card number
               elements.getElement(CardExpiryElement).clear(); // Reset card expiry
               elements.getElement(CardCvcElement).clear();
-              refetch();
-              userBalanceRefetch();
+              refetchUserData();
+              refetchTransactionsData();
+              refetchSpecificTransactionsData();
               toast.success("Withdraw Successful", {
                 id: toastId,
                 duration: 5000,
