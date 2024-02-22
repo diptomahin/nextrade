@@ -53,6 +53,8 @@ const CryptoDetails = ({
   const secureAPI = useSecureAPI();
   const { notificationRefetch } = useNotificationData();
 
+  const date = getDate();
+
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
     setInvestment(newInvestment);
@@ -64,8 +66,6 @@ const CryptoDetails = ({
     const remainingBalance = usersBalance - parseFloat(investment).toFixed(2);
     const currentPrice = parseFloat(tickerData.c).toFixed(2);
     const portion = (parseFloat(investment) / currentPrice) * 100;
-    const date = getDate();
-    const buyingDate = `${date.day}-${date.month}-${date.year}, ${date.hours}:${date.minutes}:${date.seconds}`;
 
     const assetInfo = {
       assetName: coinName,
@@ -78,18 +78,19 @@ const CryptoDetails = ({
       totalInvestment: investment,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
-      buyingDate
+      buyingDate: date,
     };
 
     const notificationInfo = {
       title: `Purchased Successfully ${coinName}`,
-      description: `You Investment ${investment + "$"} in ${parseInt(portion) + "%"
-        }`,
+      description: `You Investment ${investment + "$"} in ${
+        parseInt(portion) + "%"
+      }`,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
-      postedDate: getDate(),
+      postedDate: date,
     };
 
     if (usersBalance < parseFloat(ast.c)) {

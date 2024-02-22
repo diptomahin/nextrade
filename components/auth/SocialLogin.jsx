@@ -12,6 +12,8 @@ const SocialLogin = () => {
   const router = useRouter();
   const { from } = router.query || { from: "/" };
 
+  const date = getDate();
+
   const handleSocialLogin = (login) => {
     login()
       .then((res) => {
@@ -21,7 +23,7 @@ const SocialLogin = () => {
           userID: loggedUser.uid,
           email: loggedUser.email,
           name: loggedUser.displayName,
-          createdAt: getDate(),
+          createdAt: date,
           balance: 0,
           role: "trader",
           photo: loggedUser.photoURL || "",

@@ -1,9 +1,8 @@
-"use client"
+"use client";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBannerNormalCurrency from "./TopBannerNormalCurrency";
 import { Button, Divider, InputAdornment, TextField } from "@mui/material";
-import DashButton from "@/components/library/buttons/DashButton";
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Image from "next/image";
@@ -28,7 +27,7 @@ const CssTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "#40a0ff",
-      color: "#E0E3E7"
+      color: "#E0E3E7",
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
@@ -39,12 +38,18 @@ const CssTextField = styled(TextField)({
   },
 });
 
-
-const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBalance, refetch, user, coinImage }) => {
+const CurrencyDetails = ({
+  currencyRate,
+  coinKey,
+  currencyName,
+  usersRemainingBalance,
+  refetch,
+  user,
+  coinImage,
+}) => {
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
   const date = getDate();
-  const buyingDate = `${date.day}-${date.month}-${date.year}, ${date.hours}:${date.minutes}:${date.seconds}`;
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -53,9 +58,9 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
 
   // crypto payment process
   const handleBuyCurrency = (ast) => {
-    const usersBalance = usersRemainingBalance
+    const usersBalance = usersRemainingBalance;
     const remainingBalance = usersBalance - parseFloat(investment).toFixed(2);
-    const portion = (parseFloat(investment) / ast) * 100
+    const portion = (parseFloat(investment) / ast) * 100;
 
     const assetInfo = {
       assetName: currencyName,
@@ -63,14 +68,13 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
       assetImg: coinImage,
       assetType: "flat coin",
       assetBuyingPrice: ast,
-      currentPrice:0,
-      assetPortion: parseInt(portion) + '%',
+      currentPrice: 0,
+      assetPortion: parseInt(portion) + "%",
       totalInvestment: investment,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
-      buyingDate 
+      buyingDate: date,
     };
-
 
     if (usersBalance < parseFloat(ast)) {
       Swal.fire({
@@ -82,13 +86,15 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
     }
 
     Swal.fire({
-      title: `Are you sure to purchase  ${parseInt(portion)}% of a ${currencyName}?`,
+      title: `Are you sure to purchase  ${parseInt(
+        portion
+      )}% of a ${currencyName}?`,
       text: `It will cost $${investment}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes!"
+      confirmButtonText: "Yes!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         secureAPI
@@ -99,7 +105,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
                 title: `Coin Purchase successful!`,
                 text: `Best of luck`,
                 icon: "success",
-                timer: 1500
+                timer: 1500,
               });
               refetch();
             }
@@ -114,7 +120,6 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
           });
       }
     });
-
   };
 
   // regular currency watchlist process
@@ -125,11 +130,11 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
       type: "flat coin",
       price: 0,
       icon: coinImage,
-      email: user.email
+      email: user.email,
     };
 
-
-    secureAPI.post(`/watchlist`, assetInfo)
+    secureAPI
+      .post(`/watchlist`, assetInfo)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -151,7 +156,12 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
   };
   return (
     <div>
-      <TopBannerNormalCurrency currencyRate={currencyRate} coinKey={coinKey} currencyName={currencyName} coinImage={coinImage}></TopBannerNormalCurrency>
+      <TopBannerNormalCurrency
+        currencyRate={currencyRate}
+        coinKey={coinKey}
+        currencyName={currencyName}
+        coinImage={coinImage}
+      ></TopBannerNormalCurrency>
 
       <div className="flex flex-col gap-6 2xl:flex-row 2xl:justify-between">
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
@@ -159,7 +169,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
             width="100%"
             height="100%"
             autosize
-            symbol={`${coinKey + 'USD'}`}
+            symbol={`${coinKey + "USD"}`}
             interval={20}
             range="1M"
             timezone="UTC"
@@ -184,11 +194,18 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
         <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
           <div className="flex justify-between">
             <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
-            <button onClick={() => handleCurrencyWatchlist()} className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform">Add to watchlist</button>
+            <button
+              onClick={() => handleCurrencyWatchlist()}
+              className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform"
+            >
+              Add to watchlist
+            </button>
           </div>
           <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
           <div className="flex justify-between">
-            <p><AccountBalanceWalletOutlinedIcon />   ${usersRemainingBalance}</p>
+            <p>
+              <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
+            </p>
             <div className="flex gap-1 items-center">
               {coinImage && (
                 <Image src={coinImage} width={30} height={30} alt="Logo" />
@@ -208,19 +225,23 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
               shrink: true,
             }}
             InputProps={{
-              startAdornment: <InputAdornment position="start"><p className="text-white">$</p></InputAdornment>,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <p className="text-white">$</p>
+                </InputAdornment>
+              ),
             }}
             onChange={handleInvestmentChange}
           />
           <Button
             disabled={investment <= 0}
             sx={{
-              backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
+              backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
               color: "white",
               borderRadius: "50px",
               padding: "10px 15px",
               "&:hover": {
-                backgroundColor: investment <= 0 ? '#ccc' : '#455ce9',
+                backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
               },
             }}
             onClick={() => handleBuyCurrency(currencyRate)}

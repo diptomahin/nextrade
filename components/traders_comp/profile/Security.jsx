@@ -12,6 +12,8 @@ const Security = () => {
   const secureAPI = useSecureAPI();
   const { notificationRefetch } = useNotificationData();
 
+  const date = getDate();
+
   // State variables to manage input values and messages
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -26,7 +28,7 @@ const Security = () => {
     assetImg: "",
     assetBuyerUID: "",
     assetBuyerEmail: user.email,
-    postedDate: getDate(),
+    postedDate: date,
   };
 
   // Function to handle password change

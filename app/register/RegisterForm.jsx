@@ -45,6 +45,8 @@ const RegisterForm = () => {
     reset,
   } = useForm();
 
+  const date = getDate();
+
   const { createUser, updateUserProfile } = useAuth();
   const [error, setError] = useState("");
   const [captchaValue, setCaptchaValue] = useState(null);
@@ -68,7 +70,7 @@ const RegisterForm = () => {
           userID: loggedUser.uid,
           email: loggedUser.email,
           name: loggedUser.displayName,
-          createdAt: getDate(),
+          createdAt: date,
           balance: 0,
           role: "trader",
           photo: "",

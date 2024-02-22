@@ -33,6 +33,8 @@ const EditProfile = ({
 
   const router = useRouter();
 
+  const date = getDate();
+
   // update user profile
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +54,7 @@ const EditProfile = ({
       currency: form?.currency.value,
       photo:
         hostedImageInfo !== null ? hostedImageInfo?.data.data.url : hostedImage,
-      lastUpdate: getDate(),
+      lastUpdate: date,
     };
 
     const res = await axios.put(

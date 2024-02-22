@@ -31,6 +31,8 @@ const DepositForm = ({
   const secureAPI = useSecureAPI();
   const { notificationRefetch } = useNotificationData();
 
+  const date = getDate();
+
   useEffect(() => {
     if (amount <= 0 || !amount) {
       return;
@@ -118,7 +120,7 @@ const DepositForm = ({
       if (paymentIntent.status === "succeeded") {
         const depositData = {
           transaction: paymentIntent,
-          date: getDate(),
+          date: date,
           deposit: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
@@ -137,7 +139,7 @@ const DepositForm = ({
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate: getDate(),
+          postedDate: date,
         };
 
         // post to  notification data in database
