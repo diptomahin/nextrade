@@ -6,25 +6,11 @@ import Image from "next/image";
 import moment from "moment";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
-// import "./academy.css"
 
 const Academy = () => {
   const [data, setData] = useState([]);
   const [video, setVideo] = useState([]);
-  const [isZoomed, setIsZoomed] = useState(new Array(data.length).fill(false));
-
-  const handleMouseEnter = (index) => {
-    const updatedIsZoomed = [...isZoomed];
-    updatedIsZoomed[index] = true;
-    setIsZoomed(updatedIsZoomed);
-  };
-
-  const handleMouseLeave = (index) => {
-    const updatedIsZoomed = [...isZoomed];
-    updatedIsZoomed[index] = false;
-    setIsZoomed(updatedIsZoomed);
-  };
-
+  
   useEffect(() => {
     fetch("https://nex-trade-server.vercel.app/v1/api/articles")
       .then((res) => res.json())
@@ -78,7 +64,6 @@ const Academy = () => {
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out">
                     <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                      {" "}
                       {news.title}
                     </span>
                   </h3>
@@ -104,7 +89,7 @@ const Academy = () => {
               {data.slice(4, 5).map((news, index) => (
                 <div className="relative xl:my-0 my-10 mb-10" key={index}>
                   <div className="overflow-hidden">
-                    <Link href={`/academy/${news._id}`}>
+                  <Link href={`/dashboard/academy/${news._id}`}>
                       <Image
                         src={news.thumbnail}
                         alt={news.title}
@@ -124,10 +109,9 @@ const Academy = () => {
                     <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                       {news.category}
                     </button>
-                    <Link href={`/academy/${news._id}`}>
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="lg:text-3xl text-xl font-semibold my-2 lg:my-4 group text-white transition-all duration-300 ease-in-out">
                         <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                          {" "}
                           {news.title}
                         </span>
                       </h3>
@@ -147,7 +131,7 @@ const Academy = () => {
               {data.slice(5, 7).map((news, index) => (
                 <div className="relative mb-5" key={index}>
                   <div className="overflow-hidden">
-                    <Link href={`/academy/${news._id}`}>
+                  <Link href={`/dashboard/academy/${news._id}`}>
                       <Image
                         className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                         src={news.thumbnail}
@@ -170,10 +154,9 @@ const Academy = () => {
                     <button className="bg-blue-500 px-2 py-1 text-sm text-white">
                       {news.category}
                     </button>
-                    <Link href={`/academy/${news._id}`}>
+                    <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 group text-white transition-all duration-300 ease-in-out">
                         <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                          {" "}
                           {news.title}
                         </span>
                       </h3>
@@ -218,7 +201,6 @@ const Academy = () => {
                   <Link href={`/dashboard/academy/${news._id}`}>
                     <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out">
                       <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                        {" "}
                         {news.title}
                       </span>
                     </h3>
@@ -295,7 +277,6 @@ const Academy = () => {
                   <Link href={`/dashboard/academy/${news._id}`}>
                     <h3 className="xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11 group transition-all duration-300 ease-in-out">
                       <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                        {" "}
                         {news.title}
                       </span>
                     </h3>
@@ -339,7 +320,6 @@ const Academy = () => {
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 lg:text-[17px] xl:text-[15px] text-[13px] group text-white transition-all duration-300 ease-in-out">
                         <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                          {" "}
                           {news.title}
                         </span>
                       </h3>
