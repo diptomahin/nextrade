@@ -118,7 +118,7 @@ const DepositForm = ({
       if (paymentIntent.status === "succeeded") {
         const depositData = {
           transaction: paymentIntent,
-          date: getDate,
+          date: getDate(),
           deposit: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
@@ -130,14 +130,14 @@ const DepositForm = ({
         // post notification data sen database
         const notificationInfo = {
           title: "Deposit Successfully",
-          description: `Money has been added to your account ${
-            parseInt(amount) + "$"
-          }`,
+          description: `A deposit of ${
+            "$" + parseInt(amount)
+          } has been credited to your account.`,
           assetKey: "",
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate: getDate,
+          postedDate: getDate(),
         };
 
         // post to  notification data in database

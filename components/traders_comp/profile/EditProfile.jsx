@@ -11,14 +11,9 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import getDate from "@/components/utils/date";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
-
-const currentDate = new Date();
-const year = currentDate.getFullYear();
-const month = currentDate.getMonth() + 1;
-const day = currentDate.getDate();
-const date = { day: day, month: month, year: year };
 
 const EditProfile = ({
   userDetails,
@@ -57,7 +52,7 @@ const EditProfile = ({
       currency: form?.currency.value,
       photo:
         hostedImageInfo !== null ? hostedImageInfo?.data.data.url : hostedImage,
-      lastUpdate: date,
+      lastUpdate: getDate(),
     };
 
     const res = await axios.put(

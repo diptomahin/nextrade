@@ -124,7 +124,7 @@ const WithdrawForm = ({
       if (paymentIntent.status === "succeeded") {
         const withdrawData = {
           transaction: paymentIntent,
-          date: getDate,
+          date: getDat(),
           withdraw: parseInt(amount),
           email: user?.email,
           name: user?.displayName,
@@ -136,14 +136,14 @@ const WithdrawForm = ({
         // post notification data sen database
         const notificationInfo = {
           title: "Withdraw Successfully",
-          description: `${
-            parseInt(amount) + "$"
-          } has been withdrawn from your account`,
+          description: `Your account has been debited with a withdrawal of ${
+            "$" + parseInt(amount)
+          }.`,
           assetKey: "",
           assetImg: "",
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
-          postedDate: getDate,
+          postedDate: getDate(),
         };
 
         // post to  notification data in database

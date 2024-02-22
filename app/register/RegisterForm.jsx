@@ -1,6 +1,7 @@
 "use client";
 import SocialLogin from "@/components/auth/SocialLogin";
 import DarkButton from "@/components/library/buttons/DarkButton";
+import getDate from "@/components/utils/date";
 import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import styled from "@emotion/styled";
@@ -32,11 +33,6 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const currentDate = new Date();
-const year = currentDate.getFullYear();
-const month = currentDate.getMonth() + 1;
-const day = currentDate.getDate();
-const date = { day: day, month: month, year: year };
 const RegisterForm = () => {
   const publicAPI = usePublicAPI();
 
@@ -72,7 +68,7 @@ const RegisterForm = () => {
           userID: loggedUser.uid,
           email: loggedUser.email,
           name: loggedUser.displayName,
-          createdAt: date,
+          createdAt: getDate(),
           balance: 0,
           role: "trader",
           photo: "",

@@ -37,7 +37,7 @@ const AdminMenu = () => {
         )}
       </button>
       {isOpen && (
-        <div className="w-60 absolute top-14 right-0 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded border overflow-hidden">
+        <div className="w-60 absolute top-14 right-0 bg-gradient-to-bl from-darkOne to-darkTwo border-darkThree rounded border overflow-hidden">
           <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
             <div className="flex flex-col items-center gap-3 overflow-hidden">
               {user?.photoURL ? (
@@ -90,7 +90,7 @@ const AdminMenu = () => {
                 <IoMdSettings /> Settings
               </button>
             </Link>
-            <hr className="border-darkThree"/>
+            <hr className="border-darkThree" />
             <Link href="/">
               <button
                 onClick={() => setIsOpen(false)}

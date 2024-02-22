@@ -18,17 +18,15 @@ const Security = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
-  const data = getDate()
-
-   // post notification data sen database
-   const notificationInfo = {
+  // post notification data sen database
+  const notificationInfo = {
     title: "Password Change ",
-    description: 'Your account password has been changed',
+    description: "Your account password has been changed",
     assetKey: "",
     assetImg: "",
     assetBuyerUID: "",
     assetBuyerEmail: user.email,
-    postedDate:date
+    postedDate: getDate(),
   };
 
   // Function to handle password change
@@ -47,15 +45,14 @@ const Security = () => {
 
       // post to  notification data in database
       secureAPI
-      .post("/notifications", notificationInfo)
-      .then((res) => {
-        console.log("Successfully coin added:", res);
-        notificationRefetch()
-        
-      })
-      .catch((error) => {
-        console.error("Error sending notification:", error);
-      });
+        .post("/notifications", notificationInfo)
+        .then((res) => {
+          console.log("Successfully coin added:", res);
+          notificationRefetch();
+        })
+        .catch((error) => {
+          console.error("Error sending notification:", error);
+        });
 
       updateUserPassword(user, newPassword)
         .then(() => {

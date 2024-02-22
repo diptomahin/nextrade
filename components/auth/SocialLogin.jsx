@@ -4,12 +4,7 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import DarkButton from "../library/buttons/DarkButton";
-
-const currentDate = new Date();
-const year = currentDate.getFullYear();
-const month = currentDate.getMonth() + 1;
-const day = currentDate.getDate();
-const date = { day: day, month: month, year: year };
+import getDate from "../utils/date";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
@@ -26,7 +21,7 @@ const SocialLogin = () => {
           userID: loggedUser.uid,
           email: loggedUser.email,
           name: loggedUser.displayName,
-          createdAt: date,
+          createdAt: getDate(),
           balance: 0,
           role: "trader",
           photo: loggedUser.photoURL || "",
