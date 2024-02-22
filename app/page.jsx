@@ -12,7 +12,7 @@ import Testimonials from "@/components/home_comp/Testimonials";
 // add title in metadata
 export const metadata = {
   title: "NexTrade - Home ",
-  description: 'Home page from Nextrade',
+  description: "Home page from Nextrade",
 };
 
 export default function Home() {

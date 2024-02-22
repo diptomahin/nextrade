@@ -30,7 +30,6 @@ const DepositForm = ({
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
   const { notificationRefetch } = useNotificationData();
-  const date = getDate();
 
   useEffect(() => {
     if (amount <= 0 || !amount) {
@@ -139,7 +138,6 @@ const DepositForm = ({
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
           postedDate: getDate,
-
         };
 
         // post to  notification data in database
