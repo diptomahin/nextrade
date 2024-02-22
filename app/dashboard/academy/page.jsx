@@ -75,7 +75,7 @@ const Academy = () => {
                   {news.category}
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                    <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 link link-underline link-underline-black text-black">
+                    <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 un">
                       {news.title}
                     </h3>
                   </Link>
