@@ -6,11 +6,11 @@ import Image from "next/image";
 import moment from "moment";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
+// import "./academy.css"
 
 const Academy = () => {
   const [data, setData] = useState([]);
   const [video, setVideo] = useState([]);
-
   const [isZoomed, setIsZoomed] = useState(new Array(data.length).fill(false));
 
   const handleMouseEnter = (index) => {
@@ -75,10 +75,14 @@ const Academy = () => {
                   {news.category}
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                  <h3 className="lg:text-[16px] text-[14px]  font-semibold my-3">
-                    {news.title}
-                  </h3>
-                </Link>
+                    <h3 className="lg:text-[16px] text-[14px] font-semibold xl:my-3 my-1 relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
+              before:bottom-0 before:left-0 before:bg-white
+              before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
+              before:transition before:ease-in-out before:duration-300">
+                      {news.title}
+                    </h3>
+                   
+                  </Link>
                 <p className="text-gray-500">
                   {moment(news.date).format("ll")}
                 </p>
