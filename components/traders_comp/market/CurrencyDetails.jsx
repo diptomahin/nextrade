@@ -9,6 +9,7 @@ import { useState } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import getDate from "@/components/utils/date";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -42,6 +43,8 @@ const CssTextField = styled(TextField)({
 const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBalance, refetch, user, coinImage }) => {
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
+  const date = getDate();
+  const buyingDate = `${date.day}-${date.month}-${date.year}, ${date.hours}:${date.minutes}:${date.seconds}`;
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -65,6 +68,7 @@ const CurrencyDetails = ({ currencyRate, coinKey, currencyName, usersRemainingBa
       totalInvestment: investment,
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
+      buyingDate 
     };
 
 
