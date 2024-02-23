@@ -62,6 +62,16 @@ const SideNavLinks = () => {
         <IoListCircleSharp /> Watchlist
       </Link>
       <Link
+        href="/dashboard/history"
+        className={`w-full h-10 btn btn-sm justify-start hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+          pathname === "/dashboard/watchlist"
+            ? "bg-white/5 border-l-2 border-l-primary text-primary"
+            : "bg-transparent text-white"
+        }`}
+      >
+        <IoListCircleSharp /> History
+      </Link>
+      <Link
         href="/dashboard/academy"
         className={`w-full h-10 btn btn-sm justify-start hover:bg-white/5 border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/academy"
