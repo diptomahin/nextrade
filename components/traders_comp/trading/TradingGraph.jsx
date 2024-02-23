@@ -4,7 +4,7 @@ import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 
 const TradingGraph = (params) => {
   const {value} = params;
- 
+  
     return (
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 ">
       {

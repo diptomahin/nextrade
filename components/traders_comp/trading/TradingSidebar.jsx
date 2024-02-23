@@ -28,6 +28,11 @@ const TradingSidebar = (params) => {
 
   const selectedAsset = assets.filter(asset => asset.key == value);
   
+  //sorting data for buy function
+  const availableAssets = trading.filter(asset => asset.assetKey == value)
+  // console.log(trading)
+  console.log(availableAssets)
+  
    //Buy coin
     const handleBuyCoin = (ast) => {
       const assetInfo = {
@@ -91,12 +96,27 @@ const TradingSidebar = (params) => {
 
     //handleSellCoin
     const handleSellCoin =(ast)=>{
-      
-      // Swal.fire({
-      //   title: `${ast.name} sold successful!`,
-      //   text: `Best of luck`,
-      //   icon: "success",
-      // });
+      Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "sell",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await secureAPI.delete(`/spotTrading/${ast._id}`);
+          refetch();
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Sold",
+              text: `${ast.assetName} has been sold.`,
+              icon: "success",
+              timer: 1500,
+            });
+          }
+        }
+      });
     }
     return (
         <div className=" w-full md:w-1/3  p-5 rounded-lg border-x-4 border-y-4 border-primary">
@@ -111,7 +131,7 @@ const TradingSidebar = (params) => {
                               <h3 className="p-3 rounded-lg border-x-2 border-y-2 border-primary text-red-500">{selectedAsset[0].lowPrice}</h3>
                               <div className="flex gap-3 mt-2">
                               <Button  variant="contained" onClick={()=>handleBuyCoin(selectedAsset[0])}>Buy</Button>
-                              <Button variant="contained" onClick={()=>handleSellCoin(selectedAsset[0])}>Sell</Button>
+                              <Button variant="contained" onClick={()=>handleSellCoin(availableAssets[0])}>Sell</Button>
                               </div>
                         </div> )
                         :

@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import styled from "@emotion/styled";
-
+import Box from '@mui/material/Box';
 //other imports
 import useAuth from "@/hooks/useAuth";
 
@@ -112,6 +112,9 @@ const Trading = () => {
   
   const [value, setValue] = React.useState(``);
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
 
 
@@ -127,31 +130,30 @@ const Trading = () => {
   return (
     <div>
       <div className="w-1/2">
-      <FormControl sx={{ width: 200, backgroundColor: 'transparent' }}>
-        <InputLabel id="demo-simple-select-label"><p className="text-primary">Select Crypto</p></InputLabel>
-            <CustomSelect
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={value}
-              label="coin"
-              onChange={(event) => { setValue(event.target.value) }}
-            >
+      <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label" className="border-primary"><span className="text-primary">Select Crypto</span></InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          sx={{
+            border: "1px solid blue",
+            color: "#fff",
+            "& .MuiSvgIcon-root": {
+                color: "white",
+            },
+            }}
+          value={value}
+          label="value"
+          onChange={handleChange}
+        >
              {
-              assets.map(coin => <MenuItem key={coin.name} value={coin.key} className="text-lg font-semibold text-primary">{coin.name}</MenuItem>
+              assets.map(coin => <MenuItem key={coin.name} value={coin.key}>{coin.name}</MenuItem>
               )
             }
-            </CustomSelect>
-          {/* <InputLabel   id="demo-simple-select-label">Choose coin</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={value}
-            label="coin"
-            onChange={handleChange}
-          >
-            
-          </Select> */}
-        </FormControl>
+        </Select>
+      </FormControl>
+    </Box>
       </div>
       <div className="mt-10 flex flex-col gap-2  md:flex-row md:gap-3">
       <TradingGraph value={value} assets={assets} ></TradingGraph>
