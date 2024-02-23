@@ -9,7 +9,7 @@ import FeedbackForm from './FeedbackForm';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 import DarkButton from '@/components/library/buttons/DarkButton';
-
+import Swal from 'sweetalert2';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -24,11 +24,12 @@ const style = {
     p: 4,
 };
 
-export default function TransitionsModal() {
+export default function TransitionsModal({ user, secureAPI }) {
     const [open, setOpen] = useState(false);
     const [rating, setRating] = useState(0);
     const [feedback, setFeedback] = useState('');
 
+    // console.log(user)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -42,8 +43,34 @@ export default function TransitionsModal() {
 
     const handleSubmit = () => {
         // Handle submission logic here
-        console.log("Rating:", rating);
-        console.log("Feedback:", feedback);
+        const feedbackData = {
+            reviewerName: user.displayName,
+            reviewerEmail: user.email,
+            photo: user.photoURL,
+            rating,
+            feedback,
+        }
+        // console.log(feedbackData)
+        secureAPI.post(`/feedback`, feedbackData)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Feedback sent !",
+                        text: "Thank you for your feedback.",
+                        icon: "success",
+                        timer: 1500,
+                    });
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                Swal.fire({
+                    title: `failed!`,
+                    text: `Please try again`,
+                    icon: "error",
+                });
+            });
+
         handleClose(); // Close the modal after submission
     };
 
