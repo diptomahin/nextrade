@@ -6,7 +6,7 @@ import logo from "../../assets/logo/NexTrade-Logo-White.png";
 import logo2 from "../../assets/logo/NexTrade_Favicon-White.png";
 import React from "react";
 import Container from "../library/Container";
-import Language from "../library/Language";
+// import Language from "../library/Language";
 import useAuth from "@/hooks/useAuth";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
@@ -71,7 +71,8 @@ export default function RootNav() {
                 </button>
               </div>
             </Magnetic>
-            <Language className="md:text-xl text-white" />
+            {/* <Language className="md:text-xl text-white" /> */}
+            <Translate />
           </div>
           <Magnetic>
             <Link href="/" className="hidden xl:block">
