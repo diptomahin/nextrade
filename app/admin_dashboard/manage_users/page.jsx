@@ -526,10 +526,10 @@ const ManageUsers = () => {
             </AccordionSummary>
             <AccordionDetails>
               <div className="flex flex-col gap-4">
-                <label htmlFor="emailSubject">Subject:</label>
-                <input type="text" onChange={(e) => setEmailSubject(e.target.value)} name="emailSubject" id="emailSubject" className="p-4 border border-1 rounded" required="true"></input>
-                <label htmlFor="emailText">Type message:</label>
-                <textarea onChange={(e) => setEmailText(e.target.value)} name="emailText" id="emailText" cols="30" rows="5" className="resize-none p-4 border border-1 rounded" required="true"></textarea>
+                <p>Subject:</p>
+                <input type="text" onChange={(e) => setEmailSubject(e.target.value)} name="emailSubject" id="emailSubject" className="p-4 border border-1 rounded"></input>
+                <p>Message:</p>
+                <textarea onChange={(e) => setEmailText(e.target.value)} name="emailText" id="emailText" cols="30" rows="5" className="resize-none p-4 border border-1 rounded" ></textarea>
                 {
                   errorMsg && <p className="text-red-700">{errorMsg}</p>
                 }
