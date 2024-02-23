@@ -106,9 +106,6 @@ const Academy = () => {
                   </div>
 
                   <div className="absolute lg:bottom-16 bottom-10 lg:left-10 left-5">
-                    <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
-                      <span class="relative z-10">{news.category}</span>
-                    </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="lg:text-3xl text-xl font-semibold my-2 lg:my-4 group text-white transition-all duration-300 ease-in-out">
                         <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
@@ -151,9 +148,6 @@ const Academy = () => {
                   </div>
 
                   <div className="absolute bottom-6 left-5">
-                    <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
-                      <span class="relative z-10">{news.category}</span>
-                    </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 group text-white transition-all duration-300 ease-in-out">
                         <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
