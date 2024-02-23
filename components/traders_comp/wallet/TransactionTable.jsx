@@ -19,11 +19,12 @@ const TransactionTable = () => {
 
   const {
     specificTransactionsData,
+    refetchSpecificTransactionsData,
     SpecificTransactionsDataLoading,
     SpecificTransactionsDataPending,
     SpecificTransactionsDataError,
   } = useSpecificTransactionData(dynamicSearch);
-
+  refetchSpecificTransactionsData();
   if (
     SpecificTransactionsDataLoading ||
     SpecificTransactionsDataPending ||
@@ -47,8 +48,8 @@ const TransactionTable = () => {
     return hours >= 12 ? "PM" : "AM";
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const Search = () => {
+    refetchSpecificTransactionsData();
   };
   return (
     <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded">
@@ -57,7 +58,7 @@ const TransactionTable = () => {
 
         <div className="flex items-center gap-1">
           {/* search form */}
-          <form onSubmit={handleSearch} className="relative flex items-center">
+          <div className="relative flex items-center">
             <input
               onChange={(e) => setDynamicSearch(e.target.value)}
               type="text"
@@ -66,12 +67,12 @@ const TransactionTable = () => {
               className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded font-medium"
             />
             <button
-              type="submit"
+              onClick={Search}
               className="absolute right-0 bg-transparent text-lg text-white mix-blend-difference hover:bg-transparent btn btn-sm rounded-l-none shadow-none border-none"
             >
               <BiSearchAlt />
             </button>
-          </form>
+          </div>
           <div className="relative">
             <button
               onClick={() => setIsOpenDot(!isOpenDot)}
