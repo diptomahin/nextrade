@@ -8,10 +8,11 @@ import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
 import UserMenu from "./nav_comp/UserMenu";
 import TradersNotification from "./nav_comp/TradersNotification";
-import Language from "@/components/library/Language";
+// import Language from "@/components/library/Language";
 import { usePathname } from "next/navigation";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
+import Translate from "../home_comp/Translate";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -168,7 +169,10 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
       </div>
       <div className="flex items-center gap-6">
         {/* language */}
-        <Language />
+        {/* <Language /> */}
+
+        {/* Google Translate API */}
+        <Translate />
         {/* notification */}
         <TradersNotification />
 
