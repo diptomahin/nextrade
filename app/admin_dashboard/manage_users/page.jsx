@@ -19,6 +19,7 @@ import {
   Select,
   Tab,
   TextField,
+  TextareaAutosize,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
@@ -33,6 +34,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import UsersInfo from "@/components/admins_comp/UsersInfo";
+import DashButton from "@/components/library/buttons/DashButton";
 const ManageUsers = () => {
   const { user, loading } = useAuth();
   const [value, setValue] = useState("1");
@@ -42,6 +44,9 @@ const ManageUsers = () => {
   const [userRole, setUserRole] = useState("");
   const [userId, setUserId] = useState("");
   const [userUID, setUserUID] = useState("");
+  const [emailText, setEmailText] = useState();
+  const [emailSubject, setEmailSubject] = useState();
+  const [errorMsg, setErrorMsg] = useState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -148,6 +153,25 @@ const ManageUsers = () => {
     handleClose();
   };
 
+  // console.log(emailText)
+
+  const handleSendMail = e => {
+    const usersEmail = userEmail // Change this to recipient's email address
+    const subject = emailSubject;
+    const body = emailText;
+    // Construct mailto URL
+    const mailtoUrl = `mailto:${usersEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (!emailSubject || !emailText) {
+      setErrorMsg("please fill up the form!")
+      return
+    } else {
+      // Open default email client
+      window.location.href = mailtoUrl;
+      setErrorMsg()
+    }
+  }
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5 mb-6 ">
@@ -188,9 +212,9 @@ const ManageUsers = () => {
             }}
           >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="All Users" sx={{ px: { xs: 1, md: 3 },color:'white' }} value="1" />
-              <Tab label="Traders" sx={{ px: { xs: 1, md: 3 },color:'white' }} value="2" />
-              <Tab label="Admins" sx={{ px: { xs: 1, md: 3 },color:'white' }} value="3" />
+              <Tab label="All Users" sx={{ px: { xs: 1, md: 3 }, color: 'white' }} value="1" />
+              <Tab label="Traders" sx={{ px: { xs: 1, md: 3 }, color: 'white' }} value="2" />
+              <Tab label="Admins" sx={{ px: { xs: 1, md: 3 }, color: 'white' }} value="3" />
             </TabList>
           </Box>
 
@@ -200,7 +224,7 @@ const ManageUsers = () => {
               {allUser.map((singleUser) => (
                 <div key={singleUser._id} className="min-w-[200px] ">
                   <Accordion
-                  className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
+                    className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
                     sx={{
                       border: "1px solid #40a0ff",
                       boxShadow: "0px 0px 0px 0px",
@@ -208,14 +232,14 @@ const ManageUsers = () => {
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon style={{ color: 'white' }}/>}
+                      expandIcon={<ArrowDownwardIcon style={{ color: 'white' }} />}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
                         display: "flex",
                         justifyContent: "space-between",
                         overflowX: "hidden",
-                        
+
                       }}
                     >
                       <div className="flex items-center gap-2 md:gap-3">
@@ -234,15 +258,14 @@ const ManageUsers = () => {
                         )}
                         <div className="text-sm lg:text-base text-white">
                           <h1 className="font-semibold">
-                            {singleUser.name ? singleUser.name: "No name"}{" "}
+                            {singleUser.name ? singleUser.name : "No name"}{" "}
                             <span
-                              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
-                                singleUser.role === "admin"
-                                  ? "bg-[#6c52ff]"
-                                  : singleUser.role === "trader"
+                              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${singleUser.role === "admin"
+                                ? "bg-[#6c52ff]"
+                                : singleUser.role === "trader"
                                   ? "bg-[#5dad3e]"
                                   : "bg-[#40a0ff]"
-                              }`}
+                                }`}
                             >
                               {singleUser.role}
                             </span>
@@ -286,7 +309,7 @@ const ManageUsers = () => {
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon sx={{color:'white'}}/>}
+                      expandIcon={<ArrowDownwardIcon sx={{ color: 'white' }} />}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
@@ -313,13 +336,12 @@ const ManageUsers = () => {
                           <h1 className="font-semibold">
                             {singleUser.name}{" "}
                             <span
-                              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
-                                singleUser.role === "admin"
-                                  ? "bg-[#6c52ff]"
-                                  : singleUser.role === "trader"
+                              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${singleUser.role === "admin"
+                                ? "bg-[#6c52ff]"
+                                : singleUser.role === "trader"
                                   ? "bg-[#5dad3e]"
                                   : "bg-[#40a0ff]"
-                              }`}
+                                }`}
                             >
                               {singleUser.role}
                             </span>
@@ -363,7 +385,7 @@ const ManageUsers = () => {
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon sx={{color:'white'}}/>}
+                      expandIcon={<ArrowDownwardIcon sx={{ color: 'white' }} />}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
@@ -390,13 +412,12 @@ const ManageUsers = () => {
                           <h1 className="font-semibold">
                             {singleUser.name}{" "}
                             <span
-                              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
-                                singleUser.role === "admin"
-                                  ? "bg-[#6c52ff]"
-                                  : singleUser.role === "trader"
+                              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${singleUser.role === "admin"
+                                ? "bg-[#6c52ff]"
+                                : singleUser.role === "trader"
                                   ? "bg-[#5dad3e]"
                                   : "bg-[#40a0ff]"
-                              }`}
+                                }`}
                             >
                               {singleUser.role}
                             </span>
@@ -429,14 +450,14 @@ const ManageUsers = () => {
       </Box>
 
       <Dialog
-      
+
         open={open}
         onClose={handleClose}
         PaperProps={{
           component: "form",
           onSubmit: (e) => handleSubmitChange(e),
         }}
-        
+
       >
         <DialogTitle>
           <div className="flex items-center gap-2 md:gap-3 ">
@@ -455,15 +476,14 @@ const ManageUsers = () => {
             )}
             <div className="text-sm lg:text-base ">
               <h1 className="font-semibold">
-                {userName? userName : "No name"}{" "}
+                {userName ? userName : "No name"}{" "}
                 <span
-                  className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
-                    userRole === "admin"
-                      ? "bg-[#6c52ff]"
-                      : userRole === "trader"
+                  className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${userRole === "admin"
+                    ? "bg-[#6c52ff]"
+                    : userRole === "trader"
                       ? "bg-[#5dad3e]"
                       : "bg-[#40a0ff]"
-                  }`}
+                    }`}
                 >
                   {userRole}
                 </span>
@@ -491,7 +511,7 @@ const ManageUsers = () => {
               <MenuItem value={"admin"}>Admin</MenuItem>
             </Select>
           </FormControl>
-          {/* <Accordion sx={{ border: "0.2px solid #b4b1b1" }}>
+          <Accordion sx={{ border: "0.2px solid #b4b1b1" }}>
             <AccordionSummary
               expandIcon={<ArrowDownwardIcon />}
               aria-controls="panel1-content"
@@ -504,8 +524,19 @@ const ManageUsers = () => {
             >
               <p>Send Mail</p>
             </AccordionSummary>
-            <AccordionDetails></AccordionDetails>
-          </Accordion> */}
+            <AccordionDetails>
+              <div className="flex flex-col gap-4">
+                <label htmlFor="emailSubject">Subject:</label>
+                <input type="text" onChange={(e) => setEmailSubject(e.target.value)} name="emailSubject" id="emailSubject" className="p-4 border border-1 rounded" required="true"></input>
+                <label htmlFor="emailText">Type message:</label>
+                <textarea onChange={(e) => setEmailText(e.target.value)} name="emailText" id="emailText" cols="30" rows="5" className="resize-none p-4 border border-1 rounded" required="true"></textarea>
+                {
+                  errorMsg && <p className="text-red-700">{errorMsg}</p>
+                }
+                <DashButton onClick={handleSendMail}>Send</DashButton>
+              </div>
+            </AccordionDetails>
+          </Accordion>
           <Button
             variant="outlined"
             color="error"
