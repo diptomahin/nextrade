@@ -1,5 +1,3 @@
-/* Translate.module.css */
-
 body > .skiptranslate {
     display: none;
   }
@@ -30,3 +28,4 @@ body > .skiptranslate {
     }
   }
   
+  #google_translate_element select{ background-color:#f6edfd; color:#383ffa; border: none; border-radius:3px; padding:6px 8px } .goog-logo-link{ display:none !important; } .goog-te-gadget{ color:transparent!important; } .goog-te-banner-frame{ display:none !important; }
