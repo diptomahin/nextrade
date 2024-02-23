@@ -8,27 +8,20 @@ import Link from "next/link";
 import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
-import { BsThreeDotsVertical } from "react-icons/bs";
 
 const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
   const [openDeleteOptions, setOpenDeleteOptions] = React.useState({});
   const { notificationsData, notificationRefetch } = useNotificationData();
   const secureAPI = useSecureAPI();
-  const [alertNotification, setAlertNotification] = React.useState(() => {
-    const getLocal =
-    JSON.parse(localStorage.getItem("notificationCount")) || [];
-    return getLocal.length
-    
-  });
-  console.log(alertNotification,'text');
+  const [alertNotification, setAlertNotification] = React.useState([])
 
   // Initialize cardValue with initial values based on the length of notificationsData
   const initialCardValue = Array.isArray(notificationsData)
-   && notificationsData.reduce((acc, asset) => {
+    ? notificationsData.reduce((acc, asset) => {
         return { ...acc, [asset._id]: 0 };
       }, {})
-     ;
+    : {};
 
   const [cardValue, setCardValue] = React.useState(initialCardValue);
 
@@ -86,22 +79,20 @@ const TradersNotification = () => {
 
     // Update notificationsData?.length based on the click
     notificationRefetch();
-
-    // Parse the existing value from localStorage or use an empty array if it doesn't exist
-    const getLocal =
-      JSON.parse(localStorage.getItem("notificationCount")) || [];
-
-    // Update localStorage with the new value, using the parsed getLocal array
-    localStorage.setItem(
-      "notificationCount",
-      JSON.stringify([...getLocal, cardValue])
-    );
   };
 
   // Save the calculated value to localStorage whenever cardValue or notificationsData changes
-  // React.useEffect(() => {
-
-  // }, [cardValue, notificationsData]);
+  React.useEffect(() => {
+    const noti = Object.values(cardValue).reduce(
+      (sum, count) => sum - count,
+      notificationsData?.length
+    )
+    localStorage.setItem(
+      "notificationCount",noti
+      
+    );
+    setAlertNotification(noti)
+  }, [cardValue, notificationsData]);
 
   return (
     <div className="relative">
@@ -118,60 +109,55 @@ const TradersNotification = () => {
         )}
         {cardValue ? (
           <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {notificationsData?.length - alertNotification}
+            {alertNotification}
           </p>
         ) : (
           " "
         )}
       </button>
       {isNotificationOpen && (
-        <div className="w-80 absolute overflow-x-hidden overflow-y-scroll max-h-[500px] top-[64px] right-24 transform translate-x-1/2 duration-200 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree flex flex-col gap-2 rounded shadow-2xl shadow-gray-900">
-          <div className="flex items-center justify-between border-b-2 border-darkThree px-4 py-3">
-            <h2 className="font-semibold">Notifications</h2>
+        <div className="absolute overflow-y-auto max-h-[500px] top-12 md:right-24 right-24 transform translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree flex flex-col gap-2 p-3 md:w-70 w-80  ">
+          <div className="flex items-center justify-between">
+            <h2 className="font-semibold text-sm">Notifications</h2>
             <Link href={"/dashboard/settings"} className="cursor-pointer">
               <SettingsIcon />
             </Link>
           </div>
+          <div className="bg-darkThree p-[0.8px] my-2"></div>
           {notificationsData?.length ? (
             <>
-              {notificationsData?.map((asset) => (
+              {notificationsData.map((asset) => (
                 <div
                   onClick={() => handleCardClick(asset)}
                   key={asset._id}
-                  className={`border-b border-darkThree px-4 py-1`}
+                  className={`bg-darkBG border cursor-pointer p-4 rounded-xl ${
+                    cardValue[asset._id] === 1
+                      ? " border-darkThree"
+                      : "border-primary bg-darkTwo"
+                  }`}
                 >
-                  <div className="flex flex-col gap-1 pb-1">
-                    <h2 className="text-sm font-medium">{asset.title}</h2>
-                    <p className="text-gray-400 text-xs">{asset.description}</p>
-                  </div>
-
-                  <div className="flex items-ce justify-between">
-                    <p className="text-darkGray text-xs flex items-center justify-end gap-3">
-                      {/* Date */}
-                      <span>
-                        {asset?.postedDate?.day || " "}-
-                        {asset?.postedDate?.month || " "}-
-                        {asset?.postedDate?.year || " "}
-                      </span>
-                      {/* Time */}
-                      <span>
-                        {formatTime(asset?.postedDate?.hours || " ")}:
-                        {padZero(asset?.postedDate?.minutes || " ")}{" "}
-                        {getAmPm(asset?.postedDate?.hours || " ")}
-                      </span>
-                    </p>
-                    <div className="relative">
+                  <div className="flex justify-between gap-2 ">
+                    <div className="flex items-center gap-3">
+                      <NotificationsNoneIcon />
+                      <div>
+                        <h2 className="font-medium text-sm">{asset.title}</h2>
+                        <p className="text-gray-400 text-xs">
+                          {asset.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="relative left-5">
                       <button
                         onClick={() => toggleDeleteOptions(asset._id)}
-                        className="btn btn-sm text-base text-white bg-transparent hover:bg-transparent border-none outline-none px-0 "
+                        className="btn btn-sm text-base text-white bg-transparent hover:bg-transparent border-none outline-none"
                       >
-                        <BsThreeDotsVertical />
+                        <MoreVertIcon className="cursor-pointer" />
                       </button>
                       {openDeleteOptions[asset._id] && (
-                        <div className="absolute right-5 top-1 flex flex-col bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree font-medium rounded-md">
+                        <div className="absolute right-10 top-0 flex flex-col bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree font-medium rounded-md">
                           <button
                             onClick={() => handleDeleteNotification(asset._id)}
-                            className="w-full btn btn-xs text-white/80 justify-end bg-[#ff5252] rounded-md hover:bg-[#ff5252] border-none"
+                            className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent rounded-md hover:bg-[#ff5252] border-none pr-6 pl-8"
                           >
                             Delete
                           </button>
@@ -193,7 +179,6 @@ const TradersNotification = () => {
                       {getAmPm(asset?.postedDate?.hours || " ")}
                     </span>
                   </p>
-
                 </div>
               ))}
             </>
