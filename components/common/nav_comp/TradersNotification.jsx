@@ -135,6 +135,24 @@ const TradersNotification = () => {
       }
     } catch (error) {}
   };
+  // Function to handle all notification deletion
+  const handleDeleteAllNotification = async () => {
+    try {
+      // Send a DELETE request to your backend API
+      await secureAPI.delete(`/notifications/deleteAllNotifications/${user.email}`);
+
+      // Refetch notifications data after deletion
+      notificationRefetch();
+
+      // Show success toast
+      toast.success("All Notification deleted successfully");
+    } catch (error) {
+      console.error("Error All deleting notification:", error);
+
+      // Show error toast
+      toast.error("Error All deleting notification");
+    }
+  };
 
   // single notification unread function
   const handleUnread = async (_id) => {
