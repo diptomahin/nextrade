@@ -7,6 +7,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { usePathname } from "next/navigation";
+import './notificationsCss.css'
 
 const TradersNotification = () => {
   // State variables
@@ -196,7 +197,7 @@ const TradersNotification = () => {
 
       {/* Display the notification popup if open */}
       {isNotificationOpen && (
-        <div className="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform  md:translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-60 md:w-80  shadow-2xl shadow-gray-900">
+        <div class="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-60 md:w-80 shadow-2xl shadow-gray-900 scrollbar-thin">
           {/* Header of the notification popup */}
           <div className="flex items-center justify-between px-4 py-2 border-b-2 border-darkThree">
             <h2 className="font-semibold">Notifications</h2>

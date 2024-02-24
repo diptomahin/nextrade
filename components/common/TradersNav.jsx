@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
 import UserMenu from "./nav_comp/UserMenu";
-import TradersNotification from "./nav_comp/TradersNotification";
+import TradersNotification from "./nav_comp/TradersNotification/TradersNotification";
 // import Language from "@/components/library/Language";
 import { usePathname } from "next/navigation";
 import useSecureFetch from "@/hooks/useSecureFetch";
