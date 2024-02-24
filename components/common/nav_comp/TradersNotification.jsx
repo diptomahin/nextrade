@@ -8,6 +8,9 @@ import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const TradersNotification = () => {
+  const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
+  const [isNotifyMenuOpen, setIsNotifyMenuOpen] = React.useState(false);
+  const [openDeleteOptions, setOpenDeleteOptions] = React.useState({});
   const {
     notificationsData,
     refetchNotificationsData,
@@ -16,19 +19,6 @@ const TradersNotification = () => {
     notificationsDataError,
   } = useNotificationData();
   const secureAPI = useSecureAPI();
-  refetchNotificationsData();
-
-  const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
-  const [isNotifyMenuOpen, setIsNotifyMenuOpen] = React.useState(false);
-  const [openDeleteOptions, setOpenDeleteOptions] = React.useState({});
-  const [alertNotification, setAlertNotification] = React.useState([]);
-  const [cardValue, setCardValue] = React.useState(() =>
-    Array.isArray(notificationsData)
-      ? notificationsData.reduce((acc, asset) => {
-          return { ...acc, [asset._id]: 0 };
-        }, {})
-      : {}
-  );
 
   if (
     notificationsDataLoading ||
@@ -38,8 +28,17 @@ const TradersNotification = () => {
     return;
   }
 
+  const nonReaderNotifications = notificationsData.filter(
+    (notification) => notification.read === false
+  );
+
+  console.log(nonReaderNotifications.length);
+
   // all notification delete function
   const handleDeleteAllNotification = async (email) => {
+    if (!email) {
+      return;
+    }
     const toastId = toast.loading("Deleting all notifications...", {
       duration: 10000,
     });
@@ -88,6 +87,9 @@ const TradersNotification = () => {
 
   // all notification read function
   const handleReadAll = async (email) => {
+    if (!email) {
+      return;
+    }
     try {
       // Send a update notification request to backend API
       const res = await secureAPI.patch(`notifications/update-all/${email}`);
@@ -130,26 +132,6 @@ const TradersNotification = () => {
     return hours >= 12 ? "PM" : "AM";
   };
 
-  // Click event handler for notification cards
-  const handleCardClick = (asset) => {
-    const updatedValue = cardValue[asset._id] ? cardValue[asset._id] - 1 : 1;
-    setCardValue((prevCardValue) => ({
-      ...prevCardValue,
-      [asset._id]: updatedValue,
-    }));
-
-    refetchNotificationsData();
-  };
-
-  // React.useEffect(() => {
-  //   const notify = Object.values(cardValue).reduce(
-  //     (sum, count) => sum - count,
-  //     notificationsData?.length
-  //   );
-  //   localStorage.setItem("notificationCount", notify);
-  //   setAlertNotification(notify);
-  // }, [cardValue, notificationsData]);
-
   return (
     <div className="relative">
       <button
@@ -163,12 +145,10 @@ const TradersNotification = () => {
         ) : (
           <MdNotifications className="w-6 h-6" />
         )}
-        {cardValue ? (
+        {nonReaderNotifications.length > 0 && (
           <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {alertNotification}
+            {nonReaderNotifications.length}
           </p>
-        ) : (
-          " "
         )}
       </button>
       {isNotificationOpen && (
@@ -215,7 +195,6 @@ const TradersNotification = () => {
             <>
               {notificationsData.map((asset) => (
                 <div
-                  onClick={() => handleCardClick(asset)}
                   key={asset._id}
                   className={`${
                     asset?.read ? "" : "bg-white/5"

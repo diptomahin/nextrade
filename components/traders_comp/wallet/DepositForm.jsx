@@ -29,7 +29,7 @@ const DepositForm = ({
   const elements = useElements();
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
-  const { notificationRefetch } = useNotificationData();
+  const { refetchNotificationsData } = useNotificationData();
 
   const date = getDate();
 
@@ -149,7 +149,7 @@ const DepositForm = ({
           .post("/notifications", notificationInfo)
           .then((res) => {
             if (res.data.insertedId) {
-              notificationRefetch();
+              refetchNotificationsData();
             }
           })
           .catch((error) => {});

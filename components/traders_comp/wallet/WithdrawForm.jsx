@@ -27,7 +27,7 @@ const WithdrawForm = ({
   const [postalCode, setPostalCode] = useState(0);
   // const [currency, setCurrency] = useState("");
 
-  const { notificationRefetch } = useNotificationData();
+  const { refetchNotificationsData } = useNotificationData();
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -155,7 +155,7 @@ const WithdrawForm = ({
           .post("/notifications", notificationInfo)
           .then((res) => {
             if (res.data.insertedId) {
-              notificationRefetch();
+              refetchNotificationsData();
             }
           })
           .catch((error) => {
