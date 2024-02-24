@@ -29,6 +29,7 @@ const Security = () => {
     assetBuyerUID: "",
     assetBuyerEmail: user.email,
     postedDate: date,
+    type:'unseen'
   };
 
   // Function to handle password change

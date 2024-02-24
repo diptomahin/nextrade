@@ -91,6 +91,7 @@ const CryptoDetails = ({
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
       postedDate: date,
+      type:'unseen'
     };
 
     if (usersBalance < parseFloat(ast.c)) {
