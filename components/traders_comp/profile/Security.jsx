@@ -49,12 +49,10 @@ const Security = () => {
 
       updateUserPassword(user, newPassword)
         .then(() => {
-          console.log("Update successful.");
           // post to  notification data in database
           secureAPI
             .post("/notifications", notificationInfo)
             .then((res) => {
-              console.log("Successfully coin added:", res);
               refetchNotificationsData();
             })
             .catch((error) => {
