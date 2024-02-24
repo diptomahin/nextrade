@@ -144,15 +144,19 @@ const WithdrawForm = ({
           assetKey: "",
           assetImg: "",
           assetBuyerUID: "",
-          assetBuyerEmail: user.email,
+          email: user.email,
           postedDate: date,
+          location: "/dashboard/wallet",
+          read: false,
         };
 
         // post to  notification data in database
         secureAPI
           .post("/notifications", notificationInfo)
           .then((res) => {
-            notificationRefetch();
+            if (res.data.insertedId) {
+              notificationRefetch();
+            }
           })
           .catch((error) => {
             console.error("Error sending notification:", error);

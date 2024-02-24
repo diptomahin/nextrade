@@ -138,20 +138,21 @@ const DepositForm = ({
           assetKey: "",
           assetImg: "",
           assetBuyerUID: "",
-          assetBuyerEmail: user.email,
+          email: user?.email,
           postedDate: date,
+          location: "/dashboard/wallet",
+          read: false,
         };
 
         // post to  notification data in database
         secureAPI
           .post("/notifications", notificationInfo)
           .then((res) => {
-            console.log("Successfully coin added:", res);
-            notificationRefetch();
+            if (res.data.insertedId) {
+              notificationRefetch();
+            }
           })
-          .catch((error) => {
-            console.error("Error sending notification:", error);
-          });
+          .catch((error) => {});
         axios
           .post(
             `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
