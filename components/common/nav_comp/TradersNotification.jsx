@@ -10,7 +10,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
   const [isNotifyMenuOpen, setIsNotifyMenuOpen] = React.useState(false);
-  const [openDeleteOptions, setOpenDeleteOptions] = React.useState({});
+  const [isOpenMenu, setIsOpenMenu] = React.useState({});
   const {
     notificationsData,
     refetchNotificationsData,
@@ -28,11 +28,17 @@ const TradersNotification = () => {
     return;
   }
 
+  // Function to toggle open menu for a specific notification
+  const handleOpenMenu = (notificationId) => {
+    setIsOpenMenu((prevOptions) => ({
+      ...prevOptions,
+      [notificationId]: !prevOptions[notificationId],
+    }));
+  };
+
   const nonReaderNotifications = notificationsData.filter(
     (notification) => notification.read === false
   );
-
-  console.log(nonReaderNotifications.length);
 
   // all notification delete function
   const handleDeleteAllNotification = async (email) => {
@@ -92,7 +98,9 @@ const TradersNotification = () => {
     }
     try {
       // Send a update notification request to backend API
-      const res = await secureAPI.patch(`notifications/update-all/${email}`);
+      const res = await secureAPI.patch(
+        `notifications/update-all-read/${email}`
+      );
       if (res.data.modifiedCount > 0) {
         refetchNotificationsData();
       }
@@ -103,20 +111,40 @@ const TradersNotification = () => {
   const handleRead = async (_id) => {
     try {
       // Send a update notification request to backend API
-      const res = await secureAPI.patch(`notifications/update-one/${_id}`);
-      console.log(res.data);
+      const res = await secureAPI.patch(`notifications/update-one-read/${_id}`);
       if (res.data.modifiedCount > 0) {
         refetchNotificationsData();
       }
     } catch (error) {}
   };
 
-  // Function to toggle delete options for a specific notification
-  const toggleDeleteOptions = (notificationId) => {
-    setOpenDeleteOptions((prevOptions) => ({
-      ...prevOptions,
-      [notificationId]: !prevOptions[notificationId],
-    }));
+  // all notification unread function
+  const handleUnreadAll = async (email) => {
+    if (!email) {
+      return;
+    }
+    try {
+      // Send a update notification request to backend API
+      const res = await secureAPI.patch(
+        `notifications/update-all-unread/${email}`
+      );
+      if (res.data.modifiedCount > 0) {
+        refetchNotificationsData();
+      }
+    } catch (error) {}
+  };
+
+  // single notification unread function
+  const handleUnread = async (_id) => {
+    try {
+      // Send a update notification request to backend API
+      const res = await secureAPI.patch(
+        `notifications/update-one-unread/${_id}`
+      );
+      if (res.data.modifiedCount > 0) {
+        refetchNotificationsData();
+      }
+    } catch (error) {}
   };
 
   // Helper function to format time in 12-hour format
@@ -145,9 +173,9 @@ const TradersNotification = () => {
         ) : (
           <MdNotifications className="w-6 h-6" />
         )}
-        {nonReaderNotifications.length > 0 && (
-          <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {nonReaderNotifications.length}
+        {nonReaderNotifications?.length > 0 && (
+          <p className="absolute left-3 bottom-3 font-semibold w-5 h-5  rounded-full bg-red-500 flex justify-center items-center">
+            <span className="text-xs">{nonReaderNotifications?.length}</span>
           </p>
         )}
       </button>
@@ -170,6 +198,12 @@ const TradersNotification = () => {
                     className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
                   >
                     Mark all as read
+                  </button>
+                  <button
+                    onClick={() => handleUnreadAll(notificationsData[0]?.email)}
+                    className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                  >
+                    Mark all as unread
                   </button>
                   <button
                     onClick={() =>
@@ -195,14 +229,16 @@ const TradersNotification = () => {
             <>
               {notificationsData.map((asset) => (
                 <div
-                  key={asset._id}
+                  key={asset?._id}
                   className={`${
-                    asset?.read ? "" : "bg-white/5"
+                    asset?.read ? "" : "bg-white/10"
                   } border-b border-darkThree cursor-pointer px-4 py-3`}
                 >
                   <div className="space-y-[6px]">
-                    <h2 className="font-medium text-sm">{asset.title}</h2>
-                    <p className="text-gray-400 text-xs">{asset.description}</p>
+                    <h2 className="font-medium text-sm">{asset?.title}</h2>
+                    <p className="text-gray-400 text-xs">
+                      {asset?.description}
+                    </p>
                   </div>
 
                   <div className="flex justify-between items-end">
@@ -222,13 +258,16 @@ const TradersNotification = () => {
                     </p>
                     <div className="relative ">
                       <button
-                        onClick={() => toggleDeleteOptions(asset._id)}
+                        onClick={() => {
+                          handleOpenMenu(asset?._id);
+                          setIsNotifyMenuOpen(false);
+                        }}
                         className={`btn btn-xs text-sm h-7 px-[7px] text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none rounded-full`}
                       >
                         <BsThreeDotsVertical />
                       </button>
-                      {openDeleteOptions[asset._id] && (
-                        <div className="absolute right-7 -bottom-1 w-28 bg-darkBG border border-darkThree font-medium justify-start rounded-t-2xl rounded-s-2xl py-3">
+                      {isOpenMenu[asset?._id] && (
+                        <div className="absolute right-7 -bottom-1 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-t-2xl rounded-s-2xl py-3">
                           <button
                             onClick={() => handleRead(asset?._id)}
                             className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
@@ -236,7 +275,13 @@ const TradersNotification = () => {
                             Mark as read
                           </button>
                           <button
-                            onClick={() => handleDeleteNotification(asset._id)}
+                            onClick={() => handleUnread(asset?._id)}
+                            className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                          >
+                            Mark as unread
+                          </button>
+                          <button
+                            onClick={() => handleDeleteNotification(asset?._id)}
                             className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
                           >
                             Delete
