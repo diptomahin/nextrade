@@ -35,7 +35,7 @@ const Testimonials = () => {
 
   return (
     <Container className="py-10">
-      <Title>Testimonials</Title>
+      <Title>Trader&apos;s Feedback</Title>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -64,7 +64,7 @@ const Testimonials = () => {
               <p className="py-8">{review?.feedback}</p>
               <Rating
                 style={{ maxWidth: 180 }}
-                value={3}
+                value={review?.rating}
                 readOnly
                 className="mb-5"
               />
@@ -77,82 +77,3 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
-
-
-// import Container from "@/components/library/Container";
-// import Title from "@/components/library/Title";
-// import { useEffect, useState } from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
-// import { Autoplay, Pagination, Navigation } from "swiper/modules";
-// import { Rating } from "@smastrom/react-rating";
-// import "@smastrom/react-rating/style.css";
-// import Image from "next/image";
-
-// const Testimonials = () => {
-//   const [reviews, setReviews] = useState([]);
-
-
-//   useEffect(() => {
-//     fetchReviews();
-//   }, []);
-
-//   const fetchReviews = async () => {
-//     try {
-//       const response = await fetch("/v1/api/feedback");
-//       if (!response.ok) {
-//         throw new Error('Failed to fetch reviews');
-//       }
-//       const data = await response.json();
-//       setReviews(data);
-//     } catch (error) {
-//       console.error("Error fetching reviews:", error);
-//     }
-//   };
-
-//   return (
-//     <Container className="py-10">
-//       <Title>Testimonials</Title>
-//       <Swiper
-//         spaceBetween={30}
-//         centeredSlides={true}
-//         autoplay={{
-//           delay: 2500,
-//           disableOnInteraction: false,
-//         }}
-//         pagination={{
-//           clickable: true,
-//         }}
-//         navigation={true}
-//         modules={[Autoplay, Pagination, Navigation]}
-//         className="mySwiper"
-//       >
-//         {reviews.map((review) => (
-//           <SwiperSlide key={review?._id}>
-//             <div className="my-5 mx-16 flex flex-col items-center">
-//               <Image
-//                 className="rounded-full"
-//                 src={review?.photo}
-//                 alt="avatar"
-//                 width={100}
-//                 height={100}
-//               />
-//               <h3 className="text-lg py-5 font-semibold">{review?.reviewerName}</h3>
-//               <p className="py-8">{review?.feedback}</p>
-//               <Rating
-//                 style={{ maxWidth: 180 }}
-//                 value={3}
-//                 readOnly
-//                 className="mb-5"
-//               />
-//             </div>
-//           </SwiperSlide>
-//         ))}
-//       </Swiper>
-//     </Container>
-//   );
-// };
-
-// export default Testimonials;
