@@ -1,26 +1,30 @@
-"use client";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Translate.css";
 
-const Translate = () => {
-  const googleTranslateElementInit = () => {
-    new window.google.translate.TranslateElement(
-      {
-        pageLanguage: "en",
-        autoDisplay: false,
-      },
-      "google_translate_element"
-    );
-  };
+// Define googleTranslateElementInit globally
+window.googleTranslateElementInit = () => {
+  new window.google.translate.TranslateElement(
+    {
+      pageLanguage: "en",
+      autoDisplay: false
+    },
+    "google_translate_element"
+  );
+};
 
+const Translate = () => {
   useEffect(() => {
+    // Load Google Translate script
     const addScript = document.createElement("script");
-    addScript.setAttribute(
-      "src",
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    );
+    addScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    addScript.async = true;
     document.body.appendChild(addScript);
-    window.googleTranslateElementInit = googleTranslateElementInit;
+
+    // Cleanup function
+    return () => {
+      document.body.removeChild(addScript);
+      delete window.googleTranslateElementInit;
+    };
   }, []);
 
   return <div id="google_translate_element"></div>;
