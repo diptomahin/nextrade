@@ -1,17 +1,14 @@
 import useAuth from "@/hooks/useAuth";
-import useSecureFetch from "@/hooks/useSecureFetch";
+import useUserData from "@/hooks/useUserData";
 import { useRouter } from "next/navigation";
 
 const TradersChecker = ({ children }) => {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const { data, isPending, isLoading } = useSecureFetch(
-    `/all-users/${user?.email}`,
-    user?.email,
-    "userRole"
-  );
+  const { userData, userDataLoading, userDataPending, userDataError } =
+    useUserData();
 
-  if (isLoading || isPending || loading) {
+  if (userDataLoading || userDataPending || userDataError || loading) {
     return (
       <div className="h-screen w-full flex justify-center items-center">
         <div className="text-5xl text-primary font-semibold">
@@ -31,8 +28,11 @@ const TradersChecker = ({ children }) => {
     });
   }
 
-  if (data[0]?.role !== "trader") {
-    return;
+  if (userData?.role !== "trader") {
+    return router.push("/login", undefined, {
+      shallow: true,
+      query: { from: router.pathname },
+    });
   }
 
   return children;

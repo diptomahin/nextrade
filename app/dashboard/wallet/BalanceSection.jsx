@@ -1,5 +1,4 @@
 "use client";
-import useTransactionData from "@/hooks/useTransactionData";
 import useUserData from "@/hooks/useUserData";
 import { FaCreditCard } from "react-icons/fa6";
 import { MdAccountBalance } from "react-icons/md";
@@ -9,39 +8,9 @@ const BalanceSection = () => {
   const { userData, userDataLoading, userDataPending, userDataError } =
     useUserData();
 
-  const {
-    transactionsData,
-    transactionsDataLoading,
-    transactionsDataPending,
-    transactionsDataError,
-  } = useTransactionData();
-
-  if (
-    userDataLoading ||
-    userDataPending ||
-    userDataError ||
-    transactionsDataLoading ||
-    transactionsDataPending ||
-    transactionsDataError
-  ) {
+  if (userDataLoading || userDataPending || userDataError) {
     return;
   }
-
-  const totalDeposit = transactionsData?.reduce((acc, obj) => {
-    if (obj?.deposit !== undefined) {
-      // Added safe navigation operator ?.
-      acc += obj.deposit;
-    }
-    return acc;
-  }, 0);
-
-  const totalWithdraw = transactionsData?.reduce((acc, obj) => {
-    if (obj?.withdraw !== undefined) {
-      // Added safe navigation operator ?.
-      acc += obj.withdraw;
-    }
-    return acc;
-  }, 0);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
@@ -63,7 +32,7 @@ const BalanceSection = () => {
         <div>
           <h3 className="font-medium">Total Deposit</h3>
           <h3 className="text-xl font-semibold">
-            $ {totalDeposit ? totalDeposit?.toFixed(2) : "0.00"}
+            $ {parseFloat(userData?.deposit).toFixed(2) || "0.00"}
           </h3>
         </div>
         <div className="w-16 h-16 bg-white/10 flex items-center justify-center rounded-full">
@@ -76,7 +45,7 @@ const BalanceSection = () => {
         <div>
           <h3 className="font-medium">Total Withdraw</h3>
           <h3 className="text-xl font-semibold">
-            $ {totalWithdraw ? totalWithdraw?.toFixed(2) : "0.00"}
+            $ {parseFloat(userData?.withdraw).toFixed(2) || "0.00"}
           </h3>
         </div>
         <div className="w-16 h-16 bg-white/10 flex items-center justify-center rounded-full">

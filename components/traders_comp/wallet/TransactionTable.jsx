@@ -11,11 +11,16 @@ import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import { BiSearchAlt } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 import useSpecificTransactionData from "@/hooks/useSpecificTransactionData";
+import toast from "react-hot-toast";
+import useSecureAPI from "@/hooks/useSecureAPI";
+import Swal from "sweetalert2";
 
 const TransactionTable = () => {
   const [isOpenDot, setIsOpenDot] = useState(false);
   const [dynamicSearch, setDynamicSearch] = useState("");
+  const secureAPI = useSecureAPI();
 
   const {
     specificTransactionsData,
@@ -32,6 +37,80 @@ const TransactionTable = () => {
   ) {
     return;
   }
+  // deposit-withdraw/delete-specific/:id
+  const handleDeleteAll = async (email) => {
+    if (!email) {
+      return;
+    }
+    Swal.fire({
+      title: `Are you sure you want to delete all transaction history?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const toastId = toast.loading("Deleting all transaction history...", {
+          duration: 10000,
+        });
+        try {
+          // Send a DELETE request to your backend API
+          const res = await secureAPI.delete(
+            `deposit-withdraw/delete-all/${email}`
+          );
+          if (res.data.deletedCount > 0) {
+            refetchSpecificTransactionsData();
+            setIsOpenDot(false);
+            toast.success("Deleted successful", {
+              id: toastId,
+              duration: 3000,
+            });
+          }
+        } catch (error) {
+          toast.error("Something wrong. Please try again", {
+            id: toastId,
+            duration: 3000,
+          });
+        }
+      }
+    });
+  };
+
+  const handleDelete = async (_id) => {
+    Swal.fire({
+      title: `Are you sure you want to delete it?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const toastId = toast.loading("Deleting transaction history...", {
+          duration: 10000,
+        });
+        try {
+          // Send a DELETE request to your backend API
+          const res = await secureAPI.delete(
+            `deposit-withdraw/delete-specific/${_id}`
+          );
+          if (res.data.deletedCount > 0) {
+            refetchSpecificTransactionsData();
+            toast.success("Deleted successful", {
+              id: toastId,
+              duration: 3000,
+            });
+          }
+        } catch (error) {
+          toast.error("Something wrong. Please try again", {
+            id: toastId,
+            duration: 3000,
+          });
+        }
+      }
+    });
+  };
 
   // Helper function to format time in 12-hour format
   const formatTime = (hours) => {
@@ -58,7 +137,10 @@ const TransactionTable = () => {
 
         <div className="flex items-center gap-1">
           {/* search form */}
-          <div className="relative flex items-center">
+          <div
+            onClick={() => setIsOpenDot(false)}
+            className="relative flex items-center"
+          >
             <input
               onChange={(e) => setDynamicSearch(e.target.value)}
               type="text"
@@ -76,17 +158,22 @@ const TransactionTable = () => {
           <div className="relative">
             <button
               onClick={() => setIsOpenDot(!isOpenDot)}
-              className="btn btn-sm text-base text-white bg-transparent hover:bg-transparent border-none outline-none flex items-center"
+              className="btn btn-sm h-10 text-lg px-[11px] text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none flex items-center rounded-full"
             >
               <BsThreeDotsVertical />
             </button>
             {isOpenDot && (
-              <div className="absolute right-0 top-10 flex flex-col py-4 rounded bg-darkBG border border-darkThree font-medium">
-                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-white/10 border-none pr-6 pl-8  rounded-none">
+              <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-darkBG border border-darkThree font-medium rounded-s-2xl rounded-b-2xl">
+                <button className="w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-white/10 border-none rounded-none pl-4">
                   Download
                 </button>
-                <button className="w-full btn btn-sm text-sm text-white/80 justify-end bg-transparent hover:bg-fourthPink border-none pr-6 pl-8  rounded-none">
-                  Delete
+                <button
+                  onClick={() =>
+                    handleDeleteAll(specificTransactionsData[0]?.email)
+                  }
+                  className="whitespace-nowrap w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-fourthPink border-none rounded-none pl-4"
+                >
+                  Delete all history
                 </button>
               </div>
             )}
@@ -96,6 +183,7 @@ const TransactionTable = () => {
 
       {specificTransactionsData.length !== 0 ? (
         <TableContainer
+          onClick={() => setIsOpenDot(false)}
           component={Paper}
           sx={{
             color: "white",
@@ -170,6 +258,16 @@ const TransactionTable = () => {
                 >
                   Status
                 </TableCell>
+                <TableCell
+                  sx={{
+                    color: "white",
+                    borderBottom: "1px solid #2c3750",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                >
+                  Delete
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -232,13 +330,30 @@ const TransactionTable = () => {
                   >
                     Complete
                   </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "white",
+                      borderBottom: "1px solid #2c3750",
+                      borderTop: "1px solid #2c3750",
+                    }}
+                  >
+                    <button
+                      onClick={() => handleDelete(row?._id)}
+                      className="btn btn-sm text-xl px-2 text-white/80 bg-[#ff5252] hover:bg-[#ff5252] border-none justify-start font-normal rounded"
+                    >
+                      <MdDelete />
+                    </button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       ) : (
-        <div className="text-center font-bold">
+        <div
+          onClick={() => setIsOpenDot(false)}
+          className="text-center font-bold"
+        >
           Currently, no transaction history is available.
         </div>
       )}
