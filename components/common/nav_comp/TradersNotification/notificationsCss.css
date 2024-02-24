@@ -1,17 +1,23 @@
-/* Assuming these colors match the bg-gradient-to-bl, from-darkOne, to-darkTwo, border, and border-darkThree classes */
 /* Set the width of the scrollbar */
 .scrollbar-thin::-webkit-scrollbar {
-     width: 12px; 
-   }
-   /* thumb track scrollbar  */
-   .scrollbar-thin::-webkit-scrollbar-thumb {
-     background-image: linear-gradient(to bottom left, #212a3f, #212a3f);
-     border-radius: 20px;
-     border: 1px solid #4a5568; 
-   }
+  width: 12px;
+}
 
-    /* Set the color of the scrollbar track */
-   .scrollbar-thin::-webkit-scrollbar-track {
-     background-color: #1e2639;
-   }
-   
+/* thumb track scrollbar */
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to bottom left, #212a3f, #28334e);
+  border-radius: 20px;
+  border: 1px solid #4a5568;
+  transition: background-color 0.3s; 
+  cursor: pointer;
+}
+
+/* Change the background-color on hover */
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(to  left, #212a3f, #445e77);
+}
+
+/* Set the color of the scrollbar track */
+.scrollbar-thin::-webkit-scrollbar-track {
+  background-color: #1e2639;
+}
