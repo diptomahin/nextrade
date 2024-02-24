@@ -1,12 +1,12 @@
 import TransactionTable from "@/components/traders_comp/wallet/TransactionTable";
-import DepositWithdrawSection from "./DepositWithdrawSection";
+import DepositWithdrawSection from "../../../components/traders_comp/wallet/deposit-withdraw/DepositWithdrawSection";
 import Rechart from "@/components/traders_comp/wallet/Rechart";
-import BalanceSection from "./BalanceSection";
+import BalanceSection from "../../../components/traders_comp/wallet/BalanceSection";
 
 // add title in metadata
 export const metadata = {
   title: "Wallet - Dashboard",
-  description: 'About page from Nextrade',
+  description: "About page from Nextrade",
 };
 
 const Wallet = () => {
