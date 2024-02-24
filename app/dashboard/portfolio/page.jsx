@@ -17,6 +17,7 @@ import Image from "next/image";
 import BuyAndExchange from "@/components/traders_comp/portfolio/BuyAndExchange";
 import emptyIcon from "../../../assets/emptyIcon.png";
 import axios from "axios";
+import useUserData from "@/hooks/useUserData";
 
 const Portfolio = () => {
 
@@ -24,14 +25,19 @@ const Portfolio = () => {
   const [cryptoData, setCryptoData] = useState([]);
   const [currencyData, setCurrencyData] = useState([]);
 
-  const {
-    data: allUsers = [],
-    isPending,
-    isLoading,
-    refetch,
-  } = useSecureFetch(`/all-users/${user?.email}`, ["all-users"]);
+  // const {
+  //   data: allUsers = [],
+  //   isPending,
+  //   isLoading,
+  //   refetch,
+  // } = useSecureFetch(`/all-users/${user?.email}`, ["all-users"]);
 
-  const usersRemainingBalance = parseFloat(allUsers[0]?.balance).toFixed(2);
+  const { userData, userDataLoading, userDataPending, userDataError } =
+  useUserData();
+
+
+
+  const usersRemainingBalance = parseFloat(userData?.balance).toFixed(2);
 
   // data fetch in all coin in buying  market page
   const {
@@ -56,6 +62,8 @@ const Portfolio = () => {
       );
     }
   }, [purchasedAssets]);
+
+  
 
   // console.log(currencyData);
 
@@ -202,10 +210,11 @@ const Portfolio = () => {
 
   if (
     loading ||
-    isLoading ||
-    isPending ||
     purchasedLoading ||
-    purchasedPending
+    purchasedPending ||
+    userDataLoading || 
+    userDataPending || 
+    userDataError
   ) {
     return (
       <p className="h-screen flex items-center justify-center text-primary">
@@ -213,6 +222,8 @@ const Portfolio = () => {
       </p>
     );
   }
+
+  
 
   return (
     <div className=" grid md:grid-cols-7 grid-cols-1  md:gap-5">

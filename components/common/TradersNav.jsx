@@ -172,7 +172,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         {/* <Language /> */}
 
         {/* Google Translate API */}
-        <Translate />
+        {/* <Translate /> */}
         {/* notification */}
         <TradersNotification />
 

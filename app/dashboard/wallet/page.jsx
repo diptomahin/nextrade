@@ -3,6 +3,12 @@ import DepositWithdrawSection from "./DepositWithdrawSection";
 import Rechart from "@/components/traders_comp/wallet/Rechart";
 import BalanceSection from "./BalanceSection";
 
+// add title in metadata
+export const metadata = {
+  title: "Wallet - Dashboard",
+  description: 'About page from Nextrade',
+};
+
 const Wallet = () => {
   return (
     <div className="flex flex-col xl:flex-row justify-between gap-5 w-full">
