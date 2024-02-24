@@ -10,7 +10,7 @@ const Security = () => {
   // Get user information using the useAuth hook
   const { user, updateUserPassword } = useAuth();
   const secureAPI = useSecureAPI();
-  const { notificationRefetch } = useNotificationData();
+  const { refetchNotificationsData } = useNotificationData();
 
   const date = getDate();
 
@@ -22,14 +22,15 @@ const Security = () => {
   const [successMessage, setSuccessMessage] = useState("");
   // post notification data sen database
   const notificationInfo = {
-    title: "Password Change ",
+    title: "Password Changed",
     description: "Your account password has been changed",
     assetKey: "",
     assetImg: "",
     assetBuyerUID: "",
-    assetBuyerEmail: user.email,
+    email: user.email,
     postedDate: date,
-    type:'unseen'
+    location: "/dashboard/profile",
+    read: false,
   };
 
   // Function to handle password change
@@ -46,20 +47,19 @@ const Security = () => {
         return;
       }
 
-      // post to  notification data in database
-      secureAPI
-        .post("/notifications", notificationInfo)
-        .then((res) => {
-          console.log("Successfully coin added:", res);
-          notificationRefetch();
-        })
-        .catch((error) => {
-          console.error("Error sending notification:", error);
-        });
-
       updateUserPassword(user, newPassword)
         .then(() => {
           console.log("Update successful.");
+          // post to  notification data in database
+          secureAPI
+            .post("/notifications", notificationInfo)
+            .then((res) => {
+              console.log("Successfully coin added:", res);
+              refetchNotificationsData();
+            })
+            .catch((error) => {
+              console.error("Error sending notification:", error);
+            });
         })
         .catch((error) => {
           console.log("error");

@@ -27,7 +27,7 @@ const WithdrawForm = ({
   const [postalCode, setPostalCode] = useState(0);
   // const [currency, setCurrency] = useState("");
 
-  const { notificationRefetch } = useNotificationData();
+  const { refetchNotificationsData } = useNotificationData();
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -144,20 +144,11 @@ const WithdrawForm = ({
           assetKey: "",
           assetImg: "",
           assetBuyerUID: "",
-          assetBuyerEmail: user.email,
+          email: user.email,
           postedDate: date,
-          type:'unseen'
+          location: "/dashboard/wallet",
+          read: false,
         };
-
-        // post to  notification data in database
-        secureAPI
-          .post("/notifications", notificationInfo)
-          .then((res) => {
-            notificationRefetch();
-          })
-          .catch((error) => {
-            console.error("Error sending notification:", error);
-          });
 
         axios
           .post(
@@ -166,19 +157,30 @@ const WithdrawForm = ({
           )
           .then((res) => {
             if (res.data.insertedId) {
-              form.reset();
-              setAmount(0);
-              setPostalCode(0);
-              elements.getElement(CardNumberElement).clear(); // Reset card number
-              elements.getElement(CardExpiryElement).clear(); // Reset card expiry
-              elements.getElement(CardCvcElement).clear();
-              refetchUserData();
-              refetchTransactionsData();
-              refetchSpecificTransactionsData();
-              toast.success("Withdraw Successful", {
-                id: toastId,
-                duration: 5000,
-              });
+              // post to  notification data in database
+              secureAPI
+                .post("/notifications", notificationInfo)
+                .then((res) => {
+                  if (res.data.insertedId) {
+                    form.reset();
+                    setAmount(0);
+                    setPostalCode(0);
+                    elements.getElement(CardNumberElement).clear(); // Reset card number
+                    elements.getElement(CardExpiryElement).clear(); // Reset card expiry
+                    elements.getElement(CardCvcElement).clear();
+                    refetchUserData();
+                    refetchTransactionsData();
+                    refetchSpecificTransactionsData();
+                    refetchNotificationsData();
+                    toast.success("Withdraw Successful", {
+                      id: toastId,
+                      duration: 5000,
+                    });
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error sending notification:", error);
+                });
             }
           });
       }
