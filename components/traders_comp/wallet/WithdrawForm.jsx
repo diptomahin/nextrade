@@ -146,6 +146,7 @@ const WithdrawForm = ({
           assetBuyerUID: "",
           assetBuyerEmail: user.email,
           postedDate: date,
+          type:'unseen'
         };
 
         // post to  notification data in database

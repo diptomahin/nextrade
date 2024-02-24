@@ -6,26 +6,24 @@ import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import useAuth from "@/hooks/useAuth";
 
 const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
   const [isNotifyMenuOpen, setIsNotifyMenuOpen] = React.useState(false);
   const [openDeleteOptions, setOpenDeleteOptions] = React.useState({});
   const { notificationsData, notificationRefetch } = useNotificationData();
-  const [alertNotification, setAlertNotification] = React.useState([]);
+ 
 
   const secureAPI = useSecureAPI();
+  const {user} = useAuth()
 
-  // Initialize cardValue with initial values based on the length of notificationsData
-  const initialCardValue = Array.isArray(notificationsData)
-    ? notificationsData.reduce((acc, asset) => {
-        return { ...acc, [asset._id]: 0 };
-      }, {})
-    : {};
+  const notificationCount = notificationsData?.filter(notification =>notification.type === 'unseen')
+  console.log(notificationCount);
 
-  const [cardValue, setCardValue] = React.useState(initialCardValue);
 
-  // Function to handle notification deletion
+
+  // Function to handle single notification deletion
   const handleDeleteNotification = async (notificationId) => {
     try {
       // Send a DELETE request to your backend API
@@ -41,6 +39,24 @@ const TradersNotification = () => {
 
       // Show error toast
       toast.error("Error deleting notification");
+    }
+  };
+  // Function to handle all notification deletion
+  const handleDeleteAllNotification = async () => {
+    try {
+      // Send a DELETE request to your backend API
+      await secureAPI.delete(`/notifications/deleteAllNotifications/${user.email}`);
+
+      // Refetch notifications data after deletion
+      notificationRefetch();
+
+      // Show success toast
+      toast.success("All Notification deleted successfully");
+    } catch (error) {
+      console.error("Error All deleting notification:", error);
+
+      // Show error toast
+      toast.error("Error All deleting notification");
     }
   };
 
@@ -67,29 +83,40 @@ const TradersNotification = () => {
     return hours >= 12 ? "PM" : "AM";
   };
 
-  // Click event handler for notification cards
-  const handleCardClick = (asset) => {
-    // Your logic for handling click on notification card
-    // For example, increment or decrement value
-    const updatedValue = cardValue[asset._id] ? cardValue[asset._id] - 1 : 1;
-    setCardValue((prevCardValue) => ({
-      ...prevCardValue,
-      [asset._id]: updatedValue,
-    }));
-
+  // Click event handler for all notification UnMark 
+  const handleMarkAllRead = () => {
+    
+    secureAPI.patch(`/markAllAsRead/${user.email}`)
+    .then((response) => {
+      console.log('notification count successfully updated');
+    })
     // Update notificationsData?.length based on the click
     notificationRefetch();
   };
 
-  // Save the calculated value to localStorage whenever cardValue or notificationsData changes
-  React.useEffect(() => {
-    const noti = Object.values(cardValue).reduce(
-      (sum, count) => sum - count,
-      notificationsData?.length
-    );
-    localStorage.setItem("notificationCount", noti);
-    setAlertNotification(noti);
-  }, [cardValue, notificationsData]);
+  // Click event handler for notification unMark
+  const handleMark = (asset) => {
+    
+    secureAPI.patch(`/notifications/${asset._id}`)
+    .then((response) => {
+      console.log('notification count successfully updated');
+    })
+    // Update notificationsData?.length based on the click
+    notificationRefetch();
+  };
+
+  // Click event handler for notification mark AS Read
+  const handleUnMark = (asset) => {
+    
+    secureAPI.patch(`/markAsRead/${asset._id}`)
+    .then((response) => {
+      console.log('notification count successfully  restored');
+    })
+    // Update notificationsData?.length based on the click
+    notificationRefetch();
+  };
+
+ 
 
   return (
     <div className="relative">
@@ -104,9 +131,9 @@ const TradersNotification = () => {
         ) : (
           <MdNotifications className="w-6 h-6" />
         )}
-        {cardValue ? (
-          <p className="absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center">
-            {alertNotification}
+        {notificationsData ? (
+          <p className={`absolute left-3 -top-2 font-semibold w-5 h-5 p-[2px] text-sm rounded-full bg-red-500 flex justify-center items-center`}>
+            {notificationCount?.length}
           </p>
         ) : (
           " "
@@ -126,10 +153,10 @@ const TradersNotification = () => {
               </button>
               {isNotifyMenuOpen && (
                 <div className="absolute right-8 top-0 w-40 bg-darkBG border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
-                  <button className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
+                  <button onClick={handleMarkAllRead} className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
                     Mark all as read
                   </button>
-                  <button className="w-full  whitespace-nowrap btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
+                  <button onClick={handleDeleteAllNotification} className="w-full  whitespace-nowrap btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
                     Delete all
                   </button>
                   <Link
@@ -148,9 +175,9 @@ const TradersNotification = () => {
             <>
               {notificationsData.map((asset) => (
                 <div
-                  onClick={() => handleCardClick(asset)}
+                  
                   key={asset._id}
-                  className={`bg-white/5 border-b border-darkThree cursor-pointer px-4 py-2 `}
+                  className={` border-b border-darkThree cursor-pointer px-4 py-2 ${asset.type === 'seen' ? 'bg-darkOne': 'bg-white/5'}`}
                 >
                   <div className="space-y-[6px]">
                     <h2 className="font-medium text-sm">{asset.title}</h2>
@@ -181,9 +208,15 @@ const TradersNotification = () => {
                       </button>
                       {openDeleteOptions[asset._id] && (
                         <div className="absolute right-7 bottom-0 w-28 bg-darkBG border border-darkThree font-medium justify-start rounded-t-2xl rounded-s-2xl py-3">
-                          <button className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
+                          {asset.type === "unseen" ? <button
+                          onClick={() => handleMark(asset)}
+                            className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
                             Mark as read
-                          </button>
+                          </button>:<button
+                          onClick={() => handleUnMark(asset)}
+                            className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
+                            Un Mark
+                          </button>}
                           <button
                             onClick={() => handleDeleteNotification(asset._id)}
                             className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
