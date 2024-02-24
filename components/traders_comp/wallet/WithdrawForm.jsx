@@ -18,7 +18,6 @@ import { useEffect, useState } from "react";
 const WithdrawForm = ({
   refetchUserData,
   totalBalance,
-  refetchTransactionsData,
   refetchSpecificTransactionsData,
 }) => {
   const [paymentError, setPaymentError] = useState("");
@@ -135,21 +134,6 @@ const WithdrawForm = ({
           currency: "usd",
         };
 
-        // post notification data sen database
-        const notificationInfo = {
-          title: "Withdraw Successfully",
-          description: `Your account has been debited with a withdrawal of ${
-            "$" + parseInt(amount)
-          }.`,
-          assetKey: "",
-          assetImg: "",
-          assetBuyerUID: "",
-          email: user.email,
-          postedDate: date,
-          location: "/dashboard/wallet",
-          read: false,
-        };
-
         axios
           .post(
             `https://nex-trade-server.vercel.app/v1/api/withdraw/${user?.email}`,
@@ -157,6 +141,21 @@ const WithdrawForm = ({
           )
           .then((res) => {
             if (res.data.insertedId) {
+              // post notification data sen database
+              const notificationInfo = {
+                title: "Withdraw Successfully",
+                description: `Your account has been debited with a withdrawal of ${
+                  "$" + parseInt(amount)
+                }.`,
+                assetKey: "",
+                assetImg: "",
+                assetBuyerUID: "",
+                email: user.email,
+                postedDate: date,
+                location: "/dashboard/wallet",
+                read: false,
+              };
+
               // post to  notification data in database
               secureAPI
                 .post("/notifications", notificationInfo)
@@ -169,7 +168,6 @@ const WithdrawForm = ({
                     elements.getElement(CardExpiryElement).clear(); // Reset card expiry
                     elements.getElement(CardCvcElement).clear();
                     refetchUserData();
-                    refetchTransactionsData();
                     refetchSpecificTransactionsData();
                     refetchNotificationsData();
                     toast.success("Withdraw Successful", {

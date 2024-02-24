@@ -25,6 +25,8 @@ const SocialLogin = () => {
           name: loggedUser.displayName,
           createdAt: date,
           balance: 0,
+          deposit: 0,
+          withdraw: 0,
           role: "trader",
           photo: loggedUser.photoURL || "",
           phone: "",

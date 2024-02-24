@@ -6,7 +6,6 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./depositWithdrawTab.css";
 import { loadStripe } from "@stripe/stripe-js";
-import useTransactionData from "@/hooks/useTransactionData";
 import useUserData from "@/hooks/useUserData";
 import useSpecificTransactionData from "@/hooks/useSpecificTransactionData";
 
@@ -23,13 +22,6 @@ const DepositWithdrawSection = () => {
   } = useUserData();
 
   const {
-    refetchTransactionsData,
-    transactionsDataLoading,
-    transactionsDataPending,
-    transactionsDataError,
-  } = useTransactionData();
-
-  const {
     refetchSpecificTransactionsData,
     SpecificTransactionsDataLoading,
     SpecificTransactionsDataPending,
@@ -40,9 +32,6 @@ const DepositWithdrawSection = () => {
     userDataLoading ||
     userDataPending ||
     userDataError ||
-    transactionsDataLoading ||
-    transactionsDataPending ||
-    transactionsDataError ||
     SpecificTransactionsDataLoading ||
     SpecificTransactionsDataPending ||
     SpecificTransactionsDataError
@@ -65,7 +54,6 @@ const DepositWithdrawSection = () => {
           <Elements stripe={stripePromise}>
             <DepositForm
               refetchUserData={refetchUserData}
-              refetchTransactionsData={refetchTransactionsData}
               refetchSpecificTransactionsData={refetchSpecificTransactionsData}
             />
           </Elements>
@@ -86,7 +74,6 @@ const DepositWithdrawSection = () => {
             <Elements stripe={stripePromise}>
               <WithdrawForm
                 refetchUserData={refetchUserData}
-                refetchTransactionsData={refetchTransactionsData}
                 refetchSpecificTransactionsData={
                   refetchSpecificTransactionsData
                 }

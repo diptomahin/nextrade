@@ -166,7 +166,7 @@ const TradersNotification = () => {
     <div className="relative">
       <button
         onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-        className={`flex items-center text-white ${
+        className={`flex items-center text-white hover:bg-white/10 active:bg-white/20 rounded-full p-2 ${
           isNotificationOpen && "text-primary"
         }`}
       >
@@ -176,13 +176,15 @@ const TradersNotification = () => {
           <MdNotifications className="w-6 h-6" />
         )}
         {nonReaderNotifications?.length > 0 && (
-          <p className="absolute left-3 bottom-3 font-semibold w-5 h-5  rounded-full bg-red-500 flex justify-center items-center">
-            <span className="text-xs">{nonReaderNotifications?.length}</span>
+          <p className="absolute left-5 bottom-5 font-semibold w-4 h-4  rounded-full bg-red-500 flex justify-center items-center">
+            <span className="text-[10px]">
+              {nonReaderNotifications?.length}
+            </span>
           </p>
         )}
       </button>
       {isNotificationOpen && (
-        <div className="absolute overflow-x-hidden overflow-y-scroll max-h-[500px] top-[64px] right-24 transform translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-80">
+        <div className="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] right-24 transform translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-80 shadow-2xl shadow-gray-900">
           <div className="flex items-center justify-between px-4 py-2 border-b-2 border-darkThree">
             <h2 className="font-semibold">Notifications</h2>
 
@@ -304,7 +306,7 @@ const TradersNotification = () => {
               ))}
             </>
           ) : (
-            <div className="py-5">
+            <div className="py-10">
               <h2 className="text-sm text-center">No notification yet . . .</h2>
             </div>
           )}

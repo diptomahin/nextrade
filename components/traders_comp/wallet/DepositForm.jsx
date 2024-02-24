@@ -15,11 +15,7 @@ import getDate from "../../utils/date";
 import { useEffect, useState } from "react";
 import useNotificationData from "@/hooks/useNotificationData";
 
-const DepositForm = ({
-  refetchUserData,
-  refetchTransactionsData,
-  refetchSpecificTransactionsData,
-}) => {
+const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   const [paymentError, setPaymentError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [amount, setAmount] = useState(0);
@@ -129,21 +125,6 @@ const DepositForm = ({
           currency: "usd",
         };
 
-        // post notification data sen database
-        const notificationInfo = {
-          title: "Deposit Successfully",
-          description: `A deposit of ${
-            "$" + parseInt(amount)
-          } has been credited to your account.`,
-          assetKey: "",
-          assetImg: "",
-          assetBuyerUID: "",
-          email: user?.email,
-          postedDate: date,
-          location: "/dashboard/wallet",
-          read: false,
-        };
-
         axios
           .post(
             `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
@@ -151,6 +132,21 @@ const DepositForm = ({
           )
           .then((res) => {
             if (res.data.insertedId) {
+              // post notification data sen database
+              const notificationInfo = {
+                title: "Deposit Successfully",
+                description: `A deposit of ${
+                  "$" + parseInt(amount)
+                } has been credited to your account.`,
+                assetKey: "",
+                assetImg: "",
+                assetBuyerUID: "",
+                email: user?.email,
+                postedDate: date,
+                location: "/dashboard/wallet",
+                read: false,
+              };
+
               // post to  notification data in database
               secureAPI
                 .post("/notifications", notificationInfo)
@@ -163,7 +159,6 @@ const DepositForm = ({
                     elements.getElement(CardExpiryElement).clear(); // Reset card expiry
                     elements.getElement(CardCvcElement).clear();
                     refetchUserData();
-                    refetchTransactionsData();
                     refetchSpecificTransactionsData();
                     refetchNotificationsData();
                     toast.success("Deposit Successful", {
