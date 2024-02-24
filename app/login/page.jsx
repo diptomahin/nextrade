@@ -6,8 +6,8 @@ import LoginForm from "./LoginForm";
 
 // add title in metadata
 export const metadata = {
-  title: "NexTrade - Login ",
-  description: 'Login page from Nextrade',
+  title: "Login - NexTrade",
+  description: "Login page from Nextrade",
 };
 
 const Login = () => {

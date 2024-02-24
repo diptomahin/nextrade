@@ -12,8 +12,8 @@ import Subtitle from "@/components/library/Subtitle";
 
 // add title in metadata
 export const metadata = {
-  title: "NexTrade - AboutNexTrade ",
-  description: 'About page from Nextrade',
+  title: "About NexTrade - NexTrade",
+  description: "About page from Nextrade",
 };
 
 const AboutNexTrade = () => {
