@@ -300,7 +300,7 @@ const TradersNotification = () => {
 
                    {/* Additional actions menu for each notification */}
                    {isOpenMenu[asset?._id] && (
-                     <div className="absolute right-7 bottom-0 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-t-2xl rounded-s-2xl py-3">
+                     <div className="absolute right-7 top-0 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3">
                        <button
                          onClick={() => handleRead(asset?._id)}
                          className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
