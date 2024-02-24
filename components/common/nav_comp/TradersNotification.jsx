@@ -6,6 +6,7 @@ import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { usePathname } from "next/navigation";
 
 const TradersNotification = () => {
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
@@ -19,6 +20,7 @@ const TradersNotification = () => {
     notificationsDataError,
   } = useNotificationData();
   const secureAPI = useSecureAPI();
+  const pathName = usePathname();
 
   if (
     notificationsDataLoading ||
@@ -230,68 +232,73 @@ const TradersNotification = () => {
               {notificationsData.map((asset) => (
                 <div
                   key={asset?._id}
-                  className={`${
-                    asset?.read ? "" : "bg-white/10"
-                  } border-b border-darkThree cursor-pointer px-4 py-3`}
+                  className={`relative ${
+                    asset?.read ? "" : "bg-primary/10"
+                  } w-full border-b border-darkThree cursor-pointer px-4 py-3`}
                 >
-                  <div className="space-y-[6px]">
-                    <h2 className="font-medium text-sm">{asset?.title}</h2>
-                    <p className="text-gray-400 text-xs">
-                      {asset?.description}
-                    </p>
-                  </div>
-
-                  <div className="flex justify-between items-end">
-                    <p className="text-darkGray text-[10px] flex items-center justify-end gap-3">
-                      {/* Date */}
-                      <span>
-                        {asset?.postedDate?.day || " "}-
-                        {asset?.postedDate?.month || " "}-
-                        {asset?.postedDate?.year || " "}
-                      </span>
-                      {/* Time */}
-                      <span>
-                        {formatTime(asset?.postedDate?.hours || " ")}:
-                        {padZero(asset?.postedDate?.minutes || " ")}{" "}
-                        {getAmPm(asset?.postedDate?.hours || " ")}
-                      </span>
-                    </p>
-                    <div className="relative ">
-                      <button
-                        onClick={() => {
-                          handleOpenMenu(asset?._id);
-                          setIsNotifyMenuOpen(false);
-                        }}
-                        className={`btn btn-xs text-sm h-7 px-[7px] text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none rounded-full`}
-                      >
-                        <BsThreeDotsVertical />
-                      </button>
-                      {isOpenMenu[asset?._id] && (
-                        <div className="absolute right-7 -bottom-1 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-t-2xl rounded-s-2xl py-3">
-                          <button
-                            onClick={() => handleRead(asset?._id)}
-                            className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
-                          >
-                            Mark as read
-                          </button>
-                          <button
-                            onClick={() => handleUnread(asset?._id)}
-                            className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
-                          >
-                            Mark as unread
-                          </button>
-                          <button
-                            onClick={() => handleDeleteNotification(asset?._id)}
-                            className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
-                          >
-                            Delete
-                          </button>
-                          <button className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
-                            Report issue
-                          </button>
-                        </div>
-                      )}
+                  <Link
+                    href={asset?.location ? asset.location : pathName}
+                    onClick={() => handleRead(asset?._id)}
+                  >
+                    <div className="space-y-[6px]">
+                      <h2 className="font-medium text-sm">{asset?.title}</h2>
+                      <p className="text-gray-400 text-xs">
+                        {asset?.description}
+                      </p>
                     </div>
+
+                    <div className="flex justify-between mt-2">
+                      <p className="text-darkGray text-[10px] flex items-center justify-end gap-3">
+                        {/* Date */}
+                        <span>
+                          {asset?.postedDate?.day || " "}-
+                          {asset?.postedDate?.month || " "}-
+                          {asset?.postedDate?.year || " "}
+                        </span>
+                        {/* Time */}
+                        <span>
+                          {formatTime(asset?.postedDate?.hours || " ")}:
+                          {padZero(asset?.postedDate?.minutes || " ")}{" "}
+                          {getAmPm(asset?.postedDate?.hours || " ")}
+                        </span>
+                      </p>
+                    </div>
+                  </Link>
+                  <div className="absolute bottom-[6px] right-2 z-10">
+                    <button
+                      onClick={() => {
+                        handleOpenMenu(asset?._id);
+                        setIsNotifyMenuOpen(false);
+                      }}
+                      className={`btn btn-sm px-[9px] text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none rounded-full`}
+                    >
+                      <BsThreeDotsVertical />
+                    </button>
+                    {isOpenMenu[asset?._id] && (
+                      <div className="absolute right-7 bottom-0 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-t-2xl rounded-s-2xl py-3">
+                        <button
+                          onClick={() => handleRead(asset?._id)}
+                          className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                        >
+                          Mark as read
+                        </button>
+                        <button
+                          onClick={() => handleUnread(asset?._id)}
+                          className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                        >
+                          Mark as unread
+                        </button>
+                        <button
+                          onClick={() => handleDeleteNotification(asset?._id)}
+                          className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                        >
+                          Delete
+                        </button>
+                        <button className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
+                          Report issue
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

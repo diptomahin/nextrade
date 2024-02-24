@@ -51,9 +51,8 @@ const CryptoDetails = ({
 }) => {
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
-  const { notificationRefetch } = useNotificationData();
-
   const date = getDate();
+  const { refetchNotificationsData } = useNotificationData();
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -89,8 +88,10 @@ const CryptoDetails = ({
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyerUID: user.uid,
-      assetBuyerEmail: user.email,
+      email: user.email,
       postedDate: date,
+      read: false,
+      location: "/dashboard/portfolio",
     };
 
     if (usersBalance < parseFloat(ast.c)) {
@@ -112,29 +113,29 @@ const CryptoDetails = ({
       confirmButtonText: "Yes!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // post to  notification data in database
-        secureAPI
-          .post("/notifications", notificationInfo)
-          .then((res) => {
-            console.log("Successfully coin added:", res);
-            notificationRefetch();
-          })
-          .catch((error) => {
-            console.error("Error sending notification:", error);
-          });
-
         // post purchasedAssets data in database
         secureAPI
           .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
           .then((res) => {
             if (res.data.insertedId) {
-              Swal.fire({
-                title: `Coin Purchase successful!`,
-                text: `Best of luck`,
-                icon: "success",
-                timer: 1500,
-              });
-              refetch();
+              // post to  notification data in database
+              secureAPI
+                .post("/notifications", notificationInfo)
+                .then((res) => {
+                  if (res.data.insertedId) {
+                    refetch();
+                    refetchNotificationsData();
+                    Swal.fire({
+                      title: `Coin Purchase successful!`,
+                      text: `Best of luck`,
+                      icon: "success",
+                      timer: 1500,
+                    });
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error sending notification:", error);
+                });
             }
           })
           .catch((error) => {

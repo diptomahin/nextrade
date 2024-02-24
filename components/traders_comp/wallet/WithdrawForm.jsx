@@ -150,18 +150,6 @@ const WithdrawForm = ({
           read: false,
         };
 
-        // post to  notification data in database
-        secureAPI
-          .post("/notifications", notificationInfo)
-          .then((res) => {
-            if (res.data.insertedId) {
-              refetchNotificationsData();
-            }
-          })
-          .catch((error) => {
-            console.error("Error sending notification:", error);
-          });
-
         axios
           .post(
             `https://nex-trade-server.vercel.app/v1/api/withdraw/${user?.email}`,
@@ -169,19 +157,30 @@ const WithdrawForm = ({
           )
           .then((res) => {
             if (res.data.insertedId) {
-              form.reset();
-              setAmount(0);
-              setPostalCode(0);
-              elements.getElement(CardNumberElement).clear(); // Reset card number
-              elements.getElement(CardExpiryElement).clear(); // Reset card expiry
-              elements.getElement(CardCvcElement).clear();
-              refetchUserData();
-              refetchTransactionsData();
-              refetchSpecificTransactionsData();
-              toast.success("Withdraw Successful", {
-                id: toastId,
-                duration: 5000,
-              });
+              // post to  notification data in database
+              secureAPI
+                .post("/notifications", notificationInfo)
+                .then((res) => {
+                  if (res.data.insertedId) {
+                    form.reset();
+                    setAmount(0);
+                    setPostalCode(0);
+                    elements.getElement(CardNumberElement).clear(); // Reset card number
+                    elements.getElement(CardExpiryElement).clear(); // Reset card expiry
+                    elements.getElement(CardCvcElement).clear();
+                    refetchUserData();
+                    refetchTransactionsData();
+                    refetchSpecificTransactionsData();
+                    refetchNotificationsData();
+                    toast.success("Withdraw Successful", {
+                      id: toastId,
+                      duration: 5000,
+                    });
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error sending notification:", error);
+                });
             }
           });
       }
