@@ -2,13 +2,13 @@
 import Image from "next/image";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import DashButton from "../library/buttons/DashButton";
 import toast from "react-hot-toast";
 import axios from "axios";
+import "./manageCoin.css"
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 const ManageFlatCoins = ({ assets, refetch }) => {
@@ -240,13 +240,13 @@ const ManageFlatCoins = ({ assets, refetch }) => {
                     </label>
                 </DialogContent>
                 <DialogActions>
-                    <DashButton onClick={handleClose}>Cancel</DashButton>
-                    <DashButton type="submit">Update</DashButton>
+                    <Button onClick={handleClose} variant='outlined'>Cancel</Button>
+                    <Button type="submit" variant='outlined'>Update</Button>
                 </DialogActions>
             </Dialog>
             {assets.map((asset, idx) => (
                 // <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
-                <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-darkTwo text-white '>
+                <div key={idx} className='coinBg rounded-lg p-6 space-y-4 min-w-[280px] relative bg-darkOne border border-darkThree text-white '>
                     <div className="absolute right-2 flex flex-col gap-2">
                         <IconButton aria-label="delete" onClick={() => handleClickOpen(asset)}>
                             <EditIcon className='text-gray-500' />

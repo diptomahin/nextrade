@@ -24,6 +24,7 @@ import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import CryptoMarketModuleView from "@/components/traders_comp/market/CryptoMarketModuleView";
 import CurrencyMarketModuleView from "@/components/traders_comp/market/CurrencyMarketModuleView";
 import usePublicAPI from "@/hooks/usePublicAPI";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -74,7 +75,7 @@ const MarketPage = () => {
   const [value, setValue] = React.useState("1");
   const [cryptoPageCount, setCryptoPageCount] = useState(0);
   const [flatPageCount, setFlatPageCount] = useState(0);
-  const [coinPerPage, setCoinPerPage] = useState(5)
+  const [coinPerPage, setCoinPerPage] = useState(6)
   const [currentCryptoPage, setCurrentCryptoPage] = useState(0);
   const [currentFlatPage, setCurrentFlatPage] = useState(0);
   const publicAPI = usePublicAPI()
@@ -106,17 +107,41 @@ const MarketPage = () => {
     setCurrentFlatPage(0)
   }
 
+  // useEffect(() => {
+  //   publicAPI.get(`/allCryptoCoins?search=${searchText}&page=${currentCryptoPage}&size=${coinPerPage}`)
+  //     .then(res => setAssets(res.data))
+  // }, [coinPerPage, searchText, currentCryptoPage, publicAPI])
+
+  // useEffect(() => {
+  //   publicAPI.get(`/allFlatCoins?search=${searchText}&page=${currentFlatPage}&size=${coinPerPage}`)
+  //     .then(res => setFlatCurrency(res.data))
+  // }, [coinPerPage, searchText, currentFlatPage, publicAPI])
+
+
+  const {
+    data: cryptoAssets = [],
+    isPending: cryptoPending,
+    isLoading: cryptoLoading,
+    refetch: cryptoRefetch,
+  } = useSecureFetch(`/allCryptoCoins?search=${searchText}&page=${currentCryptoPage}&size=${coinPerPage}`, "crypto-asset", searchText, currentCryptoPage, coinPerPage);
+
+  const {
+    data: currencyAssets = [],
+    isPending: currencyPending,
+    isLoading: currencyLoading,
+    refetch: currencyRefetch,
+  } = useSecureFetch(`/allFlatCoins?search=${searchText}&page=${currentFlatPage}&size=${coinPerPage}`,"currency-asset", searchText, currentFlatPage, coinPerPage);
+
   useEffect(() => {
-    publicAPI.get(`/allCryptoCoins?search=${searchText}&page=${currentCryptoPage}&size=${coinPerPage}`)
-      .then(res => setAssets(res.data))
-  }, [coinPerPage, searchText, currentCryptoPage, publicAPI])
+    if (cryptoAssets.length > 0) {
+      setAssets(cryptoAssets)
+    }
+    if( currencyAssets.length > 0){
+      setFlatCurrency(currencyAssets)
+    }
+  }, [cryptoAssets, currencyAssets])
 
   // console.log(assets)
-
-  useEffect(() => {
-    publicAPI.get(`/allFlatCoins?search=${searchText}&page=${currentFlatPage}&size=${coinPerPage}`)
-      .then(res => setFlatCurrency(res.data))
-  }, [coinPerPage, searchText, currentFlatPage, publicAPI])
 
 
 
@@ -275,10 +300,10 @@ const MarketPage = () => {
               <div className="flex items-center gap-1">
                 <p>Show: </p>
                 <select value={coinPerPage} onChange={handleCoinPerPages} className="bg-transparent border border-primary rounded-md p-1 text-sm" name="" id="">
-                  <option className="text-black" value="5">5</option>
-                  <option className="text-black" value="10">10</option>
-                  <option className="text-black" value="15">15</option>
-                  <option className="text-black" value="20">20</option>
+                  <option className="text-black" value="6">6</option>
+                  <option className="text-black" value="12">12</option>
+                  <option className="text-black" value="18">18</option>
+                  <option className="text-black" value="24">24</option>
                 </select>
               </div>
 
@@ -306,7 +331,7 @@ const MarketPage = () => {
                 view === "list" ?
                   <MarketTable assets={assets}></MarketTable>
                   :
-                  <CryptoMarketModuleView assets={assets}></CryptoMarketModuleView>
+                  <CryptoMarketModuleView assets={assets} loading={cryptoLoading}></CryptoMarketModuleView>
               }
 
               {/* Pagination */}
@@ -333,14 +358,14 @@ const MarketPage = () => {
                 view === "list" ?
                   <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
                   :
-                  <CurrencyMarketModuleView assets={flatCurrency}></CurrencyMarketModuleView>
+                  <CurrencyMarketModuleView assets={flatCurrency} loading={currencyLoading} pending={cryptoPending}></CurrencyMarketModuleView>
               }
 
               {/* Pagination */}
-              <div className="my-6 flex justify-center">
+              <div className="my-6 flex justify-center flex-wrap">
                 <Pagination
                   color="primary" sx={{
-                    '& .MuiPaginationItem-page': { color: 'white' },
+                    '& .MuiPaginationItem-page': { color: 'white', marginY:"5px" },
                     '& .MuiPaginationItem-icon': {
                       color: 'white', // Change arrow color
                     }

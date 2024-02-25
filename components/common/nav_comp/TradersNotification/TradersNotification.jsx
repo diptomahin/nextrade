@@ -36,12 +36,17 @@ const TradersNotification = () => {
   }
 
   // Function to toggle open menu for a specific notification
-  const handleOpenMenu = (notificationId) => {
-    setIsOpenMenu((prevOptions) => ({
-      ...prevOptions,
-      [notificationId]: !prevOptions[notificationId],
-    }));
-  };
+const handleOpenMenu = (notificationId) => {
+  setIsOpenMenu((prevOptions) => ({
+    ...Object.fromEntries(
+      Object.entries(prevOptions).map(([key, value]) => [key, false])
+    ),
+    [notificationId]: !prevOptions[notificationId],
+  }));
+
+  setIsNotifyMenuOpen(true); // Open NotifyMenu
+};
+
 
   // Filter unread notifications
   const nonReaderNotifications = notificationsData.filter(
