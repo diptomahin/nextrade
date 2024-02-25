@@ -7,7 +7,6 @@ import { useState } from "react";
 import WalletIcon from "@mui/icons-material/Wallet";
 import CachedSharpIcon from "@mui/icons-material/CachedSharp";
 import Image from "next/image";
-import { useTheme } from "@mui/material/styles";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -19,7 +18,9 @@ import bitLogo from "../../../assets/btc-logo.png";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import { Avatar, AvatarGroup } from "@mui/material";
+import useAuth from "@/hooks/useAuth";
+import getDate from "@/components/utils/date";
+
 
 
 const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
@@ -29,7 +30,9 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
   const [firstCoinName, setFirstCoinName] = useState();
   const [secondCoinName, setSecondCoinName] = useState();
   const secureAPI = useSecureAPI();
-  const theme = useTheme();
+  const {user} = useAuth()
+  const date = getDate()
+
 
 
   const handleChangeCoins = (event) => {
@@ -43,6 +46,18 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
   };
 
   const handleExChange = () => {
+     // post notification data sen database
+     const notificationInfo = {
+      title: "Coin Exchange Successfully",
+      description: `Coin exchange ${firstCoinName} to ${secondCoinName}`,
+      assetKey: "",
+      assetImg: "",
+      assetBuyerUID: "",
+      email: user.email,
+      postedDate: date,
+      location: "/dashboard/portfolio",
+      read: false,
+    };
           if(firstCoinId === secondCoinId){
             Swal.fire({
               title: `You Can't exchange same coins`,
@@ -70,6 +85,16 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
                 icon: "success",
                 timer: 1500,
               });
+             
+              // post to  notification data in database
+              secureAPI
+                .post("/notifications", notificationInfo)
+                .then((res) => {
+                  console.log('success post to notification');
+                })
+                .catch((error) => {
+                  console.error("Error sending notification:", error);
+                });
               refetch();
             }
           })
@@ -103,7 +128,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
               textTransform: "none",
             }}
           />
-          <Tab
+          {/* <Tab
             label="Buy / Sell Coin"
             value="2"
             sx={{
@@ -112,7 +137,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
               color: "white",
               textTransform: "none",
             }}
-          />
+          /> */}
         </TabList>
       </Box>
       {/* Exchange Coin */}
@@ -183,14 +208,14 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
         </div>
       </TabPanel>
       {/* Buy / Sell Coin */}
-      <TabPanel value="2">
+      {/* <TabPanel value="2">
         <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
           <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
           <h3 className="text-primary text-lg font-semibold text-center">
             empty !!
           </h3>
         </div>
-      </TabPanel>
+      </TabPanel> */}
     </TabContext>
   );
 };
