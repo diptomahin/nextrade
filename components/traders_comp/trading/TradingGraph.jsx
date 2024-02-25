@@ -4,15 +4,18 @@ import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 
 const TradingGraph = (params) => {
   const {value, assets} = params;
-  const [graph, setGraph]= useState(" ")
+  const [graph, setGraph]= useState(``)
   // const selectedAsset = assets.filter(asset => asset.key == value);
   // console.log(selectedAsset[0].key)
   useEffect(()=>{
-    const selectedAsset = assets.filter(asset => asset.key == value);
-    const data = selectedAsset[0].key;
-    setGraph(data);
+    if(value)
+    {
+      const selectedAsset = assets.filter(asset => asset.key == value);
+      const data = selectedAsset[0].key;
+      setGraph(data);
+    }
   },[value,assets])
-  console.log(graph)
+  // console.log(graph)
  
   
     return (

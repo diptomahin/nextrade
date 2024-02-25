@@ -38,10 +38,18 @@ const TradingSidebar = (params) => {
       const assetInfo = {
         assetName: ast.name,
         assetKey: ast.key,
-        assetBuyingPrice: ast.price,
+        Price: ast.price,
         assetBuyerUID: user.uid,
         assetBuyerEmail: user.email,
       };
+      const historyInfo ={
+        assetName: ast.name,
+        assetKey: ast.key,
+        Price: ast.price,
+        Email: user.email,
+        action: "bought",
+      }
+      // console.log(historyInfo)
       //calculate remaining balance after buying a coin
       const usersBalance = parseFloat(trader.balance).toFixed(2);
       const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
@@ -66,7 +74,18 @@ const TradingSidebar = (params) => {
             icon: "success",
           });
           refetch();
-
+          secureAPI
+          .post(`/history`, historyInfo)
+          .then((res) => {
+            //console.log(res)
+            if (res.data.insertedId) {
+             
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    
         }
       })
       .catch((error) => {
@@ -77,25 +96,20 @@ const TradingSidebar = (params) => {
           icon: "error",
         });
       });
-      // secureAPI
-      // .put(`/all-users`, )
-      // .then((res) => {
-      //   console.log(res)
-      //   if (res.data.insertedId) {
-      //     Swal.fire({
-      //       title: `${ast.name} Purchase successful!`,
-      //       text: `Best of luck`,
-      //       icon: "success",
-      //     });
-      //     refetch();
 
-      //   }
-      // })
      }
     };
 
     //handleSellCoin
     const handleSellCoin =(ast)=>{
+      const historyInfo ={
+        assetName: ast.assetName,
+        assetKey: ast.assetKey,
+        Price: selectedAsset[0].price,
+        Email: user.email,
+        action: "sold",
+      }
+
       Swal.fire({
         title: "Are you sure?",
         icon: "warning",
@@ -107,6 +121,18 @@ const TradingSidebar = (params) => {
         if (result.isConfirmed) {
           const res = await secureAPI.delete(`/spotTrading/${ast._id}`);
           refetch();
+          secureAPI
+          .post(`/history`, historyInfo)
+          .then((res) => {
+            //console.log(res)
+            if (res.data.insertedId) {
+             
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    
           if (res.data.deletedCount > 0) {
             Swal.fire({
               title: "Sold",
