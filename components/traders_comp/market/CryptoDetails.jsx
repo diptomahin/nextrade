@@ -1,6 +1,6 @@
 "use client";
 import DashButton from "@/components/library/buttons/DashButton";
-import { Button, Divider, InputAdornment, TextField } from "@mui/material";
+import { Button, Divider, InputAdornment, Skeleton, TextField } from "@mui/material";
 import Image from "next/image";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBanner from "./TopBanner";
@@ -11,6 +11,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import styled from "@emotion/styled";
 import useNotificationData from "@/hooks/useNotificationData";
 import getDate from "../../utils/date";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -82,9 +83,8 @@ const CryptoDetails = ({
 
     const notificationInfo = {
       title: `Purchased Successfully ${coinName}`,
-      description: `You Investment ${investment + "$"} in ${
-        parseInt(portion) + "%"
-      }`,
+      description: `You Investment ${investment + "$"} in ${parseInt(portion) + "%"
+        }`,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyerUID: user.uid,
@@ -195,7 +195,7 @@ const CryptoDetails = ({
           coinKey={coinKey}
         />
       ) : (
-        <p>Loading...</p>
+        <Skeleton sx={{ height: 190, borderRadius: "20px" }} variant="rectangular" />
       )}
 
       <div className="flex flex-col xl:flex-row gap-5 my-10">
@@ -226,7 +226,7 @@ const CryptoDetails = ({
             container_id="advanced-chart-widget-container"
           />
         </div>
-        {coinImage ? (
+        {tickerData ? (
           <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">
@@ -241,14 +241,20 @@ const CryptoDetails = ({
             </div>
             <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
             <div className="flex justify-between">
-              <p>
-                <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
-              </p>
-              <div className="flex gap-1 items-center">
-                {coinImage && (
-                  <Image src={coinImage} width={30} height={30} alt="Logo" />
-                )}
-                ${parseFloat(tickerData?.c).toFixed(2)}
+              <div>
+                <p className="text-xs text-primary">Your Balance:</p>
+                <p>
+                  <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-primary">Current price:</p>
+                <div className="flex gap-1 items-center">
+                  {coinImage && (
+                    <Image src={coinImage} width={30} height={30} alt="Logo" />
+                  )}
+                  ${parseFloat(tickerData?.c).toFixed(2)}
+                </div>
               </div>
             </div>
             <CssTextField
@@ -274,22 +280,26 @@ const CryptoDetails = ({
             <Button
               disabled={investment <= 0}
               sx={{
-                backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
-                color: "white",
-                borderRadius: "50px",
+                backgroundColor: investment <= 0 ? "rgb(64 160 255 / 0.50)" : "rgb(64 160 255 / 0.05)",
+                cursor: investment <= 0 ? "not-allowed" : "pointer",
+                color:"#40a0ff",
+                border: "1px solid #40a0ff",
+                borderRadius: "6px",
                 padding: "10px 15px",
                 "&:hover": {
-                  backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
+                  backgroundColor: investment <= 0 ? "#ccc" : "rgb(64 160 255 / 0.15)",
                 },
               }}
               onClick={() => handleBuyCrypto(tickerData)}
             >
-              Buy {coinKey}
+              Invest {coinKey}
             </Button>
             {/* <DashButton className="w-full" onClick={() => handleBuyCrypto(tickerData)}>Buy {coinKey.slice(0, -4)}</DashButton> */}
           </div>
         ) : (
-          <p>Loading...</p>
+          <div className="flex-1 rounded-lg mt-10 xl:mt-0">
+            <Skeleton sx={{ height: 350, borderRadius: "20px" }} variant="rectangular" />
+          </div>
         )}
       </div>
     </div>

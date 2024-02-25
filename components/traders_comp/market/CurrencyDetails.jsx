@@ -1,7 +1,7 @@
 "use client";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBannerNormalCurrency from "./TopBannerNormalCurrency";
-import { Button, Divider, InputAdornment, TextField } from "@mui/material";
+import { Button, Divider, InputAdornment, Skeleton, TextField } from "@mui/material";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import Swal from "sweetalert2";
 import { useState } from "react";
@@ -156,12 +156,17 @@ const CurrencyDetails = ({
   };
   return (
     <div>
-      <TopBannerNormalCurrency
-        currencyRate={currencyRate}
-        coinKey={coinKey}
-        currencyName={currencyName}
-        coinImage={coinImage}
-      ></TopBannerNormalCurrency>
+      {currencyRate ? (
+        <TopBannerNormalCurrency
+          currencyRate={currencyRate}
+          coinKey={coinKey}
+          currencyName={currencyName}
+          coinImage={coinImage}
+        ></TopBannerNormalCurrency>
+      ) : (
+        <Skeleton sx={{ height: 190, borderRadius: "20px" }} variant="rectangular" />
+      )}
+
 
       <div className="flex flex-col gap-6 2xl:flex-row 2xl:justify-between">
         <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
@@ -191,65 +196,82 @@ const CurrencyDetails = ({
             container_id="advanced-chart-widget-container"
           />
         </div>
-        <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
-          <div className="flex justify-between">
-            <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
-            <button
-              onClick={() => handleCurrencyWatchlist()}
-              className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform"
-            >
-              Add to watchlist
-            </button>
-          </div>
-          <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
-          <div className="flex justify-between">
-            <p>
-              <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
-            </p>
-            <div className="flex gap-1 items-center">
-              {coinImage && (
-                <Image src={coinImage} width={30} height={30} alt="Logo" />
-              )}
-              ${parseFloat(currencyRate)}
+        {
+          currencyRate ? (
+            <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+              <div className="flex justify-between">
+                <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
+                <button
+                  onClick={() => handleCurrencyWatchlist()}
+                  className="px-2 py-1 bg-primary text-white rounded hover:scale-110 1s transition-transform"
+                >
+                  Add to watchlist
+                </button>
+              </div>
+              <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
+              <div className="flex justify-between">
+                <div>
+                  <p className="text-xs text-primary">Your Balance:</p>
+                  <p>
+                    <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-primary">Current value:</p>
+                  <div className="flex gap-1 items-center">
+                    {coinImage && (
+                      <Image src={coinImage} width={30} height={30} alt="Logo" />
+                    )}
+                    ${parseFloat(currencyRate)}
+                  </div>
+                </div>
+              </div>
+              <CssTextField
+                required
+                fullWidth
+                defaultValue={investment}
+                id="outlined-number"
+                label={`Investment (${coinKey})`}
+                type="number"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <p className="text-white">$</p>
+                    </InputAdornment>
+                  ),
+                }}
+                onChange={handleInvestmentChange}
+              />
+              <Button
+                disabled={investment <= 0}
+                sx={{
+                  backgroundColor: investment <= 0 ? "rgb(64 160 255 / 0.50)" : "rgb(64 160 255 / 0.05)",
+                  cursor: investment <= 0 ? "not-allowed" : "pointer",
+                  color: "#40a0ff",
+                  border: "1px solid #40a0ff",
+                  borderRadius: "6px",
+                  padding: "10px 15px",
+                  "&:hover": {
+                    backgroundColor: investment <= 0 ? "#ccc" : "rgb(64 160 255 / 0.15)",
+                  },
+                }}
+                onClick={() => handleBuyCurrency(currencyRate)}
+              >
+                Invest {coinKey}
+              </Button>
+              {/* <DashButton onClick={() => handleBuyCurrency(currencyRate)} disabled className={`w-full ${quantity < 1 ? "disabled bg-slate-700" : ""}`}>Buy {coinKey}</DashButton> */}
             </div>
-          </div>
-          <CssTextField
-            required
-            fullWidth
-            defaultValue={investment}
-            id="outlined-number"
-            label={`Investment (${coinKey})`}
-            type="number"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <p className="text-white">$</p>
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleInvestmentChange}
-          />
-          <Button
-            disabled={investment <= 0}
-            sx={{
-              backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
-              color: "white",
-              borderRadius: "50px",
-              padding: "10px 15px",
-              "&:hover": {
-                backgroundColor: investment <= 0 ? "#ccc" : "#455ce9",
-              },
-            }}
-            onClick={() => handleBuyCurrency(currencyRate)}
-          >
-            Buy {coinKey}
-          </Button>
-          {/* <DashButton onClick={() => handleBuyCurrency(currencyRate)} disabled className={`w-full ${quantity < 1 ? "disabled bg-slate-700" : ""}`}>Buy {coinKey}</DashButton> */}
-        </div>
+          ) :
+            (
+              <div className="flex-1 rounded-lg mt-10 xl:mt-0">
+                <Skeleton sx={{ height: 350, borderRadius: "20px" }} variant="rectangular" />
+              </div>
+            )
+        }
       </div>
     </div>
   );

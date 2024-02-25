@@ -5,8 +5,21 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 
 import "./market.css"
+import { Skeleton } from '@mui/material';
 
-const CryptoMarketModuleView = ({ assets }) => {
+const CryptoMarketModuleView = ({ assets, loading, pending }) => {
+    if (loading || pending) {
+        return (
+            <div className='grid lg:grid-cols-2 2xl:grid-cols-3 gap-6'>
+                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
+            </div>
+        )
+    }
     return (
         <div className='grid lg:grid-cols-2 2xl:grid-cols-3 gap-6'>
             {
