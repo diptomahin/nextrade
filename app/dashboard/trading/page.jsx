@@ -75,39 +75,7 @@ const Trading = () => {
   }, [assets]);
 
 
-  //Dropdown
-  const CustomSelect = styled(Select)({
-    '& .MuiSelect-root': {
-      color: '#E0E3E7', // Text color
-      '&:focus': {
-        backgroundColor: 'transparent', // Remove focus background color
-      },
-    },
-    '& .MuiSelect-select': {
-      color: "white",
-      '&:hover': {
-        backgroundColor: 'transparent', // Remove hover background color
-      },
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#40a0ff', // Border color
-      '&:active': {
-        borderColor: "#4a0ff"
-      },
-      '&:hover': {
-        borderColor: "#4a0ff"
-      }
-    },
-    '& .MuiSelect-icon': {
-      color: '#40a0ff', // Color of the select icon
-    },
-    '& .MuiMenuItem-root': {
-      color: 'black', // Menu item text color
-    },
-    '& .MuiList-root': {
-      backgroundColor: '#21366c', // Background color of select options when open
-    },
-  });
+ 
   
   
   const [value, setValue] = React.useState(``);
