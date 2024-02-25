@@ -5,8 +5,8 @@ import ServiceCard from "./ServiceCard";
 
 // add title in metadata
 export const metadata = {
-  title: "NexTrade - Services ",
-  description: 'Services page from Nextrade',
+  title: "Services - NexTrade",
+  description: "Services page from Nextrade",
 };
 
 const Services = () => {

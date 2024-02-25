@@ -30,8 +30,8 @@ import Subtitle from "@/components/library/Subtitle";
 
 // add title in metadata
 export const metadata = {
-  title: "NexTrade - Payment Methods ",
-  description: 'Payment Methods page from Nextrade',
+  title: "Payment Methods - NexTrade",
+  description: "Payment Methods page from Nextrade",
 };
 
 const PaymentMethods = () => {

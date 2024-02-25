@@ -1,11 +1,41 @@
-import React from "react";
+import Balance from "@/components/traders_comp/dashboard/Balance";
+import History from "@/components/traders_comp/dashboard/History";
+import QuickTrade from "@/components/traders_comp/dashboard/QuickTrade";
+import RecentlyAdded from "@/components/traders_comp/dashboard/RecentlyAdded";
+import TopAssets from "@/components/traders_comp/dashboard/TopAssets";
+import Trending from "@/components/traders_comp/dashboard/Trending";
+import Watchlist from "@/components/traders_comp/dashboard/Watchlist";
 
 const page = () => {
   return (
-    <div>
-      <h1 className="text-3xl">
-        This is page inside dashboard. Dashboard are under construction. We are working on it.
-      </h1>
+    <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
+      {/* total balance */}
+      <Balance />
+
+      {/* trending assets */}
+      <Trending />
+
+      {/* recently added */}
+      <RecentlyAdded />
+
+      {/* top assets slider */}
+      <TopAssets />
+
+      {/* watchlist */}
+      <div className="hidden xl:block col-span-2">
+        <Watchlist />
+      </div>
+
+      {/* trending assets */}
+      <QuickTrade />
+
+      {/* watchlist */}
+      <div className="block xl:hidden md:col-span-3">
+        <Watchlist />
+      </div>
+
+      {/* recently added */}
+      <History />
     </div>
   );
 };

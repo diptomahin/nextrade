@@ -6,8 +6,8 @@ import RegisterForm from "./RegisterForm";
 
 // add title in metadata
 export const metadata = {
-  title: "NexTrade - Register ",
-  description: 'Register page from Nextrade',
+  title: "Register  - NexTrade",
+  description: "Register page from Nextrade",
 };
 
 const Register = () => {

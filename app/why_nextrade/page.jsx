@@ -13,8 +13,8 @@ import Subtitle from "@/components/library/Subtitle";
 
 // add title in metadata
 export const metadata = {
-  title: "NexTrade - Why NexTrade ",
-  description: 'Why NexTrade page from Nextrade',
+  title: "Why NexTrade - NexTrade",
+  description: "Why NexTrade page from Nextrade",
 };
 
 const WhyChooseUs = () => {
