@@ -5,7 +5,7 @@ import DashButton from '@/components/library/buttons/DashButton';
 import usePublicFetch from '@/hooks/usePublicFetch';
 import useSecureAPI from '@/hooks/useSecureAPI';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Autocomplete, Avatar, AvatarGroup, Box, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
+import { Autocomplete, Avatar, AvatarGroup, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, Tab, TextField } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -27,15 +27,15 @@ const ManageCoins = () => {
 
     const {
         data: allCryptoCoins = [],
-        isPending:cryptoPending,
-        isLoading:cryptoLoading,
-        refetch:cryptoRefetch,
+        isPending: cryptoPending,
+        isLoading: cryptoLoading,
+        refetch: cryptoRefetch,
     } = usePublicFetch(`/manageAllCryptoCoins`, "manageCryptos");
     const {
         data: allFlatCoins = [],
-        isPending:flatPending,
-        isLoading:flatLoading,
-        refetch:flatRefetch,
+        isPending: flatPending,
+        isLoading: flatLoading,
+        refetch: flatRefetch,
     } = usePublicFetch(`/manageAllFlatCoins`, "manageFlats");
 
     // fetch crypto keys
@@ -352,8 +352,8 @@ const ManageCoins = () => {
                         </label>
                     </DialogContent>
                     <DialogActions>
-                        <DashButton onClick={handleClose}>Cancel</DashButton>
-                        <DashButton type="submit">Add</DashButton>
+                        <Button variant='outlined' onClick={handleClose}>Cancel</Button>
+                        <Button variant='outlined' disabled={hostedImage.length == 0}>Add</Button>
                     </DialogActions>
                 </Dialog>
             </div>
@@ -404,8 +404,8 @@ const ManageCoins = () => {
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 2, borderColor: 'divider', marginBottom: "10px" }}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
-                            <Tab sx={{color:"white"}} label="Crypto Coins" value="1" />
-                            <Tab sx={{color:"white"}} label="Flat Coins" value="2" />
+                            <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
+                            <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
                         </TabList>
                     </Box>
                     <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">

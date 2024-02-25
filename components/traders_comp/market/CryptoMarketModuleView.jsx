@@ -11,12 +11,12 @@ const CryptoMarketModuleView = ({ assets, loading, pending }) => {
     if (loading || pending) {
         return (
             <div className='grid lg:grid-cols-2 2xl:grid-cols-3 gap-6'>
-                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
-                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
-                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
-                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
-                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
-                <Skeleton sx={{ height: 190 , borderRadius:"50px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"40px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"40px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"40px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"40px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"40px" }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 190 , borderRadius:"40px" }} animation="wave" variant="rectangular" />
             </div>
         )
     }
