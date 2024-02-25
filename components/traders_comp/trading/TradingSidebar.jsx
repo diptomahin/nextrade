@@ -42,6 +42,14 @@ const TradingSidebar = (params) => {
         assetBuyerUID: user.uid,
         assetBuyerEmail: user.email,
       };
+      const historyInfo ={
+        assetName: ast.name,
+        assetKey: ast.key,
+        assetBuyingPrice: ast.price,
+        Email: user.email,
+        action: "bought",
+      }
+      console.log(historyInfo)
       //calculate remaining balance after buying a coin
       const usersBalance = parseFloat(trader.balance).toFixed(2);
       const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
@@ -66,7 +74,22 @@ const TradingSidebar = (params) => {
             icon: "success",
           });
           refetch();
-
+          secureAPI
+          .post(`/history`, historyInfo)
+          .then((res) => {
+            //console.log(res)
+            if (res.data.insertedId) {
+              // Swal.fire({
+              //   title: `history save successful!`,
+              //   text: `Best of luck`,
+              //   icon: "success",
+              // });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    
         }
       })
       .catch((error) => {
@@ -77,20 +100,7 @@ const TradingSidebar = (params) => {
           icon: "error",
         });
       });
-      // secureAPI
-      // .put(`/all-users`, )
-      // .then((res) => {
-      //   console.log(res)
-      //   if (res.data.insertedId) {
-      //     Swal.fire({
-      //       title: `${ast.name} Purchase successful!`,
-      //       text: `Best of luck`,
-      //       icon: "success",
-      //     });
-      //     refetch();
 
-      //   }
-      // })
      }
     };
 
