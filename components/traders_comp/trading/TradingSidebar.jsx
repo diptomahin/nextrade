@@ -31,17 +31,25 @@ const TradingSidebar = (params) => {
   //sorting data for buy function
   const availableAssets = trading.filter(asset => asset.assetKey == value)
   // console.log(trading)
-  console.log(availableAssets)
+  // console.log(availableAssets)
   
    //Buy coin
     const handleBuyCoin = (ast) => {
       const assetInfo = {
         assetName: ast.name,
         assetKey: ast.key,
-        assetBuyingPrice: ast.price,
+        Price: ast.price,
         assetBuyerUID: user.uid,
         assetBuyerEmail: user.email,
       };
+      const historyInfo ={
+        assetName: ast.name,
+        assetKey: ast.key,
+        Price: ast.price,
+        Email: user.email,
+        action: "bought",
+      }
+      // console.log(historyInfo)
       //calculate remaining balance after buying a coin
       const usersBalance = parseFloat(trader.balance).toFixed(2);
       const remainingBalance = usersBalance - parseFloat(ast.price).toFixed(2);
@@ -58,7 +66,7 @@ const TradingSidebar = (params) => {
       secureAPI
       .post(`/spotTrading`, assetInfo)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         if (res.data.insertedId) {
           Swal.fire({
             title: `${ast.name} Purchase successful!`,
@@ -66,7 +74,18 @@ const TradingSidebar = (params) => {
             icon: "success",
           });
           refetch();
-
+          secureAPI
+          .post(`/history`, historyInfo)
+          .then((res) => {
+            //console.log(res)
+            if (res.data.insertedId) {
+             
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    
         }
       })
       .catch((error) => {
@@ -77,25 +96,20 @@ const TradingSidebar = (params) => {
           icon: "error",
         });
       });
-      // secureAPI
-      // .put(`/all-users`, )
-      // .then((res) => {
-      //   console.log(res)
-      //   if (res.data.insertedId) {
-      //     Swal.fire({
-      //       title: `${ast.name} Purchase successful!`,
-      //       text: `Best of luck`,
-      //       icon: "success",
-      //     });
-      //     refetch();
 
-      //   }
-      // })
      }
     };
 
     //handleSellCoin
     const handleSellCoin =(ast)=>{
+      const historyInfo ={
+        assetName: ast.assetName,
+        assetKey: ast.assetKey,
+        Price: selectedAsset[0].price,
+        Email: user.email,
+        action: "sold",
+      }
+
       Swal.fire({
         title: "Are you sure?",
         icon: "warning",
@@ -107,12 +121,79 @@ const TradingSidebar = (params) => {
         if (result.isConfirmed) {
           const res = await secureAPI.delete(`/spotTrading/${ast._id}`);
           refetch();
+          secureAPI
+          .post(`/history`, historyInfo)
+          .then((res) => {
+            //console.log(res)
+            if (res.data.insertedId) {
+             
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    
           if (res.data.deletedCount > 0) {
             Swal.fire({
               title: "Sold",
               text: `${ast.assetName} has been sold.`,
               icon: "success",
-              timer: 1500,
+              confirmButtonText: "Share your feedback",
+            }).then(async(result)=>{
+              if(result.isConfirmed){
+                const { value: formData } = await Swal.fire({
+                  title: "Tell Us How We're Doing",
+                  html:
+                      '<div>' +
+                      '<select id="feedbackType" class="swal2-select">' +
+                      '<option value="1">Rating: 1</option>' +
+                      '<option value="2">Rating: 2</option>' +
+                      '<option value="3">Rating: 3</option>' +
+                      '<option value="4">Rating: 4</option>' +
+                      '<option value="5">Rating: 5</option>' +
+                      '</select>' +
+                      '<textarea id="swal-input1" class="swal2-input" placeholder="Feedback" aria-label="Feedback"></textarea>' +
+                      '</div>',
+                  showCancelButton: true,
+                  focusConfirm: false,
+                  preConfirm: () => {
+                      const feedbackType = document.getElementById('feedbackType').value;
+                      const feedback = document.getElementById('swal-input1').value;
+                      return { feedbackType: feedbackType, feedback: feedback };
+                  }
+              });
+              
+              if (formData && formData.feedback) {
+                const rating = parseInt(formData.feedbackType)
+                const feedbackData = {
+                  reviewerName: user.displayName,
+                  reviewerEmail: user.email,
+                  photo: user.photoURL,
+                  rating: rating,
+                  feedback: formData.feedback,
+              }
+              // console.log(feedbackData)
+              secureAPI.post(`/feedback`, feedbackData)
+                  .then(res => {
+                      if (res.data.insertedId) {
+                          Swal.fire({
+                              title: "Feedback sent !",
+                              text: "Thank you for your feedback.",
+                              icon: "success",
+                              timer: 1500,
+                          });
+                      }
+                  })
+                  .catch((error) => {
+                      console.log(error);
+                      Swal.fire({
+                          title: `failed!`,
+                          text: `Please try again`,
+                          icon: "error",
+                      });
+                  });
+              }
+              }
             });
           }
         }

@@ -57,8 +57,12 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 - **Host:** Vercel.
 
 ## Admin Credentials
-- **Username:** nextrade@gamil.com
-- **Password:** Nexttrade123!@#
+- **Username:** admin@nextrade.com
+- **Password:** Nextrade123!@#
+
+## User Credentials
+- **Username:** user@nextrade.com
+- **Password:** Nextrade123!@#
 
 ## Challenges
 - One of the most hardest challenge in this project was to implement subscription method.

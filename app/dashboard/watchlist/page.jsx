@@ -6,6 +6,7 @@ import WatchlistCurrencyTable from "@/components/traders_comp/watchlist/Watchlis
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useSecureFetch from "@/hooks/useSecureFetch";
+import useWatchlistData from "@/hooks/useWatchlistData";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Tab } from "@mui/material";
 import axios from "axios";
@@ -18,14 +19,7 @@ const Watchlist = () => {
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [value, setValue] = React.useState("1");
   const secureAPI = useSecureAPI();
-
-  const {
-    data: watchlistData = [],
-    refetch,
-    isPending,
-    isLoading,
-  } = useSecureFetch(`/watchlist?email=${user.email}`, ["watchlist"]);
-
+  const {watchlistData} = useWatchlistData()
   // console.log(watchlistData)
 
   useEffect(() => {
