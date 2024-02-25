@@ -1,3 +1,4 @@
+"use client"
 import { Stack } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
