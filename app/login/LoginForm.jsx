@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -51,8 +52,6 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     logIn(data.email, data.password)
       .then((res) => {
-        const loggedUser = res.user;
-
         Swal.fire({
           title: "Log In successful!",
           text: `Welcome back to NexTrade`,
