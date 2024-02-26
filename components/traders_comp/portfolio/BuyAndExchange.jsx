@@ -128,7 +128,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
               textTransform: "none",
             }}
           />
-          {/* <Tab
+          <Tab
             label="Buy / Sell Coin"
             value="2"
             sx={{
@@ -137,7 +137,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
               color: "white",
               textTransform: "none",
             }}
-          /> */}
+          />
         </TabList>
       </Box>
       {/* Exchange Coin */}
@@ -208,14 +208,14 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
         </div>
       </TabPanel>
       {/* Buy / Sell Coin */}
-      {/* <TabPanel value="2">
+      <TabPanel value="2">
         <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
           <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
           <h3 className="text-primary text-lg font-semibold text-center">
             empty !!
           </h3>
         </div>
-      </TabPanel> */}
+      </TabPanel>
     </TabContext>
   );
 };
