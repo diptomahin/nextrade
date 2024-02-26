@@ -261,7 +261,7 @@ const SideWatchlist = () => {
                 </Table>
               </TableContainer>
             ) : (
-              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8">
+              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8 xl:py-20">
                 <Image
                   src={emptyIcon}
                   width={70}
