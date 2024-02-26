@@ -70,7 +70,7 @@ const RegisterForm = () => {
         const userInfo = {
           userID: loggedUser.uid,
           email: loggedUser.email,
-          name: loggedUser.displayName,
+          name: data.name,
           createdAt: date,
           balance: 0,
           deposit: 0,

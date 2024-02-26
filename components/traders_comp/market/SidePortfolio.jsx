@@ -133,7 +133,7 @@ const SidePortfolio = () => {
                     <DarkButton>See all</DarkButton>
                 </Link>
             </div>
-            {cryptoData ? (
+            {cryptoData.length > 0 ? (
                 <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
                     <TableContainer
                         sx={{
@@ -243,12 +243,12 @@ const SidePortfolio = () => {
                     </TableContainer>
                 </div>
             ) : (
-                <div className=" w-full  flex flex-col items-center justify-center gap-2 py-20">
+                <div className=" w-full flex flex-col items-center justify-center gap-2 py-20 border-2 border-primary rounded">
                     <Image
                         src={emptyIcon}
                         width={70}
                         height={70}
-                        alt="BTC/USDT Logo"
+                        alt=" Logo"
                     />
                     <h3 className="text-primary text-lg font-semibold text-center">
                         empty !!
