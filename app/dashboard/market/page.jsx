@@ -26,7 +26,7 @@ const MarketPage = () => {
 
       <div className="flex flex-col xl:flex-row gap-5">
 
-        <div className="w-[73%]">
+        <div className="w-full xl:w-[68%] 2xl:w-[73%]">
           <h2 className=" text-2xl font-semibold mb-3">Market Coins</h2>
           <p className="">
             Choose from a wide range of trade options with hundreds of different
@@ -37,7 +37,7 @@ const MarketPage = () => {
           </div>
           <MarketAllProducts />
         </div>
-        <div className="flex-1 flex flex-col gap-6 w-[27%]">
+        <div className="flex-1 flex xl:flex-col gap-6 w-full xl:w-[32%] 2xl:w-[27%]">
           <SidePortfolio />
           <SideWatchlist />
         </div>
