@@ -125,14 +125,14 @@ const MarketHeadLine = () => {
 
   }, [flatCurrency]);
   return (
-    <div className='mt-4'>
+    <div className=' w-full '>
       <Stack gap={2}>
         <Marquee direction='right'>
           {assets.map((asset) => (
-            <Stack className="bg-darkBG rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
+            <Stack className="bg-darkBG rounded-lg h-20" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
               <Stack>
                 <Stack flexDirection="row" gap={1} alignItems="center">
-                  <Image width={45} height={45} src={asset.icon} alt='coin lgog'></Image>
+                  <Image width={35} height={35} src={asset.icon} alt='coin lgog'></Image>
                   <p className='font-semibold'>{asset.name}</p>
                 </Stack>
                 <Stack flexDirection="row" gap={2}>
@@ -149,19 +149,19 @@ const MarketHeadLine = () => {
         </Marquee>
         <Marquee direction='left'>
           {flatCurrency.map((asset) => (
-            <Stack className="bg-darkBG rounded-lg h-24" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
+            <Stack className="bg-darkBG rounded-lg h-20" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
               <Stack>
                 <Stack flexDirection="row" gap={1} alignItems="center">
-                  <Image width={45} height={45} src={asset.icon} alt='coin logo'></Image>
+                  <Image width={35} height={35} src={asset.icon} alt='coin logo'></Image>
                   <Stack>
-                    <p className='font-semibold'>{asset.name}</p>
-                    <span className="bg-sky-100/5 px-1 py-[2px] rounded text-primary text-xs w-max">
+                    <p className='font-semibold text-md'>{asset.name}</p>
+                    <span className="bg-sky-100/5 px-1 py-[2px] rounded text-primary text-[10px] w-max">
                       {asset.key}
                     </span>
                   </Stack>
                 </Stack>
                 <Stack flexDirection="row" gap={2}>
-                  <p>Current value: ${asset.price}</p>
+                  <p className='text-md'>Current value: ${asset.price}</p>
                 </Stack>
               </Stack>
               <Stack>

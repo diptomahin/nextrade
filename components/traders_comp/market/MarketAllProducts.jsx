@@ -19,6 +19,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import usePublicAPI from "@/hooks/usePublicAPI";
 import useSecureFetch from "@/hooks/useSecureFetch";
+import axios from "axios";
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -227,9 +228,7 @@ const MarketAllProducts = () => {
     };
 
     return (
-        <div className="w-full p-3 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  rounded xl:w-3/4">
-
-
+        <div className="w-full p-3 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  rounded-lg">
             <TabContext value={value}>
 
                 <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">

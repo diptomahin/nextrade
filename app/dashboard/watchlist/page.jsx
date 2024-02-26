@@ -19,7 +19,7 @@ const Watchlist = () => {
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [value, setValue] = React.useState("1");
   const secureAPI = useSecureAPI();
-  const {watchlistData} = useWatchlistData()
+  const {watchlistData, refetchWatchlistData} = useWatchlistData()
   // console.log(watchlistData)
 
   useEffect(() => {
@@ -149,7 +149,7 @@ const Watchlist = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await secureAPI.delete(`/watchlist/${id}`);
-        refetch();
+        refetchWatchlistData();
         if (res.data.deletedCount > 0) {
           Swal.fire({
             title: "Deleted!",
