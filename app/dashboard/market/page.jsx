@@ -37,7 +37,7 @@ const MarketPage = () => {
           </div>
           <MarketAllProducts />
         </div>
-        <div className="flex-1 flex xl:flex-col gap-6 w-full xl:w-[32%] 2xl:w-[27%]">
+        <div className="flex-1 flex flex-col lg:flex-row  xl:flex-col gap-6 w-full xl:w-[32%] 2xl:w-[27%]">
           <SidePortfolio />
           <SideWatchlist />
         </div>
