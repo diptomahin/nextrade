@@ -1,7 +1,5 @@
 "use client";
 
-import useAuth from "@/hooks/useAuth";
-import useSecureFetch from "@/hooks/useSecureFetch";
 import {
   Paper,
   Table,
@@ -10,7 +8,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  useTheme,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,12 +19,13 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import useWatchlistData from "@/hooks/useWatchlistData";
+import axios from "axios";
+import DarkButton from "@/components/library/buttons/DarkButton";
 
 const SideWatchlist = () => {
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
-  const { user, loading } = useAuth();
-  const {watchlistData} = useWatchlistData();
+  const { watchlistData } = useWatchlistData();
 
 
 
@@ -109,28 +107,28 @@ const SideWatchlist = () => {
     email
   ) => ({ _id, name, key, type, price, icon, email });
 
+
+  // get real time currency price and create new array of object with real time currency price
   useEffect(() => {
     const fetchCurrencyRates = async () => {
       try {
         if (flatCurrency.length > 0) {
-          const response = await axios.get(
-            "https://api.exchangerate-api.com/v4/latest/USD"
-          );
-          // Access the data property of the response to get the currency rates
-          const data = response.data.rates;
-          const updatedAssets = flatCurrency.map((cur) => {
+          const updatedAssets = await Promise.all(flatCurrency.map(async (cur) => {
             const currencyKey = cur.key;
-            // console.log(currencyKey)
+            const response = await axios.get(
+              `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+            );
+
             return createFlatCurrencyData(
               cur._id,
               cur.name,
               cur.key,
               cur.type,
-              data[currencyKey],
+              response.data.rates.USD,
               cur.icon,
               cur.email
             );
-          });
+          }));
           setFlatCurrency(updatedAssets);
         }
       } catch (error) {
@@ -139,6 +137,7 @@ const SideWatchlist = () => {
     };
 
     fetchCurrencyRates();
+
   }, [flatCurrency]);
 
 
@@ -147,8 +146,13 @@ const SideWatchlist = () => {
     setValue(newValue);
   };
   return (
-    <div className="flex-1 max-h-min w-full bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
-      <h1>Watchlist</h1>
+    <div className="max-h-min w-full bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
+      <div className="flex items-center justify-between">
+        <h3>Watchlist</h3>
+        <Link href="/dashboard/watchlist">
+          <DarkButton>See all</DarkButton>
+        </Link>
+      </div>
       <Box sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={value}>
           <Box
@@ -166,68 +170,95 @@ const SideWatchlist = () => {
           <TabPanel sx={{ padding: "0px" }} value="1">
             {assets.length > 0 ? (
               <TableContainer
-                component={Paper}
                 sx={{
-                  border: "1px solid rgba(0, 0, 0, 0.1)",
+                  boxShadow: "none",
+                  padding: "0px"
                 }}
-                className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree"
+                className="bg-gradient-to-bl from-darkOne to-darkTwo border-none "
+                component={Paper}
               >
-                <Link href="/dashboard/watchlist">
-                  <Table aria-label="simple table">
-                    <TableHead className="mx-auto">
-                      <TableRow className="text-center">
-                        <TableCell sx={{ fontWeight: 700, color: "white" }}>
-                          Coin Name
+
+                <Table aria-label="simple table">
+                  <TableHead className="mx-auto">
+                    <TableRow className="text-center">
+                      <TableCell
+                        sx={{
+                          fontSize: "14px",
+                          paddingX: "4px",
+                          paddingY: "10px",
+                          fontWeight: 500,
+                          color: "white",
+                          borderBottom: "2px solid #2c3750",
+                          borderTop: "2px solid #2c3750",
+                        }}>
+                        Coin Name
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          fontSize: "14px",
+                          paddingX: "4px",
+                          paddingY: "10px",
+                          fontWeight: 500,
+                          color: "white",
+                          borderBottom: "2px solid #2c3750",
+                          borderTop: "2px solid #2c3750",
+                        }}>
+                        Price
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          fontSize: "14px",
+                          paddingX: "4px",
+                          paddingY: "10px",
+                          fontWeight: 500,
+                          color: "white",
+                          borderBottom: "2px solid #2c3750",
+                          borderTop: "2px solid #2c3750",
+                        }}>
+                        24%
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {assets.map((asset, idx) => (
+                      <TableRow
+                        key={asset._id}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell sx={{ borderBottom: "none", paddingX: "4px", }}>
+                          <div className="flex items-center gap-2">
+                            <Image
+                              width={30}
+                              height={30}
+                              src={asset.icon}
+                              alt="coin-icon"
+                            />
+                            <p className={`text-xs text-white`}>
+                              {asset.name}
+                            </p>
+                          </div>
+                        </TableCell >
+                        <TableCell sx={{ borderBottom: "none", paddingX: "4px", }}>
+                          <p className={` text-xs text-white`}>
+                            ${asset.price}
+                          </p>
                         </TableCell>
-                        <TableCell sx={{ fontWeight: 700, color: "white" }}>
-                          Price
-                        </TableCell>
-                        <TableCell sx={{ fontWeight: 700, color: "white" }}>
-                          24%
+                        <TableCell sx={{ borderBottom: "none", paddingX: "4px", }}>
+                          <p
+                            className={`text-xs ${asset.changePrice < 0
+                              ? "text-red-600"
+                              : "text-green-600"
+                              }`}
+                          >
+                            {asset.changePrice}%
+                          </p>
                         </TableCell>
                       </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {assets.map((asset, idx) => (
-                        <TableRow
-                          key={asset._id}
-                          sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
-                          }}
-                        >
-                          <TableCell>
-                            <div className="flex items-center gap-1">
-                              <Image
-                                width={30}
-                                height={30}
-                                src={asset.icon}
-                                alt="coin-icon"
-                              />
-                              <p className={`text-xs text-white`}>
-                                {asset.name}
-                              </p>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            <p className={` text-xs text-white`}>
-                              ${asset.price}
-                            </p>
-                          </TableCell>
-                          <TableCell>
-                            <p
-                              className={`text-xs ${asset.changePrice < 0
-                                ? "text-red-600"
-                                : "text-green-600"
-                                }`}
-                            >
-                              {asset.changePrice}%
-                            </p>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </Link>
+                    ))}
+                  </TableBody>
+                </Table>
               </TableContainer>
             ) : (
               <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8">
@@ -260,7 +291,7 @@ const SideWatchlist = () => {
                           Coin Name
                         </TableCell>
                         <TableCell sx={{ fontWeight: 700, color: "white" }}>
-                          Price/USD
+                          Current value
                         </TableCell>
                       </TableRow>
                     </TableHead>
@@ -287,10 +318,7 @@ const SideWatchlist = () => {
                           </TableCell>
                           <TableCell>
                             <p className={` text-xs text-white`}>
-                              {asset.price}{" "}
-                              <span className="text-[8px] text-white">
-                                {asset.key}
-                              </span>
+                              ${asset.price}
                             </p>
                           </TableCell>
                         </TableRow>
@@ -300,7 +328,7 @@ const SideWatchlist = () => {
                 </Link>
               </TableContainer>
             ) : (
-              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8">
+              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8 xl:py-20">
                 <Image
                   src={emptyIcon}
                   width={70}

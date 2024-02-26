@@ -21,7 +21,7 @@ const CryptoMarketModuleView = ({ assets, loading, pending }) => {
         )
     }
     return (
-        <div className='grid lg:grid-cols-2 2xl:grid-cols-3 gap-6'>
+        <div className='grid lg:grid-cols-2 2xl:grid-cols-3 gap-4'>
             {
                 assets.map((asset, idx) => (
                     <Link key={idx} href={`/dashboard/market/${asset.key}`}>
