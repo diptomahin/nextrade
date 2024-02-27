@@ -72,7 +72,10 @@ export default function RootNav() {
               </div>
             </Magnetic>
             {/* <Language className="md:text-xl text-white" /> */}
-            <Translate />
+            <div>
+      <Translate />
+      {/* Other navbar components */}
+    </div>
           </div>
           <Magnetic>
             <Link href="/" className="hidden xl:block">
