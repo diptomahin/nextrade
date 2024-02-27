@@ -12,6 +12,8 @@ import styled from "@emotion/styled";
 import useNotificationData from "@/hooks/useNotificationData";
 import getDate from "../../utils/date";
 import DarkButton from "@/components/library/buttons/DarkButton";
+import SideHistory from "./SideHistory";
+import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -54,6 +56,7 @@ const CryptoDetails = ({
   const secureAPI = useSecureAPI();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
+  const { refetchInvestmentHistory } = useInvestmentHistory()
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -82,9 +85,8 @@ const CryptoDetails = ({
     };
 
     const notificationInfo = {
-      title: `Purchased Successfully ${coinName}`,
-      description: `You Investment ${investment + "$"} in ${parseInt(portion) + "%"
-        }`,
+      title: `Investment in ${coinName} was successful`,
+      description: `You Invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyerUID: user.uid,
@@ -99,9 +101,13 @@ const CryptoDetails = ({
       assetKey: coinKey,
       assetImg: coinImage,
       assetType: "crypto coin",
+      assetBuyingPrice: ast.c,
+      currentPrice: 0,
+      assetPortion: parseInt(portion) + "%",
       totalInvestment: investment,
       assetBuyerEmail: user.email,
       date: date,
+      detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`
     }
 
     if (usersBalance < parseFloat(ast.c)) {
@@ -133,7 +139,6 @@ const CryptoDetails = ({
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
-                    refetch();
                     refetchNotificationsData();
                     Swal.fire({
                       title: `Coin Purchase successful!`,
@@ -157,11 +162,11 @@ const CryptoDetails = ({
             });
           });
 
-        // post history data in data base
-        // secureAPI.post(`/investmentHistory`, historyInfo)
-        //   .then(res => {
-
-        //   })
+        // post investment history data in data base
+        secureAPI.post(`/investmentHistory`, historyInfo)
+          .then(res => {
+            refetchInvestmentHistory()
+          })
 
       }
     });
@@ -325,6 +330,8 @@ const CryptoDetails = ({
             <Skeleton sx={{ height: 350, borderRadius: "20px" }} variant="rectangular" />
           </div>
         )}
+
+        <SideHistory />
       </div>
     </div>
   );

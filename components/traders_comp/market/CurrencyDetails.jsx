@@ -10,6 +10,8 @@ import styled from "@emotion/styled";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import getDate from "@/components/utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
+import SideHistory from "./SideHistory";
+import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -52,6 +54,7 @@ const CurrencyDetails = ({
   const secureAPI = useSecureAPI();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
+  const { refetchInvestmentHistory } = useInvestmentHistory()
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -79,9 +82,8 @@ const CurrencyDetails = ({
     };
 
     const notificationInfo = {
-      title: `Purchased Successfully ${currencyName}`,
-      description: `You Investment ${investment + "$"} in ${parseInt(portion) + "%"
-        }`,
+      title: `Investment in ${currencyName} was Successful`,
+      description: `You have Invested ${investment + "$"} in ${parseInt(portion)}% of ${currencyName}`,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyerUID: user.uid,
@@ -90,6 +92,20 @@ const CurrencyDetails = ({
       read: false,
       location: "/dashboard/portfolio",
     };
+
+    const historyInfo = {
+      assetName: currencyName,
+      assetKey: coinKey,
+      assetImg: coinImage,
+      assetType: "crypto coin",
+      assetBuyingPrice: ast.c,
+      currentPrice: 0,
+      assetPortion: parseInt(portion) + "%",
+      totalInvestment: investment,
+      assetBuyerEmail: user.email,
+      date: date,
+      detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${currencyName}`
+    }
 
     if (usersBalance < parseFloat(ast)) {
       Swal.fire({
@@ -145,6 +161,12 @@ const CurrencyDetails = ({
               icon: "error",
             });
           });
+
+        // post investment history data in data base
+        secureAPI.post(`/investmentHistory`, historyInfo)
+          .then(res => {
+            refetchInvestmentHistory()
+          })
       }
     });
   };
@@ -306,8 +328,9 @@ const CurrencyDetails = ({
               </div>
             )
         }
-      </div>
 
+        <SideHistory />
+      </div>
     </div>
   );
 };
