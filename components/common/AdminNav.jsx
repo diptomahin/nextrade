@@ -6,10 +6,10 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
-import TradersNotification from "./nav_comp/TradersNotification/TradersNotification";
 import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
 import { usePathname } from "next/navigation";
+import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -152,7 +152,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
         {/* language */}
         <Language />
         {/* notification */}
-        <TradersNotification />
+        <AdminNotification/>
 
         {/* user menubar */}
         <AdminMenu />
