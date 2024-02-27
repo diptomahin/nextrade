@@ -125,7 +125,7 @@ const ManageUserBody = () => {
                 // console.log(resf.data)
                 if (resf.data.success) {
                     // console.log(resf.data.message);
-                    const res = await secureAPI.delete(`/all-users/${id}`);
+                    const res = await secureAPI.delete(`/all-users/${id}/${userEmail}`);
                     refetch();
                     if (res.data.deletedCount > 0) {
                         Swal.fire({
