@@ -75,8 +75,8 @@ const Modal = () => {
                   <br />
                   <span className="font-normal text-lg text-gray-700">
                     Exclusive
-                    <span className="text-black font-extrabold">Black</span>
-                    <span className="text-red-600 font-extrabold">Friday</span>
+                    <span className="text-black font-extrabold"> Black</span>
+                    <span className="text-red-600 font-extrabold"> Friday </span>
                     Register Deals!
                   </span>
                 </Dialog.Title>
