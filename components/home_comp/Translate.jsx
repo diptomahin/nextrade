@@ -14,7 +14,7 @@ const Translate = () => {
         );
       };
       useEffect(() => {
-        var addScript = document.createElement("script");
+        const addScript = document.createElement("script");
         addScript.setAttribute(
           "src",
           "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
@@ -24,12 +24,14 @@ const Translate = () => {
       }, []);
 
     return (
-        <div id="google_translate_element">
-            
+
+        <div>
+          <h1 id="google_translate_element">
+
+          </h1>
         </div>
+
     );
 };
 
 export default Translate;
-
-
