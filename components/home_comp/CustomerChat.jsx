@@ -7,7 +7,6 @@ const CustomerChat = () => {
       <FacebookProvider appId="429056069676911">
         <CustomChat
           pageId="108051777809659"
-          minimized={false}
           loggedInGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
           loggedOutGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
         />
