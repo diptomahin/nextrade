@@ -23,35 +23,34 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
   - Messaging System - Real-time messaging using WebSocket technology for immediate communication between buyers and sellers.
   - Payment Integration - Integration with Stripe for secure and efficient payment processing.
   - Admin Dashboard - Admins have a dashboard for user management, transaction monitoring, and policy enforcement.e
-  - Advertising Banner in home page and many more.
+  - Advertising Banner on the home page and many more.
 
 
 - **Trader Role(Dashboard)**
-  - Update profile information such as name, photo.
+  - Update profile information such as name, and photo.
   - Treaders can buy and sell assets and manage their assets.
 
 - **Admin Role(Dashboard)**
    - Platform administrators are responsible for managing users, and transactions, and enforcing policies.
    - Add another admin or moderator.
-   - See different kind of statics, like trader count chart, total transaction amount and user count chart.
+   - See different kinds of statics, like trader count chart, total transaction amount, and user count chart.
 
 - **Authentication:**
   - Gmail and Email/Password authentication system.
   - Implement JWT(Json Web Token) with private route.
   - Utilizes Firebase Authentication for secure user registration and login functionalities.
 
-
 - **Payment System:**
   - Seamless completion of purchases with the integrated Stripe payment system.
   - Confirm personal information and address details during the checkout process.
 
 - **Responsive Design:**
-  - Enjoy a seamless experience across various devices.
+  - Enjoy a seamless browsing experience across any device in the world.
 
 ## Technologies Used
 
  - **Frontend:** JavaScript, Next.js, React.js, Tailwind CSS and Material UI.
- - **Backend:** Node.js, Express.js.
+ - **Backend:** Node.js, Express.js, Socket.IO.
  - **Database:** MongoDB.
  - **Authentication:** Firebase Authentication with JWT.
 - **Host:** Vercel.
@@ -65,7 +64,7 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 - **Password:** Nextrade123!@#
 
 ## Challenges
-- One of the most hardest challenge in this project was to implement subscription method.
+- Implementing the Google translation feature and integrating Live Cryptocurrency APIs were among the toughest hurdles in this project. Ensuring our trading platform caters to international users necessitated the implementation of the Google Translate Widget, offering support for over 136 languages. This task posed a notable challenge due to the need for our website to be accessible in multiple languages worldwide.
 
 ## How to Run Locally
 1. Clone the repository.
@@ -75,10 +74,10 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 ## Environment Variables
 1. **Firebase**
-- NEXT_PUBLIC_VITE_apiKey=*************
-- NEXT_PUBLIC_VITE_authDomain=********
+- NEXT_PUBLIC_VITE_apiKey=**************
+- NEXT_PUBLIC_VITE_authDomain=**********
 - NEXT_PUBLIC_VITE_projectId=***********
-- NEXT_PUBLIC_VITE_storageBucket=******
-- NEXT_PUBLIC_VITE_messagingSenderId=*
+- NEXT_PUBLIC_VITE_storageBucket=*******
+- NEXT_PUBLIC_VITE_messagingSenderId=***
 - NEXT_PUBLIC_VITE_appId=***************
-- NEXT_STRIPE_PUBLIC_KEY=**************
+- NEXT_STRIPE_PUBLIC_KEY=***************
