@@ -8,14 +8,15 @@ import ImportExportIcon from '@mui/icons-material/ImportExport';
 
 const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
   return (
-    <div className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg p-4">
+    <div className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg p-4 w-full">
       <h1 className="text-xl font-semibold">Market Stats</h1>
-      <div className="  flex flex-col md:flex-row xl:items-center xl:justify-between gap-6 xl:gap-0 ">
+      {/* <div className="  flex flex-col md:flex-row xl:items-center xl:justify-between gap-6 xl:gap-0 "> */}
+      <div className="  flex flex-col gap-6 xl:gap-0 ">
         <div className="flex-1 flex items-center gap-2 md:gap-5">
           {coinImage && (
             <Image src={coinImage} width={50} height={50} alt="BTC/USDT Logo" />
           )}
-          <div className="flex gap-5 items-center">
+          <div className="flex gap-5 my-5 items-center">
             <h3 className="text-lg font-semibold">{coinName}  <span className="bg-sky-100/15 px-1 py-[2px] rounded text-primary text-xs">{coinKey.slice(0, -4)}</span></h3>
             <div className="rounded p-1 bg-sky-100/15">
               <StarIcon className="text-primary " />

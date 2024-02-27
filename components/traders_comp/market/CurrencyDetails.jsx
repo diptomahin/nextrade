@@ -9,6 +9,7 @@ import Image from "next/image";
 import styled from "@emotion/styled";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import getDate from "@/components/utils/date";
+import useNotificationData from "@/hooks/useNotificationData";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -50,6 +51,7 @@ const CurrencyDetails = ({
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
   const date = getDate();
+  const { refetchNotificationsData } = useNotificationData();
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -76,6 +78,19 @@ const CurrencyDetails = ({
       buyingDate: date,
     };
 
+    const notificationInfo = {
+      title: `Purchased Successfully ${currencyName}`,
+      description: `You Investment ${investment + "$"} in ${parseInt(portion) + "%"
+        }`,
+      assetKey: coinKey,
+      assetImg: coinImage,
+      assetBuyerUID: user.uid,
+      email: user.email,
+      postedDate: date,
+      read: false,
+      location: "/dashboard/portfolio",
+    };
+
     if (usersBalance < parseFloat(ast)) {
       Swal.fire({
         title: `You Don't have enough balance!`,
@@ -97,17 +112,29 @@ const CurrencyDetails = ({
       confirmButtonText: "Yes!",
     }).then(async (result) => {
       if (result.isConfirmed) {
+        // post purchasedAssets data in database
         secureAPI
           .post(`/purchasedAssets/${remainingBalance}`, assetInfo)
           .then((res) => {
             if (res.data.insertedId) {
-              Swal.fire({
-                title: `Coin Purchase successful!`,
-                text: `Best of luck`,
-                icon: "success",
-                timer: 1500,
-              });
-              refetch();
+              // post to  notification data in database
+              secureAPI
+                .post("/notifications", notificationInfo)
+                .then((res) => {
+                  if (res.data.insertedId) {
+                    refetch();
+                    refetchNotificationsData();
+                    Swal.fire({
+                      title: `Coin Purchase successful!`,
+                      text: `Best of luck`,
+                      icon: "success",
+                      timer: 1500,
+                    });
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error sending notification:", error);
+                });
             }
           })
           .catch((error) => {
@@ -155,50 +182,57 @@ const CurrencyDetails = ({
       });
   };
   return (
-    <div>
-      {currencyRate ? (
-        <TopBannerNormalCurrency
-          currencyRate={currencyRate}
-          coinKey={coinKey}
-          currencyName={currencyName}
-          coinImage={coinImage}
-        ></TopBannerNormalCurrency>
-      ) : (
-        <Skeleton sx={{ height: 190, borderRadius: "20px" }} variant="rectangular" />
-      )}
+    <div className="flex flex-col xl:flex-row gap-5">
+      <div className="w-full xl:w-3/4 flex flex-col gap-6">
+        {currencyRate ? (
+          <TopBannerNormalCurrency
+            currencyRate={currencyRate}
+            coinKey={coinKey}
+            currencyName={currencyName}
+            coinImage={coinImage}
+          ></TopBannerNormalCurrency>
+        ) : (
+          <Skeleton sx={{ height: 190, borderRadius: "20px" }} variant="rectangular" />
+        )}
 
-
-      <div className="flex flex-col gap-6 2xl:flex-row 2xl:justify-between">
-        <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
-          <AdvancedRealTimeChart
-            width="100%"
-            height="100%"
-            autosize
-            symbol={`${coinKey + "USD"}`}
-            interval={20}
-            range="1M"
-            timezone="UTC"
-            theme="dark"
-            style={2}
-            locale="en"
-            toolbar_bg="#f1f3f6"
-            enable_publishing={false}
-            hide_top_toolbar={false}
-            hide_legend={true}
-            withdateranges={false}
-            hide_side_toolbar={true}
-            details={false}
-            hotlist={false}
-            calendar={false}
-            studies={[]}
-            disabled_features={[]}
-            enabled_features={[]}
-            container_id="advanced-chart-widget-container"
-          />
+        <div className="w-full p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+          <h1 className="font-semibold pb-6">{currencyName} to USD Chart</h1>
+          <div className=" h-64 lg:h-96 2xl:h-[70vh]  ">
+            <AdvancedRealTimeChart
+              width="100%"
+              height="100%"
+              autosize
+              symbol={`${coinKey + "USD"}`}
+              interval={20}
+              range="1M"
+              timezone="UTC"
+              theme="dark"
+              style={2}
+              locale="en"
+              toolbar_bg="#f1f3f6"
+              enable_publishing={false}
+              hide_top_toolbar={false}
+              hide_legend={true}
+              withdateranges={false}
+              hide_side_toolbar={true}
+              details={false}
+              hotlist={false}
+              calendar={false}
+              studies={[]}
+              disabled_features={[]}
+              enabled_features={[]}
+              container_id="advanced-chart-widget-container"
+            />
+          </div>
         </div>
+      </div>
+
+
+
+      <div className="flex-1 flex flex-col gap-5 w-full">
         {
           currencyRate ? (
-            <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+            <div className=" rounded-lg mt-6 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
               <div className="flex justify-between">
                 <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
                 <button
@@ -210,14 +244,14 @@ const CurrencyDetails = ({
               </div>
               <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
               <div className="flex justify-between">
-                <div>
-                  <p className="text-xs text-primary">Your Balance:</p>
+                <div className="space-y-4">
+                  <p className="text-primary text-xs 2xl:text-base">Your Balance:</p>
                   <p>
                     <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs text-primary">Current value:</p>
+                <div className="space-y-4">
+                  <p className="text-primary text-xs 2xl:text-base">Current value:</p>
                   <div className="flex gap-1 items-center">
                     {coinImage && (
                       <Image src={coinImage} width={30} height={30} alt="Logo" />
@@ -267,12 +301,13 @@ const CurrencyDetails = ({
             </div>
           ) :
             (
-              <div className="flex-1 rounded-lg mt-10 xl:mt-0">
+              <div className="flex-1 rounded-lg mt-6 xl:mt-0">
                 <Skeleton sx={{ height: 350, borderRadius: "20px" }} variant="rectangular" />
               </div>
             )
         }
       </div>
+
     </div>
   );
 };
