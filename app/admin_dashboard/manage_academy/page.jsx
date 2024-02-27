@@ -125,31 +125,39 @@ const AddArticles = () => {
               name="title"
               required
               aria-describedby="helper-text-explanation"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded mt-5"
+              className="bg-darkTwo border border-gray-300 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded mt-5"
               placeholder="Add a title"
             />
-            <div className="w-full mt-4 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <div className="w-full mt-4 mb-4 border border-gray-200 rounded-lg bg-darkTwo text-white dark:bg-gray-700 dark:border-gray-600">
               <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
                 <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
                   <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4">
-                    <button
-                      type="button"
-                      className="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 12 20"
-                      >
-                        <path
-                          stroke="currentColor"
-                          d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
-                        />
-                      </svg>
-                      <span className="sr-only">Attach file</span>
-                    </button>
+                  {/* <label className="relative flex items-center justify-center w-full h-32 border border-gray-200 dark:border-gray-600 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
+    <input
+      type="file"
+      required
+      name="photo"
+      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+    />
+    <button
+      type="button"
+      className="p-2 text-gray-500 rounded cursor-pointer"
+    >
+      <svg
+        className="w-4 h-4"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 12 20"
+      >
+        <path
+          stroke="currentColor"
+          d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
+        />
+      </svg>
+      <span className="sr-only">Attach file</span>
+    </button>
+  </label> */}
                     
                     <button
                       type="button"
@@ -234,15 +242,42 @@ const AddArticles = () => {
                       <span className="sr-only">Timeline</span>
                     </button>
 
+                    <label className="relative flex items-center justify-center w-full h-32 border border-gray-200 dark:border-gray-600 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
+    <input
+      type="file"
+      required
+      name="photo"
+      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+    />
+    <button
+      type="button"
+      className="p-2 text-gray-500 rounded cursor-pointer"
+    >
+      <svg
+        className="w-4 h-4"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 12 20"
+      >
+        <path
+          stroke="currentColor"
+          d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
+        />
+      </svg>
+      <span className="sr-only">Attach file</span>
+    </button>
+  </label>
+
                     {/* upload image */}
-                    <div>
+                    {/* <div>
                       <input
                         type="file"
                         required
                         name="photo"
-                        className="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                        className="p-2 bg-darkTwo text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <button
