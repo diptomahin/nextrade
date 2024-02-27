@@ -1,5 +1,6 @@
 "use client"
 import { useEffect } from "react";
+import "./Translate.css"
 
 const Translate = () => {
   const googleTranslateElementInit = () => {
