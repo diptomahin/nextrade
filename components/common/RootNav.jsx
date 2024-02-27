@@ -14,7 +14,7 @@ import RootNavDrawer from "./nav_comp/RootNavDrawer";
 import { RiMenu5Fill } from "react-icons/ri";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
 import CustomerChat from "../home_comp/CustomerChat";
-import Translate from "../home_comp/Translate";
+// import Translate from "../home_comp/Translate";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
@@ -73,7 +73,7 @@ export default function RootNav() {
             </Magnetic>
             {/* <Language className="md:text-xl text-white" /> */}
             <div>
-      <Translate />
+    {/*   <Translate /> */}
       {/* Other navbar components */}
     </div>
           </div>
