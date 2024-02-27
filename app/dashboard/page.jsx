@@ -6,6 +6,12 @@ import TopAssets from "@/components/traders_comp/dashboard/TopAssets";
 import Trending from "@/components/traders_comp/dashboard/Trending";
 import Watchlist from "@/components/traders_comp/dashboard/Watchlist";
 
+// add title in metadata
+export const metadata = {
+  title: "Dashboard",
+  description: "About page from Nextrade",
+};
+
 const page = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-6 gap-5">

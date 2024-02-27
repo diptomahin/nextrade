@@ -1,7 +1,6 @@
 import { useState } from "react";
 import BuyLimit from "./BuyLimit";
 import BuyMarket from "./BuyMarket";
-import { MdAccountBalance } from "react-icons/md";
 
 const QuickBuy = () => {
   const [isLimitOpen, setIsLimitOpen] = useState(true);
