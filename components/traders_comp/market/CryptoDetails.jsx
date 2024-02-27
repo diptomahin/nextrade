@@ -94,6 +94,16 @@ const CryptoDetails = ({
       location: "/dashboard/portfolio",
     };
 
+    const historyInfo = {
+      assetName: coinName,
+      assetKey: coinKey,
+      assetImg: coinImage,
+      assetType: "crypto coin",
+      totalInvestment: investment,
+      assetBuyerEmail: user.email,
+      date: date,
+    }
+
     if (usersBalance < parseFloat(ast.c)) {
       Swal.fire({
         title: `You Don't have enough balance!`,
@@ -146,6 +156,13 @@ const CryptoDetails = ({
               icon: "error",
             });
           });
+
+        // post history data in data base
+        // secureAPI.post(`/investmentHistory`, historyInfo)
+        //   .then(res => {
+
+        //   })
+
       }
     });
   };
@@ -186,48 +203,55 @@ const CryptoDetails = ({
       });
   };
   return (
-    <div>
-      {tickerData ? (
-        <TopBanner
-          tickerData={tickerData}
-          coinImage={coinImage}
-          coinName={coinName}
-          coinKey={coinKey}
-        />
-      ) : (
-        <Skeleton sx={{ height: 190, borderRadius: "20px" }} variant="rectangular" />
-      )}
-
-      <div className="flex flex-col xl:flex-row gap-5 my-10">
-        <div className="w-full h-96 2xl:h-[70vh] xl:w-3/4 p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
-          <AdvancedRealTimeChart
-            width="100%"
-            height="100%"
-            autosize
-            symbol={`${coinKey}`}
-            interval={20}
-            range="1M"
-            timezone="UTC"
-            theme="dark"
-            style={2}
-            locale="en"
-            toolbar_bg="#f1f3f6"
-            enable_publishing={false}
-            hide_top_toolbar={false}
-            hide_legend={true}
-            withdateranges={false}
-            hide_side_toolbar={true}
-            details={false}
-            hotlist={false}
-            calendar={false}
-            studies={[]}
-            disabled_features={[]}
-            enabled_features={[]}
-            container_id="advanced-chart-widget-container"
-          />
-        </div>
+    <div className="flex flex-col xl:flex-row gap-5">
+      <div className="w-full xl:w-3/4 flex flex-col gap-6">
         {tickerData ? (
-          <div className="flex-1 rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+          <TopBanner
+            tickerData={tickerData}
+            coinImage={coinImage}
+            coinName={coinName}
+            coinKey={coinKey}
+          />
+        ) : (
+          <Skeleton sx={{ height: 190, borderRadius: "20px" }} variant="rectangular" />
+        )}
+
+        <div className="w-full p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+          <h1 className="font-semibold pb-6">{coinName} to USD Chart</h1>
+          <div className=" h-64 lg:h-96 2xl:h-[70vh]  ">
+            <AdvancedRealTimeChart
+              width="100%"
+              height="100%"
+              autosize
+              symbol={`${coinKey}`}
+              interval={20}
+              range="1M"
+              timezone="UTC"
+              theme="dark"
+              style={2}
+              locale="en"
+              toolbar_bg="#f1f3f6"
+              enable_publishing={false}
+              hide_top_toolbar={false}
+              hide_legend={true}
+              withdateranges={false}
+              hide_side_toolbar={true}
+              details={false}
+              hotlist={false}
+              calendar={false}
+              studies={[]}
+              disabled_features={[]}
+              enabled_features={[]}
+              container_id="advanced-chart-widget-container"
+            />
+          </div>
+        </div>
+      </div>
+
+
+      <div className="flex-1 flex flex-col gap-5 w-full">
+        {tickerData ? (
+          <div className=" rounded-lg mt-6 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">
                 Buy {coinKey.slice(0, -4)}
@@ -241,14 +265,14 @@ const CryptoDetails = ({
             </div>
             <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
             <div className="flex justify-between">
-              <div>
-                <p className="text-xs text-primary">Your Balance:</p>
+              <div className="space-y-4">
+                <p className=" text-primary text-xs 2xl:text-base">Your Balance:</p>
                 <p>
                   <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
                 </p>
               </div>
-              <div>
-                <p className="text-xs text-primary">Current price:</p>
+              <div className="space-y-4">
+                <p className=" text-primary text-xs 2xl:text-base">Current price:</p>
                 <div className="flex gap-1 items-center">
                   {coinImage && (
                     <Image src={coinImage} width={30} height={30} alt="Logo" />
@@ -282,7 +306,7 @@ const CryptoDetails = ({
               sx={{
                 backgroundColor: investment <= 0 ? "rgb(64 160 255 / 0.50)" : "rgb(64 160 255 / 0.05)",
                 cursor: investment <= 0 ? "not-allowed" : "pointer",
-                color:"#40a0ff",
+                color: "#40a0ff",
                 border: "1px solid #40a0ff",
                 borderRadius: "6px",
                 padding: "10px 15px",
@@ -297,7 +321,7 @@ const CryptoDetails = ({
             {/* <DashButton className="w-full" onClick={() => handleBuyCrypto(tickerData)}>Buy {coinKey.slice(0, -4)}</DashButton> */}
           </div>
         ) : (
-          <div className="flex-1 rounded-lg mt-10 xl:mt-0">
+          <div className="flex-1 rounded-lg mt-6 xl:mt-0">
             <Skeleton sx={{ height: 350, borderRadius: "20px" }} variant="rectangular" />
           </div>
         )}
