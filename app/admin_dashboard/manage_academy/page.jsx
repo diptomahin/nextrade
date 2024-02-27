@@ -6,6 +6,7 @@ import CreatableSelect from "react-select/creatable";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/usePublicAPI";
+import DarkButton from '@/components/library/buttons/DarkButton';
 
 const image_hosting_key = "327864e87c612021efbee488ba128ba9";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -115,7 +116,7 @@ const AddArticles = () => {
         {/* title, description, image */}
         <div className="col-span-3 mr-5">
           <div>
-            <label className="flex justify-center font-semibold text-3xl">
+            <label className="flex justify-center font-semibold text-4xl text-white">
               Add New Post
             </label>
             <input
@@ -278,7 +279,7 @@ const AddArticles = () => {
                   id="editor"
                   name="description"
                   rows="15"
-                  className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                  className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2"
                   placeholder="Write an article..."
                   required
                 ></textarea>
@@ -290,7 +291,7 @@ const AddArticles = () => {
         {/* submit, tags, publisher */}
         <div className="col-span-1">
           <div>
-            <h1 className="mt-2 mb-5 flex justify-center text-xl font-semibold">Select a Categories</h1>
+            <h1 className="mt-3 mb-5 flex justify-center text-xl font-semibold text-white">Select a Categories</h1>
             <Select
               className="basic-single"
               closeMenuOnSelect={true}
@@ -301,7 +302,7 @@ const AddArticles = () => {
               placeholder="Select a Category"
             />
 
-            <h1 className="my-5 text-center justify-center text-xl font-semibold">Add Your Tags</h1>
+            <h1 className="my-5 text-center justify-center text-xl font-semibold text-white">Add Your Tags</h1>
 
             <CreatableSelect
               isMulti
@@ -313,11 +314,7 @@ const AddArticles = () => {
             />
             {/* input */}
             <div>
-              <input
-                className="flex justify-center mx-auto mt-10 items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 w-full cursor-pointer"
-                type="submit"
-                value="Publish Post"
-              />
+            <DarkButton className="mt-10 w-full cursor-pointer">Publish Post</DarkButton>
             </div>
           </div>
           <Toaster position="top-center"></Toaster>
