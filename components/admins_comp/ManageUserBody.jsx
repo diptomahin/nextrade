@@ -1,6 +1,5 @@
 "use client"
 import React from 'react';
-import useSecureFetch from "@/hooks/useSecureFetch";
 import {
     Accordion,
     AccordionDetails,
@@ -29,6 +28,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import DashButton from '../library/buttons/DashButton';
 import ManageUserTopBar from './ManageUserTopBar';
 import UsersInfo from './UsersInfo';
+import useAllUsersData from '@/hooks/useAllUsersData';
 
 
 const ManageUserBody = () => {
@@ -42,19 +42,15 @@ const ManageUserBody = () => {
     const [emailText, setEmailText] = useState();
     const [emailSubject, setEmailSubject] = useState();
     const [errorMsg, setErrorMsg] = useState();
+    const {allUser, refetch} = useAllUsersData()
+    const secureAPI = useSecureAPI();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const secureAPI = useSecureAPI();
+    
 
-    const {
-        data: allUser = [],
-        refetch,
-        isPending,
-        isLoading,
-    } = useSecureFetch(`/all-users`, "userBalance");
 
     // console.log(allUser)
     const traderAccounts = allUser.filter((user) => user.role === "trader");
