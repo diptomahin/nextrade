@@ -14,6 +14,7 @@ import getDate from "../../utils/date";
 import DarkButton from "@/components/library/buttons/DarkButton";
 import SideHistory from "./SideHistory";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
+import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -57,6 +58,7 @@ const CryptoDetails = ({
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
   const { refetchInvestmentHistory } = useInvestmentHistory()
+  const {adminRefetchNotificationsData} = useAdminNotificationData()
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -94,6 +96,8 @@ const CryptoDetails = ({
       postedDate: date,
       read: false,
       location: "/dashboard/portfolio",
+      type: 'admin'
+      
     };
 
     const historyInfo = {
@@ -139,7 +143,10 @@ const CryptoDetails = ({
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
-                    refetchNotificationsData();
+                    secureAPI
+                .post("/adminNotifications", notificationInfo)
+                    adminRefetchNotificationsData()
+                refetchNotificationsData();
                     Swal.fire({
                       title: `Coin Purchase successful!`,
                       text: `Best of luck`,

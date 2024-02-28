@@ -34,6 +34,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
   const {user} = useAuth()
   const date = getDate()
   const { refetchNotificationsData } = useNotificationData();
+  const {adminRefetchNotificationsData} = useAdminNotificationData()
 
 
   const handleChangeCoins = (event) => {
@@ -93,8 +94,11 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   console.log('success post to notification');
+                  secureAPI
+                .post("/adminNotifications", notificationInfo)
                   refetch();
                   refetchNotificationsData()
+                  adminRefetchNotificationsData()
                 })
                 .catch((error) => {
                   console.error("Error sending notification:", error);

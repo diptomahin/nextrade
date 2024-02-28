@@ -12,6 +12,7 @@ import getDate from "@/components/utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
 import SideHistory from "./SideHistory";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
+import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 
 // customized TextField
 const CssTextField = styled(TextField)({
@@ -54,6 +55,7 @@ const CurrencyDetails = ({
   const secureAPI = useSecureAPI();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
+  const {adminRefetchNotificationsData} = useAdminNotificationData()
   const { refetchInvestmentHistory } = useInvestmentHistory()
 
   const handleInvestmentChange = (event) => {
@@ -79,6 +81,7 @@ const CurrencyDetails = ({
       assetBuyerUID: user.uid,
       assetBuyerEmail: user.email,
       buyingDate: date,
+      type: 'admin'
     };
 
     const notificationInfo = {
@@ -138,8 +141,11 @@ const CurrencyDetails = ({
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
+                    secureAPI
+                .post("/adminNotifications", notificationInfo)
                     refetch();
                     refetchNotificationsData();
+                    adminRefetchNotificationsData()
                     Swal.fire({
                       title: `Coin Purchase successful!`,
                       text: `Best of luck`,
