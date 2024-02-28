@@ -5,25 +5,14 @@ import Link from "next/link";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { usePathname } from "next/navigation";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
-import useNotificationData from "@/hooks/useNotificationData";
-// import '../TradersNotification/notificationCss.css'
+import './AdminNotificationCss.css'
 
 const AdminNotification = () => {
   // State variables
   const [isNotificationOpen, setIsNotificationOpen] = React.useState(false);
   const [isNotifyMenuOpen, setIsNotifyMenuOpen] = React.useState(false);
   const [isOpenMenu, setIsOpenMenu] = React.useState({});
-
-  // Custom hooks for handling notification data and making secure API calls
-  // const {
-  //   notificationsData,
-  //   refetchNotificationsData,
-  //   notificationsDataLoading,
-  //   notificationsDataPending,
-  //   notificationsDataError,
-  // } = useNotificationData();
 
   const {
     notificationsData,
@@ -34,7 +23,6 @@ const AdminNotification = () => {
   } = useAdminNotificationData();
 
   const secureAPI = useSecureAPI();
-  const pathName = usePathname();
 
   // If data is still loading or there is an error, return nothing
   if (
@@ -57,7 +45,7 @@ const AdminNotification = () => {
     setIsNotifyMenuOpen(true); // Open NotifyMenu
   };
 
-  console.log(notificationsData);
+
 
   // filter data in admin type
   const adminNotifications = notificationsData.filter(
@@ -225,7 +213,7 @@ const AdminNotification = () => {
 
       {/* Display the notification popup if open */}
       {isNotificationOpen && (
-        <div class="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-60 md:w-80 shadow-2xl shadow-gray-900 scrollbar-thin">
+        <div className="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-60 md:w-80 shadow-2xl shadow-gray-900 scrollbar-thin">
           {/* Header of the notification popup */}
           <div className="flex items-center justify-between px-4 py-2 border-b-2 border-darkThree">
             <h2 className="font-semibold text-white">Notifications</h2>
@@ -260,14 +248,14 @@ const AdminNotification = () => {
                   >
                     Delete all
                   </button>
-                  <Link
-                    href="/dashboard/settings"
+                  {/* <Link
+                    href="/admin_dashboard/settings"
                     onClick={() => setIsNotifyMenuOpen(false)}
                   >
                     <button className="w-full whitespace-nowrap btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
                       Notification settings
                     </button>
-                  </Link>
+                  </Link> */}
                 </div>
               )}
             </div>
@@ -283,8 +271,8 @@ const AdminNotification = () => {
                     asset?.read ? "bg-darkTwo" : "bg-white/10"
                   } w-full  rounded  cursor-pointer p-3 `}
                 >
-                  <Link
-                    href={asset?.location ? asset.location : pathName}
+                  <div
+                    
                     onClick={() => handleRead(asset?._id)}
                   >
                     <div className="space-y-[6px]">
@@ -312,7 +300,7 @@ const AdminNotification = () => {
                         </span>
                       </p>
                     </div>
-                  </Link>
+                  </div>
 
                   {/* Actions menu for each notification */}
                   <div className="absolute top-[6px] right-2 z-10">
