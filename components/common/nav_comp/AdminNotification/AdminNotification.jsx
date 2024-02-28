@@ -1,12 +1,12 @@
 // Import necessary dependencies
 import React from "react";
 import { MdNotifications, MdNotificationsActive } from "react-icons/md";
-import Link from "next/link";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 import "./AdminNotificationCss.css";
+import Link from "next/link";
 
 const AdminNotification = () => {
   // State variables
@@ -64,6 +64,8 @@ const AdminNotification = () => {
       // Send a DELETE request to your backend API
       const res = await secureAPI.delete(`/adminNotifications/delete-all`);
       if (res.data.deletedCount > 0) {
+        isNotificationOpen(true)
+        isNotifyMenuOpen(true);
         adminRefetchNotificationsData();
         toast.success("All notification deleted successfully", {
           id: toastId,
@@ -109,20 +111,6 @@ const AdminNotification = () => {
       // Send an update notification request to the backend API
       const res = await secureAPI.patch("adminNotifications/update-all-read");
 
-      // Check if the response contains the expected property
-      if (res.data && res.data.modifiedCount !== undefined) {
-        if (res.data.modifiedCount > 0) {
-          console.log("Notifications marked as read successfully");
-          // Assuming adminRefetchNotificationsData is a valid function, trigger it
-          adminRefetchNotificationsData();
-        } else {
-          console.log("No notifications were modified");
-          // Handle the case where no notifications were modified if needed
-        }
-      } else {
-        console.error("Unexpected response format:", res.data);
-        // Handle unexpected response format
-      }
     } catch (error) {
       console.error("Error updating notifications:", error);
       // Handle the error appropriately or log it for debugging
@@ -243,14 +231,14 @@ const AdminNotification = () => {
                   >
                     Delete all
                   </button>
-                  {/* <Link
+                  <Link
                     href="/admin_dashboard/settings"
                     onClick={() => setIsNotifyMenuOpen(false)}
                   >
                     <button className="w-full whitespace-nowrap btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
                       Notification settings
                     </button>
-                  </Link> */}
+                  </Link>
                 </div>
               )}
             </div>
