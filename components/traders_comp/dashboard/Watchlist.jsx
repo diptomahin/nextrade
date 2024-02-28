@@ -1,5 +1,6 @@
 import DarkButton from "@/components/library/buttons/DarkButton";
 import Link from "next/link";
+import SideWatchlist from "../market/SideWatchlist";
 
 const Watchlist = () => {
   return (
@@ -9,6 +10,9 @@ const Watchlist = () => {
         <Link href="/dashboard/watchlist">
           <DarkButton>See all</DarkButton>
         </Link>
+      </div>
+      <div className="">
+        <SideWatchlist />
       </div>
     </div>
   );

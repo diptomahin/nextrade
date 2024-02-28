@@ -13,7 +13,7 @@ import useSecureFetch from "@/hooks/useSecureFetch";
 import RootNavDrawer from "./nav_comp/RootNavDrawer";
 import { RiMenu5Fill } from "react-icons/ri";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
-import CustomerChat from "../home_comp/CustomerChat";
+import { CustomChat, FacebookProvider } from "react-facebook";
 // import Translate from "../home_comp/Translate";
 
 export default function RootNav() {
@@ -73,9 +73,9 @@ export default function RootNav() {
             </Magnetic>
             {/* <Language className="md:text-xl text-white" /> */}
             <div>
-    {/*   <Translate /> */}
-      {/* Other navbar components */}
-    </div>
+              {/*   <Translate /> */}
+              {/* Other navbar components */}
+            </div>
           </div>
           <Magnetic>
             <Link href="/" className="hidden xl:block">
@@ -148,7 +148,13 @@ export default function RootNav() {
         </div>
       </Magnetic>
 
-      <CustomerChat />
+      <FacebookProvider appId="429056069676911">
+        <CustomChat
+          pageId="108051777809659"
+          loggedInGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
+          loggedOutGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
+        />
+      </FacebookProvider>
 
       {/* root drawer */}
       <RootNavDrawer

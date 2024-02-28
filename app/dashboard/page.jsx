@@ -5,6 +5,8 @@ import RecentlyAdded from "@/components/traders_comp/dashboard/RecentlyAdded";
 import TopAssets from "@/components/traders_comp/dashboard/TopAssets";
 import Trending from "@/components/traders_comp/dashboard/Trending";
 import Watchlist from "@/components/traders_comp/dashboard/Watchlist";
+import SideHistory from "@/components/traders_comp/market/SideHistory";
+import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 
 // add title in metadata
 export const metadata = {
@@ -29,7 +31,7 @@ const page = () => {
 
       {/* watchlist */}
       <div className="hidden xl:block col-span-2">
-        <Watchlist />
+        <SideWatchlist />
       </div>
 
       {/* trending assets */}
@@ -37,11 +39,14 @@ const page = () => {
 
       {/* watchlist */}
       <div className="block xl:hidden md:col-span-3">
-        <Watchlist />
+        <SideWatchlist />
       </div>
 
       {/* recently added */}
-      <History />
+
+      <div className="h-full xl:col-span-3">
+        <SideHistory />
+      </div>
     </div>
   );
 };
