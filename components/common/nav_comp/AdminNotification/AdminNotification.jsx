@@ -69,17 +69,15 @@ const AdminNotification = () => {
   );
 
   // Function to delete all notifications
-  const handleDeleteAllNotification = async (email) => {
-    if (!email) {
-      return;
-    }
+  const handleDeleteAllNotification = async () => {
+    
     const toastId = toast.loading("Deleting all notifications...", {
       duration: 10000,
     });
 
     try {
       // Send a DELETE request to your backend API
-      const res = await secureAPI.delete(`/notifications/delete-all`);
+      const res = await secureAPI.delete(`/adminNotifications/delete-all`);
       if (res.data.deletedCount > 0) {
         adminRefetchNotificationsData();
         toast.success("All notification deleted successfully", {
@@ -122,17 +120,30 @@ const AdminNotification = () => {
 
   // Function to mark all notifications as read
   const handleReadAll = async () => {
-    
     try {
       // Send an update notification request to the backend API
-      const res = await secureAPI.patch(
-        `adminNotifications/update-all-read`
-      );
-      if (res.data.modifiedCount > 0) {
-        adminRefetchNotificationsData();
+      const res = await secureAPI.patch("adminNotifications/update-all-read");
+  
+      // Check if the response contains the expected property
+      if (res.data && res.data.modifiedCount !== undefined) {
+        if (res.data.modifiedCount > 0) {
+          console.log("Notifications marked as read successfully");
+          // Assuming adminRefetchNotificationsData is a valid function, trigger it
+          adminRefetchNotificationsData();
+        } else {
+          console.log("No notifications were modified");
+          // Handle the case where no notifications were modified if needed
+        }
+      } else {
+        console.error("Unexpected response format:", res.data);
+        // Handle unexpected response format
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error updating notifications:", error);
+      // Handle the error appropriately or log it for debugging
+    }
   };
+  
 
   // Function to mark a single notification as read
   const handleRead = async (_id) => {
@@ -348,7 +359,7 @@ const AdminNotification = () => {
           ) : (
             // Display message when there are no notifications
             <div className="py-10">
-              <h2 className="text-sm text-center">No notification yet . . .</h2>
+              <h2 className="text-sm text-center text-white">No notification yet . . .</h2>
             </div>
           )}
         </div>
