@@ -14,6 +14,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import getDate from "../../utils/date";
 import { useEffect, useState } from "react";
 import useNotificationData from "@/hooks/useNotificationData";
+import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 
 const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   const [paymentError, setPaymentError] = useState("");
@@ -26,6 +27,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
   const { refetchNotificationsData } = useNotificationData();
+  const { adminRefetchNotificationsData } = useAdminNotificationData();
 
   const date = getDate();
 
@@ -145,7 +147,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 postedDate: date,
                 location: "/dashboard/wallet",
                 read: false,
-                type:'admin'
+                type: "admin",
               };
 
               // post to  notification data in database
@@ -153,6 +155,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
+                    secureAPI.post("/adminNotifications", notificationInfo);
                     form.reset();
                     setAmount(0);
                     setPostalCode(0);
@@ -162,6 +165,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                     refetchUserData();
                     refetchSpecificTransactionsData();
                     refetchNotificationsData();
+                    adminRefetchNotificationsData()
                     toast.success("Deposit Successful", {
                       id: toastId,
                       duration: 5000,
