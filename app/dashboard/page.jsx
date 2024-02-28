@@ -1,10 +1,8 @@
 import Balance from "@/components/traders_comp/dashboard/Balance";
-import History from "@/components/traders_comp/dashboard/History";
 import QuickTrade from "@/components/traders_comp/dashboard/quick-trade/QuickTrade";
 import RecentlyAdded from "@/components/traders_comp/dashboard/RecentlyAdded";
 import TopAssets from "@/components/traders_comp/dashboard/TopAssets";
 import Trending from "@/components/traders_comp/dashboard/Trending";
-import Watchlist from "@/components/traders_comp/dashboard/Watchlist";
 import SideHistory from "@/components/traders_comp/market/SideHistory";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 
@@ -44,7 +42,7 @@ const page = () => {
 
       {/* recently added */}
 
-      <div className="h-full xl:col-span-3">
+      <div className="h-full md:col-span-3 xl:col-span-3">
         <SideHistory />
       </div>
     </div>
