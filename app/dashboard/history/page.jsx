@@ -29,7 +29,7 @@ const History = () => {
 
     },[history])
 
-    console.log(bought,sold)
+    // console.log(bought,sold)
   return (
 <div>
 

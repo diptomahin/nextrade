@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useTrading from '@/hooks/useTrading';
+import getDate from '@/components/utils/date';
 
 
 const TradingSidebar = (params) => {
@@ -21,7 +22,7 @@ const TradingSidebar = (params) => {
     isPending,
     isLoading,
     refetch,} = useTrading(["trading"]);
-
+  const date = getDate();
   const secureAPI = useSecureAPI();
   
   const usersBalance = parseFloat(trader.balance).toFixed(2);
@@ -48,6 +49,8 @@ const TradingSidebar = (params) => {
         Price: ast.price,
         Email: user.email,
         action: "bought",
+        assetType: "crypto coin",
+        date: date,
       }
       // console.log(historyInfo)
       //calculate remaining balance after buying a coin
@@ -108,6 +111,8 @@ const TradingSidebar = (params) => {
         Price: selectedAsset[0].price,
         Email: user.email,
         action: "sold",
+        assetType: "crypto coin",
+        date: date,
       }
 
       Swal.fire({

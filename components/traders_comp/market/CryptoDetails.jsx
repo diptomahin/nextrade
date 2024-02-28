@@ -167,6 +167,10 @@ const CryptoDetails = ({
           .then(res => {
             refetchInvestmentHistory()
           })
+        secureAPI.post(`/history`, historyInfo)
+          .then(res => {
+            refetchInvestmentHistory()
+          })
 
       }
     });
