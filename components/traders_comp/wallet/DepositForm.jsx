@@ -145,6 +145,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 postedDate: date,
                 location: "/dashboard/wallet",
                 read: false,
+                type:'admin'
               };
 
               // post to  notification data in database

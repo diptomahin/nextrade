@@ -10,6 +10,7 @@ import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
 import { usePathname } from "next/navigation";
 import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
+import TradersNotification from "./nav_comp/TradersNotification/TradersNotification";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -153,6 +154,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
         <Language />
         {/* notification */}
         <AdminNotification/>
+        
 
         {/* user menubar */}
         <AdminMenu />

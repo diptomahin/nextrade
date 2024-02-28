@@ -2,11 +2,12 @@
 import React from "react";
 import { MdNotifications, MdNotificationsActive } from "react-icons/md";
 import Link from "next/link";
-import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { usePathname } from "next/navigation";
+import useAdminNotificationData from "@/hooks/useAdminNotificationData";
+import useNotificationData from "@/hooks/useNotificationData";
 // import '../TradersNotification/notificationCss.css'
 
 const AdminNotification = () => {
@@ -16,13 +17,22 @@ const AdminNotification = () => {
   const [isOpenMenu, setIsOpenMenu] = React.useState({});
 
   // Custom hooks for handling notification data and making secure API calls
+  // const {
+  //   notificationsData,
+  //   refetchNotificationsData,
+  //   notificationsDataLoading,
+  //   notificationsDataPending,
+  //   notificationsDataError,
+  // } = useNotificationData();
+
   const {
     notificationsData,
     refetchNotificationsData,
     notificationsDataLoading,
     notificationsDataPending,
     notificationsDataError,
-  } = useNotificationData();
+  } = useAdminNotificationData();
+
   const secureAPI = useSecureAPI();
   const pathName = usePathname();
 
@@ -48,9 +58,11 @@ const handleOpenMenu = (notificationId) => {
 };
 
 
+console.log(notificationsData);
+
   // Filter unread notifications
   const nonReaderNotifications = notificationsData.filter(
-    (notification) => notification.read === false
+    (notification) => notification.type == 'admin'
   );
 
   // Function to delete all notifications
@@ -178,6 +190,7 @@ const handleOpenMenu = (notificationId) => {
      return (
           <div className="relative">
           {/* Button to toggle notification display */}
+          
           <button
             onClick={() => setIsNotificationOpen(!isNotificationOpen)}
             className={`flex items-center text-white hover:bg-white/10 active:bg-white/20 rounded-full p-2 ${
@@ -189,6 +202,7 @@ const handleOpenMenu = (notificationId) => {
             ) : (
               <MdNotifications className="w-6 h-6" />
             )}
+            
             {/* Display the count of unread notifications */}
             {nonReaderNotifications?.length > 0 && (
               <p className="absolute left-5 bottom-5 font-semibold w-4 h-4  rounded-full bg-red-500 flex justify-center items-center">
