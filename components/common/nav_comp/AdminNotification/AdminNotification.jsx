@@ -6,7 +6,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
-import './AdminNotificationCss.css'
+import "./AdminNotificationCss.css";
 
 const AdminNotification = () => {
   // State variables
@@ -45,8 +45,6 @@ const AdminNotification = () => {
     setIsNotifyMenuOpen(true); // Open NotifyMenu
   };
 
-
-
   // filter data in admin type
   const adminNotifications = notificationsData.filter(
     (notification) => notification.type == "admin"
@@ -58,7 +56,6 @@ const AdminNotification = () => {
 
   // Function to delete all notifications
   const handleDeleteAllNotification = async () => {
-    
     const toastId = toast.loading("Deleting all notifications...", {
       duration: 10000,
     });
@@ -111,7 +108,7 @@ const AdminNotification = () => {
     try {
       // Send an update notification request to the backend API
       const res = await secureAPI.patch("adminNotifications/update-all-read");
-  
+
       // Check if the response contains the expected property
       if (res.data && res.data.modifiedCount !== undefined) {
         if (res.data.modifiedCount > 0) {
@@ -131,13 +128,14 @@ const AdminNotification = () => {
       // Handle the error appropriately or log it for debugging
     }
   };
-  
 
   // Function to mark a single notification as read
   const handleRead = async (_id) => {
     try {
       // Send an update notification request to the backend API
-      const res = await secureAPI.patch(`adminNotifications/update-one-read/${_id}`);
+      const res = await secureAPI.patch(
+        `adminNotifications/update-one-read/${_id}`
+      );
       if (res.data.modifiedCount > 0) {
         adminRefetchNotificationsData();
       }
@@ -146,12 +144,9 @@ const AdminNotification = () => {
 
   // Function to mark all notifications as unread
   const handleUnreadAll = async () => {
-    
     try {
       // Send an update notification request to the backend API
-      const res = await secureAPI.patch(
-        `adminNotifications/update-all-unread`
-      );
+      const res = await secureAPI.patch(`adminNotifications/update-all-unread`);
       if (res.data.modifiedCount > 0) {
         adminRefetchNotificationsData();
       }
@@ -231,13 +226,13 @@ const AdminNotification = () => {
               {isNotifyMenuOpen && (
                 <div className="absolute right-8 top-0 w-40 bg-darkBG border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
                   <button
-                    onClick={ handleReadAll}
+                    onClick={handleReadAll}
                     className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
                   >
                     Mark all as read
                   </button>
                   <button
-                    onClick={ handleUnreadAll}
+                    onClick={handleUnreadAll}
                     className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
                   >
                     Mark all as unread
@@ -268,33 +263,37 @@ const AdminNotification = () => {
                 <div
                   key={asset?._id}
                   className={`relative ${
-                    asset?.read ? "bg-darkTwo" : "bg-white/10"
+                    asset?.read ? "bg-darkOne shadow-md border-darkThree border" : "bg-white/10  "
                   } w-full  rounded  cursor-pointer p-3 `}
                 >
-                  <div
-                    
-                    onClick={() => handleRead(asset?._id)}
-                  >
-                    <div className="space-y-[6px]">
-                      <h2 className="font-medium text-sm pr-10 text-white">
-                        {asset?.title}
-                      </h2>
-                      <p className="text-gray-400 text-xs">
-                        {asset?.description}
-                      </p>
+                  <div onClick={() => handleRead(asset?._id)}>
+                    <div className="flex items-center gap-4 space-y-[6px] text-white">
+                      {asset.read ? (
+                        <MdNotifications className="w-8 h-8" />
+                      ) : (
+                        <MdNotificationsActive className="w-8 h-8" />
+                      )}
+                      <div>
+                        <h2 className="font-medium text-sm pr-10 text-white">
+                          {asset?.title}
+                        </h2>
+                        <p className="text-gray-400 text-xs">
+                          {asset?.description}
+                        </p>
+                      </div>
                     </div>
 
                     <div className="flex justify-end mt-2">
                       <p className="text-darkGray text-[10px] flex items-center justify-end gap-3">
                         {/* Date */}
                         <span>
-                          {asset?.postedDate?.day || " "}-
-                          {asset?.postedDate?.month || " "}-
+                          {asset?.postedDate?.day || " "}{" "}-{" "}
+                          {asset?.postedDate?.month || " "}{" "}-{" "}
                           {asset?.postedDate?.year || " "}
                         </span>
                         {/* Time */}
                         <span>
-                          {formatTime(asset?.postedDate?.hours || " ")}:
+                          {formatTime(asset?.postedDate?.hours || " ")}: 
                           {padZero(asset?.postedDate?.minutes || " ")}{" "}
                           {getAmPm(asset?.postedDate?.hours || " ")}
                         </span>
@@ -316,7 +315,7 @@ const AdminNotification = () => {
 
                     {/* Additional actions menu for each notification */}
                     {isOpenMenu[asset?._id] && (
-                      <div className="absolute right-7 top-0 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3">
+                      <div className="absolute right-7 top-0 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 ">
                         <button
                           onClick={() => handleRead(asset?._id)}
                           className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
@@ -347,7 +346,9 @@ const AdminNotification = () => {
           ) : (
             // Display message when there are no notifications
             <div className="py-10">
-              <h2 className="text-sm text-center text-white">No notification yet . . .</h2>
+              <h2 className="text-sm text-center text-white">
+                No notification yet . . .
+              </h2>
             </div>
           )}
         </div>
