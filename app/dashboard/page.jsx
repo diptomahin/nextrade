@@ -1,7 +1,7 @@
 import Balance from "@/components/traders_comp/dashboard/Balance";
 import QuickTrade from "@/components/traders_comp/dashboard/quick-trade/QuickTrade";
 import TopAssets from "@/components/traders_comp/dashboard/TopAssets";
-import Trending from "@/components/traders_comp/dashboard/Trending";
+import Transactions from "@/components/traders_comp/dashboard/Transactions";
 import SideHistory from "@/components/traders_comp/market/SideHistory";
 import SidePortfolio from "@/components/traders_comp/market/SidePortfolio";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
@@ -25,7 +25,7 @@ const page = () => {
       <TopAssets />
 
       {/* trending assets */}
-      <Trending />
+      <Transactions />
 
       {/* watchlist */}
       <div className="h-full xl:col-span-6 3xl:col-span-4">

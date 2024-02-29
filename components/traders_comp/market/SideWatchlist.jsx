@@ -145,7 +145,7 @@ const SideWatchlist = () => {
           See all watchlist
         </Link>
       </div>
-      <div className="relative w-72 h-10 flex items-center bg-[#21212f] rounded-xl">
+      <div className="relative sm:w-72 h-10 flex items-center bg-[#21212f] rounded-xl">
         <div
           className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
             isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -153,7 +153,7 @@ const SideWatchlist = () => {
         ></div>
         <button
           onClick={() => setIsBuyOpen(true)}
-          className={`absolute w-1/2 h-full bg-transparent transition-all ${
+          className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
             isBuyOpen ? "text-white" : "text-gray-300"
           } duration-200 ease-in-out font-semibold text-sm z-10`}
         >
@@ -161,7 +161,7 @@ const SideWatchlist = () => {
         </button>
         <button
           onClick={() => setIsBuyOpen(false)}
-          className={`absolute w-1/2 transform translate-x-full h-full bg-transparent transition-all ${
+          className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
             !isBuyOpen ? "text-white" : "text-gray-300"
           } duration-100 font-semibold text-sm z-10`}
         >

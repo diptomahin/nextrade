@@ -214,7 +214,7 @@ const SidePortfolio = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cryptoData.slice(0, 4).map((asset, index) => (
+              {cryptoData.slice(0, 5).map((asset, index) => (
                 <TableRow key={index}>
                   {/* 1st row */}
                   <TableCell sx={{ border: "none", paddingX: "0px" }}>

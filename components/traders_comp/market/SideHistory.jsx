@@ -47,7 +47,7 @@ const SideHistory = () => {
         </Link>
       </div>
       {investmentHistoryData.length > 0 ? (
-        investmentHistoryData.slice(0, 4).map((history) => (
+        investmentHistoryData.slice(0, 5).map((history) => (
           <div key={history._id} className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
