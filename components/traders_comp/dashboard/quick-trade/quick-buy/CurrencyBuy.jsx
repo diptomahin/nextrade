@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { useState } from "react";
 
-const CurrencyBuy = () => {
+const CurrencyBuy = ({ flatCurrency, flatRefetch }) => {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
+  // console.log("currency buy", flatCurrency)
   return isOpenSelect ? (
     <div className="flex items-center gap-5">
       <select
@@ -9,12 +11,14 @@ const CurrencyBuy = () => {
         name=""
         id=""
       >
-        <option value="" className="text-sm">
-          btc
-        </option>
-        <option value="" className="text-sm">
-          ltc
-        </option>
+        {
+          flatCurrency?.map(asset => (
+            <option key={asset._id} value="" className="text-sm w-full flax justify-between">
+                name:{asset.name}, ________ price:{asset.price}
+            </option>
+          ))
+        }
+
       </select>
       <div className="flex items-center justify-center gap-2">
         <button

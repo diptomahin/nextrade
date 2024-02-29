@@ -3,7 +3,7 @@ import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import CryptoBuy from "./CryptoBuy";
 import CurrencyBuy from "./CurrencyBuy";
 
-const BuyMarket = () => {
+const BuyMarket = ({ cryptoCurrency, flatCurrency, cryptoRefetch, flatRefetch }) => {
   const [isCryptoSelected, setIsCryptoSelected] = useState(true);
   return (
     <div>
@@ -37,7 +37,7 @@ const BuyMarket = () => {
         </div>
       </div>
 
-      {isCryptoSelected ? <CryptoBuy /> : <CurrencyBuy />}
+      {isCryptoSelected ? <CryptoBuy cryptoCurrency={cryptoCurrency}  cryptoRefetch={cryptoRefetch}  /> : <CurrencyBuy flatCurrency={flatCurrency} flatRefetch={flatRefetch}/>}
 
       <div className="bg-darkBG flex items-center justify-between gap-5 px-5 py-[10px] rounded-full my-5">
         <p className="text-sm font-medium">Trade amount</p>

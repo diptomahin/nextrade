@@ -8,9 +8,8 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import useSecureFetch from "@/hooks/useSecureFetch";
+import { BiSearchAlt } from "react-icons/bi";
 import useAuth from "@/hooks/useAuth";
-import DashButton from "@/components/library/buttons/DashButton";
 import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAssetChart";
 import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
 import Image from "next/image";
@@ -18,37 +17,44 @@ import BuyAndExchange from "@/components/traders_comp/portfolio/BuyAndExchange";
 import emptyIcon from "../../../assets/emptyIcon.png";
 import axios from "axios";
 import useUserData from "@/hooks/useUserData";
+import usePurchasedAssets from "@/hooks/usePurchasedAssets";
 
 const Portfolio = () => {
 
-  const { user, loading } = useAuth();
   const [cryptoData, setCryptoData] = useState([]);
   const [currencyData, setCurrencyData] = useState([]);
+  const [dynamicSearch, setDynamicSearch] = useState("");
 
-  // const {
-  //   data: allUsers = [],
-  //   isPending,
-  //   isLoading,
-  //   refetch,
-  // } = useSecureFetch(`/all-users/${user?.email}`, ["all-users"]);
+
+  console.log(dynamicSearch);
 
   const { userData, userDataLoading, userDataPending, userDataError } =
-  useUserData();
-
-
+    useUserData();
 
   const usersRemainingBalance = parseFloat(userData?.balance).toFixed(2);
 
   // data fetch in all coin in buying  market page
+
+
+  // const {
+  //   data: purchasedAssets = [],
+  //   isPending: purchasedPending,
+  //   isLoading: purchasedLoading,
+  //   refetch: purchasedRefetch,
+  // } = useSecureFetch(`/purchasedAssets?email=${user.email}`, [
+  //   "purchased-asset",
+  //   user?.email,
+  // ]);
+
   const {
-    data: purchasedAssets = [],
-    isPending: purchasedPending,
-    isLoading: purchasedLoading,
-    refetch: purchasedRefetch,
-  } = useSecureFetch(`/purchasedAssets?email=${user.email}`, [
-    "purchased-asset",
-    user?.email,
-  ]);
+    purchasedAssets,
+    purchasedPending,
+    purchasedLoading,
+    purchasedRefetch,
+  } = usePurchasedAssets(dynamicSearch);
+
+  purchasedRefetch()
+
   // console.log(purchasedAssets)
 
   // filter  coin data
@@ -60,10 +66,9 @@ const Portfolio = () => {
       setCurrencyData(
         purchasedAssets.filter((data) => data.assetType === "flat coin")
       );
+      purchasedRefetch()
     }
-  }, [purchasedAssets]);
-
-  
+  }, [purchasedAssets,purchasedRefetch]);
 
   // console.log(currencyData);
 
@@ -134,32 +139,37 @@ const Portfolio = () => {
     const fetchCurrencyRates = async () => {
       try {
         if (currencyData.length > 0) {
-          const updatedAssets = await Promise.all(currencyData.map(async (asset) => {
-            const currencyKey = asset.assetKey;
-            const response = await axios.get(
-              `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
-            );
-            return createCryptoData(
-              asset._id,
-              asset.assetName,
-              asset.assetKey,
-              asset.assetImg,
-              asset.assetType,
-              asset.assetBuyingPrice,
-              response.data.rates.USD,
-              asset.assetPortion,
-              asset.totalInvestment,
-              asset.assetBuyerUID,
-              asset.assetBuyerEmail
-            );
-          }));
-          setCryptoData((prevCryptoData) => [...prevCryptoData, ...updatedAssets]);
+          const updatedAssets = await Promise.all(
+            currencyData.map(async (asset) => {
+              const currencyKey = asset.assetKey;
+              const response = await axios.get(
+                `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+              );
+              return createCryptoData(
+                asset._id,
+                asset.assetName,
+                asset.assetKey,
+                asset.assetImg,
+                asset.assetType,
+                asset.assetBuyingPrice,
+                response.data.rates.USD,
+                asset.assetPortion,
+                asset.totalInvestment,
+                asset.assetBuyerUID,
+                asset.assetBuyerEmail
+              );
+            })
+          );
+          setCryptoData((prevCryptoData) => [
+            ...prevCryptoData,
+            ...updatedAssets,
+          ]);
         }
       } catch (error) {
         console.error("Error fetching currency rates:", error);
       }
     };
-  
+
     fetchCurrencyRates();
   }, [currencyData]);
 
@@ -167,12 +177,11 @@ const Portfolio = () => {
 
   // profit and loss calculator
 
-  const calculateDifference = (currentPrice, buyingPrice,portion) => {
-  const profitLoss = (currentPrice - buyingPrice)*(parseFloat(portion.slice(0,-1))/100);
+  const calculateDifference = (currentPrice, buyingPrice, portion) => {
+    const profitLoss =
+      (currentPrice - buyingPrice) * (parseFloat(portion.slice(0, -1)) / 100);
     return profitLoss;
   };
-
-  
 
   const calculateTotalProfit = cryptoData.reduce((total, asset) => {
     const difference = calculateDifference(
@@ -183,19 +192,18 @@ const Portfolio = () => {
     return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
   }, 0);
 
+  const calculateTotalLoss = cryptoData.reduce((total, asset) => {
+    const difference = calculateDifference(
+      asset.currentPrice,
+      asset.assetBuyingPrice,
+      asset.assetPortion
+    );
 
-    const calculateTotalLoss = cryptoData.reduce((total, asset) => {
-      const difference = calculateDifference(
-        asset.currentPrice,
-        asset.assetBuyingPrice,
-        asset.assetPortion
-      );
-      
-      return total + (parseFloat(difference) < 0 ? Math.abs(parseFloat(difference)) : 0);
-    }, 0);
-    
-  
-  
+    return (
+      total +
+      (parseFloat(difference) < 0 ? Math.abs(parseFloat(difference)) : 0)
+    );
+  }, 0);
 
   const totalBuyingPrice = purchasedAssets.reduce(
     (total, asset) => total + parseFloat(asset.assetBuyingPrice),
@@ -208,12 +216,16 @@ const Portfolio = () => {
     0
   );
 
+  // search functionality
+  const Search =()=>{
+    purchasedRefetch()
+  }
+
   if (
-    loading ||
     purchasedLoading ||
     purchasedPending ||
-    userDataLoading || 
-    userDataPending || 
+    userDataLoading ||
+    userDataPending ||
     userDataError
   ) {
     return (
@@ -222,8 +234,6 @@ const Portfolio = () => {
       </p>
     );
   }
-
-  
 
   return (
     <div className=" grid md:grid-cols-7 grid-cols-1  md:gap-5">
@@ -238,7 +248,29 @@ const Portfolio = () => {
         />
         {/* coin buying list   */}
         <div className="my-5 p-4   rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
-          <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
+          <div className="flex justify-between"> 
+          <h1 className="text-xl font-semibold my-3">Your Holdings</h1>
+            {/* search form */}
+          <div
+            
+            className="relative flex items-center"
+          >
+            <input
+              onChange={(e) => setDynamicSearch(e.target.value)}
+              type="text"
+              name="search"
+              placeholder="Search..."
+              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded font-medium"
+            />
+            <button
+              onClick={Search}
+              className="absolute right-0 bg-transparent text-lg text-white mix-blend-difference hover:bg-transparent btn btn-sm rounded-l-none shadow-none border-none"
+            >
+              <BiSearchAlt />
+            </button>
+          </div>
+          </div>
+          
           {cryptoData ? (
             <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -301,7 +333,7 @@ const Portfolio = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {cryptoData.map((asset, index) => (
+                  {purchasedAssets.map((asset, index) => (
                     <TableRow key={index}>
                       {/* 1st row */}
                       <TableCell
@@ -436,7 +468,11 @@ const Portfolio = () => {
       {/* Right side  */}
       <div className=" col-span-2 ">
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  mb-5 ">
-          <BuyAndExchange cryptoData={cryptoData} remainingBalance={usersRemainingBalance} refetch={purchasedRefetch}></BuyAndExchange>
+          <BuyAndExchange
+            cryptoData={cryptoData}
+            remainingBalance={usersRemainingBalance}
+            refetch={purchasedRefetch}
+          ></BuyAndExchange>
         </div>
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
