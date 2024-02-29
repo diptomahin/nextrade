@@ -37,8 +37,8 @@ const ProfilePage = () => {
         onClick={() => setIsActiveProfile(!isActiveProfile)}
         className={`fixed top-[92px] ${
           isActiveProfile
-            ? "-left-1 sm:left-0 xl:left-[57px] 2xl:left-[274px]"
-            : "left-[230px] sm:left-[250px] 2xl:left-[466px]"
+            ? "-left-1 sm:left-0 2xl:left-[57px]  3xl:left-[274px]"
+            : "left-[230px] sm:left-[250px]  3xl:left-[466px]"
         } btn btn-sm h-9 px-[10px] bg-transparent hover:bg-white/5 active:bg-white/20 border-none shadow-none text-white rounded-full z-20 transition-all duration-300 ease-in-out`}
       >
         <MdArrowBackIosNew
@@ -50,9 +50,9 @@ const ProfilePage = () => {
 
       <div
         style={{ height: "calc(100vh - 104px)" }}
-        className={`fixed w-[250px]  sm:w-[270px] 2xl:left-[240px] bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree px-4 py-14 transition-all  ${
+        className={`fixed w-[250px]  sm:w-[270px]  3xl:left-[240px] bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree px-4 py-14 transition-all  ${
           isActiveProfile
-            ? "-translate-x-[255px] sm:-translate-x-[250px] xl:translate-x-0   xl:w-[78px]"
+            ? "-translate-x-[255px] sm:-translate-x-[250px] 2xl:translate-x-0   2xl:w-[78px]"
             : "translate-x-0"
         } duration-300 ease-in-out rounded z-10`}
       >
@@ -61,7 +61,7 @@ const ProfilePage = () => {
             <div
               className={`overflow-hidden rounded-full transition-all duration-300 ease-linear ${
                 isActiveProfile
-                  ? "w-[100px] h-[100px] xl:w-[50px] xl:h-[50px]"
+                  ? "w-[100px] h-[100px] 2xl:w-[50px] 2xl:h-[50px]"
                   : "w-[100px] h-[100px]"
               }`}
             >
@@ -79,7 +79,7 @@ const ProfilePage = () => {
               <FaUserCircle />
             </p>
           )}
-          <div className={` ${isActiveProfile ? "xl:hidden" : ""}`}>
+          <div className={` ${isActiveProfile ? "2xl:hidden" : ""}`}>
             <p className="font-semibold"> {userDetails?.name}</p>
             <p className="text-xs font-medium mt-1">{userDetails?.email}</p>
           </div>
@@ -89,25 +89,27 @@ const ProfilePage = () => {
           <Tab className="react-tab custom-btn">
             {" "}
             <CiUser className="text-xl" />
-            <span className={isActiveProfile ? "xl:hidden" : ""}>
+            <span className={isActiveProfile ? "2xl:hidden" : ""}>
               {" "}
               My Profile
             </span>
           </Tab>
           <Tab className="react-tab custom-btn">
             <CiLock className="text-xl" />{" "}
-            <span className={isActiveProfile ? "xl:hidden" : ""}>Security</span>
+            <span className={isActiveProfile ? "2xl:hidden" : ""}>
+              Security
+            </span>
           </Tab>
           <Tab className="react-tab custom-btn">
             {" "}
             <PiCurrencyDollarThin className="text-xl" />
-            <span className={isActiveProfile ? "xl:hidden" : ""}>
+            <span className={isActiveProfile ? "2xl:hidden" : ""}>
               Currency Preferences
             </span>
           </Tab>
           <Tab className="react-tab custom-btn">
             <PiCardholderThin className="text-xl" />
-            <span className={isActiveProfile ? "xl:hidden" : ""}>
+            <span className={isActiveProfile ? "2xl:hidden" : ""}>
               Payment Option
             </span>
           </Tab>
@@ -117,7 +119,7 @@ const ProfilePage = () => {
       {/* content */}
       <div
         className={`sm:pl-6  transition-all duration-300 ease-in-out ${
-          isActiveProfile ? "xl:pl-[98px]" : "xl:pl-[290px]"
+          isActiveProfile ? "2xl:pl-[98px]" : "2xl:pl-[290px]"
         }`}
       >
         <TabPanel>

@@ -17,7 +17,7 @@ const LiveData = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="xl:text-3xl lg:text-4xl text-4xl my-2 text-primary font-bold mx-auto text-center"
+          className="2xl:text-3xl lg:text-4xl text-4xl my-2 text-primary font-bold mx-auto text-center"
         >
           Get Market Info
         </motion.h1>
@@ -26,7 +26,7 @@ const LiveData = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="mt-1 mb-5 xl:w-96 text-center mx-auto font-medium text-gray-500"
+          className="mt-1 mb-5 2xl:w-96 text-center mx-auto font-medium text-gray-500"
         >
           Real-time market data is continuous, such as stock prices and trading
           volumes.

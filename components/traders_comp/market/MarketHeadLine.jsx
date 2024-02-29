@@ -1,37 +1,24 @@
 "use client"
-import { Stack } from '@mui/material';
+import { Skeleton, Stack } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import Marquee from 'react-fast-marquee';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import usePublicFetch from '@/hooks/usePublicFetch';
 import axios from 'axios';
+import useAllFlatCoins from '@/hooks/useAllFlatCoins';
+import useAllCryptoCoins from '@/hooks/useAllCryptoCoins';
 
 const MarketHeadLine = () => {
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
-
-
-
-  const {
-    data: allCryptoCoins = [],
-    isPending: cryptoPending,
-    isLoading: cryptoLoading,
-    refetch: cryptoRefetch,
-  } = usePublicFetch(`/manageAllCryptoCoins`, "allCryptos");
-
-  const {
-    data: allFlatCoins = [],
-    isPending: flatPending,
-    isLoading: flatLoading,
-    refetch: flatRefetch,
-  } = usePublicFetch(`/manageAllFlatCoins`, "allFlats");
+  const { allFlatCoins, flatRefetch } = useAllFlatCoins();
+  const { allCryptoCoins, cryptoRefetch } = useAllCryptoCoins();
 
 
   // console.log(allCoins)
   useEffect(() => {
-    if (allCryptoCoins.length > 0 && allFlatCoins.length >0 ) {
+    if (allCryptoCoins.length > 0 && allFlatCoins.length > 0) {
       setAssets(allCryptoCoins);
       setFlatCurrency(allFlatCoins);
     }
@@ -124,56 +111,70 @@ const MarketHeadLine = () => {
     fetchCurrencyRates();
 
   }, [flatCurrency]);
-  return (
-    <div className=' w-full '>
-      <Stack gap={2}>
-        <Marquee direction='right'>
-          {assets.map((asset) => (
-            <Stack className="bg-darkBG rounded-lg h-20" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
-              <Stack>
-                <Stack flexDirection="row" gap={1} alignItems="center">
-                  <Image width={35} height={35} src={asset.icon} alt='coin lgog'></Image>
-                  <p className='font-semibold'>{asset.name}</p>
-                </Stack>
-                <Stack flexDirection="row" gap={2}>
-                  <p>${asset.price}</p>
-                  <p className={` font-semibold text-sm ${asset.changePrice < 0 ? "text-red-500" : "text-green-700"}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon /> : <TrendingUpIcon />}</p>
-                </Stack>
-              </Stack>
-              <Stack>
-                <p>High Price: <span className="text-green-700 font-semibold">${asset.highPrice}</span></p>
-                <p>Low Price: <span className="text-red-500 font-semibold">${asset.lowPrice}</span></p>
-              </Stack>
-            </Stack>
-          ))}
-        </Marquee>
-        <Marquee direction='left'>
-          {flatCurrency.map((asset) => (
-            <Stack className="bg-darkBG rounded-lg h-20" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
-              <Stack>
-                <Stack flexDirection="row" gap={1} alignItems="center">
-                  <Image width={35} height={35} src={asset.icon} alt='coin logo'></Image>
-                  <Stack>
-                    <p className='font-semibold text-md'>{asset.name}</p>
-                    <span className="bg-sky-100/5 px-1 py-[2px] rounded text-primary text-[10px] w-max">
-                      {asset.key}
-                    </span>
+
+  if (assets.length > 0) {
+    return (
+      <div className=' w-full '>
+        <Stack gap={2}>
+          <Marquee direction='right'>
+            {assets.map((asset) => (
+              <Stack className="bg-darkBG rounded-lg h-20" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
+                <Stack>
+                  <Stack flexDirection="row" gap={1} alignItems="center">
+                    <Image width={35} height={35} src={asset.icon} alt='coin lgog'></Image>
+                    <p className='font-semibold'>{asset.name}</p>
+                  </Stack>
+                  <Stack flexDirection="row" gap={2}>
+                    <p>${asset.price}</p>
+                    <p className={` font-semibold text-sm ${asset.changePrice < 0 ? "text-red-500" : "text-green-700"}`}>{asset.changePrice}% {asset.changePrice < 0 ? <TrendingDownIcon /> : <TrendingUpIcon />}</p>
                   </Stack>
                 </Stack>
-                <Stack flexDirection="row" gap={2}>
-                  <p className='text-md'>Current value: ${asset.price}</p>
+                <Stack>
+                  <p>High Price: <span className="text-green-700 font-semibold">${asset.highPrice}</span></p>
+                  <p>Low Price: <span className="text-red-500 font-semibold">${asset.lowPrice}</span></p>
                 </Stack>
               </Stack>
-              <Stack>
-                {/* <p>Heigh Price: <span className="text-green-700 font-semibold">${asset.highPrice}</span></p>
-                <p>Low Price: <span className="text-red-500 font-semibold">${asset.lowPrice}</span></p> */}
-              </Stack>
-            </Stack>
-          ))}
-        </Marquee>
-      </Stack>
-    </div>
-  );
+            ))}
+          </Marquee>
+          <Marquee direction='left'>
+            {
+              flatCurrency.map((asset) => (
+                <Stack className="bg-darkBG rounded-lg h-20" key={asset.name} sx={{ px: 2, py: 1 }} justifyContent="space-between" alignItems="center" marginX={4} gap={3} flexDirection="row">
+                  <Stack>
+                    <Stack flexDirection="row" gap={1} alignItems="center">
+                      <Image width={35} height={35} src={asset.icon} alt='coin logo'></Image>
+                      <Stack>
+                        <p className='font-semibold text-md'>{asset.name}</p>
+                        <span className="bg-sky-100/5 px-1 py-[2px] rounded text-primary text-[10px] w-max">
+                          {asset.key}
+                        </span>
+                      </Stack>
+                    </Stack>
+                    <Stack flexDirection="row" gap={2}>
+                      <p className='text-md'>Current value: ${asset.price}</p>
+                    </Stack>
+                  </Stack>
+                  <Stack>
+                    {/* <p>Heigh Price: <span className="text-green-700 font-semibold">${asset.highPrice}</span></p>
+                  <p>Low Price: <span className="text-red-500 font-semibold">${asset.lowPrice}</span></p> */}
+                  </Stack>
+                </Stack>
+              ))
+            }
+          </Marquee>
+        </Stack>
+      </div>
+    );
+  }else{
+    return(
+      <Skeleton
+          sx={{ height: 200, borderRadius: "10px" }}
+          animation="wave"
+          variant="rectangular"
+        />
+    )
+  }
+
 };
 
 export default MarketHeadLine;

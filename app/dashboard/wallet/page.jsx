@@ -11,14 +11,14 @@ export const metadata = {
 
 const Wallet = () => {
   return (
-    <div className="flex flex-col xl:flex-row justify-between gap-5 w-full">
-      <div className="xl:w-9/12 flex flex-col gap-5">
+    <div className="flex flex-col 2xl:flex-row justify-between gap-5 w-full">
+      <div className="2xl:w-9/12 flex flex-col gap-5">
         <BalanceSection />
 
         <TransactionTable />
       </div>
 
-      <div className="xl:w-5/12 2xl:w-4/12">
+      <div className="2xl:w-5/12  3xl:w-4/12">
         <DepositWithdrawSection />
 
         {/* Transaction Report */}

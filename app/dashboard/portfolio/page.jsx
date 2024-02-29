@@ -2,15 +2,22 @@
 import React, { useEffect, useState } from "react";
 import * as MuiIcons from "@mui/icons-material";
 import {
+  Pagination,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
-import useSecureFetch from "@/hooks/useSecureFetch";
-import useAuth from "@/hooks/useAuth";
-import DashButton from "@/components/library/buttons/DashButton";
+import { BiSearchAlt } from "react-icons/bi";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import ViewListIcon from "@mui/icons-material/ViewList";
+import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import PortfolioAssetChart from "@/components/traders_comp/portfolio/PortfolioAssetChart";
 import PortfolioTopBanner from "@/components/traders_comp/portfolio/PortfolioTopBanner";
 import Image from "next/image";
@@ -18,38 +25,47 @@ import BuyAndExchange from "@/components/traders_comp/portfolio/BuyAndExchange";
 import emptyIcon from "../../../assets/emptyIcon.png";
 import axios from "axios";
 import useUserData from "@/hooks/useUserData";
+import usePurchasedAssets from "@/hooks/usePurchasedAssets";
+import PortfolioAssetTable from "@/components/traders_comp/portfolio/PortfolioAssetTable";
+import MarketTable from "@/components/traders_comp/market/MarketTable";
+import PortfolioAssetBox from "@/components/traders_comp/portfolio/PortfolioAssetBox";
 
 const Portfolio = () => {
-
-  const { user, loading } = useAuth();
   const [cryptoData, setCryptoData] = useState([]);
   const [currencyData, setCurrencyData] = useState([]);
+  const [dynamicSearch, setDynamicSearch] = useState("");
+  const [coinPerPage, setCoinPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  // const {
-  //   data: allUsers = [],
-  //   isPending,
-  //   isLoading,
-  //   refetch,
-  // } = useSecureFetch(`/all-users/${user?.email}`, ["all-users"]);
+  console.log(dynamicSearch);
 
   const { userData, userDataLoading, userDataPending, userDataError } =
-  useUserData();
-
-
+    useUserData();
 
   const usersRemainingBalance = parseFloat(userData?.balance).toFixed(2);
 
   // data fetch in all coin in buying  market page
+
+  // const {
+  //   data: purchasedAssets = [],
+  //   isPending: purchasedPending,
+  //   isLoading: purchasedLoading,
+  //   refetch: purchasedRefetch,
+  // } = useSecureFetch(`/purchasedAssets?email=${user.email}`, [
+  //   "purchased-asset",
+  //   user?.email,
+  // ]);
+
   const {
-    data: purchasedAssets = [],
-    isPending: purchasedPending,
-    isLoading: purchasedLoading,
-    refetch: purchasedRefetch,
-  } = useSecureFetch(`/purchasedAssets?email=${user.email}`, [
-    "purchased-asset",
-    user?.email,
-  ]);
-  // console.log(purchasedAssets)
+    purchasedAssets,
+    purchasedPending,
+    purchasedLoading,
+    purchasedRefetch,
+  } = usePurchasedAssets(dynamicSearch, currentPage, coinPerPage);
+
+  purchasedRefetch();
+
+  // console.log(purchasedAssets);
 
   // filter  coin data
   useEffect(() => {
@@ -60,10 +76,9 @@ const Portfolio = () => {
       setCurrencyData(
         purchasedAssets.filter((data) => data.assetType === "flat coin")
       );
+      purchasedRefetch();
     }
-  }, [purchasedAssets]);
-
-  
+  }, [purchasedAssets, purchasedRefetch]);
 
   // console.log(currencyData);
 
@@ -134,32 +149,37 @@ const Portfolio = () => {
     const fetchCurrencyRates = async () => {
       try {
         if (currencyData.length > 0) {
-          const updatedAssets = await Promise.all(currencyData.map(async (asset) => {
-            const currencyKey = asset.assetKey;
-            const response = await axios.get(
-              `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
-            );
-            return createCryptoData(
-              asset._id,
-              asset.assetName,
-              asset.assetKey,
-              asset.assetImg,
-              asset.assetType,
-              asset.assetBuyingPrice,
-              response.data.rates.USD,
-              asset.assetPortion,
-              asset.totalInvestment,
-              asset.assetBuyerUID,
-              asset.assetBuyerEmail
-            );
-          }));
-          setCryptoData((prevCryptoData) => [...prevCryptoData, ...updatedAssets]);
+          const updatedAssets = await Promise.all(
+            currencyData.map(async (asset) => {
+              const currencyKey = asset.assetKey;
+              const response = await axios.get(
+                `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+              );
+              return createCryptoData(
+                asset._id,
+                asset.assetName,
+                asset.assetKey,
+                asset.assetImg,
+                asset.assetType,
+                asset.assetBuyingPrice,
+                response.data.rates.USD,
+                asset.assetPortion,
+                asset.totalInvestment,
+                asset.assetBuyerUID,
+                asset.assetBuyerEmail
+              );
+            })
+          );
+          setCryptoData((prevCryptoData) => [
+            ...prevCryptoData,
+            ...updatedAssets,
+          ]);
         }
       } catch (error) {
         console.error("Error fetching currency rates:", error);
       }
     };
-  
+
     fetchCurrencyRates();
   }, [currencyData]);
 
@@ -167,12 +187,11 @@ const Portfolio = () => {
 
   // profit and loss calculator
 
-  const calculateDifference = (currentPrice, buyingPrice,portion) => {
-  const profitLoss = (currentPrice - buyingPrice)*(parseFloat(portion.slice(0,-1))/100);
+  const calculateDifference = (currentPrice, buyingPrice, portion) => {
+    const profitLoss =
+      (currentPrice - buyingPrice) * (parseFloat(portion.slice(0, -1)) / 100);
     return profitLoss;
   };
-
-  
 
   const calculateTotalProfit = cryptoData.reduce((total, asset) => {
     const difference = calculateDifference(
@@ -183,19 +202,18 @@ const Portfolio = () => {
     return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
   }, 0);
 
+  const calculateTotalLoss = cryptoData.reduce((total, asset) => {
+    const difference = calculateDifference(
+      asset.currentPrice,
+      asset.assetBuyingPrice,
+      asset.assetPortion
+    );
 
-    const calculateTotalLoss = cryptoData.reduce((total, asset) => {
-      const difference = calculateDifference(
-        asset.currentPrice,
-        asset.assetBuyingPrice,
-        asset.assetPortion
-      );
-      
-      return total + (parseFloat(difference) < 0 ? Math.abs(parseFloat(difference)) : 0);
-    }, 0);
-    
-  
-  
+    return (
+      total +
+      (parseFloat(difference) < 0 ? Math.abs(parseFloat(difference)) : 0)
+    );
+  }, 0);
 
   const totalBuyingPrice = purchasedAssets.reduce(
     (total, asset) => total + parseFloat(asset.assetBuyingPrice),
@@ -208,12 +226,29 @@ const Portfolio = () => {
     0
   );
 
+  // search functionality
+  const Search = () => {
+    purchasedRefetch();
+  };
+
+  //  short coin pages and size page in coin
+  const handleCoinPerPages = (e) => {
+    const val = parseInt(e.target.value);
+    setCoinPerPage(val);
+    setCurrentPage(0);
+  };
+
+  const [view, setView] = React.useState("module");
+
+  const handleViewChange = (event, nextView) => {
+    setView(nextView);
+  };
+
   if (
-    loading ||
     purchasedLoading ||
     purchasedPending ||
-    userDataLoading || 
-    userDataPending || 
+    userDataLoading ||
+    userDataPending ||
     userDataError
   ) {
     return (
@@ -222,8 +257,6 @@ const Portfolio = () => {
       </p>
     );
   }
-
-  
 
   return (
     <div className=" grid md:grid-cols-7 grid-cols-1  md:gap-5">
@@ -238,185 +271,79 @@ const Portfolio = () => {
         />
         {/* coin buying list   */}
         <div className="my-5 p-4   rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
-          <h1 className="text-xl font-semibold my-3">Coin Allocation</h1>
-          {cryptoData ? (
-            <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      sx={{
-                        color: "white",
-                        borderBottom: "1px solid #2c3750",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Coin
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        color: "white",
-                        borderBottom: "1px solid #2c3750",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Company
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        color: "white",
-                        borderBottom: "1px solid #2c3750",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Buying Price
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        color: "white",
-                        borderBottom: "1px solid #2c3750",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Investment
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        color: "white",
-                        borderBottom: "1px solid #2c3750",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Current Price
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        color: "white",
-                        borderBottom: "1px solid #2c3750",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Profit / Loss
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {cryptoData.map((asset, index) => (
-                    <TableRow key={index}>
-                      {/* 1st row */}
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          color: "white",
-                          borderBottom: "1px solid #2c3750",
-                        }}
-                      >
-                        <Image
-                          height={45}
-                          width={45}
-                          src={asset.assetImg}
-                          alt="coin logo"
-                        ></Image>
-                      </TableCell>
-                      {/* 2nd row */}
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        sx={{
-                          color: "white",
-                          borderBottom: "1px solid #2c3750",
-                        }}
-                      >
-                        <h2 className="font-medium ">{asset.assetName}</h2>
-                      </TableCell>
-                      {/* 3rd row */}
-                      <TableCell
-                        sx={{
-                          color: "white",
-                          borderBottom: "1px solid #2c3750",
-                        }}
-                      >
-                        <h2 className="font-medium ">
-                          $ {parseFloat(asset.assetBuyingPrice).toFixed(2)}
-                        </h2>
-                      </TableCell>
-                      {/* 4th row */}
-                      <TableCell
-                        sx={{
-                          color: "white",
-                          borderBottom: "1px solid #2c3750",
-                        }}
-                      >
-                        <h2 className="font-medium ">
-                          $ {parseFloat(asset.totalInvestment).toFixed(2)}
-                        </h2>
-                      </TableCell>
-                      {/* 5th row */}
-                      <TableCell
-                        className="font-medium"
-                        sx={{
-                          color: "white",
-                          borderBottom: "1px solid #2c3750",
-                        }}
-                      >
-                        <span
-                          className={`${
-                            asset.currentPrice <
-                            parseFloat(asset.assetBuyingPrice)
-                              ? "text-red-700"
-                              : "text-green-700"
-                          }`}
-                        >
-                          ${parseFloat(asset.currentPrice).toFixed(2)}
-                        </span>
-                        {asset.currentPrice >
-                        parseFloat(asset.assetBuyingPrice) ? (
-                          <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
-                        ) : (
-                          <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
-                        )}
-                      </TableCell>
-                      {/* 6th row */}
-                      <TableCell
-                        sx={{
-                          color: "white",
-                          borderBottom: "1px solid #2c3750",
-                        }}
-                      >
-                        <span
-                          className={`font-medium ${
-                            calculateDifference(
-                              asset.currentPrice,
-                              parseFloat(asset.assetBuyingPrice),
-                              asset.assetPortion
-                            ).toFixed(2) > 0
-                              ? "text-green-700"
-                              : "text-red-700"
-                          }`}
-                        >
-                          $
-                          {calculateDifference(
-                            asset.currentPrice,
-                            parseFloat(asset.assetBuyingPrice),
-                            asset.assetPortion
-                          ).toFixed(2)}
-                          {calculateDifference(
-                            asset.currentPrice,
-                            parseFloat(asset.assetBuyingPrice),
-                            asset.assetPortion
-                          ).toFixed(2) > 0 ? (
-                            <MuiIcons.ArrowDropUpSharp className="text-green-700 ml-1" />
-                          ) : (
-                            <MuiIcons.ArrowDropDownSharp className="text-red-700 ml-1" />
-                          )}
-                        </span>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+          <div className="flex justify-between">
+            <h1 className="text-xl font-semibold my-3">Your Holdings</h1>
+            <div className=" flex justify-around items-center gap-3">
+              {/* search form */}
+            <div className="relative flex items-center">
+              <input
+                onChange={(e) => setDynamicSearch(e.target.value)}
+                type="text"
+                name="search"
+                placeholder="Search..."
+                className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded font-medium"
+              />
+              <button
+                onClick={Search}
+                className="absolute right-0 bg-transparent text-lg text-white mix-blend-difference hover:bg-transparent btn btn-sm rounded-l-none shadow-none border-none"
+              >
+                <BiSearchAlt />
+              </button>
             </div>
+            {/* show coin count */}
+            <div className="bg-white/5 p-1 rounded">
+              
+              <select
+                value={coinPerPage}
+                onChange={handleCoinPerPages}
+                className="bg-transparent  rounded-md p-1 text-sm "
+                name=""
+                id=""
+              >
+                <option className="text-black" value="6">
+                  6
+                </option>
+                <option className="text-black" value="12">
+                  12
+                </option>
+                <option className="text-black" value="18">
+                  18
+                </option>
+                <option className="text-black" value="24">
+                  24
+                </option>
+              </select>
+              
+            </div>
+
+            {/* view options */}
+            <ToggleButtonGroup
+              orientation="horizontal"
+              value={view}
+              exclusive
+              onChange={handleViewChange}
+            >
+              <ToggleButton value="module" aria-label="module">
+                <ViewModuleIcon className="text-primary " />
+              </ToggleButton>
+              <ToggleButton value="list" aria-label="list">
+                <ViewListIcon className="text-primary" />
+              </ToggleButton>
+            </ToggleButtonGroup>
+            </div>
+          </div>
+
+          {cryptoData ? (
+            <>
+              {view === "list" ? (
+                <PortfolioAssetBox cryptoData={cryptoData} loading={purchasedLoading} pending={purchasedPending} calculateDifference={calculateDifference}/>
+              ) : (
+                <PortfolioAssetTable
+                  cryptoData={cryptoData}
+                  calculateDifference={calculateDifference}
+                />
+              )}
+            </>
           ) : (
             <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
               <Image
@@ -436,7 +363,11 @@ const Portfolio = () => {
       {/* Right side  */}
       <div className=" col-span-2 ">
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  mb-5 ">
-          <BuyAndExchange cryptoData={cryptoData} remainingBalance={usersRemainingBalance} refetch={purchasedRefetch}></BuyAndExchange>
+          <BuyAndExchange
+            cryptoData={cryptoData}
+            remainingBalance={usersRemainingBalance}
+            refetch={purchasedRefetch}
+          ></BuyAndExchange>
         </div>
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>

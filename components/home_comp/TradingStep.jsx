@@ -16,7 +16,7 @@ const TradingStep = () => {
       {/* Trading step section content */}
 
       <Title> Start trading in few steps</Title>
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
+      <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
         {/* 1st cart */}
         <motion.div
           variants={fadeIn("right", 0.2)}

@@ -1,13 +1,15 @@
-import DarkButton from "@/components/library/buttons/DarkButton";
 import Link from "next/link";
 
 const RecentlyAdded = () => {
   return (
-    <div className="md:col-span-3 xl:col-span-2 w-full h-80 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl p-5 rounded">
-      <div className="flex items-center justify-between">
-        <h3>Recently added</h3>
-        <Link href="/dashboard/market">
-          <DarkButton>See all</DarkButton>
+    <div className="xl:col-span-6 3xl:col-span-4 w-full bg-[#21212f] p-5 rounded-xl">
+      <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
+        <h3 className="text-xl font-semibold">Recently added</h3>
+        <Link
+          href="/dashboard/watchlist"
+          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
+        >
+          See all
         </Link>
       </div>
 

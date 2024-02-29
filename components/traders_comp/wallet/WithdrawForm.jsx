@@ -14,6 +14,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import useNotificationData from "@/hooks/useNotificationData";
 import getDate from "../../utils/date";
 import { useEffect, useState } from "react";
+import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 
 const WithdrawForm = ({
   refetchUserData,
@@ -27,6 +28,8 @@ const WithdrawForm = ({
   // const [currency, setCurrency] = useState("");
 
   const { refetchNotificationsData } = useNotificationData();
+  const { adminRefetchNotificationsData } = useAdminNotificationData();
+
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -154,6 +157,8 @@ const WithdrawForm = ({
                 postedDate: date,
                 location: "/dashboard/wallet",
                 read: false,
+                type:'admin'
+
               };
 
               // post to  notification data in database
@@ -161,6 +166,8 @@ const WithdrawForm = ({
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
+                    secureAPI
+                .post("/adminNotifications", notificationInfo)
                     form.reset();
                     setAmount(0);
                     setPostalCode(0);
@@ -170,6 +177,7 @@ const WithdrawForm = ({
                     refetchUserData();
                     refetchSpecificTransactionsData();
                     refetchNotificationsData();
+                    adminRefetchNotificationsData()
                     toast.success("Withdraw Successful", {
                       id: toastId,
                       duration: 5000,

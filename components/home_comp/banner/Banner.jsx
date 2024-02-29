@@ -17,9 +17,9 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 const Banner = () => {
   return (
     <div className="relative min-h-[100vh]">
-      <div className="banner w-full min-h-full absolute left-0 bottom-0 4xl:-bottom-24 opacity-80"></div>
-      <Container className="relative flex flex-col-reverse xl:flex-row xl:items-center xl:justify-between gap-20 xl:gap-10 min-h-[100vh] pt-32 xl:py-0 z-10">
-        <div className="w-full xl:flex-1 relative min-h-[100vh] flex flex-col items-start xl:justify-center z-10">
+      <div className="banner w-full min-h-full absolute left-0 bottom-0 5xl:-bottom-24 opacity-80"></div>
+      <Container className="relative flex flex-col-reverse 2xl:flex-row 2xl:items-center 2xl:justify-between gap-20 2xl:gap-10 min-h-[100vh] pt-32 2xl:py-0 z-10">
+        <div className="w-full 2xl:flex-1 relative min-h-[100vh] flex flex-col items-start 2xl:justify-center z-10">
           {/* banner title */}
           <div className="z-10">
             <motion.h1
@@ -27,7 +27,7 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="text-3xl xs:text-4xl md:text-5xl xl:text-6xl font-extrabold"
+              className="text-3xl xs:text-4xl md:text-5xl 2xl:text-6xl font-extrabold"
             >
               Trade On
             </motion.h1>
@@ -36,7 +36,7 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="pl-5 xs:pl-10 md:pl-16 2xl:pl-24 text-3xl xs:text-4xl md:text-5xl xl:text-6xl font-extrabold"
+              className="pl-5 xs:pl-10 md:pl-16  3xl:pl-24 text-3xl xs:text-4xl md:text-5xl 2xl:text-6xl font-extrabold"
             >
               <Typewriter
                 options={{
@@ -65,7 +65,7 @@ const Banner = () => {
             className="text-sm my-8 text-white pr-8 text-wrap z-10"
           >
             {" "}
-            <span className="block text-lg md:text-2xl xl:text-xl 2xl:text-2xl font-bold mb-2">
+            <span className="block text-lg md:text-2xl 2xl:text-xl  3xl:text-2xl font-bold mb-2">
               Join world&apos;s biggest & trusted exchange.
             </span>
             Trade in Bitcoin, Ethereum, and many more cryptos, currencies and
@@ -385,7 +385,7 @@ const Banner = () => {
 export default Banner;
 
 {
-  /* <div className="w-full absolute left-0 -bottom-20 px-5 md:px-10 2xl:px-20">
+  /* <div className="w-full absolute left-0 -bottom-20 px-5 md:px-10  3xl:px-20">
           <TickerTape displayMode="adaptive"></TickerTape>
         </div> */
 }

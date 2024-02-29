@@ -35,7 +35,7 @@ const MyProfile = ({ userDataRefetch }) => {
           </h2>
           <DarkButton
             onClick={() => setIsEdit(!isEdit)}
-            className="px-5 rounded xl:rounded"
+            className="px-5 rounded 2xl:rounded"
           >
             <MdEditSquare /> Edit
           </DarkButton>

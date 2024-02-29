@@ -20,8 +20,8 @@ import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useAuth from "@/hooks/useAuth";
 import getDate from "@/components/utils/date";
-
-
+import useNotificationData from "@/hooks/useNotificationData";
+import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 
 const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
   const [tabValue, setTabValue] = useState("1");
@@ -30,24 +30,28 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
   const [firstCoinName, setFirstCoinName] = useState();
   const [secondCoinName, setSecondCoinName] = useState();
   const secureAPI = useSecureAPI();
-  const {user} = useAuth()
-  const date = getDate()
-
-
+  const { user } = useAuth();
+  const date = getDate();
+  const { refetchNotificationsData } = useNotificationData();
+  const { adminRefetchNotificationsData } = useAdminNotificationData();
 
   const handleChangeCoins = (event) => {
-    setFirstCoinId(event.target.value)
-    setFirstCoinName(cryptoData.find(asset => asset._id === event.target.value).assetName)
+    setFirstCoinId(event.target.value);
+    setFirstCoinName(
+      cryptoData.find((asset) => asset._id === event.target.value).assetName
+    );
   };
 
   const handleChangeExchange = (event) => {
-    setSecondCoinId(event.target.value)
-    setSecondCoinName(cryptoData.find(asset => asset._id === event.target.value).assetName)
+    setSecondCoinId(event.target.value);
+    setSecondCoinName(
+      cryptoData.find((asset) => asset._id === event.target.value).assetName
+    );
   };
 
   const handleExChange = () => {
-     // post notification data sen database
-     const notificationInfo = {
+    // post notification data sen database
+    const notificationInfo = {
       title: "Coin Exchange Successfully",
       description: `Coin exchange ${firstCoinName} to ${secondCoinName}`,
       assetKey: "",
@@ -57,14 +61,15 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
       postedDate: date,
       location: "/dashboard/portfolio",
       read: false,
+      type: "admin",
     };
-          if(firstCoinId === secondCoinId){
-            Swal.fire({
-              title: `You Can't exchange same coins`,
-              icon: "error",
-            });
-            return
-          }
+    if (firstCoinId === secondCoinId) {
+      Swal.fire({
+        title: `You Can't exchange same coins`,
+        icon: "error",
+      });
+      return;
+    }
     Swal.fire({
       title: `Are you sure to exchange ${firstCoinName} to ${secondCoinName}?`,
       text: `You won't be able to revert this!`,
@@ -85,17 +90,20 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
                 icon: "success",
                 timer: 1500,
               });
-             
+
               // post to  notification data in database
               secureAPI
                 .post("/notifications", notificationInfo)
                 .then((res) => {
-                  console.log('success post to notification');
+                  console.log("success post to notification");
+                  secureAPI.post("/adminNotifications", notificationInfo);
+                  refetch();
+                  refetchNotificationsData();
+                  adminRefetchNotificationsData();
                 })
                 .catch((error) => {
                   console.error("Error sending notification:", error);
                 });
-              refetch();
             }
           })
           .catch((error) => {
@@ -106,9 +114,8 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
             });
           });
       }
-    })
-  }
-
+    });
+  };
 
   return (
     <TabContext value={tabValue}>
@@ -143,37 +150,57 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
       {/* Exchange Coin */}
       <TabPanel value="1" sx={{ padding: 0, overflow: "hidden" }}>
         <div>
-          <div className=" font-semibold xl:flex items-center justify-between gap-4 my-4 px-3 ">
+          <div className=" font-semibold 2xl:flex items-center justify-between gap-4 my-4 px-3 ">
             <h2>
               <WalletIcon /> <span>$ {remainingBalance}</span>{" "}
             </h2>
-            <div className="flex items-center gap-2 xl:mt-0 mt-2">
+            <div className="flex items-center gap-2 2xl:mt-0 mt-2">
               <Image
                 src={bitLogo}
                 alt="bitCoin"
-                className="rounded-full xl:w-8 w-5 xl:h-8 h-5 "
+                className="rounded-full 2xl:w-8 w-5 2xl:h-8 h-5 "
               />{" "}
               <span>$ 70,000</span>
             </div>
-            <div>
-            </div>
+            <div></div>
           </div>
           {/* input field */}
 
           {/* 1st input */}
-          <FormControl fullWidth sx={{ borderBottom: "1px solid white", borderLeft: "1px solid white", borderRight: "1px solid white", borderRadius: '5px' }}>
-            <InputLabel id="demo-simple-select-label" style={{ color: "white" }} >From:</InputLabel>
+          <FormControl
+            fullWidth
+            sx={{
+              borderBottom: "1px solid white",
+              borderLeft: "1px solid white",
+              borderRight: "1px solid white",
+              borderRadius: "5px",
+            }}
+          >
+            <InputLabel
+              id="demo-simple-select-label"
+              style={{ color: "white" }}
+            >
+              From:
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="Form"
               onChange={handleChangeCoins}
-              sx={{ color: "white", border: 'black' }}
+              sx={{ color: "white", border: "black" }}
             >
               <p className="mx-4 my-2">Asset Name-Invested amount</p>
               {cryptoData.map((asset, idx) => (
                 <MenuItem key={idx} value={asset._id}>
-                  <p className="flex justify-between gap-6 items-center">{asset.assetName}-${asset.totalInvestment} <Image src={asset.assetImg} height={30} width={30} alt="logo"></Image></p>
+                  <p className="flex justify-between gap-6 items-center">
+                    {asset.assetName}-${asset.totalInvestment}{" "}
+                    <Image
+                      src={asset.assetImg}
+                      height={30}
+                      width={30}
+                      alt="logo"
+                    ></Image>
+                  </p>
                 </MenuItem>
               ))}
             </Select>
@@ -182,9 +209,21 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
             <CachedSharpIcon style={{ fontSize: "2rem" }} />
           </div>
           {/* 2nd input */}
-          <FormControl fullWidth sx={{ borderBottom: "1px solid white", borderLeft: "1px solid white", borderRight: "1px solid white", borderRadius: '5px' }}>
-            <InputLabel id="demo-simple-select-label"
-              style={{ color: "white" }}>To:</InputLabel>
+          <FormControl
+            fullWidth
+            sx={{
+              borderBottom: "1px solid white",
+              borderLeft: "1px solid white",
+              borderRight: "1px solid white",
+              borderRadius: "5px",
+            }}
+          >
+            <InputLabel
+              id="demo-simple-select-label"
+              style={{ color: "white" }}
+            >
+              To:
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -195,14 +234,25 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
               <p className="mx-4 my-2">Asset Name-Invested amount</p>
               {cryptoData.map((asset, idx) => (
                 <MenuItem key={idx} value={asset._id}>
-                  <p className="flex justify-between gap-6 items-center">{asset.assetName}-${asset.totalInvestment} <Image src={asset.assetImg} height={30} width={30} alt="logo"></Image></p>
+                  <p className="flex justify-between gap-6 items-center">
+                    {asset.assetName}-${asset.totalInvestment}{" "}
+                    <Image
+                      src={asset.assetImg}
+                      height={30}
+                      width={30}
+                      alt="logo"
+                    ></Image>
+                  </p>
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
           <h3 className=" font-semibold my-2 text-gray-500">No Extra Fees :</h3>
 
-          <DarkButton className={"w-full mt-5 md:rounded"} onClick={handleExChange}>
+          <DarkButton
+            className={"w-full mt-5 md:rounded"}
+            onClick={handleExChange}
+          >
             <CachedSharpIcon /> Exchange
           </DarkButton>
         </div>
