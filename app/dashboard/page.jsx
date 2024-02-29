@@ -28,7 +28,7 @@ const page = () => {
       <TopAssets />
 
       {/* watchlist */}
-      <div className="hidden xl:block col-span-2">
+      <div className="hidden 2xl:block col-span-2">
         <SideWatchlist />
       </div>
 
@@ -36,12 +36,12 @@ const page = () => {
       <QuickTrade />
 
       {/* watchlist */}
-      <div className="block xl:hidden md:col-span-3">
+      <div className="block 2xl:hidden md:col-span-3">
         <SideWatchlist />
       </div>
 
       {/* history */}
-      <div className="md:col-span-3 xl:col-span-3">
+      <div className="md:col-span-3 2xl:col-span-3">
         <SideHistory />
       </div>
     </div>

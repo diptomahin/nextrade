@@ -119,11 +119,11 @@ const WatchlistCurrencyTable = ({ assets, handleDelete }) => {
                   gap: "10px",
                 }}
               >
-                <DarkButton className="font-medium normal-case h-8 xl:text-sm">
+                <DarkButton className="font-medium normal-case h-8 2xl:text-sm">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
                 <DarkButton
-                  className="font-medium normal-case h-8 xl:text-sm"
+                  className="font-medium normal-case h-8 2xl:text-sm"
                   onClick={() => handleDelete(asset._id)}
                 >
                   Delete

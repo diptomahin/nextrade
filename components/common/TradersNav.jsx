@@ -181,7 +181,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </IconButton>
 
         {/* dynamic tittle and date time */}
-        <div className="hidden xl:block">
+        <div className="hidden 2xl:block">
           <h1 className="font-semibold">{breadcrumbs}</h1>
           <p className="text-xs opacity-70">Updated on {dateWithName}</p>
         </div>

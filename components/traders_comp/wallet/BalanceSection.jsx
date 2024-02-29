@@ -13,7 +13,7 @@ const BalanceSection = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 4xl:grid-cols-3 justify-between gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 5xl:grid-cols-3 justify-between gap-5">
       {/* total balance */}
       <div className="w-full p-5 bg-primary rounded flex items-center justify-between gap-3">
         <div>

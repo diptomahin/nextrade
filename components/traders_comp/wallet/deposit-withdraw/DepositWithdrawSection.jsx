@@ -61,10 +61,10 @@ const DepositWithdrawSection = () => {
         <TabPanel>
           {userData && userData.balance <= 10 ? (
             <div className="flex flex-col items-center justify-center text-center my-10">
-              <h4 className="text-xl 2xl:text-2xl font-bold">
+              <h4 className="text-xl  3xl:text-2xl font-bold">
                 Please deposit first
               </h4>
-              <p className="text-sm 2xl:text-base">
+              <p className="text-sm  3xl:text-base">
                 Your account balance must meet or exceed{" "}
                 <span className="font-semibold text-secondary">$10</span> to
                 initiate a withdrawal.

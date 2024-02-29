@@ -27,7 +27,7 @@ const Subscription = () => {
           Monthly subscription sell
         </motion.p>
       </div>
-      <div className="relative grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
+      <div className="relative grid  3xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
         {/* cart 1 basic plan */}
         <motion.div
           variants={fadeIn("right", 0.2)}

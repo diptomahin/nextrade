@@ -29,7 +29,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               No.
@@ -39,7 +39,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               Name
@@ -49,7 +49,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               Code
@@ -59,7 +59,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               Current Value/USD
@@ -69,7 +69,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               Option
@@ -107,12 +107,10 @@ const NormalCurrencyTable = ({ assets }) => {
                 <p className={`text-white`}>{asset.key}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <p className={` text-white`}>
-                  $ {asset.price}
-                </p>
+                <p className={` text-white`}>$ {asset.price}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <DarkButton className="font-medium normal-case h-8 xl:text-sm">
+                <DarkButton className="font-medium normal-case h-8 2xl:text-sm">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
               </TableCell>

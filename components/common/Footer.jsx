@@ -27,8 +27,8 @@ const Footer = () => {
           : "block"
       }`}
     >
-      <Container className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-6  justify-between gap-10 py-10">
-        <div className="md:col-span-2 2xl:col-span-2 flex flex-col gap-3">
+      <Container className="grid grid-cols-1 md:grid-cols-2  3xl:grid-cols-6  justify-between gap-10 py-10">
+        <div className="md:col-span-2  3xl:col-span-2 flex flex-col gap-3">
           <Link href={"/"}>
             <Image
               src={logo}
@@ -36,7 +36,7 @@ const Footer = () => {
               style={{ width: "150px", height: "auto" }}
             />
           </Link>
-          <p className="text-sm 2xl:max-w-80">
+          <p className="text-sm  3xl:max-w-80">
             The Company does not provide services to citizens and/or residents
             of Australia, Austria, Belarus, Belgium, Bulgaria, Canada, Croatia,
             Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland,
@@ -101,7 +101,7 @@ const Footer = () => {
         </div>
       </Container>
       <div className="border-t border-darkThree text-sm text-darkGray py-10">
-        <Container className="flex flex-col xl:flex-row justify-between gap-10">
+        <Container className="flex flex-col 2xl:flex-row justify-between gap-10">
           <p className="flex-1">
             Trading and investing involves significant level of risk and is not
             suitable and/or appropriate for all clients. Please make sure you
@@ -115,13 +115,13 @@ const Footer = () => {
             are granted limited non-exclusive rights to use the IP contained in
             this site for personal, non-commercial, non-transferable use only in
             relation to the services offered on the site.{" "}
-            <span className="xl:block">
+            <span className="2xl:block">
               Since EOLabs LLC is not under the supervision of the JFSA, it is
               not involved with any acts considered to be offering financial
               products and solicitation for financial services to Japan and this
               website is not aimed at residents in Japan.
             </span>{" "}
-            <span className="xl:block">
+            <span className="2xl:block">
               EOLabs LLC, Company No 377 LLC 2020, having its registered address
               at: First Floor, First St. Vincent Bank Ltd., James Street, PO Box
               1574, Kingstown, St. Vincent and the Grenadines. Merchant Company:
@@ -129,10 +129,10 @@ const Footer = () => {
               GX11 1AA, Gibraltar.
             </span>
           </p>
-          <div className="text-center xl:text-start">
+          <div className="text-center 2xl:text-start">
             <p>© 2023–2024 NexTrade</p>
             <p className="text-xs">NexTrade All rights reserved.</p>
-            <div className="flex items-center justify-center xl:justify-start gap-5 mt-5 text-white">
+            <div className="flex items-center justify-center 2xl:justify-start gap-5 mt-5 text-white">
               <FaFacebook className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />{" "}
               <FaXTwitter className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />{" "}
               <FaYoutube className="w-5 h-5 opacity-50 hover:opacity-100 transition-opacity duration-300 ease-linear" />

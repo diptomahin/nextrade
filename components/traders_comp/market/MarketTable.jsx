@@ -32,7 +32,7 @@ const MarketTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               No.
@@ -42,7 +42,7 @@ const MarketTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               Coin Name
@@ -52,7 +52,7 @@ const MarketTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               Current Price
@@ -62,7 +62,7 @@ const MarketTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               24%
@@ -72,7 +72,7 @@ const MarketTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               24h High Price
@@ -82,7 +82,7 @@ const MarketTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               24h Low Price
@@ -92,7 +92,7 @@ const MarketTable = ({ assets }) => {
                 fontWeight: 700,
                 color: "white",
                 borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750"
+                borderTop: "2px solid #2c3750",
               }}
             >
               Option
@@ -157,7 +157,7 @@ const MarketTable = ({ assets }) => {
                 </p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <DarkButton className="font-medium normal-case h-8 xl:text-sm">
+                <DarkButton className="font-medium normal-case h-8 2xl:text-sm">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
               </TableCell>
