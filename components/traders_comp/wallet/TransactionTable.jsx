@@ -132,7 +132,7 @@ const TransactionTable = () => {
   };
   return (
     <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded">
-      <div className="flex flex-col xl:flex-row items-center justify-between pb-10 gap-6">
+      <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
 
         <div className="flex items-center gap-1">

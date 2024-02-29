@@ -21,7 +21,8 @@ module.exports = {
       backgroundColor: {
         primary: '#40a0ff', //blue
         secondary: '#fca104', // orange
-        darkBG: '#181e2c',
+        // darkBG: '#181e2c',
+        darkBG: '#17171e',
       },
       fontFamily: {
         montserrat: ['Montserrat', 'Inter', 'Graphik', 'Merriweather', 'sans-serif', 'serif'],
@@ -34,11 +35,12 @@ module.exports = {
         'sm': '448px',
         'md': '640px',
         'lg': '768px',
-        'xl': '1024px',
-        '2xl': '1280px',
-        '3xl': '1360px',
-        '4xl': '1440px',
-        '5xl': '1500px',
+        'xl': '900px',
+        '2xl': '1024px',
+        '3xl': '1280px',
+        '4xl': '1360px',
+        '5xl': '1440px',
+        '6xl': '1500px',
       },
     },
   },

@@ -14,7 +14,7 @@ import Title from "@/components/library/Title";
 const InvestSolutions = () => {
   return (
     <Container className="py-20">
-      <div className="flex flex-col xl:flex-row items-center justify-between xl:gap-20">
+      <div className="flex flex-col 2xl:flex-row items-center justify-between 2xl:gap-20">
         {/* Image side */}
         <motion.div
           variants={fadeIn("right", 0.1)}

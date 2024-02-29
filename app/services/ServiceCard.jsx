@@ -11,14 +11,14 @@ import Icon6 from "../../assets/Services/icon-6.png";
 
 const ServiceCard = () => {
   return (
-    <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
+    <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-10 mt-10 text-darkGray">
       {/* cart 1  */}
       <motion.div
         variants={fadeIn("right", 0.03)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
+        className=" 3xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
       >
         <div className="w-full flex items-center justify-start gap-5">
           <Image
@@ -44,7 +44,7 @@ const ServiceCard = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
+        className=" 3xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
       >
         <div className="w-full flex items-center justify-start gap-5">
           <Image
@@ -71,7 +71,7 @@ const ServiceCard = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
+        className=" 3xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
       >
         <div className="w-full flex items-center justify-start gap-5">
           <Image
@@ -98,7 +98,7 @@ const ServiceCard = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
+        className=" 3xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
       >
         <div className="w-full flex items-center justify-start gap-5">
           <Image
@@ -123,7 +123,7 @@ const ServiceCard = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
+        className=" 3xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
       >
         <div className="w-full flex items-center justify-start gap-5">
           <Image
@@ -150,7 +150,7 @@ const ServiceCard = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="2xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
+        className=" 3xl:h-60 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-8 rounded text-white"
       >
         <div className="w-full flex items-center justify-start gap-5">
           <Image

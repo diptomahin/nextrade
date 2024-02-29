@@ -29,14 +29,14 @@ const Services = () => {
         maintenance, and more!
       </motion.p>
 
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
+      <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
         {/* cart 1  */}
         <motion.div
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
+          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
         >
           <div className="w-full flex items-center justify-start gap-3">
             <Image
@@ -60,7 +60,7 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
+          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
         >
           <div className="w-full flex items-center justify-start gap-3">
             <Image
@@ -85,7 +85,7 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
+          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
         >
           <div className="w-full flex items-center justify-start gap-3">
             <Image
@@ -112,7 +112,7 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
+          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
         >
           <div className="w-full flex items-center justify-start gap-3">
             <Image
@@ -137,7 +137,7 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
+          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
         >
           <div className="w-full flex items-center justify-start gap-3">
             <Image
@@ -162,7 +162,7 @@ const Services = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="2xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
+          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
         >
           <div className="w-full flex items-center justify-start gap-3">
             <Image

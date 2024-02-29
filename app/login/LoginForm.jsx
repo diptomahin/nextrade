@@ -72,7 +72,7 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-5 my-16 xl:mx-0 p-5 md:px-10 w-full md:w-[400px] xl:w-[400px] border rounded bg-white"
+      className="mx-5 my-16 2xl:mx-0 p-5 md:px-10 w-full md:w-[400px] 2xl:w-[400px] border rounded bg-white"
     >
       <Typography
         variant="h2"

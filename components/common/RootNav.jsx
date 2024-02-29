@@ -78,7 +78,7 @@ export default function RootNav() {
             </div>
           </div>
           <Magnetic>
-            <Link href="/" className="hidden xl:block">
+            <Link href="/" className="hidden 2xl:block">
               {scrolled ? (
                 <Image
                   src={logo2}
@@ -95,7 +95,7 @@ export default function RootNav() {
             </Link>
           </Magnetic>
           <Magnetic>
-            <Link href="/" className="hidden md:block xl:hidden">
+            <Link href="/" className="hidden md:block 2xl:hidden">
               <Image
                 src={logo2}
                 alt="Logo"
@@ -138,7 +138,7 @@ export default function RootNav() {
       <Magnetic>
         <div
           onClick={handleScrollToTop}
-          className={` fixed bottom-10 right-5 md:right-10 xl:right-20 z-[99] ${
+          className={` fixed bottom-10 right-5 md:right-10 2xl:right-20 z-[99] ${
             !scrolled && "hidden"
           }`}
         >
