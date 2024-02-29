@@ -149,7 +149,7 @@ const SideWatchlist = () => {
           See all
         </Link>
       </div>
-      <Box sx={{ width: "100%", typography: "body1" }}>
+      <Box sx={{ width: "100%", height: "100%", typography: "body1" }}>
         <TabContext value={value}>
           <Box
             sx={{
@@ -256,7 +256,7 @@ const SideWatchlist = () => {
                 </Table>
               </TableContainer>
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-10">
+              <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-24">
                 <Image src={emptyIcon} width={70} height={70} alt="Icon" />
                 <h3 className="text-primary text-lg font-semibold text-center">
                   empty !!
@@ -340,7 +340,7 @@ const SideWatchlist = () => {
                 </Link>
               </TableContainer>
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-10">
+              <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-24">
                 <Image src={emptyIcon} width={70} height={70} alt="Icon" />
                 <h3 className="text-primary text-lg font-semibold text-center">
                   empty !!

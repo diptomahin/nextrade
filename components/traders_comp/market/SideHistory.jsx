@@ -78,7 +78,7 @@ const SideHistory = () => {
           </div>
         ))
       ) : (
-        <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-10">
+        <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-24">
           <Image src={emptyIcon} width={70} height={70} alt=" Logo" />
           <h3 className="text-primary text-lg font-semibold text-center">
             No history data available !!!

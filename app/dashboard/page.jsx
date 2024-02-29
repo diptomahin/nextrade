@@ -1,6 +1,5 @@
 import Balance from "@/components/traders_comp/dashboard/Balance";
 import QuickTrade from "@/components/traders_comp/dashboard/quick-trade/QuickTrade";
-import RecentlyAdded from "@/components/traders_comp/dashboard/RecentlyAdded";
 import TopAssets from "@/components/traders_comp/dashboard/TopAssets";
 import Trending from "@/components/traders_comp/dashboard/Trending";
 import SideHistory from "@/components/traders_comp/market/SideHistory";

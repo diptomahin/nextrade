@@ -209,18 +209,6 @@ const SidePortfolio = () => {
                     border: "none",
                   }}
                 >
-                  Current Price
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontSize: "14px",
-                    paddingX: "0px",
-                    paddingY: "5px",
-                    fontWeight: 500,
-                    color: "white",
-                    border: "none",
-                  }}
-                >
                   Profit / Loss
                 </TableCell>
               </TableRow>
@@ -245,10 +233,6 @@ const SidePortfolio = () => {
                     <h2 className="font-medium text-xs text-white">
                       ${parseFloat(asset.totalInvestment).toFixed(2)}
                     </h2>
-                  </TableCell>
-
-                  <TableCell sx={{ border: "none", paddingX: "0px" }}>
-                    <p className={` text-xs text-white`}>${asset.price}</p>
                   </TableCell>
                   <TableCell sx={{ border: "none", paddingX: "0px" }}>
                     <span
@@ -285,10 +269,10 @@ const SidePortfolio = () => {
           </Table>
         </TableContainer>
       ) : (
-        <div className=" w-full flex flex-col items-center justify-center gap-2 py-20 border-2 border-primary rounded">
+        <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-24">
           <Image src={emptyIcon} width={70} height={70} alt=" Logo" />
           <h3 className="text-primary text-lg font-semibold text-center">
-            empty !!
+            No data available !!!
           </h3>
         </div>
       )}
