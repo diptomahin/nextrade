@@ -110,7 +110,7 @@ const CurrencyDetails = ({
       detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${currencyName}`
     }
 
-    if (usersBalance < parseFloat(ast)) {
+    if (usersBalance <= 0) {
       Swal.fire({
         title: `You Don't have enough balance!`,
         text: `Please deposit to your account`,

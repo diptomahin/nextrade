@@ -58,7 +58,7 @@ const CryptoDetails = ({
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
   const { refetchInvestmentHistory } = useInvestmentHistory()
-  const {adminRefetchNotificationsData} = useAdminNotificationData()
+  const { adminRefetchNotificationsData } = useAdminNotificationData()
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -97,7 +97,7 @@ const CryptoDetails = ({
       read: false,
       location: "/dashboard/portfolio",
       type: 'admin'
-      
+
     };
 
     const historyInfo = {
@@ -114,7 +114,7 @@ const CryptoDetails = ({
       detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`
     }
 
-    if (usersBalance < parseFloat(ast.c)) {
+    if (usersBalance <= 0) {
       Swal.fire({
         title: `You Don't have enough balance!`,
         text: `Please deposit to your account`,
@@ -144,9 +144,10 @@ const CryptoDetails = ({
                 .then((res) => {
                   if (res.data.insertedId) {
                     secureAPI
-                .post("/adminNotifications", notificationInfo)
+                      .post("/adminNotifications", notificationInfo)
+                      refetch();
                     adminRefetchNotificationsData()
-                refetchNotificationsData();
+                    refetchNotificationsData();
                     Swal.fire({
                       title: `Coin Purchase successful!`,
                       text: `Best of luck`,

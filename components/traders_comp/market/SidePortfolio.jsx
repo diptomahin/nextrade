@@ -8,9 +8,20 @@ import * as MuiIcons from "@mui/icons-material";
 import Link from 'next/link';
 import axios from 'axios';
 import DarkButton from '@/components/library/buttons/DarkButton';
+import useSecureFetch from '@/hooks/useSecureFetch';
+import useAuth from '@/hooks/useAuth';
 
 const SidePortfolio = () => {
-    const { purchasedAssets } = usePurchasedCoinData();
+    const {user} = useAuth();
+    const {
+        data: purchasedAssets = [],
+        isPending: purchasedPending,
+        isLoading: purchasedLoading,
+        refetch: purchasedRefetch,
+    } = useSecureFetch(`/sidePortfolio?email=${user.email}`, [
+        "purchased-asset",
+        user?.email,
+    ]);
     const [cryptoData, setCryptoData] = useState([]);
     const [currencyData, setCurrencyData] = useState([]);
 
