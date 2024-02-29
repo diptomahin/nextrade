@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import Rechart from "../wallet/Rechart";
 import useUserData from "@/hooks/useUserData";
 import { MdAccountBalance } from "react-icons/md";
 import { RiLuggageDepositFill } from "react-icons/ri";
@@ -10,6 +8,14 @@ import {
   HiMiniArrowDownOnSquareStack,
   HiMiniArrowUpOnSquareStack,
 } from "react-icons/hi2";
+import {
+  Bar,
+  BarChart,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+} from "recharts";
 
 const Balance = () => {
   const { userData, userDataLoading, userDataPending, userDataError } =
@@ -18,21 +24,52 @@ const Balance = () => {
   if (userDataLoading || userDataPending || userDataError) {
     return;
   }
+
+  const data = [
+    {
+      name: "balance",
+      Balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
+
+      Deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
+      Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
+    },
+    {
+      name: "balance",
+      Balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
+
+      Deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
+      Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
+    },
+    {
+      name: "balance",
+      Balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
+
+      Deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
+      Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
+    },
+    {
+      name: "balance",
+      Balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
+
+      Deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
+      Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
+    },
+    {
+      name: "balance",
+      Balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
+
+      Deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
+      Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
+    },
+  ];
+
   return (
     <div className="xl:col-span-12 2xl:col-span-7 w-full bg-[#21212f] p-5 rounded-xl">
-      <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
-        <h3 className="text-xl font-semibold">Total Balance</h3>
-        <Link
-          href="/dashboard/market"
-          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
-        >
-          See all
-        </Link>
-      </div>
+      <h3 className="text-xl font-semibold">Balance</h3>
 
       {/* content */}
-      <div className="h-full flex items-center justify-between gap-5">
-        <div className="h-full w-full py-10">
+      <div className="h-96 flex items-center justify-between gap-5 6xl:gap-10">
+        <div className="w-full">
           {/* top part */}
           <div className="flex justify-between">
             {/*  */}
@@ -42,7 +79,7 @@ const Balance = () => {
               </div>
               <div className="">
                 <h3 className="text-primary font-semibold">Total Balance</h3>
-                <p className="text-xl font-semibold">$10000</p>
+                <p className="text-xl font-semibold">${userData?.balance}</p>
               </div>
             </div>
 
@@ -118,7 +155,19 @@ const Balance = () => {
             </div>
           </div>
         </div>
-        <Rechart />
+        <ResponsiveContainer
+          width={"100%"}
+          height={"100%"}
+          className="mx-auto text-center"
+        >
+          <BarChart data={data}>
+            <XAxis dataKey={"name"} />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="Deposit" fill="#3aba69" />
+            <Bar dataKey="Withdraw" fill="#f65455" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

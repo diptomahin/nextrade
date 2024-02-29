@@ -30,7 +30,7 @@ const Rechart = () => {
   return (
     <ResponsiveContainer
       width={"100%"}
-      height={325}
+      height={300}
       className="mx-auto text-center"
     >
       <BarChart data={data}>
