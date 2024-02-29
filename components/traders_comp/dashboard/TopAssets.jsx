@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Autoplay } from "swiper/modules";
 import useAllCryptoCoins from "@/hooks/useAllCryptoCoins";
 import useAllFlatCoins from "@/hooks/useAllFlatCoins";
 import { useEffect, useState } from "react";
@@ -10,6 +11,7 @@ import Image from "next/image";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import "../market/market.css";
+import axios from "axios";
 
 const TopAssets = () => {
   const [isBuyOpen, setIsBuyOpen] = useState(true);
@@ -167,8 +169,9 @@ const TopAssets = () => {
         <Swiper
           slidesPerView={20}
           spaceBetween={5}
-          pagination={{
-            clickable: true,
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
           }}
           breakpoints={{
             0: {
@@ -184,6 +187,7 @@ const TopAssets = () => {
               spaceBetween: 20,
             },
           }}
+          modules={[Autoplay]}
         >
           {isBuyOpen
             ? cryptoCurrency.slice(0, 6).map((asset, idx) => (
