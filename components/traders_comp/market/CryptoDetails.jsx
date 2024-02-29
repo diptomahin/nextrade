@@ -107,6 +107,7 @@ const CryptoDetails = ({
       totalInvestment: investment,
       assetBuyerEmail: user.email,
       date: date,
+      action:"bought",
       detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`
     }
 
@@ -167,11 +168,6 @@ const CryptoDetails = ({
           .then(res => {
             refetchInvestmentHistory()
           })
-        secureAPI.post(`/history`, historyInfo)
-          .then(res => {
-            refetchInvestmentHistory()
-          })
-
       }
     });
   };
