@@ -11,214 +11,126 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+
 const History = () => {
-  const {data: history=[],     
+  const { data: history = [],
     isPending,
     isLoading,
-    refetch,} = useHistory(["history"]);
+    refetch, } = useHistory(["history"]);
 
-    const [bought, setBought]=useState([])
-    const [sold, setSold]=useState([])
-    useEffect(()=>{
-      const findBought = history.filter(data=> data.action=="bought");
-      
-      const findSold = history.filter(data=> data.action=="sold");
+  const [bought, setBought] = useState([])
+  const [sold, setSold] = useState([])
+  const [boughtAmount, setBoughtAmount] = useState([])
+  const [sellAmount, setSellAmount] = useState([])
+  useEffect(() => {
+    const findBought = history.filter(data => data.action == "bought");
 
-      setBought(findBought);
-      setSold(findSold);
+    const findSold = history.filter(data => data.action == "sold");
 
-    },[history])
+    setBought(findBought);
+    setSold(findSold);
 
-    // console.log(bought,sold)
+  }, [history])
+
+  const formatTime = (hours) => {
+    return hours % 12 || 12; // Convert to 12-hour format
+  };
+
+  // Helper function to pad zero for single-digit minutes
+  const padZero = (minutes) => {
+    return minutes < 10 ? `0${minutes}` : minutes;
+  };
+
+  // Helper function to determine AM or PM
+  const getAmPm = (hours) => {
+    return hours >= 12 ? "PM" : "AM";
+  };
+
   return (
-<div>
+    <div>
 
-<div>
-    <h1 className="text-xl font-bold text-white my-5">Buying History . . . .</h1>
-    <hr/>
-    {
-      bought ? (
-        <TableContainer >
-        <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell
-                            sx={{
-                              color: "white",
-                              borderBottom: "1px solid #2c3750",
-                              fontWeight: "700",
-                              fontSize: "1.25rem",
-                            }}
-                          >
-                            Coin Name
-                          </TableCell>
-                          <TableCell
-                            sx={{
-                              color: "white",
-                              borderBottom: "1px solid #2c3750",
-                              fontWeight: "700",
-                              fontSize: "1.25rem",
-                            }}
-                          >
-                            Code
-                          </TableCell>
-                          <TableCell
-                            sx={{
-                              color: "white",
-                              borderBottom: "1px solid #2c3750",
-                              fontWeight: "700",
-                              fontSize: "1.25rem",
-                            }}
-                          >
-                            Buying Price
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {bought.map((data) => (
-                          <TableRow key={data._id}>
-                            {/* 1st row */}
-                            <TableCell
-                              component="th"
-                              scope="row"
-                              sx={{
-                                color: "white",
-                                fontWeight: "700",
-                                borderBottom: "1px solid #2c3750",
-                              }}
-                            >
-                             {data.assetName}
-                            </TableCell>
-                            {/* 2nd row */}
-                            <TableCell
-                              component="th"
-                              scope="row"
-                              sx={{
-                                color: "white",
-                                borderBottom: "1px solid #2c3750",
-                              }}
-                            >
-                              <h2 className="font-medium ">{data.assetKey}</h2>
-                            </TableCell>
-                            {/* 3rd row */}
-                            <TableCell
-                              sx={{
-                                color: "green",
-                                fontWeight: "700",
-                                borderBottom: "1px solid #2c3750",
-                              }}
-                            >
-                            {data.Price}
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
-        </TableContainer>
-      ):
-      (
-        <h3 className="text-4xl text-center my-auto p-10 border-primary border-x-4 border-y-4 font-bold text-white">
-        No Buying History
-       </h3> 
-      )
-    }
-   </div>
-   <div>
-    <h1 className="text-xl font-bold text-white my-5">Selling History . . . .</h1>
-    <hr/>
-  {
-    sold ? (
-      <TableContainer >
-      <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell
-                          sx={{
-                            color: "white",
-                            borderBottom: "1px solid #2c3750",
-                            fontWeight: "700",
-                            fontSize: "1.25rem",
-                          }}
-                        >
-                          Coin Name
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            color: "white",
-                            borderBottom: "1px solid #2c3750",
-                            fontWeight: "700",
-                            fontSize: "1.25rem",
-                          }}
-                        >
-                          Code
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            color: "white",
-                            borderBottom: "1px solid #2c3750",
-                            fontWeight: "700",
-                            fontSize: "1.25rem",
-                          }}
-                        >
-                          Selling Price
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {sold.map((data) => (
-                        <TableRow key={data._id}>
-                          {/* 1st row */}
-                          <TableCell
-                            component="th"
-                            scope="row"
-                            sx={{
-                              color: "white",
-                              fontWeight: "700",
-                              borderBottom: "1px solid #2c3750",
-                            }}
-                          >
-                           {data.assetName}
-                          </TableCell>
-                          {/* 2nd row */}
-                          <TableCell
-                            component="th"
-                            scope="row"
-                            sx={{
-                              color: "white",
-                              borderBottom: "1px solid #2c3750",
-                            }}
-                          >
-                            <h2 className="font-medium ">{data.assetKey}</h2>
-                          </TableCell>
-                          {/* 3rd row */}
-                          <TableCell
-                            sx={{
-                              color: "red",
-                              fontWeight: "700",
-                              borderBottom: "1px solid #2c3750",
-                            }}
-                          >
-                          {data.Price}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+      <div>
+        <h1 className="text-xl font-bold text-white my-5">Buying History . . . .</h1>
+        <hr />
+        <div className="grid grid-cols-2 gap-2 my-5">
+          {
+            bought.map(history => (
+              <div key={history._id} className=" border-b border-x-4 border-y-4 p-5 rounded-lg pb-2 border-x-darkThree border-y-darkThree">
+                <div>
+                  <h3 className="text-xl font-bold">{history.assetName} <br /> <span className="text-sm font-semibold">
+                    ({history.assetKey})</span></h3>
                 </div>
-      </TableContainer>
-    ) :
-    (
-      <h3 className="text-4xl text-center my-auto p-10 border-primary border-x-4 border-y-4 font-bold text-white">
-      No Selling History
-     </h3>
-    )
-  }
+                <div className="flex flex-col">
+                  <div>
+                    <h3 className="text-sm font-bold"> <span className="text-lg font-bold text-green-500" >{history.Price}</span></h3>
+                  </div>
+                  <div>
+                    <p className="text-darkGray text-[12px] flex gap-2 items-center justify-end">
+                      {/* Date */}
+                      <span>
+                        {history?.date?.day || " "}-
+                        {history?.date?.month || " "}-
+                        {history?.date?.year || " "}
+                      </span>
+                      {/* Time */}
+                      <span>
+                        {formatTime(history?.date?.hours || " ")}:
+                        {padZero(history?.date?.minutes || " ")}{" "}
+                        {getAmPm(history?.date?.hours || " ")}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
 
-   </div>
-</div>
+      </div>
+      <div>
+        <h1 className="text-xl font-bold text-white my-5">Selling History . . . .</h1>
+        <hr />
+        <div className="grid grid-cols-2 gap-2 my-5">
+          {
+            sold.map(history => (
+              <div key={history._id} className=" border-b border-x-4 border-y-4 p-5 rounded-lg pb-2 border-x-darkThree border-y-darkThree">
+                <div>
+                  <h3 className="text-xl font-bold">{history.assetName} <br /> <span className="text-sm font-semibold">
+                    ({history.assetKey})</span></h3>
+                </div>
+                <div className="flex flex-col">
+                  <div>
+                    <h3 className="text-sm font-bold"> <span className="text-lg font-bold text-red-500" >{history.Price}</span></h3>
+                  </div>
+                  <div>
+                    <p className="text-darkGray text-[12px] flex gap-2 items-center justify-end">
+                      {/* Date */}
+                      <span>
+                        {history?.date?.day || " "}-
+                        {history?.date?.month || " "}-
+                        {history?.date?.year || " "}
+                      </span>
+                      {/* Time */}
+                      <span>
+                        {formatTime(history?.date?.hours || " ")}:
+                        {padZero(history?.date?.minutes || " ")}{" "}
+                        {getAmPm(history?.date?.hours || " ")}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+      </div>
+    </div>
   )
 };
 
