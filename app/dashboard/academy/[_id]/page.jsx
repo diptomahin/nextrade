@@ -29,13 +29,16 @@ const articlePage = async ({ params }) => {
             <button className="bg-blue-500 px-2 py-1 text-sm text-white">
               {article.category}
             </button>
-            <h1 className="text-4xl my-4 font-semibold">{article.title}</h1>
-            <div className="flex gap-1">
+            <h1 className="xl:text-4xl lg:text-3xl  my-4 font-semibold">{article.title}</h1>
+            <div className="">
               <p className="text-[#9d9d9d] lowercase">{tags} |</p>
+              <div className="flex">
               <p className="text-[#9d9d9d]">
-                {moment(article.date).format("ll")} .
+                {moment(article.date).format("ll")} |
+
               </p>
-              <p className="text-[#9d9d9d]">1k Views</p>
+              <p className="text-[#9d9d9d] ml-1"> 1k Views</p>
+              </div>
             </div>
           </div>
 
