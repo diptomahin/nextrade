@@ -264,7 +264,7 @@ const AdminNotification = () => {
                       )}
                       <div>
                         <h2 className="font-medium text-sm pr-10 text-white">
-                          {asset?.title}
+                          {asset?.email}
                         </h2>
                         <p className="text-gray-400 text-xs">
                           {asset?.description}
@@ -323,9 +323,7 @@ const AdminNotification = () => {
                         >
                           Delete
                         </button>
-                        <button className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
-                          Report issue
-                        </button>
+                        
                       </div>
                     )}
                   </div>
