@@ -2,7 +2,6 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -12,9 +11,9 @@ import TradersNotification from "./nav_comp/TradersNotification/TradersNotificat
 import { usePathname } from "next/navigation";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
-import Translate from "../home_comp/Translate";
 import { Autocomplete, InputAdornment, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
+
 
 
 
@@ -25,7 +24,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     width: '120px', // Reduce width for small devices
   },
   '& .MuiAutocomplete-inputRoot': {
-    padding: '3px 15px', // Adjusting padding
+    padding: '3px 15px',
     [theme.breakpoints.down('sm')]: {
       padding: '2px 4px', // Further reduce padding for small devices
     },
@@ -42,7 +41,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     },
   },
   '& .MuiOutlinedInput-root': {
-    borderRadius: '30px', // Adding border radius
+    borderRadius: '10px', // Adding border radius
     '& fieldset': {
       borderColor: 'transparent',
     },
@@ -188,9 +187,10 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </div>
 
         {/* search  */}
+        <form className="flex items-center w-[120px] lg:w-[250px] relative" onSubmit={handleSearchSubmit}>
           <Autocomplete
             onChange={(event, newValue) => setSearchValue(newValue)}
-            onSelect={handleSearchSubmit}
+            // onSelect={}
             options={tradersSearchOptions.map((option) => option.name)}
             filterOptions={(tradersSearchOptions, { inputValue }) =>
               inputValue.length >= 1
@@ -206,14 +206,13 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
                 {...params}
                 InputProps={{
                   ...params.InputProps,
-                  startAdornment: (
-                    <SearchIcon style={{ marginRight: '6px', color: 'white' }} />
-                  ),
                   endAdornment: null,
                 }}
               />
             )}
           />
+          <button type="submit" className="absolute right-2"><SearchIcon style={{ marginRight: '6px', color: 'white' }} /></button>
+        </form>
 
       </div>
       <div className="flex items-center gap-6">
