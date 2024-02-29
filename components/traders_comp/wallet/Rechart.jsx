@@ -29,7 +29,7 @@ const Rechart = () => {
   ];
 
   return (
-    <div className="w-full p-4 xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree text-white rounded mt-5">
+    <div className="w-full p-4 2xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree text-white rounded mt-5">
       <h1 className="text-xl text-center font-bold mb-5">Transaction Report</h1>
       <ResponsiveContainer width="90%" height={300} className="mx-auto">
         <BarChart data={data}>

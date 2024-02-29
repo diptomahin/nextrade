@@ -123,7 +123,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
         </IconButton>
         {/*  */}
         {/* dynamic tittle and date time */}
-        <div className="hidden xl:block text-white">
+        <div className="hidden 2xl:block text-white">
           <h1 className="font-semibold">{breadcrumbs}</h1>
           <p className="text-xs opacity-70">Updated on {dateWithName}</p>
         </div>
@@ -153,8 +153,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
         {/* language */}
         <Language />
         {/* notification */}
-        <AdminNotification/>
-        
+        <AdminNotification />
 
         {/* user menubar */}
         <AdminMenu />

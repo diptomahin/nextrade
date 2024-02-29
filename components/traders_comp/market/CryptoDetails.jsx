@@ -1,6 +1,12 @@
 "use client";
 import DashButton from "@/components/library/buttons/DashButton";
-import { Button, Divider, InputAdornment, Skeleton, TextField } from "@mui/material";
+import {
+  Button,
+  Divider,
+  InputAdornment,
+  Skeleton,
+  TextField,
+} from "@mui/material";
 import Image from "next/image";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import TopBanner from "./TopBanner";
@@ -57,8 +63,8 @@ const CryptoDetails = ({
   const secureAPI = useSecureAPI();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
-  const { refetchInvestmentHistory } = useInvestmentHistory()
-  const { adminRefetchNotificationsData } = useAdminNotificationData()
+  const { refetchInvestmentHistory } = useInvestmentHistory();
+  const { adminRefetchNotificationsData } = useAdminNotificationData();
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -88,7 +94,9 @@ const CryptoDetails = ({
 
     const notificationInfo = {
       title: `Investment in ${coinName} was successful`,
-      description: `You Invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`,
+      description: `You Invested ${investment + "$"} in ${parseInt(
+        portion
+      )}% of ${coinName}`,
       assetKey: coinKey,
       assetImg: coinImage,
       assetBuyerUID: user.uid,
@@ -96,8 +104,7 @@ const CryptoDetails = ({
       postedDate: date,
       read: false,
       location: "/dashboard/portfolio",
-      type: 'admin'
-
+      type: "admin",
     };
 
     const historyInfo = {
@@ -111,8 +118,10 @@ const CryptoDetails = ({
       totalInvestment: investment,
       assetBuyerEmail: user.email,
       date: date,
-      detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`
-    }
+      detail: `You have invested ${investment + "$"} in ${parseInt(
+        portion
+      )}% of ${coinName}`,
+    };
 
     if (usersBalance <= 0) {
       Swal.fire({
@@ -143,10 +152,9 @@ const CryptoDetails = ({
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
-                    secureAPI
-                      .post("/adminNotifications", notificationInfo)
-                      refetch();
-                    adminRefetchNotificationsData()
+                    secureAPI.post("/adminNotifications", notificationInfo);
+                    refetch();
+                    adminRefetchNotificationsData();
                     refetchNotificationsData();
                     Swal.fire({
                       title: `Coin Purchase successful!`,
@@ -171,15 +179,12 @@ const CryptoDetails = ({
           });
 
         // post investment history data in data base
-        secureAPI.post(`/investmentHistory`, historyInfo)
-          .then(res => {
-            refetchInvestmentHistory()
-          })
-        secureAPI.post(`/history`, historyInfo)
-          .then(res => {
-            refetchInvestmentHistory()
-          })
-
+        secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
+          refetchInvestmentHistory();
+        });
+        secureAPI.post(`/history`, historyInfo).then((res) => {
+          refetchInvestmentHistory();
+        });
       }
     });
   };
@@ -220,8 +225,8 @@ const CryptoDetails = ({
       });
   };
   return (
-    <div className="flex flex-col xl:flex-row gap-5">
-      <div className="w-full xl:w-3/4 flex flex-col gap-6">
+    <div className="flex flex-col 2xl:flex-row gap-5">
+      <div className="w-full 2xl:w-3/4 flex flex-col gap-6">
         {tickerData ? (
           <TopBanner
             tickerData={tickerData}
@@ -230,12 +235,15 @@ const CryptoDetails = ({
             coinKey={coinKey}
           />
         ) : (
-          <Skeleton sx={{ height: 190, borderRadius: "20px" }} variant="rectangular" />
+          <Skeleton
+            sx={{ height: 190, borderRadius: "20px" }}
+            variant="rectangular"
+          />
         )}
 
         <div className="w-full p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
           <h1 className="font-semibold pb-6">{coinName} to USD Chart</h1>
-          <div className=" h-64 lg:h-96 2xl:h-[70vh]  ">
+          <div className=" h-64 lg:h-96  3xl:h-[70vh]  ">
             <AdvancedRealTimeChart
               width="100%"
               height="100%"
@@ -265,10 +273,9 @@ const CryptoDetails = ({
         </div>
       </div>
 
-
       <div className="flex-1 flex flex-col gap-5 w-full">
         {tickerData ? (
-          <div className=" rounded-lg mt-6 xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+          <div className=" rounded-lg mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">
                 Buy {coinKey.slice(0, -4)}
@@ -283,13 +290,17 @@ const CryptoDetails = ({
             <Divider sx={{ border: "1px solid #40a0ff" }}></Divider>
             <div className="flex justify-between">
               <div className="space-y-4">
-                <p className=" text-primary text-xs 2xl:text-base">Your Balance:</p>
+                <p className=" text-primary text-xs  3xl:text-base">
+                  Your Balance:
+                </p>
                 <p>
                   <AccountBalanceWalletOutlinedIcon /> ${usersRemainingBalance}
                 </p>
               </div>
               <div className="space-y-4">
-                <p className=" text-primary text-xs 2xl:text-base">Current price:</p>
+                <p className=" text-primary text-xs  3xl:text-base">
+                  Current price:
+                </p>
                 <div className="flex gap-1 items-center">
                   {coinImage && (
                     <Image src={coinImage} width={30} height={30} alt="Logo" />
@@ -321,14 +332,18 @@ const CryptoDetails = ({
             <Button
               disabled={investment <= 0}
               sx={{
-                backgroundColor: investment <= 0 ? "rgb(64 160 255 / 0.50)" : "rgb(64 160 255 / 0.05)",
+                backgroundColor:
+                  investment <= 0
+                    ? "rgb(64 160 255 / 0.50)"
+                    : "rgb(64 160 255 / 0.05)",
                 cursor: investment <= 0 ? "not-allowed" : "pointer",
                 color: "#40a0ff",
                 border: "1px solid #40a0ff",
                 borderRadius: "6px",
                 padding: "10px 15px",
                 "&:hover": {
-                  backgroundColor: investment <= 0 ? "#ccc" : "rgb(64 160 255 / 0.15)",
+                  backgroundColor:
+                    investment <= 0 ? "#ccc" : "rgb(64 160 255 / 0.15)",
                 },
               }}
               onClick={() => handleBuyCrypto(tickerData)}
@@ -338,8 +353,11 @@ const CryptoDetails = ({
             {/* <DashButton className="w-full" onClick={() => handleBuyCrypto(tickerData)}>Buy {coinKey.slice(0, -4)}</DashButton> */}
           </div>
         ) : (
-          <div className="flex-1 rounded-lg mt-6 xl:mt-0">
-            <Skeleton sx={{ height: 350, borderRadius: "20px" }} variant="rectangular" />
+          <div className="flex-1 rounded-lg mt-6 2xl:mt-0">
+            <Skeleton
+              sx={{ height: 350, borderRadius: "20px" }}
+              variant="rectangular"
+            />
           </div>
         )}
 

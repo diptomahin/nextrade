@@ -20,16 +20,11 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import useWatchlistData from "@/hooks/useWatchlistData";
 import axios from "axios";
-import DarkButton from "@/components/library/buttons/DarkButton";
 
 const SideWatchlist = () => {
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
   const { watchlistData } = useWatchlistData();
-
-
-
-  // console.log(watchlistData)
 
   useEffect(() => {
     if (watchlistData.length > 0) {
@@ -95,7 +90,6 @@ const SideWatchlist = () => {
     });
     return () => socket.close();
   }, [assets]);
-  // console.log(assets)
 
   const createFlatCurrencyData = (
     _id,
@@ -107,28 +101,29 @@ const SideWatchlist = () => {
     email
   ) => ({ _id, name, key, type, price, icon, email });
 
-
   // get real time currency price and create new array of object with real time currency price
   useEffect(() => {
     const fetchCurrencyRates = async () => {
       try {
         if (flatCurrency.length > 0) {
-          const updatedAssets = await Promise.all(flatCurrency.map(async (cur) => {
-            const currencyKey = cur.key;
-            const response = await axios.get(
-              `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
-            );
+          const updatedAssets = await Promise.all(
+            flatCurrency.map(async (cur) => {
+              const currencyKey = cur.key;
+              const response = await axios.get(
+                `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+              );
 
-            return createFlatCurrencyData(
-              cur._id,
-              cur.name,
-              cur.key,
-              cur.type,
-              response.data.rates.USD,
-              cur.icon,
-              cur.email
-            );
-          }));
+              return createFlatCurrencyData(
+                cur._id,
+                cur.name,
+                cur.key,
+                cur.type,
+                response.data.rates.USD,
+                cur.icon,
+                cur.email
+              );
+            })
+          );
           setFlatCurrency(updatedAssets);
         }
       } catch (error) {
@@ -137,29 +132,28 @@ const SideWatchlist = () => {
     };
 
     fetchCurrencyRates();
-
   }, [flatCurrency]);
-
 
   const [value, setValue] = React.useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
-    <div className="max-h-min w-full bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg mt-10 xl:mt-0 flex flex-col gap-4 p-3 font-semibold">
-      <div className="flex items-center justify-between">
-        <h3>Watchlist</h3>
-        <Link href="/dashboard/watchlist">
-          <DarkButton>See all</DarkButton>
+    <div className="w-full h-full bg-[#21212f] flex flex-col gap-5 font-semibold p-5 rounded-xl">
+      <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
+        <h3 className="text-xl font-semibold">Watchlist</h3>
+        <Link
+          href="/dashboard/watchlist"
+          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
+        >
+          See all
         </Link>
       </div>
       <Box sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={value}>
           <Box
             sx={{
-              borderBottom: 2,
-              borderColor: "divider",
-              marginBottom: "10px",
+              border: "none",
             }}
           >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -172,25 +166,22 @@ const SideWatchlist = () => {
               <TableContainer
                 sx={{
                   boxShadow: "none",
-                  padding: "0px"
+                  backgroundColor: "transparent",
+                  padding: "0px",
                 }}
-                className="bg-gradient-to-bl from-darkOne to-darkTwo border-none "
                 component={Paper}
               >
-
                 <Table aria-label="simple table">
                   <TableHead className="mx-auto">
-                    <TableRow className="text-center">
+                    <TableRow>
                       <TableCell
                         sx={{
                           fontSize: "14px",
-                          paddingX: "4px",
-                          paddingY: "10px",
                           fontWeight: 500,
                           color: "white",
-                          borderBottom: "2px solid #2c3750",
-                          borderTop: "2px solid #2c3750",
-                        }}>
+                          border: "none",
+                        }}
+                      >
                         Coin Name
                       </TableCell>
                       <TableCell
@@ -200,9 +191,9 @@ const SideWatchlist = () => {
                           paddingY: "10px",
                           fontWeight: 500,
                           color: "white",
-                          borderBottom: "2px solid #2c3750",
-                          borderTop: "2px solid #2c3750",
-                        }}>
+                          border: "none",
+                        }}
+                      >
                         Price
                       </TableCell>
                       <TableCell
@@ -212,9 +203,9 @@ const SideWatchlist = () => {
                           paddingY: "10px",
                           fontWeight: 500,
                           color: "white",
-                          borderBottom: "2px solid #2c3750",
-                          borderTop: "2px solid #2c3750",
-                        }}>
+                          border: "none",
+                        }}
+                      >
                         24%
                       </TableCell>
                     </TableRow>
@@ -227,7 +218,7 @@ const SideWatchlist = () => {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell sx={{ borderBottom: "none", paddingX: "4px", }}>
+                        <TableCell sx={{ border: "none" }}>
                           <div className="flex items-center gap-2">
                             <Image
                               width={30}
@@ -235,22 +226,21 @@ const SideWatchlist = () => {
                               src={asset.icon}
                               alt="coin-icon"
                             />
-                            <p className={`text-xs text-white`}>
-                              {asset.name}
-                            </p>
+                            <p className={`text-xs text-white`}>{asset.name}</p>
                           </div>
-                        </TableCell >
-                        <TableCell sx={{ borderBottom: "none", paddingX: "4px", }}>
+                        </TableCell>
+                        <TableCell sx={{ border: "none" }}>
                           <p className={` text-xs text-white`}>
                             ${asset.price}
                           </p>
                         </TableCell>
-                        <TableCell sx={{ borderBottom: "none", paddingX: "4px", }}>
+                        <TableCell sx={{ border: "none" }}>
                           <p
-                            className={`text-xs ${asset.changePrice < 0
-                              ? "text-red-600"
-                              : "text-green-600"
-                              }`}
+                            className={`text-xs ${
+                              asset.changePrice < 0
+                                ? "text-red-600"
+                                : "text-green-600"
+                            }`}
                           >
                             {asset.changePrice}%
                           </p>
@@ -261,7 +251,7 @@ const SideWatchlist = () => {
                 </Table>
               </TableContainer>
             ) : (
-              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8 xl:py-20">
+              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8 2xl:py-20">
                 <Image
                   src={emptyIcon}
                   width={70}
@@ -328,7 +318,7 @@ const SideWatchlist = () => {
                 </Link>
               </TableContainer>
             ) : (
-              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8 xl:py-20">
+              <div className="border-2 w-full border-primary rounded flex flex-col items-center justify-center gap-2 py-8 2xl:py-20">
                 <Image
                   src={emptyIcon}
                   width={70}

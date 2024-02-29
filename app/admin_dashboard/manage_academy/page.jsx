@@ -16,6 +16,14 @@ const AddArticles = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedTagsOption, setSelectedTagsOption] = useState(null);
   const animatedComponents = makeAnimated();
+  const [fileName, setFileName] = useState("Attach file");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
 
   // Category
   const CategoryOptions = [
@@ -77,7 +85,6 @@ const AddArticles = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        // console.log("ImgBB Response:", res.data);
         const imageUrl = res.data.data.url;
         const thumbnail = imageUrl;
         const date = new Date();
@@ -90,11 +97,9 @@ const AddArticles = () => {
           tags,
           date,
         };
-        // console.log("News Info:", articlesInfo);
 
         axiosPublic.post("/articles", articlesInfo).then((res) => {
-          console.log(res.data);
-          // e.target.reset();
+          e.target.reset();
           if (res.data.insertedId) {
             toast.success("Post Added Successfully", {
               id: toastId,
@@ -102,17 +107,18 @@ const AddArticles = () => {
             });
           }
         });
-      } catch (error) {
-        console.error("Error uploading image to ImgBB:", error);
-      }
+      } catch (error) {}
     }
   };
 
   return (
     <div className="">
-      <form className="grid grid-cols-4 gap-5 mt-14" onSubmit={handelPostNews}>
+      <form
+        className="grid 2xl:grid-cols-4 gap-5 mt-14"
+        onSubmit={handelPostNews}
+      >
         {/* title, description, image */}
-        <div className="col-span-3 mr-5">
+        <div className="2xl:col-span-3 mr-5">
           <div>
             <label className="flex justify-center font-semibold text-4xl text-white">
               Add New Post
@@ -130,35 +136,33 @@ const AddArticles = () => {
               <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
                 <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
                   <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4">
-                  <label className="relative flex items-center justify-center w-full dark:border-gray-600 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
-  <input
-    type="file"
-    required
-    name="photo"
-    className="absolute inset-0 opacity-0 "
-  />
-  <button
-    type="button"
-    className="p-2 text-gray-500 rounded flex items-center"
-  >
-    <svg
-      className="w-4 h-4 mr-2"
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 12 20"
-    >
-      <path
-        stroke="currentColor"
-        d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
-      />
-    </svg>
-  </button>
-</label>
-
-
-
-
+                    <label className="relative flex items-center justify-center w-full dark:border-gray-600 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
+                      <input
+                        type="file"
+                        required
+                        name="photo"
+                        className="absolute inset-0 opacity-0"
+                        onChange={handleFileChange}
+                      />
+                      <button
+                        type="button"
+                        className="p-2 text-gray-500 rounded flex items-center cursor-pointer !important"
+                      >
+                        <svg
+                          className="w-4 h-4 mr-2"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 12 20"
+                        >
+                          <path
+                            stroke="currentColor"
+                            d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
+                          />
+                        </svg>
+                        {fileName}
+                      </button>
+                    </label>
 
                     <button
                       type="button"
@@ -272,15 +276,16 @@ const AddArticles = () => {
                   <div className="tooltip-arrow" data-popper-arrow></div>
                 </div>
               </div>
-              <div className="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
+              <div className="px-4 py-2 bg-darkTwo rounded-b-lg dark:bg-gray-800">
                 <label className="sr-only cursor-pointer">Publish post</label>
                 <textarea
                   id="editor"
                   name="description"
                   rows="15"
-                  className="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2"
+                  className="block w-full px-0 text-sm text-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2 bg-darkTwo"
                   placeholder="Write an article..."
                   required
+                  style={{ outline: "none" }}
                 ></textarea>
               </div>
             </div>
@@ -288,9 +293,9 @@ const AddArticles = () => {
         </div>
 
         {/* submit, tags, publisher */}
-        <div className="col-span-1">
+        <div className="col-span-1 mb-10">
           <div>
-            <h1 className="mt-3 mb-5 flex justify-center text-xl font-semibold text-white">
+            <h1 className="mt-[13px] mb-5 flex justify-center text-xl font-semibold text-white">
               Select a Categories
             </h1>
             <Select
@@ -301,6 +306,19 @@ const AddArticles = () => {
               components={animatedComponents}
               options={CategoryOptions}
               placeholder="Select a Category"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#212a3f", // Set background color to black
+                  color: "white",
+                  border: "1px solid white", // Add border for contrast
+                  borderRadius: "4px", // Optional: Add border radius for rounded corners
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "darkGray", // Set text color of selected option to white
+                }),
+              }}
             />
 
             <h1 className="my-5 text-center justify-center text-xl font-semibold text-white">
@@ -314,6 +332,19 @@ const AddArticles = () => {
               components={animatedComponents}
               options={TagsOptions}
               placeholder="Select or Create Tags"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#212a3f",
+                  color: "white",
+                  border: "1px solid white",
+                  borderRadius: "4px",
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "darkGray",
+                }),
+              }}
             />
             {/* input */}
             <div>

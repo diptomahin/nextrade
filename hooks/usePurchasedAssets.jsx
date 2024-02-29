@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useSecureAPI from "./useSecureAPI";
 
-const usePurchasedAssets = (dynamicSearch = "") => {
+const usePurchasedAssets = (dynamicSearch = "", currentPage,coinPerPage) => {
   const useSecure = useSecureAPI();
   const { user, loading } = useAuth();
 
@@ -14,7 +14,7 @@ const usePurchasedAssets = (dynamicSearch = "") => {
         return;
       }
       const res = await useSecure.get(
-        `/purchasedAssets/${user?.email}?search=${dynamicSearch}`
+        `/purchasedAssets/${user?.email}?search=${dynamicSearch}&&page=${currentPage}&size=${coinPerPage}`
       );
       return res.data;
     },

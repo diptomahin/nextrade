@@ -24,7 +24,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     width: '120px', // Reduce width for small devices
   },
   '& .MuiAutocomplete-inputRoot': {
-    padding: '3px 15px',
+    padding: '3px 15px', 
     [theme.breakpoints.down('sm')]: {
       padding: '2px 4px', // Further reduce padding for small devices
     },
@@ -232,4 +232,5 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
 };
 
 export default TradersDashboardNavbar;
+
 

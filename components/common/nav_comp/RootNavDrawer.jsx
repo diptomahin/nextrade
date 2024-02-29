@@ -34,7 +34,7 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
             </div>
           </Magnetic>
           <Magnetic>
-            <Link href="/" className="hidden xl:block">
+            <Link href="/" className="hidden 2xl:block">
               <Image
                 src={logo}
                 alt="Logo"
@@ -43,7 +43,7 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
             </Link>
           </Magnetic>
           <Magnetic>
-            <Link href="/" className="hidden md:block xl:hidden">
+            <Link href="/" className="hidden md:block 2xl:hidden">
               <Image
                 src={logo2}
                 alt="Logo"
