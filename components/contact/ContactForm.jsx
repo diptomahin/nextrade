@@ -1,7 +1,6 @@
 "use client";
 import Button from "@/components/library/buttons/root_button/RootButton";
 import usePublicAPI from "@/hooks/usePublicAPI";
-import useSecureAPI from "@/hooks/useSecureAPI";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,8 +20,7 @@ const ContactForm = () => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
-      await publicAPI.post(`/contact`, data)
-      // await useSecureAPI.post(`/contact`, contactData)
+      await publicAPI.post(`/contact`, data) //Sent data to the database
       await emailjs.send(
         "service_5crf3z7",
         "template_6p6drrs",
