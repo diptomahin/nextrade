@@ -16,7 +16,7 @@ const articlePage = async ({ params }) => {
 
   return (
     <div className="mt-10 container mx-auto">
-      <h1 className="text-white items-center flex gap-2 ml-1">
+      <h1 className="text-white items-center lg:flex grid gap-2 ml-1">
         <span>
         <SiKhanacademy className="text-xl" /> 
         </span>
@@ -58,21 +58,21 @@ const articlePage = async ({ params }) => {
         <h3>{article.description}</h3>
 
         <h1 className="mt-10 text-xl mb-4 text-white">
-          <span className="font-semibold text-3xl">Related Topic | </span>{" "}
+          <span className="font-semibold lg:text-3xl text-2xl">Related Topic | </span>{" "}
           {tagsArray.map((tag, index) => (
             <span
               key={index}
-              className="inline-block bg-[#1e273d] rounded-md px-2 py-1 mr-2 hover:text-blue-500 cursor-pointer"
+              className="inline-block bg-[#1e273d] rounded-md px-2 py-1 mr-2 mt-2 hover:text-blue-500 cursor-pointer lg:text-xl text-[16px]"
             >
               {tag}
             </span>
           ))}
         </h1>
         <div className="mt-10">
-          <h1 className="text-3xl font-semibold">Leave A Replay</h1>
+          <h1 className="lg:text-3xl text-2xl font-semibold">Leave A Replay</h1>
           <h3 className="my-3">Your email address will not be published.</h3>
           <TextField
-            className="w-[520px] border-white	"
+            className="lg:w-[520px] w-full border-white	"
             id="fullWidth"
             label="Comment"
             variant="outlined"
@@ -84,8 +84,9 @@ const articlePage = async ({ params }) => {
             }}
           />
 
-          <div className="mt-5 grid grid-cols-3 gap-4 w-[520px]">
+          <div className="mt-5 grid lg:grid-cols-3 gap-4 w-full lg:w-[520px]">
             <TextField
+            className="w-full"
               id="outlined-basic"
               label="Name"
               variant="outlined"
@@ -97,7 +98,7 @@ const articlePage = async ({ params }) => {
               }}
             />
             <TextField
-              className="mx-4"
+              className="mx-4 w-full mt-10"
               id="outlined-basic"
               label="Email"
               variant="outlined"
@@ -108,17 +109,21 @@ const articlePage = async ({ params }) => {
                 style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
               }}
             />
-            <TextField
-              id="outlined-basic"
-              label="Website"
-              variant="outlined"
-              InputLabelProps={{
-                style: { color: "white", borderColor: "white" }, // Text color of the label
-              }}
-              InputProps={{
-                style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-              }}
-            />
+
+          <TextField
+  className="w-full"
+  id="outlined-basic"
+  label="Website"
+  variant="outlined"
+  InputLabelProps={{
+    style: { color: "white" }, // Text color of the label
+  }}
+  InputProps={{
+    style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
+  }}
+/>
+
+
           </div>
 
           <button className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">
