@@ -1,20 +1,19 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
 import Link from "next/link";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
 const TopAssets = () => {
   return (
     <div className="md:col-span-6 xl:col-span-4 h-80">
-      <div className="w-full flex justify-between">
-        <h3>Top assets</h3>
-        <Link href="/dashboard/market">
-          <DarkButton>See all</DarkButton>
+      <div className="flex items-center justify-between">
+        <h3 className="text-xl font-semibold">Top assets</h3>
+        <Link
+          href="/dashboard/watchlist"
+          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
+        >
+          See all
         </Link>
       </div>
 

@@ -21,7 +21,8 @@ module.exports = {
       backgroundColor: {
         primary: '#40a0ff', //blue
         secondary: '#fca104', // orange
-        darkBG: '#181e2c',
+        // darkBG: '#181e2c',
+        darkBG: '#17171e',
       },
       fontFamily: {
         montserrat: ['Montserrat', 'Inter', 'Graphik', 'Merriweather', 'sans-serif', 'serif'],

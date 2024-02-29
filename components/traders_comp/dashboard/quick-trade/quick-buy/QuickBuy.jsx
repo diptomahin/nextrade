@@ -3,6 +3,7 @@ import BuyLimit from "./BuyLimit";
 import BuyMarket from "./BuyMarket";
 import useAllCryptoCoins from "@/hooks/useAllCryptoCoins";
 import useAllFlatCoins from "@/hooks/useAllFlatCoins";
+import useUserData from "@/hooks/useUserData";
 
 const QuickBuy = () => {
   const [isLimitOpen, setIsLimitOpen] = useState(true);
@@ -12,6 +13,9 @@ const QuickBuy = () => {
   // get currency data from hook
   const { allCryptoCoins, cryptoRefetch } = useAllCryptoCoins();
   const { allFlatCoins, flatRefetch } = useAllFlatCoins();
+
+  const { userData, userDataLoading, userDataPending, userDataError } =
+    useUserData();
 
   // data without real time price
   useEffect(() => {
@@ -118,6 +122,10 @@ const QuickBuy = () => {
     fetchCurrencyRates();
   }, [flatCurrency]);
 
+  if (userDataLoading || userDataPending || userDataError) {
+    return;
+  }
+
   console.log(cryptoCurrency);
   console.log(flatCurrency);
   return (
@@ -146,7 +154,7 @@ const QuickBuy = () => {
           </button>
         </div>
         <div className="flex items-center gap-2 font-medium">
-          Balance : $10000
+          Balance : ${userData?.balance}
         </div>
       </div>
       {isLimitOpen ? (

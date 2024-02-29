@@ -20,7 +20,6 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import useWatchlistData from "@/hooks/useWatchlistData";
 import axios from "axios";
-import DarkButton from "@/components/library/buttons/DarkButton";
 
 const SideWatchlist = () => {
   const [assets, setAssets] = useState([]);
@@ -140,12 +139,12 @@ const SideWatchlist = () => {
     setValue(newValue);
   };
   return (
-    <div className="w-full h-full bg-darkOne flex flex-col gap-5 p-5 font-semibold">
+    <div className="w-full h-full bg-[#21212f] flex flex-col gap-5 font-semibold p-5 rounded-xl">
       <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">Watchlist</h3>
         <Link
           href="/dashboard/watchlist"
-          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none rounded-none font-medium text-primary"
+          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
           See all
         </Link>
