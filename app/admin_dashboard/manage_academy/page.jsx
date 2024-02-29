@@ -113,9 +113,9 @@ const AddArticles = () => {
 
   return (
     <div className="">
-      <form className="grid grid-cols-4 gap-5 mt-14" onSubmit={handelPostNews}>
+      <form className="grid lg:grid-cols-4 gap-5 mt-14" onSubmit={handelPostNews}>
         {/* title, description, image */}
-        <div className="col-span-3 mr-5">
+        <div className="lg:col-span-3 mr-5">
           <div>
             <label className="flex justify-center font-semibold text-4xl text-white">
               Add New Post
