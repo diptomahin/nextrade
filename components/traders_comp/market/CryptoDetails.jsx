@@ -118,10 +118,10 @@ const CryptoDetails = ({
       totalInvestment: investment,
       assetBuyerEmail: user.email,
       date: date,
-      detail: `You have invested ${investment + "$"} in ${parseInt(
-        portion
-      )}% of ${coinName}`,
+      action:"bought",
+      detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`
     };
+
 
     if (usersBalance <= 0) {
       Swal.fire({
@@ -179,12 +179,14 @@ const CryptoDetails = ({
           });
 
         // post investment history data in data base
+        secureAPI.post(`/investmentHistory`, historyInfo)
+          .then(res => {
+            refetchInvestmentHistory()
+          })
         secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
           refetchInvestmentHistory();
         });
-        secureAPI.post(`/history`, historyInfo).then((res) => {
-          refetchInvestmentHistory();
-        });
+
       }
     });
   };
