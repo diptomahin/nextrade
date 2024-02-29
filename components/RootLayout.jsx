@@ -19,10 +19,10 @@ const MainLayout = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="h-screen w-full flex justify-center items-center bg-darkBG">
+      <div className="h-screen w-full flex justify-center items-center bg-quaternary">
         <div className="text-5xl text-primary font-semibold">
           Loading
-          <span className="text-secondary">
+          <span className="text-quaternary">
             .<span className="text-primary">.</span>.
           </span>
         </div>
@@ -31,7 +31,7 @@ const MainLayout = ({ children }) => {
   }
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="font-montserrat bg-darkBG">
+      <div className="font-montserrat bg-quaternary">
         {noHeaderFooter || <RootNav />}
 
         {children}

@@ -16,7 +16,7 @@ const AdminChecker = ({ children }) => {
       <div className="h-screen w-full flex justify-center items-center">
         <div className="text-5xl text-primary font-semibold">
           Loading
-          <span className="text-secondary">
+          <span className="text-quaternary">
             .<span className="text-primary">.</span>.
           </span>
         </div>

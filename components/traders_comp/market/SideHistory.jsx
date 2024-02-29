@@ -36,7 +36,7 @@ const SideHistory = () => {
     return;
   }
   return (
-    <div className="w-full h-full flex flex-col gap-8 bg-[#21212f] p-5 rounded-xl">
+    <div className="w-full h-full flex flex-col gap-8 bg-tertiary p-5 rounded-xl">
       <div className="flex items-center justify-between border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">History</h3>
         <Link
@@ -47,7 +47,7 @@ const SideHistory = () => {
         </Link>
       </div>
       {investmentHistoryData.length > 0 ? (
-        investmentHistoryData.slice(0, 4).map((history) => (
+        investmentHistoryData.slice(0, 5).map((history) => (
           <div key={history._id} className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Image

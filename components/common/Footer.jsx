@@ -19,7 +19,7 @@ const Footer = () => {
   const router = usePathname();
   return (
     <footer
-      className={`bg-darkBG border border-darkThree text-darkGray ${
+      className={`bg-quaternary border border-darkThree text-darkGray ${
         router === "/register" ||
         router === "/login" ||
         router.includes("/dashboard")

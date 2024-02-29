@@ -126,9 +126,9 @@ const TopAssets = () => {
   }, [flatCurrency]);
 
   return (
-    <div className="xl:col-span-6 2xl:col-span-12 3xl:col-span-7">
+    <div className="xl:col-span-6 2xl:col-span-12 3xl:col-span-8">
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-semibold">Top assets</h3>
+        <h3 className="text-xl font-semibold">Top Assets</h3>
         <Link
           href="/dashboard/market"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
@@ -137,7 +137,7 @@ const TopAssets = () => {
         </Link>
       </div>
 
-      <div className="relative w-72 h-10 flex items-center bg-[#21212f] rounded-xl mt-5">
+      <div className="relative sm:w-72 h-10 flex items-center bg-tertiary rounded-xl mt-5">
         <div
           className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
             isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -145,7 +145,7 @@ const TopAssets = () => {
         ></div>
         <button
           onClick={() => setIsBuyOpen(true)}
-          className={`absolute w-1/2 h-full bg-transparent transition-all ${
+          className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
             isBuyOpen ? "text-white" : "text-gray-300"
           } duration-200 ease-in-out font-semibold text-sm z-10`}
         >
@@ -153,7 +153,7 @@ const TopAssets = () => {
         </button>
         <button
           onClick={() => setIsBuyOpen(false)}
-          className={`absolute w-1/2 transform translate-x-full h-full bg-transparent transition-all ${
+          className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
             !isBuyOpen ? "text-white" : "text-gray-300"
           } duration-100 font-semibold text-sm z-10`}
         >
@@ -171,6 +171,10 @@ const TopAssets = () => {
             clickable: true,
           }}
           breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
             640: {
               slidesPerView: 2,
               spaceBetween: 20,

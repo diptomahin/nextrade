@@ -163,7 +163,7 @@ const TransactionTable = () => {
               <BsThreeDotsVertical />
             </button>
             {isOpenDot && (
-              <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-darkBG border border-darkThree font-medium rounded-s-2xl rounded-b-2xl">
+              <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-quaternary border border-darkThree font-medium rounded-s-2xl rounded-b-2xl">
                 <button className="w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-white/10 border-none rounded-none pl-4">
                   Download
                 </button>
@@ -171,7 +171,7 @@ const TransactionTable = () => {
                   onClick={() =>
                     handleDeleteAll(specificTransactionsData[0]?.email)
                   }
-                  className="whitespace-nowrap w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-fourthPink border-none rounded-none pl-4"
+                  className="whitespace-nowrap w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-tertiary border-none rounded-none pl-4"
                 >
                   Delete all history
                 </button>

@@ -153,7 +153,7 @@ const SidePortfolio = () => {
   };
 
   return (
-    <div className="w-full h-full bg-[#21212f] flex flex-col gap-5 font-semibold p-5 rounded-xl">
+    <div className="w-full h-full bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
       <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">Recently Added</h3>
         <Link
@@ -214,7 +214,7 @@ const SidePortfolio = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cryptoData.slice(0, 4).map((asset, index) => (
+              {cryptoData.slice(0, 5).map((asset, index) => (
                 <TableRow key={index}>
                   {/* 1st row */}
                   <TableCell sx={{ border: "none", paddingX: "0px" }}>

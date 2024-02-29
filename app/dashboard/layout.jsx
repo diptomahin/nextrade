@@ -17,14 +17,14 @@ const Dashboard = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <TradersChecker>
-        <div className="min-h-screen bg-darkBG text-zinc-100 font-montserrat">
-          <div className="fixed top-0 w-full h-16  3xl:pl-[220px] z-40 bg-darkBG">
+        <div className="min-h-screen bg-secondary text-zinc-100 font-montserrat">
+          <div className="fixed top-0 w-full h-16  3xl:pl-[220px] z-40 bg-secondary">
             <TradersNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
           </div>
-          <div className="hidden  3xl:block fixed h-full w-[220px] z-50 bg-darkBG">
+          <div className="hidden  3xl:block fixed h-full w-[220px] z-50 bg-secondary">
             <TradersSideNav />
           </div>
-          <div className="block  3xl:hidden bg-darkBG">
+          <div className="block  3xl:hidden bg-secondary">
             <Drawer
               sx={{
                 "& .MuiDrawer-paper": {

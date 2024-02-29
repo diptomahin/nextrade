@@ -10,11 +10,9 @@ module.exports = {
     extend: {
       colors: {
         primary: '#40a0ff', //blue
-        secondary: '#fca104', // orange
-        // thirdGreen: '#78c350', // green
-        thirdGreen: '#3aba69', // green
-        // fourthPink: '#ff5252', // pink
-        fourthPink: '#f65455', // red
+        secondary: '#3aba69', // green
+        tertiary: '#f65455', // red
+        quaternary: '#fca104', // orange
         darkGray: '#939db1', // gray  
         darkOne: '#1d2334',
         darkTwo: '#212a3f',
@@ -22,9 +20,12 @@ module.exports = {
       },
       backgroundColor: {
         primary: '#40a0ff', //blue
-        secondary: '#fca104', // orange
-        // darkBG: '#181e2c',
-        darkBG: '#17171e',
+        secondary: '#17171e',
+        tertiary: '#21212f',
+        quaternary: '#181e2c',
+        quinary: '#fca104', // orange
+        senary: '#3aba69', // green
+        septenary: '#f65455', // red
       },
       fontFamily: {
         montserrat: ['Montserrat', 'Inter', 'Graphik', 'Merriweather', 'sans-serif', 'serif'],

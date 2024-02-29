@@ -23,7 +23,7 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-thirdGreen/70 shadow-xl px-10 py-5 rounded text-white"
+          className="bg-senary/80 shadow-xl px-10 py-5 rounded text-white"
         >
           <div className="flex items-center gap-2">
             <RiLuggageDepositFill className="w-8 h-8 text-white" />
@@ -40,7 +40,7 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-primary/70 shadow-xl px-10 py-5 rounded text-white"
+          className="bg-primary/80 shadow-xl px-10 py-5 rounded text-white"
         >
           <div className="flex items-center gap-2">
             <MdAreaChart className="w-8 h-8 text-white" />
@@ -57,7 +57,7 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-fourthPink/70 shadow-xl px-10 py-5 rounded text-white"
+          className="bg-septenary/80 shadow-xl px-10 py-5 rounded text-white"
         >
           <div className="flex items-center gap-2">
             <BsCreditCard2FrontFill className="w-8 h-8 text-white" />

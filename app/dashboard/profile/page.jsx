@@ -31,7 +31,7 @@ const ProfilePage = () => {
     return;
   }
   return (
-    <Tabs className="relative bg-darkBG">
+    <Tabs className="relative bg-quaternary">
       {/* toggle menu button one */}
       <button
         onClick={() => setIsActiveProfile(!isActiveProfile)}

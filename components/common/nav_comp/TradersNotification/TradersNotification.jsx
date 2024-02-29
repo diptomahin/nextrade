@@ -217,7 +217,7 @@ const TradersNotification = () => {
 
               {/* Additional actions menu */}
               {isNotifyMenuOpen && (
-                <div className="absolute right-8 top-0 w-40 bg-darkBG border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
+                <div className="absolute right-8 top-0 w-40 bg-quaternary border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
                   <button
                     onClick={() => handleReadAll(notificationsData[0]?.email)}
                     className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
@@ -258,7 +258,9 @@ const TradersNotification = () => {
                 <div
                   key={asset?._id}
                   className={`relative ${
-                    asset?.read ? "bg-darkOne shadow-md border-darkThree border" : "bg-white/10"
+                    asset?.read
+                      ? "bg-darkOne shadow-md border-darkThree border"
+                      : "bg-white/10"
                   } w-full  rounded  cursor-pointer p-3 `}
                 >
                   <Link
@@ -313,7 +315,7 @@ const TradersNotification = () => {
 
                     {/* Additional actions menu for each notification */}
                     {isOpenMenu[asset?._id] && (
-                      <div className="absolute right-7 top-0 w-32 bg-darkBG border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3">
+                      <div className="absolute right-7 top-0 w-32 bg-quaternary border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3">
                         <button
                           onClick={() => handleRead(asset?._id)}
                           className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
