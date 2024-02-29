@@ -18,11 +18,16 @@ const Wallet = () => {
         <TransactionTable />
       </div>
 
-      <div className="2xl:w-5/12  3xl:w-4/12">
+      <div className="2xl:w-5/12 3xl:w-4/12 flex flex-col gap-5">
         <DepositWithdrawSection />
 
         {/* Transaction Report */}
-        <Rechart />
+        <div className="w-full p-5 bg-[#21212f] text-white rounded-xl">
+          <h1 className="text-xl text-center font-bold mb-5">
+            Transaction Report
+          </h1>
+          <Rechart />
+        </div>
       </div>
     </div>
   );
