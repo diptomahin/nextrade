@@ -9,7 +9,7 @@ const Trending = () => {
           href="/dashboard/market"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
-          See all
+          See all assets
         </Link>
       </div>
 

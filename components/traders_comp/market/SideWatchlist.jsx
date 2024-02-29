@@ -13,15 +13,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import emptyIcon from "../../../assets/emptyIcon.png";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 import useWatchlistData from "@/hooks/useWatchlistData";
 import axios from "axios";
 
 const SideWatchlist = () => {
+  const [isBuyOpen, setIsBuyOpen] = useState(true);
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
   const { watchlistData } = useWatchlistData();
@@ -146,37 +142,147 @@ const SideWatchlist = () => {
           href="/dashboard/watchlist"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
-          See all
+          See all watchlist
         </Link>
       </div>
-      <Box sx={{ width: "100%", height: "100%", typography: "body1" }}>
-        <TabContext value={value}>
-          <Box
-            sx={{
-              border: "none",
-            }}
-          >
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
-              <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
-            </TabList>
-          </Box>
+      <div className="relative w-72 h-10 flex items-center bg-[#21212f] rounded-xl">
+        <div
+          className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
+            isBuyOpen ? "translate-x-0" : "translate-x-full"
+          } duration-200 ease-in-out`}
+        ></div>
+        <button
+          onClick={() => setIsBuyOpen(true)}
+          className={`absolute w-1/2 h-full bg-transparent transition-all ${
+            isBuyOpen ? "text-white" : "text-gray-300"
+          } duration-200 ease-in-out font-semibold text-sm z-10`}
+        >
+          Crypto Coins
+        </button>
+        <button
+          onClick={() => setIsBuyOpen(false)}
+          className={`absolute w-1/2 transform translate-x-full h-full bg-transparent transition-all ${
+            !isBuyOpen ? "text-white" : "text-gray-300"
+          } duration-100 font-semibold text-sm z-10`}
+        >
+          Flat Coins
+        </button>
+      </div>
 
-          {/* crypto currency */}
-          <TabPanel sx={{ padding: "0px" }} value="1">
-            {assets.length > 0 ? (
-              <TableContainer
-                sx={{
-                  boxShadow: "none",
-                  paddingX: "0px",
-                  paddingY: "10px",
-                  background: "none",
-                }}
-                component={Paper}
-              >
+      {isBuyOpen ? (
+        <>
+          {assets.length > 0 ? (
+            <TableContainer
+              sx={{
+                boxShadow: "none",
+                padding: "none",
+                background: "none",
+              }}
+              component={Paper}
+            >
+              <Table aria-label="simple table">
+                <TableHead className="mx-auto">
+                  <TableRow>
+                    <TableCell
+                      sx={{
+                        fontSize: "14px",
+                        paddingX: "0px",
+                        paddingY: "5px",
+                        fontWeight: 500,
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      Coin Name
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontSize: "14px",
+                        paddingX: "0px",
+                        paddingY: "5px",
+                        fontWeight: 500,
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      Current Price
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontSize: "14px",
+                        paddingX: "0px",
+                        paddingY: "5px",
+                        fontWeight: 500,
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      24%
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {assets.slice(0, 4).map((asset, idx) => (
+                    <TableRow
+                      key={asset._id}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell sx={{ border: "none", paddingX: "0px" }}>
+                        <div className="flex items-center gap-3">
+                          <Image
+                            width={30}
+                            height={30}
+                            src={asset.icon}
+                            alt="coin-icon"
+                          />
+                          <p className={`text-xs text-white`}>{asset.name}</p>
+                        </div>
+                      </TableCell>
+                      <TableCell sx={{ border: "none", paddingX: "0px" }}>
+                        <p className={` text-xs text-white`}>${asset.price}</p>
+                      </TableCell>
+                      <TableCell sx={{ border: "none", paddingX: "0px" }}>
+                        <p
+                          className={`text-xs ${
+                            asset.changePrice < 0
+                              ? "text-red-600"
+                              : "text-green-600"
+                          }`}
+                        >
+                          {asset.changePrice}%
+                        </p>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <div className="w-full flex flex-col items-center justify-center gap-2 py-[86.5px]">
+              <Image src={emptyIcon} width={70} height={70} alt="Icon" />
+              <h3 className="text-primary text-lg font-semibold text-center">
+                empty !!
+              </h3>
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          {flatCurrency.length > 0 ? (
+            <TableContainer
+              component={Paper}
+              sx={{
+                boxShadow: "none",
+                padding: "none",
+                background: "none",
+              }}
+            >
+              <Link href="/dashboard/watchlist">
                 <Table aria-label="simple table">
                   <TableHead className="mx-auto">
-                    <TableRow>
+                    <TableRow className="text-center">
                       <TableCell
                         sx={{
                           fontSize: "14px",
@@ -199,24 +305,12 @@ const SideWatchlist = () => {
                           border: "none",
                         }}
                       >
-                        Current Price
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontSize: "14px",
-                          paddingX: "0px",
-                          paddingY: "5px",
-                          fontWeight: 500,
-                          color: "white",
-                          border: "none",
-                        }}
-                      >
-                        24%
+                        Current value
                       </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {assets.slice(0, 4).map((asset, idx) => (
+                    {flatCurrency.slice(0, 4).map((asset, idx) => (
                       <TableRow
                         key={asset._id}
                         sx={{
@@ -226,8 +320,8 @@ const SideWatchlist = () => {
                         <TableCell sx={{ border: "none", paddingX: "0px" }}>
                           <div className="flex items-center gap-3">
                             <Image
-                              width={30}
-                              height={30}
+                              width={29.3}
+                              height={29.3}
                               src={asset.icon}
                               alt="coin-icon"
                             />
@@ -239,117 +333,22 @@ const SideWatchlist = () => {
                             ${asset.price}
                           </p>
                         </TableCell>
-                        <TableCell sx={{ border: "none", paddingX: "0px" }}>
-                          <p
-                            className={`text-xs ${
-                              asset.changePrice < 0
-                                ? "text-red-600"
-                                : "text-green-600"
-                            }`}
-                          >
-                            {asset.changePrice}%
-                          </p>
-                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
-              </TableContainer>
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-24">
-                <Image src={emptyIcon} width={70} height={70} alt="Icon" />
-                <h3 className="text-primary text-lg font-semibold text-center">
-                  empty !!
-                </h3>
-              </div>
-            )}
-          </TabPanel>
-
-          {/* flat currency */}
-          <TabPanel sx={{ padding: "0px" }} value="2">
-            {flatCurrency.length > 0 ? (
-              <TableContainer
-                component={Paper}
-                sx={{
-                  boxShadow: "none",
-                  paddingX: "0px",
-                  paddingY: "10px",
-                  background: "none",
-                }}
-              >
-                <Link href="/dashboard/watchlist">
-                  <Table aria-label="simple table">
-                    <TableHead className="mx-auto">
-                      <TableRow className="text-center">
-                        <TableCell
-                          sx={{
-                            fontSize: "14px",
-                            paddingX: "0px",
-                            paddingY: "5px",
-                            fontWeight: 500,
-                            color: "white",
-                            border: "none",
-                          }}
-                        >
-                          Coin Name
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            fontSize: "14px",
-                            paddingX: "0px",
-                            paddingY: "5px",
-                            fontWeight: 500,
-                            color: "white",
-                            border: "none",
-                          }}
-                        >
-                          Current value
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {flatCurrency.slice(0, 4).map((asset, idx) => (
-                        <TableRow
-                          key={asset._id}
-                          sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
-                          }}
-                        >
-                          <TableCell sx={{ border: "none", paddingX: "0px" }}>
-                            <div className="flex items-center gap-3">
-                              <Image
-                                width={29.3}
-                                height={29.3}
-                                src={asset.icon}
-                                alt="coin-icon"
-                              />
-                              <p className={`text-xs text-white`}>
-                                {asset.name}
-                              </p>
-                            </div>
-                          </TableCell>
-                          <TableCell sx={{ border: "none", paddingX: "0px" }}>
-                            <p className={` text-xs text-white`}>
-                              ${asset.price}
-                            </p>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </Link>
-              </TableContainer>
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center gap-2 py-24">
-                <Image src={emptyIcon} width={70} height={70} alt="Icon" />
-                <h3 className="text-primary text-lg font-semibold text-center">
-                  empty !!
-                </h3>
-              </div>
-            )}
-          </TabPanel>
-        </TabContext>
-      </Box>
+              </Link>
+            </TableContainer>
+          ) : (
+            <div className="w-full flex flex-col items-center justify-center gap-2 py-[86.5px]">
+              <Image src={emptyIcon} width={70} height={70} alt="Icon" />
+              <h3 className="text-primary text-lg font-semibold text-center">
+                empty !!
+              </h3>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

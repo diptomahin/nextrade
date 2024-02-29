@@ -43,7 +43,7 @@ const SideHistory = () => {
           href="/dashboard/history"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
-          See all
+          See all history
         </Link>
       </div>
       {investmentHistoryData.length > 0 ? (
