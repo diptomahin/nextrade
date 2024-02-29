@@ -114,11 +114,11 @@ const AddArticles = () => {
   return (
     <div className="">
       <form
-        className="grid xl:grid-cols-4 gap-5 mt-14"
+        className="grid 2xl:grid-cols-4 gap-5 mt-14"
         onSubmit={handelPostNews}
       >
         {/* title, description, image */}
-        <div className="xl:col-span-3 mr-5">
+        <div className="2xl:col-span-3 mr-5">
           <div>
             <label className="flex justify-center font-semibold text-4xl text-white">
               Add New Post

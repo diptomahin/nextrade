@@ -14,9 +14,15 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
+    <div className="grid grid-cols-1 xl:grid-cols-12 gap-5">
       {/* total balance */}
       <Balance />
+
+      {/* trending assets */}
+      <QuickTrade />
+
+      {/* top assets slider */}
+      <TopAssets />
 
       {/* trending assets */}
       <Trending />
@@ -24,24 +30,13 @@ const page = () => {
       {/* recently added */}
       <RecentlyAdded />
 
-      {/* top assets slider */}
-      <TopAssets />
-
       {/* watchlist */}
-      <div className="hidden 2xl:block col-span-2">
-        <SideWatchlist />
-      </div>
-
-      {/* trending assets */}
-      <QuickTrade />
-
-      {/* watchlist */}
-      <div className="block 2xl:hidden md:col-span-3">
+      <div className="xl:col-span-6 3xl:col-span-4">
         <SideWatchlist />
       </div>
 
       {/* history */}
-      <div className="md:col-span-3 2xl:col-span-3">
+      <div className="xl:col-span-6 3xl:col-span-4">
         <SideHistory />
       </div>
     </div>

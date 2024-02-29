@@ -7,7 +7,7 @@ const QuickTrade = () => {
   const [isBuyOpen, setIsBuyOpen] = useState(true);
 
   return (
-    <div className="md:col-span-6 2xl:col-span-3 w-full bg-[#21212f] p-5 rounded-xl">
+    <div className="xl:col-span-6 2xl:col-span-5 w-full bg-[#21212f] p-5 rounded-xl">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">Quick trade</h3>
         <div className="relative w-60 h-10 flex items-center bg-darkBG rounded-full">
