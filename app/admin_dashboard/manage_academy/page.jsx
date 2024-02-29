@@ -16,7 +16,7 @@ const AddArticles = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedTagsOption, setSelectedTagsOption] = useState(null);
   const animatedComponents = makeAnimated();
-  const [fileName, setFileName] = useState('Attach file'); // Initial text for the button
+  const [fileName, setFileName] = useState("Attach file"); // Initial text for the button
 
   const handleFileChange = (event) => {
     const file = event.target.files[0]; // Get the selected file
@@ -138,36 +138,33 @@ const AddArticles = () => {
               <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
                 <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
                   <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4">
-                  <label className="relative flex items-center justify-center w-full dark:border-gray-600 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
-      <input
-        type="file"
-        required
-        name="photo"
-        className="absolute inset-0 opacity-0"
-        onChange={handleFileChange} // Call handleFileChange function when file is selected
-      />
-     <button
-  type="button"
-  className="p-2 text-gray-500 rounded flex items-center cursor-pointer !important"
->
-        <svg
-          className="w-4 h-4 mr-2"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 12 20"
-        >
-          <path
-            stroke="currentColor"
-            d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
-          />
-        </svg>
-        {fileName} {/* Show the file name */}
-      </button>
-    </label>
-
-
-
+                    <label className="relative flex items-center justify-center w-full dark:border-gray-600 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600">
+                      <input
+                        type="file"
+                        required
+                        name="photo"
+                        className="absolute inset-0 opacity-0"
+                        onChange={handleFileChange} // Call handleFileChange function when file is selected
+                      />
+                      <button
+                        type="button"
+                        className="p-2 text-gray-500 rounded flex items-center cursor-pointer !important"
+                      >
+                        <svg
+                          className="w-4 h-4 mr-2"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 12 20"
+                        >
+                          <path
+                            stroke="currentColor"
+                            d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
+                          />
+                        </svg>
+                        {fileName} {/* Show the file name */}
+                      </button>
+                    </label>
 
                     <button
                       type="button"
@@ -303,24 +300,27 @@ const AddArticles = () => {
               Select a Categories
             </h1>
             <Select
-  className="basic-single"
-  closeMenuOnSelect={true}
-  onChange={handleSelectChange}
-  required
-  components={animatedComponents}
-  options={CategoryOptions}
-  placeholder="Select a Category"
-  styles={{
-    control: (provided) => ({
-      ...provided,
-      backgroundColor: '#212a3f', // Set background color to black
-      border: '1px solid #444', // Add border for contrast
-      borderRadius: '4px', // Optional: Add border radius for rounded corners
-    }),
-    // Customize other styles as needed
-  }}
-/>
-
+              className="basic-single"
+              closeMenuOnSelect={true}
+              onChange={handleSelectChange}
+              required
+              components={animatedComponents}
+              options={CategoryOptions}
+              placeholder="Select a Category"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#212a3f", // Set background color to black
+                  color: "white",
+                  border: "1px solid #444", // Add border for contrast
+                  borderRadius: "4px", // Optional: Add border radius for rounded corners
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "darkGray", // Set text color of selected option to white
+                }),
+              }}
+            />
 
             <h1 className="my-5 text-center justify-center text-xl font-semibold text-white">
               Add Your Tags
@@ -333,6 +333,20 @@ const AddArticles = () => {
               components={animatedComponents}
               options={TagsOptions}
               placeholder="Select or Create Tags"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#212a3f", // Set background color to black
+                  color: "white",
+                  border: "1px solid #444", // Add border for contrast
+                  borderRadius: "4px", // Optional: Add border radius for rounded corners
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "darkGray", // Set text color of selected option to white
+                }),
+                // Customize other styles as needed
+              }}
             />
             {/* input */}
             <div>
