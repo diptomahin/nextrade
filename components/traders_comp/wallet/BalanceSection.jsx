@@ -28,7 +28,7 @@ const BalanceSection = () => {
       </div>
 
       {/* total deposit */}
-      <div className="w-full p-5 bg-thirdGreen rounded flex items-center justify-between gap-3">
+      <div className="w-full p-5 bg-senary rounded flex items-center justify-between gap-3">
         <div>
           <h3 className="font-medium">Total Deposit</h3>
           <h3 className="text-xl font-semibold">
@@ -41,7 +41,7 @@ const BalanceSection = () => {
       </div>
 
       {/* total withdraw */}
-      <div className="w-full p-5 bg-fourthPink rounded flex items-center justify-between gap-3">
+      <div className="w-full p-5 bg-septenary rounded flex items-center justify-between gap-3">
         <div>
           <h3 className="font-medium">Total Withdraw</h3>
           <h3 className="text-xl font-semibold">

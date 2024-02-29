@@ -153,7 +153,7 @@ const SidePortfolio = () => {
   };
 
   return (
-    <div className="w-full h-full bg-[#21212f] flex flex-col gap-5 font-semibold p-5 rounded-xl">
+    <div className="w-full h-full bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
       <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">Recently Added</h3>
         <Link

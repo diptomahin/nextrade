@@ -135,7 +135,7 @@ const SideWatchlist = () => {
     setValue(newValue);
   };
   return (
-    <div className="w-full h-full bg-[#21212f] flex flex-col gap-5 font-semibold p-5 rounded-xl">
+    <div className="w-full h-full bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
       <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">Watchlist</h3>
         <Link
@@ -145,7 +145,7 @@ const SideWatchlist = () => {
           See all watchlist
         </Link>
       </div>
-      <div className="relative sm:w-72 h-10 flex items-center bg-[#21212f] rounded-xl">
+      <div className="relative sm:w-72 h-10 flex items-center bg-secondary rounded-xl">
         <div
           className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
             isBuyOpen ? "translate-x-0" : "translate-x-full"

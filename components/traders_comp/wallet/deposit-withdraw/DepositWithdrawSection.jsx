@@ -66,7 +66,7 @@ const DepositWithdrawSection = () => {
               </h4>
               <p className="text-sm  3xl:text-base">
                 Your account balance must meet or exceed{" "}
-                <span className="font-semibold text-secondary">$10</span> to
+                <span className="font-semibold text-quaternary">$10</span> to
                 initiate a withdrawal.
               </p>
             </div>

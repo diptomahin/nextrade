@@ -16,7 +16,7 @@ const Balance = () => {
   }
 
   return (
-    <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-[#21212f] p-5 rounded-xl">
+    <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-tertiary p-5 rounded-xl">
       <h3 className="text-xl font-semibold">Balance</h3>
 
       {/* content */}
@@ -37,24 +37,24 @@ const Balance = () => {
 
             {/*  */}
             <div className="flex items-center gap-2">
-              <div className="w-12 h-12 bg-thirdGreen flex items-center justify-center rounded-full">
+              <div className="w-12 h-12 bg-secondary flex items-center justify-center rounded-full">
                 <MdAccountBalance className="text-2xl" />
               </div>
               <div className="">
-                <h3 className="text-thirdGreen font-semibold">Total Assets</h3>
+                <h3 className="text-secondary font-semibold">Total Assets</h3>
                 <p className="text-xl font-semibold">$10000</p>
               </div>
             </div>
           </div>
 
           {/* bottom part */}
-          <div className="bg-[#17171e] p-5 my-8 rounded-xl">
+          <div className="bg-secondary p-5 my-8 rounded-xl">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-thirdGreen flex items-center justify-center rounded-full">
+              <div className="w-8 h-8 bg-secondary flex items-center justify-center rounded-full">
                 <HiMiniArrowDownOnSquareStack className="text-lg" />
               </div>
               <div className="">
-                <h3 className="text-sm text-thirdGreen font-semibold">
+                <h3 className="text-sm text-secondary font-semibold">
                   Total Profit/Loss
                 </h3>
                 <p className="font-semibold">$10000</p>
@@ -63,11 +63,11 @@ const Balance = () => {
             <hr className="border-darkThree my-5" />
             {/*  */}
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-thirdGreen flex items-center justify-center rounded-full">
+              <div className="w-8 h-8 bg-secondary flex items-center justify-center rounded-full">
                 <RiLuggageDepositFill className="text-lg" />
               </div>
               <div className="">
-                <h3 className="text-sm text-thirdGreen font-semibold">
+                <h3 className="text-sm text-secondary font-semibold">
                   Total Deposit
                 </h3>
                 <p className="font-semibold">${userData?.deposit}</p>
@@ -76,11 +76,11 @@ const Balance = () => {
             <hr className="border-darkThree my-5" />
             {/*  */}
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-fourthPink flex items-center justify-center rounded-full">
+              <div className="w-8 h-8 bg-tertiary flex items-center justify-center rounded-full">
                 <FaCreditCard className="text-lg" />
               </div>
               <div className="">
-                <h3 className="text-sm text-fourthPink font-semibold">
+                <h3 className="text-sm text-tertiary font-semibold">
                   Total Withdraw
                 </h3>
                 <p className="font-semibold">${userData?.withdraw}</p>

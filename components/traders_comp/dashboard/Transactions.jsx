@@ -28,7 +28,7 @@ const Transactions = () => {
   }
 
   return (
-    <div className="xl:col-span-6 3xl:col-span-4 w-full bg-[#21212f] p-5 rounded-xl">
+    <div className="xl:col-span-6 3xl:col-span-4 w-full bg-tertiary p-5 rounded-xl">
       <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree mb-5">
         <h3 className="text-xl font-semibold">Recent Transactions</h3>
         <Link

@@ -177,7 +177,7 @@ const Banner = () => {
           </motion.div>
 
           {/* animation */}
-          <div className="orange-move absolute left-[20%] md:left-[11%] top-[31%] bg-secondary w-24 h-24 rounded-full blur-[80px]"></div>
+          <div className="orange-move absolute left-[20%] md:left-[11%] top-[31%] bg-quinary w-24 h-24 rounded-full blur-[80px]"></div>
 
           <div className="blue-move absolute left-[20%] md:left-[11%] top-[31%] bg-primary w-24 h-24 rounded-full blur-[80px]"></div>
 
@@ -212,7 +212,7 @@ const Banner = () => {
           <div className="banner-img-bg absolute left-[40%] top-[50%] bg-primary w-28 h-28 blur-[80px]"></div>
 
           {/*  */}
-          <div className="banner-img-bg-two absolute left-[40%] top-[50%] bg-secondary/90 w-28 h-28 blur-[80px]"></div>
+          <div className="banner-img-bg-two absolute left-[40%] top-[50%] bg-quinary/90 w-28 h-28 blur-[80px]"></div>
 
           {/*  */}
           <div className="relative  flex items-center justify-center z-10">
