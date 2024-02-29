@@ -336,11 +336,14 @@ const Portfolio = () => {
           {cryptoData ? (
             <>
               {view === "list" ? (
-                <PortfolioAssetBox cryptoData={cryptoData} loading={purchasedLoading} pending={purchasedPending} calculateDifference={calculateDifference}/>
+                <PortfolioAssetBox cryptoData={cryptoData} loading={purchasedLoading} pending={purchasedPending} calculateDifference={calculateDifference}
+                setCurrentPage={setCurrentPage}
+                />
               ) : (
                 <PortfolioAssetTable
                   cryptoData={cryptoData}
                   calculateDifference={calculateDifference}
+                  setCurrentPage={setCurrentPage}
                 />
               )}
             </>

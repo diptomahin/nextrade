@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import Image from "next/image";
-const PortfolioAssetTable = ({cryptoData,calculateDifference}) => {
+const PortfolioAssetTable = ({cryptoData,calculateDifference,setCurrentPage}) => {
      return (
           <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
