@@ -8,7 +8,7 @@ import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import "./Portfolio.css"
 import { Pagination, Skeleton } from '@mui/material';
    
-const PortfolioAssetBox = ({cryptoData,loading,pending,calculateDifference}) => {
+const PortfolioAssetBox = ({cryptoData,loading,pending,calculateDifference,setCurrentPage}) => {
      if (loading || pending) {
           return (
               <div className='grid lg:grid-cols-2 2xl:grid-cols-3 gap-6'>
