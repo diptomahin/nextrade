@@ -3,6 +3,7 @@ import getArticles from "@/lib/getArticles";
 import Image from "next/image";
 import TextField from "@mui/material/TextField";
 import moment from "moment";
+import { SiKhanacademy } from "react-icons/si";
 
 const articlePage = async ({ params }) => {
   const { _id } = params;
@@ -15,8 +16,11 @@ const articlePage = async ({ params }) => {
 
   return (
     <div className="mt-10 container mx-auto">
-      <h1 className="text-white">
-        Academy / {article.category} /{" "}
+      <h1 className="text-white items-center flex gap-2 ml-1">
+        <span>
+        <SiKhanacademy className="text-xl" /> 
+        </span>
+     Academy /  {article.category}  /
         <span className="text-blue-400">{article.title}</span>
       </h1>
       <div className="bg-[#1e222d] flex justify-stretch items-center mt-5">
