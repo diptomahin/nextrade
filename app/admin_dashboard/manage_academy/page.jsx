@@ -16,12 +16,12 @@ const AddArticles = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedTagsOption, setSelectedTagsOption] = useState(null);
   const animatedComponents = makeAnimated();
-  const [fileName, setFileName] = useState("Attach file"); // Initial text for the button
+  const [fileName, setFileName] = useState("Attach file");
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0]; // Get the selected file
+    const file = event.target.files[0];
     if (file) {
-      setFileName(file.name); // Update the button text to show the file name
+      setFileName(file.name);
     }
   };
 
@@ -85,7 +85,6 @@ const AddArticles = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        // console.log("ImgBB Response:", res.data);
         const imageUrl = res.data.data.url;
         const thumbnail = imageUrl;
         const date = new Date();
@@ -98,11 +97,9 @@ const AddArticles = () => {
           tags,
           date,
         };
-        // console.log("News Info:", articlesInfo);
 
         axiosPublic.post("/articles", articlesInfo).then((res) => {
-          console.log(res.data);
-          // e.target.reset();
+          e.target.reset();
           if (res.data.insertedId) {
             toast.success("Post Added Successfully", {
               id: toastId,
@@ -110,9 +107,7 @@ const AddArticles = () => {
             });
           }
         });
-      } catch (error) {
-        console.error("Error uploading image to ImgBB:", error);
-      }
+      } catch (error) {}
     }
   };
 
@@ -144,7 +139,7 @@ const AddArticles = () => {
                         required
                         name="photo"
                         className="absolute inset-0 opacity-0"
-                        onChange={handleFileChange} // Call handleFileChange function when file is selected
+                        onChange={handleFileChange}
                       />
                       <button
                         type="button"
@@ -162,7 +157,7 @@ const AddArticles = () => {
                             d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
                           />
                         </svg>
-                        {fileName} {/* Show the file name */}
+                        {fileName}
                       </button>
                     </label>
 
@@ -336,16 +331,15 @@ const AddArticles = () => {
               styles={{
                 control: (provided) => ({
                   ...provided,
-                  backgroundColor: "#212a3f", // Set background color to black
+                  backgroundColor: "#212a3f",
                   color: "white",
-                  border: "1px solid #444", // Add border for contrast
-                  borderRadius: "4px", // Optional: Add border radius for rounded corners
+                  border: "1px solid #444",
+                  borderRadius: "4px",
                 }),
                 singleValue: (provided) => ({
                   ...provided,
-                  color: "darkGray", // Set text color of selected option to white
+                  color: "darkGray",
                 }),
-                // Customize other styles as needed
               }}
             />
             {/* input */}
