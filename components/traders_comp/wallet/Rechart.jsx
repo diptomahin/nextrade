@@ -7,7 +7,6 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
 } from "recharts";
 import useUserData from "@/hooks/useUserData";
 
@@ -21,28 +20,28 @@ const Rechart = () => {
 
   const data = [
     {
-      balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
+      Balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
 
-      deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
-      withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
+      Deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
+      Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
     },
   ];
 
   return (
-    <div className="w-full p-4 2xl:p-6 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree text-white rounded mt-5">
-      <h1 className="text-xl text-center font-bold mb-5">Transaction Report</h1>
-      <ResponsiveContainer width="90%" height={300} className="mx-auto">
-        <BarChart data={data}>
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="balance" fill="#40a0ff" />
-          <Bar dataKey="deposit" fill="#78c350" />
-          <Bar dataKey="withdraw" fill="#ff5252" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer
+      width={"100%"}
+      height={300}
+      className="mx-auto text-center"
+    >
+      <BarChart data={data}>
+        <XAxis dataKey={data} />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="Balance" fill="#40a0ff" />
+        <Bar dataKey="Deposit" fill="#3aba69" />
+        <Bar dataKey="Withdraw" fill="#f65455" />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };
 

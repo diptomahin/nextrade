@@ -1,9 +1,9 @@
 import Balance from "@/components/traders_comp/dashboard/Balance";
 import QuickTrade from "@/components/traders_comp/dashboard/quick-trade/QuickTrade";
-import RecentlyAdded from "@/components/traders_comp/dashboard/RecentlyAdded";
 import TopAssets from "@/components/traders_comp/dashboard/TopAssets";
 import Trending from "@/components/traders_comp/dashboard/Trending";
 import SideHistory from "@/components/traders_comp/market/SideHistory";
+import SidePortfolio from "@/components/traders_comp/market/SidePortfolio";
 import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 
 // add title in metadata
@@ -27,17 +27,19 @@ const page = () => {
       {/* trending assets */}
       <Trending />
 
-      {/* recently added */}
-      <RecentlyAdded />
-
       {/* watchlist */}
-      <div className="xl:col-span-6 3xl:col-span-4">
-        <SideWatchlist />
+      <div className="h-full xl:col-span-6 3xl:col-span-4">
+        <SidePortfolio />
       </div>
 
       {/* history */}
-      <div className="xl:col-span-6 3xl:col-span-4">
+      <div className="h-full xl:col-span-6 3xl:col-span-4">
         <SideHistory />
+      </div>
+
+      {/* watchlist */}
+      <div className="h-full xl:col-span-6 3xl:col-span-4">
+        <SideWatchlist />
       </div>
     </div>
   );
