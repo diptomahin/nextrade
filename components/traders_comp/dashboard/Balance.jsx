@@ -4,10 +4,7 @@ import useUserData from "@/hooks/useUserData";
 import { MdAccountBalance } from "react-icons/md";
 import { RiLuggageDepositFill } from "react-icons/ri";
 import { FaCreditCard } from "react-icons/fa";
-import {
-  HiMiniArrowDownOnSquareStack,
-  HiMiniArrowUpOnSquareStack,
-} from "react-icons/hi2";
+import { HiMiniArrowDownOnSquareStack } from "react-icons/hi2";
 import Rechart from "../wallet/Rechart";
 
 const Balance = () => {
@@ -23,10 +20,10 @@ const Balance = () => {
       <h3 className="text-xl font-semibold">Balance</h3>
 
       {/* content */}
-      <div className="h-full flex flex-col lg:flex-row items-center justify-between gap-5 6xl:gap-10">
+      <div className="h-full flex flex-col lg:flex-row items-center justify-between lg:gap-5 6xl:gap-10 py-5">
         <div className="w-full">
           {/* top part */}
-          <div className="flex justify-between">
+          <div className="flex flex-wrap gap-5 justify-between">
             {/*  */}
             <div className="flex items-center gap-2">
               <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-full">
