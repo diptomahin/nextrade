@@ -40,9 +40,8 @@ const page = () => {
         <SideWatchlist />
       </div>
 
-      {/* recently added */}
-
-      <div className="h-full md:col-span-3 xl:col-span-3">
+      {/* history */}
+      <div className="md:col-span-3 xl:col-span-3">
         <SideHistory />
       </div>
     </div>

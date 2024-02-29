@@ -36,8 +36,8 @@ const SideHistory = () => {
     return;
   }
   return (
-    <div className="w-full min-h-96 bg-gradient-to-tl from-darkOne to-darkOne flex flex-col gap-4 p-5">
-      <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
+    <div className="w-full min-h-96 bg-darkOne flex flex-col gap-8 p-5">
+      <div className="flex items-center justify-between border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">History</h3>
         <Link
           href="/dashboard/history"
@@ -48,10 +48,7 @@ const SideHistory = () => {
       </div>
       {investmentHistoryData.length > 0 ? (
         investmentHistoryData.slice(0, 5).map((history) => (
-          <div
-            key={history._id}
-            className="flex items-center justify-between gap-2 py-2"
-          >
+          <div key={history._id} className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
                 width={35}
