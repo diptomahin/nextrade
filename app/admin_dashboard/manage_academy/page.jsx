@@ -113,7 +113,10 @@ const AddArticles = () => {
 
   return (
     <div className="">
-      <form className="grid xl:grid-cols-4 gap-5 mt-14" onSubmit={handelPostNews}>
+      <form
+        className="grid xl:grid-cols-4 gap-5 mt-14"
+        onSubmit={handelPostNews}
+      >
         {/* title, description, image */}
         <div className="xl:col-span-3 mr-5">
           <div>
@@ -282,6 +285,7 @@ const AddArticles = () => {
                   className="block w-full px-0 text-sm text-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2 bg-darkTwo"
                   placeholder="Write an article..."
                   required
+                  style={{ outline: "none" }}
                 ></textarea>
               </div>
             </div>
@@ -291,7 +295,7 @@ const AddArticles = () => {
         {/* submit, tags, publisher */}
         <div className="col-span-1 mb-10">
           <div>
-            <h1 className="mt-3 mb-5 flex justify-center text-xl font-semibold text-white">
+            <h1 className="mt-[13px] mb-5 flex justify-center text-xl font-semibold text-white">
               Select a Categories
             </h1>
             <Select
@@ -307,7 +311,7 @@ const AddArticles = () => {
                   ...provided,
                   backgroundColor: "#212a3f", // Set background color to black
                   color: "white",
-                  border: "1px solid #444", // Add border for contrast
+                  border: "1px solid white", // Add border for contrast
                   borderRadius: "4px", // Optional: Add border radius for rounded corners
                 }),
                 singleValue: (provided) => ({
@@ -333,7 +337,7 @@ const AddArticles = () => {
                   ...provided,
                   backgroundColor: "#212a3f",
                   color: "white",
-                  border: "1px solid #444",
+                  border: "1px solid white",
                   borderRadius: "4px",
                 }),
                 singleValue: (provided) => ({
