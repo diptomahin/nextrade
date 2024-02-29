@@ -1,11 +1,15 @@
 "use client";
 import Button from "@/components/library/buttons/root_button/RootButton";
+import usePublicAPI from "@/hooks/usePublicAPI";
+import useSecureAPI from "@/hooks/useSecureAPI";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
   const [submitMessage, setSubmitMessage] = useState(null);
+  const publicAPI = usePublicAPI();
+
 
   const {
     register,
@@ -17,6 +21,8 @@ const ContactForm = () => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
+      await publicAPI.post(`/contact`, data)
+      // await useSecureAPI.post(`/contact`, contactData)
       await emailjs.send(
         "service_5crf3z7",
         "template_6p6drrs",
@@ -135,9 +141,8 @@ const ContactForm = () => {
 
       {submitMessage && (
         <div
-          className={`${
-            submitMessage.type === "success" ? "text-green-500" : "text-red-500"
-          } text-center font-semibold mt-4`}
+          className={`${submitMessage.type === "success" ? "text-green-500" : "text-red-500"
+            } text-center font-semibold mt-4`}
         >
           {submitMessage.text}
         </div>
