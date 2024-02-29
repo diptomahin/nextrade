@@ -52,65 +52,48 @@ const Balance = () => {
 
           {/* bottom part */}
           <div className="bg-[#17171e] p-5 my-8 rounded-xl">
-            <div className="flex justify-between">
-              {/*  */}
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-thirdGreen flex items-center justify-center rounded-full">
-                  <HiMiniArrowDownOnSquareStack className="text-lg" />
-                </div>
-                <div className="">
-                  <h3 className="text-sm text-thirdGreen font-semibold">
-                    Income
-                  </h3>
-                  <p className="font-semibold">$10000</p>
-                </div>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-thirdGreen flex items-center justify-center rounded-full">
+                <HiMiniArrowDownOnSquareStack className="text-lg" />
               </div>
-
-              {/*  */}
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-fourthPink flex items-center justify-center rounded-full">
-                  <HiMiniArrowUpOnSquareStack className="text-lg" />
-                </div>
-                <div className="">
-                  <h3 className="text-sm text-fourthPink font-semibold">
-                    Outcome
-                  </h3>
-                  <p className="font-semibold">$10000</p>
-                </div>
+              <div className="">
+                <h3 className="text-sm text-thirdGreen font-semibold">
+                  Total Profit/Loss
+                </h3>
+                <p className="font-semibold">$10000</p>
               </div>
             </div>
             <hr className="border-darkThree my-5" />
             {/*  */}
-            <div className="flex justify-between">
-              {/*  */}
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-thirdGreen flex items-center justify-center rounded-full">
-                  <RiLuggageDepositFill className="text-lg" />
-                </div>
-                <div className="">
-                  <h3 className="text-sm text-thirdGreen font-semibold">
-                    Deposit
-                  </h3>
-                  <p className="font-semibold">$10000</p>
-                </div>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-thirdGreen flex items-center justify-center rounded-full">
+                <RiLuggageDepositFill className="text-lg" />
               </div>
-
-              {/*  */}
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-fourthPink flex items-center justify-center rounded-full">
-                  <FaCreditCard className="text-lg" />
-                </div>
-                <div className="">
-                  <h3 className="text-sm text-fourthPink font-semibold">
-                    Withdraw
-                  </h3>
-                  <p className="font-semibold">$10000</p>
-                </div>
+              <div className="">
+                <h3 className="text-sm text-thirdGreen font-semibold">
+                  Total Deposit
+                </h3>
+                <p className="font-semibold">${userData?.deposit}</p>
+              </div>
+            </div>
+            <hr className="border-darkThree my-5" />
+            {/*  */}
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-fourthPink flex items-center justify-center rounded-full">
+                <FaCreditCard className="text-lg" />
+              </div>
+              <div className="">
+                <h3 className="text-sm text-fourthPink font-semibold">
+                  Total Withdraw
+                </h3>
+                <p className="font-semibold">${userData?.withdraw}</p>
               </div>
             </div>
           </div>
         </div>
-        <Rechart />
+        <div className="w-full">
+          <Rechart />
+        </div>
       </div>
     </div>
   );

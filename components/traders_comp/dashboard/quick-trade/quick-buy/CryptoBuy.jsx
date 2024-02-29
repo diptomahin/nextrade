@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-const CryptoBuy = ({cryptoCurrency, cryptoRefetch}) => {
+const CryptoBuy = ({ cryptoCurrency, cryptoRefetch }) => {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
-  
   return isOpenSelect ? (
     <div className="flex items-center gap-5">
       <select
@@ -11,13 +10,15 @@ const CryptoBuy = ({cryptoCurrency, cryptoRefetch}) => {
         name=""
         id=""
       >
-        {
-          cryptoCurrency?.map(asset => (
-            <option key={asset._id} value="" className="text-sm w-full flax justify-between">
-                name:{asset.name}, ________ price:{asset.price}
-            </option>
-          ))
-        }
+        {cryptoCurrency?.map((asset) => (
+          <option
+            key={asset._id}
+            value=""
+            className="text-sm w-full flax justify-between"
+          >
+            name:{asset.name}, ________ price:{asset.price}
+          </option>
+        ))}
       </select>
       <div className="flex items-center justify-center gap-2">
         <button
