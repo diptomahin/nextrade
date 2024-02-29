@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 
 const TopAssets = () => {
   return (
-    <div className="md:col-span-6 2xl:col-span-4 h-80">
+    <div className="xl:col-span-6 2xl:col-span-12 3xl:col-span-7 h-80">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">Top assets</h3>
         <Link
