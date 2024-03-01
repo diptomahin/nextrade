@@ -165,7 +165,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                     refetchUserData();
                     refetchSpecificTransactionsData();
                     refetchNotificationsData();
-                    adminRefetchNotificationsData()
+                    adminRefetchNotificationsData();
                     toast.success("Deposit Successful", {
                       id: toastId,
                       duration: 5000,

@@ -12,31 +12,17 @@ import Paper from "@mui/material/Paper";
 import { BiSearchAlt } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
-import useSpecificTransactionData from "@/hooks/useSpecificTransactionData";
 import toast from "react-hot-toast";
-import useSecureAPI from "@/hooks/useSecureAPI";
 import Swal from "sweetalert2";
 
-const TransactionTable = () => {
+const TransactionTable = ({
+  secureAPI,
+  setDynamicSearch,
+  specificTransactionsData,
+  refetchSpecificTransactionsData,
+}) => {
   const [isOpenDot, setIsOpenDot] = useState(false);
-  const [dynamicSearch, setDynamicSearch] = useState("");
-  const secureAPI = useSecureAPI();
 
-  const {
-    specificTransactionsData,
-    refetchSpecificTransactionsData,
-    SpecificTransactionsDataLoading,
-    SpecificTransactionsDataPending,
-    SpecificTransactionsDataError,
-  } = useSpecificTransactionData(dynamicSearch);
-  refetchSpecificTransactionsData();
-  if (
-    SpecificTransactionsDataLoading ||
-    SpecificTransactionsDataPending ||
-    SpecificTransactionsDataError
-  ) {
-    return;
-  }
   // deposit-withdraw/delete-specific/:id
   const handleDeleteAll = async (email) => {
     if (!email) {
@@ -131,7 +117,7 @@ const TransactionTable = () => {
     refetchSpecificTransactionsData();
   };
   return (
-    <div className="p-5 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded">
+    <div className="p-5 bg-tertiary rounded-xl">
       <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
 
@@ -163,7 +149,7 @@ const TransactionTable = () => {
               <BsThreeDotsVertical />
             </button>
             {isOpenDot && (
-              <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-quaternary border border-darkThree font-medium rounded-s-2xl rounded-b-2xl">
+              <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-secondary font-medium rounded-s-2xl rounded-b-2xl">
                 <button className="w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-white/10 border-none rounded-none pl-4">
                   Download
                 </button>
@@ -171,7 +157,7 @@ const TransactionTable = () => {
                   onClick={() =>
                     handleDeleteAll(specificTransactionsData[0]?.email)
                   }
-                  className="whitespace-nowrap w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-tertiary border-none rounded-none pl-4"
+                  className="whitespace-nowrap w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-septenary border-none rounded-none pl-4"
                 >
                   Delete all history
                 </button>
@@ -186,11 +172,11 @@ const TransactionTable = () => {
           onClick={() => setIsOpenDot(false)}
           component={Paper}
           sx={{
-            color: "white",
-            borderRadius: "0.75rem",
             boxShadow: "none",
+            padding: "0px",
+            background: "none",
           }}
-          className="bg-gradient-to-bl from-darkOne to-darkTwo border-none shadow-none outline-none"
+          className="border-none outline-none"
         >
           <Table
             sx={{ minWidth: 650, color: "white" }}
