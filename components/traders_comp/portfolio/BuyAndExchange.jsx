@@ -195,7 +195,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
     }).then(async (result) => {
       if (result.isConfirmed) {
         secureAPI
-          .put(`/allSoldCoin/${sellingData}/${sellCoinId}/${newBalance}`)
+          .post(`/allSoldCoin/${sellCoinId}/${newBalance}/${user.email}`, sellingData)
           .then((res) => {
             if (res.data.modifiedCount) {
               Swal.fire({
