@@ -13,6 +13,7 @@ import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import { Autocomplete, InputAdornment, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
+import GoogleTranslate from "../../components/traders_comp/GoogleTranslate/GoogleTranslate"
 
 const StyledInputBase = styled(TextField)(({ theme }) => ({
   color: "white",
@@ -221,6 +222,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         {/* <Language /> */}
 
         {/* <Translate /> */}
+        <GoogleTranslate></GoogleTranslate>
         <TradersNotification />
 
         <UserMenu userDetails={userDetails} logOut={logOut} />
