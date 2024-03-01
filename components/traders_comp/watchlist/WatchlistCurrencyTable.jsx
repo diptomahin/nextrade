@@ -12,18 +12,16 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import DashboardButton from "@/components/library/buttons/DashButton";
-import Magnetic from "@/components/library/Magnetic";
 import DarkButton from "@/components/library/buttons/DarkButton";
 
 const WatchlistCurrencyTable = ({ assets, handleDelete }) => {
   return (
     <TableContainer
       sx={{
-        borderRadius: "0.75rem",
         boxShadow: "none",
+        padding: "none",
+        background: "none",
       }}
-      className="bg-gradient-to-bl from-darkOne to-darkTwo "
       component={Paper}
     >
       <Table aria-label="simple table">
@@ -119,11 +117,11 @@ const WatchlistCurrencyTable = ({ assets, handleDelete }) => {
                   gap: "10px",
                 }}
               >
-                <DarkButton className="font-medium normal-case h-8 2xl:text-sm">
+                <DarkButton className="font-medium normal-case h-8 2xl:text-sm bg-primary hover:bg-primary border-none text-white">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
                 <DarkButton
-                  className="font-medium normal-case h-8 2xl:text-sm"
+                  className="font-medium normal-case h-8 2xl:text-sm bg-septenary hover:bg-septenary border-none text-white"
                   onClick={() => handleDelete(asset._id)}
                 >
                   Delete

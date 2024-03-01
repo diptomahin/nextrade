@@ -31,7 +31,7 @@ const Banner = () => {
             >
               Trade On
             </motion.h1>
-            {/* <motion.h1
+            <motion.h1
               variants={fadeIn("down", 0.2)}
               initial="hidden"
               whileInView={"show"}
@@ -53,7 +53,7 @@ const Banner = () => {
                   wrapperClassName: "typewriter-wrapper",
                 }}
               />
-            </motion.h1> */}
+            </motion.h1>
           </div>
 
           {/* banner description */}
@@ -220,8 +220,9 @@ const Banner = () => {
               <Image
                 alt="banner"
                 src={bg}
-                className=" mx-auto"
-                style={{ width: "84%", height: "auto" }}
+                className="w-[250px] md:w-[300px] mx-auto"
+                width={300}
+                height={"auto"}
                 priority
               />
             </div>

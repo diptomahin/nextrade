@@ -33,10 +33,10 @@ const Profile = () => {
       {/* toggle menu button one */}
       <button
         onClick={() => setIsActiveProfile(!isActiveProfile)}
-        className={`fixed top-[92px] ${
+        className={`fixed top-[100px] ${
           isActiveProfile
-            ? "-left-1 sm:left-0 2xl:left-[57px]  3xl:left-[274px]"
-            : "left-[230px] sm:left-[250px]  3xl:left-[466px]"
+            ? "-left-1 sm:left-0 2xl:left-[64px]  3xl:left-[282px]"
+            : "left-[230px] sm:left-[258px]  3xl:left-[474px]"
         } btn btn-sm h-9 px-[10px] bg-transparent hover:bg-white/5 active:bg-white/20 border-none shadow-none text-white rounded-full z-20 transition-all duration-300 ease-in-out`}
       >
         <MdArrowBackIosNew
@@ -48,7 +48,7 @@ const Profile = () => {
 
       <div
         style={{ height: "calc(100vh - 104px)" }}
-        className={`fixed w-[250px]  sm:w-[270px]  3xl:left-[240px] bg-tertiary px-4 py-14 transition-all  ${
+        className={`fixed w-[250px]  sm:w-[270px]  3xl:left-[248px] bg-tertiary px-4 py-14 transition-all  ${
           isActiveProfile
             ? "-translate-x-[255px] sm:-translate-x-[250px] 2xl:translate-x-0   2xl:w-[78px]"
             : "translate-x-0"
@@ -116,8 +116,8 @@ const Profile = () => {
 
       {/* content */}
       <div
-        className={`sm:pl-6  transition-all duration-300 ease-in-out ${
-          isActiveProfile ? "2xl:pl-[98px]" : "2xl:pl-[290px]"
+        className={`sm:pl-8  transition-all duration-300 ease-in-out ${
+          isActiveProfile ? "2xl:pl-[106px]" : "2xl:pl-[298px]"
         }`}
       >
         <TabPanel>

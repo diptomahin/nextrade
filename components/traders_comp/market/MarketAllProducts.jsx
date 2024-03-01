@@ -238,7 +238,7 @@ const MarketAllProducts = () => {
   };
 
   return (
-    <div className="w-full p-3 bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree  rounded-lg">
+    <div className="w-full p-5 bg-tertiary rounded-xl">
       <TabContext value={value}>
         <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
           <TabList onChange={handleChange} aria-label="lab API tabs example">

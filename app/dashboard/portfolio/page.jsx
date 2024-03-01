@@ -1,11 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-import {
-
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { BiSearchAlt } from "react-icons/bi";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
@@ -25,7 +21,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 
 const Portfolio = () => {
   const { user } = useAuth();
-  const secureAPI = useSecureAPI()
+  const secureAPI = useSecureAPI();
 
   // get total balance form users data
   const { userData, userDataLoading, userDataPending, userDataError } =
@@ -39,18 +35,18 @@ const Portfolio = () => {
   const [dynamicSearch, setDynamicSearch] = useState("");
   const [coinPerPage, setCoinPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
-  const [assetCount, setAssetCount] = useState(0)
-  
+  const [assetCount, setAssetCount] = useState(0);
+
   // get page count from database
   useEffect(() => {
     secureAPI
-       .get("/totalAssetCount")
-       .then((res) => setAssetCount(res.data.count))
-       .catch((error) => console.log(error));
-   }, [secureAPI]);
+      .get("/totalAssetCount")
+      .then((res) => setAssetCount(res.data.count))
+      .catch((error) => console.log(error));
+  }, [secureAPI]);
 
-   const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
-  
+  const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
+
   const assetPage = [...Array(numberOfAssetPages).keys()];
 
   // fetch data with search functionality
@@ -61,27 +57,20 @@ const Portfolio = () => {
     purchasedRefetch,
   } = usePurchasedAssets(dynamicSearch, currentPage, coinPerPage);
 
-  purchasedRefetch()
+  purchasedRefetch();
 
   // asset Data without search functionality
   const [assetData2, setAssetData2] = useState([]);
   const [currencyData2, setCurrencyData2] = useState([]);
 
   // fetch data without search functionality
-  const {
-    data: totalPurchased = [],
-    refetch: totalRefetch
-  } = useSecureFetch(`/sidePortfolio?email=${user.email}`, [
-    "purchased-asset",
-    user?.email,
-  ]);
-
-
-  
+  const { data: totalPurchased = [], refetch: totalRefetch } = useSecureFetch(
+    `/sidePortfolio?email=${user.email}`,
+    ["purchased-asset", user?.email]
+  );
 
   // filter  coin data
   useEffect(() => {
-
     // filter coin data with search functionality
     if (purchasedAssets.length > 0) {
       setCryptoData(
@@ -94,11 +83,14 @@ const Portfolio = () => {
 
     // filter coin data without search functionality
     if (totalPurchased.length > 0) {
-      setAssetData2(totalPurchased.filter((data) => data.assetType === "crypto coin"))
-      setCurrencyData2(totalPurchased.filter((data) => data.assetType === "flat coin"))
+      setAssetData2(
+        totalPurchased.filter((data) => data.assetType === "crypto coin")
+      );
+      setCurrencyData2(
+        totalPurchased.filter((data) => data.assetType === "flat coin")
+      );
     }
   }, [purchasedAssets, purchasedRefetch, totalPurchased]);
-
 
   // convert static data into real time data
   const createCryptoData = (
@@ -129,9 +121,7 @@ const Portfolio = () => {
     };
   };
 
-
   // ___________________create crypto data with search functionality start_________________
-
 
   useEffect(() => {
     const socket = new WebSocket(
@@ -206,8 +196,6 @@ const Portfolio = () => {
 
   // ___________________create crypto data with search functionality ends_________________
 
-
-
   // _________________create crypto data data without search functionality start____________
 
   useEffect(() => {
@@ -280,9 +268,6 @@ const Portfolio = () => {
 
     fetchCurrencyRates();
   }, [currencyData2]);
-
-
-
 
   // profit and loss calculator
   const calculateDifference = (currentPrice, buyingPrice, portion) => {
@@ -368,7 +353,7 @@ const Portfolio = () => {
           calculateTotalLoss={calculateTotalLoss}
         />
         {/* coin buying list   */}
-        <div className="my-5 p-4   rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree ">
+        <div className="my-5 p-4  rounded-xl bg-tertiary">
           <div className="flex justify-between">
             <h1 className="text-xl font-semibold my-3">Your Holdings</h1>
             <div className=" flex justify-around items-center gap-3">
@@ -390,7 +375,6 @@ const Portfolio = () => {
               </div>
               {/* show coin count */}
               <div className="bg-white/5 p-1 rounded">
-
                 <select
                   value={coinPerPage}
                   onChange={handleCoinPerPages}
@@ -411,7 +395,6 @@ const Portfolio = () => {
                     24
                   </option>
                 </select>
-
               </div>
 
               {/* view options */}
@@ -441,7 +424,11 @@ const Portfolio = () => {
                   assetPage={assetPage}
                 />
               ) : (
-                <PortfolioAssetBox cryptoData={cryptoData} loading={purchasedLoading} pending={purchasedPending} calculateDifference={calculateDifference}
+                <PortfolioAssetBox
+                  cryptoData={cryptoData}
+                  loading={purchasedLoading}
+                  pending={purchasedPending}
+                  calculateDifference={calculateDifference}
                   setCurrentPage={setCurrentPage}
                   assetPage={assetPage}
                 />
@@ -465,7 +452,7 @@ const Portfolio = () => {
 
       {/* Right side  */}
       <div className=" col-span-2 ">
-        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  mb-5 ">
+        <div className="p-5 bg-tertiary rounded-xl  mb-5">
           <BuyAndExchange
             cryptoData={assetData2}
             remainingBalance={usersRemainingBalance}
@@ -473,7 +460,7 @@ const Portfolio = () => {
             totalRefetch={totalRefetch}
           ></BuyAndExchange>
         </div>
-        <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  ">
+        <div className="p-5  bg-tertiary rounded-xl">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
           {cryptoData ? (
             <PortfolioAssetChart totalCurrentPrice={totalAssetInvestment} />

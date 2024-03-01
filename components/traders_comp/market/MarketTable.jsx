@@ -10,7 +10,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import DashboardButton from "@/components/library/buttons/DashButton";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import DarkButton from "@/components/library/buttons/DarkButton";
@@ -20,8 +19,9 @@ const MarketTable = ({ assets }) => {
     <TableContainer
       sx={{
         boxShadow: "none",
+        bgcolor: "transparent",
       }}
-      className="bg-gradient-to-bl from-darkOne to-darkTwo border-none "
+      className=" border-none "
       component={Paper}
     >
       <Table aria-label="simple table">
@@ -157,7 +157,7 @@ const MarketTable = ({ assets }) => {
                 </p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <DarkButton className="font-medium normal-case h-8 2xl:text-sm">
+                <DarkButton className="font-medium normal-case h-8 2xl:text-sm bg-primary hover:bg-primary border-none text-white">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
               </TableCell>

@@ -5,7 +5,7 @@ import { RiLuggageDepositFill } from "react-icons/ri";
 
 const BalanceSection = ({ userData }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 5xl:grid-cols-3 justify-between gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 5xl:grid-cols-3 justify-between gap-7">
       {/* total balance */}
       <div className="w-full p-5 bg-primary flex items-center justify-between gap-3 rounded-xl">
         <div>

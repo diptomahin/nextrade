@@ -10,7 +10,7 @@ const TopBannerNormalCurrency = ({
   coinImage,
 }) => {
   return (
-    <div className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded-lg p-4 w-full">
+    <div className="bg-tertiary rounded-xl p-5 w-full">
       <h1 className="text-xl font-semibold">Market Stats</h1>
       <div className="  flex flex-col md:flex-row 2xl:items-center 2xl:justify-between gap-6 2xl:gap-0  rounded-lg my-6">
         <div className=" flex items-center gap-2 md:gap-5">
