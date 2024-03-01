@@ -201,7 +201,7 @@ const TradersNotification = () => {
 
       {/* Display the notification popup if open */}
       {isNotificationOpen && (
-        <div class="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree w-60 md:w-80 shadow-2xl shadow-gray-900 scrollbar-thin">
+        <div class="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded bg-tertiary w-60 md:w-80 shadow-2xl shadow-gray-900 scrollbar-thin">
           {/* Header of the notification popup */}
           <div className="flex items-center justify-between px-4 py-2 border-b-2 border-darkThree">
             <h2 className="font-semibold">Notifications</h2>
@@ -258,10 +258,8 @@ const TradersNotification = () => {
                 <div
                   key={asset?._id}
                   className={`relative ${
-                    asset?.read
-                      ? "bg-darkOne shadow-md border-darkThree border"
-                      : "bg-white/10"
-                  } w-full  rounded  cursor-pointer p-3 `}
+                    asset?.read ? "bg-secondary/50" : "bg-white/10"
+                  } w-full  rounded  cursor-pointer p-3`}
                 >
                   <Link
                     href={asset?.location ? asset.location : pathName}

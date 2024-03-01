@@ -118,10 +118,11 @@ const CryptoDetails = ({
       totalInvestment: investment,
       assetBuyerEmail: user.email,
       date: date,
-      action:"bought",
-      detail: `You have invested ${investment + "$"} in ${parseInt(portion)}% of ${coinName}`
+      action: "bought",
+      detail: `You have invested ${investment + "$"} in ${parseInt(
+        portion
+      )}% of ${coinName}`,
     };
-
 
     if (usersBalance <= 0) {
       Swal.fire({
@@ -182,7 +183,6 @@ const CryptoDetails = ({
         secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
           refetchInvestmentHistory();
         });
-
       }
     });
   };
@@ -223,8 +223,8 @@ const CryptoDetails = ({
       });
   };
   return (
-    <div className="flex flex-col 2xl:flex-row gap-5">
-      <div className="w-full 2xl:w-3/4 flex flex-col gap-6">
+    <div className="flex flex-col 2xl:flex-row gap-7">
+      <div className="w-full 2xl:w-3/4 flex flex-col gap-7">
         {tickerData ? (
           <TopBanner
             tickerData={tickerData}
@@ -239,41 +239,38 @@ const CryptoDetails = ({
           />
         )}
 
-        <div className="w-full p-3 rounded-lg bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
-          <h1 className="font-semibold pb-6">{coinName} to USD Chart</h1>
-          <div className=" h-64 lg:h-96  3xl:h-[70vh]  ">
-            <AdvancedRealTimeChart
-              width="100%"
-              height="100%"
-              autosize
-              symbol={`${coinKey}`}
-              interval={20}
-              range="1M"
-              timezone="UTC"
-              theme="dark"
-              style={2}
-              locale="en"
-              toolbar_bg="#f1f3f6"
-              enable_publishing={false}
-              hide_top_toolbar={false}
-              hide_legend={true}
-              withdateranges={false}
-              hide_side_toolbar={true}
-              details={false}
-              hotlist={false}
-              calendar={false}
-              studies={[]}
-              disabled_features={[]}
-              enabled_features={[]}
-              container_id="advanced-chart-widget-container"
-            />
-          </div>
+        <div className=" h-64 lg:h-96  3xl:h-[65vh]  ">
+          <AdvancedRealTimeChart
+            width="100%"
+            height="100%"
+            autosize
+            symbol={`${coinKey}`}
+            interval={20}
+            range="1M"
+            timezone="UTC"
+            theme="dark"
+            style={2}
+            locale="en"
+            toolbar_bg="#f1f3f6"
+            enable_publishing={false}
+            hide_top_toolbar={false}
+            hide_legend={true}
+            withdateranges={false}
+            hide_side_toolbar={true}
+            details={false}
+            hotlist={false}
+            calendar={false}
+            studies={[]}
+            disabled_features={[]}
+            enabled_features={[]}
+            container_id="advanced-chart-widget-container"
+          />
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col gap-5 w-full">
+      <div className="flex-1 flex flex-col gap-7 w-full">
         {tickerData ? (
-          <div className=" rounded-lg mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-tertiary">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">
                 Buy {coinKey.slice(0, -4)}
