@@ -195,7 +195,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,setCurrentPage}) =>
                                     color: 'white', // Change arrow color
                                 }
                             }}
-                            count={cryptoData.length}
+                            count={assetPage.length}
                             onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
                             variant="outlined"
                             shape="rounded"

@@ -44,10 +44,14 @@ const Portfolio = () => {
   // get page count from database
   useEffect(() => {
     secureAPI
-       .get("/totalCryptoCount")
+       .get("/totalAssetCount")
        .then((res) => setAssetCount(res.data.count))
        .catch((error) => console.log(error));
    }, [secureAPI]);
+
+   const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
+  
+  const assetPage = [...Array(numberOfAssetPages).keys()];
 
   // fetch data with search functionality
   const {
@@ -434,10 +438,12 @@ const Portfolio = () => {
                   cryptoData={cryptoData}
                   calculateDifference={calculateDifference}
                   setCurrentPage={setCurrentPage}
+                  assetPage={assetPage}
                 />
               ) : (
                 <PortfolioAssetBox cryptoData={cryptoData} loading={purchasedLoading} pending={purchasedPending} calculateDifference={calculateDifference}
                   setCurrentPage={setCurrentPage}
+                  assetPage={assetPage}
                 />
               )}
             </>
