@@ -9,18 +9,19 @@ const PortfolioTopBanner = ({
   totalBuyingPrice,
   calculateTotalProfit,
   calculateTotalLoss,
-  usersRemainingBalance
+  usersRemainingBalance,
 }) => {
   const [hideAssetAmount, setHideAssetAmount] = useState(false);
   const [hideRemainingBalance, setHideRemainingBalance] = useState(false);
   return (
     <div className="">
-      <div className="flex flex-col md:flex-row items-center rounded-md gap-5">
+      <div className="flex flex-col md:flex-row items-center rounded-xl gap-5">
         {/* total asset */}
-        <div className="w-full flex items-center gap-3  p-5 rounded bg-[#40a0ff]">
+        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#40a0ff]">
           <div className="w-full">
             <p className="font-semibold ">
-              Total Investment <MonetizationOnIcon className="text-base ml-2 " />
+              Total Investment{" "}
+              <MonetizationOnIcon className="text-base ml-2 " />
             </p>
             <div
               className={`flex items-center py-2  ${
@@ -55,14 +56,12 @@ const PortfolioTopBanner = ({
               {/* total profit */}
               <p
                 className={`font-semibold ${
-                  calculateTotalProfit >= 0
-                    ? "text-green-700"
-                    : "text-red-600"
+                  calculateTotalProfit >= 0 ? "text-green-700" : "text-red-600"
                 }`}
               >
                 {calculateTotalProfit >= 0 ? "+ $" : "- $"}{" "}
                 {Math.abs(calculateTotalProfit).toFixed(2)}
-              </p> 
+              </p>
 
               {/* total loss */}
               <p
@@ -80,7 +79,7 @@ const PortfolioTopBanner = ({
 
         {/*  Remaining balance */}
 
-        <div className="w-full flex items-center gap-3  p-5 rounded bg-[#78c350]">
+        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#78c350]">
           <div className="pb-8 w-full">
             <p className="font-semibold ">
               Remaining Balance{" "}

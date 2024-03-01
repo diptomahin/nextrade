@@ -24,7 +24,7 @@ const MyProfile = ({ refetchUserData, userData }) => {
   };
   return (
     <div
-      style={{ minHeight: "calc(100vh - 104px)" }}
+      style={{ minHeight: "calc(100vh - 122px)" }}
       className="flex justify-center"
     >
       <div className="w-full bg-tertiary flex flex-col gap-10 rounded-xl px-5 pb-8">

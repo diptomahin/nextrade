@@ -13,14 +13,14 @@ export const metadata = {
 const MarketPage = () => {
   return (
     <div>
-      <div className="flex flex-col 2xl:flex-row gap-5">
+      <div className="flex flex-col 2xl:flex-row gap-7">
         <div className="w-full 2xl:w-[68%]  3xl:w-[73%]">
           <h2 className=" text-2xl font-semibold mb-3">Market Coins</h2>
           <p className="">
             Choose from a wide range of trade options with hundreds of different
             instruments available.
           </p>
-          <div className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree p-3 rounded-lg my-6">
+          <div className="bg-tertiary p-3 rounded-xl my-6">
             <MarketHeadLine></MarketHeadLine>
           </div>
           <MarketAllProducts />
