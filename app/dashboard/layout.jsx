@@ -43,6 +43,7 @@ const Dashboard = ({ children }) => {
                 keepMounted: true,
               }}
             >
+              {/* trader sidebar */}
               <TradersSideNav />
             </Drawer>
           </div>
