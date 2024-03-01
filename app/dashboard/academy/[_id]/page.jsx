@@ -16,13 +16,17 @@ const articlePage = async ({ params }) => {
 
   return (
     <div className="mt-10 container mx-auto">
-      <h1 className="text-white items-center lg:flex grid gap-2 ml-1">
-        <span>
+      <div className="text-white items-center lg:flex gap-2 ml-1">
+       <div className="flex gap-1">
+       <div>
         <SiKhanacademy className="text-xl" /> 
-        </span>
-     Academy /  {article.category}  /
-        <span className="text-blue-400">{article.title}</span>
-      </h1>
+        </div>
+   <div>
+   Academy /  {article.category}  /
+        <span className="text-blue-400 ml-1">{article.title}</span>
+   </div>
+       </div>
+      </div>
       <div className="bg-[#1e222d] flex justify-stretch items-center mt-5">
         <div className="flex justify-between items-center gap-10">
           <div className="w-1/2 pl-10">
