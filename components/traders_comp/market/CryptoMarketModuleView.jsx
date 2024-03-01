@@ -48,7 +48,7 @@ const CryptoMarketModuleView = ({ assets, loading, pending }) => {
     <div className="grid lg:grid-cols-2  3xl:grid-cols-3 gap-4">
       {assets.map((asset, idx) => (
         <Link key={idx} href={`/dashboard/market/${asset.key}`}>
-          <div className="rounded-[30px] coinBg bg-secondary p-6 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
+          <div className="rounded-[30px] coinBg bg-secondary p-5 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
             <div className="flex justify-between items-center">
               <div className="flex gap-2 items-center">
                 <Image
