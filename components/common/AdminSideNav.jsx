@@ -1,23 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../assets/logo/NexTrade-Logo-Original.png";
+import logo from "../../assets/logo/NexTrade_Favicon-Original.png";
 import Link from "next/link";
 import Magnetic from "@/components/library/Magnetic";
 import AdminNavLinks from "./nav_comp/AdminNavLinks";
+import { usePathname } from "next/navigation";
 
 const AdminSideNav = () => {
+  const pathname = usePathname();
   return (
-    <div className="h-full w-full bg-gradient-to-b from-darkOne to-darkTwo border-r border-darkThree px-2 pb-2 ">
-      <Magnetic>
-        <Link href="/" className="h-16 flex items-center justify-center">
-          {" "}
-          <Image src={logo} width={110} alt="logo" />
-        </Link>
-      </Magnetic>
-      <div className="flex flex-col jus gap-2 py-3 border-t border-dashed border-darkThree">
-        <AdminNavLinks />
+    <div className="h-full w-full bg-[#21212f] flex flex-col gap-3 py-3 border-t border-dashed border-darkThree">
+      <div className="flex items-center justify-center mb-3 text-white">
+        <Magnetic>
+          <div className="">
+            <Link
+              href="/"
+              className="flex items-center justify-center gap-2 h-fit w-fit"
+            >
+              {" "}
+              <Image src={logo} width={35} alt="logo" />
+              <h1 className="text-lg font-semibold">NexTrade</h1>
+            </Link>
+          </div>
+        </Magnetic>
       </div>
+      <AdminNavLinks pathname={pathname} />
     </div>
   );
 };
