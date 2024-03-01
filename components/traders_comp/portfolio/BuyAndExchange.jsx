@@ -197,7 +197,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
         secureAPI
           .post(`/allSoldCoin/${sellCoinId}/${newBalance}/${user.email}`, sellingData)
           .then((res) => {
-            if (res.data.modifiedCount) {
+            if (res.data.insertedId > 0) {
               Swal.fire({
                 title: `Coin sold successfully!`,
                 text: `Best of luck`,

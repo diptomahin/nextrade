@@ -21,9 +21,11 @@ import PortfolioAssetTable from "@/components/traders_comp/portfolio/PortfolioAs
 import PortfolioAssetBox from "@/components/traders_comp/portfolio/PortfolioAssetBox";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 const Portfolio = () => {
   const { user } = useAuth();
+  const secureAPI = useSecureAPI()
 
   // get total balance form users data
   const { userData, userDataLoading, userDataPending, userDataError } =
@@ -37,6 +39,15 @@ const Portfolio = () => {
   const [dynamicSearch, setDynamicSearch] = useState("");
   const [coinPerPage, setCoinPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
+  const [assetCount, setAssetCount] = useState(0)
+  
+  // get page count from database
+  useEffect(() => {
+    secureAPI
+       .get("/totalCryptoCount")
+       .then((res) => setAssetCount(res.data.count))
+       .catch((error) => console.log(error));
+   }, [secureAPI]);
 
   // fetch data with search functionality
   const {
@@ -61,6 +72,8 @@ const Portfolio = () => {
     user?.email,
   ]);
 
+
+  
 
   // filter  coin data
   useEffect(() => {
