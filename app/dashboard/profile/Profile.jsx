@@ -98,19 +98,6 @@ const Profile = () => {
               Security
             </span>
           </Tab>
-          <Tab className="react-tab custom-btn">
-            {" "}
-            <PiCurrencyDollarThin className="text-xl" />
-            <span className={isActiveProfile ? "2xl:hidden" : ""}>
-              Currency Preferences
-            </span>
-          </Tab>
-          <Tab className="react-tab custom-btn">
-            <PiCardholderThin className="text-xl" />
-            <span className={isActiveProfile ? "2xl:hidden" : ""}>
-              Payment Option
-            </span>
-          </Tab>
         </TabList>
       </div>
 
@@ -128,12 +115,6 @@ const Profile = () => {
         </TabPanel>
         <TabPanel>
           <Security />
-        </TabPanel>
-        <TabPanel>
-          <Currencies />
-        </TabPanel>
-        <TabPanel>
-          <Payments />
         </TabPanel>
       </div>
     </Tabs>
