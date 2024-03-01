@@ -10,6 +10,7 @@ export const metadata = {
   title: "Admin Dashboard - Nextrade",
   description: "Admin Dashboard page from Nextrade",
 };
+
 const page = () => {
   return (
     <div>
@@ -19,6 +20,7 @@ const page = () => {
       <div className=" grid grid-cols-12 gap-4 mt-5">
         {/* Admin dashboard chart   */}
         <div className=" col-span-8 ">
+          
 
         <AdminDashboardChart/>
         <AdminDashManageCoin/>
@@ -31,8 +33,7 @@ const page = () => {
         </div>
 
       </div>
-       {/*  */}  {/* user count */}
-       {/*  */}  {/* Manage coin */}
+      
 
 
       {/* user Reviews */}

@@ -29,6 +29,9 @@ import usePurchasedAssets from "@/hooks/usePurchasedAssets";
 import PortfolioAssetTable from "@/components/traders_comp/portfolio/PortfolioAssetTable";
 import MarketTable from "@/components/traders_comp/market/MarketTable";
 import PortfolioAssetBox from "@/components/traders_comp/portfolio/PortfolioAssetBox";
+import usePurchasedCoinData from "@/hooks/usePurchasedCoinData";
+import useSecureFetch from "@/hooks/useSecureFetch";
+import useAuth from "@/hooks/useAuth";
 
 const Portfolio = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -36,25 +39,23 @@ const Portfolio = () => {
   const [dynamicSearch, setDynamicSearch] = useState("");
   const [coinPerPage, setCoinPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
+  const { user } = useAuth();
+  const {
+    data: totalPurchased = [],
+    refetch: totalRefetch
+  } = useSecureFetch(`/sidePortfolio?email=${user.email}`, [
+    "purchased-asset",
+    user?.email,
+  ]);
 
-  console.log(dynamicSearch);
+  // console.log(totalPurchased)
+
 
   const { userData, userDataLoading, userDataPending, userDataError } =
     useUserData();
 
   const usersRemainingBalance = parseFloat(userData?.balance).toFixed(2);
 
-  // data fetch in all coin in buying  market page
-
-  // const {
-  //   data: purchasedAssets = [],
-  //   isPending: purchasedPending,
-  //   isLoading: purchasedLoading,
-  //   refetch: purchasedRefetch,
-  // } = useSecureFetch(`/purchasedAssets?email=${user.email}`, [
-  //   "purchased-asset",
-  //   user?.email,
-  // ]);
 
   const {
     purchasedAssets,
@@ -63,7 +64,8 @@ const Portfolio = () => {
     purchasedRefetch,
   } = usePurchasedAssets(dynamicSearch, currentPage, coinPerPage);
 
-  purchasedRefetch();
+  purchasedRefetch()
+
 
   // console.log(purchasedAssets);
 
@@ -215,8 +217,8 @@ const Portfolio = () => {
     );
   }, 0);
 
-  const totalBuyingPrice = purchasedAssets.reduce(
-    (total, asset) => total + parseFloat(asset.assetBuyingPrice),
+  const totalAssetInvestment = totalPurchased.reduce(
+    (total, asset) => total + parseFloat(asset.totalInvestment),
     0
   );
 
@@ -235,7 +237,7 @@ const Portfolio = () => {
   const handleCoinPerPages = (e) => {
     const val = parseInt(e.target.value);
     setCoinPerPage(val);
-    setCurrentPage(0);
+    setCurrentPage(val);
   };
 
   const [view, setView] = React.useState("module");
@@ -264,7 +266,7 @@ const Portfolio = () => {
       <div className=" col-span-5 ">
         {/* header */}
         <PortfolioTopBanner
-          totalBuyingPrice={totalBuyingPrice}
+          totalBuyingPrice={totalAssetInvestment}
           calculateTotalProfit={calculateTotalProfit}
           usersRemainingBalance={usersRemainingBalance}
           calculateTotalLoss={calculateTotalLoss}
@@ -275,61 +277,61 @@ const Portfolio = () => {
             <h1 className="text-xl font-semibold my-3">Your Holdings</h1>
             <div className=" flex justify-around items-center gap-3">
               {/* search form */}
-            <div className="relative flex items-center">
-              <input
-                onChange={(e) => setDynamicSearch(e.target.value)}
-                type="text"
-                name="search"
-                placeholder="Search..."
-                className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded font-medium"
-              />
-              <button
-                onClick={Search}
-                className="absolute right-0 bg-transparent text-lg text-white mix-blend-difference hover:bg-transparent btn btn-sm rounded-l-none shadow-none border-none"
-              >
-                <BiSearchAlt />
-              </button>
-            </div>
-            {/* show coin count */}
-            <div className="bg-white/5 p-1 rounded">
-              
-              <select
-                value={coinPerPage}
-                onChange={handleCoinPerPages}
-                className="bg-transparent  rounded-md p-1 text-sm "
-                name=""
-                id=""
-              >
-                <option className="text-black" value="6">
-                  6
-                </option>
-                <option className="text-black" value="12">
-                  12
-                </option>
-                <option className="text-black" value="18">
-                  18
-                </option>
-                <option className="text-black" value="24">
-                  24
-                </option>
-              </select>
-              
-            </div>
+              <div className="relative flex items-center">
+                <input
+                  onChange={(e) => setDynamicSearch(e.target.value)}
+                  type="text"
+                  name="search"
+                  placeholder="Search..."
+                  className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded font-medium"
+                />
+                <button
+                  onClick={Search}
+                  className="absolute right-0 bg-transparent text-lg text-white mix-blend-difference hover:bg-transparent btn btn-sm rounded-l-none shadow-none border-none"
+                >
+                  <BiSearchAlt />
+                </button>
+              </div>
+              {/* show coin count */}
+              <div className="bg-white/5 p-1 rounded">
 
-            {/* view options */}
-            <ToggleButtonGroup
-              orientation="horizontal"
-              value={view}
-              exclusive
-              onChange={handleViewChange}
-            >
-              <ToggleButton value="module" aria-label="module">
-                <ViewModuleIcon className="text-primary " />
-              </ToggleButton>
-              <ToggleButton value="list" aria-label="list">
-                <ViewListIcon className="text-primary" />
-              </ToggleButton>
-            </ToggleButtonGroup>
+                <select
+                  value={coinPerPage}
+                  onChange={handleCoinPerPages}
+                  className="bg-transparent  rounded-md p-1 text-sm "
+                  name=""
+                  id=""
+                >
+                  <option className="text-black" value="6">
+                    6
+                  </option>
+                  <option className="text-black" value="12">
+                    12
+                  </option>
+                  <option className="text-black" value="18">
+                    18
+                  </option>
+                  <option className="text-black" value="24">
+                    24
+                  </option>
+                </select>
+
+              </div>
+
+              {/* view options */}
+              <ToggleButtonGroup
+                orientation="horizontal"
+                value={view}
+                exclusive
+                onChange={handleViewChange}
+              >
+                <ToggleButton value="module" aria-label="module">
+                  <ViewModuleIcon className="text-primary " />
+                </ToggleButton>
+                <ToggleButton value="list" aria-label="list">
+                  <ViewListIcon className="text-primary" />
+                </ToggleButton>
+              </ToggleButtonGroup>
             </div>
           </div>
 
@@ -337,7 +339,7 @@ const Portfolio = () => {
             <>
               {view === "list" ? (
                 <PortfolioAssetBox cryptoData={cryptoData} loading={purchasedLoading} pending={purchasedPending} calculateDifference={calculateDifference}
-                setCurrentPage={setCurrentPage}
+                  setCurrentPage={setCurrentPage}
                 />
               ) : (
                 <PortfolioAssetTable
