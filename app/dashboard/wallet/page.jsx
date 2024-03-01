@@ -3,7 +3,7 @@ import WalletPage from "./WalletPage";
 // add title in metadata
 export const metadata = {
   title: "Wallet - Dashboard",
-  description: "About page from Nextrade",
+  description: "Wallet from Dashboard",
 };
 
 const Wallet = () => {

@@ -15,14 +15,8 @@ import getDate from "@/components/utils/date";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
-const EditProfile = ({
-  userDetails,
-  setIsEdit,
-  refetch,
-  user,
-  userDataRefetch,
-}) => {
-  const [hostedImage, setHostedImage] = useState(userDetails.photo);
+const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
+  const [hostedImage, setHostedImage] = useState(userData.photo);
   const [hostedImageInfo, setHostedImageInfo] = useState(null);
   const [imageHosting, setImageHosting] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -58,12 +52,11 @@ const EditProfile = ({
     };
 
     const res = await axios.put(
-      `https://nex-trade-server.vercel.app/v1/api/update-user/${user?.email}`,
+      `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
       userDetails
     );
     if (res.data.modifiedCount > 0) {
-      refetch();
-      userDataRefetch();
+      refetchUserData();
       setIsEdit(false);
       router.push("/dashboard/profile");
       toast.success("User Information Updated", {
@@ -171,7 +164,7 @@ const EditProfile = ({
                 onChange={(e) => setFullName(e.target.value)}
                 type="text"
                 name="fullName"
-                defaultValue={userDetails?.name}
+                defaultValue={userData?.name}
                 id=""
                 placeholder="Full Name"
               />
@@ -186,7 +179,7 @@ const EditProfile = ({
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 name="userName"
-                defaultValue={userDetails?.username}
+                defaultValue={userData?.username}
                 id=""
                 placeholder="User Name"
               />
@@ -204,7 +197,7 @@ const EditProfile = ({
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none cursor-not-allowed"
                 type="text"
                 name="email"
-                value={userDetails?.email}
+                value={userData?.email}
                 disabled
                 placeholder="Email Address"
               />
@@ -219,7 +212,7 @@ const EditProfile = ({
                 type="text"
                 name="phone"
                 onChange={(e) => setPhone(e.target.value)}
-                defaultValue={userDetails?.phone}
+                defaultValue={userData?.phone}
                 id=""
                 placeholder="Phone Number"
               />
@@ -238,7 +231,7 @@ const EditProfile = ({
                 type="text"
                 name="address"
                 onChange={(e) => setAddress(e.target.value)}
-                defaultValue={userDetails?.address}
+                defaultValue={userData?.address}
                 id=""
                 placeholder="Address"
               />
@@ -252,7 +245,7 @@ const EditProfile = ({
                 id=""
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setCurrency(e.target.value)}
-                defaultValue={userDetails?.currency}
+                defaultValue={userData?.currency}
               >
                 <option value="" disabled>
                   Select Currency
