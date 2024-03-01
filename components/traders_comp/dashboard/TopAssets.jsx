@@ -128,7 +128,7 @@ const TopAssets = () => {
   }, [flatCurrency]);
 
   return (
-    <div className="xl:col-span-6 2xl:col-span-12 3xl:col-span-8">
+    <div className="xl:col-span-12 2xl:col-span-12 3xl:col-span-8">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">Top Assets</h3>
         <Link
@@ -182,7 +182,15 @@ const TopAssets = () => {
               slidesPerView: 2,
               spaceBetween: 20,
             },
-            1024: {
+            900: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1280: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1500: {
               slidesPerView: 3,
               spaceBetween: 20,
             },
