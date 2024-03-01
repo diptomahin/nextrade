@@ -11,7 +11,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import emptyIcon from "../../../assets/emptyIcon.png";
 
 // logo
 import bitLogo from "../../../assets/btc-logo.png";
@@ -23,17 +22,32 @@ import getDate from "@/components/utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 
-const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
+const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch }) => {
   const [tabValue, setTabValue] = useState("1");
+
+  // exchange state
   const [firstCoinId, setFirstCoinId] = useState();
   const [secondCoinId, setSecondCoinId] = useState();
   const [firstCoinName, setFirstCoinName] = useState();
   const [secondCoinName, setSecondCoinName] = useState();
+
+  // sell state
+  const [sellCoinId, setSellCoinId] = useState();
+  const [sellCoinName, setSellCoinName] = useState();
+  const [sellCoinProfit, setSellCoinProfit] = useState();
+  const [sellCoinLoss, setSellCoinLoss] = useState();
+  const [sellCoinKey, setSellCoinKey] = useState();
+  const [sellCoinImg, setSellCoinImg] = useState();
+
+
   const secureAPI = useSecureAPI();
   const { user } = useAuth();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
   const { adminRefetchNotificationsData } = useAdminNotificationData();
+
+
+  //---------exchange functionality start----------
 
   const handleChangeCoins = (event) => {
     setFirstCoinId(event.target.value);
@@ -100,6 +114,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
                   refetch();
                   refetchNotificationsData();
                   adminRefetchNotificationsData();
+                  totalRefetch()
                 })
                 .catch((error) => {
                   console.error("Error sending notification:", error);
@@ -116,6 +131,108 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
       }
     });
   };
+
+  //-------------exchange functionality ends -----------
+
+
+  //------------- sell functionality starts -----------
+
+  const calculateDifference = (currentPrice, buyingPrice, portion) => {
+    const profitLoss = (currentPrice - buyingPrice) * (parseFloat(portion.slice(0, -1)) / 100)
+    const profitLossInt = parseFloat(profitLoss).toFixed(3)
+    return profitLossInt;
+  };
+
+  const handleSellCoin = (event) => {
+    const getSellCoin = cryptoData.find((asset) => asset._id === event.target.value)
+    setSellCoinId(getSellCoin._id);
+    setSellCoinKey(getSellCoin.assetKey)
+    setSellCoinImg(getSellCoin.assetImg)
+    setSellCoinName(getSellCoin.assetName);
+    if (calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion) > 0) {
+      setSellCoinProfit(calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion))
+      setSellCoinLoss(0)
+    } if (calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion) < 0) {
+      setSellCoinLoss(calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion))
+      setSellCoinProfit(0)
+    }
+  
+  };
+
+  const handleSell = ()=>{
+
+    const newBalance = remainingBalance + sellCoinProfit + sellCoinLoss
+
+    const sellingData = {
+      sellCoinName,
+      setSellCoinImg,
+      sellCoinKey,
+      sellCoinProfit,
+      sellCoinLoss,
+    };
+
+    const notificationInfo = {
+      title: "Coin Sell Successfully",
+      description: `Coin sold with $${sellCoinProfit} profit and $${sellCoinLoss} loss`,
+      assetKey: "",
+      assetImg: "",
+      assetBuyerUID: "",
+      email: user.email,
+      postedDate: date,
+      location: "/dashboard/portfolio",
+      read: false,
+      type: "admin",
+    };
+
+    Swal.fire({
+      title: `Are you sure to sell ${sellCoinName}?`,
+      text: `It will bring $${sellCoinProfit} profit and $${sellCoinLoss} loss`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        secureAPI
+          .put(`/allSoldCoin/${sellingData}/${sellCoinId}/${newBalance}`)
+          .then((res) => {
+            if (res.data.modifiedCount) {
+              Swal.fire({
+                title: `Coin sold successfully!`,
+                text: `Best of luck`,
+                icon: "success",
+                timer: 1500,
+              });
+
+              // post to  notification data in database
+              secureAPI
+                .post("/notifications", notificationInfo)
+                .then((res) => {
+                  console.log("success post to notification");
+                  secureAPI.post("/adminNotifications", notificationInfo);
+                  refetch();
+                  refetchNotificationsData();
+                  adminRefetchNotificationsData();
+                  totalRefetch()
+                })
+                .catch((error) => {
+                  console.error("Error sending notification:", error);
+                });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: `Coin sells failed!`,
+              text: `Please try again`,
+              icon: "error",
+            });
+          });
+      }
+    })
+
+  }
+  //------------- sell functionality ends -----------
 
   return (
     <TabContext value={tabValue}>
@@ -136,7 +253,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
             }}
           />
           <Tab
-            label="Buy / Sell Coin"
+            label="Sell Coin"
             value="2"
             sx={{
               fontSize: "13px",
@@ -147,7 +264,9 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
           />
         </TabList>
       </Box>
-      {/* Exchange Coin */}
+
+
+      {/* ----------Exchange Coin------------- */}
       <TabPanel value="1" sx={{ padding: 0, overflow: "hidden" }}>
         <div>
           <div className=" font-semibold 2xl:flex items-center justify-between gap-4 my-4 px-3 ">
@@ -190,7 +309,7 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
               sx={{ color: "white", border: "black" }}
             >
               <p className="mx-4 my-2">Asset Name-Invested amount</p>
-              {cryptoData.map((asset, idx) => (
+              {cryptoData?.map((asset, idx) => (
                 <MenuItem key={idx} value={asset._id}>
                   <p className="flex justify-between gap-6 items-center">
                     {asset.assetName}-${asset.totalInvestment}{" "}
@@ -229,10 +348,10 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
               id="demo-simple-select"
               label="To"
               onChange={handleChangeExchange}
-              style={{ color: "white" }}
+              sx={{ color: "white", border: "black" }}
             >
               <p className="mx-4 my-2">Asset Name-Invested amount</p>
-              {cryptoData.map((asset, idx) => (
+              {cryptoData?.map((asset, idx) => (
                 <MenuItem key={idx} value={asset._id}>
                   <p className="flex justify-between gap-6 items-center">
                     {asset.assetName}-${asset.totalInvestment}{" "}
@@ -257,14 +376,73 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch }) => {
           </DarkButton>
         </div>
       </TabPanel>
-      {/* Buy / Sell Coin */}
-      <TabPanel value="2">
-        <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
-          <Image src={emptyIcon} width={70} height={70} alt="BTC/USDT Logo" />
-          <h3 className="text-primary text-lg font-semibold text-center">
-            empty !!
-          </h3>
-        </div>
+
+
+
+      {/* ----------- Sell Coin------------- */}
+      <TabPanel value="2" sx={{ padding: 0, overflow: "hidden" }}>
+
+        <p className="my-3">Choose your coin for sell</p>
+        <FormControl
+          fullWidth
+          sx={{
+            borderBottom: "1px solid white",
+            borderLeft: "1px solid white",
+            borderRight: "1px solid white",
+            borderRadius: "5px",
+          }}
+        >
+          <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
+            Select:
+          </InputLabel>
+          <Select
+            sx={{ border: "white" }}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Form"
+            onChange={handleSellCoin}
+          >
+            <div className="mx-3 my-2 flex justify-between text-sm font-semibold">
+              <p>Asset Name</p>
+              <p>-Investment-</p>
+              <p><span className="text-green-700">Profit</span>/<span className="text-red-700">Loss</span></p>
+            </div>
+            {cryptoData.map((asset, idx) => (
+              <MenuItem key={idx} value={asset._id}>
+                <div className="flex justify-between gap-6 items-center w-full text-primary">
+                  <div className="flex items-center gap-1">
+                    <Image
+                      src={asset.assetImg}
+                      height={25}
+                      width={25}
+                      alt="logo"
+                    ></Image>
+                    <p className="text-sm">{asset.assetName}</p>
+                  </div>
+                  <p>
+                    ${asset.totalInvestment}{" "}
+                  </p>
+                  <p className={` font-medium ${calculateDifference(
+                    asset.currentPrice,
+                    parseFloat(asset.assetBuyingPrice),
+                    asset.assetPortion
+                  ) > 0
+                    ? "text-green-700"
+                    : "text-red-700"
+                    }`}>
+                    {calculateDifference(asset.currentPrice, asset.assetBuyingPrice, asset.assetPortion)}
+                  </p>
+                </div>
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <DarkButton
+          className={"w-full mt-5 md:rounded"}
+          onClick={handleSell}
+        > Sell Coin
+        </DarkButton>
       </TabPanel>
     </TabContext>
   );
