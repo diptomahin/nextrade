@@ -12,6 +12,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import getDate from "@/components/utils/date";
+import { MdEdit } from "react-icons/md";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
@@ -109,48 +110,42 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
     >
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
-        {hostedImage !== undefined && hostedImage !== null ? (
-          <div className="w-40 h-40 overflow-hidden rounded-full">
-            <Image
-              alt="profile-image"
-              width={160}
-              height={160}
-              src={hostedImage}
-              priority
-              className="w-full h-full rounded-full object-top object-cover"
+        <div className="relative w-40 h-40">
+          {hostedImage !== undefined && hostedImage !== null ? (
+            <div className="w-full h-full overflow-hidden rounded-full">
+              <Image
+                alt="profile-image"
+                width={160}
+                height={160}
+                src={hostedImage}
+                priority
+                className="w-full h-full rounded-full object-top object-cover"
+              />
+            </div>
+          ) : (
+            <p className="w-40 h-40 text-primary">
+              <FaUserCircle className="w-full h-full" />
+            </p>
+          )}
+          <div className="absolute bottom-0 right-3 z-10">
+            <input
+              className="w-14 h-8 opacity-0 z-10"
+              type="file"
+              name="photo"
+              onChange={handleFileChange}
+              id=""
+              placeholder="file"
             />
           </div>
-        ) : (
-          <p className="text-5xl text-primary">
-            <FaUserCircle />
-          </p>
-        )}
-        <div className="w-full flex flex-col mt-10 relative">
-          <label
-            htmlFor=""
-            className="w-full absolute top-0 flex flex-col items-center justify-center font-medium"
-          >
-            <PiUpload className="text-5xl" />{" "}
-            <span className="border-b-2 border-dashed border-secondary">
-              Upload Photo
-            </span>
-          </label>
-          <input
-            className="w-1/2 mx-auto h-20 opacity-0 z-10"
-            type="file"
-            name="photo"
-            onChange={handleFileChange}
-            id=""
-            placeholder="file"
-          />
+          <button className="absolute bottom-0 right-3 btn btn-sm h-8 bg-secondary hover:bg-secondary border-darkThree hover:border-darkThree text-white rounded font-medium px-1 gap-1 cursor-pointer">
+            <MdEdit /> <span className="text-sm">Edit</span>
+          </button>
         </div>
       </div>
 
       {/* user info */}
       <div className="flex-[5] flex flex-col gap-10">
-        <h3 className="text-lg font-semibold border-b border-dashed border-secondary w-fit">
-          Update Information :
-        </h3>
+        <h3 className="text-lg font-semibold w-fit">Update Information :</h3>
         <div className="">
           {/* first part */}
           <div className="flex flex-col lg:flex-row 2xl:items-center gap-5 justify-between">

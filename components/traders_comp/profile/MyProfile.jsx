@@ -8,19 +8,33 @@ import EditProfile from "./EditProfile";
 const MyProfile = ({ refetchUserData, userData }) => {
   const [isEdit, setIsEdit] = useState(false);
 
+  // Helper function to format time in 12-hour format
+  const formatTime = (hours) => {
+    return hours % 12 || 12; // Convert to 12-hour format
+  };
+
+  // Helper function to pad zero for single-digit minutes
+  const padZero = (minutes) => {
+    return minutes < 10 ? `0${minutes}` : minutes;
+  };
+
+  // Helper function to determine AM or PM
+  const getAmPm = (hours) => {
+    return hours >= 12 ? "PM" : "AM";
+  };
   return (
     <div
       style={{ minHeight: "calc(100vh - 104px)" }}
       className="flex justify-center"
     >
-      <div className="w-full bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree flex flex-col gap-10 rounded px-5 pb-8">
+      <div className="w-full bg-tertiary flex flex-col gap-10 rounded-xl px-5 pb-8">
         <div className="w-full flex items-center justify-between border-b border-dashed border-darkThree px-0 py-3 md:p-5">
           <h2 className="text-sm sm:text-base md:text-xl font-semibold">
             My Profile
           </h2>
           <DarkButton
             onClick={() => setIsEdit(!isEdit)}
-            className="px-5 rounded 2xl:rounded"
+            className="px-6 rounded-xl bg-primary hover:bg-primary text-white"
           >
             <MdEditSquare /> Edit
           </DarkButton>
@@ -91,27 +105,32 @@ const MyProfile = ({ refetchUserData, userData }) => {
               </div>
             </div>
             <div className="w-full flex flex-col md:flex-row  items-center justify-between gap-5 lg:px-5">
-              <div className="">
-                {userData?.lastUpdate !== undefined &&
-                  userData?.lastUpdate !== null && (
-                    <p className="text-xs text-primary/80 mt-1">
-                      Last updated:{" "}
-                      <span className="font-medium">
-                        {userData?.lastUpdate?.day}/
-                        {userData?.lastUpdate?.month}/
-                        {userData?.lastUpdate?.year}
-                      </span>
-                    </p>
-                  )}
-                <p className="text-xs">
-                  This account was created on{" "}
-                  <span className="font-medium">
+              <div className="flex flex-col gap-2 text-xs">
+                {userData?.lastUpdate && (
+                  <p className="text-quaternary font-medium">
+                    Last Updated:{" "}
+                    <span>
+                      {userData?.lastUpdate?.day}/{userData?.lastUpdate?.month}/
+                      {userData?.lastUpdate?.year} at{" "}
+                      {formatTime(userData?.lastUpdate?.hours || " ")}:
+                      {padZero(userData?.lastUpdate?.minutes || " ")}{" "}
+                      {getAmPm(userData?.lastUpdate?.hours || " ")}
+                    </span>
+                  </p>
+                )}
+                <p className="font-medium">
+                  Account Created:{" "}
+                  <span>
                     {userData?.createdAt?.day}/{userData?.createdAt?.month}/
-                    {userData?.createdAt?.year}
+                    {userData?.createdAt?.year} at{" "}
+                    {formatTime(userData?.date?.hours || " ")}:
+                    {padZero(userData?.date?.minutes || " ")}{" "}
+                    {getAmPm(userData?.date?.hours || " ")}
                   </span>
                 </p>
               </div>
-              <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded">
+
+              <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded-xl">
                 Delete Account
               </button>
             </div>

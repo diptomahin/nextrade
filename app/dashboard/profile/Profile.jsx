@@ -10,8 +10,9 @@ import Image from "next/image";
 import { useState } from "react";
 import useUserData from "@/hooks/useUserData";
 import MyProfile from "@/components/traders_comp/profile/MyProfile";
-import { Payments, Security } from "@mui/icons-material";
 import Currencies from "@/components/traders_comp/profile/Currencies/Currencies";
+import Security from "@/components/traders_comp/profile/Security";
+import Payments from "@/components/traders_comp/profile/Payments";
 
 const Profile = () => {
   const [isActiveProfile, setIsActiveProfile] = useState(false);
@@ -28,7 +29,7 @@ const Profile = () => {
     return;
   }
   return (
-    <Tabs className="relative bg-quaternary">
+    <Tabs className="relative bg-secondary">
       {/* toggle menu button one */}
       <button
         onClick={() => setIsActiveProfile(!isActiveProfile)}
@@ -47,11 +48,11 @@ const Profile = () => {
 
       <div
         style={{ height: "calc(100vh - 104px)" }}
-        className={`fixed w-[250px]  sm:w-[270px]  3xl:left-[240px] bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree px-4 py-14 transition-all  ${
+        className={`fixed w-[250px]  sm:w-[270px]  3xl:left-[240px] bg-tertiary px-4 py-14 transition-all  ${
           isActiveProfile
             ? "-translate-x-[255px] sm:-translate-x-[250px] 2xl:translate-x-0   2xl:w-[78px]"
             : "translate-x-0"
-        } duration-300 ease-in-out rounded z-10`}
+        } duration-300 ease-in-out rounded-xl z-10`}
       >
         <div className="flex flex-col items-center gap-4">
           {userData?.photo !== undefined && userData?.photo !== null ? (
@@ -82,7 +83,7 @@ const Profile = () => {
           </div>
         </div>
         <hr className="h-0 border border-darkThree my-5" />
-        <TabList className="tab-list h-full w-full flex flex-col gap-3">
+        <TabList className="tab-list h-full w-full flex flex-col gap-4">
           <Tab className="react-tab custom-btn">
             {" "}
             <CiUser className="text-xl" />
