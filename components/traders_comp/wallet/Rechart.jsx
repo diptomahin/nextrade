@@ -1,23 +1,7 @@
 "use client";
-import React from "react";
-import {
-  Bar,
-  BarChart,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-} from "recharts";
-import useUserData from "@/hooks/useUserData";
+import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip } from "recharts";
 
-const Rechart = () => {
-  const { userData, userDataLoading, userDataPending, userDataError } =
-    useUserData();
-
-  if (userDataLoading || userDataPending || userDataError) {
-    return <div>Loading...</div>;
-  }
-
+const Rechart = ({ userData }) => {
   const data = [
     {
       Balance: parseFloat(userData?.balance).toFixed(2) || "0.00",
@@ -34,7 +18,7 @@ const Rechart = () => {
       className="mx-auto text-center"
     >
       <BarChart data={data}>
-        <XAxis dataKey={data} />
+        {/* <XAxis dataKey={data} /> */}
         <Tooltip />
         <Legend />
         <Bar dataKey="Balance" fill="#40a0ff" />

@@ -75,7 +75,7 @@ const Security = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree rounded w-full h-full p-5">
+    <div className="bg-tertiary rounded-xl w-full h-full p-5">
       <h2 className="text-xl font-semibold pb-5">Security</h2>
 
       {/* authentication */}

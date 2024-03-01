@@ -89,7 +89,7 @@ const Balance = () => {
           </div>
         </div>
         <div className="w-full">
-          <Rechart />
+          <Rechart userData={userData} />
         </div>
       </div>
     </div>

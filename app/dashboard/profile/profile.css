@@ -10,19 +10,19 @@
 }
 
 .react-tab:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(64, 160, 255) !important;
   border-color: rgba(64, 160, 255) !important;
 }
 
 .tab-list .react-tabs__tab--selected {
-  color: rgba(64, 160, 255) !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  background-color: rgba(64, 160, 255) !important;
   border-width: 0px 0px 0px 2px !important;
   border-color: rgba(64, 160, 255) !important;
   border-style: solid !important;
   outline: none !important;
   border-radius: 0px !important;
-  background: rgba(255, 255, 255, 0.1) !important ;
+  background: rgba(64, 160, 255) !important ;
 }
 
 .profile-menu {
@@ -39,8 +39,8 @@
 
 .custom-btn {
   display: inline-flex;
-  height: 2.5rem /* 40px */;
-  min-height: 2.5rem /* 40px */;
+  height: 2.25rem /* 40px */;
+  min-height: 2.25rem /* 40px */;
   flex-shrink: 0;
   cursor: pointer;
   user-select: none;

@@ -12,17 +12,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import getDate from "@/components/utils/date";
+import { MdEdit } from "react-icons/md";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
-const EditProfile = ({
-  userDetails,
-  setIsEdit,
-  refetch,
-  user,
-  userDataRefetch,
-}) => {
-  const [hostedImage, setHostedImage] = useState(userDetails.photo);
+const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
+  const [hostedImage, setHostedImage] = useState(userData.photo);
   const [hostedImageInfo, setHostedImageInfo] = useState(null);
   const [imageHosting, setImageHosting] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -58,12 +53,11 @@ const EditProfile = ({
     };
 
     const res = await axios.put(
-      `https://nex-trade-server.vercel.app/v1/api/update-user/${user?.email}`,
+      `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
       userDetails
     );
     if (res.data.modifiedCount > 0) {
-      refetch();
-      userDataRefetch();
+      refetchUserData();
       setIsEdit(false);
       router.push("/dashboard/profile");
       toast.success("User Information Updated", {
@@ -116,48 +110,42 @@ const EditProfile = ({
     >
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
-        {hostedImage !== undefined && hostedImage !== null ? (
-          <div className="w-40 h-40 overflow-hidden rounded-full">
-            <Image
-              alt="profile-image"
-              width={160}
-              height={160}
-              src={hostedImage}
-              priority
-              className="w-full h-full rounded-full object-top object-cover"
+        <div className="relative w-40 h-40">
+          {hostedImage !== undefined && hostedImage !== null ? (
+            <div className="w-full h-full overflow-hidden rounded-full">
+              <Image
+                alt="profile-image"
+                width={160}
+                height={160}
+                src={hostedImage}
+                priority
+                className="w-full h-full rounded-full object-top object-cover"
+              />
+            </div>
+          ) : (
+            <p className="w-40 h-40 text-primary">
+              <FaUserCircle className="w-full h-full" />
+            </p>
+          )}
+          <div className="absolute bottom-0 right-3 z-10">
+            <input
+              className="w-14 h-8 opacity-0 z-10"
+              type="file"
+              name="photo"
+              onChange={handleFileChange}
+              id=""
+              placeholder="file"
             />
           </div>
-        ) : (
-          <p className="text-5xl text-primary">
-            <FaUserCircle />
-          </p>
-        )}
-        <div className="w-full flex flex-col mt-10 relative">
-          <label
-            htmlFor=""
-            className="w-full absolute top-0 flex flex-col items-center justify-center font-medium"
-          >
-            <PiUpload className="text-5xl" />{" "}
-            <span className="border-b-2 border-dashed border-secondary">
-              Upload Photo
-            </span>
-          </label>
-          <input
-            className="w-1/2 mx-auto h-20 opacity-0 z-10"
-            type="file"
-            name="photo"
-            onChange={handleFileChange}
-            id=""
-            placeholder="file"
-          />
+          <button className="absolute bottom-0 right-3 btn btn-sm h-8 bg-secondary hover:bg-secondary border-darkThree hover:border-darkThree text-white rounded font-medium px-1 gap-1 cursor-pointer">
+            <MdEdit /> <span className="text-sm">Edit</span>
+          </button>
         </div>
       </div>
 
       {/* user info */}
       <div className="flex-[5] flex flex-col gap-10">
-        <h3 className="text-lg font-semibold border-b border-dashed border-secondary w-fit">
-          Update Information :
-        </h3>
+        <h3 className="text-lg font-semibold w-fit">Update Information :</h3>
         <div className="">
           {/* first part */}
           <div className="flex flex-col lg:flex-row 2xl:items-center gap-5 justify-between">
@@ -171,7 +159,7 @@ const EditProfile = ({
                 onChange={(e) => setFullName(e.target.value)}
                 type="text"
                 name="fullName"
-                defaultValue={userDetails?.name}
+                defaultValue={userData?.name}
                 id=""
                 placeholder="Full Name"
               />
@@ -186,7 +174,7 @@ const EditProfile = ({
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 name="userName"
-                defaultValue={userDetails?.username}
+                defaultValue={userData?.username}
                 id=""
                 placeholder="User Name"
               />
@@ -204,7 +192,7 @@ const EditProfile = ({
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none cursor-not-allowed"
                 type="text"
                 name="email"
-                value={userDetails?.email}
+                value={userData?.email}
                 disabled
                 placeholder="Email Address"
               />
@@ -219,7 +207,7 @@ const EditProfile = ({
                 type="text"
                 name="phone"
                 onChange={(e) => setPhone(e.target.value)}
-                defaultValue={userDetails?.phone}
+                defaultValue={userData?.phone}
                 id=""
                 placeholder="Phone Number"
               />
@@ -238,7 +226,7 @@ const EditProfile = ({
                 type="text"
                 name="address"
                 onChange={(e) => setAddress(e.target.value)}
-                defaultValue={userDetails?.address}
+                defaultValue={userData?.address}
                 id=""
                 placeholder="Address"
               />
@@ -252,7 +240,7 @@ const EditProfile = ({
                 id=""
                 className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setCurrency(e.target.value)}
-                defaultValue={userDetails?.currency}
+                defaultValue={userData?.currency}
               >
                 <option value="" disabled>
                   Select Currency

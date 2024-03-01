@@ -1,21 +1,13 @@
 "use client";
-import useUserData from "@/hooks/useUserData";
 import { FaCreditCard } from "react-icons/fa6";
 import { MdAccountBalance } from "react-icons/md";
 import { RiLuggageDepositFill } from "react-icons/ri";
 
-const BalanceSection = () => {
-  const { userData, userDataLoading, userDataPending, userDataError } =
-    useUserData();
-
-  if (userDataLoading || userDataPending || userDataError) {
-    return;
-  }
-
+const BalanceSection = ({ userData }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 5xl:grid-cols-3 justify-between gap-5">
       {/* total balance */}
-      <div className="w-full p-5 bg-primary rounded flex items-center justify-between gap-3">
+      <div className="w-full p-5 bg-primary flex items-center justify-between gap-3 rounded-xl">
         <div>
           <h3 className="font-medium">Total Balance</h3>
           <h3 className="text-xl font-semibold">
@@ -28,7 +20,7 @@ const BalanceSection = () => {
       </div>
 
       {/* total deposit */}
-      <div className="w-full p-5 bg-senary rounded flex items-center justify-between gap-3">
+      <div className="w-full p-5 bg-senary rounded-xl flex items-center justify-between gap-3">
         <div>
           <h3 className="font-medium">Total Deposit</h3>
           <h3 className="text-xl font-semibold">
@@ -41,7 +33,7 @@ const BalanceSection = () => {
       </div>
 
       {/* total withdraw */}
-      <div className="w-full p-5 bg-septenary rounded flex items-center justify-between gap-3">
+      <div className="w-full p-5 bg-septenary rounded-xl flex items-center justify-between gap-3">
         <div>
           <h3 className="font-medium">Total Withdraw</h3>
           <h3 className="text-xl font-semibold">

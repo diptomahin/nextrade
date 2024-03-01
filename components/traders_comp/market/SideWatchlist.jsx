@@ -130,10 +130,6 @@ const SideWatchlist = () => {
     fetchCurrencyRates();
   }, [flatCurrency]);
 
-  const [value, setValue] = React.useState("1");
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   return (
     <div className="w-full h-full bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
       <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
