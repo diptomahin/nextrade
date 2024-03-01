@@ -332,9 +332,6 @@ const TradersNotification = () => {
                         >
                           Delete
                         </button>
-                        <button className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
-                          Report issue
-                        </button>
                       </div>
                     )}
                   </div>
