@@ -12,6 +12,7 @@ const PortfolioAssetBox = ({
   pending,
   calculateDifference,
   setCurrentPage,
+  assetPage
 }) => {
   if (loading || pending) {
     return (
@@ -134,7 +135,7 @@ const PortfolioAssetBox = ({
               color: "white", // Change arrow color
             },
           }}
-          count={cryptoData.length}
+          count={assetPage.length}
           onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
           variant="outlined"
           shape="rounded"
