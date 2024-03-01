@@ -179,10 +179,6 @@ const CryptoDetails = ({
           });
 
         // post investment history data in data base
-        secureAPI.post(`/investmentHistory`, historyInfo)
-          .then(res => {
-            refetchInvestmentHistory()
-          })
         secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
           refetchInvestmentHistory();
         });
