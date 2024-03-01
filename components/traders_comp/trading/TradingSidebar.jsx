@@ -17,7 +17,7 @@ import getDate from '@/components/utils/date';
 const TradingSidebar = (params) => {
 
   const { user, loading } = useAuth();
-  const {value, assets, trader} = params
+  const {value, assets, trader} = params ;
   const {data: trading=[],     
     isPending,
     isLoading,
