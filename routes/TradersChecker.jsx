@@ -1,27 +1,23 @@
+import Loading from "@/components/library/loading/Loading";
 import useAuth from "@/hooks/useAuth";
 import useUserData from "@/hooks/useUserData";
 import { useRouter } from "next/navigation";
 
 const TradersChecker = ({ children }) => {
-  const { user, loading } = useAuth();
   const router = useRouter();
+  const { user, loading } = useAuth();
   const { userData, userDataLoading, userDataPending, userDataError } =
     useUserData();
 
   if (userDataLoading || userDataPending || userDataError || loading) {
     return (
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="text-5xl text-primary font-semibold">
-          Loading
-          <span className="text-quaternary">
-            .<span className="text-primary">.</span>.
-          </span>
-        </div>
+      <div className="h-screen w-full flex justify-center items-center bg-quaternary">
+        <Loading />
       </div>
     );
   }
 
-  if (!user) {
+  if (!user || !user?.email) {
     return router.push("/login", undefined, {
       shallow: true,
       query: { from: router.pathname },
