@@ -14,10 +14,12 @@ import Link from "next/link";
 const Transactions = () => {
   const {
     specificTransactionsData,
+    refetchSpecificTransactionsData,
     SpecificTransactionsDataLoading,
     SpecificTransactionsDataPending,
     SpecificTransactionsDataError,
   } = useSpecificTransactionData();
+  refetchSpecificTransactionsData();
 
   if (
     SpecificTransactionsDataLoading ||
@@ -35,7 +37,7 @@ const Transactions = () => {
           href="/dashboard/market"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
-          See all assets
+          See all transactions
         </Link>
       </div>
 

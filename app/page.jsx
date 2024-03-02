@@ -24,7 +24,7 @@ export default function Home() {
       <InvestSolutions />
       <StartTrading />
       <Services />
-      <Subscription />
+      {/* <Subscription /> */}
       <WhyNexTrade />
       <Testimonials />
       <Map />

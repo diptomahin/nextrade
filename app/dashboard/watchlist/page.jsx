@@ -19,7 +19,7 @@ const Watchlist = () => {
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [value, setValue] = React.useState("1");
   const secureAPI = useSecureAPI();
-  const {watchlistData, refetchWatchlistData} = useWatchlistData()
+  const { watchlistData, refetchWatchlistData } = useWatchlistData();
   // console.log(watchlistData)
 
   useEffect(() => {
@@ -163,7 +163,7 @@ const Watchlist = () => {
   };
 
   return (
-    <div className="flex-1  flex flex-col gap-4 p-4 font-semibold rounded bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree">
+    <div className="flex flex-col gap-4 p-5 font-semibold rounded-xl bg-tertiary">
       <h1> All Coins Watchlist</h1>
 
       <Box className="w-full my-6">

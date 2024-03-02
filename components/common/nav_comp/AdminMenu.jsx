@@ -25,29 +25,35 @@ const AdminMenu = () => {
       </div>
       <button onClick={() => setIsOpen(!isOpen)}>
         {user?.photoURL ? (
-          <Image
-            src={user?.photoURL}
-            width={40}
-            height={40}
-            className="rounded-full"
-            alt="user photo"
-          />
+          <div className="w-10 h-10 overflow-hidden rounded-full">
+            <Image
+              alt="profile-image"
+              width={40}
+              height={40}
+              src={user?.photoURL}
+              className="w-full h-full rounded-full object-top object-cover"
+              priority
+            />
+          </div>
         ) : (
           <FaUserCircle className={`w-8 h-8 ${isOpen && "text-primary"}`} />
         )}
       </button>
       {isOpen && (
-        <div className="w-60 absolute top-14 right-0 bg-gradient-to-bl from-darkOne to-darkTwo border-darkThree rounded border overflow-hidden">
-          <div className="bg-gradient-to-br from-primary to-[#352786] text-white p-5">
+        <div className="min-w-44 absolute top-14 right-0 bg-tertiary rounded-xl overflow-hidden shadow-2xl shadow-black">
+          <div className="bg-gradient-to-br from-primary to-[#352786] text-white px-2 py-3">
             <div className="flex flex-col items-center gap-3 overflow-hidden">
               {user?.photoURL ? (
-                <Image
-                  src={user?.photoURL}
-                  height={48}
-                  width={48}
-                  alt="user photo"
-                  className="rounded-full"
-                />
+                <div className="w-10 h-10 overflow-hidden rounded-full">
+                  <Image
+                    alt="profile-image"
+                    width={40}
+                    height={40}
+                    src={user?.photoURL}
+                    className="w-full h-full rounded-full object-top object-cover"
+                    priority
+                  />
+                </div>
               ) : (
                 <p className="w-10 h-10 flex items-center justify-center bg-white rounded-full">
                   <FaUser className="w-10 h-10 m-[6px] text-sky-500 rounded-full" />
@@ -63,14 +69,14 @@ const AdminMenu = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-3 p-4">
+          <div className="flex flex-col gap-3 py-4">
             <Link href="/admin_dashboard/profile" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 text-white hover:border-l-primary rounded-none shadow-none ${
+                className={`w-full h-8 px-4 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
                   pathname === "/admin_dashboard/profile"
-                    ? "bg-black/5 border-l-2 border-l-primary text-primary"
-                    : "bg-transparent"
+                    ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+                    : "bg-transparent hover:bg-transparent hover:text-primary"
                 }`}
               >
                 {" "}
@@ -80,10 +86,10 @@ const AdminMenu = () => {
             <Link href="/admin_dashboard/settings" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-8 btn btn-sm justify-start hover:bg-black/5 border-2 border-transparent hover:border-transparent hover:border-l-2 text-white hover:border-l-primary rounded-none shadow-none ${
+                className={`w-full h-8 px-4 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
                   pathname === "/admin_dashboard/settings"
-                    ? "bg-black/5 border-l-2 border-l-primary text-primary"
-                    : "bg-transparent"
+                    ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+                    : "bg-transparent hover:bg-transparent hover:text-primary"
                 }`}
               >
                 {" "}

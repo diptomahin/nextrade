@@ -45,7 +45,7 @@ const WalletPage = () => {
   }
   return (
     <>
-      <div className="2xl:w-9/12 flex flex-col gap-5">
+      <div className="2xl:w-9/12 flex flex-col gap-7">
         <BalanceSection userData={userData} />
 
         <TransactionTable
@@ -56,7 +56,7 @@ const WalletPage = () => {
         />
       </div>
 
-      <div className="2xl:w-5/12 3xl:w-4/12 flex flex-col gap-5">
+      <div className="2xl:w-5/12 3xl:w-4/12 flex flex-col gap-7">
         <DepositWithdrawSection
           userData={userData}
           refetchUserData={refetchUserData}
@@ -66,7 +66,7 @@ const WalletPage = () => {
 
         {/* Transaction Report */}
         <div className="w-full p-5 bg-tertiary text-white rounded-xl">
-          <h1 className="text-xl text-center font-bold mb-5">
+          <h1 className="text-xl text-center font-bold mb-7">
             Transaction Report
           </h1>
           <Rechart userData={userData} />

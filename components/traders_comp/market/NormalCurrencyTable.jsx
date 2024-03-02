@@ -17,8 +17,8 @@ const NormalCurrencyTable = ({ assets }) => {
     <TableContainer
       sx={{
         boxShadow: "none",
+        bgcolor: "transparent",
       }}
-      className="bg-gradient-to-bl from-darkOne to-darkTwo "
       component={Paper}
     >
       <Table aria-label="simple table">
@@ -110,7 +110,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 <p className={` text-white`}>$ {asset.price}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <DarkButton className="font-medium normal-case h-8 2xl:text-sm">
+                <DarkButton className="font-medium normal-case h-8 2xl:text-sm bg-primary hover:bg-primary border-none text-white">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
               </TableCell>
