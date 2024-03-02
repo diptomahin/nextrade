@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const CurrencyBuy = ({ flatCurrency, flatRefetch }) => {
-  console.log(flatCurrency);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   return isOpenSelect ? (
     <div className="flex items-center gap-5">

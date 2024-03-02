@@ -5,6 +5,7 @@ import QuickSell from "./quick-sell/QuickSell";
 import useAllCryptoCoins from "@/hooks/useAllCryptoCoins";
 import useAllFlatCoins from "@/hooks/useAllFlatCoins";
 import useUserData from "@/hooks/useUserData";
+import axios from "axios";
 
 const QuickTrade = () => {
   const [isBuyOpen, setIsBuyOpen] = useState(true);

@@ -1,12 +1,7 @@
 "use client";
-import React from "react";
 import Container from "@/components/library/Container";
 import { CryptoCurrencyMarket } from "react-ts-tradingview-widgets";
-
-//framer motion
 import { motion } from "framer-motion";
-
-// variants
 import { fadeIn } from "../utils/variants";
 import Link from "next/link";
 import Title from "@/components/library/Title";
@@ -17,7 +12,7 @@ const StartTrading = () => {
     <Container className="py-20">
       <Title>Start your trading journey with NexTrade</Title>
       <motion.p
-        variants={fadeIn("up", 0.2)}
+        variants={fadeIn("up", 0.1)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
@@ -27,7 +22,7 @@ const StartTrading = () => {
         you want to trade
       </motion.p>
       <motion.div
-        variants={fadeIn("up", 0.3)}
+        variants={fadeIn("up", 0.15)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
