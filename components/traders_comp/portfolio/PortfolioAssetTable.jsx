@@ -1,6 +1,5 @@
 import * as MuiIcons from "@mui/icons-material";
 import {
-  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -8,7 +7,7 @@ import {
   TableRow,
 } from "@mui/material";
 import Image from "next/image";
-const PortfolioAssetTable = ({cryptoData,calculateDifference,setCurrentPage,assetPage,purchasedRefetch}) => {
+const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) => {
   purchasedRefetch()
      return (
           <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">

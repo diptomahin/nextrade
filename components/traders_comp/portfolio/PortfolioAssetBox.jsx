@@ -4,48 +4,46 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 
 import "./Portfolio.css";
-import { Pagination, Skeleton } from "@mui/material";
+import { Skeleton } from "@mui/material";
 
 const PortfolioAssetBox = ({
   cryptoData,
   loading,
   pending,
   calculateDifference,
-  setCurrentPage,
-  assetPage,
   purchasedRefetch
 }) => {
   purchasedRefetch()
   if (loading || pending) {
     return (
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 mt-8">
         <Skeleton
-          sx={{ height: 190, borderRadius: "40px" }}
+          sx={{ height: 190, borderRadius: "40px",backgroundColor: "#2c3750"}}
           animation="wave"
           variant="rectangular"
         />
         <Skeleton
-          sx={{ height: 190, borderRadius: "40px" }}
+          sx={{ height: 190, borderRadius: "40px",backgroundColor: "#2c3750" }}
           animation="wave"
           variant="rectangular"
         />
         <Skeleton
-          sx={{ height: 190, borderRadius: "40px" }}
+          sx={{ height: 190, borderRadius: "40px",backgroundColor: "#2c3750" }}
           animation="wave"
           variant="rectangular"
         />
         <Skeleton
-          sx={{ height: 190, borderRadius: "40px" }}
+          sx={{ height: 190, borderRadius: "40px",backgroundColor: "#2c3750" }}
           animation="wave"
           variant="rectangular"
         />
         <Skeleton
-          sx={{ height: 190, borderRadius: "40px" }}
+          sx={{ height: 190, borderRadius: "40px",backgroundColor: "#2c3750" }}
           animation="wave"
           variant="rectangular"
         />
         <Skeleton
-          sx={{ height: 190, borderRadius: "40px" }}
+          sx={{ height: 190, borderRadius: "40px",backgroundColor: "#2c3750" }}
           animation="wave"
           variant="rectangular"
         />
