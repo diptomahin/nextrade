@@ -73,7 +73,7 @@ export default function RootNav() {
             </Magnetic>
             {/* <Language className="md:text-xl text-white" /> */}
             <div>
-                <Translate />
+              <Translate />
               {/* Other navbar components */}
             </div>
           </div>
@@ -148,13 +148,13 @@ export default function RootNav() {
         </div>
       </Magnetic>
 
-      <FacebookProvider appId="429056069676911">
+      {/* <FacebookProvider appId="429056069676911">
         <CustomChat
           pageId="108051777809659"
           loggedInGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
           loggedOutGreeting="Welcome back! Seeking assistance? NexTrade team is here to help."
         />
-      </FacebookProvider>
+      </FacebookProvider> */}
 
       {/* root drawer */}
       <RootNavDrawer
