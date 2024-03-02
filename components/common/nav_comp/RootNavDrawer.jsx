@@ -53,7 +53,12 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
           </Magnetic>
           {user?.email && (
             <Magnetic>
-              <div onClick={() => logOut()}>
+              <div
+                onClick={() => {
+                  logOut();
+                  setIsActive(false);
+                }}
+              >
                 <DarkButton className="bg-white/5 hover:bg-white/15 border-white hover:border-white text-white">
                   Logout
                 </DarkButton>

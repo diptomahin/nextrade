@@ -1,38 +1,34 @@
+import Loading from "@/components/library/loading/Loading";
 import useAuth from "@/hooks/useAuth";
-import useSecureFetch from "@/hooks/useSecureFetch";
+import useUserData from "@/hooks/useUserData";
 import { useRouter } from "next/navigation";
 
 const AdminChecker = ({ children }) => {
-  const { user, loading } = useAuth();
   const router = useRouter();
-  const { data, isPending, isLoading } = useSecureFetch(
-    `/all-users/${user?.email}`,
-    user?.email,
-    "userRole"
-  );
+  const { user, loading } = useAuth();
+  const { userData, userDataLoading, userDataPending, userDataError } =
+    useUserData();
 
-  if (isLoading || isPending || loading || !data) {
+  if (userDataLoading || userDataPending || userDataError || loading) {
     return (
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="text-5xl text-primary font-semibold">
-          Loading
-          <span className="text-quaternary">
-            .<span className="text-primary">.</span>.
-          </span>
-        </div>
+      <div className="h-screen w-full flex justify-center items-center bg-quaternary">
+        <Loading />
       </div>
     );
   }
 
-  if (!user) {
+  if (!user || !user.email) {
     return router.push("/login", undefined, {
       shallow: true,
       query: { from: router.pathname },
     });
   }
 
-  if (data[0]?.role !== "admin") {
-    return;
+  if (userData?.role !== "admin") {
+    return router.push("/login", undefined, {
+      shallow: true,
+      query: { from: router.pathname },
+    });
   }
 
   return children;

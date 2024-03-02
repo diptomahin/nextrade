@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
@@ -6,32 +5,21 @@ import logo from "../../assets/logo/NexTrade-Logo-White.png";
 import logo2 from "../../assets/logo/NexTrade_Favicon-White.png";
 import React from "react";
 import Container from "../library/Container";
-// import Language from "../library/Language";
-import useAuth from "@/hooks/useAuth";
 import DarkButton from "@/components/library/buttons/DarkButton";
-import useSecureFetch from "@/hooks/useSecureFetch";
 import RootNavDrawer from "./nav_comp/RootNavDrawer";
 import { RiMenu5Fill } from "react-icons/ri";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
-import { CustomChat, FacebookProvider } from "react-facebook";
-import Translate from "../home_comp/Translate";
+import useUserData from "@/hooks/useUserData";
+import useAuth from "@/hooks/useAuth";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
-  const { user, loading, logOut } = useAuth();
+  const { user, logOut } = useAuth();
+  const { userData } = useUserData();
 
-  const { data, isPending, isLoading } = useSecureFetch(
-    `/all-users/${user?.email}`,
-    user?.email,
-    "user"
-  );
-
-  const handleScrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
-
+  // navbar animation after scroll function
   React.useEffect(() => {
     const handleScrolled = () => {
       if (window.scrollY > 20) {
@@ -46,10 +34,6 @@ export default function RootNav() {
       window.removeEventListener("scroll", handleScrolled);
     };
   }, []);
-
-  if (isLoading || isPending || loading || !data) {
-    return;
-  }
 
   return (
     <>
@@ -73,7 +57,7 @@ export default function RootNav() {
             </Magnetic>
             {/* <Language className="md:text-xl text-white" /> */}
             <div>
-              <Translate />
+              {/* <Translate /> */}
               {/* Other navbar components */}
             </div>
           </div>
@@ -105,7 +89,7 @@ export default function RootNav() {
           </Magnetic>
           {user?.email ? (
             <Magnetic>
-              {data[0]?.role === "admin" ? (
+              {userData.role === "admin" ? (
                 <Link href="/admin_dashboard">
                   <DarkButton>Go Dashboard</DarkButton>
                 </Link>
@@ -137,7 +121,7 @@ export default function RootNav() {
       {/* click to top button */}
       <Magnetic>
         <div
-          onClick={handleScrollToTop}
+          onClick={() => window.scrollTo(0, 0)}
           className={` fixed bottom-20 right-5 md:right-10 2xl:right-20 z-[99] ${
             !scrolled && "hidden"
           }`}

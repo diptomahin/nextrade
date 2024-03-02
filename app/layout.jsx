@@ -12,7 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="font-montserrat" suppressHydrationWarning={true}>
+      <body
+        className="font-montserrat bg-quaternary"
+        suppressHydrationWarning={true}
+      >
         <AuthProvider>
           <MainLayout>{children} </MainLayout>
         </AuthProvider>
