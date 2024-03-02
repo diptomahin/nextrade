@@ -20,10 +20,10 @@ const useUserData = () => {
 
   return {
     userData: data || {},
-    refetchUserData: refetch,
-    userDataLoading: isLoading,
-    userDataPending: isPending,
     userDataError: isError,
+    userDataPending: isPending,
+    userDataLoading: isLoading,
+    refetchUserData: refetch,
   };
 };
 

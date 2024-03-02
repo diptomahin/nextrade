@@ -12,8 +12,10 @@ const PortfolioAssetBox = ({
   pending,
   calculateDifference,
   setCurrentPage,
-  assetPage
+  assetPage,
+  purchasedRefetch
 }) => {
+  purchasedRefetch()
   if (loading || pending) {
     return (
       <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-6">
@@ -55,7 +57,7 @@ const PortfolioAssetBox = ({
       <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 mt-8">
         {cryptoData?.map((asset, idx) => (
           <Link key={idx} href={`/dashboard/market/${asset.assetKey}`}>
-            <div className="rounded-[30px] coinBg bg-darkBG p-6 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
+            <div className="rounded-[30px] coinBg bg-darkOne p-6 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
               <div className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                   <Image
@@ -125,22 +127,7 @@ const PortfolioAssetBox = ({
           </Link>
         ))}
       </div>
-      {/* Pagination */}
-      <div className="my-6 flex justify-center flex-wrap">
-        <Pagination
-          color="primary"
-          sx={{
-            "& .MuiPaginationItem-page": { color: "white", marginY: "5px" },
-            "& .MuiPaginationItem-icon": {
-              color: "white", // Change arrow color
-            },
-          }}
-          count={assetPage.length}
-          onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
-          variant="outlined"
-          shape="rounded"
-        />
-      </div>
+     
     </>
   );
 };

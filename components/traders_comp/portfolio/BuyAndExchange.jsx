@@ -21,8 +21,14 @@ import useAuth from "@/hooks/useAuth";
 import getDate from "@/components/utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
+import useUserData from "@/hooks/useUserData";
 
-const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch }) => {
+const BuyAndExchange = ({
+  cryptoData,
+  remainingBalance,
+  refetch,
+  totalRefetch,
+}) => {
   const [tabValue, setTabValue] = useState("1");
 
   // exchange state
@@ -38,14 +44,14 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
   const [sellCoinLoss, setSellCoinLoss] = useState();
   const [sellCoinKey, setSellCoinKey] = useState();
   const [sellCoinImg, setSellCoinImg] = useState();
-
+  const [totalInvestment, setTotalInvestment] = useState();
 
   const secureAPI = useSecureAPI();
   const { user } = useAuth();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
   const { adminRefetchNotificationsData } = useAdminNotificationData();
-
+  const { refetchUserData } = useUserData();
 
   //---------exchange functionality start----------
 
@@ -104,17 +110,17 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
                 icon: "success",
                 timer: 1500,
               });
-
+              refetchUserData();
               // post to  notification data in database
               secureAPI
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   console.log("success post to notification");
                   secureAPI.post("/adminNotifications", notificationInfo);
-                  refetch();
                   refetchNotificationsData();
                   adminRefetchNotificationsData();
-                  totalRefetch()
+                  refetch();
+                  totalRefetch();
                 })
                 .catch((error) => {
                   console.error("Error sending notification:", error);
@@ -134,41 +140,66 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
 
   //-------------exchange functionality ends -----------
 
-
   //------------- sell functionality starts -----------
 
   const calculateDifference = (currentPrice, buyingPrice, portion) => {
-    const profitLoss = (currentPrice - buyingPrice) * (parseFloat(portion.slice(0, -1)) / 100)
-    const profitLossInt = parseFloat(profitLoss).toFixed(3)
+    const profitLoss =
+      (currentPrice - buyingPrice) * (parseFloat(portion.slice(0, -1)) / 100);
+    const profitLossInt = parseFloat(profitLoss).toFixed(3);
     return profitLossInt;
   };
 
   const handleSellCoin = (event) => {
-    const getSellCoin = cryptoData.find((asset) => asset._id === event.target.value)
+    const getSellCoin = cryptoData.find(
+      (asset) => asset._id === event.target.value
+    );
+    setTotalInvestment(getSellCoin.totalInvestment);
     setSellCoinId(getSellCoin._id);
-    setSellCoinKey(getSellCoin.assetKey)
-    setSellCoinImg(getSellCoin.assetImg)
+    setSellCoinKey(getSellCoin.assetKey);
+    setSellCoinImg(getSellCoin.assetImg);
     setSellCoinName(getSellCoin.assetName);
-    if (calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion) > 0) {
-      setSellCoinProfit(calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion))
-      setSellCoinLoss(0)
-    } if (calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion) < 0) {
-      setSellCoinLoss(calculateDifference(getSellCoin.currentPrice, getSellCoin.assetBuyingPrice, getSellCoin.assetPortion))
-      setSellCoinProfit(0)
+    if (
+      calculateDifference(
+        getSellCoin.currentPrice,
+        getSellCoin.assetBuyingPrice,
+        getSellCoin.assetPortion
+      ) > 0
+    ) {
+      setSellCoinProfit(
+        calculateDifference(
+          getSellCoin.currentPrice,
+          getSellCoin.assetBuyingPrice,
+          getSellCoin.assetPortion
+        )
+      );
+      setSellCoinLoss(0);
     }
-  
+    if (
+      calculateDifference(
+        getSellCoin.currentPrice,
+        getSellCoin.assetBuyingPrice,
+        getSellCoin.assetPortion
+      ) < 0
+    ) {
+      setSellCoinLoss(
+        calculateDifference(
+          getSellCoin.currentPrice,
+          getSellCoin.assetBuyingPrice,
+          getSellCoin.assetPortion
+        )
+      );
+      setSellCoinProfit(0);
+    }
   };
 
-  const handleSell = ()=>{
-
-    const newBalance = remainingBalance + sellCoinProfit + sellCoinLoss
-
+  const handleSell = () => {
     const sellingData = {
       sellCoinName,
       setSellCoinImg,
       sellCoinKey,
       sellCoinProfit,
       sellCoinLoss,
+      totalInvestment,
     };
 
     const notificationInfo = {
@@ -195,9 +226,13 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
     }).then(async (result) => {
       if (result.isConfirmed) {
         secureAPI
-          .post(`/allSoldCoin/${sellCoinId}/${newBalance}/${user.email}`, sellingData)
+          .put(
+            `/allSoldCoin/${sellCoinId}/${remainingBalance}/${user.email}`,
+            sellingData
+          )
           .then((res) => {
-            if (res.data.insertedId > 0) {
+            console.log(res.data);
+            if (res.data.modifiedCount > 0) {
               Swal.fire({
                 title: `Coin sold successfully!`,
                 text: `Best of luck`,
@@ -211,14 +246,14 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
                 .then((res) => {
                   console.log("success post to notification");
                   secureAPI.post("/adminNotifications", notificationInfo);
-                  refetch();
-                  refetchNotificationsData();
-                  adminRefetchNotificationsData();
-                  totalRefetch()
                 })
                 .catch((error) => {
                   console.error("Error sending notification:", error);
                 });
+              refetch();
+              refetchNotificationsData();
+              adminRefetchNotificationsData();
+              totalRefetch();
             }
           })
           .catch((error) => {
@@ -229,9 +264,8 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
             });
           });
       }
-    })
-
-  }
+    });
+  };
   //------------- sell functionality ends -----------
 
   return (
@@ -264,7 +298,6 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
           />
         </TabList>
       </Box>
-
 
       {/* ----------Exchange Coin------------- */}
       <TabPanel value="1" sx={{ padding: 0, overflow: "hidden" }}>
@@ -377,11 +410,8 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
         </div>
       </TabPanel>
 
-
-
       {/* ----------- Sell Coin------------- */}
       <TabPanel value="2" sx={{ padding: 0, overflow: "hidden" }}>
-
         <p className="my-3">Choose your coin for sell</p>
         <FormControl
           fullWidth
@@ -405,7 +435,10 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
             <div className="mx-3 my-2 flex justify-between text-sm font-semibold">
               <p>Asset Name</p>
               <p>-Investment-</p>
-              <p><span className="text-green-700">Profit</span>/<span className="text-red-700">Loss</span></p>
+              <p>
+                <span className="text-green-700">Profit</span>/
+                <span className="text-red-700">Loss</span>
+              </p>
             </div>
             {cryptoData.map((asset, idx) => (
               <MenuItem key={idx} value={asset._id}>
@@ -419,18 +452,23 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
                     ></Image>
                     <p className="text-sm">{asset.assetName}</p>
                   </div>
-                  <p>
-                    ${asset.totalInvestment}{" "}
-                  </p>
-                  <p className={` font-medium ${calculateDifference(
-                    asset.currentPrice,
-                    parseFloat(asset.assetBuyingPrice),
-                    asset.assetPortion
-                  ) > 0
-                    ? "text-green-700"
-                    : "text-red-700"
-                    }`}>
-                    {calculateDifference(asset.currentPrice, asset.assetBuyingPrice, asset.assetPortion)}
+                  <p>${asset.totalInvestment} </p>
+                  <p
+                    className={` font-medium ${
+                      calculateDifference(
+                        asset.currentPrice,
+                        parseFloat(asset.assetBuyingPrice),
+                        asset.assetPortion
+                      ) > 0
+                        ? "text-green-700"
+                        : "text-red-700"
+                    }`}
+                  >
+                    {calculateDifference(
+                      asset.currentPrice,
+                      asset.assetBuyingPrice,
+                      asset.assetPortion
+                    )}
                   </p>
                 </div>
               </MenuItem>
@@ -438,10 +476,9 @@ const BuyAndExchange = ({ cryptoData, remainingBalance, refetch, totalRefetch })
           </Select>
         </FormControl>
 
-        <DarkButton
-          className={"w-full mt-5 md:rounded"}
-          onClick={handleSell}
-        > Sell Coin
+        <DarkButton className={"w-full mt-5 md:rounded"} onClick={handleSell}>
+          {" "}
+          Sell Coin
         </DarkButton>
       </TabPanel>
     </TabContext>
