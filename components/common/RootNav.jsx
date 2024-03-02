@@ -43,24 +43,17 @@ export default function RootNav() {
         } z-50`}
       >
         <Container className="flex items-center justify-between">
-          <div className="flex items-center gap-3 md:gap-6">
-            <Magnetic>
-              <div
-                onClick={() => {
-                  setIsActive(!isActive);
-                }}
-              >
-                <button className="btn btn-sm bg-transparent hover:bg-primary/20 w-10 h-10 rounded-full border-primary hover:border-primary text-primary p-1">
-                  <RiMenu5Fill className="w-full h-full " />
-                </button>
-              </div>
-            </Magnetic>
-            {/* <Language className="md:text-xl text-white" /> */}
-            <div>
-              {/* <Translate /> */}
-              {/* Other navbar components */}
+          <Magnetic>
+            <div
+              onClick={() => {
+                setIsActive(!isActive);
+              }}
+            >
+              <button className="btn btn-sm bg-transparent hover:bg-primary/20 w-12 h-12 rounded-full border-primary hover:border-primary text-primary p-1">
+                <RiMenu5Fill className="w-full h-full" />
+              </button>
             </div>
-          </div>
+          </Magnetic>
           <Magnetic>
             <Link href="/" className="hidden 2xl:block">
               {scrolled ? (
