@@ -164,14 +164,12 @@ const Banner = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="mt-3 z-10 flex items-center gap-5"
+            className="mt-3 z-10"
           >
-            <Link href="/dashboard/trading">
-              <DarkButton> Start Trading</DarkButton>
-            </Link>
-            <Link href="/dashboard/market">
-              <DarkButton className="bg-transparent border-none">
-                Explore Market
+            <Link href="/dashboard">
+              <DarkButton className="bg-primary/90 hover:bg-primary text-white border-none px-5">
+                {" "}
+                Trade Now
               </DarkButton>
             </Link>
           </motion.div>

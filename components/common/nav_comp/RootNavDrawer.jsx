@@ -28,7 +28,7 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
                 setActiveTab("");
               }}
             >
-              <button className="btn btn-sm w-10 h-10 rounded-full bg-transparent hover:bg-transparent border-white hover:border-white text-white  p-2">
+              <button className="btn btn-sm w-12 h-12 rounded-full bg-transparent hover:bg-transparent border-white hover:border-white text-white  p-2">
                 <GrClose className="w-full h-full" />
               </button>
             </div>

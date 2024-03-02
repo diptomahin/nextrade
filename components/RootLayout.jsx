@@ -29,10 +29,12 @@ const MainLayout = ({ children }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {noHeaderFooter || <RootNav />}
+      <div>
+        {noHeaderFooter || <RootNav />}
 
-      {children}
-      {noHeaderFooter || <Footer />}
+        {children}
+        {noHeaderFooter || <Footer />}
+      </div>
     </QueryClientProvider>
   );
 };
