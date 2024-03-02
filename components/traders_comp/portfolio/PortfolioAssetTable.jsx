@@ -8,7 +8,8 @@ import {
   TableRow,
 } from "@mui/material";
 import Image from "next/image";
-const PortfolioAssetTable = ({cryptoData,calculateDifference,setCurrentPage,assetPage}) => {
+const PortfolioAssetTable = ({cryptoData,calculateDifference,setCurrentPage,assetPage,purchasedRefetch}) => {
+  purchasedRefetch()
      return (
           <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -186,21 +187,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,setCurrentPage,asse
                   ))}
                 </TableBody>
               </Table>
-              {/* Pagination */}
-              <div className="my-6 flex justify-center flex-wrap">
-                        <Pagination
-                            color="primary" sx={{
-                                '& .MuiPaginationItem-page': { color: 'white', marginY: "5px" },
-                                '& .MuiPaginationItem-icon': {
-                                    color: 'white', // Change arrow color
-                                }
-                            }}
-                            count={assetPage.length}
-                            onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
-                            variant="outlined"
-                            shape="rounded"
-                        />
-                    </div>
+              
             </div>
      );
 };

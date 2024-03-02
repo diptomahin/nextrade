@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import {
 
+  Pagination,
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
@@ -28,8 +29,10 @@ const Portfolio = () => {
   const secureAPI = useSecureAPI()
 
   // get total balance form users data
-  const { userData, userDataLoading, userDataPending, userDataError } =
+  const { userData, userDataLoading, userDataPending, userDataError,refetchUserData } =
     useUserData();
+
+    refetchUserData();
 
   const usersRemainingBalance = parseFloat(userData?.balance).toFixed(2);
 
@@ -47,11 +50,14 @@ const Portfolio = () => {
        .get("/totalAssetCount")
        .then((res) => setAssetCount(res.data.count))
        .catch((error) => console.log(error));
-   }, [secureAPI]);
+   }, [secureAPI,user]);
 
-   const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
-  
-  const assetPage = [...Array(numberOfAssetPages).keys()];
+// Use optional chaining or default to 0 if assetCount is undefined
+const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
+
+const assetPage = [...Array(numberOfAssetPages).keys()];
+console.log(assetCount,coinPerPage, assetPage);
+   
 
   // fetch data with search functionality
   const {
@@ -76,7 +82,7 @@ const Portfolio = () => {
     user?.email,
   ]);
 
-
+ 
   
 
   // filter  coin data
@@ -431,21 +437,36 @@ const Portfolio = () => {
             </div>
           </div>
 
-          {cryptoData ? (
+          {cryptoData.length > 0 ? (
             <>
               {view === "list" ? (
                 <PortfolioAssetTable
                   cryptoData={cryptoData}
                   calculateDifference={calculateDifference}
-                  setCurrentPage={setCurrentPage}
-                  assetPage={assetPage}
+                  
+                  purchasedRefetch={purchasedRefetch}
                 />
               ) : (
                 <PortfolioAssetBox cryptoData={cryptoData} loading={purchasedLoading} pending={purchasedPending} calculateDifference={calculateDifference}
-                  setCurrentPage={setCurrentPage}
-                  assetPage={assetPage}
+                  purchasedRefetch={purchasedRefetch}
                 />
               )}
+               {/* Pagination */}
+      <div className="my-6 flex justify-center flex-wrap">
+        <Pagination
+          color="primary"
+          sx={{
+            "& .MuiPaginationItem-page": { color: "white", marginY: "5px" },
+            "& .MuiPaginationItem-icon": {
+              color: "white", // Change arrow color
+            },
+          }}
+          count={assetPage.length}
+          onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
+          variant="outlined"
+          shape="rounded"
+        />
+      </div>
             </>
           ) : (
             <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
@@ -458,6 +479,7 @@ const Portfolio = () => {
               <h3 className="text-primary text-lg font-semibold text-center">
                 empty !!
               </h3>
+              <p>Please Buy the Coin in Market and Trading page  </p>
             </div>
           )}
         </div>
@@ -471,6 +493,7 @@ const Portfolio = () => {
             remainingBalance={usersRemainingBalance}
             refetch={purchasedRefetch}
             totalRefetch={totalRefetch}
+            
           ></BuyAndExchange>
         </div>
         <div className="p-4  bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded  ">
