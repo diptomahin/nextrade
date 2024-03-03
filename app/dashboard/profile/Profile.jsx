@@ -55,7 +55,7 @@ const Profile = () => {
         } duration-300 ease-in-out rounded-xl z-10`}
       >
         <div className="flex flex-col items-center gap-4">
-          {userData?.photo !== undefined && userData?.photo !== null ? (
+          {userData?.photo ? (
             <div
               className={`overflow-hidden rounded-full transition-all duration-300 ease-linear ${
                 isActiveProfile
@@ -73,7 +73,7 @@ const Profile = () => {
               />
             </div>
           ) : (
-            <p className="text-8xl text-primary">
+            <p className="text-5xl text-primary">
               <FaUserCircle />
             </p>
           )}
