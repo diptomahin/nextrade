@@ -8,7 +8,7 @@ import ImportExportIcon from "@mui/icons-material/ImportExport";
 
 const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
   return (
-    <div className="bg-tertiary rounded-xl p-4 w-full">
+    <div className="bg-white dark:bg-tertiary rounded-xl p-4 w-full">
       <h1 className="text-xl font-semibold">Market Stats</h1>
       {/* <div className="  flex flex-col md:flex-row 2xl:items-center 2xl:justify-between gap-6 2xl:gap-0 "> */}
       <div className="  flex flex-col gap-6 2xl:gap-0 ">
@@ -19,11 +19,11 @@ const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
           <div className="flex gap-5 my-5 items-center">
             <h3 className="text-lg font-semibold">
               {coinName}{" "}
-              <span className="bg-sky-100/15 px-1 py-[2px] rounded text-primary text-xs">
+              <span className="bg-primary/35 dark:bg-sky-100/5 px-1 py-[2px] rounded text-black dark:text-primary text-xs">
                 {coinKey.slice(0, -4)}
               </span>
             </h3>
-            <div className="rounded p-1 bg-sky-100/15">
+            <div className="rounded p-1 bg-primary/35 dark:bg-sky-100/15">
               <StarIcon className="text-primary " />
             </div>
           </div>

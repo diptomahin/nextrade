@@ -13,6 +13,7 @@ import React from "react";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import DarkButton from "@/components/library/buttons/DarkButton";
+import "./market.css";
 
 const MarketTable = ({ assets }) => {
   return (
@@ -21,7 +22,7 @@ const MarketTable = ({ assets }) => {
         boxShadow: "none",
         bgcolor: "transparent",
       }}
-      className=" border-none "
+      className=" border-none"
       component={Paper}
     >
       <Table aria-label="simple table">
@@ -30,72 +31,65 @@ const MarketTable = ({ assets }) => {
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
-                borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750",
+                borderBottom: "2px solid #a1a1aa",
+                borderTop: "2px solid #a1a1aa",
               }}
             >
-              No.
+            <p className="dark:text-white">No.</p>
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
-                borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750",
+                borderBottom: "2px solid #a1a1aa",
+                borderTop: "2px solid #a1a1aa",
               }}
             >
-              Coin Name
+             <p className="dark:text-white">Coin Name</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
-                borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750",
+                borderBottom: "2px solid #a1a1aa",
+                borderTop: "2px solid #a1a1aa",
               }}
             >
-              Current Price
+             <p className="dark:text-white">Current Price</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
-                borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750",
+                borderBottom: "2px solid #a1a1aa",
+                borderTop: "2px solid #a1a1aa",
               }}
             >
-              24%
+             <p className="dark:text-white">24%</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
-                borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750",
+                borderBottom: "2px solid #a1a1aa",
+                borderTop: "2px solid #a1a1aa",
               }}
             >
-              24h High Price
+             <p className="dark:text-white">24h High Price</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
-                borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750",
+                borderBottom: "2px solid #a1a1aa",
+                borderTop: "2px solid #a1a1aa",
               }}
             >
-              24h Low Price
+             <p className="dark:text-white">24h Low Price</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
-                borderBottom: "2px solid #2c3750",
-                borderTop: "2px solid #2c3750",
+                borderBottom: "2px solid #a1a1aa",
+                borderTop: "2px solid #a1a1aa",
               }}
             >
-              Option
+             <p className="dark:text-white">Option</p> 
             </TableCell>
           </TableRow>
         </TableHead>
@@ -107,7 +101,7 @@ const MarketTable = ({ assets }) => {
                 component="th"
                 scope="row"
               >
-                <p className="text-white">{idx + 1}</p>
+                <p className="dark:text-white">{idx + 1}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
                 <div className="flex items-center gap-2">
@@ -117,26 +111,25 @@ const MarketTable = ({ assets }) => {
                     src={asset.icon}
                     alt="coin-icon"
                   />
-                  <p className={`font-semibold text-white`}>{asset.name}</p>
-                  <span className="bg-sky-100/10 px-1 py-[2px] rounded text-primary text-xs">
+                  <p className={`font-semibold dark:text-white`}>{asset.name}</p>
+                  <span className="bg-primary/40 dark:bg-sky-100/10 px-1 py-[2px] rounded text-black dark:text-primary text-xs">
                     {asset.key.slice(0, -4)}
                   </span>
                 </div>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <p className={` font-semibold text-white`}>
+                <p className={` font-semibold dark:text-white`}>
                   $ {parseFloat(asset.price).toFixed(2)}
                 </p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
                 <p
-                  className={` font-semibold ${
-                    asset.changePrice < 0
-                      ? "text-red-600"
-                      : asset.changePrice > 0
+                  className={` font-semibold ${asset.changePrice < 0
+                    ? "text-red-600"
+                    : asset.changePrice > 0
                       ? "text-green-600"
                       : ""
-                  }`}
+                    }`}
                 >
                   {asset.changePrice}%{" "}
                   {asset.changePrice < 0 ? (

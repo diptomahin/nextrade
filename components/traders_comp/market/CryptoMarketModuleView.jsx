@@ -48,7 +48,7 @@ const CryptoMarketModuleView = ({ assets, loading, pending }) => {
     <div className="grid lg:grid-cols-2  3xl:grid-cols-3 gap-4">
       {assets.map((asset, idx) => (
         <Link key={idx} href={`/dashboard/market/${asset.key}`}>
-          <div className="rounded-[30px] coinBg bg-secondary p-5 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
+          <div className="rounded-[30px] coinBg border bg-zinc-100 border-zinc-300 dark:border-none dark:bg-secondary p-5 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
             <div className="flex justify-between items-center">
               <div className="flex gap-2 items-center">
                 <Image
@@ -57,7 +57,7 @@ const CryptoMarketModuleView = ({ assets, loading, pending }) => {
                   src={asset.icon}
                   alt="coin-icon"
                 />
-                <span className="bg-sky-100/10 px-1 py-[2px] rounded text-primary text-xs">
+                <span className="bg-primary/40 dark:bg-sky-100/10 px-1 py-[2px] rounded text-black dark:text-primary text-xs">
                   {asset.key.slice(0, -4)}
                 </span>
               </div>
@@ -75,15 +75,15 @@ const CryptoMarketModuleView = ({ assets, loading, pending }) => {
               </p>
             </div>
             <h3 className="text-xl font-semibold">{asset.name}</h3>
-            <p>Current Price: ${asset.price}</p>
+            <p className="font-semibold dark:font-normal">Current Price: ${asset.price}</p>
             <div className="text-xs flex justify-between">
-              <p>
+              <p className="font-semibold dark:font-normal">
                 24h High:{" "}
                 <span className="text-green-700 font-semibold">
                   ${asset.highPrice}
                 </span>
               </p>
-              <p>
+              <p className="font-semibold dark:font-normal">
                 24h Low:{" "}
                 <span className="text-red-500 font-semibold">
                   ${asset.lowPrice}
