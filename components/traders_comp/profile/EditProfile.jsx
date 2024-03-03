@@ -111,7 +111,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
       {/* photo url */}
       <div className="flex-[2] flex flex-col items-center justify-center">
         <div className="relative w-40 h-40">
-          {hostedImage !== undefined && hostedImage !== null ? (
+          {hostedImage ? (
             <div className="w-full h-full overflow-hidden rounded-full">
               <Image
                 alt="profile-image"
@@ -124,7 +124,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
             </div>
           ) : (
             <p className="w-40 h-40 text-primary">
-              <FaUserCircle className="w-full h-full" />
+              <FaUserCircle className="h-full w-full" />
             </p>
           )}
           <div className="absolute bottom-0 right-3 z-10">

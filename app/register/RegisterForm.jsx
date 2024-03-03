@@ -48,7 +48,7 @@ const RegisterForm = () => {
 
   const date = getDate();
 
-  const { createUser, updateUserProfile } = useAuth();
+  const { createUser, updateUserName } = useAuth();
   const [error, setError] = useState("");
   const [captchaValue, setCaptchaValue] = useState(null);
 
@@ -65,7 +65,7 @@ const RegisterForm = () => {
     createUser(data.email, data.password)
       .then((res) => {
         const loggedUser = res.user;
-        updateUserProfile(data.name);
+        updateUserName(data.name);
 
         const userInfo = {
           userID: loggedUser.uid,
