@@ -137,7 +137,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
               placeholder="file"
             />
           </div>
-          <button className="absolute bottom-0 right-3 btn btn-sm h-8 bg-secondary hover:bg-secondary border-darkThree hover:border-darkThree text-white rounded font-medium px-1 gap-1 cursor-pointer">
+          <button className="absolute bottom-0 right-3 btn btn-sm h-8 bg-secondary hover:bg-secondary dark:border-darkThree hover:border-darkThree text-white rounded font-medium px-1 gap-1 cursor-pointer">
             <MdEdit /> <span className="text-sm">Edit</span>
           </button>
         </div>
@@ -155,7 +155,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
                 Full Name
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setFullName(e.target.value)}
                 type="text"
                 name="fullName"
@@ -170,7 +170,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
                 User Name
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 name="userName"
@@ -189,7 +189,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
                 Email Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none cursor-not-allowed"
+                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none cursor-not-allowed"
                 type="text"
                 name="email"
                 value={userData?.email}
@@ -203,7 +203,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
                 Phone Number
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 type="text"
                 name="phone"
                 onChange={(e) => setPhone(e.target.value)}
@@ -222,7 +222,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
                 Address
               </label>
               <input
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 type="text"
                 name="address"
                 onChange={(e) => setAddress(e.target.value)}
@@ -238,7 +238,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
               <select
                 name="currency"
                 id=""
-                className="bg-transparent w-full border border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setCurrency(e.target.value)}
                 defaultValue={userData?.currency}
               >
