@@ -218,8 +218,8 @@ const CurrencyDetails = ({
       });
   };
   return (
-    <div className="flex flex-col 2xl:flex-row gap-7">
-      <div className="w-full 2xl:w-3/4 flex flex-col gap-7">
+    <div className="flex flex-col 2xl:flex-row gap-5">
+      <div className="w-full 2xl:w-3/4 flex flex-col gap-5">
         {currencyRate ? (
           <TopBannerNormalCurrency
             currencyRate={currencyRate}
@@ -235,6 +235,7 @@ const CurrencyDetails = ({
         )}
 
         <div className=" h-64 lg:h-96  3xl:h-[65vh]">
+        <h1 className="font-semibold mb-3">{coinKey} to USDT Chart</h1>
           <AdvancedRealTimeChart
             width="100%"
             height="100%"

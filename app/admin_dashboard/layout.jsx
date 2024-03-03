@@ -12,6 +12,7 @@ const AdminDashboard = ({ children }) => {
     setMobileOpen(!mobileOpen);
   };
 
+
   return (
     <AdminChecker>
       <div className="min-h-screen bg-secondary text-zinc-100  font-montserrat">
