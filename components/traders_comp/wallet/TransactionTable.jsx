@@ -117,7 +117,7 @@ const TransactionTable = ({
     refetchSpecificTransactionsData();
   };
   return (
-    <div className="p-5 bg-tertiary rounded-xl">
+    <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">
         <h1 className="text-xl font-bold">Transaction History</h1>
 
@@ -132,7 +132,7 @@ const TransactionTable = ({
               type="text"
               name="search"
               placeholder="Search..."
-              className="w-28 focus:w-48 bg-white/5 hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded font-medium"
+              className="w-28 focus:w-48 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 transition-all duration-200 ease-in-out text-sm pl-3 pr-9 py-[6px] outline-none rounded-xl font-medium"
             />
             <button
               onClick={Search}
@@ -144,20 +144,20 @@ const TransactionTable = ({
           <div className="relative">
             <button
               onClick={() => setIsOpenDot(!isOpenDot)}
-              className="btn btn-sm h-10 text-lg px-[11px] text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none flex items-center rounded-full"
+              className="btn btn-sm h-8 text-lg px-2 dark:text-white bg-transparent hover:bg-black/10 active:bg-black/20 dark:hover:bg-white/10 dark:active:bg-white/20 border-none outline-none flex items-center rounded-full"
             >
               <BsThreeDotsVertical />
             </button>
             {isOpenDot && (
-              <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-secondary font-medium rounded-s-2xl rounded-b-2xl">
-                <button className="w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-white/10 border-none rounded-none pl-4">
+              <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-gray-100 dark:bg-secondary font-medium rounded-s-2xl rounded-b-2xl">
+                <button className="w-full btn btn-sm text-sm dark:text-white/80 justify-start bg-transparent hover:bg-black/10 dark:hover:bg-white/10 border-none rounded-none pl-4 shadow-none">
                   Download
                 </button>
                 <button
                   onClick={() =>
                     handleDeleteAll(specificTransactionsData[0]?.email)
                   }
-                  className="whitespace-nowrap w-full btn btn-sm text-sm text-white/80 justify-start bg-transparent hover:bg-septenary border-none rounded-none pl-4"
+                  className="whitespace-nowrap w-full btn btn-sm text-sm dark:text-white/80 justify-start bg-transparent hover:bg-septenary hover:text-white/80 border-none rounded-none pl-4 shadow-none"
                 >
                   Delete all history
                 </button>
@@ -179,78 +179,72 @@ const TransactionTable = ({
           className="border-none outline-none"
         >
           <Table
-            sx={{ minWidth: 650, color: "white" }}
+            sx={{ minWidth: 650 }}
             aria-label="simple table"
+            className="text-black dark:text-white"
           >
             <TableHead>
               <TableRow>
                 <TableCell
                   sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
                     fontWeight: "500",
                     fontSize: "17px",
                   }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
                 >
                   Action
                 </TableCell>
                 <TableCell
                   sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
                     fontWeight: "500",
                     fontSize: "17px",
                   }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
                 >
                   Amount
                 </TableCell>
                 <TableCell
                   sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
                     fontWeight: "500",
                     fontSize: "17px",
                   }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
                 >
                   Currency
                 </TableCell>
                 <TableCell
                   sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
                     fontWeight: "500",
                     fontSize: "17px",
                   }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
                 >
                   Date
                 </TableCell>
                 <TableCell
                   sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
                     fontWeight: "500",
                     fontSize: "17px",
                   }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
                 >
                   Time
                 </TableCell>
                 <TableCell
                   sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
                     fontWeight: "500",
                     fontSize: "17px",
                   }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
                 >
                   Status
                 </TableCell>
                 <TableCell
                   sx={{
-                    color: "white",
-                    borderBottom: "1px solid #2c3750",
                     fontWeight: "500",
                     fontSize: "17px",
                   }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
                 >
                   Delete
                 </TableCell>
@@ -262,16 +256,11 @@ const TransactionTable = ({
                   <TableCell
                     component="th"
                     scope="row"
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
+                    className="text-black dark:text-white dark:border-b-darkThree"
                   >
                     {row?.action}
                   </TableCell>
-                  <TableCell
-                    sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                  >
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     <span
                       className={
                         row.action === "Deposit"
@@ -282,25 +271,13 @@ const TransactionTable = ({
                       $ {row?.amount}
                     </span>
                   </TableCell>
-                  <TableCell
-                    sx={{ color: "white", borderBottom: "1px solid #2c3750" }}
-                  >
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     USD
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     {row?.date?.day}/{row?.date?.month}/{row?.date?.year}
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     {/* Time */}
                     <span>
                       {formatTime(row?.date?.hours || " ")}:
@@ -308,21 +285,10 @@ const TransactionTable = ({
                       {getAmPm(row?.date?.hours || " ")}
                     </span>
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                    }}
-                  >
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     Complete
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      color: "white",
-                      borderBottom: "1px solid #2c3750",
-                      borderTop: "1px solid #2c3750",
-                    }}
-                  >
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     <button
                       onClick={() => handleDelete(row?._id)}
                       className="btn btn-sm text-xl px-2 text-white/80 bg-[#ff5252] hover:bg-[#ff5252] border-none justify-start font-normal rounded"

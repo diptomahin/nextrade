@@ -118,12 +118,14 @@ const Banner = () => {
           </div>
         </div>
 
-        <Link href="/dashboard" className="flex justify-center">
-          <DarkButton className="bg-primary/90 hover:bg-primary text-white border-none px-8">
-            {" "}
-            Trade Now
-          </DarkButton>
-        </Link>
+        <div className="flex justify-center">
+          <Link href="/dashboard">
+            <DarkButton className="bg-primary/90 hover:bg-primary text-white border-none px-8">
+              {" "}
+              Trade Now
+            </DarkButton>
+          </Link>
+        </div>
 
         <div className="flex justify-between items-center gap-5 mt-24">
           <div className="flex gap-4 dark:bg-quaternary border dark:border-darkThree p-5 rounded-xl shadow">

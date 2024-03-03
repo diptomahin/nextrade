@@ -7,19 +7,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import logo from "../../../assets/logo/NexTrade-Logo-White.png";
 import logo2 from "../../../assets/logo/NexTrade_Favicon-White.png";
-import DarkButton from "@/components/library/Button";
+import Button from "@/components/library/Button";
 import { IoChevronBack } from "react-icons/io5";
 
-const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
+const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
   return (
-    <div
-      className={`${
-        isActive
-          ? "block transition-transform duration-700 ease-in-out"
-          : "hidden transition-transform duration-700 ease-in-out"
-      } fixed top-0 left-0 w-full h-screen bg-primary text-white z-[1000]`}
-    >
+    <div className="fixed top-0 left-0 w-full h-screen bg-primary text-white z-[1000]">
       <Container className="h-full">
         <div className="flex items-center justify-between gap-6 py-8">
           <div
@@ -47,16 +41,15 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
             />
           </Link>
           {user?.email && (
-            <div
+            <button
               onClick={() => {
                 logOut();
                 setIsActive(false);
               }}
+              className="btn btn-sm h-10 bg-white hover:bg-white text-primary rounded-md"
             >
-              <DarkButton className="bg-white/5 hover:bg-white/15 border-white hover:border-white text-white">
-                Logout
-              </DarkButton>
-            </div>
+              Logout
+            </button>
           )}
         </div>
 

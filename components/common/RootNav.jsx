@@ -127,12 +127,14 @@ export default function RootNav() {
       </FacebookProvider> */}
 
       {/* root drawer */}
-      <RootNavDrawer
-        setIsActive={setIsActive}
-        isActive={isActive}
-        user={user}
-        logOut={logOut}
-      />
+      {isActive && (
+        <RootNavDrawer
+          setIsActive={setIsActive}
+          isActive={isActive}
+          user={user}
+          logOut={logOut}
+        />
+      )}
     </>
   );
 }

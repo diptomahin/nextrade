@@ -180,7 +180,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="text-sm mt-5 text-white">
+    <form onSubmit={handleSubmit} className="text-sm mt-5 dark:text-white">
       {/* section one */}
       <div className="flex items-center justify-between gap-4 mb-5">
         {/* <div className="w-full flex flex-col">
@@ -206,7 +206,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           </label>
           <input
             onBlur={(e) => setAmount(e.target.value)}
-            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
+            className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
             type="text"
             name="amount"
             id=""
@@ -283,7 +283,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           <div className="font-medium">Postal Code</div>
           <input
             onChange={(e) => setPostalCode(e.target.value)}
-            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
+            className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
             type="text"
             name="postal_code"
             id=""
