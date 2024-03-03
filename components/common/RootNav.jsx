@@ -50,7 +50,7 @@ export default function RootNav() {
               onClick={() => {
                 setIsActive(!isActive);
               }}
-              className="btn btn-sm bg-transparent hover:bg-transparent  text-white px-0 border-none"
+              className="btn btn-sm bg-transparent hover:bg-transparent  dark:text-white px-0 border-none shadow-none"
             >
               <RiMenu5Fill className="text-3xl" />
             </button>
