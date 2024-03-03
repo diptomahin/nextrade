@@ -65,7 +65,7 @@ const WalletPage = () => {
         />
 
         {/* Transaction Report */}
-        <div className="w-full p-5 bg-tertiary text-white rounded-xl">
+        <div className="w-full p-5 bg-white dark:bg-tertiary dark:text-white rounded-xl shadow">
           <h1 className="text-xl text-center font-bold mb-7">
             Transaction Report
           </h1>

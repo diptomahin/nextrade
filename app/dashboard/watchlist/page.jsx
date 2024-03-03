@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import FeedbackForm from "@/components/traders_comp/feedback/FeedbackForm";
 import WatchlistCryptoTable from "@/components/traders_comp/watchlist/WatchlistCryptoTable";
 import WatchlistCurrencyTable from "@/components/traders_comp/watchlist/WatchlistCurrencyTable";
@@ -163,7 +163,7 @@ const Watchlist = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 p-5 font-semibold rounded-xl bg-tertiary">
+    <div className="flex flex-col gap-4 p-5 font-semibold rounded-xl bg-white dark:bg-tertiary shadow">
       <h1> All Coins Watchlist</h1>
 
       <Box className="w-full my-6">
@@ -176,8 +176,16 @@ const Watchlist = () => {
             }}
           >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
-              <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+              <Tab
+                className="text-black dark:text-white"
+                label="Crypto Coins"
+                value="1"
+              />
+              <Tab
+                className="text-black dark:text-white"
+                label="Flat Coins"
+                value="2"
+              />
             </TabList>
           </Box>
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">

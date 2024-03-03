@@ -14,7 +14,7 @@ import Select from "@mui/material/Select";
 
 // logo
 import bitLogo from "../../../assets/btc-logo.png";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useAuth from "@/hooks/useAuth";

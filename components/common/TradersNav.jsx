@@ -3,7 +3,6 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
 import UserMenu from "./nav_comp/UserMenu";
 import TradersNotification from "./nav_comp/TradersNotification/TradersNotification";
@@ -14,6 +13,7 @@ import useAuth from "@/hooks/useAuth";
 import { Autocomplete, InputAdornment, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import GoogleTranslate from "../../components/traders_comp/GoogleTranslate/GoogleTranslate";
+import ThemeMode from "../library/ThemeMode";
 
 const StyledInputBase = styled(TextField)(({ theme }) => ({
   color: "white",
@@ -104,9 +104,8 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
     { name: "Profile page", path: "/dashboard/profile" },
   ];
 
-
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const selectedOption = tradersSearchOptions.find(
       (option) => option.name === searchValue
     );
@@ -152,7 +151,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
     : "Dashboard";
 
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary border-b dark:border-darkThree px-5">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary px-5 shadow">
       <div className="flex items-center gap-5">
         <IconButton
           aria-label="open drawer"
@@ -164,9 +163,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             },
           }}
         >
-          <Magnetic>
-            <MenuIcon sx={{ color: "white" }} />
-          </Magnetic>
+          <MenuIcon sx={{ color: "white" }} />
         </IconButton>
 
         {/* dynamic tittle and date time */}
@@ -209,6 +206,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </form>
       </div>
       <div className="flex items-center gap-6">
+        <ThemeMode />
         {/* <Language /> */}
 
         {/* <Translate /> */}

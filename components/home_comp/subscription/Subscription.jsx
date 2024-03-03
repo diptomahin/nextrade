@@ -10,7 +10,7 @@ import { fadeIn } from "../../utils/variants";
 import Title from "@/components/library/Title";
 import Link from "next/link";
 import "./subscription.css";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 
 const Subscription = () => {
   return (

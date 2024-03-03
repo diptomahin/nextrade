@@ -13,9 +13,9 @@ const DepositWithdrawSection = ({
   const [isBuyOpen, setIsBuyOpen] = useState(true);
 
   return (
-    <div className="w-full p-5 bg-tertiary rounded-xl">
+    <div className="w-full p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex items-center justify-center">
-        <div className="relative sm:w-72 h-10 flex items-center bg-secondary rounded-xl">
+        <div className="relative sm:w-72 h-10 flex items-center text-black  bg-gray-100 dark:bg-secondary rounded-xl">
           <div
             className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
               isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -24,7 +24,7 @@ const DepositWithdrawSection = ({
           <button
             onClick={() => setIsBuyOpen(true)}
             className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
-              isBuyOpen ? "text-white" : "text-gray-300"
+              isBuyOpen ? "text-white" : "dark:text-gray-300"
             } duration-200 ease-in-out font-semibold text-sm z-10`}
           >
             Deposit
@@ -32,7 +32,7 @@ const DepositWithdrawSection = ({
           <button
             onClick={() => setIsBuyOpen(false)}
             className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
-              !isBuyOpen ? "text-white" : "text-gray-300"
+              !isBuyOpen ? "text-white" : "dark:text-gray-300"
             } duration-100 font-semibold text-sm z-10`}
           >
             Withdraw

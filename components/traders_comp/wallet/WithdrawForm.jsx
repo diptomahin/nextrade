@@ -8,7 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import toast from "react-hot-toast";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useNotificationData from "@/hooks/useNotificationData";
@@ -157,8 +157,7 @@ const WithdrawForm = ({
                 postedDate: date,
                 location: "/dashboard/wallet",
                 read: false,
-                type:'admin'
-
+                type: "admin",
               };
 
               // post to  notification data in database
@@ -166,8 +165,7 @@ const WithdrawForm = ({
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
-                    secureAPI
-                .post("/adminNotifications", notificationInfo)
+                    secureAPI.post("/adminNotifications", notificationInfo);
                     form.reset();
                     setAmount(0);
                     setPostalCode(0);
@@ -177,7 +175,7 @@ const WithdrawForm = ({
                     refetchUserData();
                     refetchSpecificTransactionsData();
                     refetchNotificationsData();
-                    adminRefetchNotificationsData()
+                    adminRefetchNotificationsData();
                     toast.success("Withdraw Successful", {
                       id: toastId,
                       duration: 5000,
@@ -194,7 +192,7 @@ const WithdrawForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="text-sm mt-5 text-white">
+    <form onSubmit={handleSubmit} className="text-sm mt-5 dark:text-white">
       {/* section one */}
       <div className="flex items-center justify-between gap-4 mb-5">
         {/* <div className="w-full flex flex-col">
@@ -220,7 +218,7 @@ const WithdrawForm = ({
           </label>
           <input
             onChange={(e) => setAmount(e.target.value)}
-            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
+            className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
             type="text"
             name="amount"
             id=""
@@ -297,7 +295,7 @@ const WithdrawForm = ({
           <div className="font-medium">Postal Code</div>
           <input
             onChange={(e) => setPostalCode(e.target.value)}
-            className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
+            className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded outline-none"
             type="text"
             name="postal_code"
             id=""

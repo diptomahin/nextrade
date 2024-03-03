@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import usePublicAPI from "@/hooks/usePublicAPI";
-import DarkButton from "../library/buttons/DarkButton";
+import DarkButton from "../library/Button";
 import getDate from "../utils/date";
 
 const SocialLogin = () => {

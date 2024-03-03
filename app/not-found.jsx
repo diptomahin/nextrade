@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import Button from "@/components/library/Button";
 
 const NotFound = () => {
   return (
@@ -12,7 +12,7 @@ const NotFound = () => {
         Sorry, This Page Doesn&apos;t Exist.
       </h1>
       <Link href="/">
-        <DarkButton className="text-center">BACK TO HOMEPAGE</DarkButton>
+        <Button className="text-center">BACK TO HOMEPAGE</Button>
       </Link>
     </div>
   );

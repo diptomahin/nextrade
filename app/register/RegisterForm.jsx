@@ -1,6 +1,6 @@
 "use client";
 import SocialLogin from "@/components/auth/SocialLogin";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import getDate from "@/components/utils/date";
 import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";

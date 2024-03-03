@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import Cookies from "js-cookie";
-import DarkButton from "../library/buttons/DarkButton";
+import DarkButton from "../library/Button";
 import { MdCancel } from "react-icons/md";
 
 const Modal = () => {
@@ -76,7 +76,10 @@ const Modal = () => {
                   <span className="font-normal text-lg text-gray-700">
                     Exclusive
                     <span className="text-black font-extrabold"> Black</span>
-                    <span className="text-red-600 font-extrabold"> Friday </span>
+                    <span className="text-red-600 font-extrabold">
+                      {" "}
+                      Friday{" "}
+                    </span>
                     Register Deals!
                   </span>
                 </Dialog.Title>
@@ -92,8 +95,8 @@ const Modal = () => {
                 <p className="text-gray-700 text-center">
                   Start your trading journey now! Register today to unlock a
                   special Black Friday offer: Get a 10% bonus on your first
-                  deposit. Don&apos;t miss out on this limited-time deal to boost
-                  your earnings!
+                  deposit. Don&apos;t miss out on this limited-time deal to
+                  boost your earnings!
                 </p>
                 <div className="flex justify-center mt-4 space-x-4">
                   <Link href="/register">

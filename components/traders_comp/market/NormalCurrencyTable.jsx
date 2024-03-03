@@ -9,8 +9,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import DashboardButton from "@/components/library/buttons/DashButton";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import Button from "@/components/library/Button";
 
 const NormalCurrencyTable = ({ assets }) => {
   return (
@@ -105,9 +104,9 @@ const NormalCurrencyTable = ({ assets }) => {
                 <p className={` dark:text-white`}>$ {asset.price}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <DarkButton className="font-medium normal-case h-8 2xl:text-sm bg-primary hover:bg-primary border-none text-white">
+                <Button className="font-medium normal-case h-8 2xl:text-sm bg-primary hover:bg-primary border-none text-white">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
-                </DarkButton>
+                </Button>
               </TableCell>
             </TableRow>
           ))}

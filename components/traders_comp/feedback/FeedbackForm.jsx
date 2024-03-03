@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import FeedbackForm from "./FeedbackForm";
 import Rating from "@mui/material/Rating";
 import TextField from "@mui/material/TextField";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import Swal from "sweetalert2";
 const style = {
   position: "absolute",
