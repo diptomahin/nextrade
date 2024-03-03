@@ -186,8 +186,8 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </div>
 
         {/* search  */}
-        {/* <form
-          className="flex items-center w-[120px] lg:w-[250px] relative"
+        <form
+          className="flex items-center w-40 lg:w-80 relative rounded-full bg-secondary"
           onSubmit={handleSearchSubmit}
         >
           <Autocomplete
@@ -216,7 +216,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
           <button type="submit" className="absolute right-2">
             <SearchIcon style={{ marginRight: "6px", color: "white" }} />
           </button>
-        </form> */}
+        </form>
       </div>
       <div className="flex items-center gap-6">
         {/* <Language /> */}

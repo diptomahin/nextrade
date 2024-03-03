@@ -11,6 +11,7 @@ import { RiMenu5Fill } from "react-icons/ri";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
 import useUserData from "@/hooks/useUserData";
 import useAuth from "@/hooks/useAuth";
+import ThemeMode from "../library/ThemeMode";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
@@ -43,17 +44,21 @@ export default function RootNav() {
         } z-50`}
       >
         <Container className="flex items-center justify-between">
-          <Magnetic>
-            <div
-              onClick={() => {
-                setIsActive(!isActive);
-              }}
-            >
-              <button className="btn btn-sm bg-transparent hover:bg-primary/20 w-12 h-12 rounded-full border-primary hover:border-primary text-primary p-1">
-                <RiMenu5Fill className="w-full h-full" />
-              </button>
-            </div>
-          </Magnetic>
+          <div className="flex items-center gap-10">
+            <Magnetic>
+              <div
+                onClick={() => {
+                  setIsActive(!isActive);
+                }}
+              >
+                <button className="btn btn-sm bg-transparent hover:bg-primary/20 w-10 h-10 rounded-full border-primary hover:border-primary text-primary p-1">
+                  <RiMenu5Fill className="w-full h-full" />
+                </button>
+              </div>
+            </Magnetic>
+            {/* dark/light mode*/}
+            <ThemeMode />
+          </div>
           <Magnetic>
             <Link href="/" className="hidden 2xl:block">
               {scrolled ? (
