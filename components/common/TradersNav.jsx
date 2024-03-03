@@ -104,19 +104,9 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
     { name: "Profile page", path: "/dashboard/profile" },
   ];
 
-  const handleInputChange = (e, newValue) => {
-    const getPathName = tradersSearchOptions.find(
-      (option) => option.name === newValue
-    )?.path;
-    setSearchValue(getPathName);
-    console.log("Search submitted:", searchValue);
-    if (searchValue) {
-      router.push(searchValue);
-    }
-  };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault(); 
     const selectedOption = tradersSearchOptions.find(
       (option) => option.name === searchValue
     );
@@ -186,7 +176,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </div>
 
         {/* search  */}
-        {/* <form
+        <form
           className="flex items-center w-[120px] lg:w-[250px] relative"
           onSubmit={handleSearchSubmit}
         >
@@ -216,7 +206,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
           <button type="submit" className="absolute right-2">
             <SearchIcon style={{ marginRight: "6px", color: "white" }} />
           </button>
-        </form> */}
+        </form>
       </div>
       <div className="flex items-center gap-6">
         {/* <Language /> */}

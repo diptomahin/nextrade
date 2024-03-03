@@ -223,8 +223,8 @@ const CryptoDetails = ({
       });
   };
   return (
-    <div className="flex flex-col 2xl:flex-row gap-7">
-      <div className="w-full 2xl:w-3/4 flex flex-col gap-7">
+    <div className="flex flex-col 2xl:flex-row gap-5">
+      <div className="w-full 2xl:w-3/4 flex flex-col gap-5">
         {tickerData ? (
           <TopBanner
             tickerData={tickerData}
@@ -239,7 +239,8 @@ const CryptoDetails = ({
           />
         )}
 
-        <div className=" h-64 lg:h-96  3xl:h-[65vh]  ">
+        <div className=" h-64 lg:h-96  3xl:h-[65vh] rounded-xl">
+          <h1 className="font-semibold mb-3">{coinKey.slice(0, -4)} to USDT Chart</h1>
           <AdvancedRealTimeChart
             width="100%"
             height="100%"
