@@ -10,7 +10,7 @@ const TopBannerNormalCurrency = ({
   coinImage,
 }) => {
   return (
-    <div className="bg-tertiary rounded-xl p-5 w-full">
+    <div className="bg-white dark:bg-tertiary rounded-xl p-5 w-full">
       <h1 className="text-xl font-semibold">Market Stats</h1>
       <div className="  flex flex-col md:flex-row 2xl:items-center 2xl:justify-between gap-6 2xl:gap-0  rounded-lg my-6">
         <div className=" flex items-center gap-2 md:gap-5">
@@ -20,11 +20,11 @@ const TopBannerNormalCurrency = ({
           <div className="flex gap-5 items-center">
             <h3 className="text-lg font-semibold">
               {currencyName}{" "}
-              <span className="bg-sky-100/15 px-1 py-[2px] rounded text-primary text-xs">
+              <span className="bg-primary/35 dark:bg-sky-100/15 px-1 py-[2px] rounded text-black dark:text-primary text-xs">
                 {coinKey}
               </span>
             </h3>
-            <div className="rounded p-1 bg-sky-100/15">
+            <div className="rounded p-1 bg-primary/35 dark:bg-sky-100/15">
               <StarIcon className="text-primary " />
             </div>
           </div>

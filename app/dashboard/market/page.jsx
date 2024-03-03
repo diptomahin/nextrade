@@ -20,7 +20,7 @@ const MarketPage = () => {
             Choose from a wide range of trade options with hundreds of different
             instruments available.
           </p>
-          <div className="bg-tertiary p-3 rounded-xl my-6">
+          <div className="bg-white dark:bg-tertiary p-3 rounded-xl my-6">
             <MarketHeadLine></MarketHeadLine>
           </div>
           <MarketAllProducts />

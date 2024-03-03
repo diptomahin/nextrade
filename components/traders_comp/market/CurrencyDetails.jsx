@@ -23,10 +23,10 @@ import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 // customized TextField
 const CssTextField = styled(TextField)({
   "& label": {
-    color: "#E0E3E7",
+    color: "#40a0ff",
   },
   "& input": {
-    color: "#E0E3E7", // Text color for the input
+    color: "#71717a", // Text color for the input
   },
   "& label.Mui-focused": {
     color: "#40a0ff",
@@ -244,7 +244,7 @@ const CurrencyDetails = ({
             interval={20}
             range="1M"
             timezone="UTC"
-            theme="dark"
+            theme={localStorage.getItem("theme")}
             style={2}
             locale="en"
             toolbar_bg="#f1f3f6"
@@ -266,7 +266,7 @@ const CurrencyDetails = ({
 
       <div className="flex-1 flex flex-col gap-5 w-full">
         {currencyRate ? (
-          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-tertiary">
+          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-white dark:bg-tertiary">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
               <button
@@ -312,7 +312,7 @@ const CurrencyDetails = ({
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <p className="text-white">$</p>
+                    <p className="text-zinc-500">$</p>
                   </InputAdornment>
                 ),
               }}
