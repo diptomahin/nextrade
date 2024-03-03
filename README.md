@@ -13,7 +13,7 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 ## NexTrade Homepage
 
-![Home Page of NexTrade](/assets//NexTrade%20Mocup.png)
+![Home Page of NexTrade](https://i.postimg.cc/Z5v2wYKy/Screenshot.png)
 
 ## Key Features
 
@@ -67,12 +67,12 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 - Implementing the Google translation feature and integrating Live Cryptocurrency APIs were among the toughest hurdles in this project. Ensuring our trading platform caters to international users necessitated the implementation of the Google Translate Widget, offering support for over 136 languages. This task posed a notable challenge due to the need for our website to be accessible in multiple languages worldwide.
 
 ## Contributor
-- Md. Nuruzzaman (@mdnuruzzamannirob)
-- Md. Saimur Rahaman (@nkzawa)
-- MD Tajul Islam (@rauchg)
-- Ariful Islam (@arunoda)
-- Julfiker Ali (@tonykovanen)
-- Mahin Ahmed Dipta (@impronunciable)
+- [Md. Nuruzzama](https://github.com/mdnuruzzamannirob)
+- [Md. Saimur Rahaman](https://github.com/srssieam)
+- [MD Tajul Islam](https://github.com/mdtajulislammt)
+- [Ariful Islam](https://github.com/hellomrariful)
+- [Julfiker Ali](https://github.com/jasaiful)
+- [Mahin Ahmed Dipta](https://github.com/diptomahin)
 
 ## How to Run Locally
 1. Clone the repository.
