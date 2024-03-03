@@ -30,8 +30,8 @@ const Transactions = () => {
   }
 
   return (
-    <div className="xl:col-span-6 3xl:col-span-4 w-full bg-tertiary p-5 rounded-xl">
-      <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree mb-5">
+    <div className="xl:col-span-6 3xl:col-span-4 w-full bg-white dark:bg-tertiary p-5 rounded-xl">
+      <div className="flex items-center justify-between  border-b pb-2 dark:border-b-darkThree mb-5">
         <h3 className="text-xl font-semibold">Recent Transactions</h3>
         <Link
           href="/dashboard/market"
@@ -60,9 +60,9 @@ const Transactions = () => {
                     paddingX: "0px",
                     paddingY: "10px",
                     fontWeight: 500,
-                    color: "white",
                     border: "none",
                   }}
+                  className="text-black dark:text-white"
                 >
                   Action
                 </TableCell>
@@ -72,9 +72,9 @@ const Transactions = () => {
                     paddingX: "0px",
                     paddingY: "10px",
                     fontWeight: 500,
-                    color: "white",
                     border: "none",
                   }}
+                  className="text-black dark:text-white"
                 >
                   Amount
                 </TableCell>
@@ -84,9 +84,9 @@ const Transactions = () => {
                     paddingX: "0px",
                     paddingY: "10px",
                     fontWeight: 500,
-                    color: "white",
                     border: "none",
                   }}
+                  className="text-black dark:text-white"
                 >
                   Date
                 </TableCell>
@@ -98,12 +98,14 @@ const Transactions = () => {
                   <TableCell
                     component="th"
                     scope="row"
-                    sx={{ border: "none", paddingX: "0px", color: "white" }}
+                    sx={{ border: "none", paddingX: "0px" }}
+                    className="text-black dark:text-white"
                   >
                     {row?.action}
                   </TableCell>
                   <TableCell
-                    sx={{ border: "none", paddingX: "0px", color: "white" }}
+                    sx={{ border: "none", paddingX: "0px" }}
+                    className="text-black dark:text-white"
                   >
                     <span
                       className={
@@ -116,7 +118,8 @@ const Transactions = () => {
                     </span>
                   </TableCell>
                   <TableCell
-                    sx={{ border: "none", paddingX: "0px", color: "white" }}
+                    sx={{ border: "none", paddingX: "0px" }}
+                    className="text-black dark:text-white"
                   >
                     {row?.date?.day}/{row?.date?.month}/{row?.date?.year}
                   </TableCell>

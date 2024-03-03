@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className="font-montserrat dark:bg-quaternary"
+        className="font-montserrat bg-zinc-100 text-black dark:bg-quaternary dark:text-zinc-100"
         suppressHydrationWarning={true}
       >
         <AuthProvider>

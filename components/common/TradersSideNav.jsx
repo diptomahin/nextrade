@@ -6,11 +6,12 @@ import SideNavLinks from "./nav_comp/SideNavLinks";
 import Link from "next/link";
 import Magnetic from "@/components/library/Magnetic";
 import { usePathname } from "next/navigation";
+import ThemeMode from "../library/ThemeMode";
 
 const TradersDashboardSidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="h-full w-full bg-[#21212f] flex flex-col gap-3 py-3 border-t border-dashed border-darkThree">
+    <div className="relative h-full w-full bg-[#21212f] flex flex-col gap-3 py-3 border-t border-dashed border-darkThree">
       <div className="flex items-center justify-center mb-3">
         <Magnetic>
           <div className="">
@@ -26,6 +27,9 @@ const TradersDashboardSidebar = () => {
         </Magnetic>
       </div>
       <SideNavLinks pathname={pathname} />
+      <div className="absolute left-0 bottom-0 w-full flex items-center justify-center h-20">
+        <ThemeMode />
+      </div>
     </div>
   );
 };

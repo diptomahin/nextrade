@@ -139,7 +139,7 @@ const TopAssets = () => {
         </Link>
       </div>
 
-      <div className="relative sm:w-72 h-10 flex items-center bg-tertiary rounded-xl mt-5">
+      <div className="relative sm:w-72 h-10 flex items-center bg-white dark:bg-tertiary rounded-xl mt-5">
         <div
           className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
             isBuyOpen ? "translate-x-0" : "translate-x-full"

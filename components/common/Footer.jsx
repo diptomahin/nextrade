@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../assets/logo/NexTrade-Logo-White.png";
 import Container from "@/components/library/Container";
-import { usePathname } from "next/navigation";
 import {
   FaAmazonPay,
   FaDiscord,
@@ -16,17 +15,8 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
-  const router = usePathname();
   return (
-    <footer
-      className={`bg-quaternary border border-darkThree text-darkGray ${
-        router === "/register" ||
-        router === "/login" ||
-        router.includes("/dashboard")
-          ? "hidden"
-          : "block"
-      }`}
-    >
+    <footer className="bg-quaternary text-zinc-200">
       <Container className="grid grid-cols-1 md:grid-cols-2  3xl:grid-cols-6  justify-between gap-10 py-10">
         <div className="md:col-span-2  3xl:col-span-2 flex flex-col gap-3">
           <Link href={"/"}>

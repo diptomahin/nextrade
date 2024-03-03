@@ -14,7 +14,6 @@ import {
 import * as MuiIcons from "@mui/icons-material";
 import Link from "next/link";
 import axios from "axios";
-import DarkButton from "@/components/library/buttons/DarkButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 
@@ -153,8 +152,8 @@ const SidePortfolio = () => {
   };
 
   return (
-    <div className="w-full h-full bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
-      <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
+    <div className="w-full h-full bg-white dark:bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
+      <div className="flex items-center justify-between  border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">Recently Added</h3>
         <Link
           href="/dashboard/portfolio"
@@ -181,9 +180,9 @@ const SidePortfolio = () => {
                     paddingX: "0px",
                     paddingY: "5px",
                     fontWeight: 500,
-                    color: "white",
                     border: "none",
                   }}
+                  className="text-black dark:text-white"
                 >
                   Coin Name
                 </TableCell>
@@ -193,9 +192,9 @@ const SidePortfolio = () => {
                     paddingX: "0px",
                     paddingY: "5px",
                     fontWeight: 500,
-                    color: "white",
                     border: "none",
                   }}
+                  className="text-black dark:text-white"
                 >
                   Investment
                 </TableCell>
@@ -205,9 +204,9 @@ const SidePortfolio = () => {
                     paddingX: "0px",
                     paddingY: "5px",
                     fontWeight: 500,
-                    color: "white",
                     border: "none",
                   }}
+                  className="text-black dark:text-white"
                 >
                   Profit / Loss
                 </TableCell>
@@ -225,12 +224,14 @@ const SidePortfolio = () => {
                         src={asset.assetImg}
                         alt="coin-icon"
                       />
-                      <p className={`text-xs text-white`}>{asset.assetName}</p>
+                      <p className={`text-xs dark:text-white`}>
+                        {asset.assetName}
+                      </p>
                     </div>
                   </TableCell>
 
                   <TableCell sx={{ border: "none", paddingX: "0px" }}>
-                    <h2 className="font-medium text-xs text-white">
+                    <h2 className="font-medium text-xs dark:text-white">
                       ${parseFloat(asset.totalInvestment).toFixed(2)}
                     </h2>
                   </TableCell>

@@ -131,8 +131,8 @@ const SideWatchlist = () => {
   }, [flatCurrency]);
 
   return (
-    <div className="w-full h-full bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
-      <div className="flex items-center justify-between  border-b pb-2 border-b-darkThree">
+    <div className="w-full h-full bg-white dark:bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
+      <div className="flex items-center justify-between  border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">Watchlist</h3>
         <Link
           href="/dashboard/watchlist"
@@ -141,7 +141,7 @@ const SideWatchlist = () => {
           See all watchlist
         </Link>
       </div>
-      <div className="relative sm:w-72 h-10 flex items-center bg-secondary rounded-xl">
+      <div className="relative sm:w-72 h-10 flex items-center bg-zinc-100 dark:bg-secondary rounded-xl">
         <div
           className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
             isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -185,9 +185,9 @@ const SideWatchlist = () => {
                         paddingX: "0px",
                         paddingY: "5px",
                         fontWeight: 500,
-                        color: "white",
                         border: "none",
                       }}
+                      className="text-black dark:text-white"
                     >
                       Coin Name
                     </TableCell>
@@ -197,9 +197,9 @@ const SideWatchlist = () => {
                         paddingX: "0px",
                         paddingY: "5px",
                         fontWeight: 500,
-                        color: "white",
                         border: "none",
                       }}
+                      className="text-black dark:text-white"
                     >
                       Current Price
                     </TableCell>
@@ -209,9 +209,9 @@ const SideWatchlist = () => {
                         paddingX: "0px",
                         paddingY: "5px",
                         fontWeight: 500,
-                        color: "white",
                         border: "none",
                       }}
+                      className="text-black dark:text-white"
                     >
                       24%
                     </TableCell>
@@ -233,11 +233,15 @@ const SideWatchlist = () => {
                             src={asset.icon}
                             alt="coin-icon"
                           />
-                          <p className={`text-xs text-white`}>{asset.name}</p>
+                          <p className={`text-xs dark:text-white`}>
+                            {asset.name}
+                          </p>
                         </div>
                       </TableCell>
                       <TableCell sx={{ border: "none", paddingX: "0px" }}>
-                        <p className={` text-xs text-white`}>${asset.price}</p>
+                        <p className={` text-xs dark:text-white`}>
+                          ${asset.price}
+                        </p>
                       </TableCell>
                       <TableCell sx={{ border: "none", paddingX: "0px" }}>
                         <p

@@ -11,7 +11,7 @@ const Title = ({ children, className }) => {
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
       className={cn(
-        "text-3xl md:text-4xl text-center font-semibold text-zinc-100 pt-16 pb-5",
+        "text-3xl md:text-4xl text-center font-semibold text-black dark:text-zinc-100 pt-16 pb-5",
         className
       )}
     >
