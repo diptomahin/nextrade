@@ -18,6 +18,7 @@ import PortfolioAssetBox from "@/components/traders_comp/portfolio/PortfolioAsse
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import PortfolioSellHistory from "@/components/traders_comp/portfolio/PortfolioSellHistory";
 
 const Portfolio = () => {
   const { user } = useAuth();
@@ -505,6 +506,8 @@ const Portfolio = () => {
             </div>
           )}
         </div>
+        {/* sell history */}
+        <PortfolioSellHistory/>
       </div>
     </div>
   );
