@@ -14,9 +14,11 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-screen bg-primary text-white transition-transform transform  ${
-        isActive ? "translate-y-0" : "-translate-y-full"
-      } duration-700 ease-in-out z-[1000]`}
+      className={`${
+        isActive
+          ? "block transition-transform duration-700 ease-in-out"
+          : "hidden transition-transform duration-700 ease-in-out"
+      } fixed top-0 left-0 w-full h-screen bg-primary text-white z-[1000]`}
     >
       <Container className="h-full">
         <div className="flex items-center justify-between gap-6 py-8">
@@ -26,8 +28,8 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
               setActiveTab("");
             }}
           >
-            <button className="btn rounded-full bg-transparent hover:bg-transparent border-white hover:border-white text-white  px-2">
-              <GrClose className="text-3xl" />
+            <button className="btn btn-sm bg-transparent hover:bg-transparent  text-white px-1 border-none">
+              <GrClose className="text-2xl" />
             </button>
           </div>
           <Link href="/" className="hidden 2xl:block">

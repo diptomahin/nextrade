@@ -36,7 +36,7 @@ const SideHistory = () => {
     return;
   }
   return (
-    <div className="w-full h-full flex flex-col gap-8 bg-white dark:bg-tertiary p-5 rounded-xl">
+    <div className="w-full h-full flex flex-col gap-8 bg-white dark:bg-tertiary p-5 rounded-xl shadow">
       <div className="flex items-center justify-between border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">History</h3>
         <Link

@@ -1,23 +1,19 @@
 "use client";
 
-import React from "react";
-import { useState,  useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // material imports
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import styled from "@emotion/styled";
-import Box from '@mui/material/Box';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Box from "@mui/material/Box";
 //other imports
 import useAuth from "@/hooks/useAuth";
-
-import DashboardButton from "@/components/library/buttons/DashButton";
 import useSecureFetch from "@/hooks/useSecureFetch";
 
 //components
-import TradingGraph from "@/components/traders_comp/trading/TradingGraph"
+import TradingGraph from "@/components/traders_comp/trading/TradingGraph";
 import TradingSidebar from "@/components/traders_comp/trading/TradingSidebar";
 
 const Trading = () => {
@@ -29,27 +25,125 @@ const Trading = () => {
     isLoading,
     refetch,
   } = useSecureFetch(`/all-users/${user.email}`, ["all-users"]);
-  const trader = allUsers[0] ;
+  const trader = allUsers[0];
 
-  const createData = (name, key, price, icon, changePrice, heighPrice, lowPrice) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
+  const createData = (
+    name,
+    key,
+    price,
+    icon,
+    changePrice,
+    heighPrice,
+    lowPrice
+  ) => ({ name, key, price, icon, changePrice, heighPrice, lowPrice });
 
   const [assets, setAssets] = useState([
-    createData("Bitcoin", "BTCUSDT", 0, "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", 0, 0, 0),
-    createData("Ethereum", "ETHUSDT", 0, "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628", 0, 0, 0),
-    createData("LiteCoin", "LTCUSDT", 0, "https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580", 0, 0, 0),
-    createData("QTUM coin", "QTUMUSDT", 0, "https://assets.coingecko.com/coins/images/684/large/Qtum_Logo_blue_CG.png?1696501874", 0, 0, 0),
-    createData("DOGE coin", "DOGEUSDT", 0, "https://assets.coingecko.com/coins/images/5/large/dogecoin.png?1547792256", 0, 0, 0),
-    createData("Ripple coin", "XRPUSDT", 0, "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1605778731", 0, 0, 0),
-    createData("Bitcoin cash", "BCHUSDT", 0, "https://assets.coingecko.com/coins/images/780/large/bitcoin-cash-circle.png?1696501932", 0, 0, 0),
-    createData("Cardano", "ADAUSDT", 0, "https://assets.coingecko.com/coins/images/975/large/cardano.png?1547034860", 0, 0, 0),
-    createData("Polkadot", "DOTUSDT", 0, "https://assets.coingecko.com/coins/images/12171/large/polkadot.png?1696512008", 0, 0, 0),
-    createData("Binance Coin", "BNBUSDT", 0, "https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png?1547034615", 0, 0, 0),
-    createData("Polygon", "MATICUSDT", 0, "https://assets.coingecko.com/coins/images/4713/large/polygon.png?1698233745", 0, 0, 0),
+    createData(
+      "Bitcoin",
+      "BTCUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "Ethereum",
+      "ETHUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "LiteCoin",
+      "LTCUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "QTUM coin",
+      "QTUMUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/684/large/Qtum_Logo_blue_CG.png?1696501874",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "DOGE coin",
+      "DOGEUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/5/large/dogecoin.png?1547792256",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "Ripple coin",
+      "XRPUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1605778731",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "Bitcoin cash",
+      "BCHUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/780/large/bitcoin-cash-circle.png?1696501932",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "Cardano",
+      "ADAUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/975/large/cardano.png?1547034860",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "Polkadot",
+      "DOTUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/12171/large/polkadot.png?1696512008",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "Binance Coin",
+      "BNBUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png?1547034615",
+      0,
+      0,
+      0
+    ),
+    createData(
+      "Polygon",
+      "MATICUSDT",
+      0,
+      "https://assets.coingecko.com/coins/images/4713/large/polygon.png?1698233745",
+      0,
+      0,
+      0
+    ),
     // Add more assets similarly
   ]);
 
   useEffect(() => {
-    const socket = new WebSocket("wss://stream.binance.com:9443/ws/!ticker@arr");
+    const socket = new WebSocket(
+      "wss://stream.binance.com:9443/ws/!ticker@arr"
+    );
 
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
@@ -74,17 +168,11 @@ const Trading = () => {
     return () => socket.close();
   }, [assets]);
 
-
- 
-  
-  
-  const [value, setValue] = React.useState(``);
+  const [value, setValue] = useState(``);
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-
-
 
   //handle loading
   if (loading || isLoading || isPending) {
@@ -98,38 +186,47 @@ const Trading = () => {
   return (
     <div>
       <div className="w-1/2">
-      <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" className="border-primary"><span className="text-primary">Select Crypto</span></InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          sx={{
-            border: "1px solid blue",
-            color: "#fff",
-            "& .MuiSvgIcon-root": {
-                color: "white",
-            },
-            }}
-          value={value}
-          label="value"
-          onChange={handleChange}
-        >
-             {
-              assets.map(coin => <MenuItem key={coin.name} value={coin.key}>{coin.name}</MenuItem>
-              )
-            }
-        </Select>
-      </FormControl>
-    </Box>
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel
+              id="demo-simple-select-label"
+              className="border-primary"
+            >
+              <span className="text-primary">Select Crypto</span>
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              sx={{
+                border: "1px solid blue",
+                color: "#fff",
+                "& .MuiSvgIcon-root": {
+                  color: "white",
+                },
+              }}
+              value={value}
+              label="value"
+              onChange={handleChange}
+            >
+              {assets.map((coin) => (
+                <MenuItem key={coin.name} value={coin.key}>
+                  {coin.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
       </div>
       <div className="mt-10 flex flex-col gap-2  md:flex-row md:gap-3">
-      <TradingGraph value={value} assets={assets} ></TradingGraph>
-      <TradingSidebar value={value} assets={assets} trader={trader}></TradingSidebar>
+        <TradingGraph value={value} assets={assets}></TradingGraph>
+        <TradingSidebar
+          value={value}
+          assets={assets}
+          trader={trader}
+        ></TradingSidebar>
       </div>
     </div>
   );
-}
-
+};
 
 export default Trading;

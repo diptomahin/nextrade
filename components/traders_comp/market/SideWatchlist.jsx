@@ -131,7 +131,7 @@ const SideWatchlist = () => {
   }, [flatCurrency]);
 
   return (
-    <div className="w-full h-full bg-white dark:bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl">
+    <div className="w-full h-full bg-white dark:bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl shadow">
       <div className="flex items-center justify-between  border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">Watchlist</h3>
         <Link
