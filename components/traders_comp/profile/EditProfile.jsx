@@ -1,4 +1,4 @@
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";

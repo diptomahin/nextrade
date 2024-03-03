@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import {
   Button,
   Paper,

@@ -1,5 +1,5 @@
 import Container from "@/components/library/Container.jsx";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 
 const NewsLatter = () => {
   return (

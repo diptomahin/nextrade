@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import DashboardButton from "@/components/library/buttons/DashButton";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 
 const NormalCurrencyTable = ({ assets }) => {
   return (

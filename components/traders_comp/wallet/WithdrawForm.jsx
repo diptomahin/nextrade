@@ -8,7 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import toast from "react-hot-toast";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useNotificationData from "@/hooks/useNotificationData";
@@ -157,8 +157,7 @@ const WithdrawForm = ({
                 postedDate: date,
                 location: "/dashboard/wallet",
                 read: false,
-                type:'admin'
-
+                type: "admin",
               };
 
               // post to  notification data in database
@@ -166,8 +165,7 @@ const WithdrawForm = ({
                 .post("/notifications", notificationInfo)
                 .then((res) => {
                   if (res.data.insertedId) {
-                    secureAPI
-                .post("/adminNotifications", notificationInfo)
+                    secureAPI.post("/adminNotifications", notificationInfo);
                     form.reset();
                     setAmount(0);
                     setPostalCode(0);
@@ -177,7 +175,7 @@ const WithdrawForm = ({
                     refetchUserData();
                     refetchSpecificTransactionsData();
                     refetchNotificationsData();
-                    adminRefetchNotificationsData()
+                    adminRefetchNotificationsData();
                     toast.success("Withdraw Successful", {
                       id: toastId,
                       duration: 5000,

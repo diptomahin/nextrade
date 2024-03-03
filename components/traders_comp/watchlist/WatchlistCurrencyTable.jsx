@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 
 const WatchlistCurrencyTable = ({ assets, handleDelete }) => {
   return (

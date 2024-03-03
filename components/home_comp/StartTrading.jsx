@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/variants";
 import Link from "next/link";
 import Title from "@/components/library/Title";
-import DarkButton from "../library/buttons/DarkButton";
+import DarkButton from "../library/Button";
 
 const StartTrading = () => {
   return (

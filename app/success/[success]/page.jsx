@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import axios from "axios";
 import Link from "next/link";

@@ -5,8 +5,6 @@ import { MdModeNight } from "react-icons/md";
 const ThemeMode = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") === "dark");
 
-  // const [showThemeTooltip, setShowThemeTooltip] = useState(false);
-
   useEffect(() => {
     if (theme) {
       document.documentElement.classList.remove("light");

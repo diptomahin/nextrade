@@ -8,7 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import toast from "react-hot-toast";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import getDate from "../../utils/date";

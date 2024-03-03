@@ -12,7 +12,7 @@ import Link from "next/link";
 import React from "react";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 
 const MarketTable = ({ assets }) => {
   return (

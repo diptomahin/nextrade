@@ -3,7 +3,6 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
 import UserMenu from "./nav_comp/UserMenu";
 import TradersNotification from "./nav_comp/TradersNotification/TradersNotification";
@@ -104,9 +103,8 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
     { name: "Profile page", path: "/dashboard/profile" },
   ];
 
-
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const selectedOption = tradersSearchOptions.find(
       (option) => option.name === searchValue
     );
@@ -164,9 +162,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             },
           }}
         >
-          <Magnetic>
-            <MenuIcon sx={{ color: "white" }} />
-          </Magnetic>
+          <MenuIcon sx={{ color: "white" }} />
         </IconButton>
 
         {/* dynamic tittle and date time */}

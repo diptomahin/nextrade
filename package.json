@@ -22,10 +22,8 @@
     "@stripe/stripe-js": "^2.4.0",
     "@tanstack/react-query": "^5.17.19",
     "axios": "^1.6.7",
-    "clsx": "^2.1.0",
     "firebase": "^10.7.2",
     "framer-motion": "^11.0.2",
-    "gsap": "^3.12.5",
     "js-cookie": "^3.0.5",
     "moment": "^2.30.1",
     "next": "^14.1.0",
@@ -44,8 +42,6 @@
     "recharts": "^2.12.0",
     "sweetalert2": "^11.6.13",
     "swiper": "^11.0.6",
-    "tailwind-merge": "^2.2.0",
-    "typewriter-effect": "^2.21.0",
     "ws": "^8.16.0"
   },
   "devDependencies": {

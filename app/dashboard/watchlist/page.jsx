@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import FeedbackForm from "@/components/traders_comp/feedback/FeedbackForm";
 import WatchlistCryptoTable from "@/components/traders_comp/watchlist/WatchlistCryptoTable";
 import WatchlistCurrencyTable from "@/components/traders_comp/watchlist/WatchlistCurrencyTable";

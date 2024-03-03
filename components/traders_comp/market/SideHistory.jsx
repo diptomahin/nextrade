@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import Image from "next/image";
 import Link from "next/link";

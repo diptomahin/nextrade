@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { MdEditSquare } from "react-icons/md";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import EditProfile from "./EditProfile";
 
 const MyProfile = ({ refetchUserData, userData }) => {

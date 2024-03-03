@@ -2,13 +2,12 @@ import Link from "next/link";
 import { fadeIn } from "../../utils/variants";
 import { GrClose } from "react-icons/gr";
 import Container from "@/components/library/Container";
-import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import logo from "../../../assets/logo/NexTrade-Logo-White.png";
 import logo2 from "../../../assets/logo/NexTrade_Favicon-White.png";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import { IoChevronBack } from "react-icons/io5";
 
 const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
@@ -21,49 +20,41 @@ const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
     >
       <Container className="h-full">
         <div className="flex items-center justify-between gap-6 py-8">
-          <Magnetic>
+          <div
+            onClick={() => {
+              setIsActive(false);
+              setActiveTab("");
+            }}
+          >
+            <button className="btn btn-sm w-10 h-10 rounded-full bg-transparent hover:bg-transparent border-white hover:border-white text-white  p-2">
+              <GrClose className="w-full h-full" />
+            </button>
+          </div>
+          <Link href="/" className="hidden 2xl:block">
+            <Image
+              src={logo}
+              alt="Logo"
+              style={{ width: "144px", height: "160" }}
+            />
+          </Link>
+          <Link href="/" className="hidden md:block 2xl:hidden">
+            <Image
+              src={logo2}
+              alt="Logo"
+              style={{ width: "50px", height: "auto" }}
+            />
+          </Link>
+          {user?.email && (
             <div
               onClick={() => {
+                logOut();
                 setIsActive(false);
-                setActiveTab("");
               }}
             >
-              <button className="btn btn-sm w-10 h-10 rounded-full bg-transparent hover:bg-transparent border-white hover:border-white text-white  p-2">
-                <GrClose className="w-full h-full" />
-              </button>
+              <DarkButton className="bg-white/5 hover:bg-white/15 border-white hover:border-white text-white">
+                Logout
+              </DarkButton>
             </div>
-          </Magnetic>
-          <Magnetic>
-            <Link href="/" className="hidden 2xl:block">
-              <Image
-                src={logo}
-                alt="Logo"
-                style={{ width: "144px", height: "160" }}
-              />
-            </Link>
-          </Magnetic>
-          <Magnetic>
-            <Link href="/" className="hidden md:block 2xl:hidden">
-              <Image
-                src={logo2}
-                alt="Logo"
-                style={{ width: "50px", height: "auto" }}
-              />
-            </Link>
-          </Magnetic>
-          {user?.email && (
-            <Magnetic>
-              <div
-                onClick={() => {
-                  logOut();
-                  setIsActive(false);
-                }}
-              >
-                <DarkButton className="bg-white/5 hover:bg-white/15 border-white hover:border-white text-white">
-                  Logout
-                </DarkButton>
-              </div>
-            </Magnetic>
           )}
         </div>
 
