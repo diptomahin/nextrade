@@ -180,7 +180,7 @@ const TradersNotification = () => {
       {/* Button to toggle notification display */}
       <button
         onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-        className={`flex items-center text-white hover:bg-white/10 active:bg-white/20 rounded-full p-2 ${
+        className={`flex items-center text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/10 active:bg-Black/20 dark:active:bg-white/20 rounded-full p-2 ${
           isNotificationOpen && "text-primary"
         }`}
       >

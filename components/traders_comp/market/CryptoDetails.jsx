@@ -17,7 +17,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import styled from "@emotion/styled";
 import useNotificationData from "@/hooks/useNotificationData";
 import getDate from "../../utils/date";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import SideHistory from "./SideHistory";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
@@ -240,7 +240,9 @@ const CryptoDetails = ({
         )}
 
         <div className=" h-64 lg:h-96  3xl:h-[65vh] rounded-xl">
-          <h1 className="font-semibold mb-3">{coinKey.slice(0, -4)} to USDT Chart</h1>
+          <h1 className="font-semibold mb-3">
+            {coinKey.slice(0, -4)} to USDT Chart
+          </h1>
           <AdvancedRealTimeChart
             width="100%"
             height="100%"

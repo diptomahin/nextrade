@@ -4,15 +4,13 @@ import "react-tabs/style/react-tabs.css";
 import "./profile.css";
 import { FaUserCircle } from "react-icons/fa";
 import { CiLock, CiUser } from "react-icons/ci";
-import { PiCurrencyDollarThin, PiCardholderThin } from "react-icons/pi";
+// import { PiCurrencyDollarThin, PiCardholderThin } from "react-icons/pi";
 import { MdArrowBackIosNew } from "react-icons/md";
 import Image from "next/image";
 import { useState } from "react";
 import useUserData from "@/hooks/useUserData";
 import MyProfile from "@/components/traders_comp/profile/MyProfile";
-import Currencies from "@/components/traders_comp/profile/Currencies/Currencies";
 import Security from "@/components/traders_comp/profile/Security";
-import Payments from "@/components/traders_comp/profile/Payments";
 
 const Profile = () => {
   const [isActiveProfile, setIsActiveProfile] = useState(false);
@@ -29,7 +27,7 @@ const Profile = () => {
     return;
   }
   return (
-    <Tabs className="relative bg-secondary">
+    <Tabs className="relative dark:bg-secondary">
       {/* toggle menu button one */}
       <button
         onClick={() => setIsActiveProfile(!isActiveProfile)}
@@ -37,7 +35,7 @@ const Profile = () => {
           isActiveProfile
             ? "-left-1 sm:left-0 2xl:left-[64px]  3xl:left-[282px]"
             : "left-[230px] sm:left-[258px]  3xl:left-[474px]"
-        } btn btn-sm h-9 px-[10px] bg-transparent hover:bg-white/5 active:bg-white/20 border-none shadow-none text-white rounded-full z-20 transition-all duration-300 ease-in-out`}
+        } btn btn-sm h-9 px-[10px] bg-transparent hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/20 dark:active:bg-white/20 border-none shadow-none dark:text-white rounded-full z-20 transition-all duration-300 ease-in-out`}
       >
         <MdArrowBackIosNew
           className={`text-base transition-transform duration-500 ease-in-out ${
@@ -48,11 +46,11 @@ const Profile = () => {
 
       <div
         style={{ height: "calc(100vh - 104px)" }}
-        className={`fixed w-[250px]  sm:w-[270px]  3xl:left-[248px] bg-tertiary px-4 py-14 transition-all  ${
+        className={`fixed w-[250px]  sm:w-[270px]  3xl:left-[248px] bg-white dark:bg-tertiary px-4 py-14 transition-all  ${
           isActiveProfile
             ? "-translate-x-[255px] sm:-translate-x-[250px] 2xl:translate-x-0   2xl:w-[78px]"
             : "translate-x-0"
-        } duration-300 ease-in-out rounded-xl z-10`}
+        } duration-300 ease-in-out rounded-xl shadow z-10`}
       >
         <div className="flex flex-col items-center gap-4">
           {userData?.photo ? (
@@ -82,9 +80,9 @@ const Profile = () => {
             <p className="text-xs font-medium mt-1">{userData?.email}</p>
           </div>
         </div>
-        <hr className="h-0 border border-darkThree my-5" />
+        <hr className="h-0 border dark:border-darkThree my-5" />
         <TabList className="tab-list h-full w-full flex flex-col gap-4">
-          <Tab className="react-tab custom-btn">
+          <Tab className="react-tab btn btn-sm h-10">
             {" "}
             <CiUser className="text-xl" />
             <span className={isActiveProfile ? "2xl:hidden" : ""}>
@@ -92,7 +90,7 @@ const Profile = () => {
               My Profile
             </span>
           </Tab>
-          <Tab className="react-tab custom-btn">
+          <Tab className="react-tab btn btn-sm h-10">
             <CiLock className="text-xl" />{" "}
             <span className={isActiveProfile ? "2xl:hidden" : ""}>
               Security

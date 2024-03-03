@@ -2,68 +2,54 @@ import Link from "next/link";
 import { fadeIn } from "../../utils/variants";
 import { GrClose } from "react-icons/gr";
 import Container from "@/components/library/Container";
-import Magnetic from "@/components/library/Magnetic";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import logo from "../../../assets/logo/NexTrade-Logo-White.png";
 import logo2 from "../../../assets/logo/NexTrade_Favicon-White.png";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import Button from "@/components/library/Button";
 import { IoChevronBack } from "react-icons/io5";
 
-const RootNavDrawer = ({ isActive, setIsActive, user, logOut }) => {
+const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
   return (
-    <div
-      className={`fixed top-0 left-0 w-full h-screen bg-primary text-white transition-transform transform  ${
-        isActive ? "translate-y-0" : "-translate-y-full"
-      } duration-700 ease-in-out z-[1000]`}
-    >
+    <div className="fixed top-0 left-0 w-full h-screen bg-primary text-white z-[1000]">
       <Container className="h-full">
         <div className="flex items-center justify-between gap-6 py-8">
-          <Magnetic>
-            <div
-              onClick={() => {
-                setIsActive(false);
-                setActiveTab("");
-              }}
-            >
-              <button className="btn btn-sm w-10 h-10 rounded-full bg-transparent hover:bg-transparent border-white hover:border-white text-white  p-2">
-                <GrClose className="w-full h-full" />
-              </button>
-            </div>
-          </Magnetic>
-          <Magnetic>
-            <Link href="/" className="hidden 2xl:block">
-              <Image
-                src={logo}
-                alt="Logo"
-                style={{ width: "144px", height: "160" }}
-              />
-            </Link>
-          </Magnetic>
-          <Magnetic>
-            <Link href="/" className="hidden md:block 2xl:hidden">
-              <Image
-                src={logo2}
-                alt="Logo"
-                style={{ width: "50px", height: "auto" }}
-              />
-            </Link>
-          </Magnetic>
+          <div
+            onClick={() => {
+              setIsActive(false);
+              setActiveTab("");
+            }}
+          >
+            <button className="btn btn-sm bg-transparent hover:bg-transparent  text-white px-1 border-none">
+              <GrClose className="text-2xl" />
+            </button>
+          </div>
+          <Link href="/" className="hidden 2xl:block">
+            <Image
+              src={logo}
+              alt="Logo"
+              style={{ width: "144px", height: "160" }}
+            />
+          </Link>
+          <Link href="/" className="hidden md:block 2xl:hidden">
+            <Image
+              src={logo2}
+              alt="Logo"
+              style={{ width: "50px", height: "auto" }}
+            />
+          </Link>
           {user?.email && (
-            <Magnetic>
-              <div
-                onClick={() => {
-                  logOut();
-                  setIsActive(false);
-                }}
-              >
-                <DarkButton className="bg-white/5 hover:bg-white/15 border-white hover:border-white text-white">
-                  Logout
-                </DarkButton>
-              </div>
-            </Magnetic>
+            <button
+              onClick={() => {
+                logOut();
+                setIsActive(false);
+              }}
+              className="btn btn-sm h-10 bg-white hover:bg-white text-primary rounded-md"
+            >
+              Logout
+            </button>
           )}
         </div>
 

@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +52,12 @@ const MarketHistory = () => {
                 className="rounded-full overflow-hidden"
               />
               <div className="flex flex-col gap-1">
-                <h4 className="text-sm font-medium">{history.assetName} <span className="text-green-500 text-sm font-semibold">${history.totalInvestment}</span></h4>
+                <h4 className="text-sm font-medium">
+                  {history.assetName}{" "}
+                  <span className="text-green-500 text-sm font-semibold">
+                    ${history.totalInvestment}
+                  </span>
+                </h4>
                 <p className="text-xs text-darkGray">{history.detail}</p>
               </div>
             </div>

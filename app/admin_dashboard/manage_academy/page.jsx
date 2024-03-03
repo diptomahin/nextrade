@@ -6,7 +6,7 @@ import CreatableSelect from "react-select/creatable";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/usePublicAPI";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 
 const image_hosting_key = "327864e87c612021efbee488ba128ba9";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;

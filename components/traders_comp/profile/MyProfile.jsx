@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { MdEditSquare } from "react-icons/md";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import EditProfile from "./EditProfile";
 
 const MyProfile = ({ refetchUserData, userData }) => {
@@ -27,8 +27,8 @@ const MyProfile = ({ refetchUserData, userData }) => {
       style={{ minHeight: "calc(100vh - 122px)" }}
       className="flex justify-center"
     >
-      <div className="w-full bg-tertiary flex flex-col gap-10 rounded-xl px-5 pb-8">
-        <div className="w-full flex items-center justify-between border-b border-dashed border-darkThree px-0 py-3 md:p-5">
+      <div className="w-full bg-white dark:bg-tertiary flex flex-col gap-10 rounded-xl px-5 pb-8 shadow">
+        <div className="w-full flex items-center justify-between border-b border-dashed dark:border-darkThree px-0 py-3 md:p-5">
           <h2 className="text-sm sm:text-base md:text-xl font-semibold">
             My Profile
           </h2>

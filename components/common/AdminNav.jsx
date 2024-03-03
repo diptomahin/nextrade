@@ -3,7 +3,6 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
 import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
@@ -57,30 +56,31 @@ const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
-const dateWithName = `${day} ${month === 1
+const dateWithName = `${day} ${
+  month === 1
     ? "January"
     : month === 2
-      ? "February"
-      : month === 3
-        ? "March"
-        : month === 4
-          ? "April"
-          : month === 5
-            ? "May"
-            : month === 6
-              ? "June"
-              : month === 7
-                ? "July"
-                : month === 8
-                  ? "August"
-                  : month === 9
-                    ? "September"
-                    : month === 10
-                      ? "October"
-                      : month === 11
-                        ? "November"
-                        : "December"
-  } ${year}`;
+    ? "February"
+    : month === 3
+    ? "March"
+    : month === 4
+    ? "April"
+    : month === 5
+    ? "May"
+    : month === 6
+    ? "June"
+    : month === 7
+    ? "July"
+    : month === 8
+    ? "August"
+    : month === 9
+    ? "September"
+    : month === 10
+    ? "October"
+    : month === 11
+    ? "November"
+    : "December"
+} ${year}`;
 
 const AdminNav = ({ setMobileOpen, mobileOpen }) => {
   const router = useRouter();
@@ -90,32 +90,32 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
   const breadcrumbs = pathname.includes("/admin_dashboard/manage_users")
     ? "Manage Users"
     : pathname.includes("/admin_dashboard/manage_services")
-      ? "Manage Services"
-      : pathname.includes("/admin_dashboard/manageCoins")
-        ? "Manage Coins"
-        : pathname.includes("/admin_dashboard/manage_academy")
-          ? "Manage Academy"
-          : pathname.includes("/dashboard/academy")
-            ? "Academy"
-            : pathname.includes("/admin_dashboard/message_box")
-              ? " Message Box"
-              : "Dashboard";
+    ? "Manage Services"
+    : pathname.includes("/admin_dashboard/manageCoins")
+    ? "Manage Coins"
+    : pathname.includes("/admin_dashboard/manage_academy")
+    ? "Manage Academy"
+    : pathname.includes("/dashboard/academy")
+    ? "Academy"
+    : pathname.includes("/admin_dashboard/message_box")
+    ? " Message Box"
+    : "Dashboard";
 
   // ----------Search functionality-----------
-    
-    const adminsSearchOptions = [
-      { name: "Dashboard page", path: "/admin_dashboard" },
-      { name: "Manage Users page", path: "/admin_dashboard/manage_users" },
-      { name: "All Users", path: "/admin_dashboard/manage_users" },
-      { name: "Manage Coins page", path: "/admin_dashboard/manageCoins" },
-      { name: "Manage Academy page", path: "/admin_dashboard/manage_academy" },
-      { name: "My profile", path: "/admin_dashboard/profile" },
-      { name: "Profile page", path: "/admin_dashboard/profile" },
-      { name: "Message box", path: "/admin_dashboard/message_box" },
-      { name: "Setting", path: "/admin_dashboard/setting" },
-      { name: "Manage services", path: "/admin_dashboard/manage_services" },
-    ];
-  
+
+  const adminsSearchOptions = [
+    { name: "Dashboard page", path: "/admin_dashboard" },
+    { name: "Manage Users page", path: "/admin_dashboard/manage_users" },
+    { name: "All Users", path: "/admin_dashboard/manage_users" },
+    { name: "Manage Coins page", path: "/admin_dashboard/manageCoins" },
+    { name: "Manage Academy page", path: "/admin_dashboard/manage_academy" },
+    { name: "My profile", path: "/admin_dashboard/profile" },
+    { name: "Profile page", path: "/admin_dashboard/profile" },
+    { name: "Message box", path: "/admin_dashboard/message_box" },
+    { name: "Setting", path: "/admin_dashboard/setting" },
+    { name: "Manage services", path: "/admin_dashboard/manage_services" },
+  ];
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const selectedOption = adminsSearchOptions.find(
@@ -127,8 +127,6 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
       router.push(selectedOption.path);
     }
   };
-
-
 
   return (
     <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary border-b dark:border-darkThree px-5">
@@ -147,9 +145,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
             },
           }}
         >
-          <Magnetic>
-            <MenuIcon sx={{ color: "white" }} />
-          </Magnetic>
+          <MenuIcon sx={{ color: "white" }} />
         </IconButton>
         {/*  */}
         {/* dynamic tittle and date time */}
@@ -170,8 +166,8 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
             filterOptions={(tradersSearchOptions, { inputValue }) =>
               inputValue.length >= 1
                 ? tradersSearchOptions.filter((option) =>
-                  option.toLowerCase().includes(inputValue.toLowerCase())
-                )
+                    option.toLowerCase().includes(inputValue.toLowerCase())
+                  )
                 : []
             }
             renderInput={(params) => (

@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import {
   Button,
   Paper,
@@ -30,67 +30,25 @@ const WatchlistCryptoTable = ({ assets, handleDelete }) => {
       <Table aria-label="simple table">
         <TableHead className="mx-auto ">
           <TableRow className="text-center">
-            <TableCell
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                borderBottom: "1px solid #2c3750",
-              }}
-            >
+            <TableCell className="text-black dark:text-white dark:border-b-darkThree">
               Sl No.
             </TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                borderBottom: "1px solid #2c3750",
-              }}
-            >
+            <TableCell className="text-black dark:text-white dark:border-b-darkThree">
               Coin Name
             </TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                borderBottom: "1px solid #2c3750",
-              }}
-            >
+            <TableCell className="text-black dark:text-white dark:border-b-darkThree">
               Current Price
             </TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                borderBottom: "1px solid #2c3750",
-              }}
-            >
+            <TableCell className="text-black dark:text-white dark:border-b-darkThree">
               24%
             </TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                borderBottom: "1px solid #2c3750",
-              }}
-            >
+            <TableCell className="text-black dark:text-white dark:border-b-darkThree">
               24h High Price
             </TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                borderBottom: "1px solid #2c3750",
-              }}
-            >
+            <TableCell className="text-black dark:text-white dark:border-b-darkThree">
               24h Low Price
             </TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                borderBottom: "1px solid #2c3750",
-              }}
-            >
+            <TableCell className="text-black dark:text-white dark:border-b-darkThree">
               Option
             </TableCell>
           </TableRow>
@@ -99,13 +57,13 @@ const WatchlistCryptoTable = ({ assets, handleDelete }) => {
           {assets.map((asset, idx) => (
             <TableRow key={asset.name}>
               <TableCell
-                sx={{ borderBottom: "1px solid #2c3750" }}
+                className="text-black dark:text-white dark:border-b-darkThree"
                 component="th"
                 scope="row"
               >
-                <p className="text-white">{idx + 1}</p>
+                <p className="dark:text-white">{idx + 1}</p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                 <div className="flex items-center gap-2">
                   <Image
                     width={40}
@@ -113,20 +71,18 @@ const WatchlistCryptoTable = ({ assets, handleDelete }) => {
                     src={asset.icon}
                     alt="coin-icon"
                   />
-                  <p className={`font-semibold text-white`}>{asset.name}</p>
+                  <p className={`font-medium dark:text-white`}>{asset.name}</p>
                   <span className="bg-sky-100/10 px-1 py-[2px] rounded text-primary text-xs">
                     {asset.key.slice(0, -4)}
                   </span>
                 </div>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` font-semibold text-white`}>
-                  $ {parseFloat(asset.price).toFixed(2)}
-                </p>
+              <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                <p>$ {parseFloat(asset.price).toFixed(2)}</p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
+              <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                 <p
-                  className={` font-semibold ${
+                  className={` font-medium ${
                     asset.changePrice < 0
                       ? "text-red-600"
                       : asset.changePrice > 0
@@ -142,28 +98,22 @@ const WatchlistCryptoTable = ({ assets, handleDelete }) => {
                   )}
                 </p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` font-semibold text-green-700`}>
+              <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                <p className={` font-medium text-green-700`}>
                   $ {asset.highPrice}
                 </p>
               </TableCell>
-              <TableCell sx={{ borderBottom: "1px solid #2c3750" }}>
-                <p className={` font-semibold text-red-600`}>
+              <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                <p className={` font-medium text-red-600`}>
                   $ {asset.lowPrice}
                 </p>
               </TableCell>
-              <TableCell
-                sx={{
-                  borderBottom: "1px solid #2c3750",
-                  display: "flex",
-                  gap: "10px",
-                }}
-              >
+              <TableCell className="text-black dark:text-white dark:border-b-darkThree ">
                 <DarkButton className="font-medium normal-case h-8 2xl:text-sm bg-primary hover:bg-primary border-none text-white">
                   <Link href={`/dashboard/market/${asset.key}`}>Explore</Link>
                 </DarkButton>
                 <DarkButton
-                  className="font-medium normal-case h-8 2xl:text-sm bg-septenary hover:bg-septenary border-none text-white"
+                  className="font-medium normal-case h-8 2xl:text-sm bg-septenary hover:bg-septenary border-none text-white ml-3"
                   onClick={() => handleDelete(asset._id)}
                 >
                   Delete

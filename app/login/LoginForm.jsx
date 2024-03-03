@@ -1,6 +1,6 @@
 "use client";
 import SocialLogin from "@/components/auth/SocialLogin";
-import DarkButton from "@/components/library/buttons/DarkButton";
+import DarkButton from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import styled from "@emotion/styled";
 import { Stack, TextField, Typography } from "@mui/material";

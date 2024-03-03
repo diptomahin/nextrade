@@ -10,7 +10,7 @@ import { FaUserCheck } from "react-icons/fa";
 import { SiRetool } from "react-icons/si";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { GrResources } from "react-icons/gr";
-import DarkButton from "../library/buttons/DarkButton";
+import DarkButton from "../library/Button";
 
 const WhyChooseUs = () => {
   return (
