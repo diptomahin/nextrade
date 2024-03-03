@@ -51,7 +51,7 @@ const MyProfile = ({ refetchUserData, userData }) => {
           <div className="h-full flex flex-col items-center justify-between gap-5">
             {/* photo url */}
             <div className="flex items-center justify-center">
-              {userData?.photo !== undefined && userData?.photo !== null ? (
+              {userData?.photo ? (
                 <div className="w-40 h-40 overflow-hidden rounded-full">
                   <Image
                     alt="profile-image"
@@ -59,7 +59,6 @@ const MyProfile = ({ refetchUserData, userData }) => {
                     height={160}
                     src={userData?.photo}
                     className="w-full h-full rounded-full object-top object-cover"
-                    priority
                   />
                 </div>
               ) : (

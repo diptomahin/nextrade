@@ -2,54 +2,54 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Magnetic from "@/components/library/Magnetic";
 import MenuIcon from "@mui/icons-material/Menu";
 import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
+import { Autocomplete, TextField } from "@mui/material";
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  width: "100%",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
+const StyledInputBase = styled(TextField)(({ theme }) => ({
+  color: "white",
+  width: "250px", // Default width set to 250px
+  [theme.breakpoints.down("sm")]: {
+    width: "120px", // Reduce width for small devices
+  },
+  "& .MuiAutocomplete-inputRoot": {
+    padding: "3px 15px",
+    [theme.breakpoints.down("sm")]: {
+      padding: "2px 4px", // Further reduce padding for small devices
     },
+    backgroundColor: "#181e2c", // Set background color to white
+  },
+  "& .MuiInputBase-input": {
+    padding: "6px 6px", // Adjusting padding
+    [theme.breakpoints.down("sm")]: {
+      padding: "2px 4px", // Further reduce padding for small devices
+    },
+    transition: theme.transitions.create("width"),
+    "&::placeholder": {
+      color: "white", // Set placeholder color to white
+    },
+  },
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "10px", // Adding border radius
+    "& fieldset": {
+      borderColor: "transparent",
+    },
+    border: "none",
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#2c3750", // Remove border color on hover
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: "1px solid #2c3750", // Remove border color when focused
+    },
+  },
+  "& .MuiAutocomplete-input": {
+    color: "white", // Set input text color to white
   },
 }));
 
@@ -57,48 +57,79 @@ const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
-const dateWithName = `${day} ${
-  month === 1
+const dateWithName = `${day} ${month === 1
     ? "January"
     : month === 2
-    ? "February"
-    : month === 3
-    ? "March"
-    : month === 4
-    ? "April"
-    : month === 5
-    ? "May"
-    : month === 6
-    ? "June"
-    : month === 7
-    ? "July"
-    : month === 8
-    ? "August"
-    : month === 9
-    ? "September"
-    : month === 10
-    ? "October"
-    : month === 11
-    ? "November"
-    : "December"
-} ${year}`;
+      ? "February"
+      : month === 3
+        ? "March"
+        : month === 4
+          ? "April"
+          : month === 5
+            ? "May"
+            : month === 6
+              ? "June"
+              : month === 7
+                ? "July"
+                : month === 8
+                  ? "August"
+                  : month === 9
+                    ? "September"
+                    : month === 10
+                      ? "October"
+                      : month === 11
+                        ? "November"
+                        : "December"
+  } ${year}`;
 
 const AdminNav = ({ setMobileOpen, mobileOpen }) => {
+  const router = useRouter();
   const pathname = usePathname();
+  const [searchValue, setSearchValue] = React.useState("");
 
   const breadcrumbs = pathname.includes("/admin_dashboard/manage_users")
     ? "Manage Users"
     : pathname.includes("/admin_dashboard/manage_services")
-    ? "Manage Services"
-    : pathname.includes("/admin_dashboard/manageCoins")
-    ? "Manage Coins"
-    : pathname.includes("/admin_dashboard/manage_academy")
-    ? "Manage Academy"
-    : pathname.includes("/dashboard/academy")
-    ? "Academy"
-    : pathname.includes("/admin_dashboard/message_box")
-    ? " Message Box"
-    : "Dashboard";
+      ? "Manage Services"
+      : pathname.includes("/admin_dashboard/manageCoins")
+        ? "Manage Coins"
+        : pathname.includes("/admin_dashboard/manage_academy")
+          ? "Manage Academy"
+          : pathname.includes("/dashboard/academy")
+            ? "Academy"
+            : pathname.includes("/admin_dashboard/message_box")
+              ? " Message Box"
+              : "Dashboard";
+
+  // ----------Search functionality-----------
+    
+    const adminsSearchOptions = [
+      { name: "Dashboard page", path: "/admin_dashboard" },
+      { name: "Manage Users page", path: "/admin_dashboard/manage_users" },
+      { name: "All Users", path: "/admin_dashboard/manage_users" },
+      { name: "Manage Coins page", path: "/admin_dashboard/manageCoins" },
+      { name: "Manage Academy page", path: "/admin_dashboard/manage_academy" },
+      { name: "My profile", path: "/admin_dashboard/profile" },
+      { name: "Profile page", path: "/admin_dashboard/profile" },
+      { name: "Message box", path: "/admin_dashboard/message_box" },
+      { name: "Setting", path: "/admin_dashboard/setting" },
+      { name: "Manage services", path: "/admin_dashboard/manage_services" },
+    ];
+  
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const selectedOption = adminsSearchOptions.find(
+      (option) => option.name === searchValue
+    );
+    if (selectedOption) {
+      console.log("Search submitted:", selectedOption.path);
+      // Here you can navigate to the selected path
+      router.push(selectedOption.path);
+    }
+  };
+
+
+
   return (
     <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary border-b dark:border-darkThree px-5">
       <div className="flex items-center gap-5">
@@ -126,27 +157,39 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
           <h1 className="font-semibold">{breadcrumbs}</h1>
           <p className="text-xs opacity-70">Updated on {dateWithName}</p>
         </div>
-        <Search
-          sx={{
-            borderRadius: "50px",
-            color: "white",
-            backgroundColor: "rgba(0,0,0,0.06)",
-            "&:hover": {
-              backgroundColor: "rgba(0,0,0,0.1)",
-            },
-            "@media (max-width: 640px)": {
-              display: "none",
-            },
-          }}
+
+        {/* search  */}
+        <form
+          className="flex items-center w-[120px] lg:w-[250px] relative"
+          onSubmit={handleSearchSubmit}
         >
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ "aria-label": "search" }}
+          <Autocomplete
+            onChange={(event, newValue) => setSearchValue(newValue)}
+            // onSelect={}
+            options={adminsSearchOptions.map((option) => option.name)}
+            filterOptions={(tradersSearchOptions, { inputValue }) =>
+              inputValue.length >= 1
+                ? tradersSearchOptions.filter((option) =>
+                  option.toLowerCase().includes(inputValue.toLowerCase())
+                )
+                : []
+            }
+            renderInput={(params) => (
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                {...params}
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: null,
+                }}
+              />
+            )}
           />
-        </Search>
+          <button type="submit" className="absolute right-2">
+            <SearchIcon style={{ marginRight: "6px", color: "white" }} />
+          </button>
+        </form>
       </div>
       <div className="flex items-center gap-6">
         {/* language */}

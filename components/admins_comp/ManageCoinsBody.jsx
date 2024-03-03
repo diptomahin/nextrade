@@ -220,7 +220,7 @@ const ManageCoinsBody = () => {
 
   return (
     <div>
-      <div className="flex flex-col 2xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-indigo-200 to-sky-200">
+      <div className="flex flex-col 2xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-indigo-400 to-sky-400">
         <h1 className="text-3xl font-semibold">Manage Coins</h1>
         <DashButton className="w-full" onClick={handleClickOpen}>
           + Add new
