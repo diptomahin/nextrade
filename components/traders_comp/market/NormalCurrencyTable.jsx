@@ -26,27 +26,24 @@ const NormalCurrencyTable = ({ assets }) => {
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
                 borderBottom: "2px solid #2c3750",
                 borderTop: "2px solid #2c3750",
               }}
             >
-              No.
+             <p className="dark:text-white">No.</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
                 borderBottom: "2px solid #2c3750",
                 borderTop: "2px solid #2c3750",
               }}
             >
-              Name
+             <p className="dark:text-white">Name</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
                 borderBottom: "2px solid #2c3750",
                 borderTop: "2px solid #2c3750",
               }}
@@ -56,22 +53,20 @@ const NormalCurrencyTable = ({ assets }) => {
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
                 borderBottom: "2px solid #2c3750",
                 borderTop: "2px solid #2c3750",
               }}
             >
-              Current Value/USD
+             <p className="dark:text-white">Current Value/USD</p> 
             </TableCell>
             <TableCell
               sx={{
                 fontWeight: 700,
-                color: "white",
                 borderBottom: "2px solid #2c3750",
                 borderTop: "2px solid #2c3750",
               }}
             >
-              Option
+             <p className="dark:text-white">Option</p> 
             </TableCell>
           </TableRow>
         </TableHead>
@@ -86,7 +81,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 component="th"
                 scope="row"
               >
-                <p className="text-white">{idx + 1}</p>
+                <p className="dark:text-white">{idx + 1}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
                 <div className="flex items-center gap-2">
@@ -96,17 +91,17 @@ const NormalCurrencyTable = ({ assets }) => {
                     src={asset.icon}
                     alt="coin-icon"
                   />
-                  <p className={`text-white`}>{asset.name}</p>
-                  <span className="bg-sky-100/15 px-1 py-[2px] rounded text-primary text-xs">
+                  <p className={`dark:text-white`}>{asset.name}</p>
+                  <span className="bg-primary/40 dark:bg-sky-100/10 px-1 py-[2px] rounded text-black dark:text-primary text-xs">
                     {asset.key}
                   </span>
                 </div>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <p className={`text-white`}>{asset.key}</p>
+                <p className={`dark:text-white`}>{asset.key}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
-                <p className={` text-white`}>$ {asset.price}</p>
+                <p className={` dark:text-white`}>$ {asset.price}</p>
               </TableCell>
               <TableCell sx={{ borderBottom: "none" }}>
                 <Button className="font-medium normal-case h-8 2xl:text-sm bg-primary hover:bg-primary border-none text-white">

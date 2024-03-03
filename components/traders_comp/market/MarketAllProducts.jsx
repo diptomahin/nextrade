@@ -21,6 +21,21 @@ import usePublicAPI from "@/hooks/usePublicAPI";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import axios from "axios";
 
+const CustomTab = styled(Tab)({
+  color: 'White',
+  fontWeight: 'bold',
+  borderBottom: 'none',
+  '&.Mui-selected': {
+    backgroundColor: "#40a0ff",
+    color: "white",
+    borderRadius: "15px",
+    borderBottom: 'none'
+  },
+  '&.Mui-selected.Mui-active': {
+    borderBottom: 'none'
+  },
+});
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -67,13 +82,14 @@ const MarketAllProducts = () => {
   const [assets, setAssets] = useState([]);
   const [flatCurrency, setFlatCurrency] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [value, setValue] = useState("1");
   const [cryptoPageCount, setCryptoPageCount] = useState(0);
   const [flatPageCount, setFlatPageCount] = useState(0);
   const [coinPerPage, setCoinPerPage] = useState(6);
   const [currentCryptoPage, setCurrentCryptoPage] = useState(0);
   const [currentFlatPage, setCurrentFlatPage] = useState(0);
   const publicAPI = usePublicAPI();
+  const [isActiveTab, setActiveTab] = useState(true);
+
 
   useEffect(() => {
     publicAPI
@@ -99,6 +115,15 @@ const MarketAllProducts = () => {
     const val = parseInt(e.target.value);
     setCoinPerPage(val);
     setCurrentCryptoPage(0);
+    setCurrentFlatPage(0);
+  };
+
+  const handleCryptoChange = () => {
+    setActiveTab(true);
+    setCurrentCryptoPage(0);
+  };
+  const handleFlatChange = () => {
+    setActiveTab(false);
     setCurrentFlatPage(0);
   };
 
@@ -225,11 +250,6 @@ const MarketAllProducts = () => {
   }, [flatCurrency]);
   // console.log(flatCurrency)
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    setCurrentCryptoPage(0);
-    setCurrentFlatPage(0);
-  };
 
   const [view, setView] = React.useState("module");
 
@@ -238,87 +258,103 @@ const MarketAllProducts = () => {
   };
 
   return (
-    <div className="w-full p-3 bg-tertiary rounded-xl">
-      <TabContext value={value}>
-        <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
-            <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
-          </TabList>
+    <div className="w-full p-3 bg-white dark:bg-tertiary rounded-xl">
 
-          {/* search field */}
-          <Search
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              borderRadius: "50px",
-              border: "1px solid #2c3750",
-              backgroundColor: "rgba(0,0,0,0.06)",
-              "&:hover": {
-                backgroundColor: "rgba(0,0,0,0.1)",
-              },
-            }}
+      {/* tabs */}
+      <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
+        <div className="relative sm:w-72 h-10 flex items-center bg-zinc-100 dark:bg-secondary rounded-xl">
+          <div
+            className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${isActiveTab ? "translate-x-0" : "translate-x-full"
+              } duration-200 ease-in-out`}
+          ></div>
+          <button
+            onClick={handleCryptoChange}
+            className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${isActiveTab ? "text-white" : "text-gray-500"
+              } duration-200 ease-in-out font-semibold text-sm z-10`}
           >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              placeholder="Search by name..."
-              inputProps={{ "aria-label": "search" }}
-              onChange={(e) => {
-                setSearchText(e.target.value);
-              }}
-            />
-          </Search>
-
-          {/* show coin count */}
-          <div className="flex items-center gap-1 p-2 rounded-md bg-quaternary">
-            <p>Show: </p>
-            <select
-              value={coinPerPage}
-              onChange={handleCoinPerPages}
-              className="bg-transparent  rounded-md p-1 text-sm "
-              name=""
-              id=""
-            >
-              <option className="text-black" value="6">
-                6
-              </option>
-              <option className="text-black" value="12">
-                12
-              </option>
-              <option className="text-black" value="18">
-                18
-              </option>
-              <option className="text-black" value="24">
-                24
-              </option>
-            </select>
-          </div>
-
-          {/* view options */}
-          <ToggleButtonGroup
-            orientation="horizontal"
-            value={view}
-            exclusive
-            onChange={handleViewChange}
+            Crypto Coins
+          </button>
+          <button
+            onClick={handleFlatChange}
+            className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${!isActiveTab ? "text-white" : "text-gray-500"
+              } duration-100 font-semibold text-sm z-10`}
           >
-            <ToggleButton value="module" aria-label="module">
-              <ViewModuleIcon className="text-primary" />
-            </ToggleButton>
-            <ToggleButton value="list" aria-label="list">
-              <ViewListIcon className="text-primary" />
-            </ToggleButton>
-          </ToggleButtonGroup>
+            Flat Coins
+          </button>
         </div>
 
-        {/* display crypto coins */}
-        <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
+        {/* search field */}
+        <Search
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            borderRadius: "50px",
+            border: "1px solid #2c3750",
+            backgroundColor: "rgba(0,0,0,0.06)",
+            "&:hover": {
+              backgroundColor: "rgba(0,0,0,0.1)",
+            },
+          }}
+        >
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            placeholder="Search by name..."
+            inputProps={{ "aria-label": "search" }}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+        </Search>
+
+        {/* show coin count */}
+        <div className="flex items-center gap-1 p-2 rounded-md bg-zinc-100 dark:bg-secondary">
+          <p>Show: </p>
+          <select
+            value={coinPerPage}
+            onChange={handleCoinPerPages}
+            className="bg-transparent  rounded-md p-1 text-sm "
+            name=""
+            id=""
+          >
+            <option className="text-black" value="6">
+              6
+            </option>
+            <option className="text-black" value="12">
+              12
+            </option>
+            <option className="text-black" value="18">
+              18
+            </option>
+            <option className="text-black" value="24">
+              24
+            </option>
+          </select>
+        </div>
+
+        {/* view options */}
+        <ToggleButtonGroup
+          orientation="horizontal"
+          value={view}
+          exclusive
+          onChange={handleViewChange}
+        >
+          <ToggleButton value="module" aria-label="module">
+            <ViewModuleIcon className="text-primary" />
+          </ToggleButton>
+          <ToggleButton value="list" aria-label="list">
+            <ViewListIcon className="text-primary" />
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </div>
+      {isActiveTab ? (
+        <div className="w-full">
           {view === "list" ? (
             <MarketTable assets={assets}></MarketTable>
           ) : (
@@ -333,9 +369,13 @@ const MarketAllProducts = () => {
             <Pagination
               color="primary"
               sx={{
-                "& .MuiPaginationItem-page": { color: "white" },
+                "& .MuiPaginationItem-page": {
+                  color: "#40a0ff",
+                  fontWeight: "600",
+                  marginY: "5px"
+                },
                 "& .MuiPaginationItem-icon": {
-                  color: "white", // Change arrow color
+                  color: "#40a0ff", // Change arrow color
                 },
               }}
               count={cryptoPages.length}
@@ -344,38 +384,44 @@ const MarketAllProducts = () => {
               shape="rounded"
             />
           </div>
-        </TabPanel>
+        </div>
+      )
+        : (
+          <div className="w-full">
+            {view === "list" ? (
+              <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+            ) : (
+              <CurrencyMarketModuleView
+                assets={flatCurrency}
+                loading={currencyLoading}
+                pending={cryptoPending}
+              ></CurrencyMarketModuleView>
+            )}
 
-        {/* display flat coin */}
-        <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
-          {view === "list" ? (
-            <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
-          ) : (
-            <CurrencyMarketModuleView
-              assets={flatCurrency}
-              loading={currencyLoading}
-              pending={cryptoPending}
-            ></CurrencyMarketModuleView>
-          )}
-
-          {/* Pagination */}
-          <div className="my-6 flex justify-center flex-wrap">
-            <Pagination
-              color="primary"
-              sx={{
-                "& .MuiPaginationItem-page": { color: "white", marginY: "5px" },
-                "& .MuiPaginationItem-icon": {
-                  color: "white", // Change arrow color
-                },
-              }}
-              count={flatPages.length}
-              onChange={(event, v) => setCurrentFlatPage(parseInt(v) - 1)}
-              variant="outlined"
-              shape="rounded"
-            />
+            {/* Pagination */}
+            <div className="my-6 flex justify-center flex-wrap">
+              <Pagination
+                color="primary"
+                sx={{
+                  "& .MuiPaginationItem-page": {
+                    color: "#40a0ff",
+                    fontWeight: "600",
+                    marginY: "5px"
+                  },
+                  "& .MuiPaginationItem-icon": {
+                    color: "#40a0ff", // Change arrow color
+                  },
+                }}
+                count={flatPages.length}
+                onChange={(event, v) => setCurrentFlatPage(parseInt(v) - 1)}
+                variant="outlined"
+                shape="rounded"
+              />
+            </div>
           </div>
-        </TabPanel>
-      </TabContext>
+        )
+
+      }
     </div>
   );
 };
