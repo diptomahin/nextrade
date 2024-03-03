@@ -12,7 +12,6 @@ import MarketTable from "./MarketTable";
 import CryptoMarketModuleView from "./CryptoMarketModuleView";
 import NormalCurrencyTable from "./NormalCurrencyTable";
 import CurrencyMarketModuleView from "./CurrencyMarketModuleView";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import ViewListIcon from "@mui/icons-material/ViewList";
@@ -22,17 +21,17 @@ import useSecureFetch from "@/hooks/useSecureFetch";
 import axios from "axios";
 
 const CustomTab = styled(Tab)({
-  color: 'White',
-  fontWeight: 'bold',
-  borderBottom: 'none',
-  '&.Mui-selected': {
+  color: "White",
+  fontWeight: "bold",
+  borderBottom: "none",
+  "&.Mui-selected": {
     backgroundColor: "#40a0ff",
     color: "white",
     borderRadius: "15px",
-    borderBottom: 'none'
+    borderBottom: "none",
   },
-  '&.Mui-selected.Mui-active': {
-    borderBottom: 'none'
+  "&.Mui-selected.Mui-active": {
+    borderBottom: "none",
   },
 });
 
@@ -89,7 +88,6 @@ const MarketAllProducts = () => {
   const [currentFlatPage, setCurrentFlatPage] = useState(0);
   const publicAPI = usePublicAPI();
   const [isActiveTab, setActiveTab] = useState(true);
-
 
   useEffect(() => {
     publicAPI
@@ -250,7 +248,6 @@ const MarketAllProducts = () => {
   }, [flatCurrency]);
   // console.log(flatCurrency)
 
-
   const [view, setView] = React.useState("module");
 
   const handleViewChange = (event, nextView) => {
@@ -259,25 +256,27 @@ const MarketAllProducts = () => {
 
   return (
     <div className="w-full p-3 bg-white dark:bg-tertiary rounded-xl">
-
       {/* tabs */}
       <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
         <div className="relative sm:w-72 h-10 flex items-center bg-zinc-100 dark:bg-secondary rounded-xl">
           <div
-            className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${isActiveTab ? "translate-x-0" : "translate-x-full"
-              } duration-200 ease-in-out`}
+            className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
+              isActiveTab ? "translate-x-0" : "translate-x-full"
+            } duration-200 ease-in-out`}
           ></div>
           <button
             onClick={handleCryptoChange}
-            className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${isActiveTab ? "text-white" : "text-gray-500"
-              } duration-200 ease-in-out font-semibold text-sm z-10`}
+            className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
+              isActiveTab ? "text-white" : "text-gray-500"
+            } duration-200 ease-in-out font-semibold text-sm z-10`}
           >
             Crypto Coins
           </button>
           <button
             onClick={handleFlatChange}
-            className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${!isActiveTab ? "text-white" : "text-gray-500"
-              } duration-100 font-semibold text-sm z-10`}
+            className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
+              !isActiveTab ? "text-white" : "text-gray-500"
+            } duration-100 font-semibold text-sm z-10`}
           >
             Flat Coins
           </button>
@@ -372,7 +371,7 @@ const MarketAllProducts = () => {
                 "& .MuiPaginationItem-page": {
                   color: "#40a0ff",
                   fontWeight: "600",
-                  marginY: "5px"
+                  marginY: "5px",
                 },
                 "& .MuiPaginationItem-icon": {
                   color: "#40a0ff", // Change arrow color
@@ -385,43 +384,40 @@ const MarketAllProducts = () => {
             />
           </div>
         </div>
-      )
-        : (
-          <div className="w-full">
-            {view === "list" ? (
-              <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
-            ) : (
-              <CurrencyMarketModuleView
-                assets={flatCurrency}
-                loading={currencyLoading}
-                pending={cryptoPending}
-              ></CurrencyMarketModuleView>
-            )}
+      ) : (
+        <div className="w-full">
+          {view === "list" ? (
+            <NormalCurrencyTable assets={flatCurrency}></NormalCurrencyTable>
+          ) : (
+            <CurrencyMarketModuleView
+              assets={flatCurrency}
+              loading={currencyLoading}
+              pending={cryptoPending}
+            ></CurrencyMarketModuleView>
+          )}
 
-            {/* Pagination */}
-            <div className="my-6 flex justify-center flex-wrap">
-              <Pagination
-                color="primary"
-                sx={{
-                  "& .MuiPaginationItem-page": {
-                    color: "#40a0ff",
-                    fontWeight: "600",
-                    marginY: "5px"
-                  },
-                  "& .MuiPaginationItem-icon": {
-                    color: "#40a0ff", // Change arrow color
-                  },
-                }}
-                count={flatPages.length}
-                onChange={(event, v) => setCurrentFlatPage(parseInt(v) - 1)}
-                variant="outlined"
-                shape="rounded"
-              />
-            </div>
+          {/* Pagination */}
+          <div className="my-6 flex justify-center flex-wrap">
+            <Pagination
+              color="primary"
+              sx={{
+                "& .MuiPaginationItem-page": {
+                  color: "#40a0ff",
+                  fontWeight: "600",
+                  marginY: "5px",
+                },
+                "& .MuiPaginationItem-icon": {
+                  color: "#40a0ff", // Change arrow color
+                },
+              }}
+              count={flatPages.length}
+              onChange={(event, v) => setCurrentFlatPage(parseInt(v) - 1)}
+              variant="outlined"
+              shape="rounded"
+            />
           </div>
-        )
-
-      }
+        </div>
+      )}
     </div>
   );
 };
