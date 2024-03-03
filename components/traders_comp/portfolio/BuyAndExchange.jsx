@@ -195,7 +195,7 @@ const BuyAndExchange = ({
   const handleSell = () => {
     const sellingData = {
       sellCoinName,
-      setSellCoinImg,
+      sellCoinImg,
       sellCoinKey,
       sellCoinProfit,
       sellCoinLoss,

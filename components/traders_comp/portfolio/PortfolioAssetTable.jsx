@@ -10,61 +10,67 @@ import Image from "next/image";
 const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) => {
   purchasedRefetch()
      return (
-          <div className=" bg-gradient-to-bl overflow-x-auto from-darkOne to-darkTwo  ">
+          <div className=" overflow-x-auto text-white dark:text-black">
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell
                       sx={{
-                        color: "white",
+                        
                         borderBottom: "1px solid #2c3750",
                         fontWeight: "600",
                       }}
+                      className=" dark:text-white"
                     >
                       Coin
                     </TableCell>
                     <TableCell
                       sx={{
-                        color: "white",
+                        
                         borderBottom: "1px solid #2c3750",
                         fontWeight: "600",
                       }}
+                      className=" dark:text-white"
                     >
                       Asset Name
                     </TableCell>
                     <TableCell
                       sx={{
-                        color: "white",
+                        
                         borderBottom: "1px solid #2c3750",
                         fontWeight: "600",
                       }}
+                      className=" dark:text-white"
                     >
                       Buying Price
                     </TableCell>
                     <TableCell
                       sx={{
-                        color: "white",
+                        
                         borderBottom: "1px solid #2c3750",
                         fontWeight: "600",
                       }}
+                      className=" dark:text-white"
                     >
                       Investment
                     </TableCell>
                     <TableCell
                       sx={{
-                        color: "white",
+                        
                         borderBottom: "1px solid #2c3750",
                         fontWeight: "600",
                       }}
+                      className=" dark:text-white"
                     >
                       Current Price
                     </TableCell>
                     <TableCell
                       sx={{
-                        color: "white",
+                        
                         borderBottom: "1px solid #2c3750",
                         fontWeight: "600",
                       }}
+                      className=" dark:text-white"
                     >
                       Profit / Loss
                     </TableCell>
@@ -78,10 +84,12 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                         component="th"
                         scope="row"
                         sx={{
-                          color: "white",
+                          
                           borderBottom: "1px solid #2c3750",
                         }}
+                        className=" dark:text-white"
                       >
+                        
                         <Image
                           height={45}
                           width={45}
@@ -94,19 +102,23 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                         component="th"
                         scope="row"
                         sx={{
-                          color: "white",
+                          
                           borderBottom: "1px solid #2c3750",
                         }}
+                        className=" dark:text-white"
                       >
+                        
                         <h2 className="font-medium ">{asset.assetName}</h2>
                       </TableCell>
                       {/* 3rd row */}
                       <TableCell
                         sx={{
-                          color: "white",
+                          
                           borderBottom: "1px solid #2c3750",
                         }}
+                        className=" dark:text-white"
                       >
+                        
                         <h2 className="font-medium ">
                           $ {parseFloat(asset.assetBuyingPrice).toFixed(2)}
                         </h2>
@@ -114,10 +126,12 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                       {/* 4th row */}
                       <TableCell
                         sx={{
-                          color: "white",
+                          
                           borderBottom: "1px solid #2c3750",
                         }}
+                        className=" dark:text-white"
                       >
+                        
                         <h2 className="font-medium ">
                           $ {parseFloat(asset.totalInvestment).toFixed(2)}
                         </h2>
@@ -126,10 +140,12 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                       <TableCell
                         className="font-medium"
                         sx={{
-                          color: "white",
+                          
                           borderBottom: "1px solid #2c3750",
                         }}
+                        
                       >
+                        
                         <span
                           className={`${
                             asset.currentPrice <
@@ -150,10 +166,11 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                       {/* 6th row */}
                       <TableCell
                         sx={{
-                          color: "white",
+                          
                           borderBottom: "1px solid #2c3750",
                         }}
                       >
+                        
                         <span
                           className={`font-medium ${
                             calculateDifference(
