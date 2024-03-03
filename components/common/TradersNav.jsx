@@ -162,7 +162,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
     : "Dashboard";
 
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-tertiary border-b border-darkThree px-5">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary border-b dark:border-darkThree px-5">
       <div className="flex items-center gap-5">
         <IconButton
           aria-label="open drawer"
@@ -187,7 +187,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
 
         {/* search  */}
         <form
-          className="flex items-center w-40 lg:w-80 relative rounded-full bg-secondary"
+          className="flex items-center w-40 lg:w-80 relative rounded-full bg-white dark:bg-secondary"
           onSubmit={handleSearchSubmit}
         >
           <Autocomplete

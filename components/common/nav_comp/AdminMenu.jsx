@@ -19,7 +19,7 @@ const AdminMenu = () => {
   }
   return (
     <div className="relative flex items-center justify-end gap-3">
-      <div className="hidden lg:flex flex-col items-end text-white">
+      <div className="hidden lg:flex flex-col items-end">
         <h4 className="text-sm font-semibold">{user?.displayName}</h4>
         <h4 className="text-xs opacity-70">{user?.email}</h4>
       </div>

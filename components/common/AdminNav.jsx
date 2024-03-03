@@ -10,7 +10,6 @@ import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
 import { usePathname } from "next/navigation";
 import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
-import TradersNotification from "./nav_comp/TradersNotification/TradersNotification";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -101,7 +100,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
     ? " Message Box"
     : "Dashboard";
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-tertiary border-b border-darkThree px-5">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary border-b dark:border-darkThree px-5">
       <div className="flex items-center gap-5">
         <IconButton
           color="black"
@@ -123,7 +122,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
         </IconButton>
         {/*  */}
         {/* dynamic tittle and date time */}
-        <div className="hidden 2xl:block text-white">
+        <div className="hidden 2xl:block">
           <h1 className="font-semibold">{breadcrumbs}</h1>
           <p className="text-xs opacity-70">Updated on {dateWithName}</p>
         </div>

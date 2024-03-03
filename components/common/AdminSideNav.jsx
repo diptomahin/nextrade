@@ -10,8 +10,8 @@ import { usePathname } from "next/navigation";
 const AdminSideNav = () => {
   const pathname = usePathname();
   return (
-    <div className="h-full w-full bg-[#21212f] flex flex-col gap-3 py-3 border-t border-dashed border-darkThree">
-      <div className="flex items-center justify-center mb-3 text-white">
+    <div className="h-full w-full bg-white dark:bg-tertiary flex flex-col gap-3 py-3">
+      <div className="flex items-center justify-center mb-3">
         <Magnetic>
           <div className="">
             <Link

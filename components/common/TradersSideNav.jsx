@@ -11,7 +11,7 @@ import ThemeMode from "../library/ThemeMode";
 const TradersDashboardSidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="relative h-full w-full bg-[#21212f] flex flex-col gap-3 py-3 border-t border-dashed border-darkThree">
+    <div className="relative h-full w-full bg-white dark:bg-tertiary flex flex-col gap-3 py-3">
       <div className="flex items-center justify-center mb-3">
         <Magnetic>
           <div className="">
