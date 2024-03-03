@@ -173,7 +173,7 @@ const AdminNotification = () => {
 
       <button
         onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-        className={`flex items-center text-white hover:bg-white/10 active:bg-white/20 rounded-full p-2 ${
+        className={`flex items-center  hover:bg-white/10 active:bg-white/20 rounded-full p-2 ${
           isNotificationOpen && "text-primary"
         }`}
       >
@@ -185,7 +185,7 @@ const AdminNotification = () => {
 
         {/* Display the count of unread notifications */}
         {nonReaderNotifications?.length > 0 && (
-          <p className="absolute left-5 bottom-5 font-semibold w-4 h-4  rounded-full bg-red-500 flex justify-center items-center">
+          <p className="absolute left-5 bottom-5 font-semibold w-4 h-4  rounded-full bg-red-500 text-white flex justify-center items-center">
             <span className="text-[10px]">
               {nonReaderNotifications?.length}
             </span>

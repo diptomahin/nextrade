@@ -11,9 +11,9 @@ const SideNavLinks = ({ pathname }) => {
     <>
       <Link
         href="/dashboard"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -21,9 +21,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/trading"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/trading"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -32,9 +32,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/market"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/market"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -42,9 +42,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/portfolio"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/portfolio"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -52,9 +52,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/watchlist"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/watchlist"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -62,9 +62,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/history"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/history"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -72,9 +72,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/academy"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/academy"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -82,9 +82,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/profile"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/profile"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >
@@ -92,9 +92,9 @@ const SideNavLinks = ({ pathname }) => {
       </Link>
       <Link
         href="/dashboard/wallet"
-        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+        className={`w-full h-10 px-5 btn btn-sm justify-start gap-2 dark:text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/wallet"
-            ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
+            ? "bg-primary hover:bg-primary dark:hover:text-white border-l-2 border-l-primary"
             : "bg-transparent hover:bg-transparent hover:text-primary"
         }`}
       >

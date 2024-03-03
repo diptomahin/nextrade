@@ -37,7 +37,7 @@ const Balance = () => {
   ];
 
   return (
-    <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-tertiary p-5 rounded-xl">
+    <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-white dark:bg-tertiary p-5 rounded-xl">
       <h3 className="text-xl font-semibold">Balance</h3>
 
       {/* content */}
@@ -47,7 +47,7 @@ const Balance = () => {
           <div className="flex flex-wrap gap-5 justify-between">
             {/*  */}
             <div className="flex items-center gap-2">
-              <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-full">
+              <div className="w-12 h-12 bg-primary text-white flex items-center justify-center rounded-full">
                 <MdAccountBalance className="text-2xl" />
               </div>
               <div className="">
@@ -60,7 +60,7 @@ const Balance = () => {
 
             {/*  */}
             <div className="flex items-center gap-2">
-              <div className="w-12 h-12 bg-[#eab308] flex items-center justify-center rounded-full">
+              <div className="w-12 h-12 bg-[#eab308] text-white flex items-center justify-center rounded-full">
                 <MdAccountBalance className="text-2xl" />
               </div>
               <div className="">
@@ -73,9 +73,9 @@ const Balance = () => {
           </div>
 
           {/* bottom part */}
-          <div className="bg-secondary p-5 my-8 rounded-xl">
+          <div className="bg-zinc-100 dark:bg-secondary p-5 my-8 rounded-xl">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-cyan-600 flex items-center justify-center rounded-full">
+              <div className="w-8 h-8 bg-cyan-600 text-white flex items-center justify-center rounded-full">
                 <HiMiniArrowDownOnSquareStack className="text-lg" />
               </div>
               <div className="">
@@ -87,10 +87,10 @@ const Balance = () => {
                 </p>
               </div>
             </div>
-            <hr className="border-darkThree my-5" />
+            <hr className="dark:border-darkThree my-5" />
             {/*  */}
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-senary flex items-center justify-center rounded-full">
+              <div className="w-8 h-8 bg-senary text-white flex items-center justify-center rounded-full">
                 <RiLuggageDepositFill className="text-lg" />
               </div>
               <div className="">
@@ -102,10 +102,10 @@ const Balance = () => {
                 </p>
               </div>
             </div>
-            <hr className="border-darkThree my-5" />
+            <hr className="dark:border-darkThree my-5" />
             {/*  */}
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-septenary flex items-center justify-center rounded-full">
+              <div className="w-8 h-8 bg-septenary text-white flex items-center justify-center rounded-full">
                 <FaCreditCard className="text-lg" />
               </div>
               <div className="">

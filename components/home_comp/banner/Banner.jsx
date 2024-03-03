@@ -17,8 +17,8 @@ import DarkButton from "@/components/library/buttons/DarkButton";
 const Banner = () => {
   return (
     <div className="relative min-h-[100vh]">
-      <div className="banner w-full min-h-full absolute left-0 bottom-0 5xl:-bottom-24 opacity-80"></div>
-      <Container className="relative flex flex-col-reverse 2xl:flex-row 2xl:items-center 2xl:justify-between gap-20 2xl:gap-10 min-h-[100vh] pt-32 2xl:py-0 z-10">
+      {/* <div className="banner w-full min-h-full absolute left-0 bottom-0 5xl:-bottom-24 opacity-80"></div> */}
+      <Container className="relative flex flex-col-reverse 2xl:flex-row 2xl:items-center 2xl:justify-between gap-20 2xl:gap-10 min-h-[100vh] pt-32 2xl:py-0 z-10 text-black dark:text-zinc-100">
         <div className="w-full 2xl:flex-1 relative min-h-[100vh] flex flex-col items-start 2xl:justify-center z-10">
           {/* banner title */}
           <div className="z-10">
@@ -62,7 +62,7 @@ const Banner = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="text-sm my-8 text-white pr-8 text-wrap z-10"
+            className="text-sm my-8 pr-8 text-wrap z-10"
           >
             {" "}
             <span className="block text-lg md:text-2xl 2xl:text-xl  3xl:text-2xl font-bold mb-2">
@@ -175,9 +175,9 @@ const Banner = () => {
           </motion.div>
 
           {/* animation */}
-          <div className="orange-move absolute left-[20%] md:left-[11%] top-[31%] bg-quinary w-24 h-24 rounded-full blur-[80px]"></div>
+          {/* <div className="orange-move absolute left-[20%] md:left-[11%] top-[31%] bg-quinary w-24 h-24 rounded-full blur-[80px]"></div>
 
-          <div className="blue-move absolute left-[20%] md:left-[11%] top-[31%] bg-primary w-24 h-24 rounded-full blur-[80px]"></div>
+          <div className="blue-move absolute left-[20%] md:left-[11%] top-[31%] bg-primary w-24 h-24 rounded-full blur-[80px]"></div> */}
 
           <div className="w-20 absolute left-0 top-[20%] text-primary">
             <p className="icon1">
@@ -207,10 +207,10 @@ const Banner = () => {
         {/* right */}
         <div className="w-[300px] md:w-[470px] h-auto mx-auto relative">
           {/* bg part */}
-          <div className="banner-img-bg absolute left-[40%] top-[50%] bg-primary w-28 h-28 blur-[80px]"></div>
+          {/* <div className="banner-img-bg absolute left-[40%] top-[50%] bg-primary w-28 h-28 blur-[80px]"></div> */}
 
           {/*  */}
-          <div className="banner-img-bg-two absolute left-[40%] top-[50%] bg-quinary/90 w-28 h-28 blur-[80px]"></div>
+          {/* <div className="banner-img-bg-two absolute left-[40%] top-[50%] bg-quinary/90 w-28 h-28 blur-[80px]"></div> */}
 
           {/*  */}
           <div className="relative  flex items-center justify-center z-10">
