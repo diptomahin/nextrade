@@ -13,7 +13,7 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 ## NexTrade Homepage
 
-![Home Page of NexTrade](https://i.postimg.cc/Z5v2wYKy/Screenshot.png)
+[![Home Page of NexTrade](https://i.postimg.cc/Z5v2wYKy/Screenshot.png)](https://postimg.cc/jDKM5bfs)
 
 ## Key Features
 
