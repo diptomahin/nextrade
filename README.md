@@ -66,6 +66,14 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 ## Challenges
 - Implementing the Google translation feature and integrating Live Cryptocurrency APIs were among the toughest hurdles in this project. Ensuring our trading platform caters to international users necessitated the implementation of the Google Translate Widget, offering support for over 136 languages. This task posed a notable challenge due to the need for our website to be accessible in multiple languages worldwide.
 
+## Contributor
+- Md. Nuruzzaman (@mdnuruzzamannirob)
+- Md. Saimur Rahaman (@nkzawa)
+- MD Tajul Islam (@rauchg)
+- Ariful Islam (@arunoda)
+- Julfiker Ali (@tonykovanen)
+- Mahin Ahmed Dipta (@impronunciable)
+
 ## How to Run Locally
 1. Clone the repository.
 2. Install dependencies using `npm install`.
