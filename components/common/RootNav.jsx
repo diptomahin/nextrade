@@ -39,18 +39,20 @@ export default function RootNav() {
     <>
       <nav
         className={`w-full h-auto box-border fixed transition-all duration-200 ease-out z-[1000] ${
-          scrolled ? "py-3 bg-darkTwo/50 backdrop-blur-sm" : "py-8"
+          scrolled
+            ? "py-3 bg-white/30 dark:bg-darkTwo/50 backdrop-blur-sm"
+            : "py-8"
         } z-50`}
       >
         <Container className="flex items-center justify-between">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-5">
             <button
               onClick={() => {
                 setIsActive(!isActive);
               }}
-              className="btn btn-sm bg-transparent hover:bg-primary/20 w-10 h-10 rounded-full border-primary hover:border-primary text-primary p-1"
+              className="btn bg-primary hover:bg-primary/90 rounded-full border-primary hover:border-primary text-white px-2"
             >
-              <RiMenu5Fill className="w-full h-full" />
+              <RiMenu5Fill className="text-3xl" />
             </button>
             {/* dark/light mode*/}
             <ThemeMode />
@@ -91,7 +93,8 @@ export default function RootNav() {
           ) : (
             <div className="flex items-center gap-2 md:gap-6">
               <Link href="/login">
-                <button className="btn btn-sm md:btn-md bg-transparent hover:bg-primary/20 border-transparent hover:border-darkThree md:text-lg font-medium rounded text-primary">
+                <button className="btn btn-sm h-10 font-medium text-nowrap text-sm md:text-base rounded-md bg-transparent hover:bg-primary text-black hover:text-white dark:text-white border-none shadow-none">
+                  {" "}
                   Login
                 </button>
               </Link>
@@ -110,8 +113,8 @@ export default function RootNav() {
           !scrolled && "hidden"
         }`}
       >
-        <button className="btn bg-transparent hover:bg-primary/20 border-primary hover:border-primary text-primary rounded-full p-2">
-          <PiArrowFatLinesUpFill className="w-full h-full" />
+        <button className="btn bg-primary hover:bg-primary/90 border-primary hover:border-primary text-white rounded-full px-2">
+          <PiArrowFatLinesUpFill className="text-3xl" />
         </button>
       </div>
 

@@ -111,7 +111,7 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="absolute left-[120px] rounded-full bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree text-white py-1 px-3 font-semibold"
+              className="absolute left-[120px] rounded-full  bg-white dark:bg-gradient-to-br from-darkOne to-darkTwo border dark:border-darkThree dark:text-white py-1 px-3 font-semibold"
             >
               +More <span className="text-sm font-normal">assets</span>
             </motion.p>

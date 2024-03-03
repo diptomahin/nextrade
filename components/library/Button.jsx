@@ -2,7 +2,7 @@ const Button = ({ className, children, ...restProps }) => {
   return (
     <button
       {...restProps}
-      className={`btn btn-sm h-10 bg-primary/90 hover:bg-primary border-none font-medium text-white text-nowrap text-sm md:text-base rounded-md 
+      className={`btn btn-sm h-10 bg-primary hover:bg-primary/90 border-none font-medium text-white text-nowrap text-sm md:text-base shadow-none rounded-md 
       ${className}`}
     >
       {children}
