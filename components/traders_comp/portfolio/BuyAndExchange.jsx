@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
+// import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { useState } from "react";
@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+
 // logo
 import bitLogo from "../../../assets/btc-logo.png";
 import DarkButton from "@/components/library/Button";
@@ -22,6 +23,7 @@ import getDate from "@/components/utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 import useUserData from "@/hooks/useUserData";
+import { Elements } from "@stripe/react-stripe-js";
 
 const BuyAndExchange = ({
   cryptoData,
@@ -45,6 +47,7 @@ const BuyAndExchange = ({
   const [sellCoinKey, setSellCoinKey] = useState();
   const [sellCoinImg, setSellCoinImg] = useState();
   const [totalInvestment, setTotalInvestment] = useState();
+  const [isBuyOpen, setIsBuyOpen] = useState(true);
 
   const secureAPI = useSecureAPI();
   const { user } = useAuth();
@@ -246,14 +249,16 @@ const BuyAndExchange = ({
                 .then((res) => {
                   console.log("success post to notification");
                   secureAPI.post("/adminNotifications", notificationInfo);
+                  refetchNotificationsData();
+              adminRefetchNotificationsData();
+              refetch();
+              
+              totalRefetch();
                 })
                 .catch((error) => {
                   console.error("Error sending notification:", error);
                 });
-              refetch();
-              refetchNotificationsData();
-              adminRefetchNotificationsData();
-              totalRefetch();
+             
             }
           })
           .catch((error) => {
@@ -269,38 +274,37 @@ const BuyAndExchange = ({
   //------------- sell functionality ends -----------
 
   return (
-    <TabContext value={tabValue}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <TabList
-          onChange={(event, newValue) => setTabValue(newValue)}
-          aria-label="lab API tabs example"
-          className="mx-auto"
-        >
-          <Tab
-            label="Exchange Coin"
-            value="1"
-            sx={{
-              fontSize: "13px",
-              fontWeight: 600,
-              color: "white",
-              textTransform: "none",
-            }}
-          />
-          <Tab
-            label="Sell Coin"
-            value="2"
-            sx={{
-              fontSize: "13px",
-              fontWeight: 600,
-              color: "white",
-              textTransform: "none",
-            }}
-          />
-        </TabList>
-      </Box>
-
-      {/* ----------Exchange Coin------------- */}
-      <TabPanel value="1" sx={{ padding: 0, overflow: "hidden" }}>
+   
+    <div className="w-full bg-white dark:bg-tertiary rounded-xl shadow">
+      <div className="flex items-center justify-center">
+        <div className="relative sm:w-72 h-10 flex items-center text-black  bg-gray-100 dark:bg-secondary rounded-xl">
+          <div
+            className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
+              isBuyOpen ? "translate-x-0" : "translate-x-full"
+            } duration-200 ease-in-out`}
+          ></div>
+          <button
+            onClick={() => setIsBuyOpen(true)}
+            className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
+              isBuyOpen ? "text-white" : "dark:text-gray-300"
+            } duration-200 ease-in-out font-semibold text-sm z-10`}
+          >
+            Exchange Coin
+          </button>
+          <button
+            onClick={() => setIsBuyOpen(false)}
+            className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
+              !isBuyOpen ? "text-white" : "dark:text-gray-300"
+            } duration-100 font-semibold text-sm z-10`}
+          >
+            Sell Coin
+          </button>
+        </div>
+      </div>
+      {isBuyOpen ? (
+        <>
+          {/* ----------Exchange Coin------------- */}
+      <div >
         <div>
           <div className=" font-semibold 2xl:flex items-center justify-between gap-4 my-4 px-3 ">
             <h2>
@@ -330,7 +334,7 @@ const BuyAndExchange = ({
           >
             <InputLabel
               id="demo-simple-select-label"
-              style={{ color: "white" }}
+              style={{ color: "#40a0ff" }}
             >
               From:
             </InputLabel>
@@ -372,7 +376,7 @@ const BuyAndExchange = ({
           >
             <InputLabel
               id="demo-simple-select-label"
-              style={{ color: "white" }}
+              style={{ color: "#40a0ff" }}
             >
               To:
             </InputLabel>
@@ -408,10 +412,12 @@ const BuyAndExchange = ({
             <CachedSharpIcon /> Exchange
           </DarkButton>
         </div>
-      </TabPanel>
-
-      {/* ----------- Sell Coin------------- */}
-      <TabPanel value="2" sx={{ padding: 0, overflow: "hidden" }}>
+      </div>
+        </>
+      ): (
+        <>
+          {/* ----------- Sell Coin------------- */}
+      <div >
         <p className="my-3">Choose your coin for sell</p>
         <FormControl
           fullWidth
@@ -422,8 +428,8 @@ const BuyAndExchange = ({
             borderRadius: "5px",
           }}
         >
-          <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
-            Select:
+          <InputLabel id="demo-simple-select-label" style={{ color: "#40a0ff" }}>
+            Select
           </InputLabel>
           <Select
             sx={{ border: "white" }}
@@ -480,8 +486,12 @@ const BuyAndExchange = ({
           {" "}
           Sell Coin
         </DarkButton>
-      </TabPanel>
-    </TabContext>
+      </div>
+        </>
+      )}
+    </div>
+
+
   );
 };
 
