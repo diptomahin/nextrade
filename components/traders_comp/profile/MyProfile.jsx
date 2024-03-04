@@ -4,9 +4,27 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdEditSquare } from "react-icons/md";
 import DarkButton from "@/components/library/Button";
 import EditProfile from "./EditProfile";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+import useAuth from "@/hooks/useAuth";
+import useSecureAPI from "@/hooks/useSecureAPI";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 const MyProfile = ({ refetchUserData, userData }) => {
   const [isEdit, setIsEdit] = useState(false);
+  const [errorMsg, setErrorMsg] = useState();
+  const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  const secureAPI = useSecureAPI();
+  const router = useRouter();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // Helper function to format time in 12-hour format
   const formatTime = (hours) => {
@@ -129,13 +147,85 @@ const MyProfile = ({ refetchUserData, userData }) => {
                 </p>
               </div>
 
-              <button className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded-xl">
+              <button onClick={handleClickOpen} className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded-xl">
                 Delete Account
               </button>
             </div>
           </div>
         )}
       </div>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          component: 'form',
+          onSubmit: (event) => {
+            event.preventDefault();
+            const formData = event.target;
+            const deleteEmail = formData.email.value;
+            // console.log(deleteEmail, userData);
+
+            if(deleteEmail !== user.email){
+              setErrorMsg("Email does not match !!")
+              return;
+            }
+
+            secureAPI.post(`/deleteUserFromFirebase/${userData.userID}`)
+              .then(res => {
+                if (res.data.success) {
+                  secureAPI.delete(`/all-users/${userData._id}/${user.email}`)
+                    .then(res2 => {
+                      if (res2.data.deletedCount > 0) {
+                        Swal.fire({
+                          title: "Deleted!",
+                          text: "User has been deleted successfully.",
+                          icon: "success",
+                          timer: 1500,
+                        });
+                        router.push("/login")
+                      }
+                    })
+                } else {
+                  Swal.fire({
+                    title: "failed!",
+                    text: "Some thing went wrong.",
+                    icon: "error",
+                    timer: 1500,
+                  });
+                }
+              })
+
+            handleClose();
+          },
+        }}
+      >
+        <DialogTitle>Delete Account!!</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Type your email to confirm delete
+          </DialogContentText>
+          <TextField
+            sx={{ marginTop: "10px" }}
+            autoFocus
+            required
+            margin="dense"
+            id="name"
+            name="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+
+          />
+          {
+            errorMsg && <p className="font-semibold text-red-700 text-sm">{errorMsg}</p>
+          }
+        </DialogContent>
+        <DialogActions>
+          <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+          <Button type="submit" variant="contained" color="error">Delete</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
