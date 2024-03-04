@@ -1,39 +1,42 @@
 import React from "react";
 import {
   Tooltip,
-  ComposedChart,
   Bar,
-  CartesianGrid,
-  Legend,
+  ResponsiveContainer,
+  BarChart,
   XAxis,
   YAxis,
-  Area,
-  Line,
 } from "recharts";
 
-const PortfolioAssetChart = ({ totalCurrentPrice }) => {
-  const chartData = [
-    {
-      name: "Total Current Value",
-      uv: totalCurrentPrice,
-    },
-  ];
- 
+const PortfolioAssetChart = ({ cryptoData }) => {
+
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip bg-gray-400 dark:bg-black dark:text-white text-white p-3 rounded-md">
+          <p className="label font-semibold    ">{`Asset: ${label}`}</p>
+          <p className="total-investment">{`Investment: ${payload[0].value} USD`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
-    <div className=" rounded-lg w-full overflow-x-auto">
-    <ComposedChart width={260} height={250} data={chartData}>
-      <CartesianGrid stroke="#313131" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      
-      <Area type="monotone" dataKey="uv" fill="#34ff71" stroke="#34ff71" />
-      <Bar dataKey="uv" barSize={20} fill="#2230ff" />
-      <Line type="monotone" dataKey="uv" stroke="#fff" />
-    </ComposedChart>
-  </div>
+    <div className="rounded-lg w-full overflow-x-auto overflow-y-auto">
+      <ResponsiveContainer width={"100%"} height={300} className="mx-auto text-center">
+        <BarChart data={cryptoData}>
+          
+          <XAxis dataKey="assetKey" position="bottom" />
+          <Tooltip content={<CustomTooltip />} />
+
+          {cryptoData.map((data, index) => (
+            <Bar key={index} dataKey="totalInvestment" fill='#40a0ff' />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

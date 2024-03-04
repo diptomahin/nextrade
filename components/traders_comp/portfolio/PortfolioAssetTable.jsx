@@ -17,7 +17,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                     <TableCell
                       sx={{
                         
-                        borderBottom: "1px solid #2c3750",
+                        borderBottom: "1px solid #686f7d",
                         fontWeight: "600",
                       }}
                       className=" dark:text-white"
@@ -27,7 +27,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                     <TableCell
                       sx={{
                         
-                        borderBottom: "1px solid #2c3750",
+                        borderBottom: "1px solid #686f7d",
                         fontWeight: "600",
                       }}
                       className=" dark:text-white"
@@ -37,7 +37,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                     <TableCell
                       sx={{
                         
-                        borderBottom: "1px solid #2c3750",
+                        borderBottom: "1px solid #686f7d",
                         fontWeight: "600",
                       }}
                       className=" dark:text-white"
@@ -47,7 +47,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                     <TableCell
                       sx={{
                         
-                        borderBottom: "1px solid #2c3750",
+                        borderBottom: "1px solid #686f7d",
                         fontWeight: "600",
                       }}
                       className=" dark:text-white"
@@ -57,7 +57,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                     <TableCell
                       sx={{
                         
-                        borderBottom: "1px solid #2c3750",
+                        borderBottom: "1px solid #686f7d",
                         fontWeight: "600",
                       }}
                       className=" dark:text-white"
@@ -67,7 +67,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                     <TableCell
                       sx={{
                         
-                        borderBottom: "1px solid #2c3750",
+                        borderBottom: "1px solid #686f7d",
                         fontWeight: "600",
                       }}
                       className=" dark:text-white"
@@ -85,7 +85,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                         scope="row"
                         sx={{
                           
-                          borderBottom: "1px solid #2c3750",
+                          borderBottom: "none"
                         }}
                         className=" dark:text-white"
                       >
@@ -103,7 +103,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                         scope="row"
                         sx={{
                           
-                          borderBottom: "1px solid #2c3750",
+                          borderBottom: "none"
                         }}
                         className=" dark:text-white"
                       >
@@ -114,7 +114,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                       <TableCell
                         sx={{
                           
-                          borderBottom: "1px solid #2c3750",
+                          borderBottom: "none"
                         }}
                         className=" dark:text-white"
                       >
@@ -127,7 +127,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                       <TableCell
                         sx={{
                           
-                          borderBottom: "1px solid #2c3750",
+                          borderBottom: "none"
                         }}
                         className=" dark:text-white"
                       >
@@ -141,7 +141,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                         className="font-medium"
                         sx={{
                           
-                          borderBottom: "1px solid #2c3750",
+                          borderBottom: "none"
                         }}
                         
                       >
@@ -167,7 +167,7 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                       <TableCell
                         sx={{
                           
-                          borderBottom: "1px solid #2c3750",
+                          borderBottom: "none"
                         }}
                       >
                         

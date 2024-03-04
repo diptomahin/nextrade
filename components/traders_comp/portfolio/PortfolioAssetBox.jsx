@@ -55,7 +55,7 @@ const PortfolioAssetBox = ({
       <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 mt-8">
         {cryptoData?.map((asset, idx) => (
           <Link key={idx} href={`/dashboard/market/${asset.assetKey}`}>
-            <div className="rounded-[30px] coinBg bg-darkOne p-6 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
+            <div className="rounded-[30px] coinBg border border-[#dddde0] dark:border-none  bg-[#f4f4f5] dark:bg-[#17171e] p-6 space-y-4 hover:scale-105 transition-transform cursor-pointer ease-in">
               <div className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                   <Image
