@@ -81,18 +81,18 @@ const Profile = () => {
           </div>
         </div>
         <hr className="h-0 border dark:border-darkThree my-5" />
-        <TabList className="tab-list h-full w-full flex flex-col gap-4">
+        <TabList className="tab-list h-full w-full flex flex-col gap-4 ">
           <Tab className="react-tab btn btn-sm h-10">
-            {" "}
-            <CiUser className="text-xl" />
-            <span className={isActiveProfile ? "2xl:hidden" : ""}>
+            {" "} 
+            <CiUser className="text-xl text-black dark:text-white" />
+            <span className={isActiveProfile ? "2xl:hidden text-white" : "text-black dark:text-white"}>
               {" "}
               My Profile
             </span>
           </Tab>
           <Tab className="react-tab btn btn-sm h-10">
-            <CiLock className="text-xl" />{" "}
-            <span className={isActiveProfile ? "2xl:hidden" : ""}>
+            <CiLock className="text-xl text-black dark:text-white" />{" "}
+            <span className={isActiveProfile ? "2xl:hidden text-white" : "text-black dark:text-white"}>
               Security
             </span>
           </Tab>

@@ -46,6 +46,7 @@ const Security = () => {
         setError("New password and confirm password must match");
         return;
       }
+      
 
       updateUserPassword(user, newPassword)
         .then(() => {
@@ -75,7 +76,7 @@ const Security = () => {
   };
 
   return (
-    <div className="bg-tertiary rounded-xl w-full h-full p-5">
+    <div className="bg-white dark:bg-tertiary rounded-xl w-full h-full p-5">
       <h2 className="text-xl font-semibold pb-5">Security</h2>
 
       {/* authentication */}
