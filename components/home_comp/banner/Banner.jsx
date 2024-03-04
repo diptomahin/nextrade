@@ -26,7 +26,7 @@ const Banner = () => {
           {/* banner title */}
           <div className="z-10">
             <motion.h1
-              variants={fadeIn("down", 0.1)}
+              variants={fadeIn("down", 0.05)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -35,7 +35,7 @@ const Banner = () => {
               Trade On
             </motion.h1>
             <motion.h1
-              variants={fadeIn("down", 0.2)}
+              variants={fadeIn("down", 0.1)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -54,7 +54,7 @@ const Banner = () => {
           </div>
           {/* banner description */}
           <motion.p
-            variants={fadeIn("up", 0.1)}
+            variants={fadeIn("up", 0.15)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
@@ -70,7 +70,7 @@ const Banner = () => {
           {/* group */}
           <div className="h-16 relative w-full z-10">
             <motion.div
-              variants={fadeIn("up", 0.1)}
+              variants={fadeIn("up", 0.04)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -84,7 +84,7 @@ const Banner = () => {
               />
             </motion.div>
             <motion.div
-              variants={fadeIn("up", 0.2)}
+              variants={fadeIn("up", 0.08)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -99,7 +99,7 @@ const Banner = () => {
               />
             </motion.div>
             <motion.div
-              variants={fadeIn("up", 0.3)}
+              variants={fadeIn("up", 0.12)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -113,7 +113,7 @@ const Banner = () => {
               />
             </motion.div>
             <motion.div
-              variants={fadeIn("up", 0.4)}
+              variants={fadeIn("up", 0.16)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -128,7 +128,7 @@ const Banner = () => {
               />
             </motion.div>
             <motion.div
-              variants={fadeIn("up", 0.5)}
+              variants={fadeIn("up", 0.2)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
@@ -143,7 +143,7 @@ const Banner = () => {
             </motion.div>
 
             <motion.p
-              variants={fadeIn("up", 0.6)}
+              variants={fadeIn("up", 0.24)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}

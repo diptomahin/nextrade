@@ -17,9 +17,17 @@ const WhyChooseUs = () => {
   return (
     <Container className="flex items-center justify-between gap-10 py-20 text-zinc-200">
       {/* content */}
-      <div className="flex-[3]">
-        <Title className="text-start text-primary">Why NexTrade</Title>
-        <Subtitle className="text-start w-5/6">
+      <motion.div
+        variants={fadeIn("right", 0.5)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="flex-[3]"
+      >
+        <Title animation={false} className="text-start text-primary">
+          Why NexTrade
+        </Title>
+        <Subtitle animation={false} className="text-start w-5/6">
           {" "}
           At NexTrade, your trading experience is our top priority, and we stand
           out for several compelling reasons.
@@ -89,16 +97,21 @@ const WhyChooseUs = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex-[2] flex justify-end">
+      </motion.div>
+      <motion.div
+        variants={fadeIn("left", 0.5)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.1 }}
+        className="flex-[2] flex justify-end"
+      >
         <Image
           alt="why-nextrade-image"
           src={bg}
           style={{ width: "80%", height: "auto" }}
           className="-scale-x-100"
         />
-      </div>
+      </motion.div>
     </Container>
   );
 };
