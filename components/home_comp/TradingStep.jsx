@@ -12,7 +12,7 @@ import Title from "@/components/library/Title";
 
 const TradingStep = () => {
   return (
-    <Container className="pb-20">
+    <Container className="py-20">
       {/* Trading step section content */}
 
       <Title>How it works</Title>

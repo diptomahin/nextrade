@@ -53,7 +53,7 @@ const Testimonials = () => {
       >
         {data?.slice(0, 15).map((review) => (
           <SwiperSlide key={review?._id}>
-            <div className="min-h-52 bg-primary/10 flex gap-3 border border-darkThree rounded-xl shadow hover:shadow-2xl p-5 my-10">
+            <div className="min-h-52 bg-quaternary flex gap-3 border border-darkThree rounded-xl shadow hover:shadow-2xl p-5 my-10">
               <Image
                 className="w-12 h-12 rounded-full"
                 src={review?.photo}

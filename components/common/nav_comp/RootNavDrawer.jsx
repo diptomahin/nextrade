@@ -8,12 +8,20 @@ import React from "react";
 import logo from "../../../assets/logo/NexTrade_Favicon-White.png";
 import { IoChevronBack } from "react-icons/io5";
 import { IoIosArrowForward, IoIosLogOut } from "react-icons/io";
+import "./RootNavDrawer.css";
 
 const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
   return (
     <div className="fixed top-0 left-0 w-full h-screen bg-primary text-white z-[1000]">
-      <Container className="h-full">
+      <div class="ripple-background">
+        <div class="circle xxl shade1"></div>
+        <div class="circle xl shade2"></div>
+        <div class="circle lg shade3"></div>
+        <div class="circle md shade4"></div>
+        <div class="circle sm shade5"></div>
+      </div>
+      <Container className="h-full z-10">
         <div className="flex items-center justify-between gap-6 py-8">
           <div className="flex-1">
             <button

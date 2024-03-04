@@ -50,9 +50,8 @@
   }
 }
 
-.line-one {
+.animation {
   scale: 60%;
-  opacity: 0.8;
   animation: line-one 3.5s infinite ease-in-out;
 }
 @keyframes line-one {
@@ -67,9 +66,9 @@
   }
 }
 
-.line-one-shadow {
+.animation-shadow {
   scale: 60%;
-  opacity: 0.8;
+  opacity: 0.5;
   animation: line-one-shadow 3.5s infinite ease-in-out;
 }
 @keyframes line-one-shadow {
@@ -84,9 +83,8 @@
   }
 }
 
-.line-two {
+.animation-two {
   scale: 60%;
-  opacity: 0.8;
   animation: line-two 3.5s infinite ease-in-out;
 }
 @keyframes line-two {
@@ -101,9 +99,9 @@
   }
 }
 
-.line-two-shadow {
+.animation-two-shadow {
   scale: 60%;
-  opacity: 0.8;
+  opacity: 0.5;
   animation: line-two-shadow 3.5s infinite ease-in-out;
 }
 @keyframes line-two-shadow {
@@ -115,40 +113,6 @@
   }
   100% {
     transform: scale(90%);
-  }
-}
-
-.line-three {
-  scale: 60%;
-  opacity: 0.8;
-  animation: line-three 3.5s infinite ease-in-out;
-}
-@keyframes line-three {
-  0% {
-    transform: translateY(0%);
-  }
-  50% {
-    transform: translateY(20%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-
-.line-three-shadow {
-  scale: 60%;
-  opacity: 0.8;
-  animation: line-three-shadow 3.5s infinite ease-in-out;
-}
-@keyframes line-three-shadow {
-  0% {
-    transform: scale(70%);
-  }
-  50% {
-    transform: scale(90%);
-  }
-  100% {
-    transform: scale(70%);
   }
 }
 
