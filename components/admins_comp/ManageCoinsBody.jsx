@@ -1,7 +1,6 @@
 "use client";
 import ManageCrypto from "@/components/admins_comp/ManageCrypto";
 import ManageFlatCoins from "@/components/admins_comp/ManageFlatCoins";
-import DashButton from "@/components/library/buttons/DashButton";
 import usePublicFetch from "@/hooks/usePublicFetch";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
@@ -22,6 +21,7 @@ import {
   Select,
   Tab,
   TextField,
+  styled,
 } from "@mui/material";
 import axios from "axios";
 import Image from "next/image";
@@ -33,6 +33,16 @@ import useAllCryptoCoins from "@/hooks/useAllCryptoCoins";
 import useAllFlatCoins from "@/hooks/useAllFlatCoins";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
+
+const CustomTab = styled(Tab)({
+  color: '#a1a1aa',
+  fontWeight: 'bold',
+  '&.Mui-selected': {
+    backgroundColor:"#40a0ff",
+    color: 'white',
+    borderRadius: "10px 10px 0px 0px",
+  },
+});
 
 const ManageCoinsBody = () => {
   const [assets, setAssets] = useState([]);
@@ -222,9 +232,9 @@ const ManageCoinsBody = () => {
     <div>
       <div className="flex flex-col 2xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-indigo-400 to-sky-400">
         <h1 className="text-3xl font-semibold">Manage Coins</h1>
-        <DashButton className="w-full" onClick={handleClickOpen}>
+        <Button variant="contained" onClick={handleClickOpen}>
           + Add new
-        </DashButton>
+        </Button>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -472,8 +482,8 @@ const ManageCoinsBody = () => {
             }}
           >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
-              <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+              <CustomTab label="Crypto Coins" value="1" />
+              <CustomTab label="Flat Coins" value="2" />
             </TabList>
           </Box>
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
