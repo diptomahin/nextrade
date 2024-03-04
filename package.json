@@ -44,6 +44,7 @@
     "sweetalert2": "^11.6.13",
     "swiper": "^11.0.6",
     "tailwind-merge": "^2.2.1",
+    "typewriter-effect": "^2.21.0",
     "ws": "^8.16.0"
   },
   "devDependencies": {
