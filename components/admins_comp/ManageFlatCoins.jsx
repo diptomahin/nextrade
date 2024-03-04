@@ -262,7 +262,7 @@ const ManageFlatCoins = ({ assets, refetch }) => {
         // <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
         <div
           key={idx}
-          className="coinBg rounded-lg p-6 space-y-4 min-w-[280px] relative bg-darkOne border border-darkThree text-white "
+          className="coinBg rounded-lg p-6 space-y-4 min-w-[280px] relative bg-sky-200/30 dark:bg-darkOne dark:border  dark:border-darkThree dark:text-white "
         >
           <div className="absolute right-2 flex flex-col gap-2">
             <IconButton

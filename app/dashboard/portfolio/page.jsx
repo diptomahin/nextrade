@@ -18,6 +18,7 @@ import PortfolioAssetBox from "@/components/traders_comp/portfolio/PortfolioAsse
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import PortfolioSellHistory from "@/components/traders_comp/portfolio/PortfolioSellHistory";
 
 const Portfolio = () => {
   const { user } = useAuth();
@@ -56,7 +57,7 @@ const Portfolio = () => {
   const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
 
   const assetPage = [...Array(numberOfAssetPages).keys()];
-  console.log(assetCount, coinPerPage, assetPage);
+ 
 
   // fetch data with search functionality
   const {
@@ -312,22 +313,11 @@ const Portfolio = () => {
     0
   );
 
-  // // Calculate total current price
-  // const totalCurrentPrice = purchasedAssets.reduce(
-  //   (total, asset) => total + parseFloat(asset.totalInvestment),
-  //   0
-  // );
+ 
 
   // search functionality
   const Search = () => {
     purchasedRefetch();
-  };
-
-  //  short coin pages and size page in coin
-  const handleCoinPerPages = (e) => {
-    const val = parseInt(e.target.value);
-    setCoinPerPage(val);
-    setCurrentPage(0);
   };
 
   const [view, setView] = React.useState("list");
@@ -382,29 +372,7 @@ const Portfolio = () => {
                   <BiSearchAlt />
                 </button>
               </div>
-              {/* show coin count */}
-              <div className="bg-white/5 p-1 rounded">
-                <select
-                  value={coinPerPage}
-                  onChange={handleCoinPerPages}
-                  className="bg-transparent  rounded-md p-1 text-sm "
-                  name=""
-                  id=""
-                >
-                  <option className="text-black" value="6">
-                    6
-                  </option>
-                  <option className="text-black" value="12">
-                    12
-                  </option>
-                  <option className="text-black" value="18">
-                    18
-                  </option>
-                  <option className="text-black" value="24">
-                    24
-                  </option>
-                </select>
-              </div>
+              
 
               {/* view options */}
               <ToggleButtonGroup
@@ -440,25 +408,7 @@ const Portfolio = () => {
                   purchasedRefetch={purchasedRefetch}
                 />
               )}
-              {/* Pagination */}
-              <div className="my-6 flex justify-center flex-wrap">
-                <Pagination
-                  color="primary"
-                  sx={{
-                    "& .MuiPaginationItem-page": {
-                      color: "white",
-                      marginY: "5px",
-                    },
-                    "& .MuiPaginationItem-icon": {
-                      color: "white", // Change arrow color
-                    },
-                  }}
-                  count={assetPage.length}
-                  onChange={(event, v) => setCurrentPage(parseInt(v) - 1)}
-                  variant="outlined"
-                  shape="rounded"
-                />
-              </div>
+              
             </>
           ) : (
             <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
@@ -490,7 +440,7 @@ const Portfolio = () => {
         <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
           {cryptoData ? (
-            <PortfolioAssetChart totalCurrentPrice={totalAssetInvestment} />
+            <PortfolioAssetChart totalCurrentPrice={totalAssetInvestment} cryptoData={assetData2} />
           ) : (
             <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
               <Image
@@ -505,6 +455,8 @@ const Portfolio = () => {
             </div>
           )}
         </div>
+        {/* sell history */}
+        <PortfolioSellHistory/>
       </div>
     </div>
   );

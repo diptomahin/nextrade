@@ -1,6 +1,7 @@
 "use client";
 import ManageCrypto from "@/components/admins_comp/ManageCrypto";
 import ManageFlatCoins from "@/components/admins_comp/ManageFlatCoins";
+import usePublicFetch from "@/hooks/usePublicFetch";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import {
@@ -18,6 +19,7 @@ import {
   Select,
   Tab,
   TextField,
+  styled,
 } from "@mui/material";
 import axios from "axios";
 import Image from "next/image";
@@ -30,6 +32,16 @@ import useAllFlatCoins from "@/hooks/useAllFlatCoins";
 import Button from "../library/Button";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
+
+const CustomTab = styled(Tab)({
+  color: '#a1a1aa',
+  fontWeight: 'bold',
+  '&.Mui-selected': {
+    backgroundColor:"#40a0ff",
+    color: 'white',
+    borderRadius: "10px 10px 0px 0px",
+  },
+});
 
 const ManageCoinsBody = () => {
   const [assets, setAssets] = useState([]);
@@ -469,8 +481,8 @@ const ManageCoinsBody = () => {
             }}
           >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab sx={{ color: "white" }} label="Crypto Coins" value="1" />
-              <Tab sx={{ color: "white" }} label="Flat Coins" value="2" />
+              <CustomTab label="Crypto Coins" value="1" />
+              <CustomTab label="Flat Coins" value="2" />
             </TabList>
           </Box>
           <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
