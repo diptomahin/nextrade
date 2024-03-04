@@ -26,14 +26,21 @@ const page = () => {
       </Subtitle>
 
       <HelpCenterCard />
+
       <div className="mx-auto  3xl:mx-24">
         <Title>Popular questions?</Title>
         <div>
           <div className=" mt-10 text-darkGray">
             {/* card 1  */}
-            <Accordion>
+            <Accordion
+              sx={{
+                backgroundColor: "#1d2334",
+                color: "white",
+                border: "1px solid #2c3750"
+              }}
+            >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className="text-white" />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -56,9 +63,15 @@ const page = () => {
 
             {/* card 2  */}
 
-            <Accordion>
+            <Accordion
+              sx={{
+                backgroundColor: "#1d2334",
+                color: "white",
+                border: "1px solid #2c3750"
+              }}
+            >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className="text-white" />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -80,9 +93,15 @@ const page = () => {
 
             {/* card 3  */}
 
-            <Accordion>
+            <Accordion
+              sx={{
+                backgroundColor: "#1d2334",
+                color: "white",
+                border: "1px solid #2c3750"
+              }}
+            >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className="text-white" />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -107,9 +126,15 @@ const page = () => {
 
             {/* card 4  */}
 
-            <Accordion>
+            <Accordion
+              sx={{
+                backgroundColor: "#1d2334",
+                color: "white",
+                border: "1px solid #2c3750"
+              }}
+            >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className="text-white" />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -135,9 +160,15 @@ const page = () => {
 
             {/* card 5  */}
 
-            <Accordion>
+            <Accordion
+              sx={{
+                backgroundColor: "#1d2334",
+                color: "white",
+                border: "1px solid #2c3750"
+              }}
+            >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className="text-white" />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -160,9 +191,15 @@ const page = () => {
 
             {/* card 6  */}
 
-            <Accordion>
+            <Accordion
+              sx={{
+                backgroundColor: "#1d2334",
+                color: "white",
+                border: "1px solid #2c3750"
+              }}
+            >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className="text-white" />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -188,6 +225,7 @@ const page = () => {
       <div className="mx-auto  3xl:mx-24 pt-10">
         <NewsLatter />
       </div>
+
     </Container>
   );
 };
