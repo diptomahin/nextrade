@@ -1,5 +1,5 @@
 "use client";
-import DarkButton from "@/components/library/Button";
+import Button from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import axios from "axios";
 import Link from "next/link";
@@ -84,12 +84,10 @@ const Success = () => {
       </h1>
       <div className="flex items-center gap-5">
         <Link href="/">
-          <DarkButton onClick={handlePurchaseAnother}>Go Home</DarkButton>
+          <Button onClick={handlePurchaseAnother}>Go Home</Button>
         </Link>
         <Link href="/dashboard/market">
-          <DarkButton onClick={handlePurchaseAnother}>
-            Explore Market
-          </DarkButton>
+          <Button onClick={handlePurchaseAnother}>Explore Market</Button>
         </Link>
       </div>
     </div>

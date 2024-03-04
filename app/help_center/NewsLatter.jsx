@@ -1,5 +1,5 @@
 import Container from "@/components/library/Container.jsx";
-import DarkButton from "@/components/library/Button";
+import Button from "@/components/library/Button";
 
 const NewsLatter = () => {
   return (
@@ -8,8 +8,8 @@ const NewsLatter = () => {
         Need more help? <br /> Get in touch with us today!{" "}
       </h1>
       <div className="flex items-center gap-8">
-        <DarkButton>Submit ticket</DarkButton>
-        <DarkButton>Read documentation</DarkButton>
+        <Button>Submit ticket</Button>
+        <Button>Read documentation</Button>
       </div>
     </Container>
   );

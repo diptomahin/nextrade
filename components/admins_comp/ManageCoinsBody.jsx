@@ -1,8 +1,6 @@
 "use client";
 import ManageCrypto from "@/components/admins_comp/ManageCrypto";
 import ManageFlatCoins from "@/components/admins_comp/ManageFlatCoins";
-import DashButton from "@/components/library/buttons/DashButton";
-import usePublicFetch from "@/hooks/usePublicFetch";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import {
@@ -10,13 +8,11 @@ import {
   Avatar,
   AvatarGroup,
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -31,6 +27,7 @@ import Swal from "sweetalert2";
 import addImgIcon from "@/assets/addIconImg.png";
 import useAllCryptoCoins from "@/hooks/useAllCryptoCoins";
 import useAllFlatCoins from "@/hooks/useAllFlatCoins";
+import Button from "../library/Button";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
@@ -222,9 +219,9 @@ const ManageCoinsBody = () => {
     <div>
       <div className="flex flex-col 2xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-indigo-400 to-sky-400">
         <h1 className="text-3xl font-semibold">Manage Coins</h1>
-        <DashButton className="w-full" onClick={handleClickOpen}>
+        <Button className="w-full" onClick={handleClickOpen}>
           + Add new
-        </DashButton>
+        </Button>
         <Dialog
           open={open}
           onClose={handleClose}

@@ -1,6 +1,6 @@
 "use client";
 import SocialLogin from "@/components/auth/SocialLogin";
-import DarkButton from "@/components/library/Button";
+import Button from "@/components/library/Button";
 import getDate from "@/components/utils/date";
 import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
@@ -201,14 +201,14 @@ const RegisterForm = () => {
 
         <Stack alignItems="center">
           {captchaValue ? (
-            <DarkButton className="w-full lg:h-12" type="submit">
+            <Button className="w-full lg:h-12" type="submit">
               {" "}
               Create Account
-            </DarkButton>
+            </Button>
           ) : (
-            <DarkButton disabled className="w-full lg:h-12" type="submit">
+            <Button disabled className="w-full lg:h-12" type="submit">
               Create Account
-            </DarkButton>
+            </Button>
           )}
         </Stack>
         <Typography className="text-lg text-center">

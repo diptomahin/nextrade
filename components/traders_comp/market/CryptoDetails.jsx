@@ -16,7 +16,6 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import styled from "@emotion/styled";
 import useNotificationData from "@/hooks/useNotificationData";
 import getDate from "../../utils/date";
-import DarkButton from "@/components/library/Button";
 import SideHistory from "./SideHistory";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";

@@ -5,7 +5,6 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -25,10 +24,10 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import DashButton from "../library/buttons/DashButton";
 import ManageUserTopBar from "./ManageUserTopBar";
 import UsersInfo from "./UsersInfo";
 import useAllUsersData from "@/hooks/useAllUsersData";
+import Button from "../library/Button";
 
 const ManageUserBody = () => {
   const [value, setValue] = useState("1");
@@ -524,7 +523,7 @@ const ManageUserBody = () => {
                   className="resize-none p-4 border border-1 rounded"
                 ></textarea>
                 {errorMsg && <p className="text-red-700">{errorMsg}</p>}
-                <DashButton onClick={handleSendMail}>Send</DashButton>
+                <Button onClick={handleSendMail}>Send</Button>
               </div>
             </AccordionDetails>
           </Accordion>

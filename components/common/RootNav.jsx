@@ -4,7 +4,7 @@ import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 import logo2 from "../../assets/logo/NexTrade_Favicon-Original.png";
 import React from "react";
 import Container from "../library/Container";
-import DarkButton from "@/components/library/Button";
+import Button from "@/components/library/Button";
 import RootNavDrawer from "./nav_comp/RootNavDrawer";
 import { RiMenu5Fill } from "react-icons/ri";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
@@ -83,11 +83,11 @@ export default function RootNav() {
           {user?.email ? (
             userData.role === "admin" ? (
               <Link href="/admin_dashboard">
-                <DarkButton>Go Dashboard</DarkButton>
+                <Button>Go Dashboard</Button>
               </Link>
             ) : (
               <Link href="/dashboard">
-                <DarkButton>Trade Now</DarkButton>
+                <Button>Trade Now</Button>
               </Link>
             )
           ) : (
@@ -99,7 +99,7 @@ export default function RootNav() {
                 </button>
               </Link>
               <Link href="/register">
-                <DarkButton> Register</DarkButton>
+                <Button> Register</Button>
               </Link>
             </div>
           )}
