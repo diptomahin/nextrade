@@ -27,9 +27,9 @@ const ThemeMode = () => {
       className="group relative btn btn-sm btn-circle flex justify-center items-center bg-black hover:bg-black dark:bg-white dark:hover:bg-white border-none"
     >
       {theme ? (
-        <MdModeNight className="text-xl text-black"></MdModeNight>
+        <MdModeNight className="text-xl text-white"></MdModeNight>
       ) : (
-        <MdLightMode className="text-xl text-white"></MdLightMode>
+        <MdLightMode className="text-xl text-black"></MdLightMode>
       )}
     </button>
   );

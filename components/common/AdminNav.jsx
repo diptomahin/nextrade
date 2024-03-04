@@ -4,7 +4,7 @@ import { styled, alpha } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import Language from "@/components/library/Language";
+// import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
 import { usePathname, useRouter } from "next/navigation";
 import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
@@ -189,7 +189,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
       </div>
       <div className="flex items-center gap-6">
         {/* language */}
-        <Language />
+        {/* <Language /> */}
         {/* notification */}
         <AdminNotification />
 
