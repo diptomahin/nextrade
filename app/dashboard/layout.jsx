@@ -48,7 +48,7 @@ const Dashboard = ({ children }) => {
             </Drawer>
           </div>
 
-          <div className="mx-7  3xl:ml-[248px] pt-[93px] pb-7">{children}</div>
+          <div className="mx-4 lg:mx-7  3xl:ml-[248px] pt-[93px] pb-7">{children}</div>
         </div>
       </TradersChecker>
     </QueryClientProvider>
