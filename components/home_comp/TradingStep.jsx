@@ -23,10 +23,10 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-white dark:bg-quaternary border dark:border-darkThree shadow px-10 py-5 rounded-xl dark:text-white"
+          className="bg-quaternary border border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
-            <RiLuggageDepositFill className="w-8 h-8 dark:text-white" />
+            <RiLuggageDepositFill className="w-8 h-8 text-white" />
             <h1 className="text-xl font-semibold">Deposit</h1>
           </div>
           <p className="text-sm mt-3">
@@ -39,13 +39,13 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-white dark:bg-quaternary border dark:border-darkThree shadow px-10 py-5 rounded-xl dark:text-white"
+          className="bg-quaternary border border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
-            <MdAreaChart className="w-8 h-8 dark:text-white" />
+            <MdAreaChart className="w-8 h-8 text-white" />
             <h1 className="text-xl font-semibold">Trade</h1>
           </div>
-          <p className="text-sm mt-3 dark:text-white">
+          <p className="text-sm mt-3 text-white">
             Trade any of 100 assets and stocks. Use technical analysis and trade
             the news
           </p>
@@ -56,13 +56,13 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-white dark:bg-quaternary border dark:border-darkThree shadow px-10 py-5 rounded-xl dark:text-white"
+          className="bg-quaternary border border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
-            <BsCreditCard2FrontFill className="w-8 h-8 dark:text-white" />
+            <BsCreditCard2FrontFill className="w-8 h-8 text-white" />
             <h1 className="text-xl font-semibold">Withdraw</h1>
           </div>
-          <p className="text-sm mt-3 text-gray-700 dark:text-white">
+          <p className="text-sm mt-3 text-white">
             Get funds easily to your bank card or e-wallet. We take no
             commission.
           </p>

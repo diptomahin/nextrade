@@ -10,7 +10,7 @@ import DarkButton from "../library/Button";
 const StartTrading = () => {
   return (
     <Container className="py-20">
-      <Title>Start your trading journey with NexTrade</Title>
+      <Title>Explore Market</Title>
       <motion.p
         variants={fadeIn("up", 0.1)}
         initial="hidden"
@@ -30,7 +30,7 @@ const StartTrading = () => {
       >
         <CryptoCurrencyMarket
           width="100%"
-          height={320}
+          height={700}
           colorTheme="dark"
         ></CryptoCurrencyMarket>
       </motion.div>

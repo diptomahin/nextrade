@@ -21,19 +21,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
+import useAllFlatCoins from "@/hooks/useAllFlatCoins";
 
 const Banner = () => {
   const [cryptoCurrency, setCryptoCurrency] = useState([]);
+  const [Currency, setCurrency] = useState([]);
 
   // get currency data from hook
-  const { allCryptoCoins, cryptoRefetch } = useAllCryptoCoins();
+  const { allCryptoCoins } = useAllCryptoCoins();
+  const { allFlatCoins } = useAllFlatCoins();
 
   // data without real time price
   useEffect(() => {
-    if (allCryptoCoins.length > 0) {
+    if (allCryptoCoins.length > 0 && allFlatCoins.length > 0) {
       setCryptoCurrency(allCryptoCoins);
+      setCurrency(allFlatCoins);
     }
-  }, [allCryptoCoins]);
+  }, [allCryptoCoins, allFlatCoins]);
 
   // createData function for adding real time prices
   const createData = (
@@ -90,11 +94,9 @@ const Banner = () => {
     return () => socket.close();
   }, [cryptoCurrency]);
 
-  console.log(cryptoCurrency);
-
   return (
-    <div className="relative z-10 text-zinc-900 dark:text-zinc-100">
-      <div className="banner w-full h-full hidden dark:block absolute left-0 top-0 opacity-30 -z-20"></div>
+    <div className="relative z-10 text-zinc-100">
+      <div className="banner w-full h-full absolute left-0 top-0 opacity-30 -z-20"></div>
       <Container className="py-56 z-10">
         <h1 className="text-5xl text-center  font-bold leading-normal tracking-wider">
           Make Better Investment{" "}
@@ -103,10 +105,12 @@ const Banner = () => {
         <p className="text-lg text-center  font-semibold mt-6 mb-2">
           At NexTrade, We providing you the opportunity to invest
         </p>
-        <p className="text-center  font-medium text-gray-600 dark:text-gray-300">
+        <p className="text-center  font-medium text-gray-300">
           in more than{" "}
-          <span className="text-primary font-semibold">100 assets</span> for
-          continuous income
+          <Link href="/dashboard/market" className="text-primary font-semibold">
+            #{cryptoCurrency.length + Currency.length}
+          </Link>{" "}
+          assets for continuous income
         </p>
 
         {/* group */}
@@ -190,7 +194,7 @@ const Banner = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="absolute left-[120px] rounded-full  bg-white dark:bg-gradient-to-br from-darkOne to-darkTwo border dark:border-darkThree dark:text-white py-1 px-3 font-semibold"
+              className="absolute left-[120px] rounded-full bg-gradient-to-br from-darkOne to-darkTwo border border-darkThree text-white py-1 px-3 font-semibold"
             >
               +More <span className="text-sm font-normal">assets</span>
             </motion.p>
@@ -235,7 +239,7 @@ const Banner = () => {
           {cryptoCurrency?.slice(0, 6).map((crypto) => (
             <SwiperSlide
               key={crypto?._id}
-              className="w-full dark:bg-quaternary border  dark:border-darkThree p-5 rounded-xl shadow hover:shadow-lg dark:shadow-quinary my-10"
+              className="w-full bg-quaternary border  border-darkThree p-5 rounded-xl shadow hover:shadow-2xl shadow-quinary my-10"
             >
               <Link
                 href={`/dashboard/market/${crypto?.key}`}

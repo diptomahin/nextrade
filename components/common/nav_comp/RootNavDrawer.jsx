@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import logo from "../../../assets/logo/NexTrade_Favicon-White.png";
 import { IoChevronBack } from "react-icons/io5";
-import { IoIosLogOut } from "react-icons/io";
+import { IoIosArrowForward, IoIosLogOut } from "react-icons/io";
 
 const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
@@ -44,7 +44,7 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
           <Link href="/" className="flex-1 block md:hidden">
             <Image src={logo} alt="Logo" width={40} height={"auto"} />
           </Link>
-          {user?.email && (
+          {user?.email ? (
             <div className="flex-1 flex items-center justify-end">
               <button
                 onClick={() => {
@@ -57,6 +57,22 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
                 <IoIosLogOut />
               </button>
             </div>
+          ) : (
+            <Link
+              href="/login"
+              className="flex-1 flex items-center justify-end"
+            >
+              <button
+                onClick={() => {
+                  logOut();
+                  setIsActive(false);
+                }}
+                className="btn btn-sm w-28 h-9 pl-5 pr-0 bg-white hover:bg-white text-black text-nowrap text-xs md:text-sm font-medium shadow-none border-none rounded-md justify-start hover:gap-4 transition-all duration-300 ease-in-out"
+              >
+                Login
+                <IoIosArrowForward />
+              </button>
+            </Link>
           )}
         </div>
 
