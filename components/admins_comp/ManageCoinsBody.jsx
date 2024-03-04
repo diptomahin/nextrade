@@ -9,6 +9,7 @@ import {
   Avatar,
   AvatarGroup,
   Box,
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -29,7 +30,6 @@ import Swal from "sweetalert2";
 import addImgIcon from "@/assets/addIconImg.png";
 import useAllCryptoCoins from "@/hooks/useAllCryptoCoins";
 import useAllFlatCoins from "@/hooks/useAllFlatCoins";
-import Button from "../library/Button";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
@@ -229,9 +229,9 @@ const ManageCoinsBody = () => {
 
   return (
     <div>
-      <div className="flex flex-col 2xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-bl from-indigo-400 to-sky-400">
+      <div className="flex flex-col 2xl:flex-row gap-6 justify-between p-6 rounded-lg bg-gradient-to-l from-indigo-700 to-[#40a0ff]">
         <h1 className="text-3xl font-semibold">Manage Coins</h1>
-        <Button className="w-full" onClick={handleClickOpen}>
+        <Button variant="contained" sx={{backgroundColor:"#40a0ff", fontWeight:"700"}} onClick={handleClickOpen}>
           + Add new
         </Button>
         <Dialog
@@ -312,7 +312,7 @@ const ManageCoinsBody = () => {
                   });
               }
               handleClose();
-            },
+            }
           }}
         >
           <DialogTitle>Add new coin</DialogTitle>

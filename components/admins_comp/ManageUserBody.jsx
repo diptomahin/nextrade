@@ -4,6 +4,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Button,
   Box,
   Dialog,
   DialogActions,
@@ -28,7 +29,6 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import ManageUserTopBar from "./ManageUserTopBar";
 import UsersInfo from "./UsersInfo";
 import useAllUsersData from "@/hooks/useAllUsersData";
-import Button from "../library/Button";
 
 const CustomTab = styled(Tab)({
   color: '#a1a1aa',
