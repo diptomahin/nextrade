@@ -250,7 +250,7 @@ const AdminNotification = () => {
                 <div
                   key={asset?._id}
                   className={`relative ${
-                    asset?.read ? "bg-[#ffffff] shadow shadow-gray-400 dark:bg-secondary/50" : "bg-primary/40 dark:bg-white/10 "
+                    asset?.read ? "bg-[#ffffff] dark:shadow-none shadow shadow-gray-400 dark:bg-secondary/50" : "bg-primary/40 dark:bg-white/10 "
                   } w-full  rounded  cursor-pointer p-3 `}
                 >
                   <div onClick={() => handleRead(asset?._id)}>
