@@ -15,6 +15,7 @@ import {
   MenuItem,
   Select,
   Tab,
+  styled,
 } from "@mui/material";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
@@ -25,10 +26,19 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import DashButton from "../library/buttons/DashButton";
 import ManageUserTopBar from "./ManageUserTopBar";
 import UsersInfo from "./UsersInfo";
 import useAllUsersData from "@/hooks/useAllUsersData";
+
+const CustomTab = styled(Tab)({
+  color: '#a1a1aa',
+  fontWeight: 'bold',
+  '&.Mui-selected': {
+    backgroundColor:"#40a0ff",
+    color: 'white',
+    borderRadius: "10px 10px 0px 0px",
+  },
+});
 
 const ManageUserBody = () => {
   const [value, setValue] = useState("1");
@@ -43,6 +53,7 @@ const ManageUserBody = () => {
   const [errorMsg, setErrorMsg] = useState();
   const { allUser, refetch } = useAllUsersData();
   const secureAPI = useSecureAPI();
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -177,19 +188,19 @@ const ManageUserBody = () => {
             }}
           >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab
+              <CustomTab
                 label="All Users"
-                sx={{ px: { xs: 1, md: 3 }, color: "white" }}
+                sx={{ px:{ xs:1.5, md:3 }, py:{xs:0, md:0} }}
                 value="1"
               />
-              <Tab
+              <CustomTab
                 label="Traders"
-                sx={{ px: { xs: 1, md: 3 }, color: "white" }}
+                sx={{ px:{ xs:1.5, md:3 }, py:{xs:0, md:0} }}
                 value="2"
               />
-              <Tab
+              <CustomTab
                 label="Admins"
-                sx={{ px: { xs: 1, md: 3 }, color: "white" }}
+                sx={{ px:{ xs:1.5, md:3 }, py:{xs:0, md:0}}}
                 value="3"
               />
             </TabList>
@@ -201,16 +212,16 @@ const ManageUserBody = () => {
               {allUser.map((singleUser) => (
                 <div key={singleUser._id} className="min-w-[200px] ">
                   <Accordion
-                    className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
+                    className="bg-white dark:bg-gradient-to-bl from-darkOne to-darkTwo border  dark:border-darkThree rounded"
                     sx={{
-                      border: "1px solid #40a0ff",
+                      border: "1px solid #a1a1aa",
                       boxShadow: "0px 0px 0px 0px",
                       borderRadius: "20px",
                     }}
                   >
                     <AccordionSummary
                       expandIcon={
-                        <ArrowDownwardIcon style={{ color: "white" }} />
+                        <ArrowDownwardIcon style={{ color: "#a1a1aa" }} />
                       }
                       aria-controls="panel1-content"
                       id="panel1-header"
@@ -234,7 +245,7 @@ const ManageUserBody = () => {
                             className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
                           />
                         )}
-                        <div className="text-sm lg:text-base text-white">
+                        <div className="text-sm lg:text-base dark:text-white">
                           <h1 className="font-semibold">
                             {singleUser.name ? singleUser.name : "No name"}{" "}
                             <span
@@ -524,7 +535,7 @@ const ManageUserBody = () => {
                   className="resize-none p-4 border border-1 rounded"
                 ></textarea>
                 {errorMsg && <p className="text-red-700">{errorMsg}</p>}
-                <DashButton onClick={handleSendMail}>Send</DashButton>
+                <Button variant="outlined" onClick={handleSendMail}>Send</Button>
               </div>
             </AccordionDetails>
           </Accordion>
