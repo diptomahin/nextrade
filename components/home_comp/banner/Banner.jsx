@@ -10,7 +10,8 @@ import icon2 from "../../../assets/Banner/ethereum-eth-logo.svg";
 import icon3 from "../../../assets/Banner/litecoin-ltc-logo.svg";
 import icon4 from "../../../assets/Banner/dogecoin-doge-logo.svg";
 import icon5 from "../../../assets/Banner/qtum-qtum-logo.svg";
-import DarkButton from "@/components/library/Button";
+import Button from "@/components/library/Button";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Banner = () => {
   return (
@@ -120,10 +121,9 @@ const Banner = () => {
 
         <div className="flex justify-center">
           <Link href="/dashboard">
-            <DarkButton className="bg-primary/90 hover:bg-primary text-white border-none px-8">
-              {" "}
-              Trade Now
-            </DarkButton>
+            <Button className="w-36 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-1">
+              Trade Now <IoIosArrowForward />
+            </Button>
           </Link>
         </div>
 

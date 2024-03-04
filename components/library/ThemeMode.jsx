@@ -24,7 +24,7 @@ const ThemeMode = () => {
   return (
     <button
       onClick={handleTheme}
-      className="group relative btn btn-sm h-9 w-9 btn-circle flex justify-center items-center bg-black hover:bg-black dark:bg-white dark:hover:bg-white border-none"
+      className="group relative btn btn-sm btn-circle flex justify-center items-center bg-black hover:bg-black dark:bg-white dark:hover:bg-white border-none"
     >
       {theme ? (
         <MdModeNight className="text-xl text-black"></MdModeNight>
