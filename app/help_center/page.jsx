@@ -63,7 +63,13 @@ const page = () => {
 
             {/* card 2  */}
 
-            <Accordion>
+            <Accordion
+            sx={{
+              backgroundColor: "#1d2334",
+              color: "white",
+              border: "1px solid #2c3750"
+            }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"
@@ -87,7 +93,13 @@ const page = () => {
 
             {/* card 3  */}
 
-            <Accordion>
+            <Accordion
+            sx={{
+              backgroundColor: "#1d2334",
+              color: "white",
+              border: "1px solid #2c3750"
+            }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"
