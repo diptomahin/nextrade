@@ -249,7 +249,7 @@ const MarketAllProducts = () => {
   };
 
   return (
-    <div className="w-full p-3 bg-white dark:bg-tertiary rounded-xl">
+    <div className="w-full p-3 bg-white dark:bg-tertiary shadow rounded-xl">
       {/* tabs */}
       <TabContext value={value}>
         <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">

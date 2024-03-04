@@ -263,7 +263,7 @@ const ManageCrypto = ({ assets, refetch }) => {
         // <div key={idx} className='rounded-lg p-6 space-y-4 min-w-[280px] relative bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree'>
         <div
           key={idx}
-          className="coinBg rounded-lg p-6 space-y-4  relative bg-sky-200/30 dark:bg-darkOne dark:border  dark:border-darkThree dark:text-white"
+          className="coinBg shadow rounded-lg p-6 space-y-4  relative bg-sky-200/30 dark:bg-darkOne dark:border  dark:border-darkThree dark:text-white"
         >
           <p className="absolute top-4 left-4">{idx + 1}.</p>
           <div>

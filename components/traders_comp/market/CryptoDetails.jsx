@@ -271,7 +271,7 @@ const CryptoDetails = ({
 
       <div className="flex-1 flex flex-col gap-7 w-full">
         {tickerData ? (
-          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-white dark:bg-tertiary">
+          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-white dark:bg-tertiary shadow">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">
                 Buy {coinKey.slice(0, -4)}
