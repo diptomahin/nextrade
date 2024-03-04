@@ -24,12 +24,12 @@ const ThemeMode = () => {
   return (
     <button
       onClick={handleTheme}
-      className="group relative btn btn-sm h-9 w-9 btn-circle flex justify-center items-center bg-black hover:bg-black dark:bg-white dark:hover:bg-white border-none"
+      className="group relative btn btn-sm h-9 w-9 btn-circle flex justify-center items-center bg-transparent  border border-black dark:border-gray-200 border-none"
     >
       {theme ? (
-        <MdModeNight className="text-xl text-black"></MdModeNight>
+        <MdModeNight className="text-xl text-white"></MdModeNight>
       ) : (
-        <MdLightMode className="text-xl text-white"></MdLightMode>
+        <MdLightMode className="text-xl text-black"></MdLightMode>
       )}
     </button>
   );
