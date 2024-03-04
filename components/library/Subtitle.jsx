@@ -1,4 +1,5 @@
 "use client";
+import cn from "../utils/cn";
 import { fadeIn } from "../utils/variants";
 import { motion } from "framer-motion";
 
@@ -9,7 +10,7 @@ const Subtitle = ({ children, className }) => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.1 }}
-      className={`text-center text-darkGray font-medium ${className}`}
+      className={cn("text-center text-darkGray font-medium", className)}
     >
       {children}
     </motion.p>
