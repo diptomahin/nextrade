@@ -26,7 +26,7 @@ const Footer = () => {
               style={{ width: "150px", height: "auto" }}
             />
           </Link>
-          <p className="text-sm  3xl:max-w-80">
+          <p className="text-darkGray text-sm 3xl:max-w-80">
             The Company does not provide services to citizens and/or residents
             of Australia, Austria, Belarus, Belgium, Bulgaria, Canada, Croatia,
             Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland,

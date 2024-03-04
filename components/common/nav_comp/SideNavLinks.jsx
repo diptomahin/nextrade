@@ -1,12 +1,11 @@
 import Link from "next/link";
-import React from "react";
 import { FaHistory, FaUserCircle, FaWallet } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { SiKhanacademy, SiMarketo } from "react-icons/si";
 import { HiMiniQueueList } from "react-icons/hi2";
 import { AiFillSliders, AiOutlineFundView } from "react-icons/ai";
 
-const SideNavLinks = ({ pathname }) => {
+const SideNavLinks = ({ pathname, isActiveMenu }) => {
   return (
     <>
       <Link

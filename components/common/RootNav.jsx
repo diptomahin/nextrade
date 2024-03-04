@@ -1,16 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 import logo2 from "../../assets/logo/NexTrade_Favicon-Original.png";
 import React from "react";
 import Container from "../library/Container";
 import Button from "@/components/library/Button";
 import RootNavDrawer from "./nav_comp/RootNavDrawer";
-import { RiMenu5Fill } from "react-icons/ri";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
 import useUserData from "@/hooks/useUserData";
 import useAuth from "@/hooks/useAuth";
 import ThemeMode from "../library/ThemeMode";
+import { CgMenuGridO } from "react-icons/cg";
+import Logo from "../library/Logo";
+import { IoIosArrowForward } from "react-icons/io";
 
 export default function RootNav() {
   const [isActive, setIsActive] = React.useState(false);
@@ -39,9 +40,7 @@ export default function RootNav() {
     <>
       <nav
         className={`w-full h-auto box-border fixed transition-all duration-200 ease-out z-[1000] ${
-          scrolled
-            ? "py-3 bg-white/30 dark:bg-darkTwo/50 backdrop-blur-sm"
-            : "py-8"
+          scrolled ? "py-3 bg-darkTwo/50 backdrop-blur-sm" : "py-8"
         } z-50`}
       >
         <Container className="flex items-center justify-between">
@@ -50,36 +49,25 @@ export default function RootNav() {
               onClick={() => {
                 setIsActive(!isActive);
               }}
-              className="btn btn-sm bg-transparent hover:bg-transparent  dark:text-white px-0 border-none shadow-none"
+              className="btn btn-sm h-10 w-10 bg-transparent hover:bg-transparent text-white px-0 py-0 border-none shadow-none"
             >
-              <RiMenu5Fill className="text-3xl" />
+              <CgMenuGridO className="text-4xl" />
             </button>
-            {/* dark/light mode*/}
-            <ThemeMode />
           </div>
 
-          <Link href="/" className="hidden 2xl:block">
-            {scrolled ? (
-              <Image
-                src={logo2}
-                alt="Logo"
-                style={{ width: "50px", height: "auto" }}
-              />
-            ) : (
-              <Image
-                src={logo}
-                alt="Logo"
-                style={{ width: "160px", height: "auto" }}
-              />
-            )}
+          {scrolled ? (
+            <Link href="/" className="hidden md:flex">
+              {" "}
+              <Image src={logo2} alt="Logo" width={40} height={"auto"} />
+            </Link>
+          ) : (
+            <Logo className="hidden md:flex" />
+          )}
+          <Link href="/" className="flex md:hidden">
+            {" "}
+            <Image src={logo2} alt="Logo" width={40} height={"auto"} />
           </Link>
-          <Link href="/" className="hidden md:block 2xl:hidden">
-            <Image
-              src={logo2}
-              alt="Logo"
-              style={{ width: "50px", height: "auto" }}
-            />
-          </Link>
+
           {user?.email ? (
             userData.role === "admin" ? (
               <Link href="/admin_dashboard">
@@ -87,19 +75,24 @@ export default function RootNav() {
               </Link>
             ) : (
               <Link href="/dashboard">
-                <Button>Trade Now</Button>
+                <Button className="w-36 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-1">
+                  Trade Now <IoIosArrowForward />
+                </Button>
               </Link>
             )
           ) : (
             <div className="flex items-center gap-2 md:gap-6">
               <Link href="/login">
-                <button className="btn btn-sm h-10 font-medium text-nowrap text-sm md:text-base rounded-md bg-transparent hover:bg-primary text-black hover:text-white dark:text-white border-none shadow-none">
-                  {" "}
-                  Login
+                <button className="group btn btn-sm h-10 font-medium text-nowrap text-sm md:text-base rounded-md bg-transparent hover:bg-primary hover:text-white text-white border-none shadow-none w-24 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-1">
+                  Login{" "}
+                  <IoIosArrowForward className="opacity-0 group-hover:opacity-100" />
                 </button>
               </Link>
               <Link href="/register">
-                <Button> Register</Button>
+                <Button className="w-32 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-2">
+                  {" "}
+                  Register <IoIosArrowForward />
+                </Button>
               </Link>
             </div>
           )}

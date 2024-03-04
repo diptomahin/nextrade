@@ -5,10 +5,9 @@ import Container from "@/components/library/Container";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
-import logo from "../../../assets/logo/NexTrade-Logo-White.png";
-import logo2 from "../../../assets/logo/NexTrade_Favicon-White.png";
-import Button from "@/components/library/Button";
+import logo from "../../../assets/logo/NexTrade_Favicon-White.png";
 import { IoChevronBack } from "react-icons/io5";
+import { IoIosArrowForward, IoIosLogOut } from "react-icons/io";
 
 const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
@@ -16,40 +15,64 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
     <div className="fixed top-0 left-0 w-full h-screen bg-primary text-white z-[1000]">
       <Container className="h-full">
         <div className="flex items-center justify-between gap-6 py-8">
-          <div
-            onClick={() => {
-              setIsActive(false);
-              setActiveTab("");
-            }}
-          >
-            <button className="btn btn-sm bg-transparent hover:bg-transparent  text-white px-1 border-none">
-              <GrClose className="text-2xl" />
-            </button>
-          </div>
-          <Link href="/" className="hidden 2xl:block">
-            <Image
-              src={logo}
-              alt="Logo"
-              style={{ width: "144px", height: "160" }}
-            />
-          </Link>
-          <Link href="/" className="hidden md:block 2xl:hidden">
-            <Image
-              src={logo2}
-              alt="Logo"
-              style={{ width: "50px", height: "auto" }}
-            />
-          </Link>
-          {user?.email && (
+          <div className="flex-1">
             <button
               onClick={() => {
-                logOut();
                 setIsActive(false);
+                setActiveTab("");
               }}
-              className="btn btn-sm h-10 bg-white hover:bg-white text-primary rounded-md"
+              className="btn btn-sm h-10 w-10  bg-transparent hover:bg-transparent text-white px-0 py-0 border-none shadow-none"
             >
-              Logout
+              <GrClose className="text-3xl" />
             </button>
+          </div>
+
+          <div className="flex-1 flex items-center justify-center">
+            <Link
+              href="/"
+              className="flex-1 hidden md:flex items-center justify-center gap-[5px] h-fit w-fit"
+            >
+              {" "}
+              <Image src={logo} width={40} height={"auto"} alt="logo" />
+              <h1 className="text-2xl font-medium ">
+                Nex<span className="font-extrabold">Trade</span>
+              </h1>
+            </Link>
+          </div>
+
+          {/* logo */}
+          <Link href="/" className="flex-1 block md:hidden">
+            <Image src={logo} alt="Logo" width={40} height={"auto"} />
+          </Link>
+          {user?.email ? (
+            <div className="flex-1 flex items-center justify-end">
+              <button
+                onClick={() => {
+                  logOut();
+                  setIsActive(false);
+                }}
+                className="btn btn-sm w-28 h-9 pl-5 pr-0 bg-white hover:bg-white text-black text-nowrap text-xs md:text-sm font-medium shadow-none border-none rounded-md justify-start hover:gap-4 transition-all duration-300 ease-in-out"
+              >
+                Logout
+                <IoIosLogOut />
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="flex-1 flex items-center justify-end"
+            >
+              <button
+                onClick={() => {
+                  logOut();
+                  setIsActive(false);
+                }}
+                className="btn btn-sm w-28 h-9 pl-5 pr-0 bg-white hover:bg-white text-black text-nowrap text-xs md:text-sm font-medium shadow-none border-none rounded-md justify-start hover:gap-4 transition-all duration-300 ease-in-out"
+              >
+                Login
+                <IoIosArrowForward />
+              </button>
+            </Link>
           )}
         </div>
 
