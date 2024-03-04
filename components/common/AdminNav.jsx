@@ -10,6 +10,7 @@ import { usePathname, useRouter } from "next/navigation";
 import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
 
 import { Autocomplete, TextField } from "@mui/material";
+import ThemeMode from "../library/ThemeMode";
 
 const StyledInputBase = styled(TextField)(({ theme }) => ({
   color: "white",
@@ -130,7 +131,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
 
   return (
     <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary border-b dark:border-darkThree px-5">
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5  ">
         <IconButton
           color="black"
           aria-label="open drawer"
@@ -140,12 +141,12 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
             color: "white",
             "@media (min-width: 1280px)": {
               display: "none",
-              color: "white",
-              backgroundColor: "black",
+            
             },
           }}
+          className="bg-white dark:bg-tertiary"
         >
-          <MenuIcon sx={{ color: "white" }} />
+          <MenuIcon className="text-black dark:text-white" />
         </IconButton>
         {/*  */}
         {/* dynamic tittle and date time */}
@@ -182,12 +183,13 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
               />
             )}
           />
-          <button type="submit" className="absolute right-2">
-            <SearchIcon style={{ marginRight: "6px", color: "white" }} />
+          <button type="submit" className="absolute right-2 text-black dark:text-white">
+            <SearchIcon style={{ marginRight: "6px" }} />
           </button>
         </form>
       </div>
       <div className="flex items-center gap-6">
+        <ThemeMode/>
         {/* language */}
         {/* <Language /> */}
         {/* notification */}
