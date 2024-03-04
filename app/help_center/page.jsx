@@ -26,12 +26,19 @@ const page = () => {
       </Subtitle>
 
       <HelpCenterCard />
+
       <div className="mx-auto  3xl:mx-24">
         <Title>Popular questions?</Title>
         <div>
           <div className=" mt-10 text-darkGray">
             {/* card 1  */}
-            <Accordion>
+            <Accordion
+            sx={{
+              backgroundColor: "#1d2334",
+              color: "white",
+              border: "1px solid #2c3750"
+            }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"
@@ -188,6 +195,7 @@ const page = () => {
       <div className="mx-auto  3xl:mx-24 pt-10">
         <NewsLatter />
       </div>
+
     </Container>
   );
 };
