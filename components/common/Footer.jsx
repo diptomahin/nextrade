@@ -44,8 +44,8 @@ const Footer = () => {
           <Link className="hover:underline" href={"/about_nextrade"}>
             About NexTrade
           </Link>
-          <Link className="hover:underline" href={"/why_choose_us"}>
-            Why Choose Us
+          <Link className="hover:underline" href={"/why_nextrade"}>
+            Why NexTrade
           </Link>
         </div>
         {/* products */}
@@ -68,7 +68,7 @@ const Footer = () => {
             {" "}
             Subscription
           </Link>
-          <Link className="hover:underline" href={"/payment_method_method"}>
+          <Link className="hover:underline" href={"/payment_method"}>
             Payment Method
           </Link>
         </div>

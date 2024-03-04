@@ -2,72 +2,80 @@
 
 import Container from "@/components/library/Container";
 import Title from "@/components/library/Title";
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+import Image from "next/image";
+import usePublicFetch from "@/hooks/usePublicFetch";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import Image from "next/image";
-import usePublicAPI from "@/hooks/usePublicAPI"; // Import your usePublicAPI hook
 
 const Testimonials = () => {
-  const [reviews, setReviews] = useState([]);
-  const publicAPI = usePublicAPI(); // Get the instance of the public API
+  const {
+    data = [],
+    isPending,
+    isLoading,
+    refetch,
+    isError,
+  } = usePublicFetch("/feedback", "testimonials");
+  refetch();
 
-  useEffect(() => {
-    fetchReviews();
-  }, []);
-
-  const fetchReviews = async () => {
-    try {
-      const response = await publicAPI.get("/feedback");
-      if (!response.data) {
-        throw new Error('Failed to fetch reviews');
-      }
-      setReviews(response.data);
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
-    }
-  };
+  if (isLoading || isError || isPending) {
+    return;
+  }
 
   return (
-    <Container className="py-10">
-      <Title>Trader&apos;s Feedback</Title>
+    <Container className="py-20">
+      <Title>Our Satisfied Users Feedback</Title>
       <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
+        slidesPerView={20}
+        spaceBetween={5}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1280: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        }}
+        modules={[Autoplay]}
       >
-        {reviews.map((review) => (
+        {data?.slice(0, 15).map((review) => (
           <SwiperSlide key={review?._id}>
-            <div className="my-5 mx-16 flex flex-col items-center">
+            <div className="min-h-52 bg-primary/10 flex gap-3 border border-darkThree rounded-xl shadow hover:shadow-2xl p-5 my-10">
               <Image
-                className="rounded-full"
+                className="w-12 h-12 rounded-full"
                 src={review?.photo}
                 alt="avatar"
-                width={100}
-                height={100}
+                width={50}
+                height={50}
               />
-              <h3 className="text-lg py-5 font-semibold">{review?.reviewerName}</h3>
-              <p className="py-8">{review?.feedback}</p>
-              <Rating
-                style={{ maxWidth: 180 }}
-                value={review?.rating}
-                readOnly
-                className="mb-5"
-              />
+              <div className="w-full">
+                <div className="w-full flex justify-between items-center">
+                  <h3 className="font-semibold text-primary">
+                    {" "}
+                    {review?.reviewerName}
+                  </h3>
+                  <Rating
+                    style={{ maxWidth: 90 }}
+                    value={review?.rating}
+                    readOnly
+                  />
+                </div>
+                <p className="text-xs">Address N/A</p>
+                <p className="text-sm mt-3">&quot;{review?.feedback}&quot;</p>
+              </div>
             </div>
           </SwiperSlide>
         ))}
