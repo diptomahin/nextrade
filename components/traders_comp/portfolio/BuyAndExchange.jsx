@@ -199,6 +199,7 @@ const BuyAndExchange = ({
       sellCoinProfit,
       sellCoinLoss,
       totalInvestment,
+      email:user.email
     };
 
     const notificationInfo = {
