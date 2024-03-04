@@ -291,15 +291,15 @@ const ManageUserBody = () => {
               {traderAccounts.map((singleUser) => (
                 <div key={singleUser._id} className="min-w-[200px]">
                   <Accordion
-                    className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
+                    className="bg-white dark:bg-gradient-to-bl from-darkOne to-darkTwo border  dark:border-darkThree rounded"
                     sx={{
-                      border: "1px solid #40a0ff",
+                      border: "1px solid #a1a1aa",
                       boxShadow: "0px 0px 0px 0px",
                       borderRadius: "20px",
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon sx={{ color: "white" }} />}
+                      expandIcon={<ArrowDownwardIcon sx={{ color: "#a1a1aa" }} />}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
@@ -322,7 +322,7 @@ const ManageUserBody = () => {
                             className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
                           />
                         )}
-                        <div className="text-sm lg:text-base text-white">
+                        <div className="text-sm lg:text-base dark:text-white">
                           <h1 className="font-semibold">
                             {singleUser.name}{" "}
                             <span
@@ -337,7 +337,7 @@ const ManageUserBody = () => {
                               {singleUser.role}
                             </span>
                           </h1>
-                          <h1 className="hidden xs:block text-gray-400">
+                          <h1 className="hidden xs:block text-gray-500">
                             {singleUser.email}
                           </h1>
                         </div>
@@ -368,15 +368,15 @@ const ManageUserBody = () => {
               {adminAccounts.map((singleUser) => (
                 <div key={singleUser._id} className="min-w-[200px]">
                   <Accordion
-                    className="bg-gradient-to-bl from-darkOne to-darkTwo border border-darkThree rounded"
+                    className="bg-white dark:bg-gradient-to-bl from-darkOne to-darkTwo border  dark:border-darkThree rounded"
                     sx={{
-                      border: "1px solid #40a0ff",
+                      border: "1px solid #a1a1aa",
                       boxShadow: "0px 0px 0px 0px",
                       borderRadius: "20px",
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon sx={{ color: "white" }} />}
+                      expandIcon={<ArrowDownwardIcon sx={{ color: "#a1a1aa" }} />}
                       aria-controls="panel1-content"
                       id="panel1-header"
                       sx={{
@@ -399,7 +399,7 @@ const ManageUserBody = () => {
                             className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
                           />
                         )}
-                        <div className="text-sm lg:text-base text-white">
+                        <div className="text-sm lg:text-base dark:text-white">
                           <h1 className="font-semibold">
                             {singleUser.name}{" "}
                             <span
@@ -414,7 +414,7 @@ const ManageUserBody = () => {
                               {singleUser.role}
                             </span>
                           </h1>
-                          <h1 className="hidden xs:block text-gray-400">
+                          <h1 className="hidden xs:block text-gray-500">
                             {singleUser.email}
                           </h1>
                         </div>
@@ -464,7 +464,7 @@ const ManageUserBody = () => {
                 className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
               />
             )}
-            <div className="text-sm lg:text-base ">
+            <div className="text-sm lg:text-base dark:text-white">
               <h1 className="font-semibold">
                 {userName ? userName : "No name"}{" "}
                 <span
