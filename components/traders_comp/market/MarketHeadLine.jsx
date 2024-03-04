@@ -112,7 +112,7 @@ const MarketHeadLine = () => {
 
   if (assets.length > 0) {
     return (
-      <div className=" w-full ">
+      <div className=" w-full">
         <Stack gap={2}>
           <Marquee direction="right">
             {assets.map((asset) => (

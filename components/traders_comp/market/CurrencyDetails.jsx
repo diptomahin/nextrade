@@ -266,7 +266,7 @@ const CurrencyDetails = ({
 
       <div className="flex-1 flex flex-col gap-5 w-full">
         {currencyRate ? (
-          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-white dark:bg-tertiary">
+          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max shadow bg-white dark:bg-tertiary">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">Buy {coinKey}</h1>
               <button
