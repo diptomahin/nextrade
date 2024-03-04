@@ -36,7 +36,7 @@ const MarketHistory = () => {
     return;
   }
   return (
-    <div className="w-full h-full flex flex-col gap-8 bg-tertiary p-5 rounded-xl">
+    <div className="w-full h-full flex flex-col gap-8 bg-white dark:bg-tertiary p-5 rounded-xl">
       <div className="flex items-center justify-between border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">Market History</h3>
       </div>

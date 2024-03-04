@@ -1,8 +1,4 @@
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-// import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
+
 import { useState } from "react";
 import WalletIcon from "@mui/icons-material/Wallet";
 import CachedSharpIcon from "@mui/icons-material/CachedSharp";
@@ -23,7 +19,7 @@ import getDate from "@/components/utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 import useUserData from "@/hooks/useUserData";
-import { Elements } from "@stripe/react-stripe-js";
+
 
 const BuyAndExchange = ({
   cryptoData,
