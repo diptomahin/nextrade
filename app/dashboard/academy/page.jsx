@@ -35,7 +35,7 @@ const Academy = () => {
   return (
     <div className="">
       {/* top stories and recent news */}
-      <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 container mx-auto lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
+      <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
         <div className="lg:mt-1">
           <Timeline colorTheme="dark" height={700} width="100%" />
         </div>
@@ -79,7 +79,7 @@ const Academy = () => {
 
       {/* Trending stories */}
       <div className="bg-[#1e222d] lg:p-10 p-4 mt-10">
-        <div className="container mx-auto">
+        <div className="">
           <SectionTitle
             title="Trending Stories"
             btnText="ALL Trending Stories"
@@ -169,7 +169,7 @@ const Academy = () => {
       </div>
 
       {/* All Market News */}
-      <div className="mt-10 container mx-auto lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
+      <div className="mt-10 lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
         <SectionTitle title="Market News" btnText="ALL Market News" />
 
         <div>
@@ -211,7 +211,7 @@ const Academy = () => {
 
       {/* Videos */}
       <div className="bg-black lg:p-10 my-10">
-        <div className="container mx-auto">
+        <div className="">
           <div className="flex justify-between items-center py-5">
             <h2 className="lg:text-[30px] text-xl font-semibold text-white">
               Videos
