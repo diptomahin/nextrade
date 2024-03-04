@@ -13,6 +13,7 @@ module.exports = {
         secondary: '#3aba69', // green
         tertiary: '#f65455', // red
         quaternary: '#fca104', // orange
+        quinary: '#17171e',
         darkGray: '#939db1', // gray  
         darkOne: '#1d2334',
         darkTwo: '#212a3f',

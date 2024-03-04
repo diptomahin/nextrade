@@ -18,10 +18,10 @@ const Dashboard = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       <TradersChecker>
         <div className="min-h-screen bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100 font-montserrat">
-          <div className="fixed top-0 w-full h-16  3xl:pl-[220px] z-40 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
+          <div className="fixed top-0 w-full h-16  3xl:pl-[180px] z-40 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
             <TradersNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
           </div>
-          <div className="hidden  3xl:block fixed h-full w-[220px] z-50 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
+          <div className="hidden  3xl:block fixed h-full w-[180px] z-50 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
             <TradersSideNav />
           </div>
           <div className="block  3xl:hidden bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
@@ -48,7 +48,9 @@ const Dashboard = ({ children }) => {
             </Drawer>
           </div>
 
-          <div className="mx-4 lg:mx-7  3xl:ml-[248px] pt-[93px] pb-7">{children}</div>
+          <div className="mx-4 lg:mx-7  3xl:ml-[208px] pt-[93px] pb-7">
+            {children}
+          </div>
         </div>
       </TradersChecker>
     </QueryClientProvider>
