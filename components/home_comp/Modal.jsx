@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import Cookies from "js-cookie";
-import DarkButton from "../library/Button";
+import Button from "../library/Button";
 import { MdCancel } from "react-icons/md";
 
 const Modal = () => {
@@ -100,7 +100,7 @@ const Modal = () => {
                 </p>
                 <div className="flex justify-center mt-4 space-x-4">
                   <Link href="/register">
-                    <DarkButton>Register Now</DarkButton>
+                    <Button>Register Now</Button>
                   </Link>
                 </div>
               </div>

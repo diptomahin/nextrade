@@ -1,11 +1,9 @@
 "use client";
-import DarkButton from "@/components/library/Button";
 import FeedbackForm from "@/components/traders_comp/feedback/FeedbackForm";
 import WatchlistCryptoTable from "@/components/traders_comp/watchlist/WatchlistCryptoTable";
 import WatchlistCurrencyTable from "@/components/traders_comp/watchlist/WatchlistCurrencyTable";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import useSecureFetch from "@/hooks/useSecureFetch";
 import useWatchlistData from "@/hooks/useWatchlistData";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Tab } from "@mui/material";

@@ -2,7 +2,7 @@
 import useAllUsersData from "@/hooks/useAllUsersData";
 import { FaUserCircle } from "react-icons/fa";
 import Image from "next/image";
-import DarkButton from "../library/Button";
+import Button from "../library/Button";
 import Link from "next/link";
 
 const AdminDashUserProfile = () => {
@@ -51,7 +51,7 @@ const AdminDashUserProfile = () => {
         </div>
       ))}
       <Link href={"admin_dashboard/manage_users"}>
-        <DarkButton className={"w-full"}>See All</DarkButton>
+        <Button className={"w-full"}>See All</Button>
       </Link>
     </div>
   );

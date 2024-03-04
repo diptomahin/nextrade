@@ -1,6 +1,6 @@
 "use client";
 import SocialLogin from "@/components/auth/SocialLogin";
-import DarkButton from "@/components/library/Button";
+import Button from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import styled from "@emotion/styled";
 import { Stack, TextField, Typography } from "@mui/material";
@@ -128,13 +128,13 @@ const LoginForm = () => {
 
         <Stack alignItems="center">
           {captchaValue ? (
-            <DarkButton type="submit" className="w-full lg:h-12">
+            <Button type="submit" className="w-full lg:h-12">
               Log In
-            </DarkButton>
+            </Button>
           ) : (
-            <DarkButton disabled type="submit" className="w-full lg:h-12">
+            <Button disabled type="submit" className="w-full lg:h-12">
               Log In
-            </DarkButton>
+            </Button>
           )}
         </Stack>
         <Typography className="text-lg text-center">

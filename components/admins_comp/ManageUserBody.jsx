@@ -5,7 +5,6 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -29,6 +28,7 @@ import useSecureAPI from "@/hooks/useSecureAPI";
 import ManageUserTopBar from "./ManageUserTopBar";
 import UsersInfo from "./UsersInfo";
 import useAllUsersData from "@/hooks/useAllUsersData";
+import Button from "../library/Button";
 
 const CustomTab = styled(Tab)({
   color: '#a1a1aa',
@@ -535,7 +535,8 @@ const ManageUserBody = () => {
                   className="resize-none p-4 border border-1 rounded"
                 ></textarea>
                 {errorMsg && <p className="text-red-700">{errorMsg}</p>}
-                <Button variant="outlined" onClick={handleSendMail}>Send</Button>
+                <Button onClick={handleSendMail}>Send</Button>
+
               </div>
             </AccordionDetails>
           </Accordion>
