@@ -1,7 +1,7 @@
 import React from "react";
 import getArticles from "@/lib/getArticles";
 import Image from "next/image";
-// import TextField from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
 import moment from "moment";
 import { SiKhanacademy } from "react-icons/si";
 
@@ -15,7 +15,7 @@ const articlePage = async ({ params }) => {
   const tagsArray = article.tags.split(",").map((tag) => tag.trim());
 
   return (
-    <div className="mt-10 container mx-auto">
+    <div className="mt-10">
       <div className="text-white items-center lg:flex gap-2 ml-1">
         <div className="flex gap-1">
           <div>
@@ -75,7 +75,7 @@ const articlePage = async ({ params }) => {
             </span>
           ))}
         </h1>
-        {/* <div className="mt-10">
+        <div className="mt-10">
           <h1 className="lg:text-3xl text-2xl font-semibold">Leave A Replay</h1>
           <h3 className="my-3">Your email address will not be published.</h3>
           <TextField
@@ -136,7 +136,7 @@ const articlePage = async ({ params }) => {
           <button className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">
             Post Comment
           </button>
-        </div> */}
+        </div>
       </div>
     </div>
   );
