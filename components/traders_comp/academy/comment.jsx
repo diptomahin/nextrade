@@ -1,11 +1,27 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
+
+
+
+  const commentText = useRef();
+
+const handelComment = () => {
+  const commentTextValue = commentText.current.value
+  const comment = {commentTextValue}
+  console.log(comment);
+}
+
+
+
+
+
+
 
   // articles view count
   const count = 1;
@@ -30,6 +46,7 @@ const Comment = ({ articleId }) => {
             </label>
             <textarea
               id="message"
+              ref={commentText}
               rows="6"
               className="block p-2.5 w-full text-sm text-gray-900 bg-[#1e222d] rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Leave a comment..."
