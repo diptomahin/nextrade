@@ -35,7 +35,7 @@ const BalanceSection = ({ userData }) => {
       {/* total withdraw */}
       <div className="w-full p-5 bg-septenary text-white rounded-xl flex items-center justify-between gap-3">
         <div>
-          <h3 className="font-medium">Total Withdraw</h3>
+          <h3 className="font-medium">Total Withdrawal</h3>
           <h3 className="text-xl font-semibold">
             $ {parseFloat(userData?.withdraw).toFixed(2) || "0.00"}
           </h3>

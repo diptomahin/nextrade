@@ -1,14 +1,12 @@
 "use client";
 import DepositForm from "@/components/traders_comp/wallet/DepositForm";
 import WithdrawForm from "@/components/traders_comp/wallet/WithdrawForm";
-import { Elements } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
 const DepositWithdrawSection = ({
   userData,
   refetchUserData,
   refetchSpecificTransactionsData,
-  stripePromise,
 }) => {
   const [isBuyOpen, setIsBuyOpen] = useState(true);
 
@@ -35,13 +33,12 @@ const DepositWithdrawSection = ({
               !isBuyOpen ? "text-white" : "dark:text-gray-300"
             } duration-100 font-medium text-sm z-10`}
           >
-            Withdraw
+            Withdrawal
           </button>
         </div>
       </div>
       {isBuyOpen ? (
         <DepositForm
-          stripePromise={stripePromise}
           refetchUserData={refetchUserData}
           refetchSpecificTransactionsData={refetchSpecificTransactionsData}
         />
@@ -57,13 +54,11 @@ const DepositWithdrawSection = ({
           </p>
         </div>
       ) : (
-        <Elements stripe={stripePromise}>
-          <WithdrawForm
-            refetchUserData={refetchUserData}
-            refetchSpecificTransactionsData={refetchSpecificTransactionsData}
-            totalBalance={userData?.balance}
-          />
-        </Elements>
+        <WithdrawForm
+          refetchUserData={refetchUserData}
+          refetchSpecificTransactionsData={refetchSpecificTransactionsData}
+          totalBalance={userData?.balance}
+        />
       )}
     </div>
   );
