@@ -46,19 +46,12 @@ const SocialLogin = () => {
   };
   return (
     <>
-      <div className="flex items-center gap-2 w-full my-4">
-        <div className="h-[1px] w-full bg-black"></div>
-        <div className="min-w-max">Or Login With</div>
-        <div className="h-[1px] w-full bg-black"></div>
-      </div>
-      <div className="flex items-center gap-4 justify-center flex-wrap">
-        <Button
+        <button
           onClick={() => handleSocialLogin(googleLogin)}
-          className="w-full flex items-center justify-center py-1 px-2 lg:h-10 rounded border border-primary bg-transparent"
+          className="w-full flex items-center justify-center py-2 gap-3 rounded-full text-black  border border-zinc-400 hover:border-primary hover:bg-primary/30  bg-transparent"
         >
-          <FcGoogle className="text-xl"></FcGoogle>
-        </Button>
-      </div>
+          <FcGoogle className="text-2xl"></FcGoogle> <p className="text-sm">Log in with Google</p>
+        </button>
     </>
   );
 };
