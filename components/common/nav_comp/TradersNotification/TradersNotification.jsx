@@ -192,7 +192,7 @@ const TradersNotification = () => {
         {/* Display the count of unread notifications */}
         {nonReaderNotifications?.length > 0 && (
           <p className="absolute left-5 bottom-5 font-semibold w-5 h-5  rounded-full bg-red-500 text-white dark:text-black flex justify-center items-center">
-            <span className="text-[10px] text-black dark:text-white">
+            <span className="text-[10px] text-white">
               {nonReaderNotifications?.length}
             </span>
           </p>
