@@ -116,6 +116,8 @@ const TransactionTable = ({
   const Search = () => {
     refetchSpecificTransactionsData();
   };
+
+  console.log(specificTransactionsData);
   return (
     <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">

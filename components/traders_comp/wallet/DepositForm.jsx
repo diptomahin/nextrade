@@ -28,35 +28,6 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log(data);
-
-    // if (amount <= 0 || !amount) {
-    //   return;
-    // }
-    // if (amount > 100000) {
-    //   return setPaymentError("*The amount must be 100,000 or less.");
-    // }
-    // setPaymentError("");
-
-    // if (!/^-?\d*\.?\d+$/.test(amount)) {
-    //   form.reset();
-    //   setAmount(0);
-    //   return setPaymentError("*Please provide a valid number amount");
-    // }
-
-    // if (amount <= 0 || !amount) {
-    //   return setPaymentError("*Please provide a valid amount");
-    // }
-
-    // if (amount > 100000) {
-    //   return setPaymentError("*The amount must be 100,000 or less.");
-    // }
-
-    // if (!/^\d{4}$/.test(postalCode)) {
-    //   setPostalCode(0);
-    //   return setPaymentError("*Please provide a valid 4-digit postal code");
-    // }
-
     const toastId = toast.loading("Progress...", { duration: 10000 });
 
     axios
@@ -115,16 +86,20 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           Currency
         </label>
         <select
-          {...register("currency", { required: true })}
+          {...register("currency", { required: "Currency is required" })}
           id=""
+          defaultValue="usd"
           className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
         >
-          <option value="usd" selected>
-            USD
-          </option>
+          <option value="usd">USD</option>
           <option value="bdt">BDT</option>
           <option value="inr">INR</option>
         </select>
+        {errors.currency && (
+          <span className="text-red-500 text-xs mt-1">
+            {errors.currency.message}
+          </span>
+        )}
       </div>
 
       {/* section two */}
@@ -136,13 +111,21 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
           type="text"
           {...register("amount", {
-            required: true,
-            maxLength: 100000,
-            pattern: /^-?\d*\.?\d+$/,
+            required: "Amount is required",
+            maxLength: { value: 100000, message: "Maximum amount is $100,000" },
+            pattern: {
+              value: /^-?\d*\.?\d+$/,
+              message: "Please enter a valid amount",
+            },
           })}
           id=""
           placeholder="Amount..."
         />
+        {errors.amount && (
+          <span className="text-red-500 text-xs mt-1">
+            {errors.amount.message}
+          </span>
+        )}
       </div>
 
       <p className="mt-6">Choose payment option</p>
@@ -194,13 +177,16 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
               className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
               type="text"
               {...register("cardHolder", {
-                required: true,
-                maxLength: 100000,
-                pattern: /^-?\d*\.?\d+$/,
+                required: "Card holder is required",
               })}
               id=""
               placeholder="Account holder..."
             />
+            {errors.cardHolder && (
+              <span className="text-red-500 text-xs mt-1">
+                {errors.cardHolder.message}
+              </span>
+            )}
           </div>
 
           <div className="w-full flex flex-col my-3">
@@ -210,10 +196,30 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
             <input
               className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
               type="text"
-              {...register("cardNumber", { required: true })}
+              {...register("cardNumber", {
+                required: "Card number is required",
+                maxLength: {
+                  value: 16,
+                  message: "Maximum length is 16 characters",
+                },
+                minLength: {
+                  value: 16,
+                  message: "Minimum length is 16 characters",
+                },
+                pattern: {
+                  value: /^-?\d*\.?\d+$/,
+                  message: "Please enter a valid card number",
+                },
+              })}
               id=""
               placeholder="Card Number..."
+              maxLength={16}
             />
+            {errors.cardNumber && (
+              <span className="text-red-500 text-xs mt-1">
+                {errors.cardNumber.message}
+              </span>
+            )}
           </div>
 
           {/* section two */}
@@ -224,12 +230,19 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
               </label>
               <input
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
-                type="text"
-                {...register("expiredDate", { required: true })}
+                type="date"
+                {...register("expiredDate", {
+                  required: "Date is required",
+                })}
                 id=""
-                placeholder="MM/YY..."
               />
+              {errors.expiredDate && (
+                <span className="text-red-500 text-xs mt-1">
+                  {errors.expiredDate.message}
+                </span>
+              )}
             </div>
+
             <div className="w-full flex flex-col">
               <label htmlFor="" className="text-sm font-medium">
                 CVC
@@ -237,10 +250,30 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
               <input
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
                 type="text"
-                {...register("cvcNumber", { required: true })}
+                {...register("cvcNumber", {
+                  required: "CVC is required",
+                  maxLength: {
+                    value: 3,
+                    message: "Maximum length is 3 characters",
+                  },
+                  minLength: {
+                    value: 3,
+                    message: "Minimum length is 3 characters",
+                  },
+                  pattern: {
+                    value: /^-?\d*\.?\d+$/,
+                    message: "Please enter a valid CVC number",
+                  },
+                })}
                 id=""
                 placeholder="CVC..."
+                maxLength={3}
               />
+              {errors.cvcNumber && (
+                <span className="text-red-500 text-xs mt-1">
+                  {errors.cvcNumber.message}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -253,41 +286,89 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 Account Holder
               </label>
               <input
-                // onBlur={(e) => setAmount(e.target.value)}
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
                 type="text"
-                {...register("accountHolder", { required: true })}
+                {...register("accountHolder", {
+                  required: true,
+                })}
                 id=""
                 placeholder="Account holder..."
               />
+              {errors.accountHolder?.type === "required" && (
+                <span className="text-red-500 text-xs mt-1">
+                  Account holder is required
+                </span>
+              )}
             </div>
+
+            {/* routing number */}
             <div className="w-full flex flex-col">
               <label htmlFor="" className="text-sm font-medium">
                 Routing Number
               </label>
               <input
-                // onBlur={(e) => setAmount(e.target.value)}
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
                 type="text"
-                {...register("routingNumber", { required: true })}
+                {...register("routingNumber", {
+                  required: "Routing number is required",
+                  maxLength: {
+                    value: 9,
+                    message: "Maximum length is 9 characters",
+                  },
+                  minLength: {
+                    value: 9,
+                    message: "Minimum length is 9 characters",
+                  },
+                  pattern: {
+                    value: /^-?\d*\.?\d+$/,
+                    message: "Please enter a valid routing number",
+                  },
+                })}
                 id=""
                 placeholder="Routing number..."
+                maxLength={9}
               />
+              {errors.routingNumber && (
+                <span className="text-red-500 text-xs mt-1">
+                  {errors.routingNumber.message}
+                </span>
+              )}
             </div>
           </div>
 
+          {/* account number */}
           <div className="w-full flex flex-col my-4">
             <label htmlFor="" className="text-sm font-medium">
               Account Number
             </label>
             <input
-              // onBlur={(e) => setAmount(e.target.value)}
               className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
               type="text"
-              {...register("accountNumber", { required: true })}
+              {...register("accountNumber", {
+                required: "Account number is required",
+                minLength: {
+                  value: 5,
+                  message: "Minimum length is 5 characters",
+                },
+                maxLength: {
+                  value: 17,
+                  message: "Maximum length is 17 characters",
+                },
+                pattern: {
+                  value: /^-?\d*\.?\d+$/,
+                  message: "Please enter a valid account number",
+                },
+              })}
               id=""
               placeholder="Account number..."
+              maxLength={17}
+              minLength={5}
             />
+            {errors.accountNumber && (
+              <span className="text-red-500 text-xs mt-1">
+                {errors.accountNumber.message}
+              </span>
+            )}
           </div>
         </div>
       )}
