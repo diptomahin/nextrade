@@ -1,9 +1,9 @@
 import React from "react";
 import getArticles from "@/lib/getArticles";
 import Image from "next/image";
-import TextField from "@mui/material/TextField";
 import moment from "moment";
 import { SiKhanacademy } from "react-icons/si";
+import Comment from "@/components/traders_comp/academy/comment";
 
 const articlePage = async ({ params }) => {
   const { _id } = params;
@@ -18,10 +18,10 @@ const articlePage = async ({ params }) => {
     <div className="mt-10">
       <div className="text-white items-center lg:flex gap-2 ml-1">
         <div className="flex gap-1">
-          <div>
+          <div className="dark:text-white text-black">
             <SiKhanacademy className="text-xl" />
           </div>
-          <div>
+          <div className="dark:text-white text-black">
             Academy / {article.category} /
             <span className="text-blue-400 ml-1">{article.title}</span>
           </div>
@@ -75,95 +75,8 @@ const articlePage = async ({ params }) => {
             </span>
           ))}
         </h1>
-        <div className="mt-10">
-          <h1 className="lg:text-3xl text-2xl font-semibold">Leave A Replay</h1>
-          <h3 className="my-3">Your email address will not be published.</h3>
-          <TextField
-            className="lg:w-[520px] w-full border-white	"
-            id="fullWidth"
-            label="Comment"
-            variant="outlined"
-            InputLabelProps={{
-              style: { color: "white", borderColor: "white" }, // Text color of the label
-            }}
-            InputProps={{
-              style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-            }}
-          />
-
-          <div className="mt-5 grid lg:grid-cols-3 gap-4 w-full lg:w-[520px]">
-            <TextField
-              className="w-full"
-              id="outlined-basic"
-              label="Name"
-              variant="outlined"
-              InputLabelProps={{
-                style: { color: "white", borderColor: "white" }, // Text color of the label
-              }}
-              InputProps={{
-                style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-              }}
-            />
-            <TextField
-              className="mx-4 w-full mt-10"
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              InputLabelProps={{
-                style: { color: "white", borderColor: "white" }, // Text color of the label
-              }}
-              InputProps={{
-                style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-              }}
-            />
-
-            <TextField
-              className="w-full"
-              id="outlined-basic"
-              label="Website"
-              variant="outlined"
-              InputLabelProps={{
-                style: { color: "white" }, // Text color of the label
-              }}
-              InputProps={{
-                style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-              }}
-            />
-          </div>
-
-          <button className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">
-            Post Comment
-          </button>
-        </div>
       </div>
-
-      <div className="md:mt-20 mt-10">
-        <div className="flex justify-between mb-3">
-          <h1>59 comments</h1>
-          <p>Sort by: Top</p>
-        </div>
-        <hr />
-
-        <div>
-          <div className="flex gap-2 mt-3">
-            <div className=" ">
-              {/* <img className="w-14 h-13 rounded" src="photo-01.jpeg" alt="" /> */}
-            </div>
-
-            <div className="w-full ">
-              <div className="bg-[#474747] rounded-lg p-3 ">
-                <h1 className="font-bold">Jackson Hayes</h1>
-                <p className="text-sm">Wow, Thanks Man😱</p>
-              </div>
-              <p className="flex gap-3 text-sm mt-1">
-                <span>like</span>
-                <span>56k </span>
-                <span>17hrs</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Comment></Comment>
     </div>
   );
 };
