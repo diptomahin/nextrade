@@ -257,9 +257,9 @@ const AdminNotification = () => {
                   <div className="flex items-center gap-4 space-y-[6px] text-black dark:text-white">
                      <div className=" ">
                      {asset.read ? (
-                        <MdNotifications className="w-8 h-8" />
+                        <MdNotifications className="w-6 h-6" />
                       ) : (
-                        <MdNotificationsActive className="w-8 h-8" />
+                        <MdNotificationsActive className="w-6 h-6" />
                       )}
                      </div>
                       <div className="xl:w-44 flex-1">

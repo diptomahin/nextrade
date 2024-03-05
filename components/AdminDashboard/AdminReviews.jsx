@@ -22,7 +22,7 @@ const AdminReviews = () => {
         }
      return (
           <div className="  p-4 mt-5 w-full rounded text-black dark:text-white shadow bg-white dark:bg-tertiary">
-              <h2 className="font-semibold ">Users Reviews</h2> 
+              <h2 className="font-semibold text-xl ">Users Reviews</h2> 
               <Container className="py-5">
       <Swiper
         slidesPerView={20}
