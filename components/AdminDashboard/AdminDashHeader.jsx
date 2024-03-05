@@ -3,7 +3,6 @@
 import { GiTakeMyMoney } from "react-icons/gi";
 import { RiCoinFill } from "react-icons/ri";
 import { MdPostAdd } from "react-icons/md";
-import { GiProfit } from "react-icons/gi";
 import useAdminTotalInvestData from "@/hooks/useAdminTotalInvestdata";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import { useEffect, useState } from "react";
