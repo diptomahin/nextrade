@@ -1,3 +1,4 @@
+import AdminArticle from "@/components/AdminDashboard/AdminArticle";
 import AdminDashHeader from "@/components/AdminDashboard/AdminDashHeader";
 import AdminDashManageCoin from "@/components/AdminDashboard/AdminDashManageCoin";
 import AdminDashUserCount from "@/components/AdminDashboard/AdminDashUserCount";
@@ -23,7 +24,8 @@ const page = () => {
         <div className=" xl:col-span-8 ">
           
 
-        <AdminDashboardChart/>
+        {/* <AdminDashboardChart/> */}
+        <AdminArticle/>
         <AdminDashManageCoin/>
         </div>
         {/* user Profile */}
