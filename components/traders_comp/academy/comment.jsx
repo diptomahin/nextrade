@@ -2,8 +2,10 @@
 import useAuth from "@/hooks/useAuth";
 import React from "react";
 
-const Comment = () => {
+const Comment = ({ articleId }) => {
   const { user } = useAuth();
+
+  console.log(articleId)
 
   return (
     <div>
@@ -11,7 +13,7 @@ const Comment = () => {
         <h1 className="lg:text-3xl text-2xl font-semibold">Leave A Replay</h1>
 
         <div className="mt-1">
-          <form className="w-1/2">
+          <form className="lg:w-1/2">
             <label
               for="message"
               className="block mb-2 font-medium text-gray-900 dark:text-white"
