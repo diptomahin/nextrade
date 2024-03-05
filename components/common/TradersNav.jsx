@@ -171,7 +171,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </div>
 
         {/* search  */}
-        <form
+        {/* <form
           className="flex items-center w-[120px] lg:w-[250px] relative"
           onSubmit={handleSearchSubmit}
         >
@@ -201,7 +201,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
           <button type="submit" className="absolute right-2">
             <SearchIcon style={{ marginRight: "6px", color: "white" }} />
           </button>
-        </form>
+        </form> */}
       </div>
       <div className="flex items-center gap-6">
         <ThemeMode />

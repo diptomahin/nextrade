@@ -15,7 +15,7 @@ const DepositWithdrawSection = ({
   return (
     <div className="w-full p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex items-center justify-center">
-        <div className="relative sm:w-72 h-10 flex items-center text-black  bg-gray-100 dark:bg-secondary rounded-xl">
+        <div className="relative w-full sm:w-72 h-10 flex items-center text-black  bg-gray-100 dark:bg-secondary rounded-xl">
           <div
             className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
               isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -25,7 +25,7 @@ const DepositWithdrawSection = ({
             onClick={() => setIsBuyOpen(true)}
             className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
               isBuyOpen ? "text-white" : "dark:text-gray-300"
-            } duration-200 ease-in-out font-semibold text-sm z-10`}
+            } duration-200 ease-in-out font-medium text-sm z-10`}
           >
             Deposit
           </button>
@@ -33,20 +33,18 @@ const DepositWithdrawSection = ({
             onClick={() => setIsBuyOpen(false)}
             className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
               !isBuyOpen ? "text-white" : "dark:text-gray-300"
-            } duration-100 font-semibold text-sm z-10`}
+            } duration-100 font-medium text-sm z-10`}
           >
             Withdraw
           </button>
         </div>
       </div>
       {isBuyOpen ? (
-        <Elements stripe={stripePromise}>
-          <DepositForm
-            stripePromise={stripePromise}
-            refetchUserData={refetchUserData}
-            refetchSpecificTransactionsData={refetchSpecificTransactionsData}
-          />
-        </Elements>
+        <DepositForm
+          stripePromise={stripePromise}
+          refetchUserData={refetchUserData}
+          refetchSpecificTransactionsData={refetchSpecificTransactionsData}
+        />
       ) : userData && userData.balance <= 10 ? (
         <div className="flex flex-col items-center justify-center text-center my-10">
           <h4 className="text-xl  3xl:text-2xl font-bold">
