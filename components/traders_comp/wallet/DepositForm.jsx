@@ -5,22 +5,20 @@ import Button from "@/components/library/Button";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import getDate from "../../utils/date";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import { useForm } from "react-hook-form";
 
 const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
+  const [isPaymentSelected, setIsPaymentSelected] = useState("card");
   const [paymentError, setPaymentError] = useState("");
-  const [amount, setAmount] = useState(0);
-  // const [currency, setCurrency] = useState("");
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
   const { refetchNotificationsData } = useNotificationData();
   const { adminRefetchNotificationsData } = useAdminNotificationData();
   const date = getDate();
-  const [isPaymentSelected, setIsPaymentSelected] = useState(true);
 
   const {
     register,
@@ -30,61 +28,50 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
 
-    if (amount <= 0 || !amount) {
-      return;
-    }
-    if (amount > 100000) {
-      return setPaymentError("*The amount must be 100,000 or less.");
-    }
+    // if (amount <= 0 || !amount) {
+    //   return;
+    // }
+    // if (amount > 100000) {
+    //   return setPaymentError("*The amount must be 100,000 or less.");
+    // }
+    // setPaymentError("");
 
-    setPaymentError("");
+    // if (!/^-?\d*\.?\d+$/.test(amount)) {
+    //   form.reset();
+    //   setAmount(0);
+    //   return setPaymentError("*Please provide a valid number amount");
+    // }
 
-    if (!/^-?\d*\.?\d+$/.test(amount)) {
-      form.reset();
-      setAmount(0);
-      return setPaymentError("*Please provide a valid number amount");
-    }
+    // if (amount <= 0 || !amount) {
+    //   return setPaymentError("*Please provide a valid amount");
+    // }
 
-    if (amount <= 0 || !amount) {
-      return setPaymentError("*Please provide a valid amount");
-    }
+    // if (amount > 100000) {
+    //   return setPaymentError("*The amount must be 100,000 or less.");
+    // }
 
-    if (amount > 100000) {
-      return setPaymentError("*The amount must be 100,000 or less.");
-    }
-
-    if (!/^\d{4}$/.test(postalCode)) {
-      setPostalCode(0);
-      return setPaymentError("*Please provide a valid 4-digit postal code");
-    }
+    // if (!/^\d{4}$/.test(postalCode)) {
+    //   setPostalCode(0);
+    //   return setPaymentError("*Please provide a valid 4-digit postal code");
+    // }
 
     const toastId = toast.loading("Progress...", { duration: 10000 });
 
-    const depositData = {
-      transaction: paymentIntent,
-      date: date,
-      deposit: parseInt(amount),
-      email: user?.email,
-      name: user?.displayName,
-      action: "Deposit",
-      amount: parseInt(amount),
-      currency: "usd",
-    };
-
     axios
-      .post(
-        `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
-        depositData
-      )
+      .post(`http://localhost:5000/v1/api/deposit/${user?.email}`, {
+        data: data,
+        isPaymentSelected: isPaymentSelected,
+        date: date,
+      })
       .then((res) => {
-        if (res.data.insertedId) {
+        if (res.data.matchedCount > 0) {
           // post notification data sen database
           const notificationInfo = {
             title: "Deposit Successfully",
             description: `A deposit of ${
-              "$" + parseInt(amount)
+              "$" + parseInt(data?.amount)
             } has been credited to your account.`,
             assetKey: "",
             assetImg: "",
@@ -95,31 +82,28 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
             read: false,
             type: "admin",
           };
-
           // post to  notification data in database
-          secureAPI
-            .post("/notifications", notificationInfo)
-            .then((res) => {
-              if (res.data.insertedId) {
-                secureAPI.post("/adminNotifications", notificationInfo);
-                form.reset();
-                setAmount(0);
-                setPostalCode(0);
-                elements.getElement(CardNumberElement).clear(); // Reset card number
-                elements.getElement(CardExpiryElement).clear(); // Reset card expiry
-                elements.getElement(CardCvcElement).clear();
-                refetchUserData();
-                refetchSpecificTransactionsData();
-                refetchNotificationsData();
-                adminRefetchNotificationsData();
-                toast.success("Deposit Successful", {
-                  id: toastId,
-                  duration: 5000,
-                });
-              }
-            })
-            .catch((error) => {});
+          secureAPI.post("/notifications", notificationInfo).then((res) => {
+            if (res.data.insertedId) {
+              secureAPI.post("/adminNotifications", notificationInfo);
+              reset();
+              refetchUserData();
+              refetchSpecificTransactionsData();
+              refetchNotificationsData();
+              adminRefetchNotificationsData();
+              toast.success("Deposit Successful", {
+                id: toastId,
+                duration: 5000,
+              });
+            }
+          });
         }
+      })
+      .catch((error) => {
+        toast.error(error, {
+          id: toastId,
+          duration: 5000,
+        });
       });
   };
 
@@ -131,8 +115,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           Currency
         </label>
         <select
-          // onChange={(e) => setCurrency(e.target.value)}
-          name="currency"
+          {...register("currency", { required: true })}
           id=""
           className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
         >
@@ -150,10 +133,13 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           Amount
         </label>
         <input
-          // onBlur={(e) => setAmount(e.target.value)}
           className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
           type="text"
-          name="amount"
+          {...register("amount", {
+            required: true,
+            maxLength: 100000,
+            pattern: /^-?\d*\.?\d+$/,
+          })}
           id=""
           placeholder="Amount..."
         />
@@ -164,13 +150,13 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
       <div className="flex flex-col md:flex-row 2xl:flex-col gap-5 mt-2 mb-4">
         <div
           onClick={() => {
-            setIsPaymentSelected(true);
+            setIsPaymentSelected("card");
           }}
           className={`w-fit flex items-center gap-1 ${
-            isPaymentSelected ? "text-primary" : ""
+            isPaymentSelected === "card" ? "text-primary" : ""
           } text-sm font-medium cursor-pointer`}
         >
-          {isPaymentSelected ? (
+          {isPaymentSelected === "card" ? (
             <MdCheckBox className="text-xl" />
           ) : (
             <MdCheckBoxOutlineBlank className="text-xl" />
@@ -180,13 +166,13 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
 
         <div
           onClick={() => {
-            setIsPaymentSelected(false);
+            setIsPaymentSelected("bank");
           }}
           className={`w-fit flex items-center gap-1 ${
-            !isPaymentSelected ? "text-primary" : ""
+            isPaymentSelected === "bank" ? "text-primary" : ""
           } text-sm font-medium cursor-pointer`}
         >
-          {!isPaymentSelected ? (
+          {isPaymentSelected === "bank" ? (
             <MdCheckBox className="text-xl" />
           ) : (
             <MdCheckBoxOutlineBlank className="text-xl" />
@@ -196,34 +182,50 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
       </div>
 
       <hr className="dark:border-darkThree mb-3" />
-      {isPaymentSelected ? (
+
+      {isPaymentSelected === "card" ? (
         <div className="">
           {/* section one */}
+          <div className="w-full flex flex-col">
+            <label htmlFor="" className="text-sm font-medium">
+              Card Holder
+            </label>
+            <input
+              className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
+              type="text"
+              {...register("cardHolder", {
+                required: true,
+                maxLength: 100000,
+                pattern: /^-?\d*\.?\d+$/,
+              })}
+              id=""
+              placeholder="Account holder..."
+            />
+          </div>
+
           <div className="w-full flex flex-col my-3">
             <label htmlFor="" className="text-sm font-medium">
               Card Number
             </label>
             <input
-              // onBlur={(e) => setAmount(e.target.value)}
               className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
               type="text"
-              name="amount"
+              {...register("cardNumber", { required: true })}
               id=""
               placeholder="Card Number..."
             />
           </div>
 
           {/* section two */}
-          <div className="flex flex-col md:flex-row 2xl:flex-col items-center justify-between gap-4 my-3">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 my-3">
             <div className="w-full flex flex-col">
               <label htmlFor="" className="text-sm font-medium">
-                Expiration Date
+                Date
               </label>
               <input
-                // onBlur={(e) => setAmount(e.target.value)}
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
                 type="text"
-                name="amount"
+                {...register("expiredDate", { required: true })}
                 id=""
                 placeholder="MM/YY..."
               />
@@ -233,10 +235,9 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 CVC
               </label>
               <input
-                // onBlur={(e) => setAmount(e.target.value)}
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
                 type="text"
-                name="amount"
+                {...register("cvcNumber", { required: true })}
                 id=""
                 placeholder="CVC..."
               />
@@ -255,7 +256,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 // onBlur={(e) => setAmount(e.target.value)}
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
                 type="text"
-                name="amount"
+                {...register("accountHolder", { required: true })}
                 id=""
                 placeholder="Account holder..."
               />
@@ -268,41 +269,25 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 // onBlur={(e) => setAmount(e.target.value)}
                 className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
                 type="text"
-                name="amount"
+                {...register("routingNumber", { required: true })}
                 id=""
                 placeholder="Routing number..."
               />
             </div>
           </div>
 
-          {/* section two */}
-          <div className="flex flex-col md:flex-row 2xl:flex-col items-center justify-between gap-4 my-4">
-            <div className="w-full flex flex-col">
-              <label htmlFor="" className="text-sm font-medium">
-                Account Number
-              </label>
-              <input
-                // onBlur={(e) => setAmount(e.target.value)}
-                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
-                type="text"
-                name="amount"
-                id=""
-                placeholder="Account number..."
-              />
-            </div>
-            <div className="w-full flex flex-col">
-              <label htmlFor="" className="text-sm font-medium">
-                Confirm Account Number
-              </label>
-              <input
-                // onBlur={(e) => setAmount(e.target.value)}
-                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
-                type="text"
-                name="amount"
-                id=""
-                placeholder="Confirm account number..."
-              />
-            </div>
+          <div className="w-full flex flex-col my-4">
+            <label htmlFor="" className="text-sm font-medium">
+              Account Number
+            </label>
+            <input
+              // onBlur={(e) => setAmount(e.target.value)}
+              className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+              type="text"
+              {...register("accountNumber", { required: true })}
+              id=""
+              placeholder="Account number..."
+            />
           </div>
         </div>
       )}
