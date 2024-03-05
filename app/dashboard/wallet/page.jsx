@@ -8,7 +8,7 @@ export const metadata = {
 
 const Wallet = () => {
   return (
-    <div className="flex flex-col 2xl:flex-row justify-between gap-7 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-7">
       <WalletPage />
     </div>
   );

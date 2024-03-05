@@ -116,6 +116,7 @@ const TransactionTable = ({
   const Search = () => {
     refetchSpecificTransactionsData();
   };
+
   return (
     <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">
@@ -150,9 +151,6 @@ const TransactionTable = ({
             </button>
             {isOpenDot && (
               <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-gray-100 dark:bg-secondary font-medium rounded-s-2xl rounded-b-2xl">
-                <button className="w-full btn btn-sm text-sm dark:text-white/80 justify-start bg-transparent hover:bg-black/10 dark:hover:bg-white/10 border-none rounded-none pl-4 shadow-none">
-                  Download
-                </button>
                 <button
                   onClick={() =>
                     handleDeleteAll(specificTransactionsData[0]?.email)
@@ -210,6 +208,15 @@ const TransactionTable = ({
                   }}
                   className="text-black dark:text-white dark:border-b-darkThree"
                 >
+                  Method
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
+                >
                   Currency
                 </TableCell>
                 <TableCell
@@ -219,7 +226,7 @@ const TransactionTable = ({
                   }}
                   className="text-black dark:text-white dark:border-b-darkThree"
                 >
-                  Date
+                  Holder
                 </TableCell>
                 <TableCell
                   sx={{
@@ -228,7 +235,7 @@ const TransactionTable = ({
                   }}
                   className="text-black dark:text-white dark:border-b-darkThree"
                 >
-                  Time
+                  Date
                 </TableCell>
                 <TableCell
                   sx={{
@@ -268,22 +275,20 @@ const TransactionTable = ({
                           : "text-[#ff5252]"
                       }
                     >
-                      $ {row?.amount}
+                      {row?.amount} {row?.currency}
                     </span>
                   </TableCell>
                   <TableCell className="text-black dark:text-white dark:border-b-darkThree">
-                    USD
+                    {row?.method}
+                  </TableCell>
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                    {row?.currency}
+                  </TableCell>
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                    {row?.holder}
                   </TableCell>
                   <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     {row?.date?.day}/{row?.date?.month}/{row?.date?.year}
-                  </TableCell>
-                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
-                    {/* Time */}
-                    <span>
-                      {formatTime(row?.date?.hours || " ")}:
-                      {padZero(row?.date?.minutes || " ")}{" "}
-                      {getAmPm(row?.date?.hours || " ")}
-                    </span>
                   </TableCell>
                   <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     Complete
@@ -304,7 +309,7 @@ const TransactionTable = ({
       ) : (
         <div
           onClick={() => setIsOpenDot(false)}
-          className="text-center font-bold"
+          className="text-center font-bold py-10"
         >
           Currently, no transaction history is available.
         </div>

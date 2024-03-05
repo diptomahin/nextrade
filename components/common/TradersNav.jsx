@@ -128,10 +128,6 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
 
   refetch();
 
-  if (isLoading || isPending || loading) {
-    return;
-  }
-
   const breadcrumbs = pathname.includes("/dashboard/market")
     ? "Market"
     : pathname.includes("/dashboard/trading")
@@ -163,13 +159,15 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             },
           }}
         >
-          <MenuIcon sx={{ color: "white" }} />
+          <MenuIcon className="dark:text-white" />
         </IconButton>
 
         {/* dynamic tittle and date time */}
         <div className="hidden xl:block">
           <h1 className="font-semibold">{breadcrumbs}</h1>
-          <p className="text-xs opacity-70">Updated on {dateWithName}</p>
+          <p className="text-xs opacity-80 font-medium">
+            Updated on {dateWithName}
+          </p>
         </div>
 
         {/* search  */}
@@ -213,7 +211,14 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         {/* <GoogleTranslate></GoogleTranslate> */}
         <TradersNotification />
 
-        <UserMenu userDetails={userDetails} logOut={logOut} />
+        <UserMenu
+          userDetails={userDetails}
+          loading={loading}
+          isLoading={isLoading}
+          isPending={isPending}
+          logOut={logOut}
+          pathname={pathname}
+        />
       </div>
     </div>
   );

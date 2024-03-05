@@ -201,7 +201,8 @@ const TradersNotification = () => {
 
       {/* Display the notification popup if open */}
       {isNotificationOpen && (
-        <div class="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded text-black dark:text-white bg-white dark:bg-tertiary w-60 md:w-80 shadow-2xl shadow-gray-900 scrollbar-thin">
+        <div class="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded-xl bg-white dark:bg-tertiary w-60 md:w-80 shadow-2xl dark:shadow-gray-900 scrollbar-thin">
+
           {/* Header of the notification popup */}
           <div className="flex items-center justify-between px-4 py-2 border-b-2 border-gray-300 dark:border-darkThree">
             <h2 className="font-semibold">Notifications</h2>
@@ -210,23 +211,29 @@ const TradersNotification = () => {
             <div className="relative ">
               <button
                 onClick={() => setIsNotifyMenuOpen(!isNotifyMenuOpen)}
-                className={`btn btn-sm text-lg h-8 px-[7px] text-black dark:text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none rounded-full`}
+
+                className={`btn btn-sm text-lg h-8 px-[7px] dark:text-white bg-transparent hover:bg-black/10 active:bg-black/20 dark:hover:bg-white/10 dark:active:bg-white/20 border-none outline-none rounded-full`}
+
               >
                 <BsThreeDotsVertical />
               </button>
 
               {/* Additional actions menu */}
               {isNotifyMenuOpen && (
-                <div className="absolute right-8 top-0 w-40 text-black dark:text-white bg-white dark:bg-quaternary border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
+
+                <div className="absolute right-8 top-0 w-40 bg-gray-100 dark:bg-quaternary border dark:border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
                   <button
                     onClick={() => handleReadAll(notificationsData[0]?.email)}
-                    className="w-full whitespace-nowrap btn btn-xs text-black dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                    className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
+
                   >
                     Mark all as read
                   </button>
                   <button
                     onClick={() => handleUnreadAll(notificationsData[0]?.email)}
-                    className="w-full whitespace-nowrap btn btn-xs text-black dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+
+                    className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
+
                   >
                     Mark all as unread
                   </button>
@@ -234,7 +241,8 @@ const TradersNotification = () => {
                     onClick={() =>
                       handleDeleteAllNotification(notificationsData[0]?.email)
                     }
-                    className="w-full  whitespace-nowrap btn btn-xs text-black dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                    className="w-full  whitespace-nowrap btn btn-xs dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
+
                   >
                     Delete all
                   </button>
@@ -242,8 +250,8 @@ const TradersNotification = () => {
                     href="/dashboard/settings"
                     onClick={() => setIsNotifyMenuOpen(false)}
                   >
-                    <button className="w-full whitespace-nowrap btn btn-xs 
-                    text-black dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
+                    <button className="w-full whitespace-nowrap btn btn-xs dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3">
+
                       Notification settings
                     </button>
                   </Link>
@@ -282,22 +290,29 @@ const TradersNotification = () => {
                   </div>
 
                   
-
-                  <div className="flex justify-end mt-2">
-                    <p className="text-gray-700 dark:text-gray-400 text-[10px] flex items-center justify-end gap-3">
-                      {/* Date */}
-                      <span>
-                        {asset?.postedDate?.day || " "} -{" "}
-                        {asset?.postedDate?.month || " "} -{" "}
-                        {asset?.postedDate?.year || " "}
-                      </span>
-                      {/* Time */}
-                      <span>
-                        {formatTime(asset?.postedDate?.hours || " ")}:
-                        {padZero(asset?.postedDate?.minutes || " ")}{" "}
-                        {getAmPm(asset?.postedDate?.hours || " ")}
-                      </span>
-                    </p>
+                    {/* Additional actions menu for each notification */}
+                    {isOpenMenu[asset?._id] && (
+                      <div className="absolute right-7 top-0 w-32 bg-quaternary border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3">
+                        <button
+                          onClick={() => handleRead(asset?._id)}
+                          className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] shadow-none border-none justify-start pl-3"
+                        >
+                          Mark as read
+                        </button>
+                        <button
+                          onClick={() => handleUnread(asset?._id)}
+                          className="w-full whitespace-nowrap btn btn-xs text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] shadow-none border-none justify-start pl-3"
+                        >
+                          Mark as unread
+                        </button>
+                        <button
+                          onClick={() => handleDeleteNotification(asset?._id)}
+                          className="w-full btn btn-xs text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] shadow-none border-none justify-start pl-3"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
 
