@@ -19,17 +19,11 @@ const Comment = ({ articleId }) => {
 
   const commentText = useRef();
 
-const handelComment = () => {
-  const commentTextValue = commentText.current.value
-  const comment = {commentTextValue}
-  console.log(comment);
-}
-
-
-
-
-
-
+  const handelComment = () => {
+    const commentTextValue = commentText.current.value;
+    const comment = { commentTextValue };
+    console.log(comment);
+  };
 
   // articles view count
   const count = 1;
@@ -62,7 +56,10 @@ const handelComment = () => {
           </form>
         </div>
 
-        <button className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">
+        <button
+          onClick={() => handelComment(article._id)}
+          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5"
+        >
           Post Comment
         </button>
       </div>
