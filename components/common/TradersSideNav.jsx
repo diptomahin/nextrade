@@ -26,7 +26,7 @@ const TradersDashboardSidebar = ({ isActiveMenu, setIsActiveMenu }) => {
       </Link>
       <button
         onClick={() => setIsActiveMenu(!isActiveMenu)}
-        className="hidden 2xl:flex absolute top-[10px] -right-4 btn btn-sm btn-circle w-10 h-10 bg-white hover:bg-black/5 active:bg-black/15 dark:bg-quaternary dark:hover:bg-white/5 dark:active:bg-white/15 dark:text-white border-none shadow-none"
+        className="hidden 3xl:flex absolute top-[10px] -right-4 btn btn-sm btn-circle w-10 h-10 bg-white hover:bg-black/5 active:bg-black/15 dark:bg-quaternary dark:hover:bg-white/5 dark:active:bg-white/15 dark:text-white border-none shadow-none"
       >
         {isActiveMenu ? (
           <span className="text-2xl transition-transform scale-100 duration-200 ease-out">

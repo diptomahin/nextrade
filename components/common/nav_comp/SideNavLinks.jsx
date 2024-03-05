@@ -13,7 +13,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         }`}
       >
         {isActiveMenu ? (
@@ -29,7 +29,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/trading"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
@@ -47,7 +47,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/market"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
@@ -65,7 +65,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/portfolio"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
@@ -81,7 +81,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/watchlist"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
@@ -97,7 +97,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/history"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
@@ -113,7 +113,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/academy"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
@@ -129,7 +129,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/profile"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
@@ -146,7 +146,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard/wallet"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black hover:text-primary"
+            : "text-black dark:text-white hover:text-primary"
         } transition-all duration-300 ease-in-out`}
       >
         {isActiveMenu ? (
