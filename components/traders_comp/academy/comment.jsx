@@ -1,12 +1,14 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
-import React from "react";
+import usePublicAPI from "@/hooks/usePublicAPI";
+import React, { useEffect } from "react";
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
+  const axiosPublic = usePublicAPI();
 
-  console.log(articleId)
 
+  
   return (
     <div>
       <div className="mt-10">
