@@ -8,7 +8,8 @@ import getDate from "../../utils/date";
 import { useState } from "react";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
-import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
+import { FaCreditCard, FaCcMastercard, FaCcVisa } from "react-icons/fa";
+import { RiBankFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 
 const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
@@ -91,7 +92,11 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           {...register("currency", { required: "Currency is required" })}
           id=""
           defaultValue="usd"
-          className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
+          className={`bg-transparent w-full border ${
+            errors.currency
+              ? "border-red-500"
+              : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+          } text-xs mt-2 px-4 py-2 rounded-lg outline-none`}
         >
           <option value="usd">USD</option>
         </select>
@@ -108,8 +113,11 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           Amount
         </label>
         <input
-          className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
-          type="text"
+          className={`bg-transparent w-full border ${
+            errors.amount
+              ? "border-red-500"
+              : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+          } text-xs mt-2 px-4 py-2 rounded-lg outline-none`}
           {...register("amount", {
             required: "Amount is required",
             maxLength: { value: 100000, message: "Maximum amount is $100,000" },
@@ -128,73 +136,57 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
         )}
       </div>
 
-      <p className="mt-6">Choose payment option</p>
-
-      <div className="flex flex-col md:flex-row 2xl:flex-col gap-5 mt-2 mb-4">
+      <div className="flex flex-col md:flex-row gap-5 my-6">
         <div
           onClick={() => {
             setIsPaymentSelected("card");
           }}
-          className={`w-fit flex items-center gap-1 ${
-            isPaymentSelected === "card" ? "text-primary" : ""
-          } text-sm font-medium cursor-pointer`}
+          className={`w-full flex flex-col gap-2 ${
+            isPaymentSelected === "card"
+              ? "text-primary border-primary dark:border-primary"
+              : ""
+          } text-sm font-semibold cursor-pointer px-5 py-3 border dark:border-darkThree rounded-xl`}
         >
-          {isPaymentSelected === "card" ? (
-            <MdCheckBox className="text-xl" />
-          ) : (
-            <MdCheckBoxOutlineBlank className="text-xl" />
-          )}{" "}
-          Credit & Debit Card
+          <FaCreditCard className="text-2xl" />
+          Card
         </div>
 
         <div
           onClick={() => {
             setIsPaymentSelected("bank");
           }}
-          className={`w-fit flex items-center gap-1 ${
-            isPaymentSelected === "bank" ? "text-primary" : ""
-          } text-sm font-medium cursor-pointer`}
+          className={`w-full flex flex-col gap-2 ${
+            isPaymentSelected === "bank"
+              ? "text-primary border-primary dark:border-primary"
+              : ""
+          } text-sm font-semibold cursor-pointer px-5 py-3 border dark:border-darkThree rounded-xl`}
         >
-          {isPaymentSelected === "bank" ? (
-            <MdCheckBox className="text-xl" />
-          ) : (
-            <MdCheckBoxOutlineBlank className="text-xl" />
-          )}{" "}
+          <RiBankFill className="text-2xl" />
           Bank
         </div>
       </div>
-
-      <hr className="dark:border-darkThree mb-3" />
 
       {isPaymentSelected === "card" ? (
         <div className="">
           {/* section one */}
           <div className="w-full flex flex-col">
-            <label htmlFor="" className="text-sm font-medium">
-              Card Holder
+            <label
+              htmlFor=""
+              className="text-sm text-gray-500 dark:text-gray-200"
+            >
+              Card information
             </label>
-            <input
-              className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
-              type="text"
-              {...register("cardHolder", {
-                required: "Card holder is required",
-              })}
-              id=""
-              placeholder="Account holder..."
-            />
-            {errors.cardHolder && (
+            {errors.cardNumber && (
               <span className="text-red-500 text-xs mt-1">
-                {errors.cardHolder.message}
+                {errors.cardNumber.message}
               </span>
             )}
-          </div>
-
-          <div className="w-full flex flex-col my-3">
-            <label htmlFor="" className="text-sm font-medium">
-              Card Number
-            </label>
             <input
-              className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
+              className={`bg-transparent w-full border ${
+                errors.cardNumber
+                  ? "border-red-500"
+                  : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+              } text-xs mt-1 px-4 py-2 rounded-t-lg border-b-none outline-none`}
               type="text"
               {...register("cardNumber", {
                 required: "Card number is required",
@@ -212,24 +204,19 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                 },
               })}
               id=""
-              placeholder="Card Number..."
+              placeholder="1234 1234 1234 1234"
               maxLength={16}
             />
-            {errors.cardNumber && (
-              <span className="text-red-500 text-xs mt-1">
-                {errors.cardNumber.message}
-              </span>
-            )}
           </div>
-
           {/* section two */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 my-3">
+          <div className="flex flex-col md:flex-row items-start justify-between mb-4">
             <div className="w-full flex flex-col">
-              <label htmlFor="" className="text-sm font-medium">
-                Date
-              </label>
               <input
-                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
+                className={`bg-transparent w-full border ${
+                  errors.expiredDate
+                    ? "border-red-500"
+                    : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+                } text-xs px-4 py-2 rounded-b-lg rounded-r-none outline-none`}
                 type="date"
                 {...register("expiredDate", {
                   required: "Date is required",
@@ -244,11 +231,12 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
             </div>
 
             <div className="w-full flex flex-col">
-              <label htmlFor="" className="text-sm font-medium">
-                CVC
-              </label>
               <input
-                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
+                className={`bg-transparent w-full border ${
+                  errors.cvcNumber
+                    ? "border-red-500"
+                    : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+                } text-xs px-4 py-[9px] rounded-b-lg rounded-l-none outline-none`}
                 type="text"
                 {...register("cvcNumber", {
                   required: "CVC is required",
@@ -262,11 +250,11 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                   },
                   pattern: {
                     value: /^-?\d*\.?\d+$/,
-                    message: "Please enter a valid CVC number",
+                    message: "Please enter a valid CVC",
                   },
                 })}
                 id=""
-                placeholder="CVC..."
+                placeholder="CVC"
                 maxLength={3}
               />
               {errors.cvcNumber && (
@@ -276,38 +264,89 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
               )}
             </div>
           </div>
+          {/*  */}
+          <div className="w-full flex flex-col my-4">
+            <label
+              htmlFor=""
+              className="text-sm text-gray-500 dark:text-gray-200"
+            >
+              Cardholder name
+            </label>
+            <input
+              className={`bg-transparent w-full border ${
+                errors.cardHolder
+                  ? "border-red-500"
+                  : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+              } text-xs mt-2 px-4 py-2 rounded-lg outline-none`}
+              type="text"
+              {...register("cardHolder", {
+                required: "Card holder is required",
+              })}
+              id=""
+              placeholder="Account holder..."
+            />
+            {errors.cardHolder && (
+              <span className="text-red-500 text-xs mt-1">
+                {errors.cardHolder.message}
+              </span>
+            )}
+          </div>
         </div>
       ) : (
         <div className="">
           {/* section one */}
-          <div className="flex flex-col md:flex-row 2xl:flex-col items-center justify-between gap-4 my-4">
+          <div className="flex flex-col">
+            <label
+              htmlFor=""
+              className="text-sm text-gray-500 dark:text-gray-200"
+            >
+              Account information
+            </label>
+
+            {errors.accountNumber && (
+              <span className="text-red-500 text-xs mt-1">
+                {errors.accountNumber.message}
+              </span>
+            )}
+            {/* account number */}
             <div className="w-full flex flex-col">
-              <label htmlFor="" className="text-sm font-medium">
-                Account Holder
-              </label>
               <input
-                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
+                className={`bg-transparent w-full border ${
+                  errors.accountNumber
+                    ? "border-red-500"
+                    : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+                } text-xs mt-1 px-4 py-2 rounded-t-xl rounded-b-none outline-none`}
                 type="text"
-                {...register("accountHolder", {
-                  required: true,
+                {...register("accountNumber", {
+                  required: "Account number is required",
+                  minLength: {
+                    value: 5,
+                    message: "Minimum length is 5 characters",
+                  },
+                  maxLength: {
+                    value: 17,
+                    message: "Maximum length is 17 characters",
+                  },
+                  pattern: {
+                    value: /^\d+$/,
+                    message: "Please enter a valid account number",
+                  },
                 })}
                 id=""
-                placeholder="Account holder..."
+                placeholder="Account number"
+                maxLength={17}
+                minLength={5}
               />
-              {errors.accountHolder?.type === "required" && (
-                <span className="text-red-500 text-xs mt-1">
-                  Account holder is required
-                </span>
-              )}
             </div>
 
             {/* routing number */}
             <div className="w-full flex flex-col">
-              <label htmlFor="" className="text-sm font-medium">
-                Routing Number
-              </label>
               <input
-                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
+                className={`bg-transparent w-full border ${
+                  errors.routingNumber
+                    ? "border-red-500"
+                    : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
+                } text-xs px-4 py-2 rounded-b-lg rounded-t-none outline-none`}
                 type="text"
                 {...register("routingNumber", {
                   required: "Routing number is required",
@@ -320,12 +359,12 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                     message: "Minimum length is 9 characters",
                   },
                   pattern: {
-                    value: /^-?\d*\.?\d+$/,
+                    value: /^\d+$/,
                     message: "Please enter a valid routing number",
                   },
                 })}
                 id=""
-                placeholder="Routing number..."
+                placeholder="Routing number"
                 maxLength={9}
               />
               {errors.routingNumber && (
@@ -336,37 +375,30 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
             </div>
           </div>
 
-          {/* account number */}
+          {/*  account holder  */}
           <div className="w-full flex flex-col my-4">
-            <label htmlFor="" className="text-sm font-medium">
-              Account Number
+            <label
+              htmlFor=""
+              className="text-sm text-gray-500 dark:text-gray-200"
+            >
+              Account holder name
             </label>
             <input
-              className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-xl outline-none"
+              className={`bg-transparent w-full border ${
+                errors.accountHolder
+                  ? "border-red-500"
+                  : "dark:border-darkThree focus:border-darkGray"
+              } text-xs mt-2 px-4 py-2 rounded-lg outline-none`}
               type="text"
-              {...register("accountNumber", {
-                required: "Account number is required",
-                minLength: {
-                  value: 5,
-                  message: "Minimum length is 5 characters",
-                },
-                maxLength: {
-                  value: 17,
-                  message: "Maximum length is 17 characters",
-                },
-                pattern: {
-                  value: /^-?\d*\.?\d+$/,
-                  message: "Please enter a valid account number",
-                },
+              {...register("accountHolder", {
+                required: "Account holder name is required",
               })}
               id=""
-              placeholder="Account number..."
-              maxLength={17}
-              minLength={5}
+              placeholder="Account holder..."
             />
-            {errors.accountNumber && (
+            {errors.accountHolder && (
               <span className="text-red-500 text-xs mt-1">
-                {errors.accountNumber.message}
+                {errors.accountHolder.message}
               </span>
             )}
           </div>
