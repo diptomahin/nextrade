@@ -150,9 +150,6 @@ const TransactionTable = ({
             </button>
             {isOpenDot && (
               <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-gray-100 dark:bg-secondary font-medium rounded-s-2xl rounded-b-2xl">
-                <button className="w-full btn btn-sm text-sm dark:text-white/80 justify-start bg-transparent hover:bg-black/10 dark:hover:bg-white/10 border-none rounded-none pl-4 shadow-none">
-                  Download
-                </button>
                 <button
                   onClick={() =>
                     handleDeleteAll(specificTransactionsData[0]?.email)
@@ -304,7 +301,7 @@ const TransactionTable = ({
       ) : (
         <div
           onClick={() => setIsOpenDot(false)}
-          className="text-center font-bold"
+          className="text-center font-bold py-10"
         >
           Currently, no transaction history is available.
         </div>
