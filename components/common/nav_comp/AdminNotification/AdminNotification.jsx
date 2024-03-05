@@ -254,21 +254,22 @@ const AdminNotification = () => {
                   } w-full  rounded  cursor-pointer p-3 `}
                 >
                   <div onClick={() => handleRead(asset?._id)}>
-                    <div className="flex items-center gap-4 space-y-[6px] text-white">
-                      {asset.read ? (
+                  <div className="flex items-center gap-4 space-y-[6px] text-black dark:text-white">
+                     <div className=" ">
+                     {asset.read ? (
                         <MdNotifications className="w-8 h-8" />
                       ) : (
                         <MdNotificationsActive className="w-8 h-8" />
                       )}
-                      <div>
-                        <h2 className="font-medium text-sm pr-10 text-black dark:text-white">
+                     </div>
+                      <div className="xl:w-44 flex-1">
+                        <h2 className="font-medium  text-xs pr-10 text-black dark:text-white">
                           {asset?.email}
                         </h2>
-                        <p className="text-gray-700 dark:text-gray-400 text-xs">
+                        <p className=" text-gray-600 dark:text-gray-400 text-xs">
                           {asset?.description}
                         </p>
                       </div>
-
                     </div>
 
                     

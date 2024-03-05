@@ -38,7 +38,6 @@ const page = () => {
       </div>
       
 
-
       {/* user Reviews */}
       <AdminReviews/>
       

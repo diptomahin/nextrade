@@ -10,12 +10,13 @@ const AdminArticle = () => {
 
  
      return (
-          <div>
+          <div className="bg-white p-4 mb-4 dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">
+            <h2 className=" font-semibold">Latest Post News</h2>
                {
                     articles ? (<>
-                   {articles.map(news => <div className="flex gap-5 my-5" key={news._id}>
-              <Link href={`/dashboard/academy/${news._id}`}>
-                <div className="w-[200px] overflow-hidden">
+                   {articles.slice(0,3).map(news => <div className="flex gap-5 my-5 text-black dark:text-white " key={news._id}>
+              
+                <div className=" overflow-hidden">
                   <Image
                     src={news.thumbnail}
                     alt={news.title}
@@ -24,14 +25,14 @@ const AdminArticle = () => {
                     className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                   />
                 </div>
-              </Link>
+              
 
               <div>
-                <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                <button class="relative px-2 py-1 text-sm text-white rounded overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
                   <span class="relative z-10">{news.category}</span>
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                  <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out">
+                  <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group  transition-all duration-300 ease-in-out">
                     <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                       {news.title}
                     </span>
