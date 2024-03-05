@@ -131,7 +131,7 @@ const AdminDashManageCoin = () => {
       </div>
       <div className=" grid grid-cols-3 gap-4 mt-4">
         {cryptoCurrency ? (
-          cryptoCurrency.slice(0, 6).map((asset, idx) => (
+          cryptoCurrency.slice(0, 3).map((asset, idx) => (
             // Your map logic here
             <div
               key={idx}
