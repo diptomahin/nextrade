@@ -7,8 +7,14 @@ const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
 
+  // articles view count
+  const count = 1;
+  const viewCount = { count };
 
-  
+  useEffect(() => {
+    axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
+  }, [articleId, axiosPublic, viewCount]);
+
   return (
     <div>
       <div className="mt-10">
