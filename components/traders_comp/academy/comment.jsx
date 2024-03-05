@@ -1,6 +1,7 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef } from "react";
 
 const Comment = ({ articleId }) => {
