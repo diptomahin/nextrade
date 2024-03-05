@@ -15,25 +15,38 @@ import { FaArrowDownShortWide } from "react-icons/fa6";
 
 const WhyChooseUs = () => {
   return (
-    <Container className="flex items-center justify-between gap-10 py-20 text-zinc-200">
+    <Container className=" py-14 text-zinc-200">
+      <Title animation={false} className="text-start text-primary">
+        Why NexTrade
+      </Title>
+      <Subtitle animation={false} className="text-start w-5/6">
+        {" "}
+        At NexTrade, your trading experience is our top priority, and we stand
+        out for <br /> several compelling reasons.
+      </Subtitle>
       {/* content */}
-      <motion.div
-        variants={fadeIn("right", 0.5)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="flex-[3]"
-      >
-        <Title animation={false} className="text-start text-primary">
-          Why NexTrade
-        </Title>
-        <Subtitle animation={false} className="text-start w-5/6">
-          {" "}
-          At NexTrade, your trading experience is our top priority, and we stand
-          out for several compelling reasons.
-        </Subtitle>
-
-        <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-5 mt-10">
+      <div className="xl:flex xl:-mt-16 flex-row-reverse items-center justify-between gap-10">
+        <motion.div
+          variants={fadeIn("left", 0.5)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="flex-[2] flex justify-end"
+        >
+          <Image
+            alt="why-nextrade-image"
+            src={bg}
+            style={{ width: "80%", height: "auto" }}
+            className="-scale-x-100"
+          />
+        </motion.div>
+        <motion.div
+          variants={fadeIn("right", 0.5)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+          className="w-full flex-[3] grid lg:grid-cols-2 grid-cols-1 gap-5 "
+        >
           <div className="flex gap-3">
             <MdOutlineSettingsSuggest className="text-6xl text-primary" />
 
@@ -96,22 +109,8 @@ const WhyChooseUs = () => {
               </p>
             </div>
           </div>
-        </div>
-      </motion.div>
-      <motion.div
-        variants={fadeIn("left", 0.5)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-        className="flex-[2] flex justify-end"
-      >
-        <Image
-          alt="why-nextrade-image"
-          src={bg}
-          style={{ width: "80%", height: "auto" }}
-          className="-scale-x-100"
-        />
-      </motion.div>
+        </motion.div>
+      </div>
     </Container>
   );
 };
