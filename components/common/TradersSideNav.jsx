@@ -18,8 +18,8 @@ const TradersDashboardSidebar = ({ isActiveMenu, setIsActiveMenu }) => {
         ) : (
           <>
             <Image src={logo} width={35} height={"auto"} alt="logo" />
-            <h1 className="text-lg font-semibold">
-              Nex<span className="">Trade</span>
+            <h1 className="text-lg font-semibold text-primary">
+              Nex<span className="text-white">Trade</span>
             </h1>
           </>
         )}
