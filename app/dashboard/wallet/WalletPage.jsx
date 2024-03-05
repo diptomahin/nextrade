@@ -40,7 +40,7 @@ const WalletPage = () => {
   }
   return (
     <>
-      <div className="col-span-full 2xl:col-span-8 3xl:col-span-9 flex flex-col gap-7">
+      <div className="col-span-full 2xl:col-span-8 5xl:col-span-9 flex flex-col gap-7">
         <BalanceSection userData={userData} />
 
         <TransactionTable
@@ -51,7 +51,7 @@ const WalletPage = () => {
         />
       </div>
 
-      <div className="col-span-full 2xl:col-span-4 3xl:col-span-3">
+      <div className="col-span-full 2xl:col-span-4 5xl:col-span-3">
         <DepositWithdrawSection
           userData={userData}
           refetchUserData={refetchUserData}

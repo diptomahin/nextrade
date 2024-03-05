@@ -84,7 +84,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* section one */}
-      <div className="w-full flex flex-col">
+      <div className="w-full flex flex-col mt-5 mb-3">
         <label htmlFor="" className="font-medium">
           Currency
         </label>
@@ -136,7 +136,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row gap-5 my-6">
+      <div className="flex flex-col md:flex-row gap-5 my-5">
         <div
           onClick={() => {
             setIsPaymentSelected("card");
@@ -216,7 +216,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                   errors.expiredDate
                     ? "border-red-500"
                     : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
-                } text-xs px-4 py-2 rounded-b-lg rounded-r-none outline-none`}
+                } text-xs px-4 py-2 md:rounded-b-lg md:rounded-r-none outline-none`}
                 type="date"
                 {...register("expiredDate", {
                   required: "Date is required",
@@ -236,7 +236,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
                   errors.cvcNumber
                     ? "border-red-500"
                     : "dark:border-darkThree focus:border-primary dark:focus:border-primary"
-                } text-xs px-4 py-[9px] rounded-b-lg rounded-l-none outline-none`}
+                } text-xs px-4 py-[9px] rounded-b-lg md:rounded-l-none outline-none`}
                 type="text"
                 {...register("cvcNumber", {
                   required: "CVC is required",

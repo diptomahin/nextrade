@@ -33,7 +33,7 @@ const DepositWithdrawSection = ({
               !isBuyOpen ? "text-white" : "dark:text-gray-300"
             } duration-100 font-medium text-sm z-10`}
           >
-            Withdraw
+            Withdrawal
           </button>
         </div>
       </div>
