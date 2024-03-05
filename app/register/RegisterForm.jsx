@@ -6,30 +6,41 @@ import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import styled from "@emotion/styled";
 import { Stack, TextField, Typography } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 
 // customized TextField
 const CssTextField = styled(TextField)({
+  "& label": {
+    paddingLeft: "10px",
+    fontSize: "14px",
+  },
   "& label.Mui-focused": {
     color: "#21366c",
+    paddingLeft: "0"
   },
   "& .MuiInput-underline:after": {
     borderBottomColor: "#21366c",
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#E0E3E7",
+      borderRadius: "35px",
+      borderColor: "#a1a1aa",
     },
     "&:hover fieldset": {
-      borderColor: "#B2BAC2",
+      borderColor: "#40a0ff",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#6F7E8C",
+      borderColor: "#40a0ff",
+    },
+    "& input": {
+      padding: "10px 20px"
     },
   },
 });
@@ -58,10 +69,6 @@ const RegisterForm = () => {
 
   // submit register form
   const onSubmit = async (data) => {
-    if (data.password != data.confirmPassword) {
-      setError("Password does not match");
-      return;
-    }
     createUser(data.email, data.password)
       .then((res) => {
         const loggedUser = res.user;
@@ -107,17 +114,17 @@ const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-5 my-16 2xl:mx-0 p-5 md:px-10 w-full md:w-[400px] 2xl:w-[400px] border rounded bg-white"
+      className="mx-5 my-16 2xl:mx-0 p-5 2xl:p-4 2xl:px-10 3xl:p-5 3xl:px-10 md:px-10 w-full md:w-[500px] xl:w-[400px] 3xl:w-[500px] border rounded-xl bg-white/60 backdrop-blur-xl"
     >
-      <Typography
-        variant="h2"
-        mb={1}
-        fontWeight="bold"
-        className="text-primary text-center"
-        sx={{ fontSize: "24px" }}
-      >
+      <Link href="/">
+        <Image src={logo} alt="Logo" className="w-36 3xl:mt-5 mb-6 z-10" />
+      </Link>
+      <h3 className="text-xl font-semibold text-black">
         Create an account
-      </Typography>
+      </h3>
+      <p className="text-zinc-500 text-sm mb-6">
+        Sign up for free to access to any of our about the product feature updates, event and marketing promotions
+      </p>
 
       <Stack gap={2}>
         {/* user name */}
@@ -125,10 +132,10 @@ const RegisterForm = () => {
           {...register("name", { required: true })}
           required
           fullWidth
+          size="small"
           id="standard-number-input"
           label="Name"
           type="text"
-          variant="standard"
         />
         {errors.name && (
           <span className="text-red-700">Name is required !</span>
@@ -139,10 +146,10 @@ const RegisterForm = () => {
           {...register("email", { required: true })}
           required
           fullWidth
+          size="small"
           id="standard-required"
           label="Email"
           type="email"
-          variant="standard"
         />
         {errors.email && (
           <span className="text-red-700">Email is required !</span>
@@ -158,10 +165,10 @@ const RegisterForm = () => {
           })}
           required
           fullWidth
+          size="small"
           id="standard-password-input"
           label="Password"
           type="password"
-          variant="standard"
         />
         {errors.password?.type === "required" && (
           <span className="text-red-700">password is required !</span>
@@ -177,17 +184,6 @@ const RegisterForm = () => {
             spacial characters!
           </span>
         )}
-
-        {/* confirm-password */}
-        <CssTextField
-          {...register("confirmPassword", { required: true, minLength: 6 })}
-          required
-          fullWidth
-          id="standard-password-input"
-          label="Confirm Password"
-          type="password"
-          variant="standard"
-        />
         {error && <span className="text-red-700">{error}</span>}
 
         {/* Google Captcha */}
@@ -201,17 +197,18 @@ const RegisterForm = () => {
 
         <Stack alignItems="center">
           {captchaValue ? (
-            <Button className="w-full lg:h-12" type="submit">
+            <Button type="submit" className="w-full lg:h-11 rounded-full">
               {" "}
               Create Account
             </Button>
           ) : (
-            <Button disabled className="w-full lg:h-12" type="submit">
+            <Button disabled type="submit" className="w-full lg:h-11 rounded-full">
               Create Account
             </Button>
           )}
         </Stack>
-        <Typography className="text-lg text-center">
+        <SocialLogin />
+        <Typography className="text-black">
           Already have an account?
           <Link
             href="/login"
@@ -221,7 +218,7 @@ const RegisterForm = () => {
           </Link>
         </Typography>
       </Stack>
-      <SocialLogin />
+      
     </form>
   );
 };
