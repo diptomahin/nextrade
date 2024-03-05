@@ -5,30 +5,39 @@ import logo from "../../assets/logo/NexTrade_Favicon-Original.png";
 import SideNavLinks from "./nav_comp/SideNavLinks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
-import { useState } from "react";
+import { CgMenuLeft } from "react-icons/cg";
 
-const TradersDashboardSidebar = () => {
-  const [isActiveMenu, setIsActiveMenu] = useState(false);
+const TradersDashboardSidebar = ({ isActiveMenu, setIsActiveMenu }) => {
   const pathname = usePathname();
   return (
-    <div className="relative h-full w-full bg-white dark:bg-tertiary flex flex-col gap-2 py-5 shadow">
+    <div className="relative h-full w-full bg-white dark:bg-tertiary flex flex-col gap-2 py-3 shadow">
+      <Link href="/" className="flex items-center gap-2 pl-3 mb-3">
+        {" "}
+        {isActiveMenu ? (
+          <Image src={logo} width={40} height={"auto"} alt="logo" />
+        ) : (
+          <>
+            <Image src={logo} width={35} height={"auto"} alt="logo" />
+            <h1 className="text-lg font-semibold">
+              Nex<span className="">Trade</span>
+            </h1>
+          </>
+        )}
+      </Link>
       <button
         onClick={() => setIsActiveMenu(!isActiveMenu)}
-        className="absolute top-3 -right-[15px] btn btn-sm btn-circle w-10 h-10 bg-white hover:bg-black/5 active:bg-black/15 dark:bg-quaternary dark:hover:bg-white/5 dark:active:bg-white/15 dark:text-white px-0 border-none shadow-none"
+        className="hidden 2xl:flex absolute top-[10px] -right-4 btn btn-sm btn-circle w-10 h-10 bg-white hover:bg-black/5 active:bg-black/15 dark:bg-quaternary dark:hover:bg-white/5 dark:active:bg-white/15 dark:text-white border-none shadow-none"
       >
-        <MdOutlineKeyboardDoubleArrowLeft className="text-4xl" />
+        {isActiveMenu ? (
+          <span className="text-2xl transition-transform scale-100 duration-200 ease-out">
+            <CgMenuLeft />
+          </span>
+        ) : (
+          <span className="text-2xl transition-transform -scale-100 duration-200 ease-out">
+            <CgMenuLeft />
+          </span>
+        )}
       </button>
-      <Link
-        href="/"
-        className="w-full flex items-center justify-center gap-[5px] mb-1"
-      >
-        {" "}
-        <Image src={logo} width={25} height={"auto"} alt="logo" />
-        <h1 className="font-medium ">
-          Nex<span className="font-extrabold">Trade</span>
-        </h1>
-      </Link>
       <SideNavLinks pathname={pathname} isActiveMenu={isActiveMenu} />
     </div>
   );
