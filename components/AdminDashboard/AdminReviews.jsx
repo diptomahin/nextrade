@@ -1,6 +1,5 @@
 "use client";
 import Container from "@/components/library/Container";
-import Title from "@/components/library/Title";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
@@ -24,8 +23,7 @@ const AdminReviews = () => {
      return (
           <div className="  p-4 mt-5 w-full rounded text-black dark:text-white shadow bg-white dark:bg-tertiary">
               <h2 className="font-semibold ">Users Reviews</h2> 
-              <Container className="py-20">
-      <Title>Our Satisfied Users Feedback</Title>
+              <Container className="py-5">
       <Swiper
         slidesPerView={20}
         spaceBetween={5}
@@ -50,9 +48,9 @@ const AdminReviews = () => {
         }}
         modules={[Autoplay]}
       >
-        {data?.slice(0, 15).map((review) => (
+        {data?.map((review) => (
           <SwiperSlide key={review?._id}>
-            <div className="min-h-52 bg-quaternary flex gap-3 border border-darkThree rounded-xl shadow hover:shadow-2xl p-5 my-10">
+            <div className="min-h-52 bg-white dark:bg-black flex gap-3 border border-gray-400 dark:border-darkThree rounded-xl shadow hover:shadow-2xl p-5 ">
               <Image
                 className="w-12 h-12 rounded-full"
                 src={review?.photo}
@@ -73,7 +71,7 @@ const AdminReviews = () => {
                   />
                 </div>
                 <p className="text-xs">Address N/A</p>
-                <p className="text-sm mt-3">&quot;{review?.feedback}&quot;</p>
+                <p className="text-sm mt-3">&quot;{review?.feedback.slice(0,150)}&quot;</p>
               </div>
             </div>
           </SwiperSlide>
