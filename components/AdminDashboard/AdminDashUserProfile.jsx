@@ -10,8 +10,8 @@ const AdminDashUserProfile = () => {
   refetch()
   return (
     <div className=" text-black dark:text-white shadow bg-white dark:bg-tertiary p-4  w-full rounded ">
-      <h2 className=" font-semibold mb-4">User Profile</h2>
-      {allUser?.slice(0, 4).map((userProfile) => (
+      <h2 className=" font-semibold text-xl ">User Profile</h2>
+      {allUser?.slice(0, 5).map((userProfile) => (
         <div
           key={userProfile._id}
           className="flex items-center gap-2 my-2 md:gap-3  bg-gray-200 dark:bg-darkOne rounded p-2"

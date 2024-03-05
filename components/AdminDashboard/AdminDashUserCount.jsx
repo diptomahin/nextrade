@@ -18,8 +18,8 @@ const AdminDashUserCount = () => {
   ];
 
   return (
-    <div className="text-black dark:text-white shadow bg-white dark:bg-tertiary p-4 w-full rounded   mt-5">
-      <h2 className='font-semibold text-start'>Total User Count</h2>
+    <div className="text-black dark:text-white shadow bg-white dark:bg-tertiary p-4 w-full rounded  mt-4">
+      <h2 className='font-semibold text-start text-xl'>Total User Count</h2>
       <div style={{ margin: 'auto', textAlign: 'center' }} className='md:pl-20 pl-0 '>
         <PieChart
           series={[

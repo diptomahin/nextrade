@@ -16,7 +16,7 @@ import GoogleTranslate from "../../components/traders_comp/GoogleTranslate/Googl
 import ThemeMode from "../library/ThemeMode";
 
 const StyledInputBase = styled(TextField)(({ theme }) => ({
-  color: "white",
+  color: "#1f2937",
   width: "250px", // Default width set to 250px
   [theme.breakpoints.down("sm")]: {
     width: "120px", // Reduce width for small devices
@@ -26,7 +26,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     [theme.breakpoints.down("sm")]: {
       padding: "2px 4px", // Further reduce padding for small devices
     },
-    backgroundColor: "#181e2c", // Set background color to white
+    backgroundColor: "transparent", 
   },
   "& .MuiInputBase-input": {
     padding: "6px 6px", // Adjusting padding
@@ -35,7 +35,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     },
     transition: theme.transitions.create("width"),
     "&::placeholder": {
-      color: "white", // Set placeholder color to white
+      color: "#9ca3af",
     },
   },
   "& .MuiOutlinedInput-root": {
@@ -45,14 +45,14 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     },
     border: "none",
     "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#2c3750", // Remove border color on hover
+      borderColor: "transparent", // Remove border color on hover
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #2c3750", // Remove border color when focused
+      border: "1px solid transparent", // Remove border color when focused
     },
   },
   "& .MuiAutocomplete-input": {
-    color: "white", // Set input text color to white
+    color: "#64748b", // Set input text color to white
   },
 }));
 
@@ -171,8 +171,8 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
         </div>
 
         {/* search  */}
-        {/* <form
-          className="flex items-center w-[120px] lg:w-[250px] relative"
+        <form
+          className="flex items-center w-[120px] lg:w-[250px] relative border border-gray-700 dark:border-gray-700 rounded-lg dark:bg-black/15"
           onSubmit={handleSearchSubmit}
         >
           <Autocomplete
@@ -199,9 +199,9 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             )}
           />
           <button type="submit" className="absolute right-2">
-            <SearchIcon style={{ marginRight: "6px", color: "white" }} />
+            <SearchIcon className="dark:text-gray-500 text-gray-700 mr-[6px]" />
           </button>
-        </form> */}
+        </form>
       </div>
       <div className="flex items-center gap-6">
         <ThemeMode />
