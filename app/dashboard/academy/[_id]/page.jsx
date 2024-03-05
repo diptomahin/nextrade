@@ -1,7 +1,6 @@
 import React from "react";
 import getArticles from "@/lib/getArticles";
 import Image from "next/image";
-import TextField from "@mui/material/TextField";
 import moment from "moment";
 import { SiKhanacademy } from "react-icons/si";
 
@@ -77,58 +76,14 @@ const articlePage = async ({ params }) => {
         </h1>
         <div className="mt-10">
           <h1 className="lg:text-3xl text-2xl font-semibold">Leave A Replay</h1>
-          <h3 className="my-3">Your email address will not be published.</h3>
-          <TextField
-            className="lg:w-[520px] w-full border-white	"
-            id="fullWidth"
-            label="Comment"
-            variant="outlined"
-            InputLabelProps={{
-              style: { color: "white", borderColor: "white" }, // Text color of the label
-            }}
-            InputProps={{
-              style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-            }}
-          />
-
-          <div className="mt-5 grid lg:grid-cols-3 gap-4 w-full lg:w-[520px]">
-            <TextField
-              className="w-full"
-              id="outlined-basic"
-              label="Name"
-              variant="outlined"
-              InputLabelProps={{
-                style: { color: "white", borderColor: "white" }, // Text color of the label
-              }}
-              InputProps={{
-                style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-              }}
-            />
-            <TextField
-              className="mx-4 w-full mt-10"
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              InputLabelProps={{
-                style: { color: "white", borderColor: "white" }, // Text color of the label
-              }}
-              InputProps={{
-                style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-              }}
-            />
-
-            <TextField
-              className="w-full"
-              id="outlined-basic"
-              label="Website"
-              variant="outlined"
-              InputLabelProps={{
-                style: { color: "white" }, // Text color of the label
-              }}
-              InputProps={{
-                style: { color: "white", borderColor: "white" }, // Text color and border color of the input field
-              }}
-            />
+         
+         
+          
+          <div className="mt-1">
+          <form className="w-1/2">
+  <label for="message" className="block mb-2 font-medium text-gray-900 dark:text-white">Your info will not be published*</label>
+  <textarea id="message" rows="6" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
+</form>
           </div>
 
           <button className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">
