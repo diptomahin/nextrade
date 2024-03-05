@@ -16,7 +16,7 @@ import GoogleTranslate from "../../components/traders_comp/GoogleTranslate/Googl
 import ThemeMode from "../library/ThemeMode";
 
 const StyledInputBase = styled(TextField)(({ theme }) => ({
-  color: "white",
+  color: "#1f2937",
   width: "250px", // Default width set to 250px
   [theme.breakpoints.down("sm")]: {
     width: "120px", // Reduce width for small devices
@@ -26,7 +26,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     [theme.breakpoints.down("sm")]: {
       padding: "2px 4px", // Further reduce padding for small devices
     },
-    backgroundColor: "#181e2c", // Set background color to white
+    backgroundColor: "transparent", 
   },
   "& .MuiInputBase-input": {
     padding: "6px 6px", // Adjusting padding
@@ -35,24 +35,24 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     },
     transition: theme.transitions.create("width"),
     "&::placeholder": {
-      color: "white", // Set placeholder color to white
+      color: "#9ca3af",
     },
   },
   "& .MuiOutlinedInput-root": {
     borderRadius: "10px", // Adding border radius
     "& fieldset": {
-      borderColor: "transparent",
+      borderColor: "#40434794",
     },
     border: "none",
     "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#2c3750", // Remove border color on hover
+      borderColor: "#40434794", // Remove border color on hover
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #2c3750", // Remove border color when focused
+      border: "1px solid #40434794", // Remove border color when focused
     },
   },
   "& .MuiAutocomplete-input": {
-    color: "white", // Set input text color to white
+    color: "#64748b", // Set input text color to white
   },
 }));
 
@@ -201,7 +201,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
             )}
           />
           <button type="submit" className="absolute right-2">
-            <SearchIcon style={{ marginRight: "6px", color: "white" }} />
+            <SearchIcon style={{ marginRight: "6px", color: "#9ca3af" }} />
           </button>
         </form>
       </div>
