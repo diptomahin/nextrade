@@ -1,8 +1,8 @@
 
 const AdminDashManageCoin = () => {
      return (
-          <div className=" text-white p-4 h-40 w-full rounded bg-gradient-to-bl  from-darkOne to-darkTwo mt-4">
-              <h2>AdminDashManageCoin</h2> 
+          <div className="  p-4 mt-5 w-full rounded text-black dark:text-white shadow bg-white dark:bg-tertiary">
+              <h2 className="font-semibold ">Manage Coin</h2> 
           </div>
      );
 };
