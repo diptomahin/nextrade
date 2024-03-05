@@ -117,7 +117,6 @@ const TransactionTable = ({
     refetchSpecificTransactionsData();
   };
 
-  console.log(specificTransactionsData);
   return (
     <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">
@@ -209,6 +208,15 @@ const TransactionTable = ({
                   }}
                   className="text-black dark:text-white dark:border-b-darkThree"
                 >
+                  Method
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
+                >
                   Currency
                 </TableCell>
                 <TableCell
@@ -218,7 +226,7 @@ const TransactionTable = ({
                   }}
                   className="text-black dark:text-white dark:border-b-darkThree"
                 >
-                  Date
+                  Holder
                 </TableCell>
                 <TableCell
                   sx={{
@@ -227,7 +235,7 @@ const TransactionTable = ({
                   }}
                   className="text-black dark:text-white dark:border-b-darkThree"
                 >
-                  Time
+                  Date
                 </TableCell>
                 <TableCell
                   sx={{
@@ -267,22 +275,20 @@ const TransactionTable = ({
                           : "text-[#ff5252]"
                       }
                     >
-                      $ {row?.amount}
+                      {row?.amount} {row?.currency}
                     </span>
                   </TableCell>
                   <TableCell className="text-black dark:text-white dark:border-b-darkThree">
-                    USD
+                    {row?.method}
+                  </TableCell>
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                    {row?.currency}
+                  </TableCell>
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                    {row?.holder}
                   </TableCell>
                   <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     {row?.date?.day}/{row?.date?.month}/{row?.date?.year}
-                  </TableCell>
-                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
-                    {/* Time */}
-                    <span>
-                      {formatTime(row?.date?.hours || " ")}:
-                      {padZero(row?.date?.minutes || " ")}{" "}
-                      {getAmPm(row?.date?.hours || " ")}
-                    </span>
                   </TableCell>
                   <TableCell className="text-black dark:text-white dark:border-b-darkThree">
                     Complete

@@ -13,7 +13,6 @@ import { useForm } from "react-hook-form";
 
 const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   const [isPaymentSelected, setIsPaymentSelected] = useState("card");
-  const [paymentError, setPaymentError] = useState("");
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
   const { refetchNotificationsData } = useNotificationData();
@@ -31,11 +30,14 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
     const toastId = toast.loading("Progress...", { duration: 10000 });
 
     axios
-      .post(`http://localhost:5000/v1/api/deposit/${user?.email}`, {
-        data: data,
-        isPaymentSelected: isPaymentSelected,
-        date: date,
-      })
+      .post(
+        `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
+        {
+          data: data,
+          isPaymentSelected: isPaymentSelected,
+          date: date,
+        }
+      )
       .then((res) => {
         if (res.data.matchedCount > 0) {
           // post notification data sen database
@@ -92,8 +94,6 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
           className="bg-transparent w-full border border-darkThree focus:border-darkGray text-xs mt-2 px-4 py-2 rounded-md outline-none"
         >
           <option value="usd">USD</option>
-          <option value="bdt">BDT</option>
-          <option value="inr">INR</option>
         </select>
         {errors.currency && (
           <span className="text-red-500 text-xs mt-1">
