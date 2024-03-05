@@ -1,9 +1,42 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
-import React from "react";
+import usePublicAPI from "@/hooks/usePublicAPI";
+import React, { useEffect, useRef } from "react";
 
-const Comment = () => {
+const Comment = ({ articleId }) => {
   const { user } = useAuth();
+  const axiosPublic = usePublicAPI();
+
+  const { data: articles = [], refetch } = useQuery({
+    queryKey: ["articles"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/articles");
+      return res.data;
+    },
+  });
+
+  console.log(articles);
+
+  const commentText = useRef();
+
+  const handelComment = () => {
+    const commentTextValue = commentText.current.value;
+    const comment = { commentTextValue };
+    axiosPublic.patch(`/articles/${articleId}`, comment).then((res) => {
+      console.log(res.data);
+      refetch();
+    })
+    
+    console.log(comment);
+  };
+
+  // articles view count
+  const count = 1;
+  const viewCount = { count };
+
+  useEffect(() => {
+    axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
+  }, [articleId, axiosPublic, viewCount]);
 
   return (
     <div>
@@ -11,7 +44,7 @@ const Comment = () => {
         <h1 className="lg:text-3xl text-2xl font-semibold">Leave A Replay</h1>
 
         <div className="mt-1">
-          <form className="w-1/2">
+          <form className="lg:w-1/2">
             <label
               for="message"
               className="block mb-2 font-medium text-gray-900 dark:text-white"
@@ -20,6 +53,7 @@ const Comment = () => {
             </label>
             <textarea
               id="message"
+              ref={commentText}
               rows="6"
               className="block p-2.5 w-full text-sm text-gray-900 bg-[#1e222d] rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Leave a comment..."
@@ -27,7 +61,10 @@ const Comment = () => {
           </form>
         </div>
 
-        <button className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">
+        <button
+          onClick={() => handelComment(articles._id)}
+          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5"
+        >
           Post Comment
         </button>
       </div>

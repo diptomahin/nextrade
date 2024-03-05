@@ -71,7 +71,7 @@ const AddArticles = () => {
     const description = form.get("description");
     const photo = form.get("photo");
 
-    const toastId = toast.loading("Progress...", { duration: 10000 });
+    const toastId = toast.loading("Progress...", { duration: 2000 });
 
     // image upload to imgbb and then get an url
     if (photo instanceof File) {
@@ -88,6 +88,7 @@ const AddArticles = () => {
         const imageUrl = res.data.data.url;
         const thumbnail = imageUrl;
         const date = new Date();
+        const comment = null
 
         const articlesInfo = {
           title,
@@ -96,6 +97,7 @@ const AddArticles = () => {
           category,
           tags,
           date,
+          comment
         };
 
         axiosPublic.post("/articles", articlesInfo).then((res) => {

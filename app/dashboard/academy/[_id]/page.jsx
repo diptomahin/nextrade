@@ -76,7 +76,7 @@ const articlePage = async ({ params }) => {
           ))}
         </h1>
       </div>
-      <Comment></Comment>
+      <Comment articleId={_id}></Comment>
     </div>
   );
 };
