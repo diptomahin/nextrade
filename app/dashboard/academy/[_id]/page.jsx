@@ -3,6 +3,7 @@ import getArticles from "@/lib/getArticles";
 import Image from "next/image";
 import moment from "moment";
 import { SiKhanacademy } from "react-icons/si";
+import comment from "@/components/traders_comp/academy/comment";
 
 const articlePage = async ({ params }) => {
   const { _id } = params;
@@ -75,6 +76,7 @@ const articlePage = async ({ params }) => {
           ))}
         </h1>
       </div>
+      <comment></comment>
     </div>
   );
 };
