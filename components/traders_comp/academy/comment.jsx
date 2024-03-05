@@ -7,7 +7,15 @@ const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
 
+  const { data: article = [], refetch } = useQuery({
+    queryKey: ["article"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/articles");
+      return res.data;
+    },
+  });
 
+  console.log(article);
 
   const commentText = useRef();
 
