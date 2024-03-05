@@ -11,7 +11,7 @@ const AdminArticle = () => {
  
      return (
           <div className="bg-white p-4 mb-4 dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">
-            <h2 className=" font-semibold">Latest Post News</h2>
+            <h2 className="text-xl font-semibold ">Latest Post News</h2>
                {
                     articles ? (<>
                    {articles.slice(0,3).map(news => <div className="flex gap-5 my-5 text-black dark:text-white " key={news._id}>
