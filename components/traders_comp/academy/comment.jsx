@@ -7,21 +7,26 @@ const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
 
-  const { data: article = [], refetch } = useQuery({
-    queryKey: ["article"],
+  const { data: articles = [], refetch } = useQuery({
+    queryKey: ["articles"],
     queryFn: async () => {
       const res = await axiosPublic.get("/articles");
       return res.data;
     },
   });
 
-  console.log(article);
+  console.log(articles);
 
   const commentText = useRef();
 
   const handelComment = () => {
     const commentTextValue = commentText.current.value;
     const comment = { commentTextValue };
+    axiosPublic.patch(`/articles/${articleId}`, comment).then((res) => {
+      console.log(res.data);
+      refetch();
+    })
+    
     console.log(comment);
   };
 
@@ -57,7 +62,7 @@ const Comment = ({ articleId }) => {
         </div>
 
         <button
-          onClick={() => handelComment(article._id)}
+          onClick={() => handelComment(articles._id)}
           className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5"
         >
           Post Comment
