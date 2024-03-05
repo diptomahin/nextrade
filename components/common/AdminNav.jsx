@@ -38,14 +38,14 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
     borderRadius: "10px", // Adding border radius
     "& fieldset": {
-      borderColor: "#40434794",
+      borderColor: "transparent",
     },
     border: "none",
     "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#40434794", // Remove border color on hover
+      borderColor: "transparent", // Remove border color on hover
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #40434794", // Remove border color when focused
+      border: "1px solid transparent", // Remove border color when focused
     },
   },
   "& .MuiAutocomplete-input": {
@@ -157,7 +157,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
 
         {/* search  */}
         <form
-          className="flex items-center w-[120px] lg:w-[250px] relative"
+          className="flex items-center w-[120px] lg:w-[250px] relative border border-gray-700 dark:border-gray-700 rounded-lg dark:bg-black/15"
           onSubmit={handleSearchSubmit}
         >
           <Autocomplete
@@ -183,8 +183,8 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
               />
             )}
           />
-          <button type="submit" className="absolute right-2 text-black dark:text-white">
-            <SearchIcon style={{ marginRight: "6px" }} />
+          <button type="submit" className="absolute right-2">
+            <SearchIcon className="dark:text-gray-500 text-gray-700 mr-[6px]" />
           </button>
         </form>
       </div>
