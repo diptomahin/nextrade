@@ -2,7 +2,7 @@ import React from "react";
 import getArticles from "@/lib/getArticles";
 import Image from "next/image";
 import moment from "moment";
-import { SiKhanacademy } from "react-icons/si";
+import { SiKhanacademy, FaEye } from "react-icons/si";
 import Comment from "@/components/traders_comp/academy/comment";
 
 const articlePage = async ({ params }) => {
@@ -42,7 +42,11 @@ const articlePage = async ({ params }) => {
                 <p className="text-[#9d9d9d]">
                   {moment(article.date).format("ll")} |
                 </p>
-                <p className="text-[#9d9d9d] ml-1"> 1k Views</p>
+                <p className="text-[#9d9d9d] ml-1">{article.viewCount} Views</p>
+                {/* <div className="flex items-center mt-1 gap-1 text-slate-400">
+                <FaEye></FaEye>
+                {article.viewCount | 0} M
+              </div> */}
               </div>
             </div>
           </div>
