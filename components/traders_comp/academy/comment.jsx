@@ -1,6 +1,10 @@
+"use client";
+import useAuth from "@/hooks/useAuth";
 import React from "react";
 
-const comment = () => {
+const Comment = () => {
+  const { user } = useAuth();
+
   return (
     <div>
       <div className="mt-10">
@@ -59,4 +63,4 @@ const comment = () => {
   );
 };
 
-export default comment;
+export default Comment;
