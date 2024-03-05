@@ -49,7 +49,7 @@ const AdminDashHeader = () => {
 
 
   return (
-    <div className=" grid grid-cols-4 gap-4 text-black dark:text-white">
+    <div className=" grid xl:grid-cols-4 md:grid-cols-2 gap-4 text-black dark:text-white w-full">
      
      {/* investment */}
       <div className=" p-5 rounded-md flex items-center gap-3 bg-white dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">

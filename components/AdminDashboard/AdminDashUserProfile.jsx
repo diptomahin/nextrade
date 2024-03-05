@@ -7,14 +7,14 @@ import Link from "next/link";
 
 const AdminDashUserProfile = () => {
   const { allUser, refetch } = useAllUsersData();
-  console.log(allUser);
+  refetch()
   return (
-    <div className=" text-white p-4  w-full rounded bg-gradient-to-bl  from-darkOne to-darkTwo">
+    <div className=" text-black dark:text-white shadow bg-white dark:bg-tertiary p-4  w-full rounded ">
       <h2 className=" font-semibold mb-4">User Profile</h2>
       {allUser?.slice(0, 4).map((userProfile) => (
         <div
           key={userProfile._id}
-          className="flex items-center gap-2 my-2 md:gap-3 bg-darkOne rounded p-2"
+          className="flex items-center gap-2 my-2 md:gap-3  bg-gray-200 dark:bg-darkOne rounded p-2"
         >
           {userProfile?.photo ? (
             <Image
@@ -27,7 +27,7 @@ const AdminDashUserProfile = () => {
           ) : (
             <FaUserCircle className={`w-8 h-8 lg:w-12 lg :h-12 text-primary`} />
           )}
-          <div className="text-sm lg:text-base text-white w-full">
+          <div className="text-sm lg:text-base text-black dark:text-white w-full">
             <div className="flex justify-between  items-center w-full ">
               <h1 className="font-semibold text-sm ">
                 {userProfile.name ? userProfile.name : "No name"}{" "}
