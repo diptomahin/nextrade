@@ -71,7 +71,7 @@ const AddArticles = () => {
     const description = form.get("description");
     const photo = form.get("photo");
 
-    const toastId = toast.loading("Progress...", { duration: 10000 });
+    const toastId = toast.loading("Progress...", { duration: 2000 });
 
     // image upload to imgbb and then get an url
     if (photo instanceof File) {
