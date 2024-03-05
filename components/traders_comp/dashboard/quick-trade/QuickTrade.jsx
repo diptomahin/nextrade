@@ -167,7 +167,7 @@ const QuickTrade = () => {
           userData={userData}
         />
       ) : (
-        <QuickSell />
+        <QuickSell userData={userData} />
       )}
     </div>
   );
