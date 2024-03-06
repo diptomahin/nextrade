@@ -16,6 +16,9 @@ const articlePage = async ({ params }) => {
 
     console.log(article)
 
+    const formattedDescription = article.description.replace(/\n/g, "<br>");
+
+
   return (
     <div className="mt-10">
       <div className="text-white items-center lg:flex gap-2 ml-1">
@@ -66,7 +69,10 @@ const articlePage = async ({ params }) => {
 
       {/* lowest part */}
       <div className="mt-5 dark:text-gray-300 text-black">
-        <h3>{article.description}</h3>
+      <div
+        className="mt-5 dark:text-gray-300 text-black"
+        dangerouslySetInnerHTML={{ __html: formattedDescription }}
+      ></div>
 
         <h1 className="mt-10 text-xl mb-4 dark:text-white text-black">
           <span className="font-semibold lg:text-3xl text-2xl">
