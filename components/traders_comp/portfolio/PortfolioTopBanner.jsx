@@ -4,6 +4,8 @@ import { VisibilityOutlined } from "@mui/icons-material";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import { useState } from "react";
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 const PortfolioTopBanner = ({
   totalBuyingPrice,
@@ -52,16 +54,22 @@ const PortfolioTopBanner = ({
               </button>
             </div>
 
-            <div className="border bg-white p-1 px-2 rounded shadow-xl  flex  items-center justify-between gap-5 w-full ">
+            
+          </div>
+          <div className=" p-2 px-2 bg-white w-full rounded-md text-center  ">
               {/* total profit */}
               <p
                 className={`font-semibold ${
                   calculateTotalProfit >= 0 ? "text-green-700" : "text-red-600"
                 }`}
               >
-                {calculateTotalProfit >= 0 ? "+ $" : "- $"}{" "}
-                {Math.abs(calculateTotalProfit).toFixed(2)}
+                <span>Profit -  </span>
+                {Math.abs(calculateTotalProfit).toFixed(2)} $
+                <span className=" bg-white p-1"><TrendingUpIcon/></span>
+
+
               </p>
+
 
               {/* total loss */}
               <p
@@ -71,16 +79,17 @@ const PortfolioTopBanner = ({
                     : " text-green-700 "
                 }`}
               >
-                - $ {calculateTotalLoss.toFixed(2)}
+                <span>Loss -  </span>
+                 {calculateTotalLoss.toFixed(2)} $
+                 <span className=" bg-white p-1"><TrendingDownIcon/></span>
               </p>
             </div>
-          </div>
         </div>
 
         {/*  Remaining balance */}
 
         <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#78c350]">
-          <div className="pb-8 w-full">
+          <div className=" w-full">
             <p className="font-semibold ">
               Remaining Balance{" "}
               <MonetizationOnIcon className="text-base ml-2 " />

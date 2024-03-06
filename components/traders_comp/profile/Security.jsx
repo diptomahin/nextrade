@@ -37,6 +37,19 @@ const Security = () => {
   const changePassword = async () => {
     try {
       // Validate inputs
+
+      // Define the password pattern using a regular expression
+      const passwordPattern =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}:;<>,.?~\\/-]).{8,}$/;
+
+      // Check if the newPassword matches the defined pattern
+      if (!passwordPattern.test(newPassword)) {
+        setError(
+          "Password must include at least one lowercase letter, one uppercase letter, one digit, and one special character, and be at least 8 characters long"
+        );
+        return;
+      }
+
       if (!newPassword || !confirmPassword) {
         setError("Please fill in all fields");
         return;
@@ -46,7 +59,6 @@ const Security = () => {
         setError("New password and confirm password must match");
         return;
       }
-      
 
       updateUserPassword(user, newPassword)
         .then(() => {
@@ -77,11 +89,10 @@ const Security = () => {
 
   return (
     <div className="bg-white dark:bg-tertiary rounded-xl w-full h-full p-5">
-      <h2 className="text-xl font-semibold pb-5">Security</h2>
+      <h2 className="text-xl font-semibold pb-3">Security</h2>
 
       {/* authentication */}
-      <div>Authentication . . .</div>
-      <hr className="h-0 border border-darkThree my-5" />
+      <hr className="h-0 border border-gray-400 dark:border-darkThree mb-5" />
 
       {/* password */}
       <h3 className="font-semibold">Password</h3>

@@ -6,7 +6,7 @@ const usePortfolioSellHistory = () => {
      const useSecure = useSecureAPI();
      const {user,loading} = useAuth()
 
-     const { data, isPending, isLoading, isError, refetch } = useQuery({
+     const { data, isPending, isLoading, refetch } = useQuery({
          queryKey: [user?.email,"profitLoss"],
          queryFn: async () => {
             if (loading) {

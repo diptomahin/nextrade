@@ -35,6 +35,8 @@ const Portfolio = () => {
 
   refetchUserData();
 
+
+
   const usersRemainingBalance = parseFloat(userData?.balance).toFixed(2);
 
   // asset Data with search functionality
@@ -68,6 +70,8 @@ const Portfolio = () => {
   } = usePurchasedAssets(dynamicSearch, currentPage, coinPerPage);
 
   purchasedRefetch();
+
+  console.log(purchasedAssets);
 
   // asset Data without search functionality
   const [assetData2, setAssetData2] = useState([]);
