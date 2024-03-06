@@ -78,8 +78,8 @@ const Testimonials = () => {
                     readOnly
                   />
                 </div>
-                <p className="text-xs">Address N/A</p>
-                <p className="text-sm mt-3">&quot;{review?.feedback}&quot;</p>
+                <p className="text-xs">{review?.address}</p>
+                <p className="text-sm mt-3">{review?.feedback}</p>
               </div>
             </div>
           </SwiperSlide>
