@@ -27,6 +27,7 @@ module.exports = {
         quinary: '#fca104', // orange
         senary: '#3aba69', // green
         septenary: '#f65455', // red
+        whiteBg: '#e6ebee' 
       },
       fontFamily: {
         montserrat: ['Montserrat', 'Inter', 'Graphik', 'Merriweather', 'sans-serif', 'serif'],

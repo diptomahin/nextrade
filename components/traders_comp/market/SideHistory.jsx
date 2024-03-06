@@ -36,12 +36,12 @@ const SideHistory = () => {
     return;
   }
   return (
-    <div className="w-full h-full flex flex-col gap-8 bg-white dark:bg-tertiary p-5 rounded-xl shadow">
+    <div className="w-full h-full flex flex-col gap-8 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
       <div className="flex flex-wrap items-center justify-between border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">History</h3>
         <Link
           href="/dashboard/history"
-          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
+          className="btn btn-sm h-10 bg-primary/10 hover:bg-primary/20 active:bg-primary/30 border-none shadow-none font-medium text-primary rounded-xl"
         >
           See all
         </Link>

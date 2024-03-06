@@ -35,7 +35,7 @@ const UserMenu = ({ userDetails, logOut, isLoading, isPending, loading }) => {
         )}
       </button>
       {isOpen && (
-        <div className="min-w-44 absolute top-14 right-0 bg-white dark:bg-tertiary rounded-xl overflow-hidden shadow-2xl dark:shadow-black">
+        <div className="min-w-44 absolute top-14 right-0 bg-white dark:bg-quaternary rounded-xl overflow-hidden shadow-2xl dark:shadow-black">
           <div className="bg-primary/90 text-white px-2 py-3">
             <div className="flex flex-col items-center gap-3">
               {userDetails?.photo ? (

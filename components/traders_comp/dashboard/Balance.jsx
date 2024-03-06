@@ -37,7 +37,7 @@ const Balance = () => {
   ];
 
   return (
-    <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-white dark:bg-tertiary p-5 rounded-xl shadow">
+    <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
       <h3 className="text-xl font-semibold">Balance</h3>
 
       {/* content */}

@@ -13,7 +13,7 @@ const TradersDashboardSidebar = ({
   pathname,
 }) => {
   return (
-    <div className="relative h-full w-full bg-white dark:bg-tertiary flex flex-col gap-2 py-3 shadow">
+    <div className="relative h-full w-full bg-white dark:bg-quaternary text-zinc-950 dark:text-zinc-100 flex flex-col gap-2 py-3 shadow">
       <Link href="/" className="pl-3 mt-1 mb-3">
         {" "}
         {isActiveMenu ? (
