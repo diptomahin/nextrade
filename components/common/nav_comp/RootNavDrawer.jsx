@@ -11,7 +11,6 @@ import { IoChevronBack } from "react-icons/io5";
 import { IoIosArrowForward, IoIosLogOut } from "react-icons/io";
 import "./RootNavDrawer.css";
 
-
 const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
   return (
@@ -93,40 +92,46 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
             <Link
               href="/"
               onClick={() => setIsActive(false)}
-              className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
+              className="opacity-70 hover:opacity-100 transition-opacity duration-200 ease-linear"
             >
               Home
             </Link>
             <Link
               href="/services"
               onClick={() => setIsActive(false)}
-              className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
+              className="opacity-70 hover:opacity-100 transition-opacity duration-200 ease-linear"
             >
               Services
             </Link>
             <button
               onClick={() => setActiveTab("market")}
-              className={`hover:opacity-100 flex items-center gap-4 transition-opacity duration-100 ease-linear ${
-                activeTab === "market" ? "opacity-100" : "opacity-70"
+              className={`hover:opacity-100 flex items-center transition-all duration-200 ease-linear ${
+                activeTab === "market"
+                  ? "opacity-100 gap-6"
+                  : "opacity-70 gap-1"
               }`}
             >
-              <span>Market</span> <IoIosArrowForward size={20}/>
+              <span>Market</span> <IoIosArrowForward />
             </button>
             <button
               onClick={() => setActiveTab("resources")}
-              className={`hover:opacity-100 flex items-center gap-4  transition-opacity duration-100 ease-linear ${
-                activeTab === "resources" ? "opacity-100" : "opacity-70"
+              className={`hover:opacity-100 flex items-center  transition-all duration-200 ease-linear ${
+                activeTab === "resources"
+                  ? "opacity-100 gap-6"
+                  : "opacity-70 gap-1"
               }`}
             >
-               <span>Resources</span> <IoIosArrowForward size={20}/>
+              <span>Resources</span> <IoIosArrowForward />
             </button>
             <button
               onClick={() => setActiveTab("company")}
-              className={`hover:opacity-100 flex items-center gap-4 transition-opacity duration-100 ease-linear ${
-                activeTab === "company" ? "opacity-100" : "opacity-70"
+              className={`hover:opacity-100 flex items-center transition-all duration-200 ease-linear ${
+                activeTab === "company"
+                  ? "opacity-100 gap-6"
+                  : "opacity-70 gap-1"
               }`}
             >
-               <span>Company</span> <IoIosArrowForward size={20}/>
+              <span>Company</span> <IoIosArrowForward />
             </button>
           </motion.div>
           <AnimatePresence mode="wait">

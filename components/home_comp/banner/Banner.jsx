@@ -471,13 +471,10 @@ const Banner = () => {
           modules={[Autoplay]}
         >
           {cryptoCurrency?.slice(0, 6).map((crypto) => (
-            <SwiperSlide
-              key={crypto?._id}
-              className="w-full bg-quaternary border  border-darkThree p-5 rounded-xl shadow hover:shadow-2xl shadow-quinary my-16"
-            >
+            <SwiperSlide key={crypto?._id} className="w-full">
               <Link
                 href={`/dashboard/market/${crypto?.key}`}
-                className="flex gap-3"
+                className="w-full bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree flex gap-3 rounded-xl shadow hover:shadow-2xl p-5 my-10 transition-all hover:-translate-y-[6px] duration-500 ease-in-out"
               >
                 <Image
                   alt="icon"
