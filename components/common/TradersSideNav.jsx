@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import logo from "../../assets/logo/NexTrade_Favicon-Original.png";
+import logoOriginal from "../../assets/logo/NexTrade-Logo-Original.png";
 import SideNavLinks from "./nav_comp/SideNavLinks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,17 +12,12 @@ const TradersDashboardSidebar = ({ isActiveMenu, setIsActiveMenu }) => {
   const pathname = usePathname();
   return (
     <div className="relative h-full w-full bg-white dark:bg-tertiary flex flex-col gap-2 py-3 shadow">
-      <Link href="/" className="flex items-center gap-2 pl-3 mb-3">
+      <Link href="/" className="pl-3 mt-1 mb-3">
         {" "}
         {isActiveMenu ? (
           <Image src={logo} width={40} height={"auto"} alt="logo" />
         ) : (
-          <>
-            <Image src={logo} width={35} height={"auto"} alt="logo" />
-            <h1 className="text-lg font-semibold text-primary">
-              Nex<span className="text-black dark:text-white">Trade</span>
-            </h1>
-          </>
+          <Image src={logoOriginal} width={130} height={"auto"} alt="logo" />
         )}
       </Link>
       <button

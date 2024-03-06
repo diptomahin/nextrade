@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import logo from "../../assets/logo/NexTrade-Logo-Original.png";
 import logo2 from "../../assets/logo/NexTrade_Favicon-Original.png";
 import React from "react";
 import Container from "../library/Container";
@@ -9,7 +10,6 @@ import { PiArrowFatLinesUpFill } from "react-icons/pi";
 import useUserData from "@/hooks/useUserData";
 import useAuth from "@/hooks/useAuth";
 import { CgMenuGridO } from "react-icons/cg";
-import Logo from "../library/Logo";
 import { IoIosArrowForward } from "react-icons/io";
 
 export default function RootNav() {
@@ -54,14 +54,11 @@ export default function RootNav() {
             </button>
           </div>
 
-          {scrolled ? (
-            <Link href="/" className="hidden md:flex">
-              {" "}
-              <Image src={logo2} alt="Logo" width={40} height={"auto"} />
-            </Link>
-          ) : (
-            <Logo className="hidden md:flex" />
-          )}
+          <Link href="/" className="hidden md:flex">
+            {" "}
+            <Image src={logo} alt="Logo" width={140} height={"auto"} />
+          </Link>
+
           <Link href="/" className="flex md:hidden">
             {" "}
             <Image src={logo2} alt="Logo" width={40} height={"auto"} />
@@ -74,7 +71,7 @@ export default function RootNav() {
               </Link>
             ) : (
               <Link href="/dashboard">
-                <Button className="w-36 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-1">
+                <Button className="w-32 md:w-36 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-1">
                   Trade Now <IoIosArrowForward />
                 </Button>
               </Link>
