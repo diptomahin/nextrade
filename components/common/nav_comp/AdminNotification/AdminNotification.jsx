@@ -195,49 +195,41 @@ const AdminNotification = () => {
 
       {/* Display the notification popup if open */}
       {isNotificationOpen && (
-        <div className="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 rounded bg-white dark:bg-tertiary w-60 md:w-80 shadow-2xl shadow-gray-900 scrollbar-thin">
+        <div className="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 border dark:border-darkThree rounded-xl bg-white dark:bg-tertiary w-60 md:w-80 shadow-2xl dark:shadow-gray-900 scrollbar-thin z-10">
           {/* Header of the notification popup */}
-          <div className="flex items-center justify-between px-4 py-2 border-b-2 border-gray-300 dark:border-darkThree">
-            <h2 className="font-semibold text-black dark:text-white">Notifications</h2>
+          <div className="sticky top-0 w-full flex items-center justify-between px-4 py-2 border-b-2 bg-white dark:bg-tertiary dark:border-darkThree z-20">
+            <h2 className="font-semibold">Notifications</h2>
 
             {/* Dropdown menu for additional actions */}
             <div className="relative ">
               <button
                 onClick={() => setIsNotifyMenuOpen(!isNotifyMenuOpen)}
-                className={`btn btn-sm text-lg h-8 px-[7px] text-black dark:text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none rounded-full`}
+                className={`btn btn-sm text-lg h-8 px-[7px] dark:text-white bg-transparent hover:bg-black/10 active:bg-black/20 dark:hover:bg-white/10 dark:active:bg-white/20 border-none outline-none rounded-full`}
               >
                 <BsThreeDotsVertical />
               </button>
 
               {/* Additional actions menu */}
               {isNotifyMenuOpen && (
-                <div className="absolute right-8 top-0 w-40 bg-white dark:bg-quaternary border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
+                <div className="absolute right-8 top-0 w-40 bg-gray-100 dark:bg-quaternary border dark:border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
                   <button
                     onClick={handleReadAll}
-                    className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                    className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
                   >
                     Mark all as read
                   </button>
                   <button
                     onClick={handleUnreadAll}
-                    className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                    className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
                   >
                     Mark all as unread
                   </button>
                   <button
                     onClick={handleDeleteAllNotification}
-                    className="w-full  whitespace-nowrap btn btn-xs dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                    className="w-full  whitespace-nowrap btn btn-xs dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
                   >
                     Delete all
                   </button>
-                  <Link
-                    href="/admin_dashboard/settings"
-                    onClick={() => setIsNotifyMenuOpen(false)}
-                  >
-                    <button className="w-full whitespace-nowrap btn btn-xs dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3">
-                      Notification settings
-                    </button>
-                  </Link>
                 </div>
               )}
             </div>
@@ -245,37 +237,37 @@ const AdminNotification = () => {
 
           {/* Display individual notifications */}
           {adminNotifications?.length ? (
-            <div className="flex flex-col gap-3 p-3">
+            <div className="flex flex-col gap-3 px-3 py-1 my-1">
               {adminNotifications.map((asset) => (
                 <div
                   key={asset?._id}
                   className={`relative ${
-                    asset?.read ? "bg-[#ffffff] dark:shadow-none shadow shadow-gray-400 dark:bg-secondary/50" : "bg-primary/40 dark:bg-white/10 "
-                  } w-full  rounded  cursor-pointer p-3 `}
+                    asset?.read
+                      ? "bg-slate-50 dark:bg-secondary/50"
+                      : "bg-gray-200 dark:bg-white/10"
+                  } w-full rounded-xl cursor-pointer p-3`}
                 >
                   <div onClick={() => handleRead(asset?._id)}>
-                  <div className="flex items-center gap-4 space-y-[6px] text-black dark:text-white">
-                     <div className=" ">
-                     {asset.read ? (
-                        <MdNotifications className="w-6 h-6" />
-                      ) : (
-                        <MdNotificationsActive className="w-6 h-6" />
-                      )}
-                     </div>
+                    <div className="flex gap-4 dark:text-white">
+                      <div className=" ">
+                        {asset.read ? (
+                          <MdNotifications className="w-7 h-7" />
+                        ) : (
+                          <MdNotificationsActive className="w-7 h-7" />
+                        )}
+                      </div>
                       <div className="xl:w-44 flex-1">
-                        <h2 className="font-medium  text-xs pr-10 text-black dark:text-white">
+                        <h2 className="font-semibold text-xs pr-10 pb-1 text-black dark:text-white">
                           {asset?.email}
                         </h2>
-                        <p className=" text-gray-600 dark:text-gray-400 text-xs">
+                        <p className="text-zinc-700 dark:text-zinc-300 text-xs">
                           {asset?.description}
                         </p>
                       </div>
                     </div>
 
-                    
-
                     <div className="flex justify-end mt-2">
-                      <p className="text-gray-700 dark:text-gray-400 text-[10px] flex items-center justify-end gap-3">
+                      <p className="text-gray-600 dark:text-darkGray text-[10px] flex items-center justify-end gap-3">
                         {/* Date */}
                         <span>
                           {asset?.postedDate?.day || " "} -{" "}
@@ -293,36 +285,35 @@ const AdminNotification = () => {
                   </div>
 
                   {/* Actions menu for each notification */}
-                  <div className="absolute top-[6px] right-2 z-10">
+                  <div className="absolute top-0 right-2 z-10">
                     <button
                       onClick={() => {
                         handleOpenMenu(asset?._id);
                         setIsNotifyMenuOpen(false);
                       }}
-                      className={`btn btn-sm px-[9px] text-black dark:text-white bg-transparent hover:bg-white/10 active:bg-white/20 border-none outline-none rounded-full`}
+                      className={`btn btn-sm px-2 dark:text-white bg-transparent hover:bg-black/10 active:bg-black/20 dark:hover:bg-white/10 dark:active:bg-white/20 border-none outline-none rounded-full`}
                     >
                       <BsThreeDotsVertical />
                     </button>
 
                     {/* Additional actions menu for each notification */}
                     {isOpenMenu[asset?._id] && (
-                      <div className="absolute right-7 top-0 w-32 
-                     bg-white dark:bg-quaternary border border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 ">
+                      <div className="absolute right-8 top-0 w-32 bg-gray-100 dark:bg-quaternary border dark:border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-2">
                         <button
                           onClick={() => handleRead(asset?._id)}
-                          className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                          className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
                         >
                           Mark as read
                         </button>
                         <button
                           onClick={() => handleUnread(asset?._id)}
-                          className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                          className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
                         >
                           Mark as unread
                         </button>
                         <button
                           onClick={() => handleDeleteNotification(asset?._id)}
-                          className="w-full btn btn-xs dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] border-none justify-start pl-3"
+                          className="w-full btn btn-xs dark:text-white/80  bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
                         >
                           Delete
                         </button>
@@ -334,12 +325,11 @@ const AdminNotification = () => {
             </div>
           ) : (
             // Display message when there are no notifications
-            <div className="py-10">
-              <h2 className="text-sm text-center text-black dark:text-white">
-                No notification yet . . .
-              </h2>
+            <div className="py-10 z-0">
+              <h2 className="text-center">No notification yet . . .</h2>
             </div>
           )}
+          <div className="sticky bottom-0 w-full bg-white dark:bg-tertiary py-[6px] z-20"></div>
         </div>
       )}
     </div>

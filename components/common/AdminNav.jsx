@@ -1,10 +1,9 @@
 "use client";
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-// import Language from "@/components/library/Language";
 import AdminMenu from "./nav_comp/AdminMenu";
 import { usePathname, useRouter } from "next/navigation";
 import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
@@ -23,7 +22,7 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
     [theme.breakpoints.down("sm")]: {
       padding: "2px 4px", // Further reduce padding for small devices
     },
-    backgroundColor: "transparent", 
+    backgroundColor: "transparent",
   },
   "& .MuiInputBase-input": {
     padding: "6px 6px", // Adjusting padding
@@ -130,23 +129,20 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary border-b dark:border-darkThree px-5">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary px-7 shadow">
       <div className="flex items-center gap-5  ">
         <IconButton
-          color="black"
           aria-label="open drawer"
           edge="start"
           onClick={() => setMobileOpen(!mobileOpen)}
           sx={{
-            color: "white",
             "@media (min-width: 1280px)": {
               display: "none",
-            
             },
           }}
           className="bg-white dark:bg-tertiary"
         >
-          <MenuIcon className="text-black dark:text-white" />
+          <MenuIcon className="dark:text-white" />
         </IconButton>
         {/*  */}
         {/* dynamic tittle and date time */}
@@ -157,7 +153,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
 
         {/* search  */}
         <form
-          className="flex items-center w-[120px] lg:w-[250px] relative border border-gray-700 dark:border-gray-700 rounded-lg dark:bg-black/15"
+          className="hidden md:flex items-center md:w-[250px] relative border dark:border-gray-700 rounded-xl shadow h-10"
           onSubmit={handleSearchSubmit}
         >
           <Autocomplete
@@ -184,18 +180,15 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
             )}
           />
           <button type="submit" className="absolute right-2">
-            <SearchIcon className="dark:text-gray-500 text-gray-700 mr-[6px]" />
+            <SearchIcon className="dark:text-gray-500 text-gray-700 mr-2" />
           </button>
         </form>
       </div>
-      <div className="flex items-center gap-6">
-        <ThemeMode/>
-        {/* language */}
-        {/* <Language /> */}
-        {/* notification */}
+      <div className="flex items-center gap-4 md:gap-6">
+        <ThemeMode />
+
         <AdminNotification />
 
-        {/* user menubar */}
         <AdminMenu />
       </div>
     </div>
