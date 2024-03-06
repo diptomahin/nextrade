@@ -11,6 +11,7 @@ import { IoChevronBack } from "react-icons/io5";
 import { IoIosArrowForward, IoIosLogOut } from "react-icons/io";
 import "./RootNavDrawer.css";
 
+
 const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
   return (
@@ -105,27 +106,27 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
             </Link>
             <button
               onClick={() => setActiveTab("market")}
-              className={`hover:opacity-100 transition-opacity duration-100 ease-linear ${
+              className={`hover:opacity-100 flex items-center gap-4 transition-opacity duration-100 ease-linear ${
                 activeTab === "market" ? "opacity-100" : "opacity-70"
               }`}
             >
-              Market
+              <span>Market</span> <IoIosArrowForward size={20}/>
             </button>
             <button
               onClick={() => setActiveTab("resources")}
-              className={`hover:opacity-100 transition-opacity duration-100 ease-linear ${
+              className={`hover:opacity-100 flex items-center gap-4  transition-opacity duration-100 ease-linear ${
                 activeTab === "resources" ? "opacity-100" : "opacity-70"
               }`}
             >
-              Resources
+               <span>Resources</span> <IoIosArrowForward size={20}/>
             </button>
             <button
               onClick={() => setActiveTab("company")}
-              className={`hover:opacity-100 transition-opacity duration-100 ease-linear ${
+              className={`hover:opacity-100 flex items-center gap-4 transition-opacity duration-100 ease-linear ${
                 activeTab === "company" ? "opacity-100" : "opacity-70"
               }`}
             >
-              Company
+               <span>Company</span> <IoIosArrowForward size={20}/>
             </button>
           </motion.div>
           <AnimatePresence mode="wait">
