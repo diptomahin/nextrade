@@ -67,7 +67,9 @@ export default function RootNav() {
           {user?.email ? (
             userData.role === "admin" ? (
               <Link href="/admin_dashboard">
-                <Button>Go Dashboard</Button>
+                <Button className="w-36 md:w-40 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-0">
+                  Go Dashboard <IoIosArrowForward />
+                </Button>
               </Link>
             ) : (
               <Link href="/dashboard">
