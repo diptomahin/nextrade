@@ -16,8 +16,13 @@ const QuickTrade = () => {
   const { allCryptoCoins, cryptoRefetch } = useAllCryptoCoins();
   const { allFlatCoins, flatRefetch } = useAllFlatCoins();
 
-  const { userData, userDataLoading, userDataPending, userDataError, refetchUserData } =
-    useUserData();
+  const {
+    userData,
+    userDataLoading,
+    userDataPending,
+    userDataError,
+    refetchUserData,
+  } = useUserData();
 
   // data without real time price
   useEffect(() => {
@@ -132,7 +137,7 @@ const QuickTrade = () => {
     <div className="xl:col-span-12 2xl:col-span-5 w-full bg-white dark:bg-tertiary p-5 rounded-xl shadow">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">Quick Trade</h3>
-        <div className="relative w-60 h-10 flex items-center bg-secondary rounded-xl">
+        <div className="relative w-60 h-10 flex items-center bg-gray-100 dark:bg-secondary rounded-xl">
           <div
             className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
               isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -141,7 +146,7 @@ const QuickTrade = () => {
           <button
             onClick={() => setIsBuyOpen(true)}
             className={`absolute w-1/2 h-full bg-transparent transition-all ${
-              isBuyOpen ? "text-white" : "text-gray-300"
+              isBuyOpen ? "text-white" : "text-gray-600 dark:text-gray-300"
             } duration-200 ease-in-out font-semibold text-sm z-10`}
           >
             Buy
@@ -149,7 +154,7 @@ const QuickTrade = () => {
           <button
             onClick={() => setIsBuyOpen(false)}
             className={`absolute w-1/2 transform translate-x-full h-full bg-transparent transition-all ${
-              !isBuyOpen ? "text-white" : "text-gray-300"
+              !isBuyOpen ? "text-white" : "text-gray-600 dark:text-gray-300"
             } duration-100 font-semibold text-sm z-10`}
           >
             Sell
@@ -168,7 +173,7 @@ const QuickTrade = () => {
           refetchUserData={refetchUserData}
         />
       ) : (
-        <QuickSell userData={userData} refetchUserData={refetchUserData}/>
+        <QuickSell userData={userData} refetchUserData={refetchUserData} />
       )}
     </div>
   );

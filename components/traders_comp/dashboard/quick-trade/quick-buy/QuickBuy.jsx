@@ -8,7 +8,7 @@ const QuickBuy = ({
   cryptoRefetch,
   flatRefetch,
   userData,
-  refetchUserData
+  refetchUserData,
 }) => {
   const [isLimitOpen, setIsLimitOpen] = useState(true);
 
@@ -20,9 +20,9 @@ const QuickBuy = ({
             onClick={() => setIsLimitOpen(true)}
             className={`btn btn-sm h-10 ${
               isLimitOpen
-                ? "bg-primary hover:bg-primary"
+                ? "bg-primary hover:bg-primary text-white "
                 : "bg-transparent hover:bg-primary "
-            } border-primary hover:border-primary text-white text-xs rounded-full px-5`}
+            } border-primary hover:border-primary text-primary hover:text-white dark:text-white text-xs rounded-full px-5`}
           >
             Limit
           </button>
@@ -30,9 +30,9 @@ const QuickBuy = ({
             onClick={() => setIsLimitOpen(false)}
             className={`btn btn-sm h-10 ${
               !isLimitOpen
-                ? "bg-primary hover:bg-primary"
+                ? "bg-primary hover:bg-primary text-white"
                 : "bg-transparent hover:bg-primary "
-            } border-primary hover:border-primary text-white text-xs rounded-full px-5`}
+            } border-primary hover:border-primary text-primary hover:text-white dark:text-white text-xs rounded-full px-5`}
           >
             Market
           </button>
