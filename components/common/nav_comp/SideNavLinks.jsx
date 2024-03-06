@@ -13,7 +13,7 @@ const SideNavLinks = ({ pathname, isActiveMenu }) => {
         className={`w-full h-10 px-5 btn btn-sm justify-start bg-transparent hover:bg-transparent border-4 border-transparent hover:border-transparent hover:border-l-4 hover:border-l-primary rounded-none shadow-none ${
           pathname === "/dashboard"
             ? "text-primary border-l-4 border-l-primary"
-            : "text-black dark:text-white "
+            : "text-black dark:text-white hover:text-primary"
         }`}
       >
         {isActiveMenu ? (

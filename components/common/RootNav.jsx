@@ -8,7 +8,6 @@ import RootNavDrawer from "./nav_comp/RootNavDrawer";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
 import useUserData from "@/hooks/useUserData";
 import useAuth from "@/hooks/useAuth";
-import ThemeMode from "../library/ThemeMode";
 import { CgMenuGridO } from "react-icons/cg";
 import Logo from "../library/Logo";
 import { IoIosArrowForward } from "react-icons/io";

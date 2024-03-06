@@ -1,16 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
 import { FaUser, FaUserCircle } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 import { IoMdSettings } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 
-const UserMenu = ({ userDetails, logOut }) => {
+const UserMenu = ({
+  userDetails,
+  logOut,
+  pathname,
+  isLoading,
+  isPending,
+  loading,
+}) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
-  const pathname = usePathname();
+  if (isLoading || isPending || loading) {
+    return;
+  }
 
   return (
     <div className="relative flex items-center justify-end gap-3">
@@ -68,10 +75,11 @@ const UserMenu = ({ userDetails, logOut }) => {
             <Link href="/dashboard/profile" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-8 px-4 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${pathname === "/dashboard/profile"
+                className={`w-full h-8 px-4 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                  pathname === "/dashboard/profile"
                     ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
                     : "bg-transparent hover:bg-transparent hover:text-primary"
-                  }`}
+                }`}
               >
                 {" "}
                 <FaUserCircle /> Profile
@@ -80,10 +88,11 @@ const UserMenu = ({ userDetails, logOut }) => {
             <Link href="/dashboard/settings" className="w-full">
               <button
                 onClick={() => setIsOpen(false)}
-                className={`w-full h-8 px-4 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${pathname === "/dashboard/settings"
+                className={`w-full h-8 px-4 btn btn-sm justify-start gap-2 text-white border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary rounded-none shadow-none ${
+                  pathname === "/dashboard/settings"
                     ? "bg-primary hover:bg-primary hover:text-white border-l-2 border-l-primary"
                     : "bg-transparent hover:bg-transparent hover:text-primary"
-                  }`}
+                }`}
               >
                 {" "}
                 <IoMdSettings /> Settings

@@ -92,28 +92,28 @@ const QuickTrade = () => {
     icon,
   });
 
-  // fetch current flat coin prices from exchange rate api and create data
+  // get real time currency price and create new array of object with real time currency price
   useEffect(() => {
     const fetchCurrencyRates = async () => {
       try {
         if (flatCurrency.length > 0) {
-          const response = await axios.get(
-            "https://api.exchangerate-api.com/v4/latest/USD"
+          const updatedAssets = await Promise.all(
+            flatCurrency.map(async (cur) => {
+              const currencyKey = cur.key;
+              const response = await axios.get(
+                `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+              );
+
+              return createFlatCurrencyData(
+                cur._id,
+                cur.name,
+                cur.key,
+                cur.type,
+                response.data.rates.USD,
+                cur.icon
+              );
+            })
           );
-          // Access the data property of the response to get the currency rates
-          const data = response.data.rates;
-          const updatedAssets = flatCurrency.map((cur) => {
-            const currencyKey = cur.key;
-            // console.log(currencyKey)
-            return createFlatCurrencyData(
-              cur._id,
-              cur.name,
-              cur.key,
-              cur.type,
-              data[currencyKey],
-              cur.icon
-            );
-          });
           setFlatCurrency(updatedAssets);
         }
       } catch (error) {
@@ -167,7 +167,7 @@ const QuickTrade = () => {
           userData={userData}
         />
       ) : (
-        <QuickSell />
+        <QuickSell userData={userData} />
       )}
     </div>
   );
