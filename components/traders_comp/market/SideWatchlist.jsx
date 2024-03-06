@@ -132,13 +132,13 @@ const SideWatchlist = () => {
 
   return (
     <div className="w-full h-full bg-white dark:bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl shadow">
-      <div className="flex items-center justify-between  border-b pb-2 dark:border-b-darkThree">
+      <div className="flex flex-wrap items-center justify-between  border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">Watchlist</h3>
         <Link
           href="/dashboard/watchlist"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
-          See all watchlist
+          See all
         </Link>
       </div>
       <div className="relative sm:w-72 h-10 flex items-center bg-zinc-100 dark:bg-secondary rounded-xl">

@@ -31,13 +31,13 @@ const Transactions = () => {
 
   return (
     <div className="xl:col-span-6 3xl:col-span-4 w-full bg-white dark:bg-tertiary p-5 rounded-xl shadow">
-      <div className="flex items-center justify-between  border-b pb-2 dark:border-b-darkThree mb-5">
+      <div className="flex flex-wrap items-center justify-between  border-b pb-2 dark:border-b-darkThree mb-5">
         <h3 className="text-xl font-semibold">Recent Transactions</h3>
         <Link
           href="/dashboard/market"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
-          See all transactions
+          See all
         </Link>
       </div>
 

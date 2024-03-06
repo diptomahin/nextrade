@@ -129,13 +129,13 @@ const TopAssets = () => {
 
   return (
     <div className="xl:col-span-12 2xl:col-span-12 3xl:col-span-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between">
         <h3 className="text-xl font-semibold">Top Assets</h3>
         <Link
           href="/dashboard/market"
           className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
         >
-          See all assets
+          See all
         </Link>
       </div>
 
@@ -205,7 +205,7 @@ const TopAssets = () => {
                     href={`/dashboard/market/${asset.key}`}
                     className="w-full"
                   >
-                    <div className="w-full flex flex-col gap-5 rounded-3xl coinBg bg-gray-950 p-5 cursor-pointer">
+                    <div className="w-full flex flex-col gap-5 rounded-3xl coinBg text-gray-100 bg-gray-900 p-5 cursor-pointer">
                       <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center">
                           <Image
@@ -260,7 +260,7 @@ const TopAssets = () => {
                     href={`/dashboard/market/${asset.key}`}
                     className="w-full"
                   >
-                    <div className="w-full flex flex-col gap-5 rounded-3xl coinBg bg-gray-950 px-5 py-[34.3px] cursor-pointer">
+                    <div className="w-full flex flex-col gap-5 rounded-3xl coinBg text-gray-100 bg-gray-900 px-5 py-[34.3px] cursor-pointer">
                       <div className="flex gap-2 items-center">
                         <Image
                           width={50}
