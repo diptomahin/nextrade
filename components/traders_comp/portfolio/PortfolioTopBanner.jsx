@@ -16,13 +16,13 @@ const PortfolioTopBanner = ({
   const [hideRemainingBalance, setHideRemainingBalance] = useState(false);
   return (
     <div className="">
-      <div className="flex flex-col md:flex-row items-center rounded-xl gap-5">
+      <div className="flex flex-col md:flex-row items-center rounded-xl gap-5 text-white">
         {/* total asset */}
         <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#40a0ff]">
           <div className="w-full">
-            <p className="font-semibold ">
-              Total Investment{" "}
-              <MonetizationOnIcon className="text-base ml-2 " />
+            <p className="font-semibold  ">
+              Total Asset{" "}
+              <MonetizationOnIcon className="text-base ml-2  " />
             </p>
             <div
               className={`flex items-center py-2  ${
@@ -31,7 +31,7 @@ const PortfolioTopBanner = ({
             >
               <h1>
                 {!hideAssetAmount && (
-                  <span className=" lg:text-3xl text-xl font-bold  ">
+                  <span className=" lg:text-2xl text-xl font-bold  ">
                     $ {totalBuyingPrice.toFixed(2)}
                   </span>
                 )}
@@ -53,9 +53,7 @@ const PortfolioTopBanner = ({
               </button>
             </div>
 
-            
-          </div>
-          <div className=" p-2 px-2 bg-white w-full rounded-md text-center  ">
+           <div className=" p-2 px-2 bg-white w-full flex items-center justify-between rounded-md   ">
               {/* total profit */}
               <p
                 className={`font-semibold ${
@@ -82,7 +80,9 @@ const PortfolioTopBanner = ({
                  {calculateTotalLoss.toFixed(2)} $
                  <span className=" bg-white p-1"><TrendingDownIcon/></span>
               </p>
-            </div>
+            </div> 
+          </div>
+          
         </div>
 
         {/*  Remaining balance */}
@@ -90,7 +90,7 @@ const PortfolioTopBanner = ({
         <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#78c350]">
           <div className=" w-full">
             <p className="font-semibold ">
-              Remaining Balance{" "}
+              Total Balance{" "}
               <MonetizationOnIcon className="text-base ml-2 " />
             </p>
             <div
@@ -99,7 +99,7 @@ const PortfolioTopBanner = ({
               } `}
             >
               {!hideRemainingBalance && (
-                <h1 className=" lg:text-3xl text-xl font-bold">
+                <h1 className=" lg:text-2xl text-xl font-bold">
                   $ {usersRemainingBalance}
                 </h1>
               )}
