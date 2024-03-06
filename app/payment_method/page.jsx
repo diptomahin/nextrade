@@ -18,10 +18,9 @@ import paypalLogo from "../../assets/paypalLogo.png";
 import discoverLogo from "../../assets/discover-logo-2.png";
 import maestroLogo from "../../assets/Maestro.png";
 import dinersClub from "../../assets/dinersClub.png";
-import bitcoin from "../../assets/bitcoin.png";
-import Ethereum from "../../assets/ethereum.png";
-import LiteCoin from "../../assets/LiteCoin.png";
-import USDCoin from "../../assets/USD Coin.png";
+import bitcoin from "../../assets/coinImages/bitcoin.png";
+import Ethereum from "../../assets/coinImages/ethereum.png";
+import LiteCoin from "../../assets/coinImages/ltc.png";
 import Marquee from "react-fast-marquee";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import Container from "@/components/library/Container";
@@ -92,7 +91,7 @@ const PaymentMethods = () => {
           borderRadius: "0.75rem",
         }}
       >
-        <AccordionSummary aria-controls="panel1-content" id="panel1-header">
+        <AccordionSummary expandIcon={<ArrowDownwardIcon sx={{ color: "#40a0ff" }} />} aria-controls="panel1-content" id="panel1-header">
           <Typography
             sx={{ fontSize: ["16px", "20px", "24px"] }}
             className="text-zinc-100"
@@ -124,7 +123,7 @@ const PaymentMethods = () => {
             </TableHead>
             <TableBody>
               {/* Visa */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
                   <Image
                     src={visaCard}
@@ -133,19 +132,22 @@ const PaymentMethods = () => {
                     height="auto"
                   ></Image>
                 </TableCell>
-                <TableCell className="text-darkGray">
-                  USD, EUR, GBP, etc.
+                <TableCell >
+                  <Typography className="text-darkGray">
+                    USD, EUR, GBP, etc.
+                  </Typography>
                 </TableCell>
                 <TableCell
                   sx={{ display: ["none", "table-cell"] }}
-                  className="text-darkGray"
                 >
-                  Global acceptance, secure transactions.
+                  <Typography className="text-darkGray">
+                    Global acceptance, secure transactions.
+                  </Typography>
                 </TableCell>
               </TableRow>
 
               {/* MasterCard */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
                   <Image
                     width={80}
@@ -155,18 +157,22 @@ const PaymentMethods = () => {
                   ></Image>
                 </TableCell>
                 <TableCell className="text-darkGray">
-                  USD, EUR, GBP, etc.
+                  <Typography className="text-darkGray">
+                    USD, EUR, GBP, etc.
+                  </Typography>
                 </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Worldwide acceptance, cashback rewards, no annual fees.
+                  <Typography className="text-darkGray">
+                    Worldwide acceptance, cashback rewards, no annual fees.
+                  </Typography>
                 </TableCell>
               </TableRow>
 
               {/* MaestroCard */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
                   <Image
                     width={80}
@@ -176,18 +182,22 @@ const PaymentMethods = () => {
                   ></Image>
                 </TableCell>
                 <TableCell className="text-darkGray">
-                  EUR, GBP, INR, etc.
+                  <Typography className="text-darkGray">
+                    EUR, GBP, INR, etc.
+                  </Typography>
                 </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Accepted in multiple currencies, secure transactions.
+                  <Typography className="text-darkGray">
+                    Accepted in multiple currencies, secure transactions.
+                  </Typography>
                 </TableCell>
               </TableRow>
 
               {/* PayPal */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
                   <Image
                     width={80}
@@ -197,17 +207,23 @@ const PaymentMethods = () => {
                     alt="paypal card"
                   ></Image>
                 </TableCell>
-                <TableCell className="text-darkGray">Multiple</TableCell>
+                <TableCell className="text-darkGray">
+                  <Typography className="text-darkGray">
+                    Multiple
+                  </Typography>
+                </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Swift, secure checkouts, linked account convenience.
+                  <Typography className="text-darkGray">
+                    Swift, secure checkouts, linked account convenience.
+                  </Typography>
                 </TableCell>
               </TableRow>
 
               {/* Discover */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
                   <Image
                     width={80}
@@ -217,17 +233,23 @@ const PaymentMethods = () => {
                     alt="discover card"
                   ></Image>
                 </TableCell>
-                <TableCell className="text-darkGray">USD</TableCell>
+                <TableCell className="text-darkGray">
+                  <Typography className="text-darkGray">
+                    USD
+                  </Typography>
+                </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Secure transactions, cashback rewards.
+                  <Typography className="text-darkGray">
+                    Secure transactions, cashback rewards.
+                  </Typography>
                 </TableCell>
               </TableRow>
 
               {/* DinerClub */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
                   <Image
                     width={80}
@@ -237,24 +259,21 @@ const PaymentMethods = () => {
                   ></Image>
                 </TableCell>
                 <TableCell className="text-darkGray">
-                  USD, EUR, JPY, etc.
+                  <Typography className="text-darkGray">
+
+                    USD, EUR, JPY, etc.
+                  </Typography>
                 </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Global acceptance, secure transactions.
+                  <Typography className="text-darkGray">
+
+                    Global acceptance, secure transactions.
+                  </Typography>
                 </TableCell>
               </TableRow>
-
-              {/* UnionPay */}
-              {/* <TableRow>
-                                <TableCell>
-                                    <Image className='w-24' src={unionPayLogo} alt="union card"></Image>
-                                </TableCell>
-                                <TableCell>CNY, USD, EUR, etc.</TableCell>
-                                <TableCell sx={{ display: ['none', 'table-cell'] }}>Global acceptance, robust security measures.</TableCell>
-                            </TableRow> */}
             </TableBody>
           </Table>
         </AccordionDetails>
@@ -270,7 +289,7 @@ const PaymentMethods = () => {
         }}
       >
         <AccordionSummary
-          expandIcon={<ArrowDownwardIcon sx={{ color: "#1D366F" }} />}
+          expandIcon={<ArrowDownwardIcon sx={{ color: "#40a0ff" }} />}
           aria-controls="panel1-content"
           id="panel1-header"
         >
@@ -285,7 +304,7 @@ const PaymentMethods = () => {
         <AccordionDetails>
           <Table>
             <TableHead>
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
                   <Typography fontWeight="bold" className="text-zinc-100">
                     Methods
@@ -305,78 +324,86 @@ const PaymentMethods = () => {
             </TableHead>
             <TableBody>
               {/* Visa */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
-                  <Image
-                    width={80}
-                    height="auto"
-                    src={bitcoin}
-                    alt="bitcoin"
-                  ></Image>
+                  <div className="flex items-center gap-2">
+                    <Image
+                      width={40}
+                      height="auto"
+                      src={bitcoin}
+                      alt="bitcoin"
+                    ></Image>
+                    <p className="text-darkGray">Bitcoin</p>
+                  </div>
                 </TableCell>
-                <TableCell className="text-darkGray">BTC</TableCell>
+                <TableCell className="text-darkGray">
+                  <Typography className="text-darkGray">
+                    BTC
+                  </Typography>
+                </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Secure transactions, decentralized, borderless.
+                  <Typography className="text-darkGray">
+                    Secure transactions, decentralized, borderless.
+                  </Typography>
                 </TableCell>
               </TableRow>
 
               {/* Ethereum */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
-                  <Image
-                    width={80}
-                    height="auto"
-                    src={Ethereum}
-                    alt="Ethereum"
-                  ></Image>
+                  <div className="flex items-center gap-2">
+                    <Image
+                      width={40}
+                      height="auto"
+                      src={Ethereum}
+                      alt="ethereum"
+                    ></Image>
+                    <p className="text-darkGray">Ethereum</p>
+                  </div>
                 </TableCell>
-                <TableCell className="text-darkGray">ETH</TableCell>
+                <TableCell className="text-darkGray">
+                  <Typography className="text-darkGray">
+                    ETH
+                  </Typography>
+                </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Smart contract support, decentralized transactions.
-                </TableCell>
-              </TableRow>
-
-              {/* USD Coin */}
-              <TableRow>
-                <TableCell>
-                  <Image
-                    width={80}
-                    height="auto"
-                    src={USDCoin}
-                    alt="USDCoin"
-                  ></Image>
-                </TableCell>
-                <TableCell className="text-darkGray">USDC</TableCell>
-                <TableCell
-                  className="text-darkGray"
-                  sx={{ display: ["none", "table-cell"] }}
-                >
-                  Stablecoin pegged to USD, fast and secure transfers.
+                  <Typography className="text-darkGray">
+                    Smart contract support, decentralized transactions.
+                  </Typography>
                 </TableCell>
               </TableRow>
 
               {/* Litecoin */}
-              <TableRow>
+              <TableRow sx={{ borderBottom: "2px solid #2c3750" }}>
                 <TableCell>
-                  <Image
-                    width={80}
-                    height="auto"
-                    src={LiteCoin}
-                    alt="lite coin"
-                  ></Image>
+                  <div className="flex items-center gap-2">
+                    <Image
+                      width={40}
+                      height="auto"
+                      src={LiteCoin}
+                      alt="litecoin"
+                    ></Image>
+                    <p className="text-darkGray">LiteCoin</p>
+                  </div>
                 </TableCell>
-                <TableCell className="text-darkGray">LTC</TableCell>
+                <TableCell className="text-darkGray">
+                  <Typography className="text-darkGray">
+                    LTC
+                  </Typography>
+                </TableCell>
                 <TableCell
                   className="text-darkGray"
                   sx={{ display: ["none", "table-cell"] }}
                 >
-                  Fast transactions, low fees, secure blockchain.
+                  <Typography className="text-darkGray">
+                    Fast transactions, low fees, secure blockchain.
+                  </Typography>
                 </TableCell>
               </TableRow>
             </TableBody>
