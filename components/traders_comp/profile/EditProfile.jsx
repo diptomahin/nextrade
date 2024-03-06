@@ -36,23 +36,12 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
   const secureAPI = useSecureAPI();
   const date = getDate();
 
-  // post notification data sen database
-  const notificationInfo = {
-    title: "Password Changed",
-    description: "Your account password has been changed",
-    assetKey: "",
-    assetImg: "",
-    assetBuyerUID: "",
-    email: user.email,
-    postedDate: date,
-    location: "/dashboard/profile",
-    read: false,
-  };
-
   // update user profile
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
+
+    console.log(form.newPassword.value);
 
     if (!form.newPassword.value && !form.reEnterPassword.value) {
       const toastId = toast.loading("Updating...", { duration: 10000 });
@@ -86,34 +75,43 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
           duration: 5000,
         });
 
+        
+        // post notification data sen database
+        const notificationInfo = {
+          title: "Profile Updated",
+          description: "Your Profile has been Edited",
+          assetKey: "",
+          assetImg: "",
+          assetBuyerUID: "",
+          email: user.email,
+          postedDate: date,
+          location: "/dashboard/profile",
+          read: false,
+        };
+
         // post to  notification data in database
-        // axios
-        //   .post(
-        //     "https://nex-trade-server.vercel.app/v1/api/notifications",
-        //     notificationInfo
-        //   )
-        //   .then((res) => {
-        //     if (res.data.insertId) {
-        //       console.log("14");
-        //       refetchNotificationsData();
-        //       refetchUserData();
-        //       setIsEdit(false);
-        //       router.push("/dashboard/profile");
-        //       toast.success(
-        //         "User Information Updated 111111111111111111111111111111111111111111111111111",
-        //         {
-        //           id: toastId,
-        //           duration: 5000,
-        //         }
-        //       );
-        //     }
-        //   })
-        //   .catch((error) => {
-        //     toast.error(error, {
-        //       id: toastId,
-        //       duration: 5000,
-        //     });
-        //   });
+
+        secureAPI
+          .post("/notifications", notificationInfo)
+          .then((res) => {
+            if (res.data.insertedId) {
+              console.log("14");
+              refetchNotificationsData();
+              refetchUserData();
+              setIsEdit(false);
+              router.push("/dashboard/profile");
+              toast.success("User Information Updated ", {
+                id: toastId,
+                duration: 5000,
+              });
+            }
+          })
+          .catch((error) => {
+            toast.error(error, {
+              id: toastId,
+              duration: 5000,
+            });
+          });
       }
     } else {
       if (!form.newPassword.value || !form.reEnterPassword.value) {
@@ -155,55 +153,65 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
         lastUpdate: date,
       };
 
-      const res = await axios.put(
-        `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
-        userDetails
-      );
-      if (res.data.modifiedCount > 0) {
-        updateUserPassword(user, form.newPassword.value)
-          .then(() => {
-            refetchUserData();
-            setIsEdit(false);
-            router.push("/dashboard/profile");
-            toast.success("User Information Updated", {
-              id: toastId,
-              duration: 5000,
-            });
+      // const res = await axios.put(
+      //   `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
+      //   userDetails
+      // );
+      // if (res.data.modifiedCount > 0) {
+      //   updateUserPassword(user, password)
+      //     .then(() => {
+      //       refetchUserData();
+      //       setIsEdit(false);
+      //       router.push("/dashboard/profile");
+      //       toast.success("User Information Updated", {
+      //         id: toastId,
+      //         duration: 5000,
+      //       });
 
-            // post to  notification data in database
-            // secureAPI
-            //   .post("/notifications", notificationInfo)
-            //   .then((res) => {
-            //     if (res.data.insertId) {
-            //       console.log("26");
-            //       refetchNotificationsData();
-            //       refetchUserData();
-            //       setIsEdit(false);
-            //       router.push("/dashboard/profile");
-            //       toast.success(
-            //         "User Information Updated 222222222222222222222222222222222222222222222222222222",
-            //         {
-            //           id: toastId,
-            //           duration: 5000,
-            //         }
-            //       );
-            //     }
-            //   })
-            //   .catch((error) => {
-            //     toast.error(error, {
-            //       id: toastId,
-            //       duration: 5000,
-            //     });
-            //   });
-          })
-          .catch((error) => {
-            toast.error(error.message, {
-              id: toastId,
-              duration: 5000,
-            });
-            console.log(error.message);
-          });
-      }
+      //       // post notification data sen database
+      //   const passChangeNotificationInfo = {
+      //     title: "Password Changed",
+      //     description: "Your account password has been changed",
+      //     assetKey: "",
+      //     assetImg: "",
+      //     assetBuyerUID: "",
+      //     email: user.email,
+      //     postedDate: date,
+      //     location: "/dashboard/profile",
+      //     read: false,
+      //   };
+
+      //       // post to  notification data in database
+      //       secureAPI
+      //         .post("/notifications", passChangeNotificationInfo)
+      //         .then((res) => {
+      //           if (res.data.insertedId) {
+      //             console.log("26");
+      //             refetchNotificationsData();
+      //             refetchUserData();
+      //             setIsEdit(false);
+      //             router.push("/dashboard/profile");
+      //             toast.success("User Information Updated ", {
+      //               id: toastId,
+      //               duration: 5000,
+      //             });
+      //           }
+      //         })
+      //         .catch((error) => {
+      //           toast.error(error, {
+      //             id: toastId,
+      //             duration: 5000,
+      //           });
+      //         });
+      //     })
+      //     .catch((error) => {
+      //       toast.error(error.message, {
+      //         id: toastId,
+      //         duration: 5000,
+      //       });
+      //       console.log(error.message);
+      //     });
+      // }
     }
   };
 
@@ -378,7 +386,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
               <select
                 name="currency"
                 id=""
-                className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+                className=" dark:bg-[#181e2c] w-full text-black dark:text-white border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
                 onChange={(e) => setCurrency(e.target.value)}
                 defaultValue={userData?.currency}
               >
