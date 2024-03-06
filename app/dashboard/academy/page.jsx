@@ -215,10 +215,10 @@ const Academy = () => {
       </div>
 
       {/* Videos */}
-      <div className="bg-black lg:p-10 my-10">
+      <div className="dark:bg-black bg-white lg:p-10 my-10">
         <div className="">
           <div className="flex justify-between items-center py-5">
-            <h2 className="lg:text-[30px] text-xl font-semibold text-white">
+            <h2 className="lg:text-[30px] text-xl font-semibold dark:text-white text-black">
               Videos
             </h2>
             <Link href="#">
@@ -293,7 +293,7 @@ const Academy = () => {
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <div className="lg:w-[180px] 2xl:w-[180px] md:w-[120px] w-[100px] overflow-hidden">
+                      <div className="lg:w-[180px] 2xl:w-[180px] md:w-[120px] w-[100px] h-[150px] overflow-hidden">
                         <Image
                           src={news.thumbnail}
                           alt={news.title}
@@ -317,7 +317,7 @@ const Academy = () => {
                       <span class="relative z-10">{news.category}</span>
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="font-semibold my-1 lg:text-[17px] 2xl:text-[15px] text-[13px] group text-white transition-all duration-300 ease-in-out">
+                      <h3 className="font-semibold my-1 lg:text-[17px] 2xl:text-[15px] text-[13px] group dark:text-white text-black transition-all duration-300 ease-in-out">
                         <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                           {news.title}
                         </span>
