@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useRef } from "react";
 import { useMemo } from "react";
 import Image from "next/image";
+import Button from "@/components/library/Button";
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
@@ -52,17 +53,14 @@ const Comment = ({ articleId }) => {
               id="message"
               ref={commentText}
               rows="6"
-              className="block p-2.5 w-full text-sm text-gray-900 bg-[#1e222d] rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#1e222d]"
               placeholder="Leave a comment..."
             ></textarea>
           </form>
         </div>
-        <button
-          onClick={handleComment}
-          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5"
-        >
-          Post Comment
-        </button>
+        <Button  onClick={handleComment}
+          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">Post Comment</Button>
+       
       </div>
       <div className="md:mt-20 mt-10">
         <div className="flex justify-between mb-3">
@@ -82,8 +80,8 @@ const Comment = ({ articleId }) => {
               />
             </div>
             <div className="w-full ">
-              <div className="bg-[#474747] rounded-lg p-3 ">
-                <h1 className="font-bold">Jackson Hayes</h1>
+              <div className="dark:bg-[#1e222d] bg-white rounded-lg p-3 ">
+                <h1 className="font-bold">{user.displayName}</h1>
                 <p className="text-sm">{article?.comment}</p>
               </div>
               <p className="flex gap-3 text-sm mt-1">
