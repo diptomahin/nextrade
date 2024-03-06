@@ -141,7 +141,7 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-tertiary px-7 shadow">
+    <div className="h-full w-full flex items-center justify-between gap-6 bg-white dark:bg-quaternary text-zinc-950 dark:text-zinc-100 px-7 shadow">
       <div className="flex items-center gap-5  ">
         <IconButton
           aria-label="open drawer"

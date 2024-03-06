@@ -133,13 +133,13 @@ const TopAssets = () => {
         <h3 className="text-xl font-semibold">Top Assets</h3>
         <Link
           href="/dashboard/market"
-          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
+          className="btn btn-sm h-10 bg-primary/10 hover:bg-primary/20 active:bg-primary/30 border-none shadow-none font-medium text-primary rounded-xl"
         >
           See all
         </Link>
       </div>
 
-      <div className="relative sm:w-72 h-10 flex items-center bg-white dark:bg-tertiary rounded-xl mt-5">
+      <div className="relative sm:w-72 h-10 flex items-center bg-white dark:bg-quaternary rounded-xl shadow dark:shadow-md mt-5">
         <div
           className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
             isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -148,7 +148,7 @@ const TopAssets = () => {
         <button
           onClick={() => setIsBuyOpen(true)}
           className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
-            isBuyOpen ? "text-white" : "text-gray-300"
+            isBuyOpen ? "text-white" : "text-zinc-500 dark:text-zinc-400"
           } duration-200 ease-in-out font-semibold text-sm z-10`}
         >
           Crypto Coins
@@ -156,8 +156,8 @@ const TopAssets = () => {
         <button
           onClick={() => setIsBuyOpen(false)}
           className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
-            !isBuyOpen ? "text-white" : "text-gray-300"
-          } duration-100 font-semibold text-sm z-10`}
+            !isBuyOpen ? "text-white" : "text-zinc-500 dark:text-zinc-400"
+          } duration-100 ease-in-out font-semibold text-sm z-10`}
         >
           Flat Coins
         </button>
@@ -205,7 +205,7 @@ const TopAssets = () => {
                     href={`/dashboard/market/${asset.key}`}
                     className="w-full"
                   >
-                    <div className="w-full flex flex-col gap-5 rounded-3xl coinBg text-gray-100 bg-gray-900 p-5 cursor-pointer">
+                    <div className="w-full flex flex-col gap-5 rounded-3xl text-zinc-950 dark:text-zinc-100 bg-white dark:bg-quaternary p-5 cursor-pointer shadow">
                       <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center">
                           <Image
@@ -260,7 +260,7 @@ const TopAssets = () => {
                     href={`/dashboard/market/${asset.key}`}
                     className="w-full"
                   >
-                    <div className="w-full flex flex-col gap-5 rounded-3xl coinBg text-gray-100 bg-gray-900 px-5 py-[34.3px] cursor-pointer">
+                    <div className="w-full flex flex-col gap-5 py-[34.3px] rounded-3xl text-zinc-950 dark:text-zinc-100 bg-white dark:bg-quaternary p-5 cursor-pointer shadow">
                       <div className="flex gap-2 items-center">
                         <Image
                           width={50}
@@ -268,7 +268,7 @@ const TopAssets = () => {
                           src={asset.icon}
                           alt="coin-icon"
                         />
-                        <span className="bg-sky-100/10 px-1 py-[2px] rounded text-primary text-xs">
+                        <span className="bg-primary/10 px-2 py-[2px] rounded text-primary text-xs">
                           {asset.key}
                         </span>
                       </div>

@@ -7,51 +7,51 @@ import Link from "next/link";
 
 const AdminDashUserProfile = () => {
   const { allUser, refetch } = useAllUsersData();
-  refetch()
+  refetch();
   return (
-    <div className=" text-black dark:text-white shadow bg-white dark:bg-tertiary p-4  w-full rounded ">
+    <div className="w-full bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
       <h2 className=" font-semibold text-xl ">User Profile</h2>
       {allUser?.slice(0, 5).map((userProfile) => (
         <div
           key={userProfile._id}
-          className="flex items-center gap-2 my-2 md:gap-3  bg-gray-200 dark:bg-darkOne rounded p-2"
+          className="flex items-center gap-5 my-3 bg-whiteBg dark:bg-darkOne rounded-xl p-2"
         >
           {userProfile?.photo ? (
             <Image
               src={userProfile?.photo}
-              width={30}
-              height={30}
-              className="rounded-full object-cover"
+              width={32}
+              height={32}
+              className="w-8 h-8 rounded-full object-cover"
               alt="user photo"
             />
           ) : (
             <FaUserCircle className={`w-8 h-8 lg:w-12 lg :h-12 text-primary`} />
           )}
-          <div className="text-sm lg:text-base text-black dark:text-white w-full">
-            <div className="flex justify-between  items-center w-full ">
+          <div className="w-full flex items-center justify-between text-sm lg:text-base text-black dark:text-white">
+            <div className="">
               <h1 className="font-semibold text-sm ">
                 {userProfile.name ? userProfile.name : "No name"}{" "}
               </h1>
-              <span
-                className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
-                  userProfile.role === "admin"
-                    ? "bg-[#6c52ff]"
-                    : userProfile.role === "trader"
-                    ? "bg-[#5dad3e]"
-                    : "bg-[#40a0ff]"
-                }`}
-              >
-                {userProfile.role}
-              </span>
+              <h1 className="hidden xs:block text-gray-500 text-xs">
+                {userProfile.email}
+              </h1>
             </div>
-            <h1 className="hidden xs:block text-gray-500 text-xs">
-              {userProfile.email}
-            </h1>
+            <p
+              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
+                userProfile.role === "admin"
+                  ? "bg-[#6c52ff]"
+                  : userProfile.role === "trader"
+                  ? "bg-[#5dad3e]"
+                  : "bg-[#40a0ff]"
+              }`}
+            >
+              {userProfile.role}
+            </p>
           </div>
         </div>
       ))}
       <Link href={"admin_dashboard/manage_users"}>
-        <Button className={"w-full"}>See All</Button>
+        <Button className="w-full rounded-xl">See All</Button>
       </Link>
     </div>
   );

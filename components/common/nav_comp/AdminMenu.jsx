@@ -33,11 +33,11 @@ const AdminMenu = ({ userDetails, loading, isLoading, isPending, logOut }) => {
         )}
       </button>
       {isOpen && (
-        <div className="min-w-44 absolute top-14 right-0 bg-white dark:bg-tertiary rounded-xl overflow-hidden shadow-2xl shadow-black">
-          <div className="bg-gradient-to-br from-primary to-[#352786] text-black dark:text-white px-2 py-3">
-            <div className="flex flex-col items-center gap-3 overflow-hidden">
+        <div className="min-w-44 absolute top-14 right-0 bg-white dark:bg-quaternary rounded-xl overflow-hidden shadow-2xl dark:shadow-black">
+          <div className="bg-primary/90 text-white px-2 py-3">
+            <div className="flex flex-col items-center gap-3">
               {userDetails?.photo ? (
-                <div className="w-10 h-10 overflow-hidden rounded-full">
+                <div className="w-12 h-12 overflow-hidden rounded-full">
                   <Image
                     alt="profile-image"
                     width={40}

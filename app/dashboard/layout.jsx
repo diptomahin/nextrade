@@ -20,18 +20,18 @@ const Dashboard = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <TradersChecker>
-        <div className="min-h-screen bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100 font-montserrat">
+        <div className="min-h-screen bg-whiteBg text-zinc-950 dark:bg-secondary dark:text-zinc-100 font-montserrat">
           <div
             className={`fixed top-0 w-full h-16 transition-all duration-200 ease-out ${
               isActiveMenu ? "3xl:pl-[80px]" : "3xl:pl-[200px]"
-            }  z-40 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100`}
+            }  z-40 bg-whiteBg text-zinc-950 dark:bg-secondary dark:text-zinc-100`}
           >
             <TradersNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
           </div>
           <div
             className={`hidden 3xl:block fixed h-full transition-all duration-200 ease-out ${
               isActiveMenu ? " w-[80px]" : " w-[200px]"
-            } z-50 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100`}
+            } z-50 bg-whiteBg text-zinc-950 dark:bg-secondary dark:text-zinc-100`}
           >
             <TradersSideNav
               isActiveMenu={isActiveMenu}
@@ -39,7 +39,7 @@ const Dashboard = ({ children }) => {
               pathname={pathname}
             />
           </div>
-          <div className="block  3xl:hidden bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
+          <div className="block  3xl:hidden bg-whiteBg text-zinc-950 dark:bg-secondary dark:text-zinc-100">
             <Drawer
               sx={{
                 "& .MuiDrawer-paper": {

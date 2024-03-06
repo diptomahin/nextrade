@@ -18,7 +18,6 @@ const AdminDashHeader = () => {
   // articles data
   const { articles, refetch: articleRefetch } = useArticleData();
 
-
   // Check if purchasedAssets is an array before using reduce in Total Investment
   const totalAssetInvestment =
     Array.isArray(purchasedAssets) && purchasedAssets.length > 0
@@ -49,9 +48,9 @@ const AdminDashHeader = () => {
   articleRefetch();
 
   return (
-    <div className=" grid xl:grid-cols-4 md:grid-cols-2 gap-4 text-black dark:text-white w-full">
+    <div className=" grid xl:grid-cols-4 md:grid-cols-2 gap-7 text-zinc-950 dark:text-zinc-100 w-full">
       {/* investment */}
-      <div className=" p-5 rounded-md flex items-center gap-3 bg-white dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">
+      <div className="flex items-center gap-3 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
         <div className=" bg-primary text-white p-2 rounded-full">
           <GiTakeMyMoney size={30} />
         </div>
@@ -61,7 +60,7 @@ const AdminDashHeader = () => {
         </div>
       </div>
       {/* total crypto coin */}
-      <div className="g p-5 rounded-md flex items-center gap-3 bg-white dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">
+      <div className="flex items-center gap-3 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
         <div className=" bg-[#eb62d0] text-white p-2 rounded-full">
           <RiCoinFill size={30} />
         </div>
@@ -72,7 +71,7 @@ const AdminDashHeader = () => {
       </div>
 
       {/* total flat coin */}
-      <div className="g p-5 rounded-md flex items-center gap-3 bg-white dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">
+      <div className="flex items-center gap-3 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
         <div className=" bg-[#9568ff] text-white p-2 rounded-full">
           <RiCoinFill size={30} />{" "}
         </div>
@@ -82,7 +81,7 @@ const AdminDashHeader = () => {
         </div>
       </div>
       {/* total Post */}
-      <div className="g p-5 rounded-md flex items-center gap-3 bg-white dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">
+      <div className="flex items-center gap-3 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
         <div className=" bg-[#3aba69] text-white p-2 rounded-full">
           <MdPostAdd size={30} />
         </div>

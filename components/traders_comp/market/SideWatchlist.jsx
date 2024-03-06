@@ -131,17 +131,17 @@ const SideWatchlist = () => {
   }, [flatCurrency]);
 
   return (
-    <div className="w-full h-full bg-white dark:bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl shadow">
+    <div className="w-full h-full flex flex-col gap-5 font-semibold bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
       <div className="flex flex-wrap items-center justify-between  border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">Watchlist</h3>
         <Link
           href="/dashboard/watchlist"
-          className="btn btn-sm h-10 bg-transparent hover:bg-primary/10 active:bg-primary/20 border-none font-medium text-primary"
+          className="btn btn-sm h-10 bg-primary/10 hover:bg-primary/20 active:bg-primary/30 border-none shadow-none font-medium text-primary rounded-xl"
         >
           See all
         </Link>
       </div>
-      <div className="relative sm:w-72 h-10 flex items-center bg-zinc-100 dark:bg-secondary rounded-xl">
+      <div className="relative sm:w-72 h-10 flex items-center bg-whiteBg dark:bg-secondary rounded-xl shadow dark:shadow-md">
         <div
           className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
             isBuyOpen ? "translate-x-0" : "translate-x-full"
@@ -150,7 +150,7 @@ const SideWatchlist = () => {
         <button
           onClick={() => setIsBuyOpen(true)}
           className={`absolute w-1/2 h-full whitespace-nowrap bg-transparent transition-all ${
-            isBuyOpen ? "text-white" : "text-gray-300"
+            isBuyOpen ? "text-white" : "text-zinc-500 dark:text-zinc-400"
           } duration-200 ease-in-out font-semibold text-sm z-10`}
         >
           Crypto Coins
@@ -158,7 +158,7 @@ const SideWatchlist = () => {
         <button
           onClick={() => setIsBuyOpen(false)}
           className={`absolute w-1/2 whitespace-nowrap transform translate-x-full h-full bg-transparent transition-all ${
-            !isBuyOpen ? "text-white" : "text-gray-300"
+            !isBuyOpen ? "text-white" : "text-zinc-500 dark:text-zinc-400"
           } duration-100 font-semibold text-sm z-10`}
         >
           Flat Coins

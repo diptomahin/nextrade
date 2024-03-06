@@ -26,8 +26,8 @@ const Testimonials = () => {
   }
 
   return (
-    <Container className="py-20">
-      <Title>Trader Testimonies</Title>
+    <Container className="py-10">
+      <Title>Traders Testimonial</Title>
       <Subtitle>
         Hear from traders who&apos;ve found success with us. Dive into their
         stories and see how our platform has helped them thrive in the markets.
@@ -78,8 +78,8 @@ const Testimonials = () => {
                     readOnly
                   />
                 </div>
-                <p className="text-xs">Address N/A</p>
-                <p className="text-sm mt-3">&quot;{review?.feedback}&quot;</p>
+                {/* <p className="text-xs">{review?.address}</p> */}
+                <p className="text-sm mt-3">{review?.feedback}</p>
               </div>
             </div>
           </SwiperSlide>
