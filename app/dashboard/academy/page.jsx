@@ -68,7 +68,7 @@ const Academy = () => {
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group dark:text-white text-black transition-all duration-300 ease-in-out">
-                    <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                    <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                       {news.title}
                     </span>
                   </h3>
@@ -113,7 +113,7 @@ const Academy = () => {
                   <div className="absolute lg:bottom-16 bottom-10 lg:left-10 left-5">
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="lg:text-3xl text-xl font-semibold my-2 lg:my-4 group text-white transition-all duration-300 ease-in-out">
-                        <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                        <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                           {news.title}
                         </span>
                       </h3>
@@ -155,7 +155,7 @@ const Academy = () => {
                   <div className="absolute bottom-6 left-5">
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 group text-white transition-all duration-300 ease-in-out">
-                        <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                        <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                           {news.title}
                         </span>
                       </h3>
@@ -199,7 +199,7 @@ const Academy = () => {
                   </button>
                   <Link href={`/dashboard/academy/${news._id}`}>
                     <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group dark:text-white text-black transition-all duration-300 ease-in-out">
-                      <span className="bg-left-bottom  bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                      <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                         {news.title}
                       </span>
                     </h3>
@@ -275,7 +275,7 @@ const Academy = () => {
 
                   <Link href={`/dashboard/academy/${news._id}`}>
                     <h3 className="2xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11 group transition-all duration-300 ease-in-out">
-                      <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                      <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                         {news.title}
                       </span>
                     </h3>
@@ -318,7 +318,7 @@ const Academy = () => {
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 lg:text-[17px] 2xl:text-[15px] text-[13px] group text-white transition-all duration-300 ease-in-out">
-                        <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                        <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                           {news.title}
                         </span>
                       </h3>
