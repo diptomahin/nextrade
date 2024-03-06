@@ -1,6 +1,8 @@
+import useDarkMode from "@/hooks/useDarkMode";
 import Link from "next/link";
 
 const SectionTitle = ({ title, btnText, btnUrl }) => {
+  const isDarkMode = useDarkMode()
   return (
     <div className="flex justify-between items-center">
       <h2 className="lg:text-[30px] text-xl font-semibold">{title}</h2>

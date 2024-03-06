@@ -6,10 +6,12 @@ import Image from "next/image";
 import moment from "moment";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
+import useDarkMode from "@/hooks/useDarkMode";
 
 const Academy = () => {
   const [data, setData] = useState([]);
   const [video, setVideo] = useState([]);
+  const isDarkMode = useDarkMode()
 
   useEffect(() => {
     fetch("https://nex-trade-server.vercel.app/v1/api/articles")
