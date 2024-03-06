@@ -34,7 +34,7 @@ const BuyLimit = ({
         <div className="flex items-center gap-5">
           <input
             onChange={(e) => setLimitAmount(e.target.value)}
-            className={`flex-1 bg-quaternary flex items-center justify-between text-sm px-5 py-[11px] border  ${
+            className={`flex-1 bg-gray-100 dark:bg-quaternary flex items-center justify-between text-sm px-5 py-[11px] border  ${
               isLimitAmountError
                 ? "border-red-500 focus:border-red-500"
                 : "border-transparent focus:border-white"
@@ -47,13 +47,13 @@ const BuyLimit = ({
           <div className="flex items-center justify-center gap-2">
             <button
               onClick={() => handleSetLimitAmount()}
-              className="btn btn-sm h-11 border-none bg-quaternary hover:bg-quaternary  text-secondary font-medium rounded-full px-5"
+              className="btn btn-sm h-11 border-none bg-gray-100 hover:bg-gray-100  dark:bg-quaternary dark:hover:bg-quaternary  text-secondary font-medium rounded-full px-5"
             >
               Set
             </button>
             <button
               onClick={() => setIsOpenSetLimit(false)}
-              className="btn btn-sm h-11 border-none bg-quaternary hover:bg-quaternary  text-tertiary font-medium rounded-full px-5"
+              className="btn btn-sm h-11 border-none dark:bg-quaternary dark:hover:bg-quaternary  text-tertiary font-medium rounded-full px-5"
             >
               Cancel
             </button>
@@ -61,13 +61,13 @@ const BuyLimit = ({
         </div>
       ) : (
         <div className="flex items-center gap-5">
-          <div className="flex-1 bg-quaternary flex items-center justify-between px-5 py-[10px] rounded-full">
+          <div className="flex-1 dark:bg-quaternary flex items-center justify-between px-5 py-[10px] rounded-full">
             <p className="text-sm font-medium">Limit Price</p>
             <p className="font-medium">${getAmount}</p>
           </div>
           <button
             onClick={() => setIsOpenSetLimit(true)}
-            className="btn btn-sm h-10 border-none bg-quaternary hover:bg-quaternary text-white font-medium rounded-full px-5"
+            className="btn btn-sm h-10 border-none dark:bg-quaternary dark:hover:bg-quaternary dark:text-white font-medium rounded-full px-5"
           >
             Set limit
           </button>
@@ -112,7 +112,6 @@ const BuyLimit = ({
       ) : (
         <CurrencyBuy flatCurrency={flatCurrency} flatRefetch={flatRefetch} />
       )}
-
     </div>
   );
 };
