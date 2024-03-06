@@ -180,7 +180,7 @@ const Academy = () => {
         <div>
           <div className="2xl:grid grid-cols-2 gap-5">
             {data.slice(7, 13).map((news, index) => (
-              <div className="flex gap-5 my-1 2xl:mt-10 mt-5" key={index}>
+              <div className="flex gap-5 2xl:-my-10 my-5 2xl:mt-10 mt-5" key={index}>
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <div className="w-[200px] h-[150px] overflow-hidden">
                     <Image
