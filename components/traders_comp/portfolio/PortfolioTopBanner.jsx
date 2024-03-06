@@ -77,7 +77,7 @@ const PortfolioTopBanner = ({
                 }`}
               >
                 <span>Loss -  </span>
-                 {calculateTotalLoss.toFixed(2)} $
+                 {calculateTotalLoss?.toFixed(2)} $
                  <span className=" bg-white p-1"><TrendingDownIcon/></span>
               </p>
             </div> 

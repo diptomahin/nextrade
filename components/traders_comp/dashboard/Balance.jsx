@@ -20,6 +20,7 @@ import { IoMdArrowDropup } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
 import usePurchasedAssets from "@/hooks/usePurchasedAssets";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import axios from "axios";
 
 
 const Balance = () => {
@@ -282,6 +283,8 @@ const Balance = () => {
     fetchCurrencyRates();
   }, [currencyData2]);
 
+  const liveCurrentData= cryptoData.map(data => data.currentPrice)
+
   // profit and loss calculator
   const calculateDifference = (currentPrice, buyingPrice, portion) => {
     const profitLoss =
@@ -323,8 +326,9 @@ const Balance = () => {
 
       Assets: parseFloat(userData?.balance).toFixed(2) || "0.00",
 
-      "Profit/Loss": parseFloat(userData?.balance).toFixed(2) || "0.00",
-
+      "Profit": calculateTotalProfit.toFixed(2) || "0.00",
+      "Loss": calculateTotalLoss.toFixed(2) || "0.00",
+      
       Deposit: parseFloat(userData?.deposit).toFixed(2) || "0.00",
 
       Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
@@ -386,8 +390,8 @@ const Balance = () => {
                   Total Profit/Loss
                 </h3>
                 <p className="font-semibold flex items-center justify-between  w-full">
-                  <span className='text-green-500 flex gap-2'>${calculateTotalProfit.toFixed(2) || "0.00"} <IoMdArrowDropup/></span>
-                  <span className='text-red-500 flex gap-2'>${calculateTotalLoss.toFixed(2) || "0.00"} <IoMdArrowDropdown/></span>
+                  <span className='text-green-500 flex gap-2'>${liveCurrentData ? calculateTotalProfit.toFixed(2) : "0.00"} <IoMdArrowDropup/></span>
+                  <span className='text-red-500 flex gap-2'>${liveCurrentData ?calculateTotalLoss.toFixed(2) : "0.00"} <IoMdArrowDropdown/></span>
                   
                   
                 </p>
@@ -437,7 +441,8 @@ const Balance = () => {
               <Legend />
               <Bar dataKey="Balance" fill="#40a0ff" name="Balance" />
               <Bar dataKey="Assets" fill="#eab308" name="Assets" />
-              <Bar dataKey="Profit/Loss" fill="#0891b2" name="Profit/Loss" />
+              <Bar dataKey="Profit" fill="#0891b2" name="Profit" />
+              <Bar dataKey="Loss" fill="#f65455" name="Loss" />
               <Bar dataKey="Deposit" fill="#3aba69" name="Deposit" />
               <Bar dataKey="Withdraw" fill="#f65455" name="Withdraw" />
             </BarChart>
