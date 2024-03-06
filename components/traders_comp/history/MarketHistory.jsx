@@ -6,7 +6,9 @@ import Link from "next/link";
 import React from "react";
 import emptyIcon from "../../../assets/emptyIcon.png";
 
-const MarketHistory = () => {
+const MarketHistory = (params) => {
+
+  const {history} = params;
   const {
     investmentHistoryData,
     investmentHistoryLoading,
@@ -40,40 +42,86 @@ const MarketHistory = () => {
       <div className="flex items-center justify-between border-b pb-2 border-b-darkThree">
         <h3 className="text-xl font-semibold">Market History</h3>
       </div>
-      {investmentHistoryData.length > 0 ? (
-        investmentHistoryData.map((history) => (
-          <div key={history._id} className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Image
-                width={35}
-                height={35}
-                src={history.assetImg}
-                alt="assets-image"
-                className="rounded-full overflow-hidden"
-              />
-              <div className="flex flex-col gap-1">
-                <h4 className="text-sm font-medium">
-                  {history.assetName}{" "}
-                  <span className="text-green-500 text-sm font-semibold">
-                    ${history.totalInvestment}
-                  </span>
-                </h4>
-                <p className="text-xs text-darkGray">{history.detail}</p>
-              </div>
-            </div>
-            <div className="text-darkGray text-xs flex flex-col gap-1 items-end whitespace-nowrap">
-              {/* Time */}
-              <span>
-                {formatTime(history?.date?.hours || " ")}:
-                {padZero(history?.date?.minutes || " ")}{" "}
-                {getAmPm(history?.date?.hours || " ")}
-              </span>
-              {/* Date */}
-              <span>
-                {history?.date?.day || " "}-{history?.date?.month || " "}-
-                {history?.date?.year || " "}
-              </span>
-            </div>
+      {history.length > 0 ? (
+        history.map((history) => (
+          <div key={history._id} >
+             {
+              history.action == 'bought' ? (
+              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+             <Image
+               width={35}
+               height={35}
+               src={history.assetImg}
+               alt="assets-image"
+               className="rounded-full overflow-hidden"
+             />
+             <div className="flex flex-col gap-1">
+               <h4 className="text-sm font-medium">
+                 {history.assetName}{" "}
+                 <span className="text-green-500 text-sm font-semibold">
+                   ${history.totalInvestment}
+                 </span>
+               </h4>
+               <p className="text-xs text-darkGray">{history.detail}</p>
+             </div>
+                 </div>
+                <div className="text-darkGray text-xs flex flex-col gap-1 items-end whitespace-nowrap">
+             {/* Time */}
+             <span>
+               {formatTime(history?.date?.hours || " ")}:
+               {padZero(history?.date?.minutes || " ")}{" "}
+               {getAmPm(history?.date?.hours || " ")}
+             </span>
+             {/* Date */}
+             <span>
+               {history?.date?.day || " "}-{history?.date?.month || " "}-
+               {history?.date?.year || " "}
+             </span>
+                 </div>
+           </div>
+              ):(
+                <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+             <Image
+               width={35}
+               height={35}
+               src={history.assetImg}
+               alt="assets-image"
+               className="rounded-full overflow-hidden"
+             />
+             <div className="flex flex-col gap-1">
+               <h4 className="text-sm font-medium">
+                 {history.assetName}{" "}
+                 <span className="text-red-500 text-sm font-semibold">
+                   ${history.totalInvestment}
+                 </span>
+               </h4>
+               {
+                history.sellCoinProfit > 0 ? (
+                  <p className="text-lg text-darkGray">Profit: <span className="text-lg text-green-500">{history.sellCoinProfit}</span></p>
+                ):(
+                  <p className="text-lg text-darkGray">Loss: <span className="text-lg text-red-500">{history.sellCoinLoss}</span></p>
+                )
+               }
+             </div>
+                 </div>
+                <div className="text-darkGray text-xs flex flex-col gap-1 items-end whitespace-nowrap">
+             {/* Time */}
+             <span>
+               {formatTime(history?.date?.hours || " ")}:
+               {padZero(history?.date?.minutes || " ")}{" "}
+               {getAmPm(history?.date?.hours || " ")}
+             </span>
+             {/* Date */}
+             <span>
+               {history?.date?.day || " "}-{history?.date?.month || " "}-
+               {history?.date?.year || " "}
+             </span>
+                 </div>
+           </div>
+              )
+             }
           </div>
         ))
       ) : (

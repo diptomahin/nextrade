@@ -87,28 +87,32 @@ const AllHistory = () => {
         {isBuyOpen ? (
           <>
           {/* Market History */}
-          <MarketHistory></MarketHistory>
+          <MarketHistory history={bought}></MarketHistory>
            
-          </>
-        ) : !isBuyOpen ? (
-          <>
-           
-            {/* Buying History */}
-            <div className="grid grid-cols-2 gap-2 my-5">
-              {bought.map((history) => (
-                <HistoryCard key={history._id} history={history}></HistoryCard>
-              ))}
-            </div> 
           </>
         ) : (
           <>
-            {/* Selling History */}
-            <div className="grid grid-cols-2 gap-2 my-5">
-              {sold.map((history) => (
-                <HistoryCard key={history._id} history={history}></HistoryCard>
-              ))}
-            </div>
+          {/*Selling history*/}
+          <MarketHistory history={sold}></MarketHistory>
           </>
+        //   <>
+           
+        //     {/* Buying History */}
+        //     <div className="grid grid-cols-2 gap-2 my-5">
+        //       {bought.map((history) => (
+        //         <HistoryCard key={history._id} history={history}></HistoryCard>
+        //       ))}
+        //     </div> 
+        //   </>
+        // ) : (
+        //   <>
+        //     {/* Selling History */}
+        //     <div className="grid grid-cols-2 gap-2 my-5">
+        //       {sold.map((history) => (
+        //         <HistoryCard key={history._id} history={history}></HistoryCard>
+        //       ))}
+        //     </div>
+        //   </>
         )}
       </div>
     </>
