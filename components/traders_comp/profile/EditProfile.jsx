@@ -6,13 +6,15 @@ import { TbUserStar } from "react-icons/tb";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaRegAddressBook } from "react-icons/fa6";
-import { PiCurrencyDollar, PiUpload } from "react-icons/pi";
+import { PiCurrencyDollar } from "react-icons/pi";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import getDate from "@/components/utils/date";
 import { MdEdit } from "react-icons/md";
+import useAuth from "@/hooks/useAuth";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
@@ -25,45 +27,183 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [currency, setCurrency] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+  const [error, setError] = useState(null);
 
   const router = useRouter();
-
+  const { user, updateUserPassword } = useAuth();
+  const secureAPI = useSecureAPI();
   const date = getDate();
+
+  // post notification data sen database
+  const notificationInfo = {
+    title: "Password Changed",
+    description: "Your account password has been changed",
+    assetKey: "",
+    assetImg: "",
+    assetBuyerUID: "",
+    email: user.email,
+    postedDate: date,
+    location: "/dashboard/profile",
+    read: false,
+  };
 
   // update user profile
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
 
-    const toastId = toast.loading("Updating...", { duration: 10000 });
+    if (!form.newPassword.value && !form.reEnterPassword.value) {
+      const toastId = toast.loading("Updating...", { duration: 10000 });
+      if (imageHosting) {
+        return;
+      }
+      const userDetails = {
+        name: form?.fullName.value,
+        username: form?.userName.value,
+        phone: form?.phone.value,
+        address: form?.address.value,
+        currency: form?.currency.value,
+        photo:
+          hostedImageInfo !== null
+            ? hostedImageInfo?.data.data.url
+            : hostedImage,
+        lastUpdate: date,
+      };
 
-    if (imageHosting) {
-      return;
-    }
+      const res = await axios.put(
+        `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
+        userDetails
+      );
+      if (res.data.modifiedCount > 0) {
+        console.log("13");
+        refetchUserData();
+        setIsEdit(false);
+        router.push("/dashboard/profile");
+        toast.success("User Information Updated", {
+          id: toastId,
+          duration: 5000,
+        });
 
-    const userDetails = {
-      name: form?.fullName.value,
-      username: form?.userName.value,
-      phone: form?.phone.value,
-      address: form?.address.value,
-      currency: form?.currency.value,
-      photo:
-        hostedImageInfo !== null ? hostedImageInfo?.data.data.url : hostedImage,
-      lastUpdate: date,
-    };
+        // post to  notification data in database
+        // axios
+        //   .post(
+        //     "https://nex-trade-server.vercel.app/v1/api/notifications",
+        //     notificationInfo
+        //   )
+        //   .then((res) => {
+        //     if (res.data.insertId) {
+        //       console.log("14");
+        //       refetchNotificationsData();
+        //       refetchUserData();
+        //       setIsEdit(false);
+        //       router.push("/dashboard/profile");
+        //       toast.success(
+        //         "User Information Updated 111111111111111111111111111111111111111111111111111",
+        //         {
+        //           id: toastId,
+        //           duration: 5000,
+        //         }
+        //       );
+        //     }
+        //   })
+        //   .catch((error) => {
+        //     toast.error(error, {
+        //       id: toastId,
+        //       duration: 5000,
+        //     });
+        //   });
+      }
+    } else {
+      if (!form.newPassword.value || !form.reEnterPassword.value) {
+        setError("Please fill in all fields");
+        return;
+      }
+      // Define the password pattern using a regular expression
+      const passwordPattern =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}:;<>,.?~\\/-]).{8,}$/;
+      // Check if the newPassword matches the defined pattern
+      if (!passwordPattern.test(form.newPassword.value)) {
+        setError(
+          "Password must include at least one lowercase letter, one uppercase letter, one digit, and one special character, and be at least 8 characters long"
+        );
+        return;
+      }
+      if (!passwordPattern.test(form.reEnterPassword.value)) {
+        setError(
+          "Password must include at least one lowercase letter, one uppercase letter, one digit, and one special character, and be at least 8 characters long"
+        );
+        return;
+      }
+      if (form.newPassword.value !== form.reEnterPassword.value) {
+        return setError("Password does not match");
+      }
 
-    const res = await axios.put(
-      `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
-      userDetails
-    );
-    if (res.data.modifiedCount > 0) {
-      refetchUserData();
-      setIsEdit(false);
-      router.push("/dashboard/profile");
-      toast.success("User Information Updated", {
-        id: toastId,
-        duration: 5000,
-      });
+      const toastId = toast.loading("Updating...", { duration: 10000 });
+
+      const userDetails = {
+        name: form?.fullName.value,
+        username: form?.userName.value,
+        phone: form?.phone.value,
+        address: form?.address.value,
+        currency: form?.currency.value,
+        photo:
+          hostedImageInfo !== null
+            ? hostedImageInfo?.data.data.url
+            : hostedImage,
+        lastUpdate: date,
+      };
+
+      const res = await axios.put(
+        `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
+        userDetails
+      );
+      if (res.data.modifiedCount > 0) {
+        updateUserPassword(user, form.newPassword.value)
+          .then(() => {
+            refetchUserData();
+            setIsEdit(false);
+            router.push("/dashboard/profile");
+            toast.success("User Information Updated", {
+              id: toastId,
+              duration: 5000,
+            });
+
+            // post to  notification data in database
+            // secureAPI
+            //   .post("/notifications", notificationInfo)
+            //   .then((res) => {
+            //     if (res.data.insertId) {
+            //       console.log("26");
+            //       refetchNotificationsData();
+            //       refetchUserData();
+            //       setIsEdit(false);
+            //       router.push("/dashboard/profile");
+            //       toast.success(
+            //         "User Information Updated 222222222222222222222222222222222222222222222222222222",
+            //         {
+            //           id: toastId,
+            //           duration: 5000,
+            //         }
+            //       );
+            //     }
+            //   })
+            //   .catch((error) => {
+            //     toast.error(error, {
+            //       id: toastId,
+            //       duration: 5000,
+            //     });
+            //   });
+          })
+          .catch((error) => {
+            toast.error(error.message, {
+              id: toastId,
+              duration: 5000,
+            });
+            console.log(error.message);
+          });
+      }
     }
   };
 
@@ -257,23 +397,47 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
           </div>
         </div>
 
+        <div className="flex flex-col lg:flex-row 2xl:items-center gap-5 justify-between">
+          {/* New password */}
+          <div className="w-full flex flex-col">
+            <label
+              htmlFor="newPassword"
+              className="flex items-center gap-1 font-medium"
+            >
+              New Password
+            </label>
+            <input
+              id="newPassword"
+              className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              name="newPassword"
+              placeholder="*************"
+            />
+          </div>
+
+          {/* fourth part */}
+          {/* Re-enter password */}
+          <div className="w-full flex flex-col">
+            <label
+              htmlFor="confirmPassword"
+              className="flex items-center gap-1 font-medium"
+            >
+              Re-enter Password
+            </label>
+            <input
+              id="confirmPassword"
+              className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
+              type="password"
+              name="reEnterPassword"
+              onChange={(e) => setRePassword(e.target.value)}
+              placeholder="**************"
+            />
+          </div>
+        </div>
+        {error && <p className="text-red-500">{error}</p>}
+
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-5">
-          <DarkButton
-            className="px-10 rounded"
-            disabled={
-              fullName ||
-              userName ||
-              phone ||
-              address ||
-              currency ||
-              hostedImageInfo?.data.data.url
-                ? false
-                : true
-            }
-            onClick={() => setIsEdit(false)}
-          >
-            Cancel
-          </DarkButton>
           <DarkButton
             type="submit"
             disabled={
@@ -282,6 +446,8 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
               phone ||
               address ||
               currency ||
+              password ||
+              rePassword ||
               hostedImageInfo?.data.data.url
                 ? false
                 : true
@@ -289,6 +455,24 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
             className="px-10 rounded"
           >
             Save
+          </DarkButton>
+          <DarkButton
+            className="px-10 rounded"
+            disabled={
+              fullName ||
+              userName ||
+              phone ||
+              address ||
+              currency ||
+              password ||
+              rePassword ||
+              hostedImageInfo?.data.data.url
+                ? false
+                : true
+            }
+            onClick={() => setIsEdit(false)}
+          >
+            Cancel
           </DarkButton>
         </div>
       </div>

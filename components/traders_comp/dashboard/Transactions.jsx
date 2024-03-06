@@ -34,7 +34,7 @@ const Transactions = () => {
       <div className="flex flex-wrap items-center justify-between  border-b pb-2 dark:border-b-darkThree mb-5">
         <h3 className="text-xl font-semibold">Recent Transactions</h3>
         <Link
-          href="/dashboard/market"
+          href="/dashboard/wallet"
           className="btn btn-sm h-10 bg-primary/10 hover:bg-primary/20 active:bg-primary/30 border-none shadow-none font-medium text-primary rounded-xl"
         >
           See all

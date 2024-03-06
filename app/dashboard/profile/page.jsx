@@ -1,4 +1,4 @@
-import Profile from "./Profile";
+import MyProfile from "@/components/traders_comp/profile/MyProfile";
 
 // add title in metadata
 export const metadata = {
@@ -9,7 +9,7 @@ export const metadata = {
 const ProfilePage = () => {
   return (
     <div>
-      <Profile />
+      <MyProfile />
     </div>
   );
 };
