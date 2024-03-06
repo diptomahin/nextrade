@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import HistoryCard from "@/components/traders_comp/history/HistoryCard";
 import MarketHistory from "@/components/traders_comp/history/MarketHistory";
-import useHistory from "@/hooks/useHistory";
+import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 
 // Define the functional component
 const AllHistory = () => {
@@ -11,7 +11,12 @@ const AllHistory = () => {
   const [isBuyOpen, setIsBuyOpen] = useState(true);
 
   // Data fetching using custom hook
-  const { data: history = [], isPending, isLoading, refetch } = useHistory(["history"]);
+  const {
+    investmentHistoryData,
+    investmentHistoryLoading,
+    investmentHistoryPending,
+    investmentHistoryError,
+  } = useInvestmentHistory();
 
   // State variables for storing filtered history data
   const [bought, setBought] = useState([]);
@@ -19,13 +24,13 @@ const AllHistory = () => {
 
   // Effect to filter bought and sold history data when 'history' changes
   useEffect(() => {
-    const findBought = history.filter((data) => data.action === "bought");
-    const findSold = history.filter((data) => data.action === "sold");
+    const findBought = investmentHistoryData.filter((data) => data.action === "bought");
+    const findSold = investmentHistoryData.filter((data) => data.action === "sold");
     
     // Update state variables with filtered data
     setBought(findBought);
     setSold(findSold);
-  }, [history]);
+  }, [investmentHistoryData]);
 
   // Render the component
   return (

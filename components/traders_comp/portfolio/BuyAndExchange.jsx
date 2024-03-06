@@ -201,6 +201,19 @@ const BuyAndExchange = ({
       totalInvestment,
       email:user.email
     };
+    const historyInfo = {
+      assetName: sellCoinName,
+      assetKey: sellCoinKey,
+      assetImg: sellCoinImg,
+      assetType: "crypto coin",
+      assetBuyingPrice: ast.c,
+      totalInvestment,
+      sellCoinProfit,
+      sellCoinLoss,
+      assetBuyerEmail: user.email,
+      date: date,
+      action: "sold",
+    };
 
     const notificationInfo = {
       title: "Coin Sell Successfully",
@@ -255,6 +268,10 @@ const BuyAndExchange = ({
                 .catch((error) => {
                   console.error("Error sending notification:", error);
                 });
+              //Selling History in database
+              secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
+                refetchInvestmentHistory();
+              });
              
             }
           })
