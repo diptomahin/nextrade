@@ -34,12 +34,15 @@ const Academy = () => {
     width: "270",
   };
 
+  const colorTheme = isDarkMode ? "black" : "white";
+
+
   return (
     <div className="">
       {/* top stories and recent news */}
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
         <div className="lg:mt-1">
-          <Timeline colorTheme="black" height={690} width="100%" />
+        <Timeline colorTheme={colorTheme} height={690} width="100%" />
         </div>
         <div className="mt-10 lg:mt-0">
           <div>
@@ -65,7 +68,7 @@ const Academy = () => {
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group dark:text-white text-black transition-all duration-300 ease-in-out">
-                    <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                    <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                       {news.title}
                     </span>
                   </h3>
@@ -110,7 +113,7 @@ const Academy = () => {
                   <div className="absolute lg:bottom-16 bottom-10 lg:left-10 left-5">
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="lg:text-3xl text-xl font-semibold my-2 lg:my-4 group text-white transition-all duration-300 ease-in-out">
-                        <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                        <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                           {news.title}
                         </span>
                       </h3>
@@ -152,7 +155,7 @@ const Academy = () => {
                   <div className="absolute bottom-6 left-5">
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 group text-white transition-all duration-300 ease-in-out">
-                        <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                        <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                           {news.title}
                         </span>
                       </h3>
@@ -177,15 +180,15 @@ const Academy = () => {
         <div>
           <div className="2xl:grid grid-cols-2 gap-5">
             {data.slice(7, 13).map((news, index) => (
-              <div className="flex gap-5 my-1 2xl:mt-10 mt-5" key={index}>
+              <div className="flex gap-5 2xl:-my-10 my-5 2xl:mt-10 mt-5" key={index}>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                  <div className="w-[200px] overflow-hidden">
+                  <div className="w-[200px] h-[150px] overflow-hidden">
                     <Image
                       className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                       src={news.thumbnail}
                       alt={news.title}
-                      width={200}
-                      height={200}
+                      width={400}
+                      height={150}
                     />
                   </div>
                 </Link>
@@ -195,8 +198,8 @@ const Academy = () => {
                     <span class="relative z-10">{news.category}</span>
                   </button>
                   <Link href={`/dashboard/academy/${news._id}`}>
-                    <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out">
-                      <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                    <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group dark:text-white text-black transition-all duration-300 ease-in-out">
+                      <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                         {news.title}
                       </span>
                     </h3>
@@ -212,10 +215,10 @@ const Academy = () => {
       </div>
 
       {/* Videos */}
-      <div className="bg-black lg:p-10 my-10">
+      <div className="dark:bg-black bg-white lg:p-10 my-10">
         <div className="">
           <div className="flex justify-between items-center py-5">
-            <h2 className="lg:text-[30px] text-xl font-semibold text-white">
+            <h2 className="lg:text-[30px] text-xl font-semibold dark:text-white text-black">
               Videos
             </h2>
             <Link href="#">
@@ -272,7 +275,7 @@ const Academy = () => {
 
                   <Link href={`/dashboard/academy/${news._id}`}>
                     <h3 className="2xl:text-2xl md:text-[26px] font-semibold my-4 md:mr-10 text-white absolute md:bottom-16 md:left-10 left-4 bottom-11 group transition-all duration-300 ease-in-out">
-                      <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                      <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                         {news.title}
                       </span>
                     </h3>
@@ -290,7 +293,7 @@ const Academy = () => {
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <div className="lg:w-[180px] 2xl:w-[180px] md:w-[120px] w-[100px] overflow-hidden">
+                      <div className="lg:w-[180px] 2xl:w-[180px] md:w-[120px] w-[100px] h-[150px] overflow-hidden">
                         <Image
                           src={news.thumbnail}
                           alt={news.title}
@@ -314,8 +317,8 @@ const Academy = () => {
                       <span class="relative z-10">{news.category}</span>
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
-                      <h3 className="font-semibold my-1 lg:text-[17px] 2xl:text-[15px] text-[13px] group text-white transition-all duration-300 ease-in-out">
-                        <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                      <h3 className="font-semibold my-1 lg:text-[17px] 2xl:text-[15px] text-[13px] group dark:text-white text-black transition-all duration-300 ease-in-out">
+                        <span className="bg-left-bottom bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                           {news.title}
                         </span>
                       </h3>
