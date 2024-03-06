@@ -170,7 +170,7 @@ const QuickSell = ({userData, refetchUserData}) => {
           userData={userData}
         />
       ) : (
-        <CurrencySell flatCurrency={currencyData2} flatRefetch={totalRefetch} />
+        <CurrencySell flatCurrency={currencyData2} flatRefetch={totalRefetch} refetchUserData={refetchUserData} userData={userData}/>
       )}
 
       

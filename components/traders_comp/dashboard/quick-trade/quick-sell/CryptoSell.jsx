@@ -231,7 +231,7 @@ const CryptoSell = ({ cryptoCurrency, cryptoRefetch, refetchUserData, userData }
             </div>
 
             <div className="flex item-center justify-center">
-                <Button onClick={handleSell} variant="contained" disabled={!sellCoinName}>Buy now</Button>
+                <Button onClick={handleSell} variant="contained" disabled={!sellCoinName}>Sell now</Button>
             </div>
         </div>
     ) : (
