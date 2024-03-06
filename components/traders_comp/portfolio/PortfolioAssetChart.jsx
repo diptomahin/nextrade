@@ -7,6 +7,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import emptyIcon from "../../../assets/emptyIcon.png";
+import Image from "next/image";
 
 const PortfolioAssetChart = ({ cryptoData }) => {
 
@@ -25,7 +27,9 @@ const PortfolioAssetChart = ({ cryptoData }) => {
 
   return (
     <div className="rounded-lg w-full overflow-x-auto overflow-y-auto">
-      <ResponsiveContainer width={"100%"} height={300} className="mx-auto text-center">
+      {
+        cryptoData.length > 0 ? (
+          <ResponsiveContainer width={"100%"} height={300} className="mx-auto text-center">
         <BarChart data={cryptoData}>
           
           <XAxis dataKey="assetKey" position="bottom" />
@@ -36,6 +40,20 @@ const PortfolioAssetChart = ({ cryptoData }) => {
           ))}
         </BarChart>
       </ResponsiveContainer>
+        ) : (
+          <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
+              <Image 
+                src={emptyIcon}
+                width={70}
+                height={70}
+                alt="BTC/USDT Logo"
+              />
+              <h3 className="text-primary text-lg font-semibold text-center">
+                empty !!
+              </h3>
+            </div>
+        )
+      }
     </div>
   );
 };
