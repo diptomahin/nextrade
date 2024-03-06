@@ -9,6 +9,8 @@ import {
 import Image from "next/image";
 const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) => {
   purchasedRefetch()
+
+  console.log(cryptoData);
      return (
           <div className=" overflow-x-auto text-white dark:text-black">
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -43,6 +45,16 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                       className=" dark:text-white"
                     >
                       Buying Price
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        
+                        borderBottom: "1px solid #686f7d",
+                        fontWeight: "600",
+                      }}
+                      className=" dark:text-white"
+                    >
+                      Percentage %
                     </TableCell>
                     <TableCell
                       sx={{
@@ -121,6 +133,18 @@ const PortfolioAssetTable = ({cryptoData,calculateDifference,purchasedRefetch}) 
                         
                         <h2 className="font-medium ">
                           $ {parseFloat(asset.assetBuyingPrice).toFixed(2)}
+                        </h2>
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          
+                          borderBottom: "none"
+                        }}
+                        className=" dark:text-white "
+                      >
+                        
+                        <h2 className="font-medium ">
+                           {parseFloat(asset.assetPortion).toFixed(2)} %
                         </h2>
                       </TableCell>
                       {/* 4th row */}
