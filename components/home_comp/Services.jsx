@@ -31,7 +31,7 @@ const Services = () => {
         className="grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray"
       >
         {/* cart 1  */}
-        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon1}
@@ -48,7 +48,7 @@ const Services = () => {
           </p>
         </div>
         {/* cart 2  */}
-        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon3}
@@ -66,7 +66,7 @@ const Services = () => {
           </p>
         </div>
         {/* cart 3  */}
-        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon2}
@@ -84,7 +84,7 @@ const Services = () => {
           </p>
         </div>
         {/* cart 4  */}
-        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon4}
@@ -102,7 +102,7 @@ const Services = () => {
           </p>
         </div>
         {/* cart 5  */}
-        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon5}
@@ -120,7 +120,7 @@ const Services = () => {
           </p>
         </div>
         {/* cart 6  */}
-        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="flex items-center justify-start gap-3">
             <Image
               src={Icon6}

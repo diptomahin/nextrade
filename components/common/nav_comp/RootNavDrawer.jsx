@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import logo from "../../../assets/logo/NexTrade_Favicon-White.png";
+import logo2 from "../../../assets/logo/NexTrade-Logo-White.png";
 import { IoChevronBack } from "react-icons/io5";
 import { IoIosArrowForward, IoIosLogOut } from "react-icons/io";
 import "./RootNavDrawer.css";
@@ -35,25 +36,20 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
             </button>
           </div>
 
-          <div className="flex-1 flex items-center justify-center">
-            <Link
-              href="/"
-              className="flex-1 hidden md:flex items-center justify-center gap-[5px] h-fit w-fit"
-            >
-              {" "}
-              <Image src={logo} width={40} height={"auto"} alt="logo" />
-              <h1 className="text-2xl font-medium ">
-                Nex<span className="font-extrabold">Trade</span>
-              </h1>
-            </Link>
-          </div>
+          <Link
+            href="/"
+            className="hidden md:flex items-center justify-center gap-[5px] h-fit w-fit"
+          >
+            <Image src={logo2} alt="Logo" width={140} height={"auto"} />
+          </Link>
 
           {/* logo */}
-          <Link href="/" className="md:flex-1 block md:hidden">
+          <Link href="/" className="flex justify-center md:hidden">
             <Image src={logo} alt="Logo" width={40} height={"auto"} />
           </Link>
+
           {user?.email ? (
-            <div className="md:flex-1 flex items-center justify-end">
+            <div className="flex-1 flex items-center justify-end">
               <button
                 onClick={() => {
                   logOut();
