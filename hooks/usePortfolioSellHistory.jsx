@@ -1,13 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import useSecureAPI from "./useSecureAPI";
+import useAuth from "./useAuth";
 
 const usePortfolioSellHistory = () => {
      const useSecure = useSecureAPI();
+     const {user,loading} = useAuth()
 
      const { data, isPending, isLoading, isError, refetch } = useQuery({
-         queryKey: ["profitLoss"],
+         queryKey: [user?.email,"profitLoss"],
          queryFn: async () => {
-             const res = await useSecure.get(`/profitLoss`);
+            if (loading) {
+                return;
+              }
+             const res = await useSecure.get(`/profitLoss/${user.email}`);
              return res.data;
          },
      });
