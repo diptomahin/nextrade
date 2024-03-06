@@ -14,6 +14,8 @@ const articlePage = async ({ params }) => {
     .join(" ");
   const tagsArray = article.tags.split(",").map((tag) => tag.trim());
 
+    console.log(article)
+
   return (
     <div className="mt-10">
       <div className="text-white items-center lg:flex gap-2 ml-1">
@@ -27,7 +29,7 @@ const articlePage = async ({ params }) => {
           </div>
         </div>
       </div>
-      <div className="bg-[#1e222d] flex justify-stretch items-center mt-5">
+      <div className="dark:bg-[#1e222d] bg-white flex justify-stretch items-center mt-5">
         <div className="lg:flex justify-between items-center gap-10">
           <div className="lg:w-1/2 lg:pl-10 px-5 mt-5">
             <button className="bg-blue-500 px-2 py-1 text-sm text-white">
@@ -63,17 +65,17 @@ const articlePage = async ({ params }) => {
       </div>
 
       {/* lowest part */}
-      <div className="mt-5 text-gray-300">
+      <div className="mt-5 dark:text-gray-300 text-black">
         <h3>{article.description}</h3>
 
-        <h1 className="mt-10 text-xl mb-4 text-white">
+        <h1 className="mt-10 text-xl mb-4 dark:text-white text-black">
           <span className="font-semibold lg:text-3xl text-2xl">
             Related Topic |{" "}
           </span>{" "}
           {tagsArray.map((tag, index) => (
             <span
               key={index}
-              className="inline-block bg-[#1e273d] rounded-md px-2 py-1 mr-2 mt-2 hover:text-blue-500 cursor-pointer lg:text-xl text-[16px]"
+              className="inline-block bg-[#1e273d] rounded-md px-2 py-1 mr-2 mt-2 hover:text-blue-500 cursor-pointer lg:text-xl text-[16px] text-white"
             >
               {tag}
             </span>
