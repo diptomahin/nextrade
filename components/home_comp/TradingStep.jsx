@@ -23,15 +23,16 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
-          <div className="flex items-center gap-2">
-            <RiLuggageDepositFill className="w-8 h-8 text-secondary" />
-            <h1 className="text-xl font-semibold">Deposit</h1>
+          <div className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white  transition-all hover:-translate-y-[6px] duration-500 ease-in-out">
+            <div className="flex items-center gap-2">
+              <RiLuggageDepositFill className="w-8 h-8 text-secondary" />
+              <h1 className="text-xl font-semibold">Deposit</h1>
+            </div>
+            <p className="text-sm mt-3">
+              Create account and add funds. We work with banks and cards.
+            </p>
           </div>
-          <p className="text-sm mt-3">
-            Create account and add funds. We work with banks and cards.
-          </p>
         </motion.div>
         {/* 2nd cart */}
         <motion.div
@@ -39,16 +40,18 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white"
+          className=""
         >
-          <div className="flex items-center gap-2">
-            <MdAreaChart className="w-8 h-8 text-primary" />
-            <h1 className="text-xl font-semibold">Trade</h1>
+          <div className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white  transition-all hover:-translate-y-[6px] duration-500 ease-in-out">
+            <div className="flex items-center gap-2">
+              <MdAreaChart className="w-8 h-8 text-primary" />
+              <h1 className="text-xl font-semibold">Trade</h1>
+            </div>
+            <p className="text-sm mt-3 text-white">
+              Trade any of 100 assets and stocks. Use technical analysis and
+              trade the news
+            </p>
           </div>
-          <p className="text-sm mt-3 text-white">
-            Trade any of 100 assets and stocks. Use technical analysis and trade
-            the news
-          </p>
         </motion.div>
         {/* 3rd cart */}
         <motion.div
@@ -56,16 +59,17 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
-          <div className="flex items-center gap-2">
-            <BsCreditCard2FrontFill className="w-8 h-8 text-tertiary" />
-            <h1 className="text-xl font-semibold">Withdraw</h1>
+          <div className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white  transition-all hover:-translate-y-[6px] duration-500 ease-in-out">
+            <div className="flex items-center gap-2">
+              <BsCreditCard2FrontFill className="w-8 h-8 text-tertiary" />
+              <h1 className="text-xl font-semibold">Withdraw</h1>
+            </div>
+            <p className="text-sm mt-3 text-white">
+              Get funds easily to your bank card or e-wallet. We take no
+              commission.
+            </p>
           </div>
-          <p className="text-sm mt-3 text-white">
-            Get funds easily to your bank card or e-wallet. We take no
-            commission.
-          </p>
         </motion.div>
       </div>
     </Container>
