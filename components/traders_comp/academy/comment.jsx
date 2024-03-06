@@ -3,6 +3,8 @@ import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef } from "react";
+import { useMemo } from "react";
+import Image from "next/image";
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
@@ -16,24 +18,23 @@ const Comment = ({ articleId }) => {
     },
   });
 
-  console.log(articles);
-
   const commentText = useRef();
 
   const handelComment = () => {
     const commentTextValue = commentText.current.value;
     const comment = { commentTextValue };
-    axiosPublic.patch(`/articles/${articleId}`, comment).then((res) => {
-      console.log(res.data);
-      refetch();
-    })
-    
+    axiosPublic
+      .patch(`/articles/comments/${articleId}`, comment)
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+      });
+
     console.log(comment);
   };
 
   // articles view count
-  const count = 1;
-  const viewCount = { count };
+  const viewCount = useMemo(() => ({ count: 1 }), []);
 
   useEffect(() => {
     axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
@@ -46,10 +47,7 @@ const Comment = ({ articleId }) => {
 
         <div className="mt-1">
           <form className="lg:w-1/2">
-            <label
-              for="message"
-              className="block mb-2 font-medium text-gray-900 dark:text-white"
-            >
+            <label className="block mb-2 font-medium text-gray-900 dark:text-white">
               Your info will not be published*
             </label>
             <textarea
@@ -79,14 +77,20 @@ const Comment = ({ articleId }) => {
 
         <div>
           <div className="flex gap-2 mt-3">
-            <div className=" ">
-              {/* <img className="w-14 h-13 rounded" src="photo-01.jpeg" alt="" /> */}
+            <div className="w-10 h-10 overflow-hidden rounded-full">
+              <Image
+                alt="profile-image"
+                width={40}
+                height={40}
+                src={user?.photoURL}
+                className="w-full h-full rounded-full object-top object-cover"
+              />
             </div>
 
             <div className="w-full ">
               <div className="bg-[#474747] rounded-lg p-3 ">
                 <h1 className="font-bold">Jackson Hayes</h1>
-                <p className="text-sm">Wow, Thanks Man😱</p>
+                <p className="text-sm">{articles.comment}</p>
               </div>
               <p className="flex gap-3 text-sm mt-1">
                 <span>like</span>
