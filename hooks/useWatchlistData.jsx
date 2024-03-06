@@ -7,7 +7,13 @@ const useWatchlistData = () => {
   const { user, loading } = useAuth();
 
   //
-  const { data, isPending, isLoading, isError, refetch } = useQuery({
+  const {
+    data = [],
+    isPending,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: [user?.email, "watchlist"],
     queryFn: async () => {
       if (loading) {
@@ -19,7 +25,7 @@ const useWatchlistData = () => {
   });
 
   return {
-    watchlistData: data || [],
+    watchlistData: data,
     refetchWatchlistData: refetch,
     watchlistDataLoading: isLoading,
     watchlistDataPending: isPending,

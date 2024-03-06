@@ -7,7 +7,13 @@ const useNotificationData = () => {
   const { user, loading } = useAuth();
 
   //
-  const { data, isPending, isLoading, isError, refetch } = useQuery({
+  const {
+    data = [],
+    isPending,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: [user?.email, "notifications"],
     queryFn: async () => {
       if (loading) {
@@ -19,7 +25,7 @@ const useNotificationData = () => {
   });
 
   return {
-    notificationsData: data || [],
+    notificationsData: data,
     refetchNotificationsData: refetch,
     notificationsDataLoading: isLoading,
     notificationsDataPending: isPending,

@@ -4,7 +4,13 @@ import usePublicAPI from "./usePublicAPI";
 const useAllCryptoCoins = () => {
   const usePublic = usePublicAPI();
 
-  const { data, isPending, isLoading, isError, refetch } = useQuery({
+  const {
+    data = [],
+    isPending,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: ["manageCryptos"],
     queryFn: async () => {
       const res = await usePublic.get(`/manageAllCryptoCoins`);
@@ -13,7 +19,7 @@ const useAllCryptoCoins = () => {
   });
 
   return {
-    allCryptoCoins: data || [],
+    allCryptoCoins: data,
     cryptoRefetch: refetch,
     isPending,
     isLoading,

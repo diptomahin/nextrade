@@ -7,7 +7,13 @@ const useUserData = () => {
   const { user, loading } = useAuth();
 
   //
-  const { data, isPending, isLoading, isError, refetch } = useQuery({
+  const {
+    data = {},
+    isPending,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: [user?.email, "userData"],
     queryFn: async () => {
       if (loading) {
@@ -19,7 +25,7 @@ const useUserData = () => {
   });
 
   return {
-    userData: data || {},
+    userData: data,
     userDataError: isError,
     userDataPending: isPending,
     userDataLoading: isLoading,

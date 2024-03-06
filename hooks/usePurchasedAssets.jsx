@@ -2,12 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useSecureAPI from "./useSecureAPI";
 
-const usePurchasedAssets = (dynamicSearch = "", currentPage,coinPerPage) => {
+const usePurchasedAssets = (dynamicSearch = "", currentPage, coinPerPage) => {
   const useSecure = useSecureAPI();
   const { user, loading } = useAuth();
 
   //
-  const { data, isPending, isLoading, isError, refetch } = useQuery({
+  const {
+    data = [],
+    isPending,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: [user?.email, "transactionsData"],
     queryFn: async () => {
       if (loading) {
@@ -20,7 +26,7 @@ const usePurchasedAssets = (dynamicSearch = "", currentPage,coinPerPage) => {
     },
   });
   return {
-    purchasedAssets: data || [],
+    purchasedAssets: data,
     purchasedPending: isPending,
     purchasedLoading: isLoading,
     purchasedRefetch: refetch,
