@@ -13,8 +13,65 @@ import {
   Tooltip,
   XAxis,
 } from "recharts";
+import useSecureFetch from "@/hooks/useSecureFetch";
+import useAuth from "@/hooks/useAuth";
+import { useEffect, useState } from "react";
+import { IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropdown } from "react-icons/io";
+
 
 const Balance = () => {
+  const {user} = useAuth()
+   // asset Data without search functionality
+   const [assetData2, setAssetData2] = useState([]);
+
+   // fetch data without search functionality
+   const { data: totalPurchased = [], refetch: totalRefetch } = useSecureFetch(
+    `/sidePortfolio?email=${user.email}`,
+    ["purchased-asset", user?.email]
+  );
+
+  // filter  coin data
+  useEffect (() => {
+    
+    // filter coin data without search functionality
+    if (totalPurchased.length > 0) {
+      setAssetData2(
+        totalPurchased.filter((data) => data.assetType === "crypto coin")
+      );
+      
+    }
+  }, [ totalPurchased ]);
+
+  // profit and loss calculator
+  const calculateDifference = (currentPrice, buyingPrice, portion) => {
+    const profitLoss =
+      (currentPrice - buyingPrice) * (parseFloat(portion.slice(0, -1)) / 100);
+    return profitLoss;
+  };
+
+  const calculateTotalProfit = assetData2.reduce((total, asset) => {
+    const difference = calculateDifference(
+      asset.currentPrice,
+      asset.assetBuyingPrice,
+      asset.assetPortion
+    );
+    return total + (parseFloat(difference) > 0 ? parseFloat(difference) : 0);
+  }, 0);
+
+  const calculateTotalLoss = assetData2.reduce((total, asset) => {
+    const difference = calculateDifference(
+      asset.currentPrice,
+      asset.assetBuyingPrice,
+      asset.assetPortion
+    );
+
+    return (
+      total +
+      (parseFloat(difference) < 0 ? Math.abs(parseFloat(difference)) : 0)
+    );
+  }, 0);
+
   const { userData, userDataLoading, userDataPending, userDataError } =
     useUserData();
 
@@ -35,6 +92,14 @@ const Balance = () => {
       Withdraw: parseFloat(userData?.withdraw).toFixed(2) || "0.00",
     },
   ];
+
+  //total asset 
+  
+  const totalAssetInvestment = totalPurchased.reduce(
+    (total, asset) => total + parseFloat(asset.totalInvestment),
+    0
+  );
+
 
   return (
     <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
@@ -66,7 +131,7 @@ const Balance = () => {
               <div className="">
                 <h3 className="text-[#eab308] font-semibold">Total Assets</h3>
                 <p className="text-xl font-semibold">
-                  ${parseFloat(userData?.balance).toFixed(2) || "0.00"}
+                  ${totalAssetInvestment.toFixed(2) || "0.00"}
                 </p>
               </div>
             </div>
@@ -78,12 +143,15 @@ const Balance = () => {
               <div className="w-8 h-8 bg-cyan-600 text-white flex items-center justify-center rounded-full">
                 <HiMiniArrowDownOnSquareStack className="text-lg" />
               </div>
-              <div className="">
+              <div className="w-full">
                 <h3 className="text-sm text-bg-cyan-600 font-semibold">
                   Total Profit/Loss
                 </h3>
-                <p className="font-semibold">
-                  ${parseFloat(userData?.deposit).toFixed(2) || "0.00"}
+                <p className="font-semibold flex items-center justify-between  w-full">
+                  <span className='text-green-500 flex gap-2'>${calculateTotalProfit.toFixed(2) || "0.00"} <IoMdArrowDropup/></span>
+                  <span className='text-red-500 flex gap-2'>${calculateTotalLoss.toFixed(2) || "0.00"} <IoMdArrowDropdown/></span>
+                  
+                  
                 </p>
               </div>
             </div>
