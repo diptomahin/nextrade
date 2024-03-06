@@ -1,31 +1,36 @@
-'use client'
+"use client";
 import useArticleData from "@/hooks/useArticleData";
 import Image from "next/image";
 import Link from "next/link";
 
 const AdminArticle = () => {
-       // articles data
-  const { articles, refetch: articleRefetch,isLoading,
-     isPending } = useArticleData();
+  // articles data
+  const {
+    articles,
+    refetch: articleRefetch,
+    isLoading,
+    isPending,
+  } = useArticleData();
 
- 
-     return (
-          <div className="bg-white p-4 mb-4 dark:bg-tertiary dark:shadow-none shadow shadow-gray-200">
-            <h2 className="text-xl font-semibold ">Latest Post News</h2>
-               {
-                    articles ? (<>
-                   {articles.slice(0,3).map(news => <div className="flex gap-5 my-5 text-black dark:text-white " key={news._id}>
-              
-                <div className=" overflow-hidden">
-                  <Image
-                    src={news.thumbnail}
-                    alt={news.title}
-                    width={200}
-                    height={200}
-                    className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
-                  />
-                </div>
-              
+  return (
+    <div className="mb-5 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
+      <h2 className="text-xl font-semibold ">Latest Post News</h2>
+      {articles ? (
+        <>
+          {articles.slice(0, 3).map((news) => (
+            <div
+              className="flex gap-5 my-5 text-black dark:text-white "
+              key={news._id}
+            >
+              <div className=" overflow-hidden">
+                <Image
+                  src={news.thumbnail}
+                  alt={news.title}
+                  width={200}
+                  height={200}
+                  className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
+                />
+              </div>
 
               <div>
                 <button class="relative px-2 py-1 text-sm text-white rounded overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
@@ -42,13 +47,18 @@ const AdminArticle = () => {
                   {/* {moment(news?.date).format("ll")} */}
                 </p>
               </div>
-            </div>)}
-                    </>) : (<>
-            <h2 className=" text-center font-semibold my-5">Data Loading . . . </h2>
-          </>)
-               }
-          </div>
-     );
+            </div>
+          ))}
+        </>
+      ) : (
+        <>
+          <h2 className=" text-center font-semibold my-5">
+            Data Loading . . .{" "}
+          </h2>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default AdminArticle;

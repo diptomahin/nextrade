@@ -7,7 +7,7 @@ import AdminReviews from "@/components/AdminDashboard/AdminReviews";
 
 // add title in metadata
 export const metadata = {
-  title: "Admin Dashboard - Nextrade",
+  title: "Admin Dashboard",
   description: "Admin Dashboard page from Nextrade",
 };
 
@@ -17,9 +17,8 @@ const page = () => {
       {/* Header slide */}
       <AdminDashHeader />
 
-      <div className=" grid xl:grid-cols-12 gap-4 mt-5">
-        <div className=" xl:col-span-8 ">
-
+      <div className=" grid xl:grid-cols-12 gap-7 mt-7">
+        <div className=" xl:col-span-8">
           <AdminArticle />
           <AdminDashManageCoin />
         </div>

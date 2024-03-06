@@ -195,9 +195,9 @@ const AdminNotification = () => {
 
       {/* Display the notification popup if open */}
       {isNotificationOpen && (
-        <div className="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 border dark:border-darkThree rounded-xl bg-white dark:bg-tertiary w-60 md:w-80 shadow-2xl dark:shadow-gray-900 scrollbar-thin z-10">
+        <div className="absolute overflow-x-hidden overflow-y-auto max-h-[500px] top-[64px] -right-16 md:right-24 transform md:translate-x-1/2 duration-200 border dark:border-darkThree rounded-xl bg-white dark:bg-quaternary text-zinc-950 dark:text-zinc-100 w-60 md:w-80 shadow-2xl dark:shadow-gray-900 scrollbar-thin z-10">
           {/* Header of the notification popup */}
-          <div className="sticky top-0 w-full flex items-center justify-between px-4 py-2 border-b-2 bg-white dark:bg-tertiary dark:border-darkThree z-20">
+          <div className="sticky top-0 w-full flex items-center justify-between px-4 py-2 border-b-2 bg-white dark:bg-quaternary text-zinc-950 dark:text-zinc-100 dark:border-darkThree z-20">
             <h2 className="font-semibold">Notifications</h2>
 
             {/* Dropdown menu for additional actions */}
@@ -211,7 +211,7 @@ const AdminNotification = () => {
 
               {/* Additional actions menu */}
               {isNotifyMenuOpen && (
-                <div className="absolute right-8 top-0 w-40 bg-gray-100 dark:bg-quaternary border dark:border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10">
+                <div className="absolute right-8 top-0 w-40 bg-whiteBg dark:bg-quaternary border dark:border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-3 z-10 shadow-xl">
                   <button
                     onClick={handleReadAll}
                     className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
@@ -243,8 +243,8 @@ const AdminNotification = () => {
                   key={asset?._id}
                   className={`relative ${
                     asset?.read
-                      ? "bg-slate-50 dark:bg-secondary/50"
-                      : "bg-gray-200 dark:bg-white/10"
+                      ? "bg-transparent"
+                      : "bg-zinc-200 dark:bg-white/5"
                   } w-full rounded-xl cursor-pointer p-3`}
                 >
                   <div onClick={() => handleRead(asset?._id)}>
@@ -298,7 +298,7 @@ const AdminNotification = () => {
 
                     {/* Additional actions menu for each notification */}
                     {isOpenMenu[asset?._id] && (
-                      <div className="absolute right-8 top-0 w-32 bg-gray-100 dark:bg-quaternary border dark:border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-2">
+                      <div className="absolute right-8 top-0 w-32 bg-whiteBg dark:bg-quaternary border  border-zinc-200 dark:border-darkThree font-medium justify-start rounded-b-2xl rounded-s-2xl py-2 shadow-xl">
                         <button
                           onClick={() => handleRead(asset?._id)}
                           className="w-full whitespace-nowrap btn btn-xs dark:text-white/80 bg-transparent rounded-none hover:bg-[#ff5252] hover:text-white shadow-none border-none justify-start pl-3"
@@ -329,7 +329,7 @@ const AdminNotification = () => {
               <h2 className="text-center">No notification yet . . .</h2>
             </div>
           )}
-          <div className="sticky bottom-0 w-full bg-white dark:bg-tertiary py-[6px] z-20"></div>
+          <div className="sticky bottom-0 w-full bg-white dark:bg-quaternary py-[6px] z-20"></div>
         </div>
       )}
     </div>
