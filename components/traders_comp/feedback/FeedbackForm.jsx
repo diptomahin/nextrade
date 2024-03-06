@@ -47,6 +47,7 @@ export default function TransitionsModal({ user, secureAPI }) {
       reviewerName: user.displayName,
       reviewerEmail: user.email,
       photo: user.photoURL,
+      // address: user?.address,
       rating,
       feedback,
     };
@@ -94,10 +95,10 @@ export default function TransitionsModal({ user, secureAPI }) {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
+            <Typography id="transition-modal-title" variant="h6" color={"black"} component="h2">
               Tell Us How We&apos;re Doing {/* Changed modal title */}
             </Typography>
-            <p className="text-sm pb-5">
+            <p className="text-sm text-black pb-5">
               Your feedback shapes our platform&apos;s future. Share your
               thoughts to enhance your trading experience.
             </p>
