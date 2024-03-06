@@ -18,30 +18,269 @@ import useAuth from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
+import usePurchasedAssets from "@/hooks/usePurchasedAssets";
+import useSecureAPI from "@/hooks/useSecureAPI";
 
 
 const Balance = () => {
   const {user} = useAuth()
    // asset Data without search functionality
    const [assetData2, setAssetData2] = useState([]);
+   const [currencyData2, setCurrencyData2] = useState([]);
 
-   // fetch data without search functionality
-   const { data: totalPurchased = [], refetch: totalRefetch } = useSecureFetch(
+  const secureAPI = useSecureAPI();
+
+  // get total balance form users data
+  const {
+    userData,
+    userDataLoading,
+    userDataPending,
+    userDataError,
+    refetchUserData,
+  } = useUserData();
+
+  refetchUserData();
+
+
+  // asset Data with search functionality
+  const [cryptoData, setCryptoData] = useState([]);
+  const [currencyData, setCurrencyData] = useState([]);
+  const [dynamicSearch, setDynamicSearch] = useState("");
+  const [coinPerPage, setCoinPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [assetCount, setAssetCount] = useState(0);
+
+  // get page count from database
+  useEffect(() => {
+    secureAPI
+      .get("/totalAssetCount")
+      .then((res) => setAssetCount(res.data.count))
+      .catch((error) => console.log(error));
+  }, [secureAPI, user]);
+
+  // Use optional chaining or default to 0 if assetCount is undefined
+  const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
+
+  const assetPage = [...Array(numberOfAssetPages).keys()];
+ 
+
+  // fetch data with search functionality
+  const {
+    purchasedAssets,
+    purchasedPending,
+    purchasedLoading,
+    purchasedRefetch,
+  } = usePurchasedAssets(dynamicSearch, currentPage, coinPerPage);
+
+  purchasedRefetch();
+
+
+
+  // fetch data without search functionality
+  const { data: totalPurchased = [], refetch: totalRefetch } = useSecureFetch(
     `/sidePortfolio?email=${user.email}`,
     ["purchased-asset", user?.email]
   );
 
   // filter  coin data
-  useEffect (() => {
-    
+  useEffect(() => {
+    // filter coin data with search functionality
+    if (purchasedAssets.length > 0) {
+      setCryptoData(
+        purchasedAssets.filter((data) => data.assetType === "crypto coin")
+      );
+      setCurrencyData(
+        purchasedAssets.filter((data) => data.assetType === "flat coin")
+      );
+    }
+
     // filter coin data without search functionality
     if (totalPurchased.length > 0) {
       setAssetData2(
         totalPurchased.filter((data) => data.assetType === "crypto coin")
       );
-      
+      setCurrencyData2(
+        totalPurchased.filter((data) => data.assetType === "flat coin")
+      );
     }
-  }, [ totalPurchased ]);
+  }, [purchasedAssets, purchasedRefetch, totalPurchased]);
+
+  // convert static data into real time data
+  const createCryptoData = (
+    _id,
+    assetName,
+    assetKey,
+    assetImg,
+    assetType,
+    assetBuyingPrice,
+    currentPrice,
+    assetPortion,
+    totalInvestment,
+    assetBuyerUID,
+    assetBuyerEmail
+  ) => {
+    return {
+      _id,
+      assetName,
+      assetKey,
+      assetImg,
+      assetType,
+      assetBuyingPrice,
+      currentPrice,
+      assetPortion,
+      totalInvestment,
+      assetBuyerUID,
+      assetBuyerEmail,
+    };
+  };
+
+  // ___________________create crypto data with search functionality start_________________
+
+  useEffect(() => {
+    const socket = new WebSocket(
+      "wss://stream.binance.com:9443/ws/!ticker@arr"
+    );
+
+    socket.addEventListener("message", (event) => {
+      const data = JSON.parse(event.data);
+      if (cryptoData.length > 0) {
+        const updatedAssets = cryptoData.map((asset) => {
+          const ticker = data.find((item) => item.s === asset.assetKey);
+          if (ticker) {
+            return createCryptoData(
+              asset._id,
+              asset.assetName,
+              asset.assetKey,
+              asset.assetImg,
+              asset.assetType,
+              asset.assetBuyingPrice,
+              parseFloat(ticker.c).toFixed(3),
+              asset.assetPortion,
+              asset.totalInvestment,
+              asset.assetBuyerUID,
+              asset.assetBuyerEmail
+            );
+          }
+          return asset;
+        });
+        setCryptoData(updatedAssets);
+      }
+    });
+    return () => socket.close();
+  }, [cryptoData]);
+
+  useEffect(() => {
+    const fetchCurrencyRates = async () => {
+      try {
+        if (currencyData.length > 0) {
+          const updatedAssets = await Promise.all(
+            currencyData.map(async (asset) => {
+              const currencyKey = asset.assetKey;
+              const response = await axios.get(
+                `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+              );
+              return createCryptoData(
+                asset._id,
+                asset.assetName,
+                asset.assetKey,
+                asset.assetImg,
+                asset.assetType,
+                asset.assetBuyingPrice,
+                response.data.rates.USD,
+                asset.assetPortion,
+                asset.totalInvestment,
+                asset.assetBuyerUID,
+                asset.assetBuyerEmail
+              );
+            })
+          );
+          setCryptoData((prevCryptoData) => [
+            ...prevCryptoData,
+            ...updatedAssets,
+          ]);
+        }
+      } catch (error) {
+        console.error("Error fetching currency rates:", error);
+      }
+    };
+
+    fetchCurrencyRates();
+  }, [currencyData]);
+
+  // ___________________create crypto data with search functionality ends_________________
+
+  // _________________create crypto data data without search functionality start____________
+
+  useEffect(() => {
+    const socket = new WebSocket(
+      "wss://stream.binance.com:9443/ws/!ticker@arr"
+    );
+
+    socket.addEventListener("message", (event) => {
+      const data = JSON.parse(event.data);
+      if (assetData2.length > 0) {
+        const updatedAssets = assetData2.map((asset) => {
+          const ticker = data.find((item) => item.s === asset.assetKey);
+          if (ticker) {
+            return createCryptoData(
+              asset._id,
+              asset.assetName,
+              asset.assetKey,
+              asset.assetImg,
+              asset.assetType,
+              asset.assetBuyingPrice,
+              parseFloat(ticker.c).toFixed(3),
+              asset.assetPortion,
+              asset.totalInvestment,
+              asset.assetBuyerUID,
+              asset.assetBuyerEmail
+            );
+          }
+          return asset;
+        });
+        setAssetData2(updatedAssets);
+      }
+    });
+    return () => socket.close();
+  }, [assetData2]);
+
+  useEffect(() => {
+    const fetchCurrencyRates = async () => {
+      try {
+        if (currencyData2.length > 0) {
+          const updatedAssets = await Promise.all(
+            currencyData2.map(async (asset) => {
+              const currencyKey = asset.assetKey;
+              const response = await axios.get(
+                `https://api.exchangerate-api.com/v4/latest/${currencyKey}`
+              );
+              return createCryptoData(
+                asset._id,
+                asset.assetName,
+                asset.assetKey,
+                asset.assetImg,
+                asset.assetType,
+                asset.assetBuyingPrice,
+                response.data.rates.USD,
+                asset.assetPortion,
+                asset.totalInvestment,
+                asset.assetBuyerUID,
+                asset.assetBuyerEmail
+              );
+            })
+          );
+          setAssetData2((prevCryptoData) => [
+            ...prevCryptoData,
+            ...updatedAssets,
+          ]);
+        }
+      } catch (error) {
+        console.error("Error fetching currency rates:", error);
+      }
+    };
+
+    fetchCurrencyRates();
+  }, [currencyData2]);
 
   // profit and loss calculator
   const calculateDifference = (currentPrice, buyingPrice, portion) => {
@@ -72,8 +311,7 @@ const Balance = () => {
     );
   }, 0);
 
-  const { userData, userDataLoading, userDataPending, userDataError } =
-    useUserData();
+ 
 
   if (userDataLoading || userDataPending || userDataError) {
     return;
@@ -99,7 +337,7 @@ const Balance = () => {
     (total, asset) => total + parseFloat(asset.totalInvestment),
     0
   );
-
+  totalRefetch();
 
   return (
     <div className="xl:col-span-12 2xl:col-span-7 w-full h-full bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
