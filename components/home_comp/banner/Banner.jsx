@@ -366,7 +366,7 @@ const Banner = () => {
       </Container>
       <div className="relative max-w-7xl mx-5 md:mx-10 4xl:mx-auto">
         {" "}
-        <div className="w-full absolute left-0 bottom-0">
+        <div className="w-full absolute left-0 -bottom-20 2xl:bottom-0">
           <TickerTape displayMode="adaptive"></TickerTape>
         </div>
       </div>

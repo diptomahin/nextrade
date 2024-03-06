@@ -9,6 +9,7 @@ import Image from "next/image";
 import usePublicFetch from "@/hooks/usePublicFetch";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import Subtitle from "../library/Subtitle";
 
 const Testimonials = () => {
   const {
@@ -26,7 +27,11 @@ const Testimonials = () => {
 
   return (
     <Container className="py-20">
-      <Title>Our Satisfied Users Feedback</Title>
+      <Title>Trader Testimonies</Title>
+      <Subtitle>
+        Hear from traders who&apos;ve found success with us. Dive into their
+        stories and see how our platform has helped them thrive in the markets.
+      </Subtitle>
       <Swiper
         slidesPerView={20}
         spaceBetween={5}
@@ -53,7 +58,7 @@ const Testimonials = () => {
       >
         {data?.slice(0, 15).map((review) => (
           <SwiperSlide key={review?._id}>
-            <div className="min-h-52 bg-quaternary flex gap-3 border border-darkThree rounded-xl shadow hover:shadow-2xl p-5 my-10">
+            <div className="min-h-52 bg-gradient-to-b from-darkOne to-darkTwo  border border-b-transparent border-darkThree flex gap-3 rounded-xl shadow hover:shadow-2xl p-5 my-10">
               <Image
                 className="w-12 h-12 rounded-full"
                 src={review?.photo}

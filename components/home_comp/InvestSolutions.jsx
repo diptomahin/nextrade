@@ -41,7 +41,7 @@ const InvestSolutions = () => {
         >
           <Title className="text-start pt-10">
             {" "}
-            Trading snd investment solutions
+            Trading And Investment Solutions
           </Title>
           <motion.ul
             variants={fadeIn("up", 0.2)}

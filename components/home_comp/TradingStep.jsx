@@ -23,10 +23,10 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-quaternary border border-darkThree shadow px-10 py-5 rounded-xl text-white"
+          className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
-            <RiLuggageDepositFill className="w-8 h-8 text-white" />
+            <RiLuggageDepositFill className="w-8 h-8 text-secondary" />
             <h1 className="text-xl font-semibold">Deposit</h1>
           </div>
           <p className="text-sm mt-3">
@@ -39,10 +39,10 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-quaternary border border-darkThree shadow px-10 py-5 rounded-xl text-white"
+          className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
-            <MdAreaChart className="w-8 h-8 text-white" />
+            <MdAreaChart className="w-8 h-8 text-primary" />
             <h1 className="text-xl font-semibold">Trade</h1>
           </div>
           <p className="text-sm mt-3 text-white">
@@ -56,10 +56,10 @@ const TradingStep = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-quaternary border border-darkThree shadow px-10 py-5 rounded-xl text-white"
+          className="bg-gradient-to-b from-darkOne to-darkTwo border border-b-transparent border-darkThree shadow px-10 py-5 rounded-xl text-white"
         >
           <div className="flex items-center gap-2">
-            <BsCreditCard2FrontFill className="w-8 h-8 text-white" />
+            <BsCreditCard2FrontFill className="w-8 h-8 text-tertiary" />
             <h1 className="text-xl font-semibold">Withdraw</h1>
           </div>
           <p className="text-sm mt-3 text-white">

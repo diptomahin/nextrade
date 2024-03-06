@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/variants";
 import Link from "next/link";
 import Title from "@/components/library/Title";
-import DarkButton from "../library/Button";
+import Button from "../library/Button";
+import { IoIosArrowForward } from "react-icons/io";
 
 const StartTrading = () => {
   return (
@@ -30,17 +31,18 @@ const StartTrading = () => {
       >
         <CryptoCurrencyMarket
           width="100%"
-          height={500}
+          height={400}
           colorTheme="dark"
         ></CryptoCurrencyMarket>
       </motion.div>
-      <Link
-        href="/dashboard/trading"
-        className="flex items-center justify-center mt-10"
-      >
-        {" "}
-        <DarkButton>Start Trading</DarkButton>
-      </Link>
+      <div className="flex items-center justify-center mt-10">
+        <Link href="/dashboard/trading" className="w-fit">
+          {" "}
+          <Button className="w-40 justify-start hover:gap-4 transition-all duration-300 ease-in-out pr-1">
+            Start Trading <IoIosArrowForward />
+          </Button>
+        </Link>
+      </div>
     </Container>
   );
 };
