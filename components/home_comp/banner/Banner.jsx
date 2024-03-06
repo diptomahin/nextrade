@@ -13,15 +13,93 @@ import icon5 from "../../../assets/Banner/qtum-qtum-logo.svg";
 import Button from "@/components/library/Button";
 import { IoIosArrowForward } from "react-icons/io";
 import Typewriter from "typewriter-effect";
-import { TickerTape } from "react-ts-tradingview-widgets";
 import "./banner.css";
 
+// swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay } from "swiper/modules";
+import useAllFlatCoins from "@/hooks/useAllFlatCoins";
+import useAllCryptoCoins from "@/hooks/useAllCryptoCoins";
+import { FaArrowTrendDown, FaArrowTrendUp } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+
 const Banner = () => {
+  const [cryptoCurrency, setCryptoCurrency] = useState([]);
+  const [Currency, setCurrency] = useState([]);
+
+  // get currency data from hook
+  const { allCryptoCoins } = useAllCryptoCoins();
+  const { allFlatCoins } = useAllFlatCoins();
+
+  // data without real time price
+  useEffect(() => {
+    if (allCryptoCoins.length > 0 && allFlatCoins.length > 0) {
+      setCryptoCurrency(allCryptoCoins);
+      setCurrency(allFlatCoins);
+    }
+  }, [allCryptoCoins, allFlatCoins]);
+
+  // createData function for adding real time prices
+  const createData = (
+    _id,
+    name,
+    key,
+    price,
+    type,
+    changePrice,
+    highPrice,
+    lowPrice,
+    icon
+  ) => ({
+    _id,
+    name,
+    key,
+    price,
+    type,
+    changePrice,
+    highPrice,
+    lowPrice,
+    icon,
+  });
+
+  // fetch real time crypto data from binance api and create data
+  useEffect(() => {
+    const socket = new WebSocket(
+      "wss://stream.binance.com:9443/ws/!ticker@arr"
+    );
+
+    socket.addEventListener("message", (event) => {
+      const data = JSON.parse(event.data);
+      if (cryptoCurrency.length > 0) {
+        const updatedAssets = cryptoCurrency.map((asset) => {
+          const ticker = data.find((item) => item.s === asset.key);
+          if (ticker) {
+            return createData(
+              asset._id,
+              asset.name,
+              asset.key,
+              parseFloat(ticker.c).toFixed(3),
+              asset.type,
+              parseFloat(ticker.p).toFixed(3),
+              parseFloat(ticker.h).toFixed(2),
+              parseFloat(ticker.l).toFixed(2),
+              asset.icon
+            );
+          }
+          return asset;
+        });
+        setCryptoCurrency(updatedAssets);
+      }
+    });
+    return () => socket.close();
+  }, [cryptoCurrency]);
   return (
-    <div className="relative min-h-screen">
-      <Container className="min-h-screen flex flex-col-reverse 2xl:flex-row items-center justify-between gap-20 2xl:gap-5 pt-40 pb-20 2xl:py-20">
+    <div className="">
+      <Container className="flex flex-col-reverse 2xl:flex-row items-center justify-between gap-20 2xl:gap-5 pb-20 pt-40 2xl:pt-60">
         {/* left */}
-        <div className="w-full flex-1 relative">
+        <div className="w-full h-full flex-1 relative">
           {" "}
           {/* banner title */}
           <div className="z-10">
@@ -43,7 +121,7 @@ const Banner = () => {
             >
               <Typewriter
                 options={{
-                  strings: ["NexTrade", "Cryptos", "Stocks", "Currencies"],
+                  strings: ["NexTrade", "Cryptos", "Currencies"],
                   autoStart: true,
                   loop: true,
                   cursor: "",
@@ -64,8 +142,7 @@ const Banner = () => {
             <span className="block text-lg md:text-2xl 2xl:text-xl  3xl:text-2xl font-bold mb-2">
               Join world&apos;s biggest & trusted exchange.
             </span>
-            Trade in Bitcoin, Ethereum, and many more cryptos, currencies and
-            stocks.
+            Trade in Bitcoin, Ethereum, and many more cryptos and currencies.
           </motion.p>
           {/* group */}
           <div className="h-16 relative w-full z-10">
@@ -195,7 +272,7 @@ const Banner = () => {
         </div>
 
         {/* right */}
-        <div className="relative flex-1 flex flex-col 2xl:flex-row justify-end gap-5">
+        <div className="relative h-full flex-1 flex flex-col 2xl:flex-row justify-end gap-5">
           {/* animation part */}
           <div className="orange-move absolute left-[60%] top-[45%] bg-quinary w-24 h-24 blur-[120px]"></div>
           <div className="blue-move absolute left-[60%] top-[45%] bg-primary w-24 h-24 blur-[120px]"></div>
@@ -364,11 +441,74 @@ const Banner = () => {
           </div>
         </div>
       </Container>
-      <div className="relative max-w-7xl mx-5 md:mx-10 4xl:mx-auto">
-        {" "}
-        <div className="w-full absolute left-0 -bottom-20 2xl:bottom-0">
-          <TickerTape colorTheme="dark" className="h-20"></TickerTape>
-        </div>
+
+      <div className="h-fit max-w-7xl mx-5 md:mx-10 4xl:mx-auto">
+        <Swiper
+          slidesPerView={20}
+          spaceBetween={5}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }}
+          modules={[Autoplay]}
+        >
+          {cryptoCurrency?.slice(0, 6).map((crypto) => (
+            <SwiperSlide
+              key={crypto?._id}
+              className="w-full bg-quaternary border  border-darkThree p-5 rounded-xl shadow hover:shadow-2xl shadow-quinary my-16"
+            >
+              <Link
+                href={`/dashboard/market/${crypto?.key}`}
+                className="flex gap-3"
+              >
+                <Image
+                  alt="icon"
+                  width={44}
+                  height={44}
+                  src={crypto?.icon}
+                  className="w-11 h-11 rounded-full"
+                />
+                <div className="w-full flex lg:flex-col justify-start">
+                  <div className="">
+                    <h3 className="font-medium">
+                      {crypto?.name}{" "}
+                      <sup className="text-[10px]">{crypto.key}</sup>
+                    </h3>
+                    <p className="text-lg font-semibold">${crypto.price}</p>
+                  </div>
+
+                  {/*  */}
+                  <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-3 lg:mt-3">
+                    <p className="flex items-center gap-2 text-sm text-secondary">
+                      <FaArrowTrendUp /> ${crypto?.highPrice}
+                    </p>
+                    <p className="flex items-center gap-2 text-sm text-tertiary">
+                      <FaArrowTrendDown />${crypto?.lowPrice}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
