@@ -4,9 +4,8 @@ import useAuth from "@/hooks/useAuth";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
-import useUserData from "@/hooks/useUserData";
 import styled from "@emotion/styled";
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -40,15 +39,13 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const CryptoBuy = ({ cryptoCurrency, cryptoRefetch }) => {
+const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData }) => {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState({});
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
   const { user } = useAuth()
   const date = getDate();
-  const { userData, userDataLoading, userDataPending, userDataError, refetchUserData } =
-    useUserData();
   const { refetchNotificationsData } = useNotificationData();
   const { refetchInvestmentHistory } = useInvestmentHistory();
 
@@ -254,9 +251,7 @@ const CryptoBuy = ({ cryptoCurrency, cryptoRefetch }) => {
         onChange={handleInvestmentChange}
       />
       <div className="flex item-center justify-center">
-        <button onClick={handleBuyCrypto} className={`btn btn-sm h-10 border-none  font-medium rounded-full px-5 ${investment <= 0 || !selectedCoin.name ? "disabled" : "bg-primary hover:bg-primary text-white"} `}>
-          Buy now
-        </button>
+        <Button onClick={handleBuyCrypto} variant="contained" disabled={investment <= 0 || !selectedCoin.name }>Buy now</Button>
       </div>
     </div>
   ) : (

@@ -6,7 +6,7 @@ import CurrencySell from "./CurrencySell";
 import useSecureFetch from "@/hooks/useSecureFetch";
 import useAuth from "@/hooks/useAuth";
 
-const QuickSell = ({userData}) => {
+const QuickSell = ({userData, refetchUserData}) => {
   const {user} = useAuth()
   const [isCryptoSelected, setIsCryptoSelected] = useState(true);
 
@@ -166,6 +166,8 @@ const QuickSell = ({userData}) => {
         <CryptoSell
           cryptoCurrency={assetData2}
           cryptoRefetch={totalRefetch}
+          refetchUserData={refetchUserData}
+          userData={userData}
         />
       ) : (
         <CurrencySell flatCurrency={currencyData2} flatRefetch={totalRefetch} />

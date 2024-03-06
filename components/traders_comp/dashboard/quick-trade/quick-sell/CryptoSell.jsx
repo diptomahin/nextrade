@@ -4,19 +4,29 @@ import useAuth from '@/hooks/useAuth';
 import useNotificationData from '@/hooks/useNotificationData';
 import useSecureAPI from '@/hooks/useSecureAPI';
 import useUserData from '@/hooks/useUserData';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import Image from 'next/image';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 
 
-const CryptoSell = ({ cryptoCurrency, cryptoRefetch }) => {
+const CryptoSell = ({ cryptoCurrency, cryptoRefetch, refetchUserData, userData }) => {
     const [isOpenSelect, setIsOpenSelect] = useState(false);
     const secureAPI = useSecureAPI();
     const { user } = useAuth();
     const date = getDate();
     const { refetchNotificationsData } = useNotificationData();
-    const { refetchUserData } = useUserData();
+    const remainingBalance = parseFloat(userData.balance)
+
+    const [sellCoinId, setSellCoinId] = useState();
+    const [sellCoinName, setSellCoinName] = useState();
+    const [sellCoinProfit, setSellCoinProfit] = useState();
+    const [sellCoinLoss, setSellCoinLoss] = useState();
+    const [sellCoinKey, setSellCoinKey] = useState();
+    const [sellCoinImg, setSellCoinImg] = useState();
+    const [totalInvestment, setTotalInvestment] = useState();
+
 
     // profit and loss calculator
     const calculateDifference = (currentPrice, buyingPrice, portion) => {
@@ -24,6 +34,126 @@ const CryptoSell = ({ cryptoCurrency, cryptoRefetch }) => {
             (currentPrice - buyingPrice) * (parseFloat(portion.slice(0, -1)) / 100);
         return profitLoss.toFixed(3);
     };
+
+    const handleSelectChange = (event) => {
+        const getSellCoin = cryptoCurrency.find(
+            (asset) => asset._id === event.target.value
+        );
+        setTotalInvestment(getSellCoin.totalInvestment);
+        setSellCoinId(getSellCoin._id);
+        setSellCoinKey(getSellCoin.assetKey);
+        setSellCoinImg(getSellCoin.assetImg);
+        setSellCoinName(getSellCoin.assetName);
+        if (
+            calculateDifference(
+                getSellCoin.currentPrice,
+                getSellCoin.assetBuyingPrice,
+                getSellCoin.assetPortion
+            ) > 0
+        ) {
+            setSellCoinProfit(
+                calculateDifference(
+                    getSellCoin.currentPrice,
+                    getSellCoin.assetBuyingPrice,
+                    getSellCoin.assetPortion
+                )
+            );
+            setSellCoinLoss(0);
+        }
+        if (
+            calculateDifference(
+                getSellCoin.currentPrice,
+                getSellCoin.assetBuyingPrice,
+                getSellCoin.assetPortion
+            ) < 0
+        ) {
+            setSellCoinLoss(
+                calculateDifference(
+                    getSellCoin.currentPrice,
+                    getSellCoin.assetBuyingPrice,
+                    getSellCoin.assetPortion
+                )
+            );
+            setSellCoinProfit(0);
+        }
+    };
+
+    const handleSell = () => {
+        const sellingData = {
+            sellCoinName,
+            sellCoinImg,
+            sellCoinKey,
+            sellCoinProfit,
+            sellCoinLoss,
+            totalInvestment,
+            email: user.email
+        };
+
+        const notificationInfo = {
+            title: "Coin Sell Successfully",
+            description: `Coin sold with $${sellCoinProfit} profit and $${sellCoinLoss} loss`,
+            assetKey: "",
+            assetImg: "",
+            assetBuyerUID: "",
+            email: user.email,
+            postedDate: date,
+            location: "/dashboard/portfolio",
+            read: false,
+            type: "admin",
+        };
+
+        Swal.fire({
+            title: `Are you sure to sell ${sellCoinName}?`,
+            text: `It will bring $${sellCoinProfit} profit and $${sellCoinLoss} loss`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                secureAPI
+                    .put(
+                        `/allSoldCoin/${sellCoinId}/${remainingBalance}/${user.email}`,
+                        sellingData
+                    )
+                    .then((res) => {
+                        // console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: `Coin sold successfully!`,
+                                text: `Best of luck`,
+                                icon: "success",
+                                timer: 1500,
+                            });
+                            refetchUserData();
+                            // post to  notification data in database
+                            secureAPI
+                                .post("/notifications", notificationInfo)
+                                .then((res) => {
+                                    console.log("success post to notification");
+                                    secureAPI.post("/adminNotifications", notificationInfo);
+                                    refetchNotificationsData();
+                                    cryptoRefetch();
+                                })
+                                .catch((error) => {
+                                    console.error("Error sending notification:", error);
+                                });
+
+                        }
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            title: `Coin sells failed!`,
+                            text: `Please try again`,
+                            icon: "error",
+                        });
+                    });
+            }
+        });
+    };
+
+
     return isOpenSelect ? (
         <div className="flex flex-col gap-6">
             <div className="flex items-center gap-5">
@@ -46,7 +176,7 @@ const CryptoSell = ({ cryptoCurrency, cryptoRefetch }) => {
                         id="demo-simple-select"
                         label="Form"
                         size="small"
-                    // onChange={handleSelectChange}
+                        onChange={handleSelectChange}
                     >
                         <div className="mx-3 my-2 flex justify-between text-sm font-semibold">
                             <p>Asset Name</p>
@@ -75,8 +205,8 @@ const CryptoSell = ({ cryptoCurrency, cryptoRefetch }) => {
                                             parseFloat(asset.assetBuyingPrice),
                                             asset.assetPortion
                                         ) > 0
-                                                ? "text-green-700"
-                                                : "text-red-700"
+                                            ? "text-green-700"
+                                            : "text-red-700"
                                             }`}
                                     >
                                         {calculateDifference(
@@ -101,9 +231,7 @@ const CryptoSell = ({ cryptoCurrency, cryptoRefetch }) => {
             </div>
 
             <div className="flex item-center justify-center">
-                <button className={`btn btn-sm h-10 border-none  font-medium rounded-full px-5 bg-primary hover:bg-primary text-white `}>
-                    Buy now
-                </button>
+                <Button onClick={handleSell} variant="contained" disabled={!sellCoinName}>Buy now</Button>
             </div>
         </div>
     ) : (
