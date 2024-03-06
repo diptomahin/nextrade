@@ -78,7 +78,7 @@ const Academy = () => {
       </div>
 
       {/* Trending stories */}
-      <div className="bg-[#1e222d] lg:p-10 p-4 mt-10">
+      <div className="dark:bg-[#1e222d] bg-white lg:p-10 p-4 mt-10">
         <div className="">
           <SectionTitle
             title="Trending Stories"
@@ -95,7 +95,7 @@ const Academy = () => {
                         alt={news.title}
                         width={980}
                         height={600}
-                        sizes="170vw"
+                        sizes="190vw"
                         style={{
                           width: "100%",
                           height: "auto",
