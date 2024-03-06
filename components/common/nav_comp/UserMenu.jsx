@@ -67,10 +67,10 @@ const UserMenu = ({ userDetails, logOut, isLoading, isPending, loading }) => {
             <Link href="/">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full btn btn-sm h-8 px-4 justify-start bg-transparent hover:bg-transparent dark:text-white hover:text-primary dark:hover:text-primary rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
+                className="w-full btn btn-sm h-8 px-5 justify-between bg-transparent hover:bg-transparent dark:text-white hover:text-primary dark:hover:text-primary rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
               >
                 {" "}
-                <GoHomeFill /> Home
+                Home <GoHomeFill className="text-lg" />
               </button>
             </Link>
             <button
@@ -78,10 +78,10 @@ const UserMenu = ({ userDetails, logOut, isLoading, isPending, loading }) => {
                 logOut();
                 setIsOpen(false);
               }}
-              className="w-full btn btn-sm h-8 px-4 justify-start bg-transparent hover:bg-transparent dark:text-white hover:text-primary dark:hover:text-primary rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
+              className="w-full btn btn-sm h-8 px-5 justify-between bg-transparent hover:bg-transparent dark:text-white hover:text-primary dark:hover:text-primary rounded-none border-2 border-transparent hover:border-transparent hover:border-l-2 hover:border-l-primary shadow-none"
             >
               {" "}
-              <IoLogOut /> Logout
+              Logout <IoLogOut className="text-lg" />
             </button>
           </div>
         </div>

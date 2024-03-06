@@ -10,6 +10,8 @@ import AdminNotification from "./nav_comp/AdminNotification/AdminNotification";
 
 import { Autocomplete, TextField } from "@mui/material";
 import ThemeMode from "../library/ThemeMode";
+import useAuth from "@/hooks/useAuth";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
 const StyledInputBase = styled(TextField)(({ theme }) => ({
   color: "#1f2937",
@@ -83,9 +85,19 @@ const dateWithName = `${day} ${
 } ${year}`;
 
 const AdminNav = ({ setMobileOpen, mobileOpen }) => {
+  const [searchValue, setSearchValue] = React.useState("");
   const router = useRouter();
   const pathname = usePathname();
-  const [searchValue, setSearchValue] = React.useState("");
+
+  const { user, logOut, loading } = useAuth();
+  const {
+    data: userDetails = {},
+    refetch,
+    isPending,
+    isLoading,
+  } = useSecureFetch(`user/${user?.email}`, "user");
+
+  refetch();
 
   const breadcrumbs = pathname.includes("/admin_dashboard/manage_users")
     ? "Manage Users"
@@ -189,7 +201,13 @@ const AdminNav = ({ setMobileOpen, mobileOpen }) => {
 
         <AdminNotification />
 
-        <AdminMenu />
+        <AdminMenu
+          userDetails={userDetails}
+          loading={loading}
+          isLoading={isLoading}
+          isPending={isPending}
+          logOut={logOut}
+        />
       </div>
     </div>
   );
