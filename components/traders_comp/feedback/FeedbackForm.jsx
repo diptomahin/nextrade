@@ -47,7 +47,7 @@ export default function TransitionsModal({ user, secureAPI }) {
       reviewerName: user.displayName,
       reviewerEmail: user.email,
       photo: user.photoURL,
-      address: user.address,
+      // address: user?.address,
       rating,
       feedback,
     };
