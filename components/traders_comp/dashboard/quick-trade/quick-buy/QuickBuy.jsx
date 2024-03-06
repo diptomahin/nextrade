@@ -8,6 +8,7 @@ const QuickBuy = ({
   cryptoRefetch,
   flatRefetch,
   userData,
+  refetchUserData
 }) => {
   const [isLimitOpen, setIsLimitOpen] = useState(true);
 
@@ -46,6 +47,8 @@ const QuickBuy = ({
           flatCurrency={flatCurrency}
           cryptoRefetch={cryptoRefetch}
           flatRefetch={flatRefetch}
+          refetchUserData={refetchUserData}
+          userData={userData}
         />
       ) : (
         <BuyMarket
@@ -53,6 +56,8 @@ const QuickBuy = ({
           flatCurrency={flatCurrency}
           cryptoRefetch={cryptoRefetch}
           flatRefetch={flatRefetch}
+          refetchUserData={refetchUserData}
+          userData={userData}
         />
       )}
     </div>

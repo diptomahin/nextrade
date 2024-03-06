@@ -5,7 +5,7 @@ import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useUserData from "@/hooks/useUserData";
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField, styled } from "@mui/material";
+import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField, styled } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -39,15 +39,13 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const CurrencyBuy = ({ flatCurrency, flatRefetch }) => {
+const CurrencyBuy = ({ flatCurrency, flatRefetch, userData, refetchUserData }) => {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState({});
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
   const { user } = useAuth()
   const date = getDate();
-  const { userData, userDataLoading, userDataPending, userDataError, refetchUserData } =
-    useUserData();
   const { refetchNotificationsData } = useNotificationData();
   const { refetchInvestmentHistory } = useInvestmentHistory();
 
@@ -65,7 +63,7 @@ const CurrencyBuy = ({ flatCurrency, flatRefetch }) => {
 
 
   // crypto payment process
-  const handleBuyCurrency = ( ) => {
+  const handleBuyCurrency = () => {
     const usersBalance = parseFloat(userData.balance);
     const remainingBalance = usersBalance - parseFloat(investment).toFixed(2);
     const currentPrice = parseFloat(selectedCoin.price).toFixed(2);
@@ -253,9 +251,9 @@ const CurrencyBuy = ({ flatCurrency, flatRefetch }) => {
         onChange={handleInvestmentChange}
       />
       <div className="flex item-center justify-center">
-        <button onClick={handleBuyCurrency} className={`btn btn-sm h-10 border-none  font-medium rounded-full px-5 ${investment <= 0 || !selectedCoin.name ? "disabled" : "bg-primary hover:bg-primary text-white"} `}>
-          Buy now
-        </button>
+        <div className="flex item-center justify-center">
+          <Button onClick={handleBuyCurrency} variant="contained" disabled={investment <= 0 || !selectedCoin.name}>Buy now</Button>
+        </div>
       </div>
     </div>
   ) : (

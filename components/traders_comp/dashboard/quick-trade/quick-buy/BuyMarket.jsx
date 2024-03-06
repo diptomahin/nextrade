@@ -8,6 +8,8 @@ const BuyMarket = ({
   flatCurrency,
   cryptoRefetch,
   flatRefetch,
+  refetchUserData,
+  userData
 }) => {
   const [isCryptoSelected, setIsCryptoSelected] = useState(true);
   return (
@@ -46,9 +48,11 @@ const BuyMarket = ({
         <CryptoBuy
           cryptoCurrency={cryptoCurrency}
           cryptoRefetch={cryptoRefetch}
+          refetchUserData={refetchUserData}
+          userData={userData}
         />
       ) : (
-        <CurrencyBuy flatCurrency={flatCurrency} flatRefetch={flatRefetch} />
+        <CurrencyBuy flatCurrency={flatCurrency} flatRefetch={flatRefetch} refetchUserData={refetchUserData} userData={userData}/>
       )}
 
       

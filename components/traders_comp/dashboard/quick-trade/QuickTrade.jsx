@@ -16,7 +16,7 @@ const QuickTrade = () => {
   const { allCryptoCoins, cryptoRefetch } = useAllCryptoCoins();
   const { allFlatCoins, flatRefetch } = useAllFlatCoins();
 
-  const { userData, userDataLoading, userDataPending, userDataError } =
+  const { userData, userDataLoading, userDataPending, userDataError, refetchUserData } =
     useUserData();
 
   // data without real time price
@@ -165,9 +165,10 @@ const QuickTrade = () => {
           cryptoRefetch={cryptoRefetch}
           flatRefetch={flatRefetch}
           userData={userData}
+          refetchUserData={refetchUserData}
         />
       ) : (
-        <QuickSell userData={userData} />
+        <QuickSell userData={userData} refetchUserData={refetchUserData}/>
       )}
     </div>
   );
