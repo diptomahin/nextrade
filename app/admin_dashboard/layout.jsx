@@ -4,25 +4,39 @@ import { useState } from "react";
 import AdminNav from "@/components/common/AdminNav";
 import AdminSideNav from "@/components/common/AdminSideNav";
 import AdminChecker from "@/routes/AdminChecker";
+import { usePathname } from "next/navigation";
 
 const AdminDashboard = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isActiveMenu, setIsActiveMenu] = useState(false);
+  const pathname = usePathname();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-
   return (
     <AdminChecker>
-      <div className="min-h-screen bg-zinc-100 text-black dark:bg-secondary dark:text-zinc-100  font-montserrat">
-        <div className="fixed top-0 w-full h-16  3xl:pl-[220px] z-40 bg-zinc-100 text-black dark:bg-secondary dark:text-zinc-100">
+      <div className="min-h-screen bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100 font-montserrat">
+        <div
+          className={`fixed top-0 w-full h-16 transition-all duration-200 ease-out ${
+            isActiveMenu ? "3xl:pl-[80px]" : "3xl:pl-[200px]"
+          }  z-40 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100`}
+        >
           <AdminNav setMobileOpen={setMobileOpen} mobileOpen={mobileOpen} />
         </div>
-        <div className="hidden  3xl:block fixed h-full w-[220px] z-50 bg-zinc-100 text-black dark:bg-secondary dark:text-zinc-100">
-          <AdminSideNav />
+        <div
+          className={`hidden 3xl:block fixed h-full transition-all duration-200 ease-out ${
+            isActiveMenu ? " w-[80px]" : " w-[200px]"
+          } z-50 bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100`}
+        >
+          <AdminSideNav
+            isActiveMenu={isActiveMenu}
+            setIsActiveMenu={setIsActiveMenu}
+            pathname={pathname}
+          />
         </div>
-        <div className="block  3xl:hidden bg-zinc-100 text-black dark:bg-secondary dark:text-zinc-100">
+        <div className="block  3xl:hidden bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
           <Drawer
             sx={{
               "& .MuiDrawer-paper": {
@@ -44,7 +58,11 @@ const AdminDashboard = ({ children }) => {
           </Drawer>
         </div>
 
-        <div className="mx-5  3xl:ml-[240px] pt-[84px] pb-5 bg-zinc-100 text-black dark:bg-secondary dark:text-zinc-100">
+        <div
+          className={`mx-4 lg:mx-7 transition-all duration-200 ease-out  ${
+            isActiveMenu ? "3xl:ml-[108px]" : "3xl:ml-[228px]"
+          } pt-[93px] pb-7`}
+        >
           {children}
         </div>
       </div>

@@ -5,11 +5,13 @@ import logo from "../../assets/logo/NexTrade_Favicon-Original.png";
 import logoOriginal from "../../assets/logo/NexTrade-Logo-Original.png";
 import SideNavLinks from "./nav_comp/SideNavLinks";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { CgMenuLeft } from "react-icons/cg";
 
-const TradersDashboardSidebar = ({ isActiveMenu, setIsActiveMenu }) => {
-  const pathname = usePathname();
+const TradersDashboardSidebar = ({
+  isActiveMenu,
+  setIsActiveMenu,
+  pathname,
+}) => {
   return (
     <div className="relative h-full w-full bg-white dark:bg-tertiary flex flex-col gap-2 py-3 shadow">
       <Link href="/" className="pl-3 mt-1 mb-3">
