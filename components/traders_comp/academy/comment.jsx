@@ -3,6 +3,7 @@ import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef } from "react";
+import { useMemo } from 'react';
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
@@ -16,14 +17,13 @@ const Comment = ({ articleId }) => {
     },
   });
 
-  console.log(articles);
 
   const commentText = useRef();
 
   const handelComment = () => {
     const commentTextValue = commentText.current.value;
     const comment = { commentTextValue };
-    axiosPublic.patch(`/articles/${articleId}`, comment).then((res) => {
+    axiosPublic.patch(`/articles/comments/${articleId}`, comment).then((res) => {
       console.log(res.data);
       refetch();
     })
@@ -32,8 +32,8 @@ const Comment = ({ articleId }) => {
   };
 
   // articles view count
-  const count = 1;
-  const viewCount = { count };
+  const viewCount = useMemo(() => ({ count: 1 }), []);
+
 
   useEffect(() => {
     axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
@@ -47,7 +47,6 @@ const Comment = ({ articleId }) => {
         <div className="mt-1">
           <form className="lg:w-1/2">
             <label
-              for="message"
               className="block mb-2 font-medium text-gray-900 dark:text-white"
             >
               Your info will not be published*
@@ -86,7 +85,7 @@ const Comment = ({ articleId }) => {
             <div className="w-full ">
               <div className="bg-[#474747] rounded-lg p-3 ">
                 <h1 className="font-bold">Jackson Hayes</h1>
-                <p className="text-sm">Wow, Thanks Man😱</p>
+                <p className="text-sm">{articles.comment}</p>
               </div>
               <p className="flex gap-3 text-sm mt-1">
                 <span>like</span>
