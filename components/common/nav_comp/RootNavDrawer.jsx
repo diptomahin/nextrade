@@ -49,17 +49,17 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
           </div>
 
           {/* logo */}
-          <Link href="/" className="flex-1 block md:hidden">
+          <Link href="/" className="md:flex-1 block md:hidden">
             <Image src={logo} alt="Logo" width={40} height={"auto"} />
           </Link>
           {user?.email ? (
-            <div className="flex-1 flex items-center justify-end">
+            <div className="md:flex-1 flex items-center justify-end">
               <button
                 onClick={() => {
                   logOut();
                   setIsActive(false);
                 }}
-                className="btn btn-sm w-28 h-9 pl-5 pr-0 bg-white hover:bg-white text-black text-nowrap text-xs md:text-sm font-medium shadow-none border-none rounded-md justify-start hover:gap-4 transition-all duration-300 ease-in-out"
+                className="btn btn-sm w-24 md:w-28 h-9 pl-5 pr-0 bg-white hover:bg-white text-black text-nowrap text-xs md:text-sm font-medium shadow-none border-none rounded-md justify-start hover:gap-4 transition-all duration-300 ease-in-out"
               >
                 Logout
                 <IoIosLogOut />
