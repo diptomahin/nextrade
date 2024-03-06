@@ -1,43 +1,37 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Icon1 from "../../assets/Services/icon-1.png";
-import Icon2 from "../../assets/Services/icon-2.png";
-import Icon3 from "../../assets/Services/icon-3.png";
-import Icon4 from "../../assets/Services/icon-4.png";
-import Icon5 from "../../assets/Services/icon-5.png";
-import Icon6 from "../../assets/Services/icon-6.png";
+import Icon1 from "../../assets/Services/stock.png";
+import Icon2 from "../../assets/Services/platform.png";
+import Icon3 from "../../assets/Services/analysis.png";
+import Icon4 from "../../assets/Services/content.png";
+import Icon5 from "../../assets/Services/exchange.png";
+import Icon6 from "../../assets/Services/trade.png";
 import Container from "@/components/library/Container";
 import { motion } from "framer-motion";
 import { fadeIn } from "../utils/variants";
 import Title from "@/components/library/Title";
-import Link from "next/link";
-import Button from "../library/Button";
+import Subtitle from "../library/Subtitle";
 
 const Services = () => {
   return (
     <Container className="py-20">
-      <Title> Service We Offer</Title>
-      <motion.p
-        variants={fadeIn("up", 0.2)}
+      <Title>Explore Our Trading Services</Title>
+      <Subtitle>
+        Discover essential tools for successful trading. From market insights to
+        user-friendly platforms, we offer everything you need to trade with
+        confidence.
+      </Subtitle>
+
+      <motion.div
+        variants={fadeIn("up", 0.15)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="text-center text-darkGray font-medium"
+        className="grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray"
       >
-        We offer the best services around from installations to repairs,
-        maintenance, and more!
-      </motion.p>
-
-      <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6 mt-10 text-darkGray">
         {/* cart 1  */}
-        <motion.div
-          variants={fadeIn("right", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
-        >
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon1}
@@ -46,22 +40,15 @@ const Services = () => {
               height={40}
               placeholder="blur"
             />
-            <h3 className="font-semibold">Trading Education and Training</h3>
+            <h3 className="font-semibold">Real Time Market Updates</h3>
           </div>
           <p className="text-sm font-medium mt-3 text-darkGray">
-            Equip yourself with the knowledge and skills needed for successful
-            trading through comprehensive educational programs, workshops, and
-            training sessions.
+            Get instant updates on market prices, news, and events to make
+            informed decisions.
           </p>
-        </motion.div>
+        </div>
         {/* cart 2  */}
-        <motion.div
-          variants={fadeIn("down", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
-        >
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon3}
@@ -70,23 +57,16 @@ const Services = () => {
               height={40}
               placeholder="blur"
             />
-            <h3 className="font-semibold">Market Analysis and Insights</h3>
+            <h3 className="font-semibold">Tools for Technical Analysis</h3>
           </div>
 
           <p className="text-sm font-medium mt-3 text-darkGray">
-            Stay ahead of market trends with in-depth analysis and actionable
-            insights, enabling informed decision-making for your trading
-            activities.
+            Access easy-to-use charts and tools to analyze market trends and
+            find trading opportunities.
           </p>
-        </motion.div>
+        </div>
         {/* cart 3  */}
-        <motion.div
-          variants={fadeIn("left", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
-        >
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon2}
@@ -95,25 +75,16 @@ const Services = () => {
               height={40}
               placeholder="blur"
             />
-            <h3 className="font-semibold">
-              Cryptocurrency Investment Strategies
-            </h3>
+            <h3 className="font-semibold">Educational Resources</h3>
           </div>
 
           <p className="text-sm font-medium mt-3 text-darkGray">
-            Navigate the complexities of the cryptocurrency market with
-            specialized strategies designed to maximize returns and minimize
-            volatility.
+            Learn from our articles, tutorials, and videos to improve your
+            trading skills.
           </p>
-        </motion.div>
+        </div>
         {/* cart 4  */}
-        <motion.div
-          variants={fadeIn("right", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
-        >
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
             <Image
               src={Icon4}
@@ -122,24 +93,35 @@ const Services = () => {
               height={40}
               placeholder="blur"
             />
-            <h3 className="font-semibold">Real-time Market Alerts</h3>
+            <h3 className="font-semibold">User Friendly Platform</h3>
           </div>
 
           <p className="text-sm font-medium mt-3 text-darkGray">
-            Receive timely alerts on market movements, news, and key events,
-            ensuring you stay informed and can act promptly to capitalize on
-            emerging opportunities.
+            Trade seamlessly with our intuitive platform, equipped with advanced
+            features.
           </p>
-        </motion.div>
+        </div>
         {/* cart 5  */}
-        <motion.div
-          variants={fadeIn("up", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
-        >
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
           <div className="w-full flex items-center justify-start gap-3">
+            <Image
+              src={Icon5}
+              alt="Trad Icon"
+              width={40}
+              height={40}
+              className="rounded-md"
+            />
+            <h3 className="font-semibold">Diverse Asset Classes</h3>
+          </div>
+
+          <p className="text-sm font-medium mt-3 text-darkGray">
+            Explore a wide range of asset classes including currencies and
+            cryptocurrencies for diversified trading opportunities.
+          </p>
+        </div>
+        {/* cart 6  */}
+        <div className="overflow-hidden 3xl:h-44 transition-all hover:-translate-y-[6px] bg-gradient-to-b from-darkOne to-darkTwo hover:from-darkTwo hover:to-darkTwo border border-b-transparent border-darkThree p-6 rounded-xl text-white duration-500 ease-in-out">
+          <div className="flex items-center justify-start gap-3">
             <Image
               src={Icon6}
               alt="Trad Icon"
@@ -147,54 +129,15 @@ const Services = () => {
               height={40}
               placeholder="blur"
             />
-            <h3 className="font-semibold">Customized Portfolio Management</h3>
+            <h3 className="font-semibold">Integrated Wallet</h3>
           </div>
 
           <p className="text-sm font-medium mt-3 text-darkGray">
-            Equip yourself with the knowledge and skills needed for successful
-            trading through comprehensive educational programs, workshops, and
-            training sessions.
+            Securely manage your funds and assets with our integrated wallet
+            service, providing convenience and peace of mind for your
+            transactions.
           </p>
-        </motion.div>
-        {/* cart 6  */}
-        <motion.div
-          variants={fadeIn("left", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className=" 3xl:h-44 bg-gradient-to-br from-darkOne to-darkTwo hover:bg-gradient-to-tl border border-darkThree shadow-xl p-6 rounded text-white"
-        >
-          <div className="w-full flex items-center justify-start gap-3">
-            <Image
-              src={Icon5}
-              alt="Trad Icon"
-              width={40}
-              height={40}
-              placeholder="blur"
-            />
-            <h3 className="font-semibold">Algorithmic Trading Solutions</h3>
-          </div>
-
-          <p className="text-sm font-medium mt-3 text-darkGray">
-            Leverage cutting-edge algorithms to automate your trading
-            strategies, ensuring precise execution and optimal returns.
-          </p>
-        </motion.div>
-      </div>
-      <motion.div
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.1 }}
-      >
-        {" "}
-        <Link
-          href="/services"
-          className="flex items-center justify-center mt-10"
-        >
-          {" "}
-          <Button>More</Button>
-        </Link>
+        </div>
       </motion.div>
     </Container>
   );
