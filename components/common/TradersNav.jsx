@@ -217,7 +217,6 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
           isLoading={isLoading}
           isPending={isPending}
           logOut={logOut}
-          pathname={pathname}
         />
       </div>
     </div>
