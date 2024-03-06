@@ -7,7 +7,13 @@ const useSpecificTransactionData = (dynamicSearch = "") => {
   const { user, loading } = useAuth();
 
   //
-  const { data, isPending, isLoading, isError, refetch } = useQuery({
+  const {
+    data = [],
+    isPending,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: [user?.email, "transactionsData"],
     queryFn: async () => {
       if (loading) {
@@ -21,7 +27,7 @@ const useSpecificTransactionData = (dynamicSearch = "") => {
   });
 
   return {
-    specificTransactionsData: data || [],
+    specificTransactionsData: data,
     refetchSpecificTransactionsData: refetch,
     SpecificTransactionsDataLoading: isLoading,
     SpecificTransactionsDataPending: isPending,
