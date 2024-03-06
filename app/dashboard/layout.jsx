@@ -5,11 +5,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import TradersNav from "@/components/common/TradersNav";
 import TradersSideNav from "@/components/common/TradersSideNav";
 import TradersChecker from "@/routes/TradersChecker";
+import { usePathname } from "next/navigation";
 const queryClient = new QueryClient();
 
 const Dashboard = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isActiveMenu, setIsActiveMenu] = useState(false);
+  const pathname = usePathname();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -34,6 +36,7 @@ const Dashboard = ({ children }) => {
             <TradersSideNav
               isActiveMenu={isActiveMenu}
               setIsActiveMenu={setIsActiveMenu}
+              pathname={pathname}
             />
           </div>
           <div className="block  3xl:hidden bg-gray-100 text-black dark:bg-secondary dark:text-zinc-100">
@@ -43,7 +46,6 @@ const Dashboard = ({ children }) => {
                   boxSizing: "border-box",
                   width: "200px",
                   border: "none",
-                  // backgroundColor: "#181e2c",
                 },
                 "@media (min-width: 1280px)": {
                   display: "none",
