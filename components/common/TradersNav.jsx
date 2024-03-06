@@ -205,10 +205,7 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
       </div>
       <div className="flex items-center gap-4 md:gap-6">
         <ThemeMode />
-        {/* <Language /> */}
 
-        {/* <Translate /> */}
-        {/* <GoogleTranslate></GoogleTranslate> */}
         <TradersNotification />
 
         <UserMenu
@@ -217,7 +214,6 @@ const TradersDashboardNavbar = ({ setMobileOpen, mobileOpen }) => {
           isLoading={isLoading}
           isPending={isPending}
           logOut={logOut}
-          pathname={pathname}
         />
       </div>
     </div>
