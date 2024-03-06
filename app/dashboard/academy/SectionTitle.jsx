@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const SectionTitle = ({ title, btnText, btnUrl }) => {
   const isDarkMode = useDarkMode();
-  const gradientColor = isDarkMode ? "white" : "black";
+  const gradientColor = isDarkMode ? "black" : "white";
   const gradientStyle = {
     display: "inline-block",
     paddingBottom: "2px",

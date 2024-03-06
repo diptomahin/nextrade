@@ -34,7 +34,7 @@ const Academy = () => {
     width: "270",
   };
 
-  const colorTheme = isDarkMode ? 'black' : 'white';
+  const colorTheme = isDarkMode ? "black" : "white";
 
 
   return (
@@ -182,13 +182,13 @@ const Academy = () => {
             {data.slice(7, 13).map((news, index) => (
               <div className="flex gap-5 my-1 2xl:mt-10 mt-5" key={index}>
                 <Link href={`/dashboard/academy/${news._id}`}>
-                  <div className="w-[200px] overflow-hidden">
+                  <div className="w-[200px] h-[150px] overflow-hidden">
                     <Image
                       className="hover:scale-110 transition duration-500 cursor-pointer object-cover"
                       src={news.thumbnail}
                       alt={news.title}
-                      width={200}
-                      height={200}
+                      width={400}
+                      height={150}
                     />
                   </div>
                 </Link>
@@ -198,8 +198,8 @@ const Academy = () => {
                     <span class="relative z-10">{news.category}</span>
                   </button>
                   <Link href={`/dashboard/academy/${news._id}`}>
-                    <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group text-white transition-all duration-300 ease-in-out">
-                      <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                    <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group dark:text-white text-black transition-all duration-300 ease-in-out">
+                      <span className="bg-left-bottom  bg-gradient-to-r from-black to-black dark:bg-gradient-to-r dark:from-white dark:to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                         {news.title}
                       </span>
                     </h3>
