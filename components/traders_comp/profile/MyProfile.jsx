@@ -1,22 +1,45 @@
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { MdEditSquare } from "react-icons/md";
 import DarkButton from "@/components/library/Button";
 import EditProfile from "./EditProfile";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import useUserData from "@/hooks/useUserData";
 
-const MyProfile = ({ refetchUserData, userData }) => {
+const MyProfile = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [errorMsg, setErrorMsg] = useState();
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
   const secureAPI = useSecureAPI();
   const router = useRouter();
+
+  const {
+    userData,
+    refetchUserData,
+    userDataLoading,
+    userDataPending,
+    userDataError,
+  } = useUserData();
+
+  if (userDataLoading || userDataPending || userDataError) {
+    return;
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,7 +68,7 @@ const MyProfile = ({ refetchUserData, userData }) => {
       style={{ minHeight: "calc(100vh - 122px)" }}
       className="flex justify-center"
     >
-      <div className="w-full bg-white dark:bg-tertiary flex flex-col gap-10 rounded-xl px-5 pb-8 shadow">
+      <div className="w-full flex flex-col gap-10 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
         <div className="w-full flex items-center justify-between border-b border-dashed dark:border-darkThree px-0 py-3 md:p-5">
           <h2 className="text-sm sm:text-base md:text-xl font-semibold">
             My Profile
@@ -147,7 +170,10 @@ const MyProfile = ({ refetchUserData, userData }) => {
                 </p>
               </div>
 
-              <button onClick={handleClickOpen} className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded-xl">
+              <button
+                onClick={handleClickOpen}
+                className="btn btn-sm px-5 h-8 bg-red-600 hover:bg-red-600 border-none text-white text-xs rounded-xl"
+              >
                 Delete Account
               </button>
             </div>
@@ -159,23 +185,25 @@ const MyProfile = ({ refetchUserData, userData }) => {
         open={open}
         onClose={handleClose}
         PaperProps={{
-          component: 'form',
+          component: "form",
           onSubmit: (event) => {
             event.preventDefault();
             const formData = event.target;
             const deleteEmail = formData.email.value;
             // console.log(deleteEmail, userData);
 
-            if(deleteEmail !== user.email){
-              setErrorMsg("Email does not match !!")
+            if (deleteEmail !== user.email) {
+              setErrorMsg("Email does not match !!");
               return;
             }
 
-            secureAPI.post(`/deleteUserFromFirebase/${userData.userID}`)
-              .then(res => {
+            secureAPI
+              .post(`/deleteUserFromFirebase/${userData.userID}`)
+              .then((res) => {
                 if (res.data.success) {
-                  secureAPI.delete(`/all-users/${userData._id}/${user.email}`)
-                    .then(res2 => {
+                  secureAPI
+                    .delete(`/all-users/${userData._id}/${user.email}`)
+                    .then((res2) => {
                       if (res2.data.deletedCount > 0) {
                         Swal.fire({
                           title: "Deleted!",
@@ -183,9 +211,9 @@ const MyProfile = ({ refetchUserData, userData }) => {
                           icon: "success",
                           timer: 1500,
                         });
-                        router.push("/login")
+                        router.push("/login");
                       }
-                    })
+                    });
                 } else {
                   Swal.fire({
                     title: "failed!",
@@ -194,7 +222,7 @@ const MyProfile = ({ refetchUserData, userData }) => {
                     timer: 1500,
                   });
                 }
-              })
+              });
 
             handleClose();
           },
@@ -215,15 +243,18 @@ const MyProfile = ({ refetchUserData, userData }) => {
             label="Email Address"
             type="email"
             fullWidth
-
           />
-          {
-            errorMsg && <p className="font-semibold text-red-700 text-sm">{errorMsg}</p>
-          }
+          {errorMsg && (
+            <p className="font-semibold text-red-700 text-sm">{errorMsg}</p>
+          )}
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>Cancel</Button>
-          <Button type="submit" variant="contained" color="error">Delete</Button>
+          <Button variant="outlined" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="contained" color="error">
+            Delete
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
