@@ -75,7 +75,7 @@ const articlePage = async ({ params }) => {
           {tagsArray.map((tag, index) => (
             <span
               key={index}
-              className="inline-block bg-[#1e273d] rounded-md px-2 py-1 mr-2 mt-2 hover:text-blue-500 cursor-pointer lg:text-xl text-[16px] text-white"
+              className="inline-block bg-white dark:bg-[#1e222d] rounded-md px-2 py-1 mr-2 mt-2 hover:text-blue-500 cursor-pointer lg:text-xl text-[16px] text-black dark:text-white"
             >
               {tag}
             </span>
