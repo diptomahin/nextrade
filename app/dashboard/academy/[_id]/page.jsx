@@ -44,9 +44,9 @@ const articlePage = async ({ params }) => {
                 <p className="text-[#9d9d9d]">
                   {moment(article.date).format("ll")} |
                 </p>
-                {/* <p className="text-[#9d9d9d] ml-1">
+                <p className="text-[#9d9d9d] ml-1">
                   {article.viewCount ? `${article.viewCount} Views` : "0 Views"}
-                </p> */}
+                </p>
               </div>
             </div>
           </div>
