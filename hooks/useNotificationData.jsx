@@ -14,7 +14,7 @@ const useNotificationData = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: [user?.email, "notifications"],
+    queryKey: ["notifications", user?.email],
     queryFn: async () => {
       if (loading) {
         return;

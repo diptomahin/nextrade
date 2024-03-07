@@ -14,13 +14,10 @@ import Link from "next/link";
 const Transactions = () => {
   const {
     specificTransactionsData,
-    refetchSpecificTransactionsData,
     SpecificTransactionsDataLoading,
     SpecificTransactionsDataPending,
     SpecificTransactionsDataError,
   } = useSpecificTransactionData();
-  refetchSpecificTransactionsData();
-
   if (
     SpecificTransactionsDataLoading ||
     SpecificTransactionsDataPending ||
@@ -29,6 +26,7 @@ const Transactions = () => {
     return;
   }
 
+  console.log(specificTransactionsData);
   return (
     <div className="xl:col-span-6 3xl:col-span-4 w-full bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
       <div className="flex flex-wrap items-center justify-between  border-b pb-2 dark:border-b-darkThree mb-5">
@@ -121,7 +119,11 @@ const Transactions = () => {
                     sx={{ border: "none", paddingX: "0px" }}
                     className="text-black dark:text-white"
                   >
-                    {row?.date?.day}/{row?.date?.month}/{row?.date?.year}
+                    {row?.date?.day +
+                      "/" +
+                      row?.date?.month +
+                      "/" +
+                      row?.date?.year}
                   </TableCell>
                 </TableRow>
               ))}
@@ -129,10 +131,7 @@ const Transactions = () => {
           </Table>
         </TableContainer>
       ) : (
-        <div
-          onClick={() => setIsOpenDot(false)}
-          className="text-center font-bold"
-        >
+        <div className="text-center font-bold">
           Currently, no transaction history is available.
         </div>
       )}

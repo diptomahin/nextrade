@@ -12,7 +12,7 @@ const usePortfolioSellHistory = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [user?.email, "profitLoss"],
+    queryKey: ["profitLoss", user?.email],
     queryFn: async () => {
       if (loading) {
         return;

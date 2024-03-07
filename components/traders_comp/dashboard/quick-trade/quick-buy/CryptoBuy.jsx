@@ -1,11 +1,20 @@
-"use client"
+"use client";
 import getDate from "@/components/utils/date";
 import useAuth from "@/hooks/useAuth";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import useSecureFetch from "@/hooks/useSecureFetch";
 import styled from "@emotion/styled";
-import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -16,7 +25,6 @@ const CssTextField = styled(TextField)({
   },
   "& input": {
     color: "#71717a", // Text color for the input
-
   },
   "& label.Mui-focused": {
     color: "#40a0ff",
@@ -28,7 +36,7 @@ const CssTextField = styled(TextField)({
     "& fieldset": {
       borderColor: "#B2BAC2",
       color: "#E0E3E7",
-      borderRadius: "40px"
+      borderRadius: "40px",
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
@@ -39,16 +47,19 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData }) => {
-  const [isOpenSelect, setIsOpenSelect] = useState(false);
+const CryptoBuy = ({ cryptoCurrency, userData, refetchUserData }) => {
   const [selectedCoin, setSelectedCoin] = useState({});
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
-  const { user } = useAuth()
+  const { user } = useAuth();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
   const { refetchInvestmentHistory } = useInvestmentHistory();
 
+  const { refetch } = useSecureFetch(`/sidePortfolio?email=${user.email}`, [
+    "purchased-asset",
+    user?.email,
+  ]);
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
     setInvestment(newInvestment);
@@ -58,9 +69,8 @@ const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData })
     const getSelectedCoin = cryptoCurrency.find(
       (asset) => asset._id === event.target.value
     );
-    setSelectedCoin(getSelectedCoin)
+    setSelectedCoin(getSelectedCoin);
   };
-
 
   // crypto payment process
   const handleBuyCrypto = () => {
@@ -125,7 +135,9 @@ const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData })
     }
 
     Swal.fire({
-      title: `Are you sure to purchase ${parseInt(portion)}% of a ${selectedCoin.name}?`,
+      title: `Are you sure to purchase ${parseInt(portion)}% of a ${
+        selectedCoin.name
+      }?`,
       text: `It will cost $${investment}`,
       icon: "warning",
       showCancelButton: true,
@@ -145,8 +157,9 @@ const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData })
                 .then((res) => {
                   if (res.data.insertedId) {
                     secureAPI.post("/adminNotifications", notificationInfo);
-                    refetchUserData;
+                    refetchUserData();
                     refetchNotificationsData();
+                    refetch();
                     Swal.fire({
                       title: `Coin Purchase successful!`,
                       text: `Best of luck`,
@@ -177,25 +190,25 @@ const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData })
     });
   };
 
-
-  return isOpenSelect ? (
+  return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-5">
+      <div className="w-full">
         <FormControl
           fullWidth
           className=""
           sx={{
-            borderBottom: "1px solid white",
-            borderLeft: "1px solid white",
-            borderRight: "1px solid white",
+            border: "1px solid #40a0ff",
             borderRadius: "40px",
           }}
         >
-          <InputLabel id="demo-simple-select-label" style={{ color: "#40a0ff" }}>
+          <InputLabel
+            id="demo-simple-select-label"
+            style={{ color: "#40a0ff" }}
+          >
             Select
           </InputLabel>
           <Select
-            sx={{ border: "white", borderRadius: "40px" }}
+            sx={{ border: "#40a0ff", borderRadius: "40px" }}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Form"
@@ -220,14 +233,6 @@ const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData })
             ))}
           </Select>
         </FormControl>
-        <div className="flex items-center justify-center gap-2">
-          <button
-            onClick={() => setIsOpenSelect(false)}
-            className="btn btn-sm h-11 border-none bg-red-700 hover:bg-red-800 dark:bg-quaternary dark:hover:bg-quaternary text-white dark:text-tertiary font-medium rounded-full px-5"
-          >
-            Cancel
-          </button>
-        </div>
       </div>
       <CssTextField
         required
@@ -237,35 +242,31 @@ const CryptoBuy = ({ cryptoCurrency, cryptoRefetch, userData, refetchUserData })
         id="outlined-number"
         label={`Investment amount`}
         type="number"
-        variant="outlined"
+        sx={{
+          border: "1px solid #40a0ff",
+          borderRadius: "40px",
+        }}
         InputLabelProps={{
           shrink: true,
         }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <p className="text-zinc-500">$</p>
+              <p className="dark:text-white">$</p>
             </InputAdornment>
           ),
         }}
         onChange={handleInvestmentChange}
       />
       <div className="flex item-center justify-center">
-        <Button onClick={handleBuyCrypto} variant="contained" disabled={investment <= 0 || !selectedCoin.name }>Buy now</Button>
+        <Button
+          onClick={handleBuyCrypto}
+          variant="contained"
+          disabled={investment <= 0 || !selectedCoin.name}
+        >
+          Buy now
+        </Button>
       </div>
-    </div>
-  ) : (
-    <div className="flex items-center gap-5">
-      <div className="flex-1 border border-black dark:border-none dark:bg-quaternary flex items-center justify-between px-5 py-[10px] rounded-full">
-        <p className="text-sm font-medium">Coin Name</p>
-        <p className="font-medium">Current price</p>
-      </div>
-      <button
-        onClick={() => setIsOpenSelect(true)}
-        className="btn btn-sm h-10 border-none bg-primary hover:bg-primary/65 dark:bg-quaternary dark:hover:bg-quaternary text-white font-medium rounded-full px-5"
-      >
-        Select
-      </button>
     </div>
   );
 };

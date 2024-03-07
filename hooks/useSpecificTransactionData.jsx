@@ -14,7 +14,7 @@ const useSpecificTransactionData = (dynamicSearch = "") => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: [user?.email, "transactionsData"],
+    queryKey: ["transactionsData", user?.email],
     queryFn: async () => {
       if (loading) {
         return;

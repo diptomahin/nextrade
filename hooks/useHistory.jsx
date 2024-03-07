@@ -14,7 +14,7 @@ const useHistory = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: [user?.email, "history"],
+    queryKey: ["history", user?.email],
     queryFn: async () => {
       if (loading) {
         return;
