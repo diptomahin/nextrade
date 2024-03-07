@@ -6,6 +6,7 @@ import StartTrading from "@/components/home_comp/StartTrading";
 import TradingStep from "@/components/home_comp/TradingStep";
 import WhyNexTrade from "@/components/home_comp/WhyNexTrade";
 import Testimonials from "@/components/home_comp/Testimonials";
+import Modal from "@/components/home_comp/Modal";
 
 // add title in metadata
 export const metadata = {
@@ -21,10 +22,10 @@ export default function Home() {
       <InvestSolutions />
       <StartTrading />
       <Services />
-      {/* <Subscription /> */}
       <WhyNexTrade />
       <Testimonials />
       <Map />
+      <Modal />
     </main>
   );
 }

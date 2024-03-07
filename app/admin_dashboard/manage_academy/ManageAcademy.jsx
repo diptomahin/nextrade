@@ -66,52 +66,58 @@ const ManageAcademy = () => {
 
   // make the API
   const handelPostNews = async (e) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const title = form.get("title");
-    const description = form.get("description");
-    const photo = form.get("photo");
+  e.preventDefault();
+  const form = new FormData(e.currentTarget);
+  const title = form.get("title");
+  const description = form.get("description");
+  const photo = form.get("photo");
 
-    const toastId = toast.loading("Progress...", { duration: 2000 });
+  const toastId = toast.loading("Progress...", { duration: 2000 });
 
-    // image upload to imgbb and then get an url
+  try {
     if (photo instanceof File) {
-      try {
-        const formData = new FormData();
-        formData.append("image", photo);
+      const formData = new FormData();
+      formData.append("image", photo);
 
-        // image upload to imgbb and then get an url
-        const res = await axiosPublic.post(image_hosting_api, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      const res = await axiosPublic.post(image_hosting_api, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      const imageUrl = res.data.data.url;
+      const thumbnail = imageUrl;
+      const date = new Date();
+
+      const articlesInfo = {
+        title,
+        description,
+        thumbnail,
+        category,
+        tags,
+        date,
+        comment,
+      };
+
+      const response = await axiosPublic.post("/articles", articlesInfo);
+      e.target.reset();
+      
+      if (response.data.insertedId) {
+        toast.success("Post Added Successfully", {
+          id: toastId,
+          duration: 3000,
         });
-        const imageUrl = res.data.data.url;
-        const thumbnail = imageUrl;
-        const date = new Date();
-
-        const articlesInfo = {
-          title,
-          description,
-          thumbnail,
-          category,
-          tags,
-          date,
-          comment,
-        };
-
-        axiosPublic.post("/articles", articlesInfo).then((res) => {
-          e.target.reset();
-          if (res.data.insertedId) {
-            toast.success("Post Added Successfully", {
-              id: toastId,
-              duration: 3000,
-            });
-          }
-        });
-      } catch (error) {}
+      } else {
+        toast.error("Failed to add post");
+      }
+    } else {
+      toast.error("Please select a photo");
     }
-  };
+  } catch (error) {
+    console.error("Error posting news:", error);
+    toast.error("Failed to add post");
+  }
+};
+
 
   return (
     <div className="">
