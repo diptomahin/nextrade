@@ -22,6 +22,23 @@ import usePurchasedAssets from "@/hooks/usePurchasedAssets";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import axios from "axios";
 
+// chart tooltip customize
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip bg-[#e4e4e7] dark:bg-black dark:text-white text-black p-3 rounded-md">
+        
+        {payload.map((entry, index) => (
+          <p key={`value-${index}`} className="tooltip-value text-start font-semibold ">
+            {`${entry.dataKey}: ${entry.value} USD`}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
 
 const Balance = () => {
   const {user} = useAuth()
@@ -437,7 +454,8 @@ const Balance = () => {
           >
             <BarChart data={data}>
               {/* <XAxis data={data} /> */}
-              <Tooltip />
+              <Tooltip content={<CustomTooltip />} />
+
               <Legend />
               <Bar dataKey="Balance" fill="#40a0ff" name="Balance" />
               <Bar dataKey="Assets" fill="#eab308" name="Assets" />
