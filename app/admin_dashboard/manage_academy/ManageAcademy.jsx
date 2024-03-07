@@ -72,7 +72,7 @@ const ManageAcademy = () => {
   const description = form.get("description");
   const photo = form.get("photo");
 
-  const toastId = toast.loading("Progress...", { duration: 2000 });
+  const toastId = toast.loading("Progress...", { duration: 1000 });
 
   try {
     if (photo instanceof File) {
@@ -95,7 +95,6 @@ const ManageAcademy = () => {
         category,
         tags,
         date,
-        comment,
       };
 
       const response = await axiosPublic.post("/articles", articlesInfo);
@@ -106,6 +105,7 @@ const ManageAcademy = () => {
           id: toastId,
           duration: 3000,
         });
+        setFileName('');
       } else {
         toast.error("Failed to add post");
       }
