@@ -27,7 +27,6 @@ const ContactForm = () => {
         "eKB9bGUsvbE937RGN"
       );
       setSubmitMessage({ type: "success", text: "Email sent successfully" });
-      console.log("Email sent successfully");
       reset();
     } catch (error) {
       setSubmitMessage({
@@ -59,7 +58,7 @@ const ContactForm = () => {
               htmlFor="name"
               className="font-semibold text-primary text-xl pb-1"
             >
-              Name 
+              Name
             </label>
             <input
               {...register("name", validationOptions.name)}
@@ -93,7 +92,7 @@ const ContactForm = () => {
               htmlFor="email"
               className="font-semibold text-primary text-xl pb-1"
             >
-              Email 
+              Email
             </label>
             <input
               {...register("email", validationOptions.email)}
@@ -109,7 +108,7 @@ const ContactForm = () => {
               htmlFor="company"
               className="font-semibold text-primary text-xl pb-1"
             >
-              Company 
+              Company
             </label>
             <input
               {...register("company")}
@@ -123,7 +122,10 @@ const ContactForm = () => {
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="message" className="font-semibold text-primary text-xl pb-1">
+        <label
+          htmlFor="message"
+          className="font-semibold text-primary text-xl pb-1"
+        >
           Leave us a message :
         </label>
         <textarea

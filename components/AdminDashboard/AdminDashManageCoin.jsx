@@ -99,7 +99,6 @@ const AdminDashManageCoin = () => {
           const data = response.data.rates;
           const updatedAssets = flatCurrency.map((cur) => {
             const currencyKey = cur.key;
-            // console.log(currencyKey)
             return createFlatCurrencyData(
               cur._id,
               cur.name,
