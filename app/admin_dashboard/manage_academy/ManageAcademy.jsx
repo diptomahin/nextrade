@@ -63,7 +63,7 @@ const ManageAcademy = () => {
     { value: "RiskManagement", label: "RiskManagement" },
   ];
 
-  // post in database
+  // make the API
   const handelPostNews = async (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -88,7 +88,7 @@ const ManageAcademy = () => {
         const imageUrl = res.data.data.url;
         const thumbnail = imageUrl;
         const date = new Date();
-        const comment = null
+        const comment = null;
 
         const articlesInfo = {
           title,
@@ -97,7 +97,7 @@ const ManageAcademy = () => {
           category,
           tags,
           date,
-          comment
+          comment,
         };
 
         axiosPublic.post("/articles", articlesInfo).then((res) => {
@@ -122,7 +122,7 @@ const ManageAcademy = () => {
         {/* title, description, image */}
         <div className="2xl:col-span-3 mr-5">
           <div>
-            <label className="flex justify-center font-semibold text-4xl text-white">
+            <label className="flex justify-center font-semibold text-4xl dark:text-white text-black">
               Add New Post
             </label>
             <input
@@ -131,10 +131,10 @@ const ManageAcademy = () => {
               name="title"
               required
               aria-describedby="helper-text-explanation"
-              className="bg-darkTwo border border-gray-300 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded mt-5"
+              className="dark:bg-darkTwo bg-white border border-gray-300 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded mt-5"
               placeholder="Add a title"
             />
-            <div className="w-full mt-4 mb-4 border border-gray-200 rounded-lg bg-darkTwo text-white dark:bg-gray-700 dark:border-gray-600">
+            <div className="w-full mt-4 mb-4 border border-gray-200 rounded-lg dark:bg-darkTwo bg-white text-white">
               <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
                 <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
                   <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4">
@@ -278,13 +278,13 @@ const ManageAcademy = () => {
                   <div className="tooltip-arrow" data-popper-arrow></div>
                 </div>
               </div>
-              <div className="px-4 py-2 bg-darkTwo rounded-b-lg dark:bg-gray-800">
+              <div className="px-4 py-2 dark:bg-darkTwo bg-white rounded-b-lg">
                 <label className="sr-only cursor-pointer">Publish post</label>
                 <textarea
                   id="editor"
                   name="description"
                   rows="15"
-                  className="block w-full px-0 text-sm text-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2 bg-darkTwo"
+                  className="block w-full px-0 text-sm text-white border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2 dark:bg-darkTwo bg-white"
                   placeholder="Write an article..."
                   required
                   style={{ outline: "none" }}
@@ -297,7 +297,7 @@ const ManageAcademy = () => {
         {/* submit, tags, publisher */}
         <div className="col-span-1 mb-10">
           <div>
-            <h1 className="mt-[13px] mb-5 flex justify-center text-xl font-semibold text-white">
+            <h1 className="mt-[13px] mb-5 flex justify-center text-xl font-semibold dark:text-white text-black">
               Select a Categories
             </h1>
             <Select
@@ -309,21 +309,37 @@ const ManageAcademy = () => {
               options={CategoryOptions}
               placeholder="Select a Category"
               styles={{
-                control: (provided) => ({
+                control: (provided, state) => ({
                   ...provided,
-                  backgroundColor: "#212a3f", // Set background color to black
+                  backgroundColor: state.isFocused ? "#212a3f" : "#1d2334", // Set background color to black when focused, else use dark background
                   color: "white",
-                  border: "1px solid white", // Add border for contrast
-                  borderRadius: "4px", // Optional: Add border radius for rounded corners
+                  border: "1px solid white",
+                  borderRadius: "4px",
                 }),
                 singleValue: (provided) => ({
                   ...provided,
-                  color: "darkGray", // Set text color of selected option to white
+                  color: "white",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected
+                    ? "#3aba69"
+                    : state.isFocused
+                    ? "#2c3750"
+                    : "#212a3f",
+                  color: state.isSelected ? "white" : "darkGray",
+                  "&:hover": {
+                    backgroundColor: "#2c3750",
+                  },
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#1d2334",
                 }),
               }}
             />
 
-            <h1 className="my-5 text-center justify-center text-xl font-semibold text-white">
+            <h1 className="my-5 text-center justify-center text-xl font-semibold dark:text-white text-black">
               Add Your Tags
             </h1>
 
@@ -335,19 +351,53 @@ const ManageAcademy = () => {
               options={TagsOptions}
               placeholder="Select or Create Tags"
               styles={{
-                control: (provided) => ({
+                control: (provided, state) => ({
                   ...provided,
-                  backgroundColor: "#212a3f",
+                  backgroundColor: state.isFocused ? "#212a3f" : "#1d2334",
                   color: "white",
                   border: "1px solid white",
                   borderRadius: "4px",
                 }),
                 singleValue: (provided) => ({
                   ...provided,
-                  color: "darkGray",
+                  color: "white",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected
+                    ? "#3aba69"
+                    : state.isFocused
+                    ? "#2c3750"
+                    : "#212a3f",
+                  color: state.isSelected ? "white" : "darkGray",
+                  "&:hover": {
+                    backgroundColor: "#2c3750",
+                  },
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#1d2334",
+                }),
+                multiValue: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#3aba69",
+                  borderRadius: "20px",
+                }),
+                multiValueLabel: (provided) => ({
+                  ...provided,
+                  color: "white",
+                }),
+                multiValueRemove: (provided) => ({
+                  ...provided,
+                  color: "white",
+                  ":hover": {
+                    backgroundColor: "#2c3750",
+                    color: "white",
+                  },
                 }),
               }}
             />
+
             {/* input */}
             <div>
               <Button className="mt-10 w-full cursor-pointer">
