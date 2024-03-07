@@ -122,7 +122,7 @@ const AddArticles = () => {
         {/* title, description, image */}
         <div className="2xl:col-span-3 mr-5">
           <div>
-            <label className="flex justify-center font-semibold text-4xl text-white">
+            <label className="flex justify-center font-semibold text-4xl dark:text-white text-black">
               Add New Post
             </label>
             <input
@@ -297,33 +297,46 @@ const AddArticles = () => {
         {/* submit, tags, publisher */}
         <div className="col-span-1 mb-10">
           <div>
-            <h1 className="mt-[13px] mb-5 flex justify-center text-xl font-semibold text-white">
+            <h1 className="mt-[13px] mb-5 flex justify-center text-xl font-semibold dark:text-white text-black">
               Select a Categories
             </h1>
             <Select
-              className="basic-single"
-              closeMenuOnSelect={true}
-              onChange={handleSelectChange}
-              required
-              components={animatedComponents}
-              options={CategoryOptions}
-              placeholder="Select a Category"
-              styles={{
-                control: (provided) => ({
-                  ...provided,
-                  backgroundColor: "#212a3f", // Set background color to black
-                  color: "white",
-                  border: "1px solid white", // Add border for contrast
-                  borderRadius: "4px", // Optional: Add border radius for rounded corners
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "darkGray", // Set text color of selected option to white
-                }),
-              }}
-            />
+  className="basic-single"
+  closeMenuOnSelect={true}
+  onChange={handleSelectChange}
+  required
+  components={animatedComponents}
+  options={CategoryOptions}
+  placeholder="Select a Category"
+  styles={{
+    control: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? "#212a3f" : "#1d2334", // Set background color to black when focused, else use dark background
+      color: "white",
+      border: "1px solid white",
+      borderRadius: "4px",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "white",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? "#3aba69" : state.isFocused ? "#2c3750" : "#212a3f", // Set background color of options based on state
+      color: state.isSelected ? "white" : "darkGray", // Set text color of options based on state
+      "&:hover": {
+        backgroundColor: "#2c3750", // Change background color on hover
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "#1d2334", // Set background color of the dropdown menu
+    }),
+  }}
+/>
 
-            <h1 className="my-5 text-center justify-center text-xl font-semibold text-white">
+
+            <h1 className="my-5 text-center justify-center text-xl font-semibold dark:text-white text-black">
               Add Your Tags
             </h1>
 
