@@ -15,12 +15,12 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
   const [activeTab, setActiveTab] = React.useState("");
   return (
     <div className="fixed top-0 left-0 w-full h-screen bg-primary text-white z-[1000]">
-      <div class="ripple-background">
-        <div class="circle xxl shade1"></div>
-        <div class="circle xl shade2"></div>
-        <div class="circle lg shade3"></div>
-        <div class="circle md shade4"></div>
-        <div class="circle sm shade5"></div>
+      <div className="ripple-background">
+        <div className="circle xxl shade1"></div>
+        <div className="circle xl shade2"></div>
+        <div className="circle lg shade3"></div>
+        <div className="circle md shade4"></div>
+        <div className="circle sm shade5"></div>
       </div>
       <Container className="h-full z-10">
         <div className="flex items-center justify-between gap-6 py-8">

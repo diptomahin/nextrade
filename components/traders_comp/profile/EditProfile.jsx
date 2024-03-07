@@ -15,10 +15,18 @@ import getDate from "@/components/utils/date";
 import { MdEdit } from "react-icons/md";
 import useAuth from "@/hooks/useAuth";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import useNotificationData from "@/hooks/useNotificationData";
 
 const image_hosting_key = `4696195291e937983db500161bc852ce`;
 
-const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
+const EditProfile = ({
+  userData,
+  setIsEdit,
+  refetchUserData,
+  userDataLoading,
+  userDataPending,
+  userDataError,
+}) => {
   const [hostedImage, setHostedImage] = useState(userData.photo);
   const [hostedImageInfo, setHostedImageInfo] = useState(null);
   const [imageHosting, setImageHosting] = useState(false);
@@ -33,21 +41,24 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
 
   const router = useRouter();
   const { user, updateUserPassword } = useAuth();
-  const secureAPI = useSecureAPI();
   const date = getDate();
+  const secureAPI = useSecureAPI();
+  const { refetchNotificationsData } = useNotificationData();
 
+  if (userDataLoading || userDataPending || userDataError) {
+    return;
+  }
   // update user profile
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-
-    console.log(form.newPassword.value);
 
     if (!form.newPassword.value && !form.reEnterPassword.value) {
       const toastId = toast.loading("Updating...", { duration: 10000 });
       if (imageHosting) {
         return;
       }
+
       const userDetails = {
         name: form?.fullName.value,
         username: form?.userName.value,
@@ -66,20 +77,10 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
         userDetails
       );
       if (res.data.modifiedCount > 0) {
-        console.log("13");
-        refetchUserData();
-        setIsEdit(false);
-        router.push("/dashboard/profile");
-        toast.success("User Information Updated", {
-          id: toastId,
-          duration: 5000,
-        });
-
-        
         // post notification data sen database
         const notificationInfo = {
           title: "Profile Updated",
-          description: "Your Profile has been Edited",
+          description: `Your Profile has been Edited`,
           assetKey: "",
           assetImg: "",
           assetBuyerUID: "",
@@ -90,28 +91,18 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
         };
 
         // post to  notification data in database
-
-        secureAPI
-          .post("/notifications", notificationInfo)
-          .then((res) => {
-            if (res.data.insertedId) {
-              console.log("14");
-              refetchNotificationsData();
-              refetchUserData();
-              setIsEdit(false);
-              router.push("/dashboard/profile");
-              toast.success("User Information Updated ", {
-                id: toastId,
-                duration: 5000,
-              });
-            }
-          })
-          .catch((error) => {
-            toast.error(error, {
+        secureAPI.post("/notifications", notificationInfo).then((res) => {
+          if (res?.data?.insertedId) {
+            refetchUserData();
+            refetchNotificationsData();
+            setIsEdit(false);
+            router.push("/dashboard/profile");
+            toast.success("User Information Updated", {
               id: toastId,
               duration: 5000,
             });
-          });
+          }
+        });
       }
     } else {
       if (!form.newPassword.value || !form.reEnterPassword.value) {
@@ -153,65 +144,47 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
         lastUpdate: date,
       };
 
-      // const res = await axios.put(
-      //   `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
-      //   userDetails
-      // );
-      // if (res.data.modifiedCount > 0) {
-      //   updateUserPassword(user, password)
-      //     .then(() => {
-      //       refetchUserData();
-      //       setIsEdit(false);
-      //       router.push("/dashboard/profile");
-      //       toast.success("User Information Updated", {
-      //         id: toastId,
-      //         duration: 5000,
-      //       });
+      const res = await axios.put(
+        `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
+        userDetails
+      );
+      if (res.data.modifiedCount > 0) {
+        updateUserPassword(user, form.newPassword.value)
+          .then(() => {
+            // post notification data sen database
+            const notificationInfo = {
+              title: "Profile Updated",
+              description: `Your Profile has been Edited`,
+              assetKey: "",
+              assetImg: "",
+              assetBuyerUID: "",
+              email: user.email,
+              postedDate: date,
+              location: "/dashboard/profile",
+              read: false,
+            };
 
-      //       // post notification data sen database
-      //   const passChangeNotificationInfo = {
-      //     title: "Password Changed",
-      //     description: "Your account password has been changed",
-      //     assetKey: "",
-      //     assetImg: "",
-      //     assetBuyerUID: "",
-      //     email: user.email,
-      //     postedDate: date,
-      //     location: "/dashboard/profile",
-      //     read: false,
-      //   };
-
-      //       // post to  notification data in database
-      //       secureAPI
-      //         .post("/notifications", passChangeNotificationInfo)
-      //         .then((res) => {
-      //           if (res.data.insertedId) {
-      //             console.log("26");
-      //             refetchNotificationsData();
-      //             refetchUserData();
-      //             setIsEdit(false);
-      //             router.push("/dashboard/profile");
-      //             toast.success("User Information Updated ", {
-      //               id: toastId,
-      //               duration: 5000,
-      //             });
-      //           }
-      //         })
-      //         .catch((error) => {
-      //           toast.error(error, {
-      //             id: toastId,
-      //             duration: 5000,
-      //           });
-      //         });
-      //     })
-      //     .catch((error) => {
-      //       toast.error(error.message, {
-      //         id: toastId,
-      //         duration: 5000,
-      //       });
-      //       console.log(error.message);
-      //     });
-      // }
+            // post to  notification data in database
+            secureAPI.post("/notifications", notificationInfo).then((res) => {
+              if (res?.data?.insertedId) {
+                refetchUserData();
+                refetchNotificationsData();
+                setIsEdit(false);
+                router.push("/dashboard/profile");
+                toast.success("User Information Updated", {
+                  id: toastId,
+                  duration: 5000,
+                });
+              }
+            });
+          })
+          .catch((error) => {
+            toast.error(error.message, {
+              id: toastId,
+              duration: 5000,
+            });
+          });
+      }
     }
   };
 
@@ -415,7 +388,7 @@ const EditProfile = ({ userData, setIsEdit, refetchUserData }) => {
               New Password
             </label>
             <input
-              id="newPassword"
+              id=""
               className="bg-transparent w-full border dark:border-darkThree focus:border-darkGray text-sm mt-2 px-4 py-[10px] rounded outline-none"
               type="password"
               onChange={(e) => setPassword(e.target.value)}

@@ -30,13 +30,13 @@ const MyProfile = () => {
   const router = useRouter();
 
   const {
-    userData,
+    userData = {},
     refetchUserData,
     userDataLoading,
     userDataPending,
     userDataError,
   } = useUserData();
-
+  refetchUserData();
   if (userDataLoading || userDataPending || userDataError) {
     return;
   }
@@ -87,6 +87,9 @@ const MyProfile = () => {
             userData={userData}
             setIsEdit={setIsEdit}
             refetchUserData={refetchUserData}
+            userDataError={userDataError}
+            userDataLoading={userDataLoading}
+            userDataPending={userDataPending}
           />
         ) : (
           <div className="h-full flex flex-col items-center justify-between gap-5">
@@ -99,6 +102,7 @@ const MyProfile = () => {
                     width={160}
                     height={160}
                     src={userData?.photo}
+                    priority
                     className="w-full h-full rounded-full object-top object-cover"
                   />
                 </div>
@@ -190,7 +194,6 @@ const MyProfile = () => {
             event.preventDefault();
             const formData = event.target;
             const deleteEmail = formData.email.value;
-            // console.log(deleteEmail, userData);
 
             if (deleteEmail !== user.email) {
               setErrorMsg("Email does not match !!");
