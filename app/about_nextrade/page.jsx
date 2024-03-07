@@ -112,7 +112,7 @@ const AboutNexTrade = () => {
               minWidth: 275,
               minHeight: 295,
               textAlign: "center",
-              backgroundColor: "#eff6ff",
+              backgroundColor: "#6492b7",
               borderRadius: "8px",
               transition: "1s",
               cursor: "pointer",
@@ -143,7 +143,7 @@ const AboutNexTrade = () => {
               minWidth: 275,
               minHeight: 295,
               textAlign: "center",
-              backgroundColor: "#eff6ff",
+              backgroundColor: "#6492b7",
               borderRadius: "8px",
               transition: "1s",
               cursor: "pointer",
@@ -160,7 +160,7 @@ const AboutNexTrade = () => {
               <Typography variant="h6" fontWeight="bold">
                 Invest in Shares
               </Typography>
-              <Typography sx={{ fontSize: "14px" }}>
+              <Typography sx={{ fontSize: "14px", }}>
                 Diversify your portfolio by investing in a wide range of shares.
                 Explore opportunities across industries and regions.
               </Typography>
@@ -173,7 +173,7 @@ const AboutNexTrade = () => {
               minWidth: 275,
               minHeight: 295,
               textAlign: "center",
-              backgroundColor: "#eff6ff",
+              backgroundColor: "#6492b7",
               borderRadius: "8px",
               transition: "1s",
               cursor: "pointer",

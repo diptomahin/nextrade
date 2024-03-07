@@ -1,16 +1,16 @@
-"use client"
+"use client";
 import React, { useRef, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import Button from "@/components/library/Button";
-import moment from "moment";
+import useUserData from "@/hooks/useUserData";
 
 const Comment = ({ articleId }) => {
-  const { user } = useAuth();
   const axiosPublic = usePublicAPI();
+  const isDarkMode = true;
+  const commentText = useRef();
 
   const { data: comments = [], refetch } = useQuery({
     queryKey: ["comments"],
@@ -20,17 +20,29 @@ const Comment = ({ articleId }) => {
     },
   });
 
-  const commentText = useRef();
+  const { userData, userDataError, userDataPending, userDataLoading } =
+    useUserData();
 
-  const handleComment = () => {
+  useEffect(() => {
+    const count = 1;
+    const viewCount = { count };
+    axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
+  }, [axiosPublic, articleId]);
+
+
+  if (userDataError || userDataLoading || userDataPending) {
+    return;
+  }
+  const handleComment = (e) => {
+    e.preventDefault();
     const commentTextValue = commentText.current.value;
     const date = new Date();
     const comment = {
       postId: articleId,
       text: commentTextValue,
-      email: user.email,
-      name: user.displayName,
-      photo: user.photoURL,
+      email: userData?.email || "",
+      name: userData?.name || "",
+      photo: userData?.photo || "",
       date: date.toISOString(),
     };
 
@@ -50,13 +62,9 @@ const Comment = ({ articleId }) => {
   };
 
   // Filter comments based on articleId
-  const articleComments = comments.filter((comment) => comment.postId === articleId);
-
-  useEffect(() => {
-    const count = 1;
-    const viewCount = { count };
-    axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
-  }, [axiosPublic, articleId]);
+  const articleComments = comments.filter(
+    (comment) => comment.postId === articleId
+  );
 
   return (
     <div>
@@ -91,7 +99,12 @@ const Comment = ({ articleId }) => {
             <p>Sort by: Recent</p>
           </div>
           {/* Conditionally render the <hr> element based on dark mode */}
-        <hr />
+
+          {isDarkMode ? (
+            <hr className="bg-white" />
+          ) : (
+            <hr className="bg-black" />
+          )}
           <div>
             {articleComments.map((comment, index) => (
               <div key={index} className="flex gap-2 mt-3">
@@ -125,4 +138,3 @@ const Comment = ({ articleId }) => {
 };
 
 export default Comment;
-
