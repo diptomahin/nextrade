@@ -26,7 +26,7 @@ const AdminReviews = () => {
       <Container className="py-5">
         <Swiper
           slidesPerView={20}
-          spaceBetween={5}
+          spaceBetween={4}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -42,7 +42,7 @@ const AdminReviews = () => {
               spaceBetween: 20,
             },
             1280: {
-              slidesPerView: 5,
+              slidesPerView: 3,
               spaceBetween: 20,
             },
           }}
@@ -70,7 +70,7 @@ const AdminReviews = () => {
                       readOnly
                     />
                   </div>
-                  <p className="text-xs">Address N/A</p>
+                  <p className="text-xs">{review.address || 'Address N/A'}</p>
                   <p className="text-sm mt-3">
                     &quot;{review?.feedback.slice(0, 150)}&quot;
                   </p>

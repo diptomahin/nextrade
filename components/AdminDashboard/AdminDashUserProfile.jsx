@@ -11,10 +11,10 @@ const AdminDashUserProfile = () => {
   return (
     <div className="w-full bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
       <h2 className=" font-semibold text-xl ">User Profile</h2>
-      {allUser?.slice(0, 5).map((userProfile) => (
+      {allUser?.slice(0, 7).map((userProfile) => (
         <div
           key={userProfile._id}
-          className="flex items-center gap-5 my-3 bg-whiteBg dark:bg-darkOne rounded-xl p-2"
+          className="flex items-center gap-5 my-[14px] bg-whiteBg dark:bg-darkOne rounded-xl p-2"
         >
           {userProfile?.photo ? (
             <Image
@@ -29,7 +29,7 @@ const AdminDashUserProfile = () => {
           )}
           <div className="w-full flex items-center justify-between text-sm lg:text-base text-black dark:text-white">
             <div className="">
-              <h1 className="font-semibold text-sm ">
+              <h1 className="font-semibold text-xs ">
                 {userProfile.name ? userProfile.name : "No name"}{" "}
               </h1>
               <h1 className="hidden xs:block text-gray-500 text-xs">

@@ -1,7 +1,7 @@
 "use client";
 import useArticleData from "@/hooks/useArticleData";
 import Image from "next/image";
-import Link from "next/link";
+
 
 const AdminArticle = () => {
   // articles data
@@ -12,6 +12,14 @@ const AdminArticle = () => {
     isPending,
   } = useArticleData();
 
+  articleRefetch()
+
+ 
+
+  if(isLoading || isPending) {
+    return ;
+  } 
+
   return (
     <div className="mb-5 bg-white dark:bg-quaternary rounded-xl shadow-md dark:shadow-xl p-5">
       <h2 className="text-xl font-semibold ">Latest Post News</h2>
@@ -19,10 +27,10 @@ const AdminArticle = () => {
         <>
           {articles.slice(0, 3).map((news) => (
             <div
-              className="flex gap-5 my-5 text-black dark:text-white "
+              className="xl:flex gap-5 my-5 xl:justify-between justify-center text-black dark:text-white "
               key={news._id}
             >
-              <div className=" overflow-hidden">
+              <div className=" overflow-hidden mb-5 xl:mb-0">
                 <Image
                   src={news.thumbnail}
                   alt={news.title}
@@ -32,20 +40,17 @@ const AdminArticle = () => {
                 />
               </div>
 
-              <div>
-                <button class="relative px-2 py-1 text-sm text-white rounded overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
-                  <span class="relative z-10">{news.category}</span>
+              <div className=" flex-1">
+                <button className="relative px-2 py-1 text-sm text-white rounded overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                  <span className="relative z-10">{news.category}</span>
                 </button>
-                <Link href={`/dashboard/academy/${news._id}`}>
+                
                   <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group  transition-all duration-300 ease-in-out">
                     <span className="bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                       {news.title}
                     </span>
                   </h3>
-                </Link>
-                <p className="text-gray-500">
-                  {/* {moment(news?.date).format("ll")} */}
-                </p>
+                  <p className=" dark:text-gray-400">{news.description.slice(0,150)}</p>
               </div>
             </div>
           ))}
