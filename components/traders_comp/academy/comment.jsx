@@ -102,8 +102,6 @@ const Comment = ({ articleId }) => {
               </div>
               <p className="flex gap-3 text-sm mt-1">
                 <span>like</span>
-                <span>56k </span>
-                <span>17hrs</span>
               </p>
             </div>
           </div>

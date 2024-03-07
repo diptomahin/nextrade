@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Timeline } from "react-ts-tradingview-widgets";
 import SectionTitle from "./SectionTitle";
 import Image from "next/image";
@@ -7,42 +7,29 @@ import moment from "moment";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
 import useDarkMode from "@/hooks/useDarkMode";
+import useSecureFetch from "@/hooks/useSecureFetch";
 
 const Academy = () => {
-  const [data, setData] = useState([]);
-  const [video, setVideo] = useState([]);
-  const isDarkMode = useDarkMode()
+  const isDarkMode = useDarkMode();
 
-  useEffect(() => {
-    fetch("https://nex-trade-server.vercel.app/v1/api/articles")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
+  const { data, isPending, isLoading, refetch, isError } = useSecureFetch(
+    "https://nex-trade-server.vercel.app/v1/api/articles"
+  );
 
-  useEffect(() => {
-    fetch("https://nex-trade-server.vercel.app/v1/api/articles")
-      .then((res) => res.json())
-      .then((data) => {
-        setVideo(data);
-      });
-  }, []);
-
-  const opts = {
-    height: "270",
-    width: "270",
-  };
+  if ((isError, isPending, isLoading)) {
+    return;
+  }
 
   const colorTheme = isDarkMode ? "black" : "white";
-
+  const theme = localStorage.getItem("theme");
+  console.log(theme);
 
   return (
     <div className="">
       {/* top stories and recent news */}
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
         <div className="lg:mt-1">
-        <Timeline colorTheme={colorTheme} height={690} width="100%" />
+          <Timeline colorTheme={colorTheme} height={690} width="100%" />
         </div>
         <div className="mt-10 lg:mt-0">
           <div>
@@ -63,8 +50,8 @@ const Academy = () => {
               </Link>
 
               <div>
-                <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
-                  <span class="relative z-10">{news.category}</span>
+                <button className="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                  <span className="relative z-10">{news.category}</span>
                 </button>
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group dark:text-white text-black transition-all duration-300 ease-in-out">
@@ -144,7 +131,7 @@ const Academy = () => {
                         style={{
                           width: "100%",
                           height: "50%",
-                          "@media (max-width: 600px)": {
+                          "@media (maxWidth: 600px)": {
                             height: "25%",
                           },
                         }}
@@ -180,7 +167,10 @@ const Academy = () => {
         <div>
           <div className="2xl:grid grid-cols-2 gap-5">
             {data.slice(7, 13).map((news, index) => (
-              <div className="flex gap-5 2xl:-my-10 my-5 2xl:mt-10 mt-5" key={index}>
+              <div
+                className="flex gap-5 2xl:-my-10 my-5 2xl:mt-10 mt-5"
+                key={index}
+              >
                 <Link href={`/dashboard/academy/${news._id}`}>
                   <div className="w-[200px] h-[150px] overflow-hidden">
                     <Image
@@ -194,8 +184,8 @@ const Academy = () => {
                 </Link>
 
                 <div className="">
-                  <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
-                    <span class="relative z-10">{news.category}</span>
+                  <button className="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                    <span className="relative z-10">{news.category}</span>
                   </button>
                   <Link href={`/dashboard/academy/${news._id}`}>
                     <h3 className="lg:text-[16px] text-[14px] font-semibold 2xl:my-3 my-1 group dark:text-white text-black transition-all duration-300 ease-in-out">
@@ -313,8 +303,8 @@ const Academy = () => {
                     </div>
                   </div>
                   <div className="-mt-1">
-                    <button class="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
-                      <span class="relative z-10">{news.category}</span>
+                    <button className="relative px-2 py-1 text-sm text-white overflow-hidden bg-darkTwo before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-darkOne before:transition-all before:duration-500   hover:before:left-0 hover:before:w-full">
+                      <span className="relative z-10">{news.category}</span>
                     </button>
                     <Link href={`/dashboard/academy/${news._id}`}>
                       <h3 className="font-semibold my-1 lg:text-[17px] 2xl:text-[15px] text-[13px] group dark:text-white text-black transition-all duration-300 ease-in-out">
