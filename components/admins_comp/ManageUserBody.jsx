@@ -464,8 +464,8 @@ const ManageUserBody = () => {
                 className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
               />
             )}
-            <div className="text-sm lg:text-base text-black dark:text-white">
-              <h1 className="font-semibold">
+            <div className="text-sm lg:text-base  dark:text-black">
+              <h1 className="font-semibold  dark:text-black">
                 {userName ? userName : "No name"}{" "}
                 <span
                   className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
@@ -479,7 +479,7 @@ const ManageUserBody = () => {
                   {userRole}
                 </span>
               </h1>
-              <h1 className="hidden xs:block text-black dark:text-white">{userEmail}</h1>
+              <h1 className="hidden xs:block xs:text-black">{userEmail}</h1>
             </div>
           </div>
         </DialogTitle>
