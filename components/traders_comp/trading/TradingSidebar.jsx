@@ -45,6 +45,7 @@ const TradingSidebar = (params) => {
         assetBuyerEmail: user.email,
       };
 
+
       const historyInfo = {
         assetName: ast.name,
         assetKey: ast.key,
@@ -87,6 +88,14 @@ const TradingSidebar = (params) => {
           secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
             refetchInvestmentHistory();
           })
+          secureAPI
+          .patch(`/all-users/${user.email}/${remainingBalance}`)
+          .then((res) => {
+            refetch();
+            if (res.data.modifiedCount) {
+             console.log(`done`)
+            }
+          })
           .catch((error) => {
             console.log(error);
           });
@@ -118,10 +127,11 @@ const TradingSidebar = (params) => {
         totalInvestment: selectedAsset[0].price,
         assetBuyerEmail: user.email,
         date: date,
-        action: "bought",
+        action: "sold",
         detail: `You have sold a ${ast.assetName} at price $${selectedAsset[0].price}`,
-      };
-
+      }
+      const usersBalance = parseFloat(trader.balance).toFixed(2);
+      const remainingBalance = usersBalance + parseFloat(selectedAsset[0].price).toFixed(2);
       Swal.fire({
         title: "Are you sure?",
         icon: "warning",
@@ -137,6 +147,14 @@ const TradingSidebar = (params) => {
           .post(`/investmentHistory`, historyInfo)
           .then((res) => {
             refetchInvestmentHistory();
+          })
+          secureAPI
+          .patch(`/all-users/${user.email}/${remainingBalance}`)
+          .then((res) => {
+            refetch();
+            if (res.data.modifiedCount) {
+             console.log(`done`)
+            }
           })
           .catch((error) => {
             console.log(error);
