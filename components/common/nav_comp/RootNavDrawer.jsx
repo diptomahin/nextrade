@@ -104,16 +104,6 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
               Services
             </Link>
             <button
-              onClick={() => setActiveTab("market")}
-              className={`hover:opacity-100 flex items-center transition-all duration-200 ease-linear ${
-                activeTab === "market"
-                  ? "opacity-100 gap-6"
-                  : "opacity-70 gap-1"
-              }`}
-            >
-              <span>Market</span> <IoIosArrowForward />
-            </button>
-            <button
               onClick={() => setActiveTab("resources")}
               className={`hover:opacity-100 flex items-center  transition-all duration-200 ease-linear ${
                 activeTab === "resources"
@@ -231,34 +221,6 @@ const RootNavDrawer = ({ setIsActive, user, logOut }) => {
                     className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
                   >
                     Payment Methods
-                  </Link>
-                </motion.h1>
-                <motion.h1
-                  variants={fadeIn("left", 0.25)}
-                  initial="hidden"
-                  whileInView={"show"}
-                  viewport={{ once: false, amount: 0.1 }}
-                >
-                  <Link
-                    onClick={() => setIsActive(false)}
-                    href="/payment_method"
-                    className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                  >
-                    Trader&apos;s Tools
-                  </Link>
-                </motion.h1>
-                <motion.h1
-                  variants={fadeIn("left", 0.4)}
-                  initial="hidden"
-                  whileInView={"show"}
-                  viewport={{ once: false, amount: 0.1 }}
-                >
-                  <Link
-                    onClick={() => setIsActive(false)}
-                    href="/payment_method"
-                    className="opacity-70 hover:opacity-100 transition-opacity duration-100 ease-linear"
-                  >
-                    NexTrade Blog
                   </Link>
                 </motion.h1>
               </motion.div>
