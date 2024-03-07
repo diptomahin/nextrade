@@ -1,16 +1,15 @@
 ## [NexTrade | A online trading and business platform.](https://nextrade-front-end.vercel.app/)
 
 ## Description
-
 NexTrade aims to provide a comprehensive online platform for businesses and traders to engage in secure and efficient trading activities. The platform will facilitate the buying and selling of various products and services while offering user-friendly features for seamless transactions.
-
 ## Live Link
 
-[NexTrade Live](https://nextrade-front-end.vercel.app/)
+   [NexTrade Live](https://nextrade-front-end.vercel.app/)
 
 ## Server Side
 
-[NexTrade Server Code](https://github.com/diptomahin/nexTrade-server)
+  [NexTrade Server Code](https://github.com/diptomahin/nexTrade-server)
+
 
 ## NexTrade Homepage
 
@@ -19,7 +18,6 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 ## Key Features
 
 - **Functionality**
-
   - Trading page - Traders can buy and sell assets from trading page
   - Market page - Traders can explore all the assets available to the site in the market page and make fractional investment
   - portfolio Page - Assets bought from portfolio page willshown in the portfolio page and trader can exchange coin and sell bought assets from the merket page 
@@ -33,28 +31,24 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
   - Admin Dashboard - Admins have a dashboard for user management, academy management, review monitoring, transaction monitoring, and policy enforcement.e
   - Advertising Banner on the home page and many more.
 
-- **Trader Role(Dashboard)**
 
+- **Trader Role(Dashboard)**
   - Update profile information such as name, and photo.
   - Treaders can buy and sell assets and manage their assets.
 
 - **Admin Role(Dashboard)**
-
    - Platform administrators are responsible for managing users, and transactions, and enforcing policies.
    - Add another admin or moderator.
    - Manage academy page and post blogs
    - See different kinds of statics, like trader count chart, total transaction amount, and user count chart.
 
-
 - **Authentication:**
-
   - Gmail and Email/Password authentication system.
   - Implement JWT(Json Web Token) with private route.
   - Utilizes Firebase Authentication for secure user registration and login functionalities.
 
 - **Payment System:**
-
-  - Seamless completion of purchases with the integrated payment system.
+  - Seamless completion of purchases with the integrated Stripe payment system.
   - Confirm personal information and address details during the checkout process.
 
 - **Responsive Design:**
@@ -62,28 +56,24 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 ## Technologies Used
 
-- **Frontend:** JavaScript, Next.js, React.js, Tailwind CSS and Material UI.
-- **Backend:** Node.js, Express.js, Socket.IO.
-- **Database:** MongoDB.
-- **Authentication:** Firebase Authentication with JWT.
+ - **Frontend:** JavaScript, Next.js, React.js, Tailwind CSS and Material UI.
+ - **Backend:** Node.js, Express.js, Socket.IO.
+ - **Database:** MongoDB.
+ - **Authentication:** Firebase Authentication with JWT.
 - **Host:** Vercel.
 
 ## Admin Credentials
-
 - **Username:** admin@nextrade.com
 - **Password:** Nextrade123!@#
 
 ## User Credentials
-
 - **Username:** user@nextrade.com
 - **Password:** Nextrade123!@#
 
 ## Challenges
-
 - Implementing the Google translation feature and integrating Live Cryptocurrency APIs were among the toughest hurdles in this project. Ensuring our trading platform caters to international users necessitated the implementation of the Google Translate Widget, offering support for over 136 languages. This task posed a notable challenge due to the need for our website to be accessible in multiple languages worldwide.
 
 ## Contributor
-
 - [Md. Nuruzzama](https://github.com/mdnuruzzamannirob)
 - [Md. Saimur Rahaman](https://github.com/srssieam)
 - [MD Tajul Islam](https://github.com/mdtajulislammt)
@@ -92,10 +82,9 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 - [Mahin Ahmed Dipta](https://github.com/diptomahin)
 
 ## How to Run Locally
-
 1. Clone the repository.
 2. Install dependencies using `npm install`.
-3. Configure environment variables for MongoDB and Firebase.
+3. Configure environment variables for MongoDB, Firebase, and Stripe.
 4. Run the development server using `npm run dev`.
 
 ## Environment Variables
