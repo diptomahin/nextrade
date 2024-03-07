@@ -20,7 +20,11 @@ const Academy = () => {
     return;
   }
 
-  const videoData = data.filter((item) => item.category === "Videos");
+  const videoData = data.filter((item) => item.category === "Video");
+
+  console.log(videoData)
+
+
 
   return (
     <div className="">
@@ -237,7 +241,7 @@ const Academy = () => {
           </div>
           <div className="2xl:flex justify-between gap-10">
             <div className="">
-              {data.slice(13, 14).map((news, index) => (
+              {videoData.slice(0, 1).map((news, index) => (
                 <div className="relative mt-10" key={index}>
                   <div className="overflow-hidden">
                     <Link href={`/dashboard/academy/${news._id}`}>
@@ -275,7 +279,7 @@ const Academy = () => {
               ))}
             </div>
             <div className="col-span-1 md:mt-10 mt-10">
-              {data.slice(14, 18).map((news, index) => (
+              {videoData.slice(1, 4).map((news, index) => (
                 <div className="flex gap-3 mb-5" key={index}>
                   <div className="relative">
                     <Link href={`/dashboard/academy/${news._id}`}>
