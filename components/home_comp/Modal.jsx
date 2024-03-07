@@ -13,15 +13,24 @@ const Modal = () => {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
 
+  // useEffect(() => {
+  //   // const isModalShown = Cookies.get("isModalShown");
+  //   if (!isModalShown) {
+  //     setTimeout(() => {
+  //       setOpen(true);
+  //       // Cookies.set("isModalShown", "true", { expires: 1 / (24 * 60) }); // 1 minute expiration
+  //     }, 5000);
+  //   }
+  // }, []);
+
   useEffect(() => {
-    // const isModalShown = Cookies.get("isModalShown");
-    if (!isModalShown) {
+    if (!open) {
       setTimeout(() => {
         setOpen(true);
-        // Cookies.set("isModalShown", "true", { expires: 1 / (24 * 60) }); // 1 minute expiration
       }, 5000);
     }
-  }, []);
+  }, [open]);
+  
 
   const cancelButtonRef = useRef(null);
 
