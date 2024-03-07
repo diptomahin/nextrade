@@ -13,7 +13,6 @@ const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
 
-
   const { data: articles = [], refetch } = useQuery({
     queryKey: ["articles"],
     queryFn: async () => {
@@ -35,12 +34,11 @@ const Comment = ({ articleId }) => {
           toast.success("Comment Added Successfully", {
             duration: 2000,
           });
-          commentText.current.value = '';
+          commentText.current.value = "";
         }
       });
   };
 
-  // Find the specific article by its _id
   const article = articles.find((article) => article._id === articleId);
 
   // articles view count
@@ -64,9 +62,12 @@ const Comment = ({ articleId }) => {
             ></textarea>
           </form>
         </div>
-        <Button  onClick={handleComment}
-          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">Post Comment</Button>
-       
+        <Button
+          onClick={handleComment}
+          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5"
+        >
+          Post Comment
+        </Button>
       </div>
       <div className="md:mt-20 mt-10">
         <div className="flex justify-between mb-3">
