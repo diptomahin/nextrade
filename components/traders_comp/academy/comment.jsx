@@ -6,10 +6,13 @@ import React, { useRef } from "react";
 import { useMemo } from "react";
 import Image from "next/image";
 import Button from "@/components/library/Button";
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
+
 
   const { data: articles = [], refetch } = useQuery({
     queryKey: ["articles"],
@@ -27,11 +30,14 @@ const Comment = ({ articleId }) => {
     axiosPublic
       .patch(`/articles/comments/${articleId}`, comment)
       .then((res) => {
-        console.log(res.data);
         refetch();
+        if (res.data.modifiedCount) {
+          toast.success("Comment Added Successfully", {
+            duration: 2000,
+          });
+          commentText.current.value = '';
+        }
       });
-
-    console.log(comment);
   };
 
   // Find the specific article by its _id
@@ -93,6 +99,7 @@ const Comment = ({ articleId }) => {
           </div>
         </div>
       </div>
+      <Toaster position="top-center"></Toaster>
     </div>
   );
 };
