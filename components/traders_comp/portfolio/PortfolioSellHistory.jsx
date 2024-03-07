@@ -15,7 +15,7 @@ const PortfolioSellHistory = () => {
   const { profitLossData, refetch, isLoading, isPending } =
     usePortfolioSellHistory();
   return (
-    <div className="w-full bg-white mt-4 dark:bg-tertiary flex flex-col gap-5 font-semibold p-5 rounded-xl shadow">
+    <div className="w-full bg-white mt-4 dark:bg-quaternary flex flex-col gap-5 font-semibold p-5 rounded-xl shadow">
       <div className="flex items-center justify-between  border-b pb-2 dark:border-b-darkThree">
         <h3 className="text-xl font-semibold">Latest 5 Sell History</h3>
       </div>

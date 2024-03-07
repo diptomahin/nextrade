@@ -294,7 +294,7 @@ const BuyAndExchange = ({
 
   return (
    
-    <div className="w-full bg-white dark:bg-tertiary rounded-xl shadow">
+    <div className="w-full bg-white dark:bg-quaternary rounded-xl shadow">
       <div className="flex items-center justify-center">
         <div className="relative md:w-72 w-52 h-10 flex items-center text-black  bg-gray-100 dark:bg-secondary rounded-xl">
           <div
