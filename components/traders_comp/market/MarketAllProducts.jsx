@@ -288,7 +288,7 @@ const MarketAllProducts = () => {
           </Search>
 
           {/* show coin count */}
-          <div className="flex items-center gap-1 p-2 rounded-md bg-zinc-100 dark:bg-quaternary">
+          <div className="flex items-center gap-1 p-2 rounded-md bg-zinc-100 dark:bg-secondary">
             <p>Show: </p>
             <select
               value={coinPerPage}
