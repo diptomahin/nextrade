@@ -88,7 +88,6 @@ const ManageAcademy = () => {
         const imageUrl = res.data.data.url;
         const thumbnail = imageUrl;
         const date = new Date();
-        const comment = null;
 
         const articlesInfo = {
           title,
