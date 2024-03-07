@@ -19,6 +19,7 @@ import getDate from "@/components/utils/date";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 import useUserData from "@/hooks/useUserData";
+import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 
 
 const BuyAndExchange = ({
@@ -51,6 +52,7 @@ const BuyAndExchange = ({
   const { refetchNotificationsData } = useNotificationData();
   const { adminRefetchNotificationsData } = useAdminNotificationData();
   const { refetchUserData } = useUserData();
+  const { refetchInvestmentHistory } = useInvestmentHistory();
 
   //---------exchange functionality start----------
 
@@ -201,6 +203,7 @@ const BuyAndExchange = ({
       totalInvestment,
       email:user.email
     };
+
     const historyInfo = {
       assetName: sellCoinName,
       assetKey: sellCoinKey,
@@ -209,6 +212,8 @@ const BuyAndExchange = ({
       totalInvestment,
       sellCoinProfit,
       sellCoinLoss,
+      action: "sold",
+      detail: `You have sold ${sellCoinName} and achieved $${sellCoinProfit} profit, $${sellCoinLoss}`,
       assetBuyerEmail: user.email,
       date: date,
       action: "sold",
@@ -254,6 +259,7 @@ const BuyAndExchange = ({
 
                //Selling History in database
                 secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
+                  refetchInvestmentHistory()
                 });
 
               // post to  notification data in database
