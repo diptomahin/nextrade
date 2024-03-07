@@ -5,6 +5,8 @@ import useAuth from "@/hooks/useAuth";
 const useHistory = () => {
   const useSecure = useSecureAPI();
   const { user, loading } = useAuth();
+
+  //
   const {
     data = [],
     isPending,
@@ -12,17 +14,22 @@ const useHistory = () => {
     isError,
     refetch,
   } = useQuery({
+    queryKey: [user?.email, "history"],
     queryFn: async () => {
       if (loading) {
         return;
       }
-      const res = await useSecure.get("/history");
-      const history = res.data.filter((trade) => trade.Email == user.email);
-      return history;
+      const res = await useSecure.get(`/history?email=${user.email}`);
+      return res.data;
     },
   });
-  // const trading = data.filter(trading => trading.assetBuyerEmail == user.email)
-  return { data, isPending, isLoading, isError, refetch };
+  return {
+    historyData: data,
+    refetchHistory: refetch,
+    historyLoading: isLoading,
+    historyPending: isPending,
+    historyError: isError,
+  };
 };
 
 export default useHistory;
