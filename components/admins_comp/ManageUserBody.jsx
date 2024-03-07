@@ -464,7 +464,7 @@ const ManageUserBody = () => {
                 className={`w-8 h-8 lg:w-12 lg:h-12 text-primary`}
               />
             )}
-            <div className="text-sm lg:text-base dark:text-white">
+            <div className="text-sm lg:text-base text-black dark:text-white">
               <h1 className="font-semibold">
                 {userName ? userName : "No name"}{" "}
                 <span
@@ -479,7 +479,7 @@ const ManageUserBody = () => {
                   {userRole}
                 </span>
               </h1>
-              <h1 className="hidden xs:block">{userEmail}</h1>
+              <h1 className="hidden xs:block text-black dark:text-white">{userEmail}</h1>
             </div>
           </div>
         </DialogTitle>
@@ -535,7 +535,7 @@ const ManageUserBody = () => {
                   className="resize-none p-4 border border-1 rounded"
                 ></textarea>
                 {errorMsg && <p className="text-red-700">{errorMsg}</p>}
-                <Button onClick={handleSendMail}>Send</Button>
+                <Button variant="outlined" onClick={handleSendMail}>Send</Button>
 
               </div>
             </AccordionDetails>
