@@ -13,6 +13,8 @@ const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
 
+  const isDarkMode = true;
+
   const { data: articles = [], refetch } = useQuery({
     queryKey: ["articles"],
     queryFn: async () => {
@@ -80,7 +82,12 @@ const Comment = ({ articleId }) => {
           <h1>59 comments</h1>
           <p>Sort by: Top</p>
         </div>
-        <hr />
+        {/* Conditionally render the <hr> element based on dark mode */}
+      {isDarkMode ? (
+        <hr className="bg-white" />
+      ) : (
+        <hr className="bg-black" />
+      )}
         <div>
           <div className="flex gap-2 mt-3">
             <div className="w-10 h-10 overflow-hidden rounded-full">
