@@ -10,7 +10,6 @@ import Button from "@/components/library/Button";
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
   const axiosPublic = usePublicAPI();
-  const isDarkMode = true;
 
   const { data: comments = [], refetch } = useQuery({
     queryKey: ["comments"],
@@ -92,7 +91,7 @@ const Comment = ({ articleId }) => {
             <p>Sort by: Recent</p>
           </div>
           {/* Conditionally render the <hr> element based on dark mode */}
-          {isDarkMode ? <hr className="bg-white" /> : <hr className="bg-black" />}
+        <hr />
           <div>
             {articleComments.map((comment, index) => (
               <div key={index} className="flex gap-2 mt-3">
