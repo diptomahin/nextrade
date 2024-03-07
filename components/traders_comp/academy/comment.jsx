@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import Button from "@/components/library/Button";
 import useUserData from "@/hooks/useUserData";
+import moment from "moment";
 
 const Comment = ({ articleId }) => {
   const axiosPublic = usePublicAPI();
@@ -121,7 +122,7 @@ const Comment = ({ articleId }) => {
                     <p className="text-sm">{comment.text}</p>
                   </div>
                   <p className="flex gap-3 text-sm mt-1">
-                    <span>like</span>
+                  <span>{moment(comment.date).fromNow()}</span>
                   </p>
                 </div>
               </div>

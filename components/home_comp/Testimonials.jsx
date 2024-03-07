@@ -12,6 +12,9 @@ import "@smastrom/react-rating/style.css";
 import Subtitle from "../library/Subtitle";
 
 const Testimonials = () => {
+
+  const dateFormatterOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+
   const {
     data = [],
     isPending,
@@ -78,8 +81,8 @@ const Testimonials = () => {
                     readOnly
                   />
                 </div>
-                {/* <p className="text-xs">{review?.address}</p> */}
-                <p className="text-sm mt-3">{review?.feedback}</p>
+                <p className="text-xs">{review?.timestamp ? new Date(review.timestamp).toLocaleString('en-US', dateFormatterOptions) : 'No timestamp'}</p>
+                <p className="text-sm mt-3" style={{ textAlign: 'justify' }}>{review?.feedback} </p>
               </div>
             </div>
           </SwiperSlide>

@@ -15,7 +15,7 @@ import { FaArrowDownShortWide } from "react-icons/fa6";
 
 const WhyChooseUs = () => {
   return (
-    <Container className=" py-14 text-zinc-200">
+    <Container className=" py-5 text-zinc-200">
       <Title animation={false} className="text-start text-primary">
         Why NexTrade
       </Title>

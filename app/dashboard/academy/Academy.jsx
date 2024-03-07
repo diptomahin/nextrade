@@ -20,16 +20,14 @@ const Academy = () => {
     return;
   }
 
-  const colorTheme = isDarkMode ? "black" : "white";
-  const theme = localStorage.getItem("theme");
-  console.log(theme);
+  const videoData = data.filter((item) => item.category === "Videos");
 
   return (
     <div className="">
       {/* top stories and recent news */}
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
         <div className="lg:mt-1">
-          <Timeline colorTheme={colorTheme} height={690} width="100%" />
+          <Timeline colorTheme="dark" height={690} width="100%" />
         </div>
         <div className="mt-10 lg:mt-0">
           <div>
@@ -109,8 +107,7 @@ const Academy = () => {
                       <p className="text-white">
                         {moment(news.date).format("ll")} .
                       </p>
-                      <p className="text-white">1k Views .</p>
-                      <p className="text-white">210 Shares</p>
+                      <p className="text-white">{news?.viewCount} Views</p>
                     </div>
                   </div>
                 </div>
@@ -272,8 +269,7 @@ const Academy = () => {
                   </Link>
                   <div className="flex gap-1 text-white absolute md:bottom-12 bottom-8 md:left-10 left-4">
                     <p>{moment(news.date).format("ll")} .</p>
-                    <p>1k Views .</p>
-                    <p>210 Shares</p>
+                    <p>{news?.viewCount} Views</p>
                   </div>
                 </div>
               ))}
@@ -323,24 +319,6 @@ const Academy = () => {
           </div>
         </div>
       </div>
-
-      {/* lowest */}
-
-      {/* Tutorial */}
-      {/* <div className="container mx-auto mt-10">
-        <SectionTitle
-          title="Tutorial & Resource"
-          btnText="ALL Tutorial & Resource"
-        />
-
-        <div className="mt-5 flex justify-between gap-5">
-          {video.slice(0, 4).map((video, index) => (
-            <div className="relative mb-5" key={index}>
-              <YouTube videoId={video.url} opts={opts} />
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 };

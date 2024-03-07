@@ -50,6 +50,7 @@ export default function TransitionsModal({ user, secureAPI }) {
       // address: user?.address,
       rating,
       feedback,
+      timestamp: new Date().toISOString()
     };
     // console.log(feedbackData)
     secureAPI

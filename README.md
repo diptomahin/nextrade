@@ -20,11 +20,17 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 - **Functionality**
 
-  - Trade Management - Traders can buy and sell assets from and to other traders.
+  - Trading page - Traders can buy and sell assets from trading page
+  - Market page - Traders can explore all the assets available to the site in the market page and make fractional investment
+  - portfolio Page - Assets bought from portfolio page willshown in the portfolio page and trader can exchange coin and sell bought assets from the merket page 
   - Price tracking - Treaders can track real-time values of their assets as well as other assets from the platform.
-  - Messaging System - Real-time messaging using WebSocket technology for immediate communication between buyers and sellers.
-  - Payment Integration - Integration with backend for secure and efficient payment processing.
-  - Admin Dashboard - Admins have a dashboard for user management, transaction monitoring, and policy enforcement.e
+  - review System - Real-time review 
+  - Payment Integration - Integration with Stripe for secure and efficient payment processing with deposit and withdrawal functionality
+  - Academy page - Traders can get market insights and trading knowledge from academy page blogs 
+  - Watchlist - Traders can add assets to watchlist for continues update
+  - Notification - Real time notification form admin and trader for all kind of trading activity
+  - profile - Profile can e viewed and updated from the profile page
+  - Admin Dashboard - Admins have a dashboard for user management, academy management, review monitoring, transaction monitoring, and policy enforcement.e
   - Advertising Banner on the home page and many more.
 
 - **Trader Role(Dashboard)**
@@ -34,9 +40,11 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 - **Admin Role(Dashboard)**
 
-  - Platform administrators are responsible for managing users, and transactions, and enforcing policies.
-  - Add another admin or moderator.
-  - See different kinds of statics, like trader count chart, total transaction amount, and user count chart.
+   - Platform administrators are responsible for managing users, and transactions, and enforcing policies.
+   - Add another admin or moderator.
+   - Manage academy page and post blogs
+   - See different kinds of statics, like trader count chart, total transaction amount, and user count chart.
+
 
 - **Authentication:**
 
