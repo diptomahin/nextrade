@@ -131,10 +131,10 @@ const AddArticles = () => {
               name="title"
               required
               aria-describedby="helper-text-explanation"
-              className="bg-darkTwo border border-gray-300 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded mt-5"
+              className="dark:bg-darkTwo bg-white border border-gray-300 text-white text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded mt-5"
               placeholder="Add a title"
             />
-            <div className="w-full mt-4 mb-4 border border-gray-200 rounded-lg bg-darkTwo text-white dark:bg-gray-700 dark:border-gray-600">
+            <div className="w-full mt-4 mb-4 border border-gray-200 rounded-lg dark:bg-darkTwo bg-white text-white dark:bg-gray-700 dark:border-gray-600">
               <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
                 <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
                   <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4">
@@ -278,13 +278,13 @@ const AddArticles = () => {
                   <div className="tooltip-arrow" data-popper-arrow></div>
                 </div>
               </div>
-              <div className="px-4 py-2 bg-darkTwo rounded-b-lg dark:bg-gray-800">
+              <div className="px-4 py-2 dark:bg-darkTwo bg-white rounded-b-lg dark:bg-gray-800">
                 <label className="sr-only cursor-pointer">Publish post</label>
                 <textarea
                   id="editor"
                   name="description"
                   rows="15"
-                  className="block w-full px-0 text-sm text-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2 bg-darkTwo"
+                  className="block w-full px-0 text-sm text-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 py-2 pl-2 dark:bg-darkTwo bg-white"
                   placeholder="Write an article..."
                   required
                   style={{ outline: "none" }}
