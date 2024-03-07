@@ -8,8 +8,8 @@ import SideWatchlist from "@/components/traders_comp/market/SideWatchlist";
 
 // add title in metadata
 export const metadata = {
-  title: "Dashboard",
-  description: "About page from Nextrade",
+  title: "Dashboard - NexTrade",
+  description: "Dashboard page from Nextrade",
 };
 
 const page = () => {
