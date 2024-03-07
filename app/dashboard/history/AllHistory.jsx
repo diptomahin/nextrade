@@ -217,7 +217,7 @@ const AllHistory = () => {
           onClick={() => setIsOpenDot(false)}
           className="text-center font-bold py-10"
         >
-          Currently, no investment history is available.
+          Currently, no history is available.
         </div>
       )}
     </div>
