@@ -21,22 +21,23 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 - **Functionality**
 
   - Trading page - Traders can buy and sell assets from trading page
-  - Market page - Traders can explore all the assets available to the site in the market page and make fractional investment
-  - portfolio Page - Assets bought from portfolio page willshown in the portfolio page and trader can exchange coin and sell bought assets from the merket page
+  - Market page - Traders can explore all the assets available to the site on the market page and make fractional investment
+  - portfolio Page - Assets bought from the portfolio page will shown on the portfolio page and traders can exchange coins and sell bought assets from the market page
   - Price tracking - Treaders can track real-time values of their assets as well as other assets from the platform.
   - review System - Real-time review
   - Payment Integration - Integration with Stripe for secure and efficient payment processing with deposit and withdrawal functionality
   - Academy page - Traders can get market insights and trading knowledge from academy page blogs
-  - Watchlist - Traders can add assets to watchlist for continues update
-  - Notification - Real time notification form admin and trader for all kind of trading activity
-  - profile - Profile can e viewed and updated from the profile page
+  - Watchlist - Traders can add assets to watchlist for continuous update
+  - Notification - Real-time notification form admin and trader for all kinds of trading activity
+  - profile - The profile can viewed and updated from the profile page
   - Admin Dashboard - Admins have a dashboard for user management, academy management, review monitoring, transaction monitoring, and policy enforcement.e
-  - Advertising Banner on the home page and many more.
+  - Advertising Modal - A user-friendly modal pops up on the home page after 10 seconds, encouraging visitors to register if they haven't already.
+  - Live Chat - Traders can conveniently message using the messenger plugin, enabling seamless communication for queries and assistance.
 
 - **Trader Role(Dashboard)**
 
-  - Update profile information such as name, and photo.
-  - Treaders can buy and sell assets and manage their assets.
+  - Treaders can be trading, including buying, selling, and exchanging, coupled with comprehensive educational resources for traders to enhance their knowledge and skills.
+  - Also, customizable portfolio, market, watchlist, history, and wallet for seamless deposit and withdrawal of funds using the Stripe payment gateway and many more...
 
 - **Admin Role(Dashboard)**
 
@@ -84,8 +85,8 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 - [Md. Nuruzzama](https://github.com/mdnuruzzamannirob)
 - [Md. Saimur Rahaman](https://github.com/srssieam)
-- [MD Tajul Islam](https://github.com/mdtajulislammt)
 - [Ariful Islam](https://github.com/hellomrariful)
+- [MD Tajul Islam](https://github.com/mdtajulislammt)
 - [Julfiker Ali](https://github.com/jasaiful)
 - [Mahin Ahmed Dipta](https://github.com/diptomahin)
 
