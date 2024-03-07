@@ -3,7 +3,7 @@ import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import { useQuery } from "@tanstack/react-query";
 import React, { useRef } from "react";
-import { useMemo } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Button from "@/components/library/Button";
 import toast from "react-hot-toast";
@@ -42,7 +42,13 @@ const Comment = ({ articleId }) => {
   const article = articles.find((article) => article._id === articleId);
 
   // articles view count
-  const viewCount = useMemo(() => ({ count: 1 }), []);
+  const count = 1;
+  const viewCount = { count };
+  console.log(viewCount);
+
+  useEffect(() => {
+    axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
+  }, [axiosPublic, articleId]);
 
   return (
     <div>
