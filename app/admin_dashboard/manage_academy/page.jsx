@@ -63,7 +63,7 @@ const AddArticles = () => {
     { value: "RiskManagement", label: "RiskManagement" },
   ];
 
-  // post in database
+  // make the API
   const handelPostNews = async (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -88,7 +88,7 @@ const AddArticles = () => {
         const imageUrl = res.data.data.url;
         const thumbnail = imageUrl;
         const date = new Date();
-        const comment = null
+        const comment = null;
 
         const articlesInfo = {
           title,
@@ -97,7 +97,7 @@ const AddArticles = () => {
           category,
           tags,
           date,
-          comment
+          comment,
         };
 
         axiosPublic.post("/articles", articlesInfo).then((res) => {
@@ -301,95 +301,102 @@ const AddArticles = () => {
               Select a Categories
             </h1>
             <Select
-  className="basic-single"
-  closeMenuOnSelect={true}
-  onChange={handleSelectChange}
-  required
-  components={animatedComponents}
-  options={CategoryOptions}
-  placeholder="Select a Category"
-  styles={{
-    control: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isFocused ? "#212a3f" : "#1d2334", // Set background color to black when focused, else use dark background
-      color: "white",
-      border: "1px solid white",
-      borderRadius: "4px",
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: "white",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#3aba69" : state.isFocused ? "#2c3750" : "#212a3f", // Set background color of options based on state
-      color: state.isSelected ? "white" : "darkGray", // Set text color of options based on state
-      "&:hover": {
-        backgroundColor: "#2c3750", // Change background color on hover
-      },
-    }),
-    menu: (provided) => ({
-      ...provided,
-      backgroundColor: "#1d2334", // Set background color of the dropdown menu
-    }),
-  }}
-/>
-
+              className="basic-single"
+              closeMenuOnSelect={true}
+              onChange={handleSelectChange}
+              required
+              components={animatedComponents}
+              options={CategoryOptions}
+              placeholder="Select a Category"
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isFocused ? "#212a3f" : "#1d2334", // Set background color to black when focused, else use dark background
+                  color: "white",
+                  border: "1px solid white",
+                  borderRadius: "4px",
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "white",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected
+                    ? "#3aba69"
+                    : state.isFocused
+                    ? "#2c3750"
+                    : "#212a3f",
+                  color: state.isSelected ? "white" : "darkGray",
+                  "&:hover": {
+                    backgroundColor: "#2c3750",
+                  },
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#1d2334",
+                }),
+              }}
+            />
 
             <h1 className="my-5 text-center justify-center text-xl font-semibold dark:text-white text-black">
               Add Your Tags
             </h1>
 
             <CreatableSelect
-  isMulti
-  required
-  onChange={handleTagsSelectChange}
-  components={animatedComponents}
-  options={TagsOptions}
-  placeholder="Select or Create Tags"
-  styles={{
-    control: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isFocused ? "#212a3f" : "#1d2334",
-      color: "white",
-      border: "1px solid white",
-      borderRadius: "4px",
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: "white",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#3aba69" : state.isFocused ? "#2c3750" : "#212a3f",
-      color: state.isSelected ? "white" : "darkGray",
-      "&:hover": {
-        backgroundColor: "#2c3750",
-      },
-    }),
-    menu: (provided) => ({
-      ...provided,
-      backgroundColor: "#1d2334",
-    }),
-    multiValue: (provided) => ({
-      ...provided,
-      backgroundColor: "#3aba69",
-      borderRadius: "20px",
-    }),
-    multiValueLabel: (provided) => ({
-      ...provided,
-      color: "white",
-    }),
-    multiValueRemove: (provided) => ({
-      ...provided,
-      color: "white",
-      ":hover": {
-        backgroundColor: "#2c3750",
-        color: "white",
-      },
-    }),
-  }}
-/>
+              isMulti
+              required
+              onChange={handleTagsSelectChange}
+              components={animatedComponents}
+              options={TagsOptions}
+              placeholder="Select or Create Tags"
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isFocused ? "#212a3f" : "#1d2334",
+                  color: "white",
+                  border: "1px solid white",
+                  borderRadius: "4px",
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "white",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected
+                    ? "#3aba69"
+                    : state.isFocused
+                    ? "#2c3750"
+                    : "#212a3f",
+                  color: state.isSelected ? "white" : "darkGray",
+                  "&:hover": {
+                    backgroundColor: "#2c3750",
+                  },
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#1d2334",
+                }),
+                multiValue: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#3aba69",
+                  borderRadius: "20px",
+                }),
+                multiValueLabel: (provided) => ({
+                  ...provided,
+                  color: "white",
+                }),
+                multiValueRemove: (provided) => ({
+                  ...provided,
+                  color: "white",
+                  ":hover": {
+                    backgroundColor: "#2c3750",
+                    color: "white",
+                  },
+                }),
+              }}
+            />
 
             {/* input */}
             <div>
