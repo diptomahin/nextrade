@@ -14,10 +14,7 @@ const articlePage = async ({ params }) => {
     .join(" ");
   const tagsArray = article.tags.split(",").map((tag) => tag.trim());
 
-    console.log(article)
-
-    const formattedDescription = article.description.replace(/\n/g, "<br>");
-
+  const formattedDescription = article.description.replace(/\n/g, "<br>");
 
   return (
     <div className="mt-10">
@@ -47,11 +44,9 @@ const articlePage = async ({ params }) => {
                 <p className="text-[#9d9d9d]">
                   {moment(article.date).format("ll")} |
                 </p>
-                <p className="text-[#9d9d9d] ml-1">{article.viewCount} Views</p>
-                {/* <div className="flex items-center mt-1 gap-1 text-slate-400">
-                <FaEye></FaEye>
-                {article.viewCount | 0} M
-              </div> */}
+                <p className="text-[#9d9d9d] ml-1">
+                  {article.viewCount ? `${article.viewCount} Views` : "0 Views"}
+                </p>
               </div>
             </div>
           </div>
@@ -69,10 +64,10 @@ const articlePage = async ({ params }) => {
 
       {/* lowest part */}
       <div className="mt-5 dark:text-gray-300 text-black">
-      <div
-        className="mt-5 dark:text-gray-300 text-black"
-        dangerouslySetInnerHTML={{ __html: formattedDescription }}
-      ></div>
+        <div
+          className="mt-5 dark:text-gray-300 text-black"
+          dangerouslySetInnerHTML={{ __html: formattedDescription }}
+        ></div>
 
         <h1 className="mt-10 text-xl mb-4 dark:text-white text-black">
           <span className="font-semibold lg:text-3xl text-2xl">
