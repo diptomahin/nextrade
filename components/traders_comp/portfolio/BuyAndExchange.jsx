@@ -20,6 +20,7 @@ import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
 import useUserData from "@/hooks/useUserData";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
+import useExchangeHistory from "@/hooks/useExchangeHistory";
 
 
 const BuyAndExchange = ({
@@ -32,6 +33,7 @@ const BuyAndExchange = ({
 
   // exchange state
   const [firstCoinId, setFirstCoinId] = useState();
+  const [firstCoinPrice, setFirstCoinPrice] = useState();
   const [secondCoinId, setSecondCoinId] = useState();
   const [firstCoinName, setFirstCoinName] = useState();
   const [secondCoinName, setSecondCoinName] = useState();
@@ -53,6 +55,7 @@ const BuyAndExchange = ({
   const { adminRefetchNotificationsData } = useAdminNotificationData();
   const { refetchUserData } = useUserData();
   const { refetchInvestmentHistory } = useInvestmentHistory();
+  const { refetchExchangeHistory } = useExchangeHistory();
 
   //---------exchange functionality start----------
 
@@ -71,6 +74,14 @@ const BuyAndExchange = ({
   };
 
   const handleExChange = () => {
+    //exchange history
+    const historyInfo ={
+      initialCoin : firstCoinName,
+      exchangingCoin: secondCoinName,
+      date: date,
+      assetBuyerEmail: user.email,
+      details: `Exchanged ${firstCoinName} for ${secondCoinName}`
+    }
     // post notification data sen database
     const notificationInfo = {
       title: "Coin Exchange Successfully",
@@ -112,6 +123,9 @@ const BuyAndExchange = ({
                 timer: 1500,
               });
               refetchUserData();
+              secureAPI.post(`/exchangeHistory`, historyInfo).then((res) => {
+                refetchExchangeHistory();
+              })
               // post to  notification data in database
               secureAPI
                 .post("/notifications", notificationInfo)
