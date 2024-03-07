@@ -6,6 +6,7 @@ import usePublicAPI from "@/hooks/usePublicAPI";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import Button from "@/components/library/Button";
+import moment from "moment";
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
@@ -21,8 +22,7 @@ const Comment = ({ articleId }) => {
 
   const commentText = useRef();
 
-  const handleComment = (e) => {
-    e.preventDefault();
+  const handleComment = () => {
     const commentTextValue = commentText.current.value;
     const date = new Date();
     const comment = {
@@ -110,7 +110,8 @@ const Comment = ({ articleId }) => {
                     <p className="text-sm">{comment.text}</p>
                   </div>
                   <p className="flex gap-3 text-sm mt-1">
-                    <span>like</span>
+                    <span>
+                    {moment(comment.date).format("ll")}</span>
                   </p>
                 </div>
               </div>
