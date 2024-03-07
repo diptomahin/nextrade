@@ -5,7 +5,7 @@ import BannerImg from "@/assets/random/register.png";
 import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import Button from "../library/Button";
 import { MdCancel } from "react-icons/md";
 
@@ -14,11 +14,11 @@ const Modal = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    const isModalShown = Cookies.get("isModalShown");
+    // const isModalShown = Cookies.get("isModalShown");
     if (!isModalShown) {
       setTimeout(() => {
         setOpen(true);
-        Cookies.set("isModalShown", "true", { expires: 5 / (60 * 24) }); // 5 minutes expiration
+        // Cookies.set("isModalShown", "true", { expires: 1 / (24 * 60) }); // 1 minute expiration
       }, 5000);
     }
   }, []);

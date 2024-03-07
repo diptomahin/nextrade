@@ -17,7 +17,6 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="overflow-hidden text-zinc-100 font-montserrat">
-      <Modal />
       <Banner />
       <TradingStep />
       <InvestSolutions />
@@ -26,6 +25,7 @@ export default function Home() {
       <WhyNexTrade />
       <Testimonials />
       <Map />
+      <Modal />
     </main>
   );
 }
