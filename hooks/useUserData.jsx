@@ -14,7 +14,7 @@ const useUserData = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: [user?.email, "userData"],
+    queryKey: ["userData", user?.email],
     queryFn: async () => {
       if (loading) {
         return;
