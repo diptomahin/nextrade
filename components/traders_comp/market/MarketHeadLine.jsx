@@ -117,7 +117,7 @@ const MarketHeadLine = () => {
           <Marquee direction="right">
             {assets.map((asset) => (
               <Stack
-                className="bg-sky-200 dark:bg-quaternary rounded-lg h-20"
+                className="bg-sky-200 dark:bg-secondary rounded-lg h-20"
                 key={asset.name}
                 sx={{ px: 2, py: 1 }}
                 justifyContent="space-between"
@@ -174,7 +174,7 @@ const MarketHeadLine = () => {
           <Marquee direction="left">
             {flatCurrency.map((asset) => (
               <Stack
-                className="bg-sky-200 dark:bg-quaternary rounded-lg h-20"
+                className="bg-sky-200 dark:bg-secondary rounded-lg h-20"
                 key={asset.name}
                 sx={{ px: 2, py: 1 }}
                 justifyContent="space-between"
