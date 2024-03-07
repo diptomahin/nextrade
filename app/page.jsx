@@ -25,7 +25,7 @@ export default function Home() {
       <WhyNexTrade />
       <Testimonials />
       <Map />
-      <Modal />
+      <Modal></Modal>
     </main>
   );
 }
