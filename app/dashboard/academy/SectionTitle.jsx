@@ -1,18 +1,16 @@
-import useDarkMode from "@/hooks/useDarkMode";
 import Link from "next/link";
 
 const SectionTitle = ({ title, btnText, btnUrl }) => {
-  const isDarkMode = useDarkMode();
-  const gradientColor = isDarkMode ? "black" : "white";
   const gradientStyle = {
     display: "inline-block",
     paddingBottom: "2px",
-    backgroundImage: `linear-gradient(${gradientColor}, ${gradientColor})`,
+    backgroundImage: "linear-gradient(white, white)",
     backgroundPosition: "0 100%",
     backgroundSize: "0% 2px",
     backgroundRepeat: "no-repeat",
     transition: "background-size 0.3s, background-position 0s 0.3s",
   };
+
   return (
     <div className="flex justify-between items-center">
       <h2 className="lg:text-[30px] text-xl font-semibold">{title}</h2>
