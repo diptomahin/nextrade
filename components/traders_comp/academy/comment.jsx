@@ -25,36 +25,41 @@ const Comment = ({ articleId }) => {
 
   const commentText = useRef();
 
-  const handleComment = () => {
-    e.preventDefault();
+  const handleComment = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    
     const commentTextValue = commentText.current.value;
     const date = new Date();
     const comment = {
       text: commentTextValue,
       email: user.email,
-      articleId: articleId,
-      date: date
+      name: user.displayName,
+      photo: user.photoURL,
+      date: date.toISOString() // Convert date to ISO string format
     };
-
-    axiosPublic
-      .patch(`/articles/comments/${articleId}`, comment)
+  
+    axiosPublic.post(`/articles/${articleId}/comments`, comment)
       .then((res) => {
-        refetch();
-        if (res.data.modifiedCount) {
+        if (res.data.insertedId) {
           toast.success("Comment Added Successfully", {
-            duration: 2000,
+            duration: 3000,
           });
+          refetch(); // Refetch articles to update UI with new comment
           commentText.current.value = "";
         }
+      })
+      .catch((error) => {
+        console.error("Error adding comment:", error);
+        // Handle error
       });
   };
+  
 
   const article = articles.find((article) => article._id === articleId);
 
   // articles view count
   const count = 1;
   const viewCount = { count };
-  console.log(viewCount);
 
   useEffect(() => {
     axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
