@@ -23,10 +23,13 @@ const SidePortfolio = () => {
     data: purchasedAssets = [],
     isPending: purchasedPending,
     isLoading: purchasedLoading,
+    refetch,
   } = useSecureFetch(`/sidePortfolio?email=${user.email}`, [
     "purchased-asset",
     user?.email,
   ]);
+  refetch();
+
   const [cryptoData, setCryptoData] = useState([]);
   const [currencyData, setCurrencyData] = useState([]);
 

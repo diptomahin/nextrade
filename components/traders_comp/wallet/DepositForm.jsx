@@ -8,7 +8,7 @@ import getDate from "../../utils/date";
 import { useState } from "react";
 import useNotificationData from "@/hooks/useNotificationData";
 import useAdminNotificationData from "@/hooks/useAdminNotificationData";
-import { FaCreditCard, FaCcMastercard, FaCcVisa } from "react-icons/fa";
+import { FaCreditCard } from "react-icons/fa";
 import { RiBankFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 
@@ -28,7 +28,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const toastId = toast.loading("Progress...", { duration: 10000 });
+    const toastId = toast.loading("Progress...", { duration: 20000 });
 
     axios
       .post(

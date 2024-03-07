@@ -14,7 +14,7 @@ const usePurchasedAssets = (dynamicSearch = "", currentPage, coinPerPage) => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: [user?.email, "transactionsData"],
+    queryKey: ["purchasedData", user?.email],
     queryFn: async () => {
       if (loading) {
         return;

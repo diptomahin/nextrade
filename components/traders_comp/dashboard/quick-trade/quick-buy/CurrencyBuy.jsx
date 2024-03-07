@@ -1,11 +1,21 @@
-"use client"
+"use client";
 import getDate from "@/components/utils/date";
 import useAuth from "@/hooks/useAuth";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
 import useNotificationData from "@/hooks/useNotificationData";
 import useSecureAPI from "@/hooks/useSecureAPI";
+import useSecureFetch from "@/hooks/useSecureFetch";
 import useUserData from "@/hooks/useUserData";
-import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField, styled } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  styled,
+} from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -16,7 +26,6 @@ const CssTextField = styled(TextField)({
   },
   "& input": {
     color: "#71717a", // Text color for the input
-
   },
   "& label.Mui-focused": {
     color: "#40a0ff",
@@ -28,7 +37,7 @@ const CssTextField = styled(TextField)({
     "& fieldset": {
       borderColor: "#B2BAC2",
       color: "#E0E3E7",
-      borderRadius: "40px"
+      borderRadius: "40px",
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
@@ -39,15 +48,25 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const CurrencyBuy = ({ flatCurrency, flatRefetch, userData, refetchUserData }) => {
+const CurrencyBuy = ({
+  flatCurrency,
+  flatRefetch,
+  userData,
+  refetchUserData,
+}) => {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState({});
   const [investment, setInvestment] = useState(0);
   const secureAPI = useSecureAPI();
-  const { user } = useAuth()
+  const { user } = useAuth();
   const date = getDate();
   const { refetchNotificationsData } = useNotificationData();
   const { refetchInvestmentHistory } = useInvestmentHistory();
+
+  const { refetch } = useSecureFetch(`/sidePortfolio?email=${user.email}`, [
+    "purchased-asset",
+    user?.email,
+  ]);
 
   const handleInvestmentChange = (event) => {
     const newInvestment = event.target.value;
@@ -58,9 +77,8 @@ const CurrencyBuy = ({ flatCurrency, flatRefetch, userData, refetchUserData }) =
     const getSelectedCoin = flatCurrency.find(
       (asset) => asset._id === event.target.value
     );
-    setSelectedCoin(getSelectedCoin)
+    setSelectedCoin(getSelectedCoin);
   };
-
 
   // crypto payment process
   const handleBuyCurrency = () => {
@@ -124,9 +142,9 @@ const CurrencyBuy = ({ flatCurrency, flatRefetch, userData, refetchUserData }) =
     }
 
     Swal.fire({
-      title: `Are you sure to purchase  ${parseInt(
-        portion
-      )}% of a ${selectedCoin.name}?`,
+      title: `Are you sure to purchase  ${parseInt(portion)}% of a ${
+        selectedCoin.name
+      }?`,
       text: `It will cost $${investment}`,
       icon: "warning",
       showCancelButton: true,
@@ -146,7 +164,8 @@ const CurrencyBuy = ({ flatCurrency, flatRefetch, userData, refetchUserData }) =
                 .then((res) => {
                   if (res.data.insertedId) {
                     secureAPI.post("/adminNotifications", notificationInfo);
-                    refetchUserData;
+                    refetchUserData();
+                    refetch();
                     refetchNotificationsData();
                     Swal.fire({
                       title: `Coin Purchase successful!`,
@@ -191,7 +210,10 @@ const CurrencyBuy = ({ flatCurrency, flatRefetch, userData, refetchUserData }) =
             borderRadius: "40px",
           }}
         >
-          <InputLabel id="demo-simple-select-label" style={{ color: "#40a0ff" }}>
+          <InputLabel
+            id="demo-simple-select-label"
+            style={{ color: "#40a0ff" }}
+          >
             Select
           </InputLabel>
           <Select
@@ -252,7 +274,13 @@ const CurrencyBuy = ({ flatCurrency, flatRefetch, userData, refetchUserData }) =
       />
       <div className="flex item-center justify-center">
         <div className="flex item-center justify-center">
-          <Button onClick={handleBuyCurrency} variant="contained" disabled={investment <= 0 || !selectedCoin.name}>Buy now</Button>
+          <Button
+            onClick={handleBuyCurrency}
+            variant="contained"
+            disabled={investment <= 0 || !selectedCoin.name}
+          >
+            Buy now
+          </Button>
         </div>
       </div>
     </div>

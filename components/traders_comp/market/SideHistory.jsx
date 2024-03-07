@@ -12,7 +12,9 @@ const SideHistory = () => {
     investmentHistoryLoading,
     investmentHistoryPending,
     investmentHistoryError,
+    refetchInvestmentHistory,
   } = useInvestmentHistory();
+  refetchInvestmentHistory();
   // Helper function to format time in 12-hour format
   const formatTime = (hours) => {
     return hours % 12 || 12; // Convert to 12-hour format

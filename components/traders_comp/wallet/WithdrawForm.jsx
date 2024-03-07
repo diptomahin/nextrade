@@ -38,7 +38,7 @@ const WithdrawForm = ({
       return setIsPaymentError("Insufficient balance");
     }
 
-    const toastId = toast.loading("Progress...", { duration: 10000 });
+    const toastId = toast.loading("Progress...", { duration: 20000 });
 
     axios
       .post(
