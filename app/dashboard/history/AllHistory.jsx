@@ -1,48 +1,32 @@
 "use client"
 // Import necessary components and hooks
 import React, { useState, useEffect } from "react";
-import HistoryCard from "@/components/traders_comp/history/HistoryCard";
-import MarketHistory from "@/components/traders_comp/history/MarketHistory";
 import useInvestmentHistory from "@/hooks/useInvestmentHistory";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Box, Paper, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, styled } from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import { MdDelete } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import useSecureAPI from "@/hooks/useSecureAPI";
+import Swal from "sweetalert2";
+import useAuth from "@/hooks/useAuth";
 
-const CustomTab = styled(Tab)({
-  color: '#a1a1aa',
-  fontWeight: 'bold',
-  '&.Mui-selected': {
-    backgroundColor: "#40a0ff",
-    color: 'white',
-    borderRadius: "10px 10px 0px 0px",
-  },
-});
 
 const AllHistory = () => {
-  const [value, setValue] = useState("1");
   const [isOpenDot, setIsOpenDot] = useState(false);
+  const secureAPI = useSecureAPI();
+  const { user } = useAuth();
 
+  // investment history data
   const {
     investmentHistoryData,
-    investmentHistoryLoading,
-    investmentHistoryPending,
-    investmentHistoryError,
+    refetchInvestmentHistory
   } = useInvestmentHistory();
 
-  // State variables for storing filtered history data
-  const [bought, setBought] = useState([]);
-  const [sold, setSold] = useState([]);
+  // Trading history data
+  const {
+    historyData,
+    refetchHistory
+  } = useInvestmentHistory();
 
-  // Effect to filter bought and sold history data when 'history' changes
-  useEffect(() => {
-    const findBought = investmentHistoryData.filter((data) => data.action === "bought");
-    const findSold = investmentHistoryData.filter((data) => data.action === "sold");
-
-    // Update state variables with filtered data
-    setBought(findBought);
-    setSold(findSold);
-  }, [investmentHistoryData]);
 
   // Helper function to format time in 12-hour format
   const formatTime = (hours) => {
@@ -59,11 +43,49 @@ const AllHistory = () => {
     return hours >= 12 ? "PM" : "AM";
   };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const handleDelete = (id) => {
+    secureAPI.delete(`investmentHistory/${id}`)
+      .then(res => {
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            title: `History deleted`,
+            text: `successful`,
+            icon: "success",
+            timer: 1500,
+          });
+          refetchInvestmentHistory()
+        }
+      })
+  }
 
-  // Render the component
+  const handleDeleteAll = (id) => {
+    Swal.fire({
+      title: `Are you sure to delete all history?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        secureAPI.delete(`allHistory/${user.email}`)
+          .then(res => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: `History deleted`,
+                text: `successful`,
+                icon: "success",
+                timer: 1500,
+              });
+              refetchInvestmentHistory()
+            }
+          })
+      }
+    })
+
+  }
+
+
   return (
     <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">
@@ -80,7 +102,7 @@ const AllHistory = () => {
             {isOpenDot && (
               <div className="absolute w-40 right-0 top-10 flex flex-col py-4 rounded bg-gray-100 dark:bg-secondary font-medium rounded-s-2xl rounded-b-2xl">
                 <button
-                  // onClick={() =>handleDeleteAll()}
+                  onClick={() => handleDeleteAll()}
                   className="whitespace-nowrap w-full btn btn-sm text-sm dark:text-white/80 justify-start bg-transparent hover:bg-septenary hover:text-white/80 border-none rounded-none pl-4 shadow-none"
                 >
                   Delete all history
@@ -91,144 +113,113 @@ const AllHistory = () => {
         </div>
       </div>
 
-      <TabContext value={value}>
-        <Box
+      {investmentHistoryData.length !== 0 ? (
+        <TableContainer
+          onClick={() => setIsOpenDot(false)}
+          component={Paper}
           sx={{
-            borderBottom: 2,
-            borderColor: "#2c3750",
-            marginBottom: "20px",
+            boxShadow: "none",
+            padding: "0px",
+            background: "none",
           }}
+          className="border-none outline-none"
         >
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <CustomTab
-              label="Investment History"
-              sx={{ px: { xs: 1.5, md: 3 }, py: { xs: 0, md: 0 } }}
-              value="1"
-            />
-            <CustomTab
-              label="Trading History"
-              sx={{ px: { xs: 1.5, md: 3 }, py: { xs: 0, md: 0 } }}
-              value="2"
-            />
-          </TabList>
-        </Box>
+          <Table
+            sx={{ minWidth: 650 }}
+            aria-label="simple table"
+            className="text-black dark:text-white"
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
+                >
+                  NO.
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
+                >
+                  Date/Time
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
+                >
+                  Details
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "500",
+                    fontSize: "17px",
+                  }}
+                  className="text-black dark:text-white dark:border-b-darkThree"
+                >
+                  Delete
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {investmentHistoryData?.map((history, index) => (
+                <TableRow key={index}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className="text-black dark:text-white dark:border-b-darkThree"
+                  >
+                    {parseFloat(index) + 1}
+                  </TableCell>
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                    <div className="flex gap-4">
+                      {/* Date */}
+                      <span>
+                        {history?.date?.day || " "}-{history?.date?.month || " "}-
+                        {history?.date?.year || " "}
+                      </span>
+                      {/* Time */}
+                      <span>
+                        {formatTime(history?.date?.hours || " ")}:
+                        {padZero(history?.date?.minutes || " ")}{" "}
+                        {getAmPm(history?.date?.hours || " ")}
+                      </span>
+                    </div>
 
-        {/* all users */}
-        <TabPanel sx={{ padding: "0px", width: "100%" }} value="1">
-          {investmentHistoryData.length !== 0 ? (
-            <TableContainer
-              onClick={() => setIsOpenDot(false)}
-              component={Paper}
-              sx={{
-                boxShadow: "none",
-                padding: "0px",
-                background: "none",
-              }}
-              className="border-none outline-none"
-            >
-              <Table
-                sx={{ minWidth: 650 }}
-                aria-label="simple table"
-                className="text-black dark:text-white"
-              >
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "17px",
-                      }}
-                      className="text-black dark:text-white dark:border-b-darkThree"
+                  </TableCell>
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                    {history.detail}
+                  </TableCell>
+
+                  <TableCell className="text-black dark:text-white dark:border-b-darkThree">
+                    <button
+                      onClick={() => handleDelete(history._id)}
+                      className="btn btn-sm text-xl px-2 text-white/80 bg-[#ff5252] hover:bg-[#ff5252] border-none justify-start font-normal rounded"
                     >
-                      NO.
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "17px",
-                      }}
-                      className="text-black dark:text-white dark:border-b-darkThree"
-                    >
-                      Date/Time
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "17px",
-                      }}
-                      className="text-black dark:text-white dark:border-b-darkThree"
-                    >
-                      Details
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        fontWeight: "500",
-                        fontSize: "17px",
-                      }}
-                      className="text-black dark:text-white dark:border-b-darkThree"
-                    >
-                      Delete
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {investmentHistoryData?.map((history, index) => (
-                    <TableRow key={index}>
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        className="text-black dark:text-white dark:border-b-darkThree"
-                      >
-                        {parseFloat(index) + 1}
-                      </TableCell>
-                      <TableCell className="text-black dark:text-white dark:border-b-darkThree">
-                        <div className="flex gap-4"> 
-                          {/* Date */}
-                        <span>
-                          {history?.date?.day || " "}-{history?.date?.month || " "}-
-                          {history?.date?.year || " "}
-                        </span>
-                        {/* Time */}
-                        <span>
-                          {formatTime(history?.date?.hours || " ")}:
-                          {padZero(history?.date?.minutes || " ")}{" "}
-                          {getAmPm(history?.date?.hours || " ")}
-                        </span>
-                        </div>
-
-                      </TableCell>
-                      <TableCell className="text-black dark:text-white dark:border-b-darkThree">
-                        {history.detail}
-                      </TableCell>
-
-                      <TableCell className="text-black dark:text-white dark:border-b-darkThree">
-                        <button
-                          // onClick={() => handleDelete(history._id)}
-                          className="btn btn-sm text-xl px-2 text-white/80 bg-[#ff5252] hover:bg-[#ff5252] border-none justify-start font-normal rounded"
-                        >
-                          <MdDelete />
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          ) : (
-            <div
-              onClick={() => setIsOpenDot(false)}
-              className="text-center font-bold py-10"
-            >
-              Currently, no investment history is available.
-            </div>
-          )}
-        </TabPanel>
-
-        <TabPanel sx={{ padding: "0px", width: "100%" }} value="2">
-
-        </TabPanel>
-
-      </TabContext>
+                      <MdDelete />
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        <div
+          onClick={() => setIsOpenDot(false)}
+          className="text-center font-bold py-10"
+        >
+          Currently, no investment history is available.
+        </div>
+      )}
     </div>
 
   );

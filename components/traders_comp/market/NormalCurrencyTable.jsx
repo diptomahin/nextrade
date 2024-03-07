@@ -30,7 +30,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 borderTop: "2px solid #2c3750",
               }}
             >
-             <p className="dark:text-white">No.</p> 
+              <p className="dark:text-white">No.</p>
             </TableCell>
             <TableCell
               sx={{
@@ -39,7 +39,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 borderTop: "2px solid #2c3750",
               }}
             >
-             <p className="dark:text-white">Name</p> 
+              <p className="dark:text-white">Name</p>
             </TableCell>
             <TableCell
               sx={{
@@ -48,7 +48,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 borderTop: "2px solid #2c3750",
               }}
             >
-              Code
+              <p className="dark:text-white">Code</p>
             </TableCell>
             <TableCell
               sx={{
@@ -57,7 +57,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 borderTop: "2px solid #2c3750",
               }}
             >
-             <p className="dark:text-white">Current Value/USD</p> 
+              <p className="dark:text-white">Current Value/USD</p>
             </TableCell>
             <TableCell
               sx={{
@@ -66,7 +66,7 @@ const NormalCurrencyTable = ({ assets }) => {
                 borderTop: "2px solid #2c3750",
               }}
             >
-             <p className="dark:text-white">Option</p> 
+              <p className="dark:text-white">Option</p>
             </TableCell>
           </TableRow>
         </TableHead>

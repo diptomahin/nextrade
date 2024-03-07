@@ -12,10 +12,11 @@ import useSecureFetch from "@/hooks/useSecureFetch";
 import useSecureAPI from "@/hooks/useSecureAPI";
 import useTrading from '@/hooks/useTrading';
 import getDate from '@/components/utils/date';
+import useInvestmentHistory from '@/hooks/useInvestmentHistory';
 
 
 const TradingSidebar = (params) => {
-
+  const {refetchInvestmentHistory} = useInvestmentHistory();
   const { user, loading } = useAuth();
   const {value, assets, trader} = params ;
   const {data: trading=[],     
@@ -43,15 +44,21 @@ const TradingSidebar = (params) => {
         assetBuyerUID: user.uid,
         assetBuyerEmail: user.email,
       };
-      const historyInfo ={
+
+      const historyInfo = {
         assetName: ast.name,
         assetKey: ast.key,
-        Price: ast.price,
-        Email: user.email,
-        action: "bought",
+        assetImg: ast.icon,
         assetType: "crypto coin",
+        assetBuyingPrice: ast.price,
+        currentPrice: 0,
+        assetPortion: 100 + "%",
+        totalInvestment: ast.price,
+        assetBuyerEmail: user.email,
         date: date,
-      }
+        action: "bought",
+        detail: `You have bought a ${ast.name} costing $${ast.price}`,
+      };
       // console.log(historyInfo)
       //calculate remaining balance after buying a coin
       const usersBalance = parseFloat(trader.balance).toFixed(2);
@@ -77,13 +84,8 @@ const TradingSidebar = (params) => {
             icon: "success",
           });
           refetch();
-          secureAPI
-          .post(`/history`, historyInfo)
-          .then((res) => {
-            //console.log(res)
-            if (res.data.insertedId) {
-             
-            }
+          secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
+            refetchInvestmentHistory();
           })
           .catch((error) => {
             console.log(error);
@@ -105,15 +107,20 @@ const TradingSidebar = (params) => {
 
     //handleSellCoin
     const handleSellCoin =(ast)=>{
-      const historyInfo ={
+      const historyInfo = {
         assetName: ast.assetName,
         assetKey: ast.assetKey,
-        Price: selectedAsset[0].price,
-        Email: user.email,
-        action: "sold",
+        assetImg: selectedAsset[0].icon,
         assetType: "crypto coin",
+        assetBuyingPrice: selectedAsset[0].price,
+        currentPrice: 0,
+        assetPortion: 100 + "%",
+        totalInvestment: selectedAsset[0].price,
+        assetBuyerEmail: user.email,
         date: date,
-      }
+        action: "bought",
+        detail: `You have sold a ${ast.assetName} at price $${selectedAsset[0].price}`,
+      };
 
       Swal.fire({
         title: "Are you sure?",
@@ -127,12 +134,9 @@ const TradingSidebar = (params) => {
           const res = await secureAPI.delete(`/spotTrading/${ast._id}`);
           refetch();
           secureAPI
-          .post(`/history`, historyInfo)
+          .post(`/investmentHistory`, historyInfo)
           .then((res) => {
-            //console.log(res)
-            if (res.data.insertedId) {
-             
-            }
+            refetchInvestmentHistory();
           })
           .catch((error) => {
             console.log(error);
