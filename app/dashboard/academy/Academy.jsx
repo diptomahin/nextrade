@@ -20,6 +20,8 @@ const Academy = () => {
     return;
   }
 
+  const videoData = data.filter((item) => item.category === "Videos");
+
   return (
     <div className="">
       {/* top stories and recent news */}
@@ -105,8 +107,7 @@ const Academy = () => {
                       <p className="text-white">
                         {moment(news.date).format("ll")} .
                       </p>
-                      <p className="text-white">1k Views .</p>
-                      <p className="text-white">210 Shares</p>
+                      <p className="text-white">{news?.viewCount} Views</p>
                     </div>
                   </div>
                 </div>
@@ -268,8 +269,7 @@ const Academy = () => {
                   </Link>
                   <div className="flex gap-1 text-white absolute md:bottom-12 bottom-8 md:left-10 left-4">
                     <p>{moment(news.date).format("ll")} .</p>
-                    <p>1k Views .</p>
-                    <p>210 Shares</p>
+                    <p>{news?.viewCount} Views</p>
                   </div>
                 </div>
               ))}
@@ -319,24 +319,6 @@ const Academy = () => {
           </div>
         </div>
       </div>
-
-      {/* lowest */}
-
-      {/* Tutorial */}
-      {/* <div className="container mx-auto mt-10">
-        <SectionTitle
-          title="Tutorial & Resource"
-          btnText="ALL Tutorial & Resource"
-        />
-
-        <div className="mt-5 flex justify-between gap-5">
-          {video.slice(0, 4).map((video, index) => (
-            <div className="relative mb-5" key={index}>
-              <YouTube videoId={video.url} opts={opts} />
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 };

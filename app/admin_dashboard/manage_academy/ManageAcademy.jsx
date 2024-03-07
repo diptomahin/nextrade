@@ -28,6 +28,7 @@ const ManageAcademy = () => {
   // Category
   const CategoryOptions = [
     { value: "Trading", label: "Trading" },
+    { value: "Video", label: "Video" },
     { value: "Forex Trading", label: "Forex Trading" },
     { value: "Futures Trading", label: "Futures Trading" },
     { value: "Cryptocurrency", label: "Cryptocurrency" },
