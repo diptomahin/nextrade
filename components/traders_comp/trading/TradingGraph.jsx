@@ -7,6 +7,7 @@ const TradingGraph = (params) => {
   const [graph, setGraph] = useState(``);
   // const selectedAsset = assets.filter(asset => asset.key == value);
   // console.log(selectedAsset[0].key)
+  // console.log(selectedAsset[0].key)
   useEffect(() => {
     if (value) {
       const selectedAsset = assets.filter((asset) => asset.key == value);
