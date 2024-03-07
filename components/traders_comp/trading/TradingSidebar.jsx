@@ -88,14 +88,17 @@ const TradingSidebar = (params) => {
           secureAPI.post(`/investmentHistory`, historyInfo).then((res) => {
             refetchInvestmentHistory();
           })
-          secureAPI
-          .patch(`/all-users/${user.email}/${remainingBalance}`)
-          .then((res) => {
-            refetch();
-            if (res.data.modifiedCount) {
-             console.log(`done`)
-            }
-          })
+
+          // secureAPI
+          // .patch(`/all-users/${user.email}`, remainingBalance )
+          // .then((res) => {
+          //   if (res.data.modifiedCount) {
+          //    console.log(`done`)
+          //   }
+          //   else{
+          //     console.log(`not`)
+          //   }
+          // })
           .catch((error) => {
             console.log(error);
           });
@@ -148,14 +151,14 @@ const TradingSidebar = (params) => {
           .then((res) => {
             refetchInvestmentHistory();
           })
-          secureAPI
-          .patch(`/all-users/${user.email}/${remainingBalance}`)
-          .then((res) => {
-            refetch();
-            if (res.data.modifiedCount) {
-             console.log(`done`)
-            }
-          })
+          // secureAPI
+          // .patch(`/all-users/${user.email}`, remainingBalance)
+          // .then((res) => {
+          //   refetch();
+          //   if (res.data.modifiedCount) {
+          //    console.log(`done`)
+          //   }
+          // })
           .catch((error) => {
             console.log(error);
           });
