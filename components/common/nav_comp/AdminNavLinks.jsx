@@ -36,7 +36,7 @@ const AdminNavLinks = ({ pathname, isActiveMenu }) => {
         ) : (
           <div className="flex items-center gap-2">
             <FaUsers className="text-lg" />
-            Users
+            Manage Users
           </div>
         )}
       </Link>
@@ -54,7 +54,7 @@ const AdminNavLinks = ({ pathname, isActiveMenu }) => {
         ) : (
           <div className="flex items-center gap-2">
             <GrServices className="text-lg" />
-            Coins
+            ManageCoins
           </div>
         )}
       </Link>
