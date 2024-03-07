@@ -32,6 +32,7 @@ const BuyAndExchange = ({
 
   // exchange state
   const [firstCoinId, setFirstCoinId] = useState();
+  const [firstCoinPrice, setFirstCoinPrice] = useState();
   const [secondCoinId, setSecondCoinId] = useState();
   const [firstCoinName, setFirstCoinName] = useState();
   const [secondCoinName, setSecondCoinName] = useState();
@@ -65,12 +66,20 @@ const BuyAndExchange = ({
 
   const handleChangeExchange = (event) => {
     setSecondCoinId(event.target.value);
+    console.log(cryptodata)
     setSecondCoinName(
       cryptoData.find((asset) => asset._id === event.target.value).assetName
     );
   };
 
   const handleExChange = () => {
+    //exchange history
+    const historyInfo ={
+      initialCoin : firstCoinName,
+      exchangingCoin: secondCoinName,
+      date: date,
+      assetBuyerEmail: user.email,
+    }
     // post notification data sen database
     const notificationInfo = {
       title: "Coin Exchange Successfully",
