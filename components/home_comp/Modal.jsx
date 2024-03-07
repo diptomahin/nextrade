@@ -18,7 +18,7 @@ const Modal = () => {
     if (!isModalShown) {
       setTimeout(() => {
         setOpen(true);
-        Cookies.set("isModalShown", "true", { expires: 1 / 24 }); // 1 hour expiration
+        Cookies.set("isModalShown", "true", { expires: 5 / (60 * 24) }); // 5 minutes expiration
       }, 5000);
     }
   }, []);
