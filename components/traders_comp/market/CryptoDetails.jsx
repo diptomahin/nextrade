@@ -237,7 +237,7 @@ const CryptoDetails = ({
           />
         )}
 
-        <div className=" h-64 lg:h-96  3xl:h-[65vh] rounded-xl">
+        <div className=" h-64 lg:h-96  3xl:h-[65vh] rounded-xl pb-10">
           <h1 className="font-semibold mb-3">
             {coinKey.slice(0, -4)} to USDT Chart
           </h1>
@@ -271,7 +271,7 @@ const CryptoDetails = ({
 
       <div className="flex-1 flex flex-col gap-7 w-full">
         {tickerData ? (
-          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-white dark:bg-tertiary shadow">
+          <div className=" rounded-xl mt-6 2xl:mt-0 flex flex-col gap-4 p-4 max-h-max bg-white dark:bg-quaternary shadow">
             <div className="flex justify-between">
               <h1 className="text-lg font-semibold">
                 Buy {coinKey.slice(0, -4)}

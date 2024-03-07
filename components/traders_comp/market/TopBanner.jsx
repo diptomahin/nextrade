@@ -8,7 +8,7 @@ import ImportExportIcon from "@mui/icons-material/ImportExport";
 
 const TopBanner = ({ tickerData, coinImage, coinName, coinKey }) => {
   return (
-    <div className="bg-white dark:bg-tertiary rounded-xl p-4 w-full shadow">
+    <div className="bg-white dark:bg-quaternary rounded-xl p-4 w-full shadow">
       <h1 className="text-xl font-semibold">Market Stats</h1>
       {/* <div className="  flex flex-col md:flex-row 2xl:items-center 2xl:justify-between gap-6 2xl:gap-0 "> */}
       <div className="  flex flex-col gap-6 2xl:gap-0 ">

@@ -249,7 +249,7 @@ const MarketAllProducts = () => {
   };
 
   return (
-    <div className="w-full p-3 bg-white dark:bg-tertiary shadow rounded-xl">
+    <div className="w-full p-3 bg-white dark:bg-quaternary shadow rounded-xl">
       {/* tabs */}
       <TabContext value={value}>
         <div className="flex flex-col items-center justify-center lg:flex-row gap-5 lg:justify-between mb-6 ">
@@ -288,7 +288,7 @@ const MarketAllProducts = () => {
           </Search>
 
           {/* show coin count */}
-          <div className="flex items-center gap-1 p-2 rounded-md bg-zinc-100 dark:bg-secondary">
+          <div className="flex items-center gap-1 p-2 rounded-md bg-zinc-100 dark:bg-quaternary">
             <p>Show: </p>
             <select
               value={coinPerPage}
