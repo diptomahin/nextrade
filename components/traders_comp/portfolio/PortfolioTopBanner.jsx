@@ -21,7 +21,7 @@ const PortfolioTopBanner = ({
         <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#40a0ff]">
           <div className="w-full">
             <p className="font-semibold  ">
-              Total Asset{" "}
+              Total Investment{" "}
               <MonetizationOnIcon className="text-base ml-2  " />
             </p>
             <div
@@ -31,7 +31,7 @@ const PortfolioTopBanner = ({
             >
               <h1>
                 {!hideAssetAmount && (
-                  <span className=" lg:text-2xl text-xl font-bold  ">
+                  <span className=" xl:text-2xl text-xl font-bold  ">
                     $ {totalBuyingPrice.toFixed(2)}
                   </span>
                 )}
@@ -53,7 +53,7 @@ const PortfolioTopBanner = ({
               </button>
             </div>
 
-           <div className=" p-2 px-2 bg-white w-full flex flex-col md:flex-row items-center justify-between rounded-md   ">
+           <div className=" p-2 px-2 bg-white w-full flex flex-col xl:flex-row items-center justify-between rounded-md   ">
               {/* total profit */}
               <p
                 className={`font-semibold ${
@@ -88,7 +88,7 @@ const PortfolioTopBanner = ({
         {/*  Remaining balance */}
 
         <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#3aba69]">
-          <div className=" w-full pb-9">
+          <div className=" w-full xl:pb-9 lg:pb-16">
             <p className="font-semibold ">
               Total Balance{" "}
               <MonetizationOnIcon className="text-base ml-2 " />
@@ -99,7 +99,7 @@ const PortfolioTopBanner = ({
               } `}
             >
               {!hideRemainingBalance && (
-                <h1 className=" lg:text-2xl text-xl font-bold">
+                <h1 className=" xl:text-2xl text-xl font-bold">
                   $ {usersRemainingBalance}
                 </h1>
               )}
