@@ -20,6 +20,7 @@ const Dashboard = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       <TradersChecker>
         <div className="min-h-screen bg-whiteBg text-zinc-950 dark:bg-secondary dark:text-zinc-100 font-montserrat">
+          {/*  */}
           <div
             className={`fixed top-0 w-full h-16 transition-all duration-200 ease-out ${
               isActiveMenu ? "3xl:pl-[80px]" : "3xl:pl-[200px]"
