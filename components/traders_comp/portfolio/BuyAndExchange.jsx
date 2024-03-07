@@ -123,9 +123,9 @@ const BuyAndExchange = ({
                 timer: 1500,
               });
               refetchUserData();
-              secureAPI.post(`/exchangeHistory`, historyInfo).then((res) => {
-                refetchExchangeHistory();
-              })
+              // secureAPI.post(`/exchangeHistory`, historyInfo).then((res) => {
+              //   refetchExchangeHistory();
+              // })
               // post to  notification data in database
               secureAPI
                 .post("/notifications", notificationInfo)
