@@ -10,82 +10,85 @@ import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 
 
+
 const AllHistory = () => {
-  const [isOpenDot, setIsOpenDot] = useState(false);
-  const secureAPI = useSecureAPI();
-  const { user } = useAuth();
+ 
+  
+const [isOpenDot, setIsOpenDot] = useState(false);
+const secureAPI = useSecureAPI();
+const { user } = useAuth();
 
-  // investment history data
-  const {
-    investmentHistoryData,
-    refetchInvestmentHistory
-  } = useInvestmentHistory();
+// investment history data
+const {
+  investmentHistoryData,
+  refetchInvestmentHistory
+} = useInvestmentHistory();
 
-  // Trading history data
-  const {
-    historyData,
-    refetchHistory
-  } = useInvestmentHistory();
+// Trading history data
+const {
+  historyData,
+  refetchHistory
+} = useInvestmentHistory();
 
 
-  // Helper function to format time in 12-hour format
-  const formatTime = (hours) => {
-    return hours % 12 || 12; // Convert to 12-hour format
-  };
+// Helper function to format time in 12-hour format
+const formatTime = (hours) => {
+  return hours % 12 || 12; // Convert to 12-hour format
+};
 
-  // Helper function to pad zero for single-digit minutes
-  const padZero = (minutes) => {
-    return minutes < 10 ? `0${minutes}` : minutes;
-  };
+// Helper function to pad zero for single-digit minutes
+const padZero = (minutes) => {
+  return minutes < 10 ? `0${minutes}` : minutes;
+};
 
-  // Helper function to determine AM or PM
-  const getAmPm = (hours) => {
-    return hours >= 12 ? "PM" : "AM";
-  };
+// Helper function to determine AM or PM
+const getAmPm = (hours) => {
+  return hours >= 12 ? "PM" : "AM";
+};
 
-  const handleDelete = (id) => {
-    secureAPI.delete(`investmentHistory/${id}`)
-      .then(res => {
-        if (res.data.deletedCount > 0) {
-          Swal.fire({
-            title: `History deleted`,
-            text: `successful`,
-            icon: "success",
-            timer: 1500,
-          });
-          refetchInvestmentHistory()
-        }
-      })
-  }
-
-  const handleDeleteAll = (id) => {
-    Swal.fire({
-      title: `Are you sure to delete all history?`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        secureAPI.delete(`allHistory/${user.email}`)
-          .then(res => {
-            if (res.data.deletedCount > 0) {
-              Swal.fire({
-                title: `History deleted`,
-                text: `successful`,
-                icon: "success",
-                timer: 1500,
-              });
-              refetchInvestmentHistory()
-            }
-          })
+const handleDelete = (id) => {
+  secureAPI.delete(`investmentHistory/${id}`)
+    .then(res => {
+      if (res.data.deletedCount > 0) {
+        Swal.fire({
+          title: `History deleted`,
+          text: `successful`,
+          icon: "success",
+          timer: 1500,
+        });
+        refetchInvestmentHistory()
       }
     })
+}
 
-  }
+const handleDeleteAll = (id) => {
+  Swal.fire({
+    title: `Are you sure to delete all history?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes!",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      secureAPI.delete(`allHistory/${user.email}`)
+        .then(res => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: `History deleted`,
+              text: `successful`,
+              icon: "success",
+              timer: 1500,
+            });
+            refetchInvestmentHistory()
+          }
+        })
+    }
+  })
 
+}
 
+ 
   return (
     <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex flex-col 2xl:flex-row items-center justify-between pb-10 gap-6">
