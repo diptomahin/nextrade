@@ -83,11 +83,7 @@ const Comment = ({ articleId }) => {
           <p>Sort by: Top</p>
         </div>
         {/* Conditionally render the <hr> element based on dark mode */}
-      {isDarkMode ? (
-        <hr className="bg-white" />
-      ) : (
-        <hr className="bg-black" />
-      )}
+        {isDarkMode ? <hr className="bg-white" /> : <hr className="bg-black" />}
         <div>
           <div className="flex gap-2 mt-3">
             <div className="w-10 h-10 overflow-hidden rounded-full">
