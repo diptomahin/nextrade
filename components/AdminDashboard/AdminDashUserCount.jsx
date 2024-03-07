@@ -48,7 +48,7 @@ const AdminDashUserCount = () => {
           }}
         />
       </div>
-      <div className="flex items-center justify-center gap-10">
+      <div className="flex text-white items-center justify-center gap-10">
         <p className="bg-[#6c52ff] p-2 rounded-md font-semibold">
           Admin : {totalTraderAccounts}
         </p>

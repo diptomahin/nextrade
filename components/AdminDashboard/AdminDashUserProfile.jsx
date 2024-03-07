@@ -16,6 +16,7 @@ const AdminDashUserProfile = () => {
           key={userProfile._id}
           className="flex items-center gap-5 my-[14px] bg-whiteBg dark:bg-darkOne rounded-xl p-2"
         >
+          
           {userProfile?.photo ? (
             <Image
               src={userProfile?.photo}
@@ -28,16 +29,16 @@ const AdminDashUserProfile = () => {
             <FaUserCircle className={`w-8 h-8 lg:w-12 lg :h-12 text-primary`} />
           )}
           <div className="w-full flex items-center justify-between text-sm lg:text-base text-black dark:text-white">
-            <div className="">
+            <div className=" w-full">
               <h1 className="font-semibold text-xs ">
                 {userProfile.name ? userProfile.name : "No name"}{" "}
               </h1>
               <h1 className="hidden xs:block text-gray-500 text-xs">
                 {userProfile.email}
               </h1>
-            </div>
-            <p
-              className={`ml-2 md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
+              <p className="flex justify-end">
+              <span
+              className={` ml-2  md:ml-5 rounded-lg px-2 py-1 text-white font-normal text-xs  ${
                 userProfile.role === "admin"
                   ? "bg-[#6c52ff]"
                   : userProfile.role === "trader"
@@ -46,8 +47,13 @@ const AdminDashUserProfile = () => {
               }`}
             >
               {userProfile.role}
-            </p>
+            </span>
+              </p>
+            </div>
+            
+          
           </div>
+          
         </div>
       ))}
       <Link href={"admin_dashboard/manage_users"}>
