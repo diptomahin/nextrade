@@ -35,7 +35,7 @@ const Comment = ({ articleId }) => {
       email: user.email,
       name: user.displayName,
       photo: user.photoURL,
-      date: date.toISOString() // Convert date to ISO string format
+      date: date
     };
   
     axiosPublic.post(`/articles/${articleId}/comments`, comment)
@@ -49,7 +49,7 @@ const Comment = ({ articleId }) => {
         }
       })
       .catch((error) => {
-        console.error("Error adding comment:", error);
+        // console.error("Error adding comment:", error);
         // Handle error
       });
   };
@@ -111,7 +111,7 @@ const Comment = ({ articleId }) => {
             <div className="w-full ">
               <div className="dark:bg-[#1e222d] bg-white rounded-lg p-3 ">
                 <h1 className="font-bold">{user.displayName}</h1>
-                <p className="text-sm">{article?.comment}</p>
+                <p className="text-sm">hiii</p>
               </div>
               <p className="flex gap-3 text-sm mt-1">
                 <span>like</span>
