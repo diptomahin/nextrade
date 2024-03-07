@@ -53,7 +53,7 @@ const PortfolioTopBanner = ({
               </button>
             </div>
 
-           <div className=" p-2 px-2 bg-white w-full flex items-center justify-between rounded-md   ">
+           <div className=" p-2 px-2 bg-white w-full flex flex-col md:flex-row items-center justify-between rounded-md   ">
               {/* total profit */}
               <p
                 className={`font-semibold ${
@@ -87,8 +87,8 @@ const PortfolioTopBanner = ({
 
         {/*  Remaining balance */}
 
-        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#78c350]">
-          <div className=" w-full pb-6">
+        <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#3aba69]">
+          <div className=" w-full pb-9">
             <p className="font-semibold ">
               Total Balance{" "}
               <MonetizationOnIcon className="text-base ml-2 " />

@@ -290,7 +290,7 @@ const BuyAndExchange = ({
    
     <div className="w-full bg-white dark:bg-tertiary rounded-xl shadow">
       <div className="flex items-center justify-center">
-        <div className="relative sm:w-72 h-10 flex items-center text-black  bg-gray-100 dark:bg-secondary rounded-xl">
+        <div className="relative md:w-72 w-52 h-10 flex items-center text-black  bg-gray-100 dark:bg-secondary rounded-xl">
           <div
             className={`w-1/2 h-full rounded-xl bg-primary  transition-transform ${
               isBuyOpen ? "translate-x-0" : "translate-x-full"
