@@ -35,31 +35,12 @@ const Portfolio = () => {
 
   refetchUserData();
 
-
-
   const usersRemainingBalance = parseFloat(userData?.balance).toFixed(2);
 
   // asset Data with search functionality
   const [cryptoData, setCryptoData] = useState([]);
   const [currencyData, setCurrencyData] = useState([]);
   const [dynamicSearch, setDynamicSearch] = useState("");
-  const [coinPerPage, setCoinPerPage] = useState(6);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [assetCount, setAssetCount] = useState(0);
-
-  // get page count from database
-  useEffect(() => {
-    secureAPI
-      .get("/totalAssetCount")
-      .then((res) => setAssetCount(res.data.count))
-      .catch((error) => console.log(error));
-  }, [secureAPI, user]);
-
-  // Use optional chaining or default to 0 if assetCount is undefined
-  const numberOfAssetPages = Math.ceil(assetCount / coinPerPage);
-
-  const assetPage = [...Array(numberOfAssetPages).keys()];
- 
 
   // fetch data with search functionality
   const {
@@ -67,11 +48,9 @@ const Portfolio = () => {
     purchasedPending,
     purchasedLoading,
     purchasedRefetch,
-  } = usePurchasedAssets(dynamicSearch, currentPage, coinPerPage);
+  } = usePurchasedAssets(dynamicSearch);
 
   purchasedRefetch();
-
-  console.log(purchasedAssets);
 
   // asset Data without search functionality
   const [assetData2, setAssetData2] = useState([]);
@@ -317,8 +296,6 @@ const Portfolio = () => {
     0
   );
 
- 
-
   // search functionality
   const Search = () => {
     purchasedRefetch();
@@ -357,8 +334,8 @@ const Portfolio = () => {
         />
         {/* coin buying list   */}
         <div className="my-5 p-4 bg-white dark:bg-tertiary rounded-xl shadow ">
-          <div className="flex justify-between">
-            <h1 className="text-xl font-semibold my-3">Your Holdings</h1>
+          <div className="flex justify-between overflow-x-auto">
+            <h1 className="xl:text-xl text-lg font-semibold my-3">Your Holdings</h1>
             <div className=" flex justify-around items-center gap-3">
               {/* search form */}
               <div className="relative flex items-center">
@@ -376,7 +353,6 @@ const Portfolio = () => {
                   <BiSearchAlt />
                 </button>
               </div>
-              
 
               {/* view options */}
               <ToggleButtonGroup
@@ -412,7 +388,6 @@ const Portfolio = () => {
                   purchasedRefetch={purchasedRefetch}
                 />
               )}
-              
             </>
           ) : (
             <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
@@ -444,7 +419,10 @@ const Portfolio = () => {
         <div className="p-5 bg-white dark:bg-tertiary rounded-xl shadow ">
           <h1 className="text-xl font-semibold my-5">Total Asset Chart</h1>
           {cryptoData ? (
-            <PortfolioAssetChart totalCurrentPrice={totalAssetInvestment} cryptoData={assetData2} />
+            <PortfolioAssetChart
+              totalCurrentPrice={totalAssetInvestment}
+              cryptoData={assetData2}
+            />
           ) : (
             <div className=" w-full  flex flex-col items-center justify-center gap-2 py-8">
               <Image
@@ -460,7 +438,7 @@ const Portfolio = () => {
           )}
         </div>
         {/* sell history */}
-        <PortfolioSellHistory/>
+        <PortfolioSellHistory />
       </div>
     </div>
   );
