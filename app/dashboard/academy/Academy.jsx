@@ -20,16 +20,12 @@ const Academy = () => {
     return;
   }
 
-  const colorTheme = isDarkMode ? "black" : "white";
-  const theme = localStorage.getItem("theme");
-  console.log(theme);
-
   return (
     <div className="">
       {/* top stories and recent news */}
       <div className="grid 2xl:grid-cols-2 lg:grid-cols-1 md:gap-10 mt-10 lg:p-10 2xl:p-10  3xl:p-10 5xl:p-10 6xl:p-0">
         <div className="lg:mt-1">
-          <Timeline colorTheme={colorTheme} height={690} width="100%" />
+          <Timeline colorTheme="dark" height={690} width="100%" />
         </div>
         <div className="mt-10 lg:mt-0">
           <div>
