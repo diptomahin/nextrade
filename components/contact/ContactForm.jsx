@@ -57,13 +57,13 @@ const ContactForm = () => {
           <div className="flex flex-col">
             <label
               htmlFor="name"
-              className="font-semibold text-primary text-xl"
+              className="font-semibold text-primary text-xl pb-1"
             >
-              Name:
+              Name 
             </label>
             <input
               {...register("name", validationOptions.name)}
-              className="bg-white rounded-lg p-2"
+              className="bg-quaternary border border-darkThree rounded-lg p-2"
               type="text"
               placeholder="Name"
               id="name"
@@ -73,13 +73,13 @@ const ContactForm = () => {
           <div className="flex flex-col">
             <label
               htmlFor="phone"
-              className="font-semibold text-primary text-xl"
+              className="font-semibold text-primary text-xl pb-1"
             >
-              Phone:
+              Phone
             </label>
             <input
               {...register("phone", validationOptions.phone)}
-              className="bg-white rounded-lg p-2"
+              className="bg-quaternary border border-darkThree rounded-lg p-2"
               type="number"
               placeholder="01 xx xxxx xxx"
               id="phone"
@@ -91,13 +91,13 @@ const ContactForm = () => {
           <div className="flex flex-col">
             <label
               htmlFor="email"
-              className="font-semibold text-primary text-xl"
+              className="font-semibold text-primary text-xl pb-1"
             >
-              Email:
+              Email 
             </label>
             <input
               {...register("email", validationOptions.email)}
-              className="p-2 bg-white rounded-lg"
+              className="p-2 bg-quaternary border border-darkThree rounded-lg"
               type="email"
               placeholder="example@gmail.com"
               id="email"
@@ -107,13 +107,13 @@ const ContactForm = () => {
           <div className="flex flex-col">
             <label
               htmlFor="company"
-              className="font-semibold text-primary text-xl"
+              className="font-semibold text-primary text-xl pb-1"
             >
-              Company:
+              Company 
             </label>
             <input
               {...register("company")}
-              className="bg-white rounded-lg p-2"
+              className="bg-quaternary border border-darkThree rounded-lg p-2"
               type="text"
               placeholder="Microsoft"
               id="company"
@@ -123,12 +123,12 @@ const ContactForm = () => {
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="message" className="font-semibold text-primary text-xl">
-          Leave us a message:
+        <label htmlFor="message" className="font-semibold text-primary text-xl pb-1">
+          Leave us a message :
         </label>
         <textarea
           {...register("message", validationOptions.message)}
-          className="bg-white w-full rounded-lg p-2"
+          className="bg-quaternary border border-darkThree w-full rounded-lg p-2"
           rows="5"
           placeholder="Your Message"
           id="message"
