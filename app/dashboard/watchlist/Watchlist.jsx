@@ -203,7 +203,7 @@ const Watchlist = () => {
           </TabPanel>
         </TabContext>
       </Box>
-      <FeedbackForm user={user} secureAPI={secureAPI}></FeedbackForm>
+      {/* <FeedbackForm user={user} secureAPI={secureAPI}></FeedbackForm> */}
     </div>
   );
 };
