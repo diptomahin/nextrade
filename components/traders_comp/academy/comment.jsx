@@ -26,8 +26,16 @@ const Comment = ({ articleId }) => {
   const commentText = useRef();
 
   const handleComment = () => {
+    e.preventDefault();
     const commentTextValue = commentText.current.value;
-    const comment = { commentTextValue };
+    const date = new Date();
+    const comment = {
+      text: commentTextValue,
+      email: user.email,
+      articleId: articleId,
+      date: date
+    };
+
     axiosPublic
       .patch(`/articles/comments/${articleId}`, comment)
       .then((res) => {
