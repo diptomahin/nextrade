@@ -26,7 +26,7 @@ const AdminReviews = () => {
       <Container className="py-5">
         <Swiper
           slidesPerView={20}
-          spaceBetween={5}
+          spaceBetween={4}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -42,7 +42,7 @@ const AdminReviews = () => {
               spaceBetween: 20,
             },
             1280: {
-              slidesPerView: 5,
+              slidesPerView: 3,
               spaceBetween: 20,
             },
           }}
@@ -50,7 +50,8 @@ const AdminReviews = () => {
         >
           {data?.map((review) => (
             <SwiperSlide key={review?._id}>
-              <div className="w-full min-h-52 bg-gradient-to-b from-zinc-200 to-zinc-200 dark:from-darkOne dark:to-darkTwo border border-b-transparent dark:border-darkThree flex gap-3 rounded-xl shadow hover:shadow-lg p-5 my-10 transition-all hover:-translate-y-[6px] duration-500 ease-in-out">
+              <div className="w-full min-h-52 bg-gradient-to-b from-zinc-200 to-zinc-200 dark:from-darkOne dark:to-darkTwo border border-b-transparent dark:border-darkThree  rounded-xl shadow hover:shadow-lg p-5 my-10 transition-all hover:-translate-y-[6px] duration-500 ease-in-out">
+                <div className="flex gap-3">
                 <Image
                   className="w-12 h-12 rounded-full"
                   src={review?.photo}
@@ -70,11 +71,13 @@ const AdminReviews = () => {
                       readOnly
                     />
                   </div>
-                  <p className="text-xs">Address N/A</p>
-                  <p className="text-sm mt-3">
+                  <p className="text-xs">{review.address || 'Address N/A'}</p>
+                  
+                </div>
+                </div>
+                <p className="text-sm mt-3">
                     &quot;{review?.feedback.slice(0, 150)}&quot;
                   </p>
-                </div>
               </div>
             </SwiperSlide>
           ))}

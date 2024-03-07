@@ -88,7 +88,7 @@ const PortfolioTopBanner = ({
         {/*  Remaining balance */}
 
         <div className="w-full flex items-center gap-3  p-5 rounded-xl bg-[#3aba69]">
-          <div className=" w-full xl:pb-9 lg:pb-16">
+          <div className=" w-full xl:pb-10 lg:pb-16">
             <p className="font-semibold ">
               Total Balance{" "}
               <MonetizationOnIcon className="text-base ml-2 " />
