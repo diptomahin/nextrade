@@ -96,7 +96,8 @@ const Banner = () => {
     return () => socket.close();
   }, [cryptoCurrency]);
   return (
-    <div className="">
+    <div className="relative">
+      <div className="banner w-full min-h-full absolute left-0 bottom-0 2xl:-bottom-10 opacity-70"></div>
       <Container className="flex flex-col-reverse 2xl:flex-row items-center justify-between gap-20 2xl:gap-5 pb-20 pt-40 2xl:pt-60">
         {/* left */}
         <div className="w-full h-full flex-1 relative">

@@ -3,9 +3,11 @@ import useAuth from "@/hooks/useAuth";
 import usePublicAPI from "@/hooks/usePublicAPI";
 import { useQuery } from "@tanstack/react-query";
 import React, { useRef } from "react";
-import { useMemo } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Button from "@/components/library/Button";
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 const Comment = ({ articleId }) => {
   const { user } = useAuth();
@@ -27,18 +29,26 @@ const Comment = ({ articleId }) => {
     axiosPublic
       .patch(`/articles/comments/${articleId}`, comment)
       .then((res) => {
-        console.log(res.data);
         refetch();
+        if (res.data.modifiedCount) {
+          toast.success("Comment Added Successfully", {
+            duration: 2000,
+          });
+          commentText.current.value = "";
+        }
       });
-
-    console.log(comment);
   };
 
-  // Find the specific article by its _id
   const article = articles.find((article) => article._id === articleId);
 
   // articles view count
-  const viewCount = useMemo(() => ({ count: 1 }), []);
+  const count = 1;
+  const viewCount = { count };
+  console.log(viewCount);
+
+  useEffect(() => {
+    axiosPublic.patch(`/articles/viewCount/${articleId}`, viewCount);
+  }, [axiosPublic, articleId]);
 
   return (
     <div>
@@ -58,9 +68,12 @@ const Comment = ({ articleId }) => {
             ></textarea>
           </form>
         </div>
-        <Button  onClick={handleComment}
-          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5">Post Comment</Button>
-       
+        <Button
+          onClick={handleComment}
+          className="text-uppercase px-4 py-3 bg-blue-600 text-white my-5"
+        >
+          Post Comment
+        </Button>
       </div>
       <div className="md:mt-20 mt-10">
         <div className="flex justify-between mb-3">
@@ -93,6 +106,7 @@ const Comment = ({ articleId }) => {
           </div>
         </div>
       </div>
+      <Toaster position="top-center"></Toaster>
     </div>
   );
 };
