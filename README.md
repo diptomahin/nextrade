@@ -83,12 +83,9 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 ## Contributor
 
-- [Md. Nuruzzama](https://github.com/mdnuruzzamannirob)
-- [Md. Saimur Rahaman](https://github.com/srssieam)
-- [Ariful Islam](https://github.com/hellomrariful)
-- [MD Tajul Islam](https://github.com/mdtajulislammt)
-- [Julfiker Ali](https://github.com/jasaiful)
-- [Mahin Ahmed Dipta](https://github.com/diptomahin)
+<a href="https://github.com/diptomahin/nextrade/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=diptomahin/nextrade"/>
+</a>
 
 ## How to Run Locally
 
