@@ -69,12 +69,12 @@ NexTrade aims to provide a comprehensive online platform for businesses and trad
 
 ## Admin Credentials
 
-- **Username:** admin@nextrade.com
+- **Mail:** admin@nextrade.com
 - **Password:** Nextrade123!@#
 
 ## User Credentials
 
-- **Username:** user@nextrade.com
+- **Mail:** user@nextrade.com
 - **Password:** Nextrade123!@#
 
 ## Challenges
