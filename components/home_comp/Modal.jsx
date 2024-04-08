@@ -15,11 +15,10 @@ const Modal = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setOpen(true);
-    }, 10000);
+    }, 11000);
     return () => clearTimeout(timeoutId);
   }, []);
   
-
   const cancelButtonRef = useRef(null);
 
   if (user) {
