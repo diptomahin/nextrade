@@ -73,7 +73,7 @@ const EditProfile = ({
       };
 
       const res = await axios.put(
-        `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
+        `https://nextrade-server.vercel.app/v1/api/update-user/${userData?.email}`,
         userDetails
       );
       if (res.data.modifiedCount > 0) {
@@ -145,7 +145,7 @@ const EditProfile = ({
       };
 
       const res = await axios.put(
-        `https://nex-trade-server.vercel.app/v1/api/update-user/${userData?.email}`,
+        `https://nextrade-server.vercel.app/v1/api/update-user/${userData?.email}`,
         userDetails
       );
       if (res.data.modifiedCount > 0) {

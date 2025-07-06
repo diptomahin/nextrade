@@ -6,14 +6,11 @@ import Image from "next/image";
 import moment from "moment";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import Link from "next/link";
-import useDarkMode from "@/hooks/useDarkMode";
 import useSecureFetch from "@/hooks/useSecureFetch";
 
 const Academy = () => {
-  const isDarkMode = useDarkMode();
-
   const { data, isPending, isLoading, refetch, isError } = useSecureFetch(
-    "https://nex-trade-server.vercel.app/v1/api/articles"
+    "https://nextrade-server.vercel.app/v1/api/articles"
   );
 
   if ((isError, isPending, isLoading)) {
@@ -21,10 +18,6 @@ const Academy = () => {
   }
 
   const videoData = data.filter((item) => item.category === "Video");
-
-  console.log(videoData)
-
-
 
   return (
     <div className="">

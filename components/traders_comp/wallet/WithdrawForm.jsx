@@ -42,7 +42,7 @@ const WithdrawForm = ({
 
     axios
       .post(
-        `https://nex-trade-server.vercel.app/v1/api/withdrawal/${user?.email}`,
+        `https://nextrade-server.vercel.app/v1/api/withdrawal/${user?.email}`,
         {
           data: data,
           isPaymentSelected: isPaymentSelected,

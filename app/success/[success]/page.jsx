@@ -33,7 +33,7 @@ const Success = () => {
         // Fetch checkout session details from Stripe
         try {
           const response = await axios.post(
-            "https://nex-trade-server.vercel.app/v1/api/checkout-session",
+            "https://nextrade-server.vercel.app/v1/api/checkout-session",
             {
               email: user?.email,
               sessionId: session_id,

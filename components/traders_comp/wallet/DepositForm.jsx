@@ -32,7 +32,7 @@ const DepositForm = ({ refetchUserData, refetchSpecificTransactionsData }) => {
 
     axios
       .post(
-        `https://nex-trade-server.vercel.app/v1/api/deposit/${user?.email}`,
+        `https://nextrade-server.vercel.app/v1/api/deposit/${user?.email}`,
         {
           data: data,
           isPaymentSelected: isPaymentSelected,
